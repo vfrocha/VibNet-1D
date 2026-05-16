@@ -1,8 +1,8 @@
-# Pastas de Dados (NUNCA commitar)
-data/
+# Pastas de Dados na raiz (NUNCA commitar)
+/data/
 
 # Modelos Salvos (Pesos das redes neurais são pesados)
-results/models/
+/results/models/
 
 # Ambientes Virtuais
 .venv/
@@ -14,5 +14,5 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 
-# Variáveis de ambiente (senhas, chaves de API, se houver)
+# Variáveis de ambiente
 .env
