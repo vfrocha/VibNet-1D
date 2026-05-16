@@ -1,0 +1,18 @@
+# Pastas de Dados (NUNCA commitar)
+data/
+
+# Modelos Salvos (Pesos das redes neurais são pesados)
+results/models/
+
+# Ambientes Virtuais
+.venv/
+venv/
+env/
+
+# Arquivos de cache do Python e Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Variáveis de ambiente (senhas, chaves de API, se houver)
+.env
