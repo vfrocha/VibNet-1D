@@ -38,7 +38,7 @@ class Detrend(Transform):
 
 # --- PIPELINES 1D (Apenas Detrend e Split) ---
 PIPELINES = {
-    "CWRU_12k": Sequential([Detrend(), SimpleSplit(window_size=3000)]),
+    "CWRU_12k": Sequential([Detrend(), SimpleSplit(window_size=12000)]), # Alterado para 1 segundo
     "CWRU_48k": Sequential([Detrend(), SimpleSplit(window_size=12000)]),
     "HUST": Sequential([Detrend(), SimpleSplit(window_size=12800)]),
     "UORED": Sequential([Detrend(), SimpleSplit(window_size=10500)]),
@@ -93,11 +93,11 @@ def extract_signal(item):
     return None
 
 # --- CONFIGURAÇÃO DE DIRETÓRIOS ---
-# Aponta diretamente para a pasta do projeto 2D para reaproveitar os downloads
 RAW_DATA_DIR = "/home/vfrocha/VibNet_Project/raw_data"
 
 # Salva os dados processados dentro do repositório atual (VibNet-1D)
-FINAL_1D_DIR = os.path.join(os.getcwd(), "data", "processed")
+#FINAL_1D_DIR = os.path.join(os.getcwd(), "data", "processed")
+FINAL_1D_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
 
 if __name__ == "__main__":
     datasets = ["UORED", "CWRU", "PU", "HUST"]
