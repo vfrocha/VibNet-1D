@@ -1,0 +1,93 @@
+
+==================================================
+INICIANDO EXPERIMENTO 1: STATISTICAL (Time Domain)
+Dataset: CWRU_12k
+Arquivo de log: /home/vfrocha/VibNet-1D/results/log_exp01_CWRU_12k_20260517_155348.txt
+==================================================
+
+--- Fold: Testando na condição inédita Load_0HP ---
+Carregando CWRU_12k | Condição de Teste: Load_0HP
+-> Lendo arquivos .npy...
+Extraindo 19 características estatísticas avançadas...
+Extraindo 19 características estatísticas avançadas...
+
+  [Iniciando Random Forest]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 10, 'rf__n_estimators': 50}
+     Bal Acc: 0.7391 | F1: 0.7444
+
+  [Iniciando SVM]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.7625 | F1: 0.7633
+
+--- Fold: Testando na condição inédita Load_1HP ---
+Carregando CWRU_12k | Condição de Teste: Load_1HP
+-> Lendo arquivos .npy...
+Extraindo 19 características estatísticas avançadas...
+Extraindo 19 características estatísticas avançadas...
+
+  [Iniciando Random Forest]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 10, 'rf__n_estimators': 200}
+     Bal Acc: 0.8452 | F1: 0.8444
+
+  [Iniciando SVM]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8240 | F1: 0.8230
+
+--- Fold: Testando na condição inédita Load_2HP ---
+Carregando CWRU_12k | Condição de Teste: Load_2HP
+-> Lendo arquivos .npy...
+Extraindo 19 características estatísticas avançadas...
+Extraindo 19 características estatísticas avançadas...
+
+  [Iniciando Random Forest]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 0.8706 | F1: 0.8688
+
+  [Iniciando SVM]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8723 | F1: 0.8742
+
+--- Fold: Testando na condição inédita Load_3HP ---
+Carregando CWRU_12k | Condição de Teste: Load_3HP
+-> Lendo arquivos .npy...
+Extraindo 19 características estatísticas avançadas...
+Extraindo 19 características estatísticas avançadas...
+
+  [Iniciando Random Forest]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 0.8335 | F1: 0.8339
+
+  [Iniciando SVM]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8589 | F1: 0.8491
+
+
+==================================================
+RELATÓRIO FINAL
+==================================================
+Test Condition         Model  Bal Accuracy  Macro F1                                                                                          Best Params
+      Load_0HP Random Forest      0.739108  0.744406  {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 10, 'rf__n_estimators': 50}
+      Load_0HP           SVM      0.762500  0.763276                                         {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+      Load_1HP Random Forest      0.845175  0.844354 {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 10, 'rf__n_estimators': 200}
+      Load_1HP           SVM      0.823977  0.823031                                         {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+      Load_2HP Random Forest      0.870614  0.868773   {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+      Load_2HP           SVM      0.872332  0.874206                                         {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+      Load_3HP Random Forest      0.833480  0.833855   {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+      Load_3HP           SVM      0.858918  0.849104                                         {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+
+--- RESUMO (Média e Desvio Padrão) ---
+              Bal Accuracy            Macro F1          
+                      mean       std      mean       std
+Model                                                   
+Random Forest     0.822094  0.057455  0.822847  0.054301
+SVM               0.829432  0.049056  0.827404  0.047585
+
+[Sucesso] Tabela de resultados brutos exportada para: /home/vfrocha/VibNet-1D/results/resultados_exp01_CWRU_12k_20260517_155348.csv
