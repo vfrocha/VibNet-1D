@@ -1,0 +1,113 @@
+
+==================================================
+INICIANDO EXPERIMENTO 4: STATISTICAL FUSION (Time + Frequency)
+Dataset: CWRU_12k
+Arquivo de log: /home/vfrocha/VibNet-1D/results/log_exp04_fusion_CWRU_12k_20260520_180015.txt
+==================================================
+
+--- Fold: Testando na condição inédita Load_0HP ---
+Carregando CWRU_12k | Condição de Teste: Load_0HP
+-> Lendo arquivos .npy...
+  -> Extraindo características de Tempo...
+Extraindo 19 características estatísticas avançadas...
+Extraindo 19 características estatísticas avançadas...
+  -> Extraindo características de Frequência...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+  -> Shape final do vetor de fusão: Treino (1920, 25), Teste (600, 25)
+
+  [Iniciando Random Forest - Fusion]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 5, 'rf__n_estimators': 200}
+     Bal Acc: 0.8288 | F1: 0.8294
+
+  [Iniciando SVM - Fusion]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.7741 | F1: 0.7707
+
+--- Fold: Testando na condição inédita Load_1HP ---
+Carregando CWRU_12k | Condição de Teste: Load_1HP
+-> Lendo arquivos .npy...
+  -> Extraindo características de Tempo...
+Extraindo 19 características estatísticas avançadas...
+Extraindo 19 características estatísticas avançadas...
+  -> Extraindo características de Frequência...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+  -> Shape final do vetor de fusão: Treino (1880, 25), Teste (640, 25)
+
+  [Iniciando Random Forest - Fusion]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 5, 'rf__n_estimators': 200}
+     Bal Acc: 0.8825 | F1: 0.8822
+
+  [Iniciando SVM - Fusion]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8514 | F1: 0.8503
+
+--- Fold: Testando na condição inédita Load_2HP ---
+Carregando CWRU_12k | Condição de Teste: Load_2HP
+-> Lendo arquivos .npy...
+  -> Extraindo características de Tempo...
+Extraindo 19 características estatísticas avançadas...
+Extraindo 19 características estatísticas avançadas...
+  -> Extraindo características de Frequência...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+  -> Shape final do vetor de fusão: Treino (1880, 25), Teste (640, 25)
+
+  [Iniciando Random Forest - Fusion]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 10, 'rf__n_estimators': 100}
+     Bal Acc: 0.9719 | F1: 0.9719
+
+  [Iniciando SVM - Fusion]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9102 | F1: 0.9106
+
+--- Fold: Testando na condição inédita Load_3HP ---
+Carregando CWRU_12k | Condição de Teste: Load_3HP
+-> Lendo arquivos .npy...
+  -> Extraindo características de Tempo...
+Extraindo 19 características estatísticas avançadas...
+Extraindo 19 características estatísticas avançadas...
+  -> Extraindo características de Frequência...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+  -> Shape final do vetor de fusão: Treino (1880, 25), Teste (640, 25)
+
+  [Iniciando Random Forest - Fusion]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 5, 'rf__n_estimators': 50}
+     Bal Acc: 0.8637 | F1: 0.8637
+
+  [Iniciando SVM - Fusion]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8765 | F1: 0.8737
+
+
+==================================================
+RELATÓRIO FINAL - FUSÃO DE CARACTERÍSTICAS
+==================================================
+Test Condition                  Model  Bal Accuracy  Macro F1                                                                                             Best Params
+      Load_0HP Random Forest (Fusion)      0.828801  0.829394     {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 5, 'rf__n_estimators': 200}
+      Load_0HP           SVM (Fusion)      0.774123  0.770749                                             {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+      Load_1HP Random Forest (Fusion)      0.882529  0.882223     {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 5, 'rf__n_estimators': 200}
+      Load_1HP           SVM (Fusion)      0.851389  0.850264                                            {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+      Load_2HP Random Forest (Fusion)      0.971857  0.971904 {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 10, 'rf__n_estimators': 100}
+      Load_2HP           SVM (Fusion)      0.910234  0.910592                                             {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+      Load_3HP Random Forest (Fusion)      0.863670  0.863666   {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 5, 'rf__n_estimators': 50}
+      Load_3HP           SVM (Fusion)      0.876462  0.873723                                            {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+
+--- RESUMO (Média e Desvio Padrão) ---
+                       Bal Accuracy            Macro F1          
+                               mean       std      mean       std
+Model                                                            
+Random Forest (Fusion)     0.886714  0.060969  0.886797  0.060812
+SVM (Fusion)               0.853052  0.057880  0.851332  0.059183
+
+[Sucesso] Tabela de resultados de Fusão exportada para: /home/vfrocha/VibNet-1D/results/resultados_exp04_fusion_CWRU_12k_20260520_180015.csv

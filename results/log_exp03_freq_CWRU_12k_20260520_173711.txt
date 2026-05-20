@@ -1,0 +1,93 @@
+
+==================================================
+INICIANDO EXPERIMENTO 3: STATISTICAL (Frequency Domain)
+Dataset: CWRU_12k
+Arquivo de log: /home/vfrocha/VibNet-1D/results/log_exp03_freq_CWRU_12k_20260520_173711.txt
+==================================================
+
+--- Fold: Testando na condição inédita Load_0HP ---
+Carregando CWRU_12k | Condição de Teste: Load_0HP
+-> Lendo arquivos .npy...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+
+  [Iniciando Random Forest - Frequência]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 0.7853 | F1: 0.7846
+
+  [Iniciando SVM - Frequência]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 0.6692 | F1: 0.6712
+
+--- Fold: Testando na condição inédita Load_1HP ---
+Carregando CWRU_12k | Condição de Teste: Load_1HP
+-> Lendo arquivos .npy...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+
+  [Iniciando Random Forest - Frequência]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 0.8850 | F1: 0.8847
+
+  [Iniciando SVM - Frequência]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8812 | F1: 0.8806
+
+--- Fold: Testando na condição inédita Load_2HP ---
+Carregando CWRU_12k | Condição de Teste: Load_2HP
+-> Lendo arquivos .npy...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+
+  [Iniciando Random Forest - Frequência]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 50, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.9279 | F1: 0.9283
+
+  [Iniciando SVM - Frequência]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9130 | F1: 0.9130
+
+--- Fold: Testando na condição inédita Load_3HP ---
+Carregando CWRU_12k | Condição de Teste: Load_3HP
+-> Lendo arquivos .npy...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+
+  [Iniciando Random Forest - Frequência]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 50, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 0.8860 | F1: 0.8853
+
+  [Iniciando SVM - Frequência]
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8405 | F1: 0.8399
+
+
+==================================================
+RELATÓRIO FINAL - DOMÍNIO DA FREQUÊNCIA
+==================================================
+Test Condition                Model  Bal Accuracy  Macro F1                                                                                            Best Params
+      Load_0HP Random Forest (Freq)      0.785307  0.784552 {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+      Load_0HP           SVM (Freq)      0.669152  0.671163                                          {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+      Load_1HP Random Forest (Freq)      0.885015  0.884676  {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+      Load_1HP           SVM (Freq)      0.881213  0.880588                                           {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+      Load_2HP Random Forest (Freq)      0.927851  0.928313    {'rf__criterion': 'gini', 'rf__max_depth': 50, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+      Load_2HP           SVM (Freq)      0.913012  0.912985                                           {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+      Load_3HP Random Forest (Freq)      0.886038  0.885279 {'rf__criterion': 'entropy', 'rf__max_depth': 50, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+      Load_3HP           SVM (Freq)      0.840497  0.839916                                           {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+
+--- RESUMO (Média e Desvio Padrão) ---
+                     Bal Accuracy            Macro F1          
+                             mean       std      mean       std
+Model                                                          
+Random Forest (Freq)     0.871053  0.060547  0.870705  0.060961
+SVM (Freq)               0.825969  0.108675  0.826163  0.107571
+
+[Sucesso] Tabela de resultados de Frequência exportada para: /home/vfrocha/VibNet-1D/results/resultados_exp03_freq_CWRU_12k_20260520_173711.csv

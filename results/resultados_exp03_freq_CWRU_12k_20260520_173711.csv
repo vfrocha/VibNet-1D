@@ -1,0 +1,9 @@
+Test Condition,Model,Bal Accuracy,Macro F1,Best Params
+Load_0HP,Random Forest (Freq),0.7853070175438597,0.7845518401266324,"{'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}"
+Load_0HP,SVM (Freq),0.6691520467836257,0.6711629748143445,"{'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}"
+Load_1HP,Random Forest (Freq),0.8850146198830409,0.8846759518030469,"{'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}"
+Load_1HP,SVM (Freq),0.8812134502923976,0.8805876991360863,"{'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}"
+Load_2HP,Random Forest (Freq),0.9278508771929825,0.9283126312977059,"{'rf__criterion': 'gini', 'rf__max_depth': 50, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}"
+Load_2HP,SVM (Freq),0.9130116959064327,0.9129851178918255,"{'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}"
+Load_3HP,Random Forest (Freq),0.8860380116959063,0.885279324461777,"{'rf__criterion': 'entropy', 'rf__max_depth': 50, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}"
+Load_3HP,SVM (Freq),0.8404970760233919,0.8399164222843325,"{'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}"

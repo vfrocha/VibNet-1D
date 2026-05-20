@@ -70,3 +70,64 @@ def extract_time_features(X):
     ))
     
     return features
+
+def extract_freq_features(X, fs=12000):
+    """
+    Extrai características estatísticas no domínio da frequência (Espectro).
+
+    Parâmetros:
+    - X: Array NumPy com os sinais brutos. Formato (N_amostras, N_pontos)
+    - fs: Taxa de amostragem em Hz (Padrão 12.000 para CWRU 12k)
+
+    Retorna:
+    - features: Array NumPy formato (N_amostras, 6_características)
+    """
+    print("Extraindo características estatísticas no domínio da frequência (FFT)...")
+
+    # 1. Aplica a Transformada Rápida de Fourier (FFT) apenas para frequências reais
+    # Retorna o espectro de magnitude (valor absoluto da FFT)
+    spectra = np.abs(np.fft.rfft(X, axis=1))
+
+    # 2. Cria o vetor de frequências correspondente (Eixo X do gráfico de espectro)
+    freqs = np.fft.rfftfreq(X.shape[1], d=1/fs)
+
+    # Soma total do espectro (usada como denominador para evitar divisão por zero)
+    sum_spectra = np.sum(spectra, axis=1) + 1e-12
+
+    # --- CÁLCULO DAS MÉTRICAS (Inspirado no SignAI-Framework, mas vetorizado) ---
+
+    # 1. Spectral Centroid (Centro de massa do espectro)
+    centroid = np.sum(freqs * spectra, axis=1) / sum_spectra
+
+    # 2. Spectral Bandwidth (Dispersão das frequências ao redor do centróide)
+    # Precisamos usar [:, None] para alinhar a subtração da matriz com o vetor
+    variance = np.sum(((freqs - centroid[:, None]) ** 2) * spectra, axis=1) / sum_spectra
+    bandwidth = np.sqrt(variance)
+
+    # 3. Spectral Flatness (Quão "plano" ou ruidoso é o sinal vs quão tonal ele é)
+    geom_mean = np.exp(np.mean(np.log(spectra + 1e-12), axis=1))
+    arith_mean = np.mean(spectra, axis=1)
+    flatness = geom_mean / (arith_mean + 1e-12)
+
+    # 4. Dominant Frequency (A frequência com o maior pico de amplitude)
+    dom_freq_idx = np.argmax(spectra, axis=1)
+    dom_freq = freqs[dom_freq_idx]
+
+    # 5. Spectral Rolloff (A frequência onde 85% da energia espectral está concentrada)
+    cumulative = np.cumsum(spectra, axis=1)
+    threshold = 0.85 * cumulative[:, -1:] # 85% da energia total por amostra
+    # np.argmax retorna o primeiro índice onde a condição é Verdadeira
+    rolloff_idx = np.argmax(cumulative >= threshold, axis=1)
+    rolloff = freqs[rolloff_idx]
+
+    # 6. Spectral Entropy (Mede a complexidade/desordem do espectro)
+    psd = spectra ** 2 # Densidade de Potência Espectral
+    psd_norm = psd / (np.sum(psd, axis=1, keepdims=True) + 1e-12)
+    spec_entropy = -np.sum(psd_norm * np.log(psd_norm + 1e-12), axis=1)
+
+    # Empilhar todas as características como colunas
+    features = np.column_stack((
+        centroid, bandwidth, flatness, dom_freq, rolloff, spec_entropy
+    ))
+
+    return features
