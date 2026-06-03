@@ -1,0 +1,23 @@
+
+============================================================
+EXPERIMENTO 5: DEEP LEARNING TABULAR (TabNet + Fusion)
+Dataset: CWRU_12k
+Arquivo de log: /home/vfrocha/VibNet-1D/results/log_exp05_tabnet_CWRU_12k_20260603_183806.txt
+============================================================
+
+
+========================================
+ INICIANDO TAREFA: DETECTION
+========================================
+
+--- Fold: Condição inédita Load_0HP | Tarefa: detection ---
+Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DETECTION
+-> Lendo arquivos .npy...
+  -> Extraindo características de Tempo e Frequência...
+Extraindo 19 características estatísticas avançadas...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 20 with best_epoch = 0 and best_val_balanced_accuracy = 1.0
