@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.preprocessing import LabelEncoder
 from tqdm import tqdm
 
-def load_vibration_data(data_root, dataset_name, test_condition):
+def load_vibration_data(data_root, dataset_name, test_condition, task='diagnosis'):
     """
     Carrega arrays .npy de um dataset específico e aplica o split Leave-One-Load-Out.
     
@@ -11,6 +11,7 @@ def load_vibration_data(data_root, dataset_name, test_condition):
     - data_root: Caminho para a pasta 'data/processed'
     - dataset_name: Nome do dataset (ex: 'CWRU_12k', 'UORED')
     - test_condition: Nome da pasta da condição que será usada apenas para teste
+    - task: 'diagnosis' (Multiclasse: tipo exato da falha) ou 'detection' (Binário: Normal vs Falha)
     
     Retorna:
     - X_train, y_train, X_test, y_test, label_encoder
@@ -25,7 +26,7 @@ def load_vibration_data(data_root, dataset_name, test_condition):
     # Mapear todas as condições disponíveis
     conditions = [d for d in os.listdir(dataset_dir) if os.path.isdir(os.path.join(dataset_dir, d))]
     
-    print(f"Carregando {dataset_name} | Condição de Teste: {test_condition}")
+    print(f"Carregando {dataset_name} | Condição: {test_condition} | Tarefa: {task.upper()}")
     
     for cond in conditions:
         cond_path = os.path.join(dataset_dir, cond)
@@ -37,19 +38,31 @@ def load_vibration_data(data_root, dataset_name, test_condition):
             cls_path = os.path.join(cond_path, cls_name)
             files = [os.path.join(cls_path, f) for f in os.listdir(cls_path) if f.endswith('.npy')]
             
+            # --- LÓGICA DE DEFINIÇÃO DA TAREFA ---
+            if task == 'detection':
+                # Agrupa todas as classes em apenas duas: 'Normal' e 'Fault'
+                # Pressupõe que a classe normal tenha a palavra 'normal' no nome do diretório
+                if 'normal' in cls_name.lower():
+                    final_label = 'Normal'
+                else:
+                    final_label = 'Fault'
+            else:
+                # 'diagnosis': Mantém as classes originais separadas
+                final_label = cls_name
+            
             if is_test:
                 test_files.extend(files)
-                test_labels.extend([cls_name] * len(files))
+                test_labels.extend([final_label] * len(files))
             else:
                 train_files.extend(files)
-                train_labels.extend([cls_name] * len(files))
+                train_labels.extend([final_label] * len(files))
 
     # Carregar os arrays NumPy na memória
     print("-> Lendo arquivos .npy...")
     X_train = np.array([np.load(f) for f in tqdm(train_files, desc="Treino")])
     X_test = np.array([np.load(f) for f in tqdm(test_files, desc="Teste")])
     
-    # Converter rótulos de texto ('Class_Normal') para inteiros (0, 1, 2...)
+    # Converter rótulos de texto para inteiros
     le = LabelEncoder()
     y_train = le.fit_transform(train_labels)
     y_test = le.transform(test_labels)
