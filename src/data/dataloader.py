@@ -65,9 +65,19 @@ def load_vibration_data(data_root, dataset_name, test_condition, task='diagnosis
     # Converter rótulos de texto para inteiros
     le = LabelEncoder()
     y_train = le.fit_transform(train_labels)
-    y_test = le.transform(test_labels)
-
+    
     # DEBUG: Mostra exatamente o que o Dataloader enxergou
     print(f"  -> [DEBUG Dataloader] Classes mapeadas para {task.upper()}: {le.classes_}")
     
+    # --- NOVA REGRA DE DESIGN: Trava de Segurança para Detecção ---
+    # Se a tarefa for 'detection' e o LabelEncoder só achou 1 classe (tudo 'Fault'),
+    # significa que a pasta 'Normal' não existe. Abortamos para não quebrar o ROC-AUC.
+    if task == 'detection' and len(le.classes_) < 2:
+        print(f"\n  [Aviso Defensivo] Dataset {dataset_name} não possui a classe 'Normal'. "
+              f"A tarefa de Detecção Binária será ignorada para este fold.")
+        # Retornamos arrays vazios para acionar o 'continue' do script principal
+        return np.array([]), np.array([]), np.array([]), np.array([]), None
+    
+    y_test = le.transform(test_labels)
+
     return X_train, y_train, X_test, y_test, le
