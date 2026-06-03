@@ -13,10 +13,6 @@ Arquivo de log: /home/vfrocha/VibNet-1D/results/log_exp05_tabnet_CWRU_12k_202606
 --- Fold: Condição inédita Load_0HP | Tarefa: detection ---
 Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DETECTION
 -> Lendo arquivos .npy...
-Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:  56%|█████▌    | 1066/1920 [00:00<00:00, 10652.37it/s]Treino: 100%|██████████| 1920/1920 [00:00<00:00, 10815.70it/s]
-Teste:   0%|          | 0/600 [00:00<?, ?it/s]Teste: 100%|██████████| 600/600 [00:00<00:00, 13551.94it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
   -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
   -> Extraindo características de Tempo e Frequência...
 Extraindo 19 características estatísticas avançadas...
@@ -31,10 +27,6 @@ Early stopping occurred at epoch 24 with best_epoch = 4 and best_val_balanced_ac
 --- Fold: Condição inédita Load_1HP | Tarefa: detection ---
 Carregando CWRU_12k | Condição: Load_1HP | Tarefa: DETECTION
 -> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  50%|█████     | 940/1880 [00:00<00:00, 9393.72it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 10187.07it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 11352.74it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
   -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
   -> Extraindo características de Tempo e Frequência...
 Extraindo 19 características estatísticas avançadas...
@@ -49,10 +41,6 @@ Early stopping occurred at epoch 27 with best_epoch = 7 and best_val_balanced_ac
 --- Fold: Condição inédita Load_2HP | Tarefa: detection ---
 Carregando CWRU_12k | Condição: Load_2HP | Tarefa: DETECTION
 -> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  25%|██▍       | 467/1880 [00:00<00:00, 4667.70it/s]Treino:  84%|████████▍ | 1584/1880 [00:00<00:00, 8490.57it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 8292.34it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 13565.77it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
   -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
   -> Extraindo características de Tempo e Frequência...
 Extraindo 19 características estatísticas avançadas...
@@ -67,10 +55,6 @@ Early stopping occurred at epoch 38 with best_epoch = 18 and best_val_balanced_a
 --- Fold: Condição inédita Load_3HP | Tarefa: detection ---
 Carregando CWRU_12k | Condição: Load_3HP | Tarefa: DETECTION
 -> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  60%|█████▉    | 1119/1880 [00:00<00:00, 11181.91it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 11169.92it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 13540.25it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
   -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
   -> Extraindo características de Tempo e Frequência...
 Extraindo 19 características estatísticas avançadas...
@@ -90,10 +74,6 @@ Early stopping occurred at epoch 33 with best_epoch = 13 and best_val_balanced_a
 --- Fold: Condição inédita Load_0HP | Tarefa: diagnosis ---
 Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DIAGNOSIS
 -> Lendo arquivos .npy...
-Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:  58%|█████▊    | 1121/1920 [00:00<00:00, 11205.52it/s]Treino: 100%|██████████| 1920/1920 [00:00<00:00, 11221.47it/s]
-Teste:   0%|          | 0/600 [00:00<?, ?it/s]Teste: 100%|██████████| 600/600 [00:00<00:00, 13754.97it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
   -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
   -> Extraindo características de Tempo e Frequência...
 Extraindo 19 características estatísticas avançadas...
@@ -108,10 +88,6 @@ Early stopping occurred at epoch 102 with best_epoch = 82 and best_val_balanced_
 --- Fold: Condição inédita Load_1HP | Tarefa: diagnosis ---
 Carregando CWRU_12k | Condição: Load_1HP | Tarefa: DIAGNOSIS
 -> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  60%|██████    | 1128/1880 [00:00<00:00, 11278.45it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 11273.67it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 13552.35it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
   -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
   -> Extraindo características de Tempo e Frequência...
 Extraindo 19 características estatísticas avançadas...
@@ -126,10 +102,6 @@ Early stopping occurred at epoch 102 with best_epoch = 82 and best_val_balanced_
 --- Fold: Condição inédita Load_2HP | Tarefa: diagnosis ---
 Carregando CWRU_12k | Condição: Load_2HP | Tarefa: DIAGNOSIS
 -> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  60%|█████▉    | 1126/1880 [00:00<00:00, 11254.43it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 11253.64it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 13650.69it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
   -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
   -> Extraindo características de Tempo e Frequência...
 Extraindo 19 características estatísticas avançadas...
@@ -144,10 +116,6 @@ Early stopping occurred at epoch 90 with best_epoch = 70 and best_val_balanced_a
 --- Fold: Condição inédita Load_3HP | Tarefa: diagnosis ---
 Carregando CWRU_12k | Condição: Load_3HP | Tarefa: DIAGNOSIS
 -> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  60%|█████▉    | 1119/1880 [00:00<00:00, 11186.81it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 11174.25it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 13708.35it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
   -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
   -> Extraindo características de Tempo e Frequência...
 Extraindo 19 características estatísticas avançadas...

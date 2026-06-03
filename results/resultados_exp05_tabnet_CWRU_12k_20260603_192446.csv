@@ -1,0 +1,9 @@
+Task,Test Condition,Model,Bal Accuracy,Macro F1,ROC-AUC
+Detection,Load_0HP,TabNet (Fusion),1.0,1.0,1.0
+Detection,Load_1HP,TabNet (Fusion),1.0,1.0,1.0
+Detection,Load_2HP,TabNet (Fusion),1.0,1.0,1.0
+Detection,Load_3HP,TabNet (Fusion),1.0,1.0,1.0
+Diagnosis,Load_0HP,TabNet (Fusion),0.8267543859649122,0.8259053823214337,0.9322603680610742
+Diagnosis,Load_1HP,TabNet (Fusion),0.9298245614035088,0.9296014527594293,0.986326182303585
+Diagnosis,Load_2HP,TabNet (Fusion),0.9566520467836257,0.9569992545652093,0.9948292651919655
+Diagnosis,Load_3HP,TabNet (Fusion),0.9067251461988304,0.9073137863749203,0.9684164441901856
