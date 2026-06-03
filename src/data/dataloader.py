@@ -67,4 +67,7 @@ def load_vibration_data(data_root, dataset_name, test_condition, task='diagnosis
     y_train = le.fit_transform(train_labels)
     y_test = le.transform(test_labels)
 
+    # DEBUG: Mostra exatamente o que o Dataloader enxergou
+    print(f"  -> [DEBUG Dataloader] Classes mapeadas para {task.upper()}: {le.classes_}")
+    
     return X_train, y_train, X_test, y_test, le
