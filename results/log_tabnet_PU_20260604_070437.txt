@@ -1,0 +1,20 @@
+
+============================================================
+MOTOR VIBNET TABULAR (Autoencoder)
+Dataset Alvo: PU
+Condições (Folds): ['N09_M07_F1000', 'N15_M01_F1000', 'N15_M07_F0400', 'N15_M07_F1000']
+============================================================
+
+
+========================================
+ TAREFA: DETECTION
+========================================
+
+--- Fold Inédito: N09_M07_F1000 | Tarefa: detection ---
+Carregando PU | Condição: N09_M07_F1000 | Tarefa: DETECTION
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> Extraindo características (Tempo + Freq)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo 19 características estatísticas avançadas...
