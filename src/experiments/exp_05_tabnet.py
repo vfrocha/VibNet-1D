@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
 import os
 import sys
 import numpy as np
@@ -33,6 +35,14 @@ CONDITIONS = ["Load_0HP", "Load_1HP", "Load_2HP", "Load_3HP"]
 # Aqui definimos as duas tarefas exigidas pelo esqueleto do artigo!
 TASKS = ["detection", "diagnosis"] 
 
+FEATURE_NAMES = [
+    "T_Mean", "T_Std", "T_Skewness", "T_Kurtosis", "T_Peak2Peak", 
+    "T_RMS", "T_CrestFactor", "T_ShapeFactor", "T_ImpulseFactor", "T_MarginFactor", 
+    "T_Energy", "T_Var", "T_Min", "T_Max", "T_AbsMean", 
+    "T_RootAmp", "T_Clearance", "T_Complexity", "T_ZeroCross", # 19 de Tempo
+    "F_Centroid", "F_Bandwidth", "F_Flatness", "F_DomFreq", "F_Rolloff", "F_Entropy" # 6 de Freq
+]
+
 def run_tabnet_experiment():
     os.makedirs(RESULTS_DIR, exist_ok=True)
     
@@ -49,6 +59,9 @@ def run_tabnet_experiment():
     print(f"{'='*60}")
 
     results = []
+
+    # Dicionário para acumular os vetores de importância da tarefa de Diagnóstico
+    xai_importances = []
 
     # Loop 1: Alterna entre Tarefa de Detecção e Diagnóstico
     for task in TASKS:
@@ -92,7 +105,11 @@ def run_tabnet_experiment():
                 y_test=y_test, 
                 task=task
             )
-            
+   
+            # --- XAI: Capturar pesos na tarefa de Diagnóstico ---
+            if task == 'diagnosis':
+                xai_importances.append(trained_model.feature_importances_)
+
             results.append({
                 "Task": task.capitalize(),
                 "Test Condition": test_cond,
@@ -116,6 +133,38 @@ def run_tabnet_experiment():
         
         df_results.to_csv(csv_file, index=False)
         print(f"\n[Sucesso] Tabela de resultados TabNet exportada para: {csv_file}")
+
+# --- GERAÇÃO DO GRÁFICO XAI (EXPLICABILIDADE) ---
+        if xai_importances:
+            print("\n  -> Gerando Gráfico de Explicabilidade (XAI)...")
+            # Tira a média da importância de cada feature através dos 4 folds (Loads)
+            mean_importances = np.mean(xai_importances, axis=0)
+            
+            # Cria um DataFrame para facilitar o plot e ordena do mais importante para o menos
+            df_xai = pd.DataFrame({
+                'Feature': FEATURE_NAMES,
+                'Importance': mean_importances
+            }).sort_values(by='Importance', ascending=False)
+            
+            # Configurações do gráfico acadêmico
+            plt.figure(figsize=(12, 8))
+            sns.set_theme(style="whitegrid")
+            
+            # Plota as barras
+            ax = sns.barplot(x='Importance', y='Feature', data=df_xai, palette='viridis')
+            
+            plt.title('TabNet Feature Importance (XAI) - Diagnosis Task', fontsize=16, pad=15)
+            plt.xlabel('Mean Attention Weight', fontsize=12)
+            plt.ylabel('Features (T=Time, F=Frequency)', fontsize=12)
+            
+            # Ajusta o layout para não cortar os nomes
+            plt.tight_layout()
+            
+            # Salva o gráfico em alta resolução
+            xai_plot_file = os.path.join(RESULTS_DIR, f"xai_importance_exp05_{DATASET}_{timestamp}.png")
+            plt.savefig(xai_plot_file, dpi=300)
+            plt.close()
+            print(f"  [Sucesso] Gráfico XAI exportado para: {xai_plot_file}")
 
 if __name__ == "__main__":
     run_tabnet_experiment()
