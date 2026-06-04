@@ -1,0 +1,13 @@
+
+============================================================
+MOTOR VIBNET TABULAR (Autoencoder)
+Dataset Alvo: HUST_Dataset
+Condições (Folds): ['Load_0', 'Load_1', 'Load_2', 'Load_3']
+============================================================
+
+
+========================================
+ TAREFA: DETECTION
+========================================
+
+--- Fold Inédito: Load_0 | Tarefa: detection ---

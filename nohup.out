@@ -1,374 +1,0 @@
-
-============================================================
-EXPERIMENTO 5: DEEP LEARNING TABULAR (TabNet + Fusion)
-Dataset: CWRU_12k
-Arquivo de log: /home/vfrocha/VibNet-1D/results/log_exp05_tabnet_CWRU_12k_20260603_192446.txt
-============================================================
-
-
-========================================
- INICIANDO TAREFA: DETECTION
-========================================
-
---- Fold: Condição inédita Load_0HP | Tarefa: detection ---
-Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DETECTION
--> Lendo arquivos .npy...
-Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:  56%|█████▌    | 1066/1920 [00:00<00:00, 10652.37it/s]Treino: 100%|██████████| 1920/1920 [00:00<00:00, 10815.70it/s]
-Teste:   0%|          | 0/600 [00:00<?, ?it/s]Teste: 100%|██████████| 600/600 [00:00<00:00, 13551.94it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
-  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
-  -> Extraindo características de Tempo e Frequência...
-Extraindo 19 características estatísticas avançadas...
-Extraindo 19 características estatísticas avançadas...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
-
-Early stopping occurred at epoch 24 with best_epoch = 4 and best_val_balanced_accuracy = 1.0
-     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
-
---- Fold: Condição inédita Load_1HP | Tarefa: detection ---
-Carregando CWRU_12k | Condição: Load_1HP | Tarefa: DETECTION
--> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  50%|█████     | 940/1880 [00:00<00:00, 9393.72it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 10187.07it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 11352.74it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
-  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
-  -> Extraindo características de Tempo e Frequência...
-Extraindo 19 características estatísticas avançadas...
-Extraindo 19 características estatísticas avançadas...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
-
-Early stopping occurred at epoch 27 with best_epoch = 7 and best_val_balanced_accuracy = 1.0
-     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
-
---- Fold: Condição inédita Load_2HP | Tarefa: detection ---
-Carregando CWRU_12k | Condição: Load_2HP | Tarefa: DETECTION
--> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  25%|██▍       | 467/1880 [00:00<00:00, 4667.70it/s]Treino:  84%|████████▍ | 1584/1880 [00:00<00:00, 8490.57it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 8292.34it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 13565.77it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
-  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
-  -> Extraindo características de Tempo e Frequência...
-Extraindo 19 características estatísticas avançadas...
-Extraindo 19 características estatísticas avançadas...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
-
-Early stopping occurred at epoch 38 with best_epoch = 18 and best_val_balanced_accuracy = 1.0
-     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
-
---- Fold: Condição inédita Load_3HP | Tarefa: detection ---
-Carregando CWRU_12k | Condição: Load_3HP | Tarefa: DETECTION
--> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  60%|█████▉    | 1119/1880 [00:00<00:00, 11181.91it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 11169.92it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 13540.25it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
-  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
-  -> Extraindo características de Tempo e Frequência...
-Extraindo 19 características estatísticas avançadas...
-Extraindo 19 características estatísticas avançadas...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
-
-Early stopping occurred at epoch 33 with best_epoch = 13 and best_val_balanced_accuracy = 1.0
-     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
-
-
-========================================
- INICIANDO TAREFA: DIAGNOSIS
-========================================
-
---- Fold: Condição inédita Load_0HP | Tarefa: diagnosis ---
-Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DIAGNOSIS
--> Lendo arquivos .npy...
-Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:  58%|█████▊    | 1121/1920 [00:00<00:00, 11205.52it/s]Treino: 100%|██████████| 1920/1920 [00:00<00:00, 11221.47it/s]
-Teste:   0%|          | 0/600 [00:00<?, ?it/s]Teste: 100%|██████████| 600/600 [00:00<00:00, 13754.97it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
-  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
-  -> Extraindo características de Tempo e Frequência...
-Extraindo 19 características estatísticas avançadas...
-Extraindo 19 características estatísticas avançadas...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
-
-Early stopping occurred at epoch 102 with best_epoch = 82 and best_val_balanced_accuracy = 0.82675
-     [Diagnóstico] Bal Acc: 0.8268 | Macro F1: 0.8259 | ROC-AUC: 0.9323
-
---- Fold: Condição inédita Load_1HP | Tarefa: diagnosis ---
-Carregando CWRU_12k | Condição: Load_1HP | Tarefa: DIAGNOSIS
--> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  60%|██████    | 1128/1880 [00:00<00:00, 11278.45it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 11273.67it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 13552.35it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
-  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
-  -> Extraindo características de Tempo e Frequência...
-Extraindo 19 características estatísticas avançadas...
-Extraindo 19 características estatísticas avançadas...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
-
-Early stopping occurred at epoch 102 with best_epoch = 82 and best_val_balanced_accuracy = 0.92982
-     [Diagnóstico] Bal Acc: 0.9298 | Macro F1: 0.9296 | ROC-AUC: 0.9863
-
---- Fold: Condição inédita Load_2HP | Tarefa: diagnosis ---
-Carregando CWRU_12k | Condição: Load_2HP | Tarefa: DIAGNOSIS
--> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  60%|█████▉    | 1126/1880 [00:00<00:00, 11254.43it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 11253.64it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 13650.69it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
-  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
-  -> Extraindo características de Tempo e Frequência...
-Extraindo 19 características estatísticas avançadas...
-Extraindo 19 características estatísticas avançadas...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
-
-Early stopping occurred at epoch 90 with best_epoch = 70 and best_val_balanced_accuracy = 0.95665
-     [Diagnóstico] Bal Acc: 0.9567 | Macro F1: 0.9570 | ROC-AUC: 0.9948
-
---- Fold: Condição inédita Load_3HP | Tarefa: diagnosis ---
-Carregando CWRU_12k | Condição: Load_3HP | Tarefa: DIAGNOSIS
--> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  60%|█████▉    | 1119/1880 [00:00<00:00, 11186.81it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 11174.25it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 13708.35it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
-  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
-  -> Extraindo características de Tempo e Frequência...
-Extraindo 19 características estatísticas avançadas...
-Extraindo 19 características estatísticas avançadas...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
-
-Early stopping occurred at epoch 60 with best_epoch = 40 and best_val_balanced_accuracy = 0.90673
-     [Diagnóstico] Bal Acc: 0.9067 | Macro F1: 0.9073 | ROC-AUC: 0.9684
-
-
-============================================================
-RELATÓRIO FINAL - TABNET (AUTOENCODER TABULAR)
-============================================================
-     Task Test Condition           Model  Bal Accuracy  Macro F1  ROC-AUC
-Detection       Load_0HP TabNet (Fusion)      1.000000  1.000000 1.000000
-Detection       Load_1HP TabNet (Fusion)      1.000000  1.000000 1.000000
-Detection       Load_2HP TabNet (Fusion)      1.000000  1.000000 1.000000
-Detection       Load_3HP TabNet (Fusion)      1.000000  1.000000 1.000000
-Diagnosis       Load_0HP TabNet (Fusion)      0.826754  0.825905 0.932260
-Diagnosis       Load_1HP TabNet (Fusion)      0.929825  0.929601 0.986326
-Diagnosis       Load_2HP TabNet (Fusion)      0.956652  0.956999 0.994829
-Diagnosis       Load_3HP TabNet (Fusion)      0.906725  0.907314 0.968416
-
---- RESUMO POR TAREFA (Média e Desvio Padrão) ---
-          Bal Accuracy            Macro F1             ROC-AUC          
-                  mean       std      mean       std      mean       std
-Task                                                                    
-Detection     1.000000  0.000000  1.000000  0.000000  1.000000  0.000000
-Diagnosis     0.904989  0.056005  0.904955  0.056481  0.970458  0.027743
-
-[Sucesso] Tabela de resultados TabNet exportada para: /home/vfrocha/VibNet-1D/results/resultados_exp05_tabnet_CWRU_12k_20260603_192446.csv
-
-============================================================
-EXPERIMENTO 5: DEEP LEARNING TABULAR (TabNet + Fusion)
-Dataset: CWRU_12k
-Arquivo de log: /home/vfrocha/VibNet-1D/results/log_exp05_tabnet_CWRU_12k_20260604_062253.txt
-============================================================
-
-
-========================================
- INICIANDO TAREFA: DETECTION
-========================================
-
---- Fold: Condição inédita Load_0HP | Tarefa: detection ---
-Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DETECTION
--> Lendo arquivos .npy...
-Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:  57%|█████▋    | 1086/1920 [00:00<00:00, 10858.61it/s]Treino: 100%|██████████| 1920/1920 [00:00<00:00, 10948.13it/s]
-Teste:   0%|          | 0/600 [00:00<?, ?it/s]Teste: 100%|██████████| 600/600 [00:00<00:00, 13658.89it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
-  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
-  -> Extraindo características de Tempo e Frequência...
-Extraindo 19 características estatísticas avançadas...
-Extraindo 19 características estatísticas avançadas...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
-
-Early stopping occurred at epoch 24 with best_epoch = 4 and best_val_balanced_accuracy = 1.0
-     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
-
---- Fold: Condição inédita Load_1HP | Tarefa: detection ---
-Carregando CWRU_12k | Condição: Load_1HP | Tarefa: DETECTION
--> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  60%|██████    | 1136/1880 [00:00<00:00, 11351.92it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 11315.96it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste:   2%|▏         | 10/640 [00:00<00:08, 75.98it/s]Teste:   3%|▎         | 18/640 [00:00<00:08, 76.57it/s]Teste:   7%|▋         | 46/640 [00:00<00:03, 151.24it/s]Teste:  11%|█         | 70/640 [00:00<00:03, 180.40it/s]Teste:  14%|█▍        | 89/640 [00:00<00:04, 136.45it/s]Teste:  16%|█▋        | 105/640 [00:00<00:05, 100.08it/s]Teste:  18%|█▊        | 117/640 [00:01<00:05, 87.31it/s] Teste:  23%|██▎       | 145/640 [00:01<00:04, 120.72it/s]Teste:  25%|██▌       | 160/640 [00:01<00:04, 101.46it/s]Teste:  28%|██▊       | 176/640 [00:01<00:04, 112.85it/s]Teste:  30%|██▉       | 190/640 [00:01<00:04, 110.92it/s]Teste:  32%|███▏      | 203/640 [00:01<00:04, 100.59it/s]Teste:  56%|█████▌    | 357/640 [00:01<00:00, 417.05it/s]Teste:  64%|██████▍   | 412/640 [00:02<00:00, 335.01it/s]Teste:  71%|███████▏  | 457/640 [00:02<00:00, 258.56it/s]Teste:  77%|███████▋  | 493/640 [00:02<00:00, 258.12it/s]Teste:  82%|████████▏ | 526/640 [00:02<00:00, 244.63it/s]Teste:  89%|████████▉ | 568/640 [00:02<00:00, 276.50it/s]Teste:  94%|█████████▍| 601/640 [00:03<00:00, 259.69it/s]Teste: 100%|██████████| 640/640 [00:03<00:00, 205.24it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
-  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
-  -> Extraindo características de Tempo e Frequência...
-Extraindo 19 características estatísticas avançadas...
-Extraindo 19 características estatísticas avançadas...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
-
-Early stopping occurred at epoch 27 with best_epoch = 7 and best_val_balanced_accuracy = 1.0
-     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
-
---- Fold: Condição inédita Load_2HP | Tarefa: detection ---
-Carregando CWRU_12k | Condição: Load_2HP | Tarefa: DETECTION
--> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  34%|███▍      | 642/1880 [00:00<00:00, 6162.05it/s]Treino:  67%|██████▋   | 1259/1880 [00:09<00:05, 107.52it/s]Treino:  81%|████████  | 1517/1880 [00:14<00:04, 89.96it/s] Treino:  88%|████████▊ | 1660/1880 [00:16<00:02, 82.35it/s]Treino:  93%|█████████▎| 1749/1880 [00:18<00:01, 78.19it/s]Treino:  96%|█████████▌| 1808/1880 [00:18<00:00, 79.52it/s]Treino:  98%|█████████▊| 1850/1880 [00:19<00:00, 78.86it/s]Treino: 100%|██████████| 1880/1880 [00:19<00:00, 95.27it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste:   4%|▍         | 24/640 [00:00<00:02, 217.84it/s]Teste:   7%|▋         | 46/640 [00:00<00:03, 178.39it/s]Teste:  10%|█         | 66/640 [00:00<00:03, 183.64it/s]Teste:  13%|█▎        | 86/640 [00:00<00:02, 188.11it/s]Teste:  18%|█▊        | 118/640 [00:00<00:02, 223.89it/s]Teste:  29%|██▊       | 183/640 [00:00<00:01, 342.70it/s]Teste:  34%|███▍      | 218/640 [00:01<00:03, 137.47it/s]Teste:  38%|███▊      | 243/640 [00:01<00:03, 103.10it/s]Teste:  41%|████      | 262/640 [00:02<00:04, 86.30it/s] Teste:  43%|████▎     | 277/640 [00:02<00:04, 76.39it/s]Teste:  45%|████▌     | 289/640 [00:02<00:04, 73.45it/s]Teste:  47%|████▋     | 299/640 [00:02<00:04, 69.05it/s]Teste:  48%|████▊     | 308/640 [00:02<00:05, 66.00it/s]Teste:  49%|████▉     | 316/640 [00:03<00:05, 61.16it/s]Teste:  50%|█████     | 323/640 [00:03<00:05, 60.12it/s]Teste:  52%|█████▏    | 330/640 [00:03<00:05, 61.14it/s]Teste:  53%|█████▎    | 337/640 [00:03<00:05, 58.05it/s]Teste:  54%|█████▍    | 344/640 [00:03<00:04, 60.38it/s]Teste:  55%|█████▍    | 351/640 [00:03<00:04, 59.76it/s]Teste:  56%|█████▌    | 358/640 [00:03<00:04, 60.00it/s]Teste:  57%|█████▋    | 365/640 [00:03<00:04, 60.87it/s]Teste:  58%|█████▊    | 372/640 [00:04<00:04, 58.94it/s]Teste:  59%|█████▉    | 378/640 [00:04<00:04, 57.11it/s]Teste:  63%|██████▎   | 402/640 [00:04<00:02, 103.14it/s]Teste:  65%|██████▍   | 413/640 [00:04<00:02, 81.08it/s] Teste:  66%|██████▌   | 423/640 [00:04<00:03, 69.22it/s]Teste:  67%|██████▋   | 431/640 [00:04<00:03, 61.80it/s]Teste:  68%|██████▊   | 438/640 [00:04<00:03, 58.77it/s]Teste:  70%|██████▉   | 445/640 [00:05<00:03, 54.87it/s]Teste:  71%|███████   | 453/640 [00:05<00:03, 57.99it/s]Teste:  72%|███████▏  | 460/640 [00:05<00:03, 55.70it/s]Teste:  73%|███████▎  | 466/640 [00:05<00:03, 53.74it/s]Teste:  74%|███████▍  | 472/640 [00:05<00:03, 53.55it/s]Teste:  75%|███████▍  | 479/640 [00:05<00:02, 57.50it/s]Teste:  76%|███████▌  | 486/640 [00:05<00:02, 60.46it/s]Teste:  77%|███████▋  | 494/640 [00:05<00:02, 65.43it/s]Teste:  78%|███████▊  | 502/640 [00:06<00:02, 67.75it/s]Teste:  80%|███████▉  | 509/640 [00:06<00:01, 66.35it/s]Teste:  81%|████████  | 517/640 [00:06<00:01, 67.67it/s]Teste:  82%|████████▏ | 524/640 [00:06<00:01, 65.71it/s]Teste:  83%|████████▎ | 531/640 [00:06<00:01, 56.14it/s]Teste:  84%|████████▍ | 537/640 [00:06<00:01, 54.34it/s]Teste:  85%|████████▍ | 543/640 [00:06<00:01, 54.32it/s]Teste:  86%|████████▌ | 549/640 [00:06<00:01, 55.42it/s]Teste:  87%|████████▋ | 556/640 [00:06<00:01, 57.95it/s]Teste:  93%|█████████▎| 595/640 [00:07<00:00, 143.91it/s]Teste:  98%|█████████▊| 626/640 [00:07<00:00, 189.37it/s]Teste: 100%|██████████| 640/640 [00:07<00:00, 88.29it/s] 
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
-  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
-  -> Extraindo características de Tempo e Frequência...
-Extraindo 19 características estatísticas avançadas...
-Extraindo 19 características estatísticas avançadas...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
-
-Early stopping occurred at epoch 38 with best_epoch = 18 and best_val_balanced_accuracy = 1.0
-     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
-
---- Fold: Condição inédita Load_3HP | Tarefa: detection ---
-Carregando CWRU_12k | Condição: Load_3HP | Tarefa: DETECTION
--> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  59%|█████▊    | 1104/1880 [00:00<00:00, 11038.19it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 11065.29it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 13549.82it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
-  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
-  -> Extraindo características de Tempo e Frequência...
-Extraindo 19 características estatísticas avançadas...
-Extraindo 19 características estatísticas avançadas...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
-
-Early stopping occurred at epoch 33 with best_epoch = 13 and best_val_balanced_accuracy = 1.0
-     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
-
-
-========================================
- INICIANDO TAREFA: DIAGNOSIS
-========================================
-
---- Fold: Condição inédita Load_0HP | Tarefa: diagnosis ---
-Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DIAGNOSIS
--> Lendo arquivos .npy...
-Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:  39%|███▉      | 756/1920 [00:00<00:00, 7497.41it/s]Treino:  78%|███████▊  | 1506/1920 [00:00<00:00, 1365.84it/s]Treino: 100%|██████████| 1920/1920 [00:01<00:00, 1912.16it/s]
-Teste:   0%|          | 0/600 [00:00<?, ?it/s]Teste: 100%|██████████| 600/600 [00:00<00:00, 13640.01it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
-  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
-  -> Extraindo características de Tempo e Frequência...
-Extraindo 19 características estatísticas avançadas...
-Extraindo 19 características estatísticas avançadas...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
-
-Early stopping occurred at epoch 102 with best_epoch = 82 and best_val_balanced_accuracy = 0.82675
-     [Diagnóstico] Bal Acc: 0.8268 | Macro F1: 0.8259 | ROC-AUC: 0.9323
-
---- Fold: Condição inédita Load_1HP | Tarefa: diagnosis ---
-Carregando CWRU_12k | Condição: Load_1HP | Tarefa: DIAGNOSIS
--> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  59%|█████▊    | 1104/1880 [00:00<00:00, 11033.75it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 11067.81it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 13468.44it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
-  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
-  -> Extraindo características de Tempo e Frequência...
-Extraindo 19 características estatísticas avançadas...
-Extraindo 19 características estatísticas avançadas...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
-
-Early stopping occurred at epoch 102 with best_epoch = 82 and best_val_balanced_accuracy = 0.92982
-     [Diagnóstico] Bal Acc: 0.9298 | Macro F1: 0.9296 | ROC-AUC: 0.9863
-
---- Fold: Condição inédita Load_2HP | Tarefa: diagnosis ---
-Carregando CWRU_12k | Condição: Load_2HP | Tarefa: DIAGNOSIS
--> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  59%|█████▊    | 1102/1880 [00:00<00:00, 11012.19it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 11088.02it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 13548.72it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
-  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
-  -> Extraindo características de Tempo e Frequência...
-Extraindo 19 características estatísticas avançadas...
-Extraindo 19 características estatísticas avançadas...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
-
-Early stopping occurred at epoch 90 with best_epoch = 70 and best_val_balanced_accuracy = 0.95665
-     [Diagnóstico] Bal Acc: 0.9567 | Macro F1: 0.9570 | ROC-AUC: 0.9948
-
---- Fold: Condição inédita Load_3HP | Tarefa: diagnosis ---
-Carregando CWRU_12k | Condição: Load_3HP | Tarefa: DIAGNOSIS
--> Lendo arquivos .npy...
-Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  59%|█████▊    | 1104/1880 [00:00<00:00, 11036.20it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 11062.90it/s]
-Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 13646.18it/s]
-/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
-  warnings.warn(wrn_msg)
-/home/vfrocha/VibNet-1D/src/experiments/exp_05_tabnet.py:154: FutureWarning: 
-
-Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
-
-  ax = sns.barplot(x='Importance', y='Feature', data=df_xai, palette='viridis')
-  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
-  -> Extraindo características de Tempo e Frequência...
-Extraindo 19 características estatísticas avançadas...
-Extraindo 19 características estatísticas avançadas...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-Extraindo características estatísticas no domínio da frequência (FFT)...
-  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
-
-Early stopping occurred at epoch 60 with best_epoch = 40 and best_val_balanced_accuracy = 0.90673
-     [Diagnóstico] Bal Acc: 0.9067 | Macro F1: 0.9073 | ROC-AUC: 0.9684
-
-
-============================================================
-RELATÓRIO FINAL - TABNET (AUTOENCODER TABULAR)
-============================================================
-     Task Test Condition           Model  Bal Accuracy  Macro F1  ROC-AUC
-Detection       Load_0HP TabNet (Fusion)      1.000000  1.000000 1.000000
-Detection       Load_1HP TabNet (Fusion)      1.000000  1.000000 1.000000
-Detection       Load_2HP TabNet (Fusion)      1.000000  1.000000 1.000000
-Detection       Load_3HP TabNet (Fusion)      1.000000  1.000000 1.000000
-Diagnosis       Load_0HP TabNet (Fusion)      0.826754  0.825905 0.932260
-Diagnosis       Load_1HP TabNet (Fusion)      0.929825  0.929601 0.986326
-Diagnosis       Load_2HP TabNet (Fusion)      0.956652  0.956999 0.994829
-Diagnosis       Load_3HP TabNet (Fusion)      0.906725  0.907314 0.968416
-
---- RESUMO POR TAREFA (Média e Desvio Padrão) ---
-          Bal Accuracy            Macro F1             ROC-AUC          
-                  mean       std      mean       std      mean       std
-Task                                                                    
-Detection     1.000000  0.000000  1.000000  0.000000  1.000000  0.000000
-Diagnosis     0.904989  0.056005  0.904955  0.056481  0.970458  0.027743
-
-[Sucesso] Tabela de resultados TabNet exportada para: /home/vfrocha/VibNet-1D/results/resultados_exp05_tabnet_CWRU_12k_20260604_062253.csv
-
-  -> Gerando Gráfico de Explicabilidade (XAI)...
-  [Sucesso] Gráfico XAI exportado para: /home/vfrocha/VibNet-1D/results/xai_importance_exp05_CWRU_12k_20260604_062253.png

@@ -6,8 +6,8 @@ DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/
 RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../results'))
 
 # Parâmetros exclusivos da base HUST
-DATASET = "HUST_Dataset" 
-CONDITIONS = ["Load_0", "Load_1", "Load_2", "Load_3"] # Ajuste isso para os nomes exatos das suas pastas!
+DATASET = "HUST" 
+CONDITIONS = ["Load_0W", "Load_200W", "Load_400W"]
 
 if __name__ == "__main__":
     run_universal_tabnet(
