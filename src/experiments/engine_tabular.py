@@ -61,12 +61,15 @@ def run_universal_tabnet(dataset_name, conditions, data_root, results_dir):
         print(f" TAREFA: {task.upper()}")
         print(f"{'='*40}")
         
-        for test_cond in conditions:
-            print(f"\n--- Fold Inédito: {test_cond} | Tarefa: {task} ---")
+        # Prepara a iteração para aceitar tanto Listas simples quanto Dicionários (Grupos Virtuais)
+        iterable_conditions = conditions.items() if isinstance(conditions, dict) else [(c, c) for c in conditions]
+        
+        for fold_name, test_cond_val in iterable_conditions:
+            print(f"\n--- Fold Inédito: {fold_name} | Tarefa: {task} ---")
 
-            # 1. Carregamento Blindado
+            # 1. Carregamento (Passamos o test_cond_val, que pode ser uma lista de pastas)
             X_train_raw, y_train, X_test_raw, y_test, label_encoder = load_vibration_data(
-                data_root=data_root, dataset_name=dataset_name, test_condition=test_cond, task=task
+                data_root=data_root, dataset_name=dataset_name, test_condition=test_cond_val, task=task
             )
 
             # Trava de segurança (se a Detecção não achou o Normal)
@@ -92,7 +95,7 @@ def run_universal_tabnet(dataset_name, conditions, data_root, results_dir):
             results.append({
                 "Dataset": dataset_name,
                 "Task": task.capitalize(),
-                "Test Condition": test_cond,
+                "Test Condition": fold_name,
                 "Bal Accuracy": bal_acc,
                 "Macro F1": macro_f1,
                 "ROC-AUC": roc_auc
