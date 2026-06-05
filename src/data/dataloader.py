@@ -32,7 +32,11 @@ def load_vibration_data(data_root, dataset_name, test_condition, task='diagnosis
         cond_path = os.path.join(dataset_dir, cond)
         classes = [c for c in os.listdir(cond_path) if os.path.isdir(os.path.join(cond_path, c))]
         
-        is_test = (cond == test_condition)
+        # Permite que a condição de teste seja um Grupo Virtual (Lista de pastas)
+        if isinstance(test_condition, list):
+            is_test = (cond in test_condition)
+        else:
+            is_test = (cond == test_condition)
         
         for cls_name in classes:
             cls_path = os.path.join(cond_path, cls_name)
