@@ -1,0 +1,227 @@
+
+============================================================
+MOTOR VIBNET TABULAR (Autoencoder)
+Dataset Alvo: UORED
+Condições (Folds): {'Group_A': ['Bearing_1', 'Bearing_6', 'Bearing_11', 'Bearing_16'], 'Group_B': ['Bearing_2', 'Bearing_7', 'Bearing_12', 'Bearing_17'], 'Group_C': ['Bearing_3', 'Bearing_8', 'Bearing_13', 'Bearing_18'], 'Group_D': ['Bearing_4', 'Bearing_9', 'Bearing_14', 'Bearing_19'], 'Group_E': ['Bearing_5', 'Bearing_10', 'Bearing_15', 'Bearing_20']}
+============================================================
+
+
+========================================
+ TAREFA: DETECTION
+========================================
+
+--- Fold Inédito: Group_A | Tarefa: detection ---
+Carregando UORED | Condição: ['Bearing_1', 'Bearing_6', 'Bearing_11', 'Bearing_16'] | Tarefa: DETECTION
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:   1%|          | 13/1920 [00:00<00:14, 128.75it/s]Treino:   2%|▏         | 40/1920 [00:00<00:09, 199.18it/s]Treino:   3%|▎         | 61/1920 [00:00<00:09, 194.47it/s]Treino:   4%|▍         | 86/1920 [00:00<00:09, 202.77it/s]Treino:   6%|▌         | 108/1920 [00:00<00:08, 208.54it/s]Treino:   7%|▋         | 129/1920 [00:00<00:10, 170.14it/s]Treino:   8%|▊         | 147/1920 [00:00<00:10, 166.89it/s]Treino:   9%|▉         | 168/1920 [00:00<00:10, 172.59it/s]Treino:  10%|█         | 195/1920 [00:01<00:08, 199.08it/s]Treino:  11%|█▏        | 216/1920 [00:01<00:09, 184.09it/s]Treino:  12%|█▏        | 236/1920 [00:01<00:09, 175.03it/s]Treino:  13%|█▎        | 254/1920 [00:01<00:12, 137.19it/s]Treino:  14%|█▍        | 274/1920 [00:01<00:10, 151.10it/s]Treino:  16%|█▌        | 306/1920 [00:01<00:08, 190.02it/s]Treino:  17%|█▋        | 327/1920 [00:01<00:08, 186.61it/s]Treino:  18%|█▊        | 347/1920 [00:01<00:09, 161.84it/s]Treino:  19%|█▉        | 365/1920 [00:02<00:13, 116.03it/s]Treino:  20%|█▉        | 380/1920 [00:02<00:12, 119.72it/s]Treino:  21%|██        | 398/1920 [00:02<00:11, 131.42it/s]Treino:  22%|██▏       | 429/1920 [00:02<00:08, 170.35it/s]Treino:  24%|██▎       | 453/1920 [00:02<00:08, 177.80it/s]Treino:  25%|██▍       | 473/1920 [00:02<00:08, 163.51it/s]Treino:  26%|██▌       | 491/1920 [00:03<00:10, 136.58it/s]Treino:  26%|██▋       | 507/1920 [00:03<00:11, 127.83it/s]Treino:  28%|██▊       | 544/1920 [00:03<00:07, 180.94it/s]Treino:  29%|██▉       | 565/1920 [00:03<00:08, 154.21it/s]Treino:  30%|███       | 583/1920 [00:03<00:09, 142.07it/s]Treino:  31%|███       | 599/1920 [00:03<00:09, 143.40it/s]Treino:  32%|███▏      | 615/1920 [00:03<00:10, 128.22it/s]Treino:  33%|███▎      | 633/1920 [00:04<00:09, 136.90it/s]Treino:  35%|███▍      | 670/1920 [00:04<00:06, 188.49it/s]Treino:  36%|███▌      | 691/1920 [00:04<00:07, 170.95it/s]Treino:  38%|███▊      | 721/1920 [00:04<00:06, 199.17it/s]Treino:  39%|███▊      | 743/1920 [00:04<00:07, 166.10it/s]Treino:  40%|████      | 774/1920 [00:04<00:05, 193.59it/s]Treino:  41%|████▏     | 796/1920 [00:04<00:05, 197.56it/s]Treino:  43%|████▎     | 818/1920 [00:04<00:06, 179.30it/s]Treino:  44%|████▎     | 838/1920 [00:05<00:06, 169.43it/s]Treino:  45%|████▍     | 856/1920 [00:05<00:08, 127.57it/s]Treino:  46%|████▋     | 889/1920 [00:05<00:06, 168.56it/s]Treino:  48%|████▊     | 927/1920 [00:05<00:04, 207.61it/s]Treino:  50%|████▉     | 951/1920 [00:05<00:05, 193.71it/s]Treino:  51%|█████     | 973/1920 [00:05<00:05, 159.78it/s]Treino:  52%|█████▏    | 996/1920 [00:06<00:05, 173.63it/s]Treino:  53%|█████▎    | 1016/1920 [00:06<00:05, 176.03it/s]Treino:  54%|█████▍    | 1046/1920 [00:06<00:04, 201.45it/s]Treino:  56%|█████▌    | 1068/1920 [00:06<00:04, 200.41it/s]Treino:  57%|█████▋    | 1090/1920 [00:06<00:04, 181.95it/s]Treino:  58%|█████▊    | 1110/1920 [00:06<00:05, 158.05it/s]Treino:  59%|█████▊    | 1127/1920 [00:06<00:05, 154.86it/s]Treino:  60%|█████▉    | 1147/1920 [00:06<00:04, 160.42it/s]Treino:  61%|██████    | 1166/1920 [00:07<00:04, 162.69it/s]Treino:  62%|██████▏   | 1183/1920 [00:07<00:05, 144.46it/s]Treino:  62%|██████▎   | 1200/1920 [00:07<00:04, 150.41it/s]Treino:  63%|██████▎   | 1216/1920 [00:07<00:05, 123.28it/s]Treino:  66%|██████▌   | 1267/1920 [00:07<00:03, 207.32it/s]Treino:  67%|██████▋   | 1291/1920 [00:07<00:03, 209.43it/s]Treino:  68%|██████▊   | 1314/1920 [00:07<00:03, 175.83it/s]Treino:  69%|██████▉   | 1334/1920 [00:08<00:04, 143.91it/s]Treino:  70%|███████   | 1351/1920 [00:08<00:04, 141.34it/s]Treino:  72%|███████▏  | 1378/1920 [00:08<00:03, 165.22it/s]Treino:  73%|███████▎  | 1402/1920 [00:08<00:02, 178.25it/s]Treino:  74%|███████▍  | 1422/1920 [00:08<00:03, 133.44it/s]Treino:  75%|███████▌  | 1443/1920 [00:08<00:03, 145.87it/s]Treino:  76%|███████▌  | 1460/1920 [00:09<00:03, 119.83it/s]Treino:  77%|███████▋  | 1477/1920 [00:09<00:03, 125.75it/s]Treino:  79%|███████▊  | 1511/1920 [00:09<00:02, 171.36it/s]Treino:  80%|███████▉  | 1531/1920 [00:09<00:02, 143.50it/s]Treino:  81%|████████  | 1548/1920 [00:09<00:02, 147.04it/s]Treino:  82%|████████▏ | 1565/1920 [00:09<00:02, 143.84it/s]Treino:  82%|████████▏ | 1581/1920 [00:09<00:02, 130.68it/s]Treino:  85%|████████▍ | 1625/1920 [00:09<00:01, 200.60it/s]Treino:  86%|████████▌ | 1648/1920 [00:10<00:01, 179.65it/s]Treino:  87%|████████▋ | 1669/1920 [00:10<00:01, 149.46it/s]Treino:  88%|████████▊ | 1687/1920 [00:10<00:01, 133.03it/s]Treino:  89%|████████▊ | 1702/1920 [00:10<00:01, 134.27it/s]Treino:  90%|████████▉ | 1726/1920 [00:10<00:01, 157.48it/s]Treino:  92%|█████████▏| 1761/1920 [00:10<00:00, 200.27it/s]Treino:  93%|█████████▎| 1783/1920 [00:10<00:00, 170.94it/s]Treino:  94%|█████████▍| 1803/1920 [00:11<00:00, 150.28it/s]Treino:  95%|█████████▍| 1820/1920 [00:11<00:00, 124.52it/s]Treino:  97%|█████████▋| 1867/1920 [00:11<00:00, 193.84it/s]Treino:  98%|█████████▊| 1891/1920 [00:11<00:00, 160.61it/s]Treino: 100%|█████████▉| 1912/1920 [00:11<00:00, 146.23it/s]Treino: 100%|██████████| 1920/1920 [00:11<00:00, 161.40it/s]
+Teste:   0%|          | 0/480 [00:00<?, ?it/s]Teste:   2%|▏         | 8/480 [00:00<00:06, 76.91it/s]Teste:   3%|▎         | 16/480 [00:00<00:06, 76.20it/s]Teste:   8%|▊         | 37/480 [00:00<00:03, 135.16it/s]Teste:  15%|█▍        | 70/480 [00:00<00:01, 207.90it/s]Teste:  19%|█▉        | 91/480 [00:00<00:02, 173.78it/s]Teste:  23%|██▎       | 110/480 [00:00<00:02, 162.60it/s]Teste:  26%|██▋       | 127/480 [00:00<00:02, 158.03it/s]Teste:  30%|███       | 144/480 [00:01<00:02, 129.29it/s]Teste:  34%|███▍      | 163/480 [00:01<00:02, 139.08it/s]Teste:  42%|████▏     | 201/480 [00:01<00:01, 169.37it/s]Teste:  46%|████▌     | 219/480 [00:01<00:01, 154.09it/s]Teste:  50%|█████     | 241/480 [00:01<00:01, 167.43it/s]Teste:  54%|█████▍    | 259/480 [00:01<00:01, 118.13it/s]Teste:  59%|█████▉    | 285/480 [00:01<00:01, 145.80it/s]Teste:  68%|██████▊   | 324/480 [00:02<00:00, 192.45it/s]Teste:  75%|███████▌  | 361/480 [00:02<00:00, 230.54it/s]Teste:  81%|████████  | 388/480 [00:02<00:00, 166.02it/s]Teste:  86%|████████▌ | 413/480 [00:02<00:00, 179.59it/s]Teste:  91%|█████████ | 435/480 [00:02<00:00, 183.79it/s]Teste:  95%|█████████▌| 457/480 [00:02<00:00, 132.52it/s]Teste:  99%|█████████▉| 475/480 [00:03<00:00, 136.99it/s]Teste: 100%|██████████| 480/480 [00:03<00:00, 156.55it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> Extraindo características (Tempo + Freq)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 26 with best_epoch = 6 and best_val_balanced_accuracy = 0.99688
+     [Detecção] Bal Acc: 0.9969 | F1: 0.9969 | ROC-AUC: 1.0000
+
+--- Fold Inédito: Group_B | Tarefa: detection ---
+Carregando UORED | Condição: ['Bearing_2', 'Bearing_7', 'Bearing_12', 'Bearing_17'] | Tarefa: DETECTION
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:  50%|█████     | 964/1920 [00:00<00:00, 9639.37it/s]Treino: 100%|██████████| 1920/1920 [00:00<00:00, 10491.22it/s]
+Teste:   0%|          | 0/480 [00:00<?, ?it/s]Teste: 100%|██████████| 480/480 [00:00<00:00, 14035.60it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> Extraindo características (Tempo + Freq)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 29 with best_epoch = 9 and best_val_balanced_accuracy = 0.97812
+     [Detecção] Bal Acc: 0.9781 | F1: 0.9776 | ROC-AUC: 0.9980
+
+--- Fold Inédito: Group_C | Tarefa: detection ---
+Carregando UORED | Condição: ['Bearing_3', 'Bearing_8', 'Bearing_13', 'Bearing_18'] | Tarefa: DETECTION
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:  61%|██████    | 1164/1920 [00:00<00:00, 11639.68it/s]Treino: 100%|██████████| 1920/1920 [00:00<00:00, 11613.61it/s]
+Teste:   0%|          | 0/480 [00:00<?, ?it/s]Teste: 100%|██████████| 480/480 [00:00<00:00, 14037.75it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> Extraindo características (Tempo + Freq)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 48 with best_epoch = 28 and best_val_balanced_accuracy = 0.86562
+     [Detecção] Bal Acc: 0.8656 | F1: 0.8392 | ROC-AUC: 0.7963
+
+--- Fold Inédito: Group_D | Tarefa: detection ---
+Carregando UORED | Condição: ['Bearing_4', 'Bearing_9', 'Bearing_14', 'Bearing_19'] | Tarefa: DETECTION
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:  60%|██████    | 1158/1920 [00:00<00:00, 11579.62it/s]Treino: 100%|██████████| 1920/1920 [00:00<00:00, 11573.70it/s]
+Teste:   0%|          | 0/480 [00:00<?, ?it/s]Teste: 100%|██████████| 480/480 [00:00<00:00, 14045.68it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> Extraindo características (Tempo + Freq)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 37 with best_epoch = 17 and best_val_balanced_accuracy = 0.92812
+     [Detecção] Bal Acc: 0.9281 | F1: 0.8796 | ROC-AUC: 0.9881
+
+--- Fold Inédito: Group_E | Tarefa: detection ---
+Carregando UORED | Condição: ['Bearing_5', 'Bearing_10', 'Bearing_15', 'Bearing_20'] | Tarefa: DETECTION
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:  60%|█████▉    | 1151/1920 [00:00<00:00, 11501.32it/s]Treino: 100%|██████████| 1920/1920 [00:00<00:00, 11498.02it/s]
+Teste:   0%|          | 0/480 [00:00<?, ?it/s]Teste: 100%|██████████| 480/480 [00:00<00:00, 13979.85it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> Extraindo características (Tempo + Freq)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 64 with best_epoch = 44 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+
+
+========================================
+ TAREFA: DIAGNOSIS
+========================================
+
+--- Fold Inédito: Group_A | Tarefa: diagnosis ---
+Carregando UORED | Condição: ['Bearing_1', 'Bearing_6', 'Bearing_11', 'Bearing_16'] | Tarefa: DIAGNOSIS
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:  60%|██████    | 1157/1920 [00:00<00:00, 11561.22it/s]Treino: 100%|██████████| 1920/1920 [00:00<00:00, 11543.91it/s]
+Teste:   0%|          | 0/480 [00:00<?, ?it/s]Teste: 100%|██████████| 480/480 [00:00<00:00, 13974.22it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_48' 'Class_49' 'Class_50' 'Class_51' 'Class_Normal']
+  -> Extraindo características (Tempo + Freq)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 34 with best_epoch = 14 and best_val_balanced_accuracy = 0.6875
+     [Diagnóstico] Bal Acc: 0.6875 | Macro F1: 0.6754 | ROC-AUC: 0.8936
+
+--- Fold Inédito: Group_B | Tarefa: diagnosis ---
+Carregando UORED | Condição: ['Bearing_2', 'Bearing_7', 'Bearing_12', 'Bearing_17'] | Tarefa: DIAGNOSIS
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:  60%|██████    | 1155/1920 [00:00<00:00, 11542.69it/s]Treino: 100%|██████████| 1920/1920 [00:00<00:00, 11548.64it/s]
+Teste:   0%|          | 0/480 [00:00<?, ?it/s]Teste: 100%|██████████| 480/480 [00:00<00:00, 14145.16it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_48' 'Class_49' 'Class_50' 'Class_51' 'Class_Normal']
+  -> Extraindo características (Tempo + Freq)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 24 with best_epoch = 4 and best_val_balanced_accuracy = 0.77125
+     [Diagnóstico] Bal Acc: 0.7712 | Macro F1: 0.7376 | ROC-AUC: 0.9490
+
+--- Fold Inédito: Group_C | Tarefa: diagnosis ---
+Carregando UORED | Condição: ['Bearing_3', 'Bearing_8', 'Bearing_13', 'Bearing_18'] | Tarefa: DIAGNOSIS
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:  60%|██████    | 1157/1920 [00:00<00:00, 11567.36it/s]Treino: 100%|██████████| 1920/1920 [00:00<00:00, 11552.45it/s]
+Teste:   0%|          | 0/480 [00:00<?, ?it/s]Teste: 100%|██████████| 480/480 [00:00<00:00, 14106.21it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_48' 'Class_49' 'Class_50' 'Class_51' 'Class_Normal']
+  -> Extraindo características (Tempo + Freq)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 21 with best_epoch = 1 and best_val_balanced_accuracy = 0.48
+     [Diagnóstico] Bal Acc: 0.4800 | Macro F1: 0.4257 | ROC-AUC: 0.7718
+
+--- Fold Inédito: Group_D | Tarefa: diagnosis ---
+Carregando UORED | Condição: ['Bearing_4', 'Bearing_9', 'Bearing_14', 'Bearing_19'] | Tarefa: DIAGNOSIS
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:  60%|██████    | 1157/1920 [00:00<00:00, 11569.46it/s]Treino: 100%|██████████| 1920/1920 [00:00<00:00, 11552.45it/s]
+Teste:   0%|          | 0/480 [00:00<?, ?it/s]Teste: 100%|██████████| 480/480 [00:00<00:00, 14032.37it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_48' 'Class_49' 'Class_50' 'Class_51' 'Class_Normal']
+  -> Extraindo características (Tempo + Freq)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 61 with best_epoch = 41 and best_val_balanced_accuracy = 0.7175
+     [Diagnóstico] Bal Acc: 0.7175 | Macro F1: 0.6816 | ROC-AUC: 0.8935
+
+--- Fold Inédito: Group_E | Tarefa: diagnosis ---
+Carregando UORED | Condição: ['Bearing_5', 'Bearing_10', 'Bearing_15', 'Bearing_20'] | Tarefa: DIAGNOSIS
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:  60%|██████    | 1159/1920 [00:00<00:00, 11589.54it/s]Treino: 100%|██████████| 1920/1920 [00:00<00:00, 11589.03it/s]
+Teste:   0%|          | 0/480 [00:00<?, ?it/s]Teste: 100%|██████████| 480/480 [00:00<00:00, 13910.21it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/VibNet-1D/src/experiments/engine_tabular.py:126: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(x='Importance', y='Feature', data=df_xai, palette='viridis')
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_48' 'Class_49' 'Class_50' 'Class_51' 'Class_Normal']
+  -> Extraindo características (Tempo + Freq)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+Extraindo 19 características estatísticas avançadas...
+Extraindo características estatísticas no domínio da frequência (FFT)...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 71 with best_epoch = 51 and best_val_balanced_accuracy = 0.69875
+     [Diagnóstico] Bal Acc: 0.6987 | Macro F1: 0.6249 | ROC-AUC: 0.9192
+
+
+============================================================
+RELATÓRIO FINAL: UORED
+============================================================
+Dataset      Task Test Condition  Bal Accuracy  Macro F1  ROC-AUC
+  UORED Detection        Group_A      0.996875  0.996865 1.000000
+  UORED Detection        Group_B      0.978125  0.977636 0.997988
+  UORED Detection        Group_C      0.865625  0.839161 0.796348
+  UORED Detection        Group_D      0.928125  0.879552 0.988125
+  UORED Detection        Group_E      1.000000  1.000000 1.000000
+  UORED Diagnosis        Group_A      0.687500  0.675414 0.893582
+  UORED Diagnosis        Group_B      0.771250  0.737608 0.948970
+  UORED Diagnosis        Group_C      0.480000  0.425750 0.771837
+  UORED Diagnosis        Group_D      0.717500  0.681648 0.893506
+  UORED Diagnosis        Group_E      0.698750  0.624938 0.919203
+
+--- RESUMO (UORED) ---
+          Bal Accuracy            Macro F1             ROC-AUC          
+                  mean       std      mean       std      mean       std
+Task                                                                    
+Detection      0.95375  0.057043  0.938643  0.074269  0.956492  0.089659
+Diagnosis      0.67100  0.111507  0.629071  0.120467  0.885420  0.067478
+
+[Sucesso] Tabela exportada para: /home/vfrocha/VibNet-1D/results/resultados_tabnet_UORED_20260606_065956.csv
+  [Sucesso] XAI salvo em: /home/vfrocha/VibNet-1D/results/xai_UORED_20260606_065956.png
