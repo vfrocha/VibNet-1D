@@ -14,6 +14,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')
 from src.data.dataloader import load_vibration_data
 from src.features.extractors import extract_time_features, extract_freq_features
 from src.models.build_tabular import get_tabnet_classifier, train_and_evaluate_tabnet
+from src.models.build_fttransformer import train_and_evaluate_ft_transformer
 
 class Logger(object):
     def __init__(self, filename):
@@ -136,6 +137,14 @@ def run_master_orchestrator():
                     model=tabnet_model, X_train=X_train_fusion, y_train=y_train, 
                     X_test=X_test_fusion, y_test=y_test, task=task
                 )
+
+                # D) FT-Transformer (Nova Proposta Tabular)
+                print(f"     -> Treinando FT-Transformer...")
+                ft_acc, ft_f1, ft_auc, ft_attention = train_and_evaluate_ft_transformer(
+                    X_train=X_train_fusion, y_train=y_train, 
+                    X_test=X_test_fusion, y_test=y_test, task=task
+                )
+                master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Fold": fold_name, "Model": "FT-Transformer", "Bal Acc": ft_acc, "Macro F1": ft_f1, "ROC-AUC": ft_auc})                
                 master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Fold": fold_name, "Model": "TabNet", "Bal Acc": tab_acc, "Macro F1": tab_f1, "ROC-AUC": tab_auc})
 
     # --- RELATÓRIO FINAL ---
