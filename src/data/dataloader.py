@@ -63,8 +63,31 @@ def load_vibration_data(data_root, dataset_name, test_condition, task='diagnosis
 
     # Carregar os arrays NumPy na memória
     print("-> Lendo arquivos .npy...")
-    X_train = np.array([np.load(f) for f in tqdm(train_files, desc="Treino")])
-    X_test = np.array([np.load(f) for f in tqdm(test_files, desc="Teste")])
+    #X_train = np.array([np.load(f) for f in tqdm(train_files, desc="Treino")])
+    #X_test = np.array([np.load(f) for f in tqdm(test_files, desc="Teste")])
+
+    # --- (Filtro de Janelas Incompletas) ---
+    
+    # 1. Carrega e filtra as caudas do Treino
+    temp_X_train = [np.load(f) for f in tqdm(train_files, desc="Treino")]
+    if temp_X_train:
+        # A janela correta (1s) será sempre o tamanho máximo encontrado
+        expected_len = max(len(x) for x in temp_X_train)
+        valid_idx = [i for i, x in enumerate(temp_X_train) if len(x) == expected_len]
+        X_train = np.array([temp_X_train[i] for i in valid_idx])
+        y_train = np.array(y_train)[valid_idx] # Alinha os rótulos
+    else:
+        X_train = np.array([])
+
+    # 2. Carrega e filtra as caudas do Teste
+    temp_X_test = [np.load(f) for f in tqdm(test_files, desc="Teste")]
+    if temp_X_test:
+        expected_len = max(len(x) for x in temp_X_test)
+        valid_idx = [i for i, x in enumerate(temp_X_test) if len(x) == expected_len]
+        X_test = np.array([temp_X_test[i] for i in valid_idx])
+        y_test = np.array(y_test)[valid_idx] # Alinha os rótulos
+    else:
+        X_test = np.array([])
     
     # Converter rótulos de texto para inteiros
     le = LabelEncoder()
