@@ -76,7 +76,23 @@ def load_vibration_data(data_root, dataset_name, test_condition, task='diagnosis
         valid_idx = [i for i, x in enumerate(temp_X_train) if len(x) == expected_len]
         X_train = np.array([temp_X_train[i] for i in valid_idx])
         train_files = [train_files[i] for i in valid_idx] # Filtra os arquivos (Sincroniza os rótulos)
+        y_train = [y_train[i] for i in valid_idx] # ADICIONADO: Sincroniza y_train com os valid_idx
     else:
+        X_train = np.array([])
+        y_train = [] # ADICIONADO: Garante que y_train exista mesmo vazio
+
+    # 2. Carrega e filtra as caudas do Teste
+    temp_X_test = [np.load(f) for f in tqdm(test_files, desc="Teste")]
+    if temp_X_test:
+        expected_len = max(len(x) for x in temp_X_test)
+        valid_idx = [i for i, x in enumerate(temp_X_test) if len(x) == expected_len]
+        X_test = np.array([temp_X_test[i] for i in valid_idx])
+        test_files = [test_files[i] for i in valid_idx] # Filtra os arquivos (Sincroniza os rótulos)
+        y_test = [y_test[i] for i in valid_idx] # ADICIONADO: Sincroniza y_test com os valid_idx
+    else:
+        X_test = np.array([])
+        y_test = [] # ADICIONADO: Garante que y_test exista mesmo vazio
+
         X_train = np.array([])
 
     # 2. Carrega e filtra as caudas do Teste
