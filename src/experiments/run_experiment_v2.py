@@ -36,8 +36,8 @@ RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../res
 # Mapeamento de todas as bases e suas dobras
 ALL_DATASETS = {
     "CWRU_12k": ["Load_0HP", "Load_1HP", "Load_2HP", "Load_3HP"],
-    "HUST_Dataset": ["Load_0W", "Load_200W", "Load_400W"],
-    "PU_Dataset": ["C1_1500rpm_0.7Nm_1000N", "C2_900rpm_0.7Nm_1000N", "C3_1500rpm_0.1Nm_1000N", "C4_1500rpm_0.7Nm_400N"],
+    "HUST": ["Load_0W", "Load_200W", "Load_400W"],
+    "PU": ["C1_1500rpm_0.7Nm_1000N", "C2_900rpm_0.7Nm_1000N", "C3_1500rpm_0.1Nm_1000N", "C4_1500rpm_0.7Nm_400N"],
     "UORED": {
         "Group_A": ["Bearing_1", "Bearing_6", "Bearing_11", "Bearing_16"],
         "Group_B": ["Bearing_2", "Bearing_7", "Bearing_12", "Bearing_17"],
