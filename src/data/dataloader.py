@@ -75,7 +75,7 @@ def load_vibration_data(data_root, dataset_name, test_condition, task='diagnosis
         expected_len = max(len(x) for x in temp_X_train)
         valid_idx = [i for i, x in enumerate(temp_X_train) if len(x) == expected_len]
         X_train = np.array([temp_X_train[i] for i in valid_idx])
-        y_train = np.array(y_train)[valid_idx] # Alinha os rótulos
+        train_files = [train_files[i] for i in valid_idx] # Filtra os arquivos (Sincroniza os rótulos)
     else:
         X_train = np.array([])
 
@@ -85,7 +85,7 @@ def load_vibration_data(data_root, dataset_name, test_condition, task='diagnosis
         expected_len = max(len(x) for x in temp_X_test)
         valid_idx = [i for i, x in enumerate(temp_X_test) if len(x) == expected_len]
         X_test = np.array([temp_X_test[i] for i in valid_idx])
-        y_test = np.array(y_test)[valid_idx] # Alinha os rótulos
+        test_files = [test_files[i] for i in valid_idx] # Filtra os arquivos (Sincroniza os rótulos)
     else:
         X_test = np.array([])
     
