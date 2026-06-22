@@ -1,126 +1,112 @@
 import os
 import numpy as np
-from sklearn.preprocessing import LabelEncoder
 from tqdm import tqdm
+from sklearn.preprocessing import LabelEncoder
 
-def load_vibration_data(data_root, dataset_name, test_condition, task='diagnosis'):
+def load_vibration_data(data_root, dataset_name, test_condition, task):
     """
-    Carrega arrays .npy de um dataset específico e aplica o split Leave-One-Load-Out.
-    
-    Parâmetros:
-    - data_root: Caminho para a pasta 'data/processed'
-    - dataset_name: Nome do dataset (ex: 'CWRU_12k', 'UORED')
-    - test_condition: Nome da pasta da condição que será usada apenas para teste
-    - task: 'diagnosis' (Multiclasse: tipo exato da falha) ou 'detection' (Binário: Normal vs Falha)
-    
-    Retorna:
-    - X_train, y_train, X_test, y_test, label_encoder
+    Carrega e separa os dados de vibração em conjuntos de treino e teste,
+    garantindo que as janelas correspondam estritamente a 1 segundo físico.
+    Descarta caudas e frações de janelas incompletas para evitar erros de shape.
     """
-    dataset_dir = os.path.join(data_root, dataset_name)
-    if not os.path.exists(dataset_dir):
-        raise FileNotFoundError(f"Dataset não encontrado: {dataset_dir}")
-
-    train_files, train_labels = [], []
-    test_files, test_labels = [], []
-
-    # Mapear todas as condições disponíveis
-    conditions = [d for d in os.listdir(dataset_dir) if os.path.isdir(os.path.join(dataset_dir, d))]
-    
     print(f"Carregando {dataset_name} | Condição: {test_condition} | Tarefa: {task.upper()}")
     
-    for cond in conditions:
-        cond_path = os.path.join(dataset_dir, cond)
-        classes = [c for c in os.listdir(cond_path) if os.path.isdir(os.path.join(cond_path, c))]
+    # 1. Mapeamento de caminhos e descoberta de arquivos
+    dataset_path = os.path.join(data_root, dataset_name)
+    if not os.path.exists(dataset_path):
+        raise FileNotFoundError(f"Caminho do dataset não encontrado: {dataset_path}")
         
-        # Permite que a condição de teste seja um Grupo Virtual (Lista de pastas)
-        if isinstance(test_condition, list):
-            is_test = (cond in test_condition)
-        else:
-            is_test = (cond == test_condition)
-        
-        for cls_name in classes:
-            cls_path = os.path.join(cond_path, cls_name)
-            files = [os.path.join(cls_path, f) for f in os.listdir(cls_path) if f.endswith('.npy')]
-            
-            # --- LÓGICA DE DEFINIÇÃO DA TAREFA ---
-            if task == 'detection':
-                # Agrupa todas as classes em apenas duas: 'Normal' e 'Fault'
-                # Pressupõe que a classe normal tenha a palavra 'normal' no nome do diretório
-                if 'normal' in cls_name.lower():
-                    final_label = 'Normal'
-                else:
-                    final_label = 'Fault'
-            else:
-                # 'diagnosis': Mantém as classes originais separadas
-                final_label = cls_name
-            
-            if is_test:
-                test_files.extend(files)
-                test_labels.extend([final_label] * len(files))
-            else:
-                train_files.extend(files)
-                train_labels.extend([final_label] * len(files))
-
-    # Carregar os arrays NumPy na memória
-    print("-> Lendo arquivos .npy...")
-    #X_train = np.array([np.load(f) for f in tqdm(train_files, desc="Treino")])
-    #X_test = np.array([np.load(f) for f in tqdm(test_files, desc="Teste")])
-
-    # --- (Filtro de Janelas Incompletas) ---
+    all_files = []
+    all_labels = []
     
-    # 1. Carrega e filtra as caudas do Treino
+    # Varre a árvore de diretórios do dataset para coletar arquivos e classes
+    for root, dirs, files in os.walk(dataset_path):
+        for file in files:
+            if file.endswith('.npy'):
+                file_path = os.path.join(root, file)
+                # Determina a classe baseada na subpasta imediata
+                label = os.path.basename(root)
+                all_files.append(file_path)
+                all_labels.append(label)
+                
+    # 2. Filtro de Tarefa (Detecção Binária vs Diagnóstico Multiclasse)
+    processed_labels = []
+    if task.lower() == 'detection':
+        # Binário: Normal vs Falha (tudo que não é Normal vira Fault)
+        for label in all_labels:
+            if 'normal' in label.lower():
+                processed_labels.append('Normal')
+            else:
+                processed_labels.append('Fault')
+    else:
+        # Multiclasse: Diagnóstico completo das classes de defeito
+        processed_labels = all_labels
+
+    print(f"  -> [DEBUG Dataloader] Classes mapeadas para {task.upper()}: {np.unique(processed_labels)}")
+    
+    # 3. Divisão de Treino/Teste baseada nas Condições (LOLO / Grupos Virtuais)
+    train_files = []
+    y_train = []
+    test_files = []
+    y_test = []
+    
+    for file, label in zip(all_files, processed_labels):
+        # Verifica se o arquivo pertence a alguma das condições de teste
+        is_test = False
+        if isinstance(test_condition, list):
+            # Se for um grupo virtual de rolamentos (UORED)
+            is_test = any(cond in file for cond in test_condition)
+        else:
+            # Se for uma dobra simples de carga/RPM (CWRU, HUST, PU)
+            is_test = (test_condition in file)
+            
+        if is_test:
+            test_files.append(file)
+            y_test.append(label)
+        else:
+            train_files.append(file)
+            y_train.append(label)
+            
+    # Encoder de Rótulos para manter consistência numérica
+    le = LabelEncoder()
+    le.fit(processed_labels)
+    y_train = le.transform(y_train) if len(y_train) > 0 else np.array([])
+    y_test = le.transform(y_test) if len(y_test) > 0 else np.array([])
+
+    # 4. Carregamento Físico e Descarte de Janelas Incompletas (Caudas)
+    print("-> Lendo arquivos .npy...")
+    
+    # A) Processamento do Conjunto de Treino
     temp_X_train = [np.load(f) for f in tqdm(train_files, desc="Treino")]
     if temp_X_train:
-        # A janela correta (1s) será sempre o tamanho máximo encontrado
+        # O tamanho esperado de 1 segundo físico será o tamanho máximo encontrado (ex: 25600 na HUST)
         expected_len = max(len(x) for x in temp_X_train)
-        valid_idx = [i for i, x in enumerate(temp_X_train) if len(x) == expected_len]
-        X_train = np.array([temp_X_train[i] for i in valid_idx])
-        train_files = [train_files[i] for i in valid_idx] # Filtra os arquivos (Sincroniza os rótulos)
-        y_train = [y_train[i] for i in valid_idx] # ADICIONADO: Sincroniza y_train com os valid_idx
+        valid_idx_train = [i for i, x in enumerate(temp_X_train) if len(x) == expected_len]
+        
+        X_train = np.array([temp_X_train[i] for i in valid_idx_train])
+        train_files = [train_files[i] for i in valid_idx_train]
+        
+        # Filtra os rótulos de forma segura usando variável temporária para evitar NameError/UnboundLocalError
+        y_train_filtered = [y_train[i] for i in valid_idx_train]
+        y_train = np.array(y_train_filtered)
     else:
         X_train = np.array([])
-        y_train = [] # ADICIONADO: Garante que y_train exista mesmo vazio
+        y_train = np.array([])
 
-    # 2. Carrega e filtra as caudas do Teste
+    # B) Processamento do Conjunto de Teste
     temp_X_test = [np.load(f) for f in tqdm(test_files, desc="Teste")]
     if temp_X_test:
         expected_len = max(len(x) for x in temp_X_test)
-        valid_idx = [i for i, x in enumerate(temp_X_test) if len(x) == expected_len]
-        X_test = np.array([temp_X_test[i] for i in valid_idx])
-        test_files = [test_files[i] for i in valid_idx] # Filtra os arquivos (Sincroniza os rótulos)
-        y_test = [y_test[i] for i in valid_idx] # ADICIONADO: Sincroniza y_test com os valid_idx
+        valid_idx_test = [i for i, x in enumerate(temp_X_test) if len(x) == expected_len]
+        
+        X_test = np.array([temp_X_test[i] for i in valid_idx_test])
+        test_files = [test_files[i] for i in valid_idx_test]
+        
+        # Filtra os rótulos de forma segura usando variável temporária para evitar NameError/UnboundLocalError
+        y_test_filtered = [y_test[i] for i in valid_idx_test]
+        y_test = np.array(y_test_filtered)
     else:
         X_test = np.array([])
-        y_test = [] # ADICIONADO: Garante que y_test exista mesmo vazio
-
-        X_train = np.array([])
-
-    # 2. Carrega e filtra as caudas do Teste
-    temp_X_test = [np.load(f) for f in tqdm(test_files, desc="Teste")]
-    if temp_X_test:
-        expected_len = max(len(x) for x in temp_X_test)
-        valid_idx = [i for i, x in enumerate(temp_X_test) if len(x) == expected_len]
-        X_test = np.array([temp_X_test[i] for i in valid_idx])
-        test_files = [test_files[i] for i in valid_idx] # Filtra os arquivos (Sincroniza os rótulos)
-    else:
-        X_test = np.array([])
-    
-    # Converter rótulos de texto para inteiros
-    le = LabelEncoder()
-    y_train = le.fit_transform(train_labels)
-    
-    # DEBUG: Mostra exatamente o que o Dataloader enxergou
-    print(f"  -> [DEBUG Dataloader] Classes mapeadas para {task.upper()}: {le.classes_}")
-    
-    # --- NOVA REGRA DE DESIGN: Trava de Segurança para Detecção ---
-    # Se a tarefa for 'detection' e o LabelEncoder só achou 1 classe (tudo 'Fault'),
-    # significa que a pasta 'Normal' não existe. Abortamos para não quebrar o ROC-AUC.
-    if task == 'detection' and len(le.classes_) < 2:
-        print(f"\n  [Aviso Defensivo] Dataset {dataset_name} não possui a classe 'Normal'. "
-              f"A tarefa de Detecção Binária será ignorada para este fold.")
-        # Retornamos arrays vazios para acionar o 'continue' do script principal
-        return np.array([]), np.array([]), np.array([]), np.array([]), None
-    
-    y_test = le.transform(test_labels)
+        y_test = np.array([])
 
     return X_train, y_train, X_test, y_test, le
