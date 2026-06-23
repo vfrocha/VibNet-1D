@@ -36,13 +36,13 @@ class Detrend(Transform):
             data['signal'] = [detrend(s.flatten(), type='linear') if isinstance(s, np.ndarray) else s for s in sig]
         return data
 
-# --- PIPELINES 1D (Apenas Detrend e Split) ---
+# --- PIPELINES 1D (Janelamento de 1 Segundo Exato - BASEADO EM METADADOS) ---
 PIPELINES = {
-    "CWRU_12k": Sequential([Detrend(), SimpleSplit(window_size=12000)]), # Alterado para 1 segundo
+    "CWRU_12k": Sequential([Detrend(), SimpleSplit(window_size=12000)]), # fs = 12.000 Hz
     "CWRU_48k": Sequential([Detrend(), SimpleSplit(window_size=48000)]), # fs = 48.000 Hz
-    "HUST": Sequential([Detrend(), SimpleSplit(window_size=25600)]), # fs = 25.600 Hz
-    "UORED": Sequential([Detrend(), SimpleSplit(window_size=200000)]), # fs = 200.000 Hz
-    "PU": Sequential([Detrend(), SimpleSplit(window_size=64000)]) # fs = 64.000 Hz
+    "HUST": Sequential([Detrend(), SimpleSplit(window_size=51200)]),     # fs = 51.200 Hz (Corrigido)
+    "UORED": Sequential([Detrend(), SimpleSplit(window_size=42000)]),    # fs = 42.000 Hz (Corrigido)
+    "PU": Sequential([Detrend(), SimpleSplit(window_size=64000)])        # fs = 64.000 Hz
 }
 
 # --- FUNÇÃO DE NOMES (Mantida para garantir Unbiased Split) ---
