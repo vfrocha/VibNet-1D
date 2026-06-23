@@ -78,8 +78,8 @@ def load_vibration_data(data_root, dataset_name, test_condition, task):
     EXPECTED_SIZES = {
         "cwru_12k": 12000,
         "cwru_48k": 48000,
-        "hust": 25600,
-        "uored": 200000,
+        "hust": 51200,   # Atualizado!
+        "uored": 42000,  # Atualizado!
         "pu": 64000
     }
 
