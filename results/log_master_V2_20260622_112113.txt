@@ -1,0 +1,42 @@
+===========================================================================
+ORQUESTRADOR V2: SUPER FEATURES FÍSICAS + MODELOS HÍBRIDOS (1s Windows)
+===========================================================================
+
+
+############################################################
+ INICIANDO DATASET: CWRU_12k
+############################################################
+[*] Frequência de Amostragem (fs) detectada: 12000 Hz
+
+========================================
+ TAREFA: DETECTION
+========================================
+
+--- Fold: Load_0HP ---
+Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para CWRU_12k: 12000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {12000: 1920}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+⚠️  AVISO CRÍTICO DE CONFIGURAÇÃO DE DADOS (Treino - CWRU_12k) ⚠️
+O conjunto de treino acabou com apenas 1 classe: [0]
+Isso ocorre quando arquivos antigos processados (janelas menores) estão misturados
+na mesma pasta com os novos arquivos de 1 segundo!
+Por favor, APAGUE COMPLETAMENTE a pasta em: 'data/processed/CWRU_12k'
+e execute o script de geração de datasets novamente para limpar o cache!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {12000: 600}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+⚠️  AVISO CRÍTICO DE CONFIGURAÇÃO DE DADOS (Teste - CWRU_12k) ⚠️
+O conjunto de teste acabou com apenas 1 classe: [0]
+Isso ocorre quando arquivos antigos processados estão misturados no diretório.
+Por favor, APAGUE COMPLETAMENTE a pasta em: 'data/processed/CWRU_12k' e regenere.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+  -> Extraindo 16 Super Features (fs=12000Hz) para 1920 janelas de treino...
+  -> Extraindo 16 Super Features (fs=12000Hz) para 600 janelas de teste...
+     -> Treinando Random Forest...

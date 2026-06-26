@@ -2,7 +2,7 @@ import os
 import numpy as np
 
 # Ajuste para a base que você quer investigar
-DATASET_DIR = "/home/vfrocha/VibNet-1D/data/processed/HUST/Load_0W" #"data/processed/PU_Dataset/Load_0" # Exemplo
+DATASET_DIR = "/home/vfrocha/VibNet-1D/data/processed/PU/C1_1500rpm_0.7Nm_1000N" #"data/processed/PU_Dataset/Load_0" # Exemplo
 
 def find_healthy_class(dataset_path):
     print(f"Analisando dataset: {dataset_path}")

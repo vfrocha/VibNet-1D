@@ -1,0 +1,17 @@
+===========================================================================
+ORQUESTRADOR V2: SUPER FEATURES FÍSICAS + MODELOS HÍBRIDOS (1s Windows)
+===========================================================================
+
+
+############################################################
+ INICIANDO DATASET: CWRU_12k
+############################################################
+[*] Frequência de Amostragem (fs) detectada: 12000 Hz
+
+========================================
+ TAREFA: DETECTION
+========================================
+
+--- Fold: Load_0HP ---
+Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DETECTION
+-> Lendo arquivos .npy...
