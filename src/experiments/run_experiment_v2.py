@@ -35,16 +35,16 @@ RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../res
 
 # Mapeamento de todas as bases e suas dobras
 ALL_DATASETS = {
-    "CWRU_12k": ["Load_0HP", "Load_1HP", "Load_2HP", "Load_3HP"],
-    "HUST": ["Load_0W", "Load_200W", "Load_400W"],
-    "PU": ["C1_1500rpm_0.7Nm_1000N", "C2_900rpm_0.7Nm_1000N", "C3_1500rpm_0.1Nm_1000N", "C4_1500rpm_0.7Nm_400N"],
-    "UORED": {
+        "UORED": {
         "Group_A": ["Bearing_1", "Bearing_6", "Bearing_11", "Bearing_16"],
         "Group_B": ["Bearing_2", "Bearing_7", "Bearing_12", "Bearing_17"],
         "Group_C": ["Bearing_3", "Bearing_8", "Bearing_13", "Bearing_18"],
         "Group_D": ["Bearing_4", "Bearing_9", "Bearing_14", "Bearing_19"],
         "Group_E": ["Bearing_5", "Bearing_10", "Bearing_15", "Bearing_20"]
-    }
+    },
+    "CWRU_12k": ["Load_0HP", "Load_1HP", "Load_2HP", "Load_3HP"],
+    "HUST": ["Load_0W", "Load_200W", "Load_400W"],
+    "PU": ["C1_1500rpm_0.7Nm_1000N", "C2_900rpm_0.7Nm_1000N", "C3_1500rpm_0.1Nm_1000N", "C4_1500rpm_0.7Nm_400N"]
 }
 
 TASKS = ["detection", "diagnosis"]
@@ -132,41 +132,60 @@ def run_master_orchestrator_v2():
                 X_test_fusion = extract_features_for_batch(X_test_raw, fs)
 
                 # --- 3. A GRANDE BATALHA DOS 5 MODELOS ---
-                
                 # A) Random Forest Clássico
                 rf = RandomForestClassifier(n_estimators=100, random_state=42, n_jobs=-1)
-                rf_acc, rf_f1, rf_auc = evaluate_sklearn_model(rf, X_train_fusion, y_train, X_test_fusion, y_test, task, "Random Forest")
+                try:
+                    rf_acc, rf_f1, rf_auc = evaluate_sklearn_model(rf, X_train_fusion, y_train, X_test_fusion, y_test, task, "Random Forest")
+                except Exception as e:
+                    print(f"        [AVISO] Random Forest falhou. Erro: {e}")
+                    rf_acc, rf_f1, rf_auc = 0.0, 0.0, 0.0
                 master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Fold": fold_name, "Model": "Random Forest", "Bal Acc": rf_acc, "Macro F1": rf_f1, "ROC-AUC": rf_auc})
                 
                 # B) SVM Clássico
                 svm = SVC(kernel='rbf', C=1.0, probability=True, random_state=42)
-                svm_acc, svm_f1, svm_auc = evaluate_sklearn_model(svm, X_train_fusion, y_train, X_test_fusion, y_test, task, "SVM (RBF)")
+                try:
+                    svm_acc, svm_f1, svm_auc = evaluate_sklearn_model(svm, X_train_fusion, y_train, X_test_fusion, y_test, task, "SVM (RBF)")
+                except Exception as e:
+                    print(f"        [AVISO] SVM falhou. Erro: {e}")
+                    svm_acc, svm_f1, svm_auc = 0.0, 0.0, 0.0
                 master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Fold": fold_name, "Model": "SVM (RBF)", "Bal Acc": svm_acc, "Macro F1": svm_f1, "ROC-AUC": svm_auc})
                 
                 # C) TabNet Original
                 print(f"     -> Treinando TabNet...")
-                tabnet_model = get_tabnet_classifier()
-                tab_acc, tab_f1, tab_auc, _ = train_and_evaluate_tabnet(
-                    model=tabnet_model, X_train=X_train_fusion, y_train=y_train, 
-                    X_test=X_test_fusion, y_test=y_test, task=task
-                )
+                try:
+                    tabnet_model = get_tabnet_classifier()
+                    tab_acc, tab_f1, tab_auc, _ = train_and_evaluate_tabnet(
+                        model=tabnet_model, X_train=X_train_fusion, y_train=y_train, 
+                        X_test=X_test_fusion, y_test=y_test, task=task
+                    )
+                except Exception as e:
+                    print(f"        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: {e}")
+                    tab_acc, tab_f1, tab_auc = 0.0, 0.0, 0.0
                 master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Fold": fold_name, "Model": "TabNet", "Bal Acc": tab_acc, "Macro F1": tab_f1, "ROC-AUC": tab_auc})
 
                 # D) FT-Transformer
                 print(f"     -> Treinando FT-Transformer...")
-                ft_acc, ft_f1, ft_auc, _ = train_and_evaluate_ft_transformer(
-                    X_train=X_train_fusion, y_train=y_train, X_test=X_test_fusion, y_test=y_test, task=task
-                )
+                try:
+                    ft_acc, ft_f1, ft_auc, _ = train_and_evaluate_ft_transformer(
+                        X_train=X_train_fusion, y_train=y_train, X_test=X_test_fusion, y_test=y_test, task=task
+                    )
+                except Exception as e:
+                    print(f"        [AVISO] FT-Transformer falhou. Erro: {e}")
+                    ft_acc, ft_f1, ft_auc = 0.0, 0.0, 0.0
                 master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Fold": fold_name, "Model": "FT-Transformer", "Bal Acc": ft_acc, "Macro F1": ft_f1, "ROC-AUC": ft_auc})
 
                 # E) TabNet-ResNet1D (A Nova Arquitetura Híbrida)
                 print(f"     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...")
-                hyb_acc, hyb_f1, hyb_auc, _ = train_and_evaluate_hybrid(
-                    X_train=X_train_fusion, y_train=y_train, X_test=X_test_fusion, y_test=y_test, task=task
-                )
-                print(f"        [TabNet-ResNet1D] Bal Acc: {hyb_acc:.4f} | F1: {hyb_f1:.4f} | ROC-AUC: {hyb_auc:.4f}")
+                try:
+                    hyb_acc, hyb_f1, hyb_auc, _ = train_and_evaluate_hybrid(
+                        X_train=X_train_fusion, y_train=y_train, X_test=X_test_fusion, y_test=y_test, task=task
+                    )
+                    print(f"        [TabNet-ResNet1D] Bal Acc: {hyb_acc:.4f} | F1: {hyb_f1:.4f} | ROC-AUC: {hyb_auc:.4f}")
+                except Exception as e:
+                    print(f"        [AVISO] TabNet-ResNet1D falhou. Erro: {e}")
+                    hyb_acc, hyb_f1, hyb_auc = 0.0, 0.0, 0.0
                 master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Fold": fold_name, "Model": "TabNet-ResNet1D", "Bal Acc": hyb_acc, "Macro F1": hyb_f1, "ROC-AUC": hyb_auc})
-
+                
     # --- RELATÓRIO FINAL ---
     if master_results:
         df = pd.DataFrame(master_results)
