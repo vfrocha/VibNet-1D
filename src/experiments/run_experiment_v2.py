@@ -54,9 +54,9 @@ def get_fs(dataset_name):
     nome = dataset_name.upper()
     if "CWRU_12K" in nome: return 12000
     if "CWRU_48K" in nome: return 48000
-    if "HUST" in nome: return 25600
+    if "HUST" in nome: return 51200
     if "PU" in nome: return 64000
-    if "UORED" in nome: return 200000
+    if "UORED" in nome: return 42000
     return 12000 # Fallback de segurança
 
 def extract_features_for_batch(X_raw, fs):
