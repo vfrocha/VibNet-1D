@@ -1,0 +1,1046 @@
+===========================================================================
+ORQUESTRADOR V2: SUPER FEATURES FÍSICAS + MODELOS HÍBRIDOS (1s Windows)
+===========================================================================
+
+
+############################################################
+ INICIANDO DATASET: UORED
+############################################################
+[*] Frequência de Amostragem (fs) detectada: 42000 Hz
+
+========================================
+ TAREFA: DETECTION
+========================================
+
+--- Fold: Group_A ---
+Carregando UORED | Condição: ['Bearing_1', 'Bearing_6', 'Bearing_11', 'Bearing_16'] | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para UORED: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {42000: 2184}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {42000: 3276}
+  -> Extraindo 16 Super Features (fs=42000Hz) para 2184 janelas de treino...
+  -> Extraindo 16 Super Features (fs=42000Hz) para 3276 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.8093 | F1: 0.7460 | ROC-AUC: 0.8808
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.8656 | F1: 0.8014 | ROC-AUC: 0.9321
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 32 with best_epoch = 12 and best_val_balanced_accuracy = 0.87454
+     [Detecção] Bal Acc: 0.8745 | F1: 0.8142 | ROC-AUC: 0.9025
+     -> Treinando FT-Transformer...
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [TabNet-ResNet1D] Bal Acc: 0.8436 | F1: 0.7747 | ROC-AUC: 0.9282
+
+--- Fold: Group_B ---
+Carregando UORED | Condição: ['Bearing_2', 'Bearing_7', 'Bearing_12', 'Bearing_17'] | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para UORED: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {42000: 4095}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {42000: 1365}
+  -> Extraindo 16 Super Features (fs=42000Hz) para 4095 janelas de treino...
+  -> Extraindo 16 Super Features (fs=42000Hz) para 1365 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.9901 | F1: 0.9900 | ROC-AUC: 1.0000
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.9500 | F1: 0.9091 | ROC-AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 21 with best_epoch = 1 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando FT-Transformer...
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [TabNet-ResNet1D] Bal Acc: 0.9588 | F1: 0.9239 | ROC-AUC: 1.0000
+
+--- Fold: Group_C ---
+Carregando UORED | Condição: ['Bearing_3', 'Bearing_8', 'Bearing_13', 'Bearing_18'] | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para UORED: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {42000: 4368}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {42000: 1092}
+  -> Extraindo 16 Super Features (fs=42000Hz) para 4368 janelas de treino...
+  -> Extraindo 16 Super Features (fs=42000Hz) para 1092 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.6992 | F1: 0.6114 | ROC-AUC: 0.8114
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.7802 | F1: 0.7045 | ROC-AUC: 0.7459
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 25 with best_epoch = 5 and best_val_balanced_accuracy = 0.87431
+     [Detecção] Bal Acc: 0.8743 | F1: 0.8558 | ROC-AUC: 0.8125
+     -> Treinando FT-Transformer...
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [TabNet-ResNet1D] Bal Acc: 0.6944 | F1: 0.6067 | ROC-AUC: 0.7779
+
+--- Fold: Group_D ---
+Carregando UORED | Condição: ['Bearing_4', 'Bearing_9', 'Bearing_14', 'Bearing_19'] | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para UORED: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {42000: 4368}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {42000: 1092}
+  -> Extraindo 16 Super Features (fs=42000Hz) para 4368 janelas de treino...
+  -> Extraindo 16 Super Features (fs=42000Hz) para 1092 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.8805 | F1: 0.8210 | ROC-AUC: 0.9311
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.8750 | F1: 0.8000 | ROC-AUC: 0.9370
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 22 with best_epoch = 2 and best_val_balanced_accuracy = 0.9375
+     [Detecção] Bal Acc: 0.9375 | F1: 0.8889 | ROC-AUC: 0.9832
+     -> Treinando FT-Transformer...
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [TabNet-ResNet1D] Bal Acc: 0.8750 | F1: 0.8000 | ROC-AUC: 0.9255
+
+--- Fold: Group_E ---
+Carregando UORED | Condição: ['Bearing_5', 'Bearing_10', 'Bearing_15', 'Bearing_20'] | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para UORED: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {42000: 4368}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {42000: 1092}
+  -> Extraindo 16 Super Features (fs=42000Hz) para 4368 janelas de treino...
+  -> Extraindo 16 Super Features (fs=42000Hz) para 1092 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.9389 | F1: 0.8911 | ROC-AUC: 1.0000
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.9375 | F1: 0.8889 | ROC-AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 31 with best_epoch = 11 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando FT-Transformer...
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [TabNet-ResNet1D] Bal Acc: 0.9375 | F1: 0.8889 | ROC-AUC: 0.9997
+
+========================================
+ TAREFA: DIAGNOSIS
+========================================
+
+--- Fold: Group_A ---
+Carregando UORED | Condição: ['Bearing_1', 'Bearing_6', 'Bearing_11', 'Bearing_16'] | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_48' 'Class_49' 'Class_50' 'Class_51' 'Class_Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para UORED: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {42000: 2184}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {42000: 3276}
+  -> Extraindo 16 Super Features (fs=42000Hz) para 2184 janelas de treino...
+  -> Extraindo 16 Super Features (fs=42000Hz) para 3276 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.4234 | F1: 0.3248 | ROC-AUC: 0.0000
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.2899 | F1: 0.1978 | ROC-AUC: 0.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: Valid set -- {0, 1, 2, 3, 4} --
+                             contains unkown targets from training --
+                             {0, 1, 3, 4}
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: Group_B ---
+Carregando UORED | Condição: ['Bearing_2', 'Bearing_7', 'Bearing_12', 'Bearing_17'] | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_48' 'Class_49' 'Class_50' 'Class_51' 'Class_Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para UORED: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {42000: 4095}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {42000: 1365}
+  -> Extraindo 16 Super Features (fs=42000Hz) para 4095 janelas de treino...
+  -> Extraindo 16 Super Features (fs=42000Hz) para 1365 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.8701 | F1: 0.8279 | ROC-AUC: 0.9534
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.7473 | F1: 0.7271 | ROC-AUC: 0.9111
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: Group_C ---
+Carregando UORED | Condição: ['Bearing_3', 'Bearing_8', 'Bearing_13', 'Bearing_18'] | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_48' 'Class_49' 'Class_50' 'Class_51' 'Class_Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para UORED: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {42000: 4368}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {42000: 1092}
+  -> Extraindo 16 Super Features (fs=42000Hz) para 4368 janelas de treino...
+  -> Extraindo 16 Super Features (fs=42000Hz) para 1092 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.4500 | F1: 0.3675 | ROC-AUC: 0.8895
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.4599 | F1: 0.4158 | ROC-AUC: 0.8658
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: Group_D ---
+Carregando UORED | Condição: ['Bearing_4', 'Bearing_9', 'Bearing_14', 'Bearing_19'] | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_48' 'Class_49' 'Class_50' 'Class_51' 'Class_Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para UORED: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {42000: 4368}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {42000: 1092}
+  -> Extraindo 16 Super Features (fs=42000Hz) para 4368 janelas de treino...
+  -> Extraindo 16 Super Features (fs=42000Hz) para 1092 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.8044 | F1: 0.7838 | ROC-AUC: 0.9039
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.6363 | F1: 0.6226 | ROC-AUC: 0.9266
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: Group_E ---
+Carregando UORED | Condição: ['Bearing_5', 'Bearing_10', 'Bearing_15', 'Bearing_20'] | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_48' 'Class_49' 'Class_50' 'Class_51' 'Class_Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para UORED: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {42000: 4368}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {42000: 1092}
+  -> Extraindo 16 Super Features (fs=42000Hz) para 4368 janelas de treino...
+  -> Extraindo 16 Super Features (fs=42000Hz) para 1092 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.7000 | F1: 0.6378 | ROC-AUC: 0.9322
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5901 | F1: 0.5469 | ROC-AUC: 0.9405
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+
+############################################################
+ INICIANDO DATASET: CWRU_12k
+############################################################
+[*] Frequência de Amostragem (fs) detectada: 12000 Hz
+
+========================================
+ TAREFA: DETECTION
+========================================
+
+--- Fold: Load_0HP ---
+Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para CWRU_12k: 12000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {12000: 2160}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {12000: 640}
+  -> Extraindo 16 Super Features (fs=12000Hz) para 2160 janelas de treino...
+  -> Extraindo 16 Super Features (fs=12000Hz) para 640 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.5000 | F1: 0.0000 | ROC-AUC: 0.9667
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5000 | F1: 0.0000 | ROC-AUC: 0.4969
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: Load_1HP ---
+Carregando CWRU_12k | Condição: Load_1HP | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para CWRU_12k: 12000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {12000: 2080}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {12000: 720}
+  -> Extraindo 16 Super Features (fs=12000Hz) para 2080 janelas de treino...
+  -> Extraindo 16 Super Features (fs=12000Hz) para 720 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.6586 | F1: 0.4203 | ROC-AUC: 0.9375
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5000 | F1: 0.0000 | ROC-AUC: 0.5303
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: Load_2HP ---
+Carregando CWRU_12k | Condição: Load_2HP | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para CWRU_12k: 12000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {12000: 2080}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {12000: 720}
+  -> Extraindo 16 Super Features (fs=12000Hz) para 2080 janelas de treino...
+  -> Extraindo 16 Super Features (fs=12000Hz) para 720 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.5766 | F1: 0.2593 | ROC-AUC: 0.9375
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5000 | F1: 0.0000 | ROC-AUC: 0.5057
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: Load_3HP ---
+Carregando CWRU_12k | Condição: Load_3HP | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para CWRU_12k: 12000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {12000: 2080}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {12000: 720}
+  -> Extraindo 16 Super Features (fs=12000Hz) para 2080 janelas de treino...
+  -> Extraindo 16 Super Features (fs=12000Hz) para 720 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.7023 | F1: 0.4805 | ROC-AUC: 0.9375
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5000 | F1: 0.0000 | ROC-AUC: 0.4736
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+========================================
+ TAREFA: DIAGNOSIS
+========================================
+
+--- Fold: Load_0HP ---
+Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_0' 'Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para CWRU_12k: 12000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {12000: 2160}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {12000: 640}
+  -> Extraindo 16 Super Features (fs=12000Hz) para 2160 janelas de treino...
+  -> Extraindo 16 Super Features (fs=12000Hz) para 640 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.6254 | F1: 0.6310 | ROC-AUC: 0.9430
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5235 | F1: 0.5372 | ROC-AUC: 0.9027
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: Load_1HP ---
+Carregando CWRU_12k | Condição: Load_1HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_0' 'Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para CWRU_12k: 12000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {12000: 2080}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {12000: 720}
+  -> Extraindo 16 Super Features (fs=12000Hz) para 2080 janelas de treino...
+  -> Extraindo 16 Super Features (fs=12000Hz) para 720 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.7143 | F1: 0.6980 | ROC-AUC: 0.9648
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.6223 | F1: 0.6212 | ROC-AUC: 0.9316
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: Load_2HP ---
+Carregando CWRU_12k | Condição: Load_2HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_0' 'Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para CWRU_12k: 12000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {12000: 2080}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {12000: 720}
+  -> Extraindo 16 Super Features (fs=12000Hz) para 2080 janelas de treino...
+  -> Extraindo 16 Super Features (fs=12000Hz) para 720 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.7312 | F1: 0.7270 | ROC-AUC: 0.9627
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.6398 | F1: 0.6386 | ROC-AUC: 0.9276
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: Load_3HP ---
+Carregando CWRU_12k | Condição: Load_3HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_0' 'Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para CWRU_12k: 12000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {12000: 2080}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {12000: 720}
+  -> Extraindo 16 Super Features (fs=12000Hz) para 2080 janelas de treino...
+  -> Extraindo 16 Super Features (fs=12000Hz) para 720 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.6551 | F1: 0.6494 | ROC-AUC: 0.9546
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.6444 | F1: 0.6413 | ROC-AUC: 0.9212
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+
+############################################################
+ INICIANDO DATASET: HUST
+############################################################
+[*] Frequência de Amostragem (fs) detectada: 51200 Hz
+
+========================================
+ TAREFA: DETECTION
+========================================
+
+--- Fold: Load_0W ---
+Carregando HUST | Condição: Load_0W | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para HUST: 51200 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {51200: 726}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {51200: 375}
+  -> Extraindo 16 Super Features (fs=51200Hz) para 726 janelas de treino...
+  -> Extraindo 16 Super Features (fs=51200Hz) para 375 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.6862 | F1: 0.4681 | ROC-AUC: 0.9231
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5000 | F1: 0.0000 | ROC-AUC: 0.4628
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: Load_200W ---
+Carregando HUST | Condição: Load_200W | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para HUST: 51200 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {51200: 736}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {51200: 365}
+  -> Extraindo 16 Super Features (fs=51200Hz) para 736 janelas de treino...
+  -> Extraindo 16 Super Features (fs=51200Hz) para 365 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.6851 | F1: 0.4681 | ROC-AUC: 0.9206
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5000 | F1: 0.0000 | ROC-AUC: 0.4637
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: Load_400W ---
+Carregando HUST | Condição: Load_400W | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para HUST: 51200 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {51200: 740}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {51200: 361}
+  -> Extraindo 16 Super Features (fs=51200Hz) para 740 janelas de treino...
+  -> Extraindo 16 Super Features (fs=51200Hz) para 361 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.6762 | F1: 0.4565 | ROC-AUC: 0.9196
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5000 | F1: 0.0000 | ROC-AUC: 0.5425
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+========================================
+ TAREFA: DIAGNOSIS
+========================================
+
+--- Fold: Load_0W ---
+Carregando HUST | Condição: Load_0W | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_40' 'Class_41' 'Class_42' 'Class_43' 'Class_44' 'Class_45'
+ 'Class_46' 'Class_Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para HUST: 51200 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {51200: 726}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {51200: 375}
+  -> Extraindo 16 Super Features (fs=51200Hz) para 726 janelas de treino...
+  -> Extraindo 16 Super Features (fs=51200Hz) para 375 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.6813 | F1: 0.6740 | ROC-AUC: 0.9416
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.6606 | F1: 0.6705 | ROC-AUC: 0.9542
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: Load_200W ---
+Carregando HUST | Condição: Load_200W | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_40' 'Class_41' 'Class_42' 'Class_43' 'Class_44' 'Class_45'
+ 'Class_46' 'Class_Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para HUST: 51200 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {51200: 736}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {51200: 365}
+  -> Extraindo 16 Super Features (fs=51200Hz) para 736 janelas de treino...
+  -> Extraindo 16 Super Features (fs=51200Hz) para 365 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.8525 | F1: 0.8513 | ROC-AUC: 0.9786
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.7652 | F1: 0.7690 | ROC-AUC: 0.9677
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: Load_400W ---
+Carregando HUST | Condição: Load_400W | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_40' 'Class_41' 'Class_42' 'Class_43' 'Class_44' 'Class_45'
+ 'Class_46' 'Class_Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para HUST: 51200 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {51200: 740}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {51200: 361}
+  -> Extraindo 16 Super Features (fs=51200Hz) para 740 janelas de treino...
+  -> Extraindo 16 Super Features (fs=51200Hz) para 361 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.8238 | F1: 0.8229 | ROC-AUC: 0.9774
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.7079 | F1: 0.7098 | ROC-AUC: 0.9599
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+
+############################################################
+ INICIANDO DATASET: PU
+############################################################
+[*] Frequência de Amostragem (fs) detectada: 64000 Hz
+
+========================================
+ TAREFA: DETECTION
+========================================
+
+--- Fold: C1_1500rpm_0.7Nm_1000N ---
+Carregando PU | Condição: C1_1500rpm_0.7Nm_1000N | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para PU: 64000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {64000: 6285}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {64000: 2109}
+  -> Extraindo 16 Super Features (fs=64000Hz) para 6285 janelas de treino...
+  -> Extraindo 16 Super Features (fs=64000Hz) para 2109 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.6492 | F1: 0.4582 | ROC-AUC: 0.8526
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5000 | F1: 0.0000 | ROC-AUC: 0.8223
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: C2_900rpm_0.7Nm_1000N ---
+Carregando PU | Condição: C2_900rpm_0.7Nm_1000N | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para PU: 64000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {64000: 6303}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {64000: 2091}
+  -> Extraindo 16 Super Features (fs=64000Hz) para 6303 janelas de treino...
+  -> Extraindo 16 Super Features (fs=64000Hz) para 2091 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.5000 | F1: 0.0000 | ROC-AUC: 0.8173
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5000 | F1: 0.0000 | ROC-AUC: 0.6793
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: C3_1500rpm_0.1Nm_1000N ---
+Carregando PU | Condição: C3_1500rpm_0.1Nm_1000N | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para PU: 64000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {64000: 6293}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {64000: 2101}
+  -> Extraindo 16 Super Features (fs=64000Hz) para 6293 janelas de treino...
+  -> Extraindo 16 Super Features (fs=64000Hz) para 2101 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.5704 | F1: 0.2857 | ROC-AUC: 0.8519
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5000 | F1: 0.0000 | ROC-AUC: 0.8413
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: C4_1500rpm_0.7Nm_400N ---
+Carregando PU | Condição: C4_1500rpm_0.7Nm_400N | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Classes mapeadas para DETECTION: ['Fault' 'Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para PU: 64000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {64000: 6301}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {64000: 2093}
+  -> Extraindo 16 Super Features (fs=64000Hz) para 6301 janelas de treino...
+  -> Extraindo 16 Super Features (fs=64000Hz) para 2093 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.6197 | F1: 0.4050 | ROC-AUC: 0.8474
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5000 | F1: 0.0000 | ROC-AUC: 0.6064
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+========================================
+ TAREFA: DIAGNOSIS
+========================================
+
+--- Fold: C1_1500rpm_0.7Nm_1000N ---
+Carregando PU | Condição: C1_1500rpm_0.7Nm_1000N | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_26' 'Class_27' 'Class_29' 'Class_Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para PU: 64000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {64000: 6285}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {64000: 2109}
+  -> Extraindo 16 Super Features (fs=64000Hz) para 6285 janelas de treino...
+  -> Extraindo 16 Super Features (fs=64000Hz) para 2109 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.7455 | F1: 0.7421 | ROC-AUC: 0.9263
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.7182 | F1: 0.7294 | ROC-AUC: 0.9261
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: C2_900rpm_0.7Nm_1000N ---
+Carregando PU | Condição: C2_900rpm_0.7Nm_1000N | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_26' 'Class_27' 'Class_29' 'Class_Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para PU: 64000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {64000: 6303}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {64000: 2091}
+  -> Extraindo 16 Super Features (fs=64000Hz) para 6303 janelas de treino...
+  -> Extraindo 16 Super Features (fs=64000Hz) para 2091 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.2720 | F1: 0.2041 | ROC-AUC: 0.7848
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.4992 | F1: 0.5264 | ROC-AUC: 0.7063
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: C3_1500rpm_0.1Nm_1000N ---
+Carregando PU | Condição: C3_1500rpm_0.1Nm_1000N | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_26' 'Class_27' 'Class_29' 'Class_Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para PU: 64000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {64000: 6293}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {64000: 2101}
+  -> Extraindo 16 Super Features (fs=64000Hz) para 6293 janelas de treino...
+  -> Extraindo 16 Super Features (fs=64000Hz) para 2101 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.6698 | F1: 0.6675 | ROC-AUC: 0.9256
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.7017 | F1: 0.6999 | ROC-AUC: 0.9242
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+--- Fold: C4_1500rpm_0.7Nm_400N ---
+Carregando PU | Condição: C4_1500rpm_0.7Nm_400N | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Classes mapeadas para DIAGNOSIS: ['Class_26' 'Class_27' 'Class_29' 'Class_Normal']
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado para PU: 64000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Treino: {64000: 6301}
+  -> [DEBUG Dataloader] Distribuição de tamanhos no Teste: {64000: 2093}
+  -> Extraindo 16 Super Features (fs=64000Hz) para 6301 janelas de treino...
+  -> Extraindo 16 Super Features (fs=64000Hz) para 2093 janelas de teste...
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.6775 | F1: 0.6545 | ROC-AUC: 0.9145
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.6772 | F1: 0.6486 | ROC-AUC: 0.9153
+     -> Treinando TabNet...
+        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando FT-Transformer...
+        [AVISO] FT-Transformer falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...
+        [AVISO] TabNet-ResNet1D falhou. Erro: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+
+[SUCESSO] Tabela Master V2 exportada para: /home/vfrocha/VibNet-1D/results/resultados_master_V2_20260626_120739.csv
+
+--- RESUMO GERAL (MACRO F1 MÉDIO POR MODELO - DIAGNOSIS) ---
+Model     FT-Transformer  Random Forest  SVM (RBF)  TabNet  TabNet-ResNet1D
+Dataset                                                                    
+CWRU_12k             0.0       0.676370   0.609557     0.0              0.0
+HUST                 0.0       0.782719   0.716419     0.0              0.0
+PU                   0.0       0.567070   0.651081     0.0              0.0
+UORED                0.0       0.588356   0.502043     0.0              0.0
