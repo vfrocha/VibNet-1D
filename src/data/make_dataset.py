@@ -42,7 +42,8 @@ PIPELINES = {
     "CWRU_48k": Sequential([Detrend(), SimpleSplit(window_size=48000)]), # fs = 48.000 Hz
     "HUST": Sequential([Detrend(), SimpleSplit(window_size=51200)]),     # fs = 51.200 Hz (Corrigido)
     "UORED": Sequential([Detrend(), SimpleSplit(window_size=42000, overlap=37800)]),    # fs = 42.000 Hz (Corrigido) overlap de 90%
-    "PU": Sequential([Detrend(), SimpleSplit(window_size=64000)])        # fs = 64.000 Hz
+    "PU": Sequential([Detrend(), SimpleSplit(window_size=64000)]),        # fs = 64.000 Hz
+    "UOEMD": Sequential([Detrend(), SimpleSplit(window_size=42000)])
 }
 
 # --- FUNÇÃO DE NOMES (Mantida para garantir Unbiased Split) ---
@@ -77,13 +78,24 @@ def get_names(ds_name, meta):
         if stage == 'healthy':
             return cond, "Class_Normal"
 
+    elif ds_name == "UOEMD":
+        # Puxa os dados exatos que você programou na classe UOEMD_raw
+        load = meta.get('load', 'Unknown')
+        speed = meta.get('speed', 'Unknown')
+        
+        # Cria a pasta de condição agrupando Carga e Velocidade
+        # Exemplo de saída: "Load_No_Load_Speed_15Hz"
+        cond = f"Load_{load}_Speed_{speed}"
+
     else:
         val = meta.get('load', meta.get('rotation_hz', '0'))
         cond = f"Cond_{str(val).replace('.', '')}"
 
+    # A classe final (ex: Class_Misalignment)
     orig_label = meta.get('label')
     if isinstance(orig_label, pd.Series): orig_label = orig_label.item()
     label_name = f"Class_{orig_label}"
+    
     return cond, label_name
 
 def extract_signal(item):
@@ -100,7 +112,7 @@ RAW_DATA_DIR = "/home/vfrocha/VibNet_Project/raw_data"
 FINAL_1D_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
 
 if __name__ == "__main__":
-    datasets = ["UORED", "CWRU", "PU", "HUST"]
+    datasets = ["UOEMD", "UORED", "CWRU", "PU", "HUST"]
 
     for ds_name in datasets:
         print(f"\n=== Processando {ds_name} (1D) ===")
