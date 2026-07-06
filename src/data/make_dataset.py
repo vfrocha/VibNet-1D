@@ -171,6 +171,8 @@ if __name__ == "__main__":
 
                     saved_count[target_ds_name] = saved_count.get(target_ds_name, 0) + len(windows)
 
-            except Exception: continue
+            except Exception as e: 
+                print(f"\n[AVISO] Erro silencioso no ficheiro {i} da base {target_ds_name}: {e}")
+                continue
 
         print(f"--> Status de extração 1D: {saved_count}")
