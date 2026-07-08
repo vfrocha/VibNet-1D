@@ -1,0 +1,209 @@
+import os
+import sys
+import numpy as np
+import pandas as pd
+from datetime import datetime
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+from sklearn.metrics import balanced_accuracy_score, f1_score, roc_auc_score
+
+# Adiciona a raiz do projeto ao path para os imports funcionarem
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+
+from src.data.dataloader import load_vibration_data
+from src.features.extractors_v2 import extract_advanced_features
+from src.models.build_tabular import get_tabnet_classifier, train_and_evaluate_tabnet
+from src.models.build_fttransformer import train_and_evaluate_ft_transformer
+from src.models.build_tabnet_resnet import train_and_evaluate_hybrid
+
+class Logger(object):
+    def __init__(self, filename):
+        self.terminal = sys.stdout
+        self.log = open(filename, "w", encoding='utf-8')
+    def write(self, message):
+        self.terminal.write(message)
+        self.log.write(message)
+        self.log.flush()
+    def flush(self):
+        self.terminal.flush()
+        self.log.flush()
+
+# --- CONFIGURAÇÃO GLOBAL ---
+DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
+RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../results'))
+
+# Isolando a UOEMD com as suas 16 condições (2 Loads x 8 Speeds)
+ALL_DATASETS = {
+    "UOEMD": [
+        "Load_No_Load_Speed_15Hz",
+        "Load_No_Load_Speed_30Hz",
+        "Load_No_Load_Speed_45Hz",
+        "Load_No_Load_Speed_60Hz",
+        "Load_No_Load_Speed_Inc_15_to_45Hz",
+        "Load_No_Load_Speed_Inc_30_to_60Hz",
+        "Load_No_Load_Speed_Dec_45_to_15Hz",
+        "Load_No_Load_Speed_Dec_60_to_30Hz",
+        "Load_Loaded_Speed_15Hz",
+        "Load_Loaded_Speed_30Hz",
+        "Load_Loaded_Speed_45Hz",
+        "Load_Loaded_Speed_60Hz",
+        "Load_Loaded_Speed_Inc_15_to_45Hz",
+        "Load_Loaded_Speed_Inc_30_to_60Hz",
+        "Load_Loaded_Speed_Dec_45_to_15Hz",
+        "Load_Loaded_Speed_Dec_60_to_30Hz"
+    ]
+}
+
+TASKS = ["detection", "diagnosis"]
+
+def get_fs(dataset_name):
+    """Retorna a Frequência de Amostragem (fs) correta baseada no nome do dataset"""
+    nome = dataset_name.upper()
+    if "CWRU_12K" in nome: return 12000
+    if "CWRU_48K" in nome: return 48000
+    if "HUST" in nome: return 51200
+    if "PU" in nome: return 64000
+    if "UOEMD" in nome: return 42000  # <-- CORREÇÃO CRÍTICA ADICIONADA AQUI
+    if "UORED" in nome: return 42000
+    return 12000 # Fallback de segurança
+
+def extract_features_for_batch(X_raw, fs):
+    """Roda a extração avançada do artigo (16 Super Features) para cada janela do batch"""
+    features = []
+    # Usando um loop simples. Em bases muito grandes, pode demorar alguns minutos.
+    for i in range(X_raw.shape[0]):
+        features.append(extract_advanced_features(X_raw[i], fs))
+    return np.array(features)
+
+def evaluate_sklearn_model(model, X_train, y_train, X_test, y_test, task, model_name):
+    """Avaliação padronizada para Modelos Clássicos"""
+    print(f"     -> Treinando {model_name}...")
+    scaler = StandardScaler()
+    X_train_s = scaler.fit_transform(X_train)
+    X_test_s = scaler.transform(X_test)
+    
+    model.fit(X_train_s, y_train)
+    y_pred = model.predict(X_test_s)
+    y_pred_probs = model.predict_proba(X_test_s)
+    
+    bal_acc = balanced_accuracy_score(y_test, y_pred)
+    if task == 'detection':
+        roc_auc = roc_auc_score(y_test, y_pred_probs[:, 1])
+        macro_f1 = f1_score(y_test, y_pred, average='binary')
+    else:
+        try:
+            roc_auc = roc_auc_score(y_test, y_pred_probs, multi_class='ovr')
+        except ValueError:
+            roc_auc = 0.0
+        macro_f1 = f1_score(y_test, y_pred, average='macro')
+        
+    print(f"        [{model_name}] Bal Acc: {bal_acc:.4f} | F1: {macro_f1:.4f} | ROC-AUC: {roc_auc:.4f}")
+    return bal_acc, macro_f1, roc_auc
+
+def run_master_orchestrator_v2():
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    log_file = os.path.join(RESULTS_DIR, f"log_uoemd_tabular_{timestamp}.txt")
+    csv_file = os.path.join(RESULTS_DIR, f"resultados_uoemd_tabular_{timestamp}.csv")
+    sys.stdout = Logger(log_file)
+    
+    print(f"{'='*75}\nEXPERIMENTO UOEMD: SUPER FEATURES + MODELOS TABULARES\n{'='*75}")
+
+    master_results = []
+
+    for dataset_name, conditions in ALL_DATASETS.items():
+        print(f"\n\n{'#'*60}\n INICIANDO DATASET: {dataset_name}\n{'#'*60}")
+        fs = get_fs(dataset_name)
+        print(f"[*] Frequência de Amostragem (fs) detectada: {fs} Hz")
+        
+        iterable_conditions = conditions.items() if isinstance(conditions, dict) else [(c, c) for c in conditions]
+        
+        for task in TASKS:
+            print(f"\n{'='*40}\n TAREFA: {task.upper()}\n{'='*40}")
+            
+            for fold_name, test_cond_val in iterable_conditions:
+                print(f"\n--- Fold: {fold_name} ---")
+
+                # 1. Carregamento dos Dados
+                X_train_raw, y_train, X_test_raw, y_test, le = load_vibration_data(
+                    data_root=DATA_ROOT, dataset_name=dataset_name, test_condition=test_cond_val, task=task
+                )
+
+                if len(X_train_raw) == 0:
+                    print(f"  [Skip] Dados insuficientes para {fold_name}.")
+                    continue
+
+                # 2. Extração das Novas 16 Super Features (Hilbert, TKEO, STFT, PSD)
+                print(f"  -> Extraindo 16 Super Features (fs={fs}Hz) para {len(X_train_raw)} janelas de treino...")
+                X_train_fusion = extract_features_for_batch(X_train_raw, fs)
+                print(f"  -> Extraindo 16 Super Features (fs={fs}Hz) para {len(X_test_raw)} janelas de teste...")
+                X_test_fusion = extract_features_for_batch(X_test_raw, fs)
+
+                # --- 3. A GRANDE BATALHA DOS 5 MODELOS ---
+                # A) Random Forest Clássico
+                rf = RandomForestClassifier(n_estimators=100, random_state=42, n_jobs=-1)
+                try:
+                    rf_acc, rf_f1, rf_auc = evaluate_sklearn_model(rf, X_train_fusion, y_train, X_test_fusion, y_test, task, "Random Forest")
+                except Exception as e:
+                    print(f"        [AVISO] Random Forest falhou. Erro: {e}")
+                    rf_acc, rf_f1, rf_auc = 0.0, 0.0, 0.0
+                master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Fold": fold_name, "Model": "Random Forest", "Bal Acc": rf_acc, "Macro F1": rf_f1, "ROC-AUC": rf_auc})
+                
+                # B) SVM Clássico
+                svm = SVC(kernel='rbf', C=1.0, probability=True, random_state=42)
+                try:
+                    svm_acc, svm_f1, svm_auc = evaluate_sklearn_model(svm, X_train_fusion, y_train, X_test_fusion, y_test, task, "SVM (RBF)")
+                except Exception as e:
+                    print(f"        [AVISO] SVM falhou. Erro: {e}")
+                    svm_acc, svm_f1, svm_auc = 0.0, 0.0, 0.0
+                master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Fold": fold_name, "Model": "SVM (RBF)", "Bal Acc": svm_acc, "Macro F1": svm_f1, "ROC-AUC": svm_auc})
+                
+                # C) TabNet Original
+                print(f"     -> Treinando TabNet...")
+                try:
+                    tabnet_model = get_tabnet_classifier()
+                    tab_acc, tab_f1, tab_auc, _ = train_and_evaluate_tabnet(
+                        model=tabnet_model, X_train=X_train_fusion, y_train=y_train, 
+                        X_test=X_test_fusion, y_test=y_test, task=task
+                    )
+                except Exception as e:
+                    print(f"        [AVISO] TabNet falhou (provável falta de classes no treino). Erro: {e}")
+                    tab_acc, tab_f1, tab_auc = 0.0, 0.0, 0.0
+                master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Fold": fold_name, "Model": "TabNet", "Bal Acc": tab_acc, "Macro F1": tab_f1, "ROC-AUC": tab_auc})
+
+                # D) FT-Transformer
+                print(f"     -> Treinando FT-Transformer...")
+                try:
+                    ft_acc, ft_f1, ft_auc, _ = train_and_evaluate_ft_transformer(
+                        X_train=X_train_fusion, y_train=y_train, X_test=X_test_fusion, y_test=y_test, task=task
+                    )
+                except Exception as e:
+                    print(f"        [AVISO] FT-Transformer falhou. Erro: {e}")
+                    ft_acc, ft_f1, ft_auc = 0.0, 0.0, 0.0
+                master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Fold": fold_name, "Model": "FT-Transformer", "Bal Acc": ft_acc, "Macro F1": ft_f1, "ROC-AUC": ft_auc})
+
+                # E) TabNet-ResNet1D (A Nova Arquitetura Híbrida)
+                print(f"     -> Treinando TabNet-ResNet1D (Arquitetura Híbrida)...")
+                try:
+                    hyb_acc, hyb_f1, hyb_auc, _ = train_and_evaluate_hybrid(
+                        X_train=X_train_fusion, y_train=y_train, X_test=X_test_fusion, y_test=y_test, task=task
+                    )
+                    print(f"        [TabNet-ResNet1D] Bal Acc: {hyb_acc:.4f} | F1: {hyb_f1:.4f} | ROC-AUC: {hyb_auc:.4f}")
+                except Exception as e:
+                    print(f"        [AVISO] TabNet-ResNet1D falhou. Erro: {e}")
+                    hyb_acc, hyb_f1, hyb_auc = 0.0, 0.0, 0.0
+                master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Fold": fold_name, "Model": "TabNet-ResNet1D", "Bal Acc": hyb_acc, "Macro F1": hyb_f1, "ROC-AUC": hyb_auc})
+                
+    # --- RELATÓRIO FINAL ---
+    if master_results:
+        df = pd.DataFrame(master_results)
+        df.to_csv(csv_file, index=False)
+        print(f"\n\n[SUCESSO] Tabela Master da UOEMD exportada para: {csv_file}")
+        
+        print("\n--- RESUMO GERAL (MACRO F1 MÉDIO POR MODELO - DIAGNOSIS) ---")
+        summary = df[df['Task'] == 'Diagnosis'].groupby(['Dataset', 'Model'])['Macro F1'].mean().unstack()
+        print(summary.to_string())
+
+if __name__ == "__main__":
+    run_master_orchestrator_v2()
