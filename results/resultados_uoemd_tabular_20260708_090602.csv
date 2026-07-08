@@ -1,0 +1,161 @@
+Dataset,Task,Fold,Model,Bal Acc,Macro F1,ROC-AUC
+UOEMD,Detection,Load_No_Load_Speed_15Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_15Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_15Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_15Hz,FT-Transformer,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_15Hz,TabNet-ResNet1D,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_30Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_30Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_30Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_30Hz,FT-Transformer,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_30Hz,TabNet-ResNet1D,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_45Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_45Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_45Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_45Hz,FT-Transformer,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_45Hz,TabNet-ResNet1D,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_60Hz,Random Forest,1.0,1.0,0.9999999999999998
+UOEMD,Detection,Load_No_Load_Speed_60Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_60Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_60Hz,FT-Transformer,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_60Hz,TabNet-ResNet1D,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_15_to_45Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_15_to_45Hz,SVM (RBF),0.95,0.9473684210526315,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_15_to_45Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_15_to_45Hz,FT-Transformer,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_15_to_45Hz,TabNet-ResNet1D,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_30_to_60Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_30_to_60Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_30_to_60Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_30_to_60Hz,FT-Transformer,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_30_to_60Hz,TabNet-ResNet1D,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_45_to_15Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_45_to_15Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_45_to_15Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_45_to_15Hz,FT-Transformer,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_45_to_15Hz,TabNet-ResNet1D,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_60_to_30Hz,Random Forest,1.0,1.0,0.9999999999999999
+UOEMD,Detection,Load_No_Load_Speed_Dec_60_to_30Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_60_to_30Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_60_to_30Hz,FT-Transformer,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_60_to_30Hz,TabNet-ResNet1D,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_15Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_15Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_15Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_15Hz,FT-Transformer,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_15Hz,TabNet-ResNet1D,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_30Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_30Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_30Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_30Hz,FT-Transformer,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_30Hz,TabNet-ResNet1D,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_45Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_45Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_45Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_45Hz,FT-Transformer,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_45Hz,TabNet-ResNet1D,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_60Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_60Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_60Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_60Hz,FT-Transformer,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_60Hz,TabNet-ResNet1D,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_15_to_45Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_15_to_45Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_15_to_45Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_15_to_45Hz,FT-Transformer,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_15_to_45Hz,TabNet-ResNet1D,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_30_to_60Hz,Random Forest,0.95,0.9473684210526315,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_30_to_60Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_30_to_60Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_30_to_60Hz,FT-Transformer,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_30_to_60Hz,TabNet-ResNet1D,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_45_to_15Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_45_to_15Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_45_to_15Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_45_to_15Hz,FT-Transformer,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_45_to_15Hz,TabNet-ResNet1D,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_60_to_30Hz,Random Forest,0.95,0.9473684210526315,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_60_to_30Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_60_to_30Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_60_to_30Hz,FT-Transformer,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_60_to_30Hz,TabNet-ResNet1D,1.0,1.0,1.0
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,Random Forest,0.6125,0.5784904970760234,0.893125
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,SVM (RBF),0.4125,0.34178321678321677,0.8480357142857143
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,TabNet,0.7375,0.680921052631579,0.8783928571428572
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,FT-Transformer,0.25,0.25,0.8171428571428572
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,TabNet-ResNet1D,0.5625,0.541776460254721,0.8596428571428572
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,Random Forest,0.625,0.5012501865950142,0.8594642857142858
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,SVM (RBF),0.4125,0.3455668604651163,0.7975000000000001
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,TabNet,0.625,0.5358754720456849,0.7987500000000001
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,FT-Transformer,0.42500000000000004,0.3756127450980392,0.8176785714285715
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,TabNet-ResNet1D,0.625,0.5162337662337663,0.832857142857143
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,Random Forest,0.8125,0.7759259259259259,0.9702678571428571
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,SVM (RBF),0.4,0.3560606060606061,0.8433928571428572
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,TabNet,0.725,0.6579380764163373,0.9167857142857143
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,FT-Transformer,0.4875,0.4309210526315789,0.874642857142857
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,TabNet-ResNet1D,0.7125,0.6446078431372548,0.9907142857142857
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,Random Forest,0.775,0.7142857142857142,0.9783928571428571
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,SVM (RBF),0.5375,0.48503445305770887,0.8266071428571429
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,TabNet,0.7375,0.7184758771929824,0.9326785714285715
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,FT-Transformer,0.7125,0.6405723905723906,0.93375
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,TabNet-ResNet1D,0.6,0.5254524886877828,0.9492857142857143
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,Random Forest,0.775,0.7716736464019073,0.9723214285714286
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,SVM (RBF),0.5125000000000001,0.48367193235614286,0.8403571428571428
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,TabNet,0.775,0.7670940170940171,0.9605357142857143
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,FT-Transformer,0.55,0.5461595854334614,0.8869642857142858
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,TabNet-ResNet1D,0.75,0.7537037037037037,0.9714285714285714
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,Random Forest,0.75,0.7521337310667975,0.9633035714285714
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,SVM (RBF),0.55,0.5540683581124757,0.82375
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,TabNet,0.6875,0.6817322383498854,0.9221428571428572
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,FT-Transformer,0.55,0.5535615079365079,0.8860714285714286
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,TabNet-ResNet1D,0.7625,0.7499555751154217,0.9578571428571429
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,Random Forest,0.825,0.8227410661234191,0.9670535714285715
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,SVM (RBF),0.5,0.4771291866028708,0.8592857142857143
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,TabNet,0.7125,0.7133582340432186,0.9333928571428571
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,FT-Transformer,0.5875,0.570664983164983,0.8810714285714285
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,TabNet-ResNet1D,0.75,0.7531233386496543,0.9594642857142857
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,Random Forest,0.8625,0.8517316017316017,0.9725
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,SVM (RBF),0.5125,0.4908114761055938,0.8300000000000001
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,TabNet,0.65,0.6474605966788629,0.9210714285714285
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,FT-Transformer,0.6,0.5931668537860488,0.90625
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,TabNet-ResNet1D,0.875,0.8726201086495204,0.9880357142857144
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,Random Forest,0.775,0.7688479820832762,0.9824107142857144
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,SVM (RBF),0.525,0.46448863636363635,0.8035714285714286
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,TabNet,0.6875,0.6224458204334365,0.9266071428571429
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,FT-Transformer,0.375,0.3286483253588517,0.7921428571428571
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,TabNet-ResNet1D,0.625,0.5358960507517383,0.8914285714285715
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,Random Forest,0.9375,0.9333333333333333,0.9833035714285714
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,SVM (RBF),0.275,0.2857142857142857,0.7726785714285714
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,TabNet,0.6000000000000001,0.5855800653594772,0.8417857142857142
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,FT-Transformer,0.4,0.4041666666666667,0.7901785714285714
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,TabNet-ResNet1D,0.85,0.8453314777327935,0.9805357142857143
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,Random Forest,0.875,0.8333333333333333,0.999375
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,SVM (RBF),0.75,0.6875,0.9692857142857143
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,TabNet,0.9875,0.9874686716791979,0.9973214285714286
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,FT-Transformer,0.7375,0.7244692190245728,0.9482142857142857
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,TabNet-ResNet1D,1.0,1.0,1.0
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,Random Forest,0.525,0.45207509881422925,0.8758928571428573
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,SVM (RBF),0.5,0.4375,0.83375
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,TabNet,0.625,0.55,0.8367857142857142
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,FT-Transformer,0.5125,0.5080645161290323,0.8482142857142857
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,TabNet-ResNet1D,0.5375,0.5212450592885376,0.8882142857142856
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,Random Forest,0.8625,0.8644105735352875,0.979375
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,SVM (RBF),0.5625,0.5754615807533427,0.8957142857142857
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,TabNet,0.7375,0.7344663742690059,0.9389285714285713
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,FT-Transformer,0.65,0.6504134697357203,0.9135714285714286
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,TabNet-ResNet1D,0.7749999999999999,0.7690496488450453,0.9683928571428572
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,Random Forest,0.7749999999999999,0.7701797385620914,0.9421428571428572
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,SVM (RBF),0.5625,0.553030303030303,0.8621428571428571
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,TabNet,0.6375,0.6020202020202021,0.8739285714285715
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,FT-Transformer,0.525,0.5130133024869867,0.8514285714285714
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,TabNet-ResNet1D,0.7875000000000001,0.7818362193362194,0.9751785714285715
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,Random Forest,0.75,0.7510869565217391,0.9508035714285714
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,SVM (RBF),0.49999999999999994,0.5118676900584795,0.8426785714285714
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,TabNet,0.7,0.7050302561215874,0.9028571428571428
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,FT-Transformer,0.6125,0.5976157407407408,0.8998214285714285
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,TabNet-ResNet1D,0.7375,0.7293854550349368,0.9528571428571428
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,Random Forest,0.8,0.7940420653907496,0.9660714285714286
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,SVM (RBF),0.5375,0.5096491228070175,0.8708928571428571
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,TabNet,0.6625000000000001,0.6427646602119108,0.8860714285714286
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,FT-Transformer,0.525,0.4923777203188968,0.88125
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,TabNet-ResNet1D,0.8125,0.8094298245614036,0.9671428571428572
