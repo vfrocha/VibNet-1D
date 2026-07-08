@@ -41,6 +41,7 @@ PIPELINES = {
     "CWRU_12k": Sequential([Detrend(), SimpleSplit(window_size=12000)]), # fs = 12.000 Hz
     "CWRU_48k": Sequential([Detrend(), SimpleSplit(window_size=48000)]), # fs = 48.000 Hz
     "HUST": Sequential([Detrend(), SimpleSplit(window_size=51200)]),     # fs = 51.200 Hz (Corrigido)
+    "HUST_Gearbox": Sequential([Detrend(), SimpleSplit(window_size=25600)]),
     "UORED": Sequential([Detrend(), SimpleSplit(window_size=42000, overlap=37800)]),    # fs = 42.000 Hz (Corrigido) overlap de 90%
     "PU": Sequential([Detrend(), SimpleSplit(window_size=64000)]),        # fs = 64.000 Hz
     "UOEMD": Sequential([Detrend(), SimpleSplit(window_size=42000)])
