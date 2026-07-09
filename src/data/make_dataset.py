@@ -98,7 +98,19 @@ def get_names(ds_name, meta):
 
     elif ds_name == "Electric_Motor":
         cond = f"Cond_{meta.get('condition', 'Unknown')}"
-
+    
+    elif ds_name == "IMS":
+        # IMS é dividido por canal (Channel 1 a 4) e tipo de rolamento
+        cond = f"Bearing_Test_{meta.get('test_id', 'Unknown')}_Ch_{meta.get('channel', 'Unknown')}"
+        
+    elif ds_name == "MFPT":
+        # MFPT é dividido por carga (Load)
+        cond = f"Load_{meta.get('load', 'Unknown')}"
+        
+    elif ds_name == "UOC":
+        # UOC é dividido pela condição de falha específica
+        cond = f"Cond_{meta.get('condition', 'Unknown')}"
+    
     else:
         val = meta.get('load', meta.get('rotation_hz', '0'))
         cond = f"Cond_{str(val).replace('.', '')}"
