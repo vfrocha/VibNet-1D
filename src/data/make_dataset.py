@@ -45,7 +45,8 @@ PIPELINES = {
     "UORED": Sequential([Detrend(), SimpleSplit(window_size=42000, overlap=37800)]),    # fs = 42.000 Hz (Corrigido) overlap de 90%
     "PU": Sequential([Detrend(), SimpleSplit(window_size=64000)]),        # fs = 64.000 Hz
     "UOEMD": Sequential([Detrend(), SimpleSplit(window_size=42000)]),
-    "Mechanical_Gear": Sequential([Detrend(), SimpleSplit(window_size=5000)])
+    "Mechanical_Gear": Sequential([Detrend(), SimpleSplit(window_size=5000)]),
+    "Electric_Motor": Sequential([Detrend(), SimpleSplit(window_size=50000)])
 }
 
 # --- FUNÇÃO DE NOMES (Mantida para garantir Unbiased Split) ---
@@ -91,7 +92,10 @@ def get_names(ds_name, meta):
         
     elif ds_name == "Mechanical_Gear":
         cond = f"Cond_{meta.get('condition', 'Unknown')}"
-    
+
+    elif ds_name == "Electric_Motor":
+        cond = f"Cond_{meta.get('condition', 'Unknown')}"
+
     else:
         val = meta.get('load', meta.get('rotation_hz', '0'))
         cond = f"Cond_{str(val).replace('.', '')}"
@@ -117,7 +121,7 @@ RAW_DATA_DIR = "/home/vfrocha/VibNet_Project/raw_data"
 FINAL_1D_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
 
 if __name__ == "__main__":
-    datasets = ["HUST_Gearbox", "Mechanical_Gear"]#["UOEMD", "UORED", "CWRU", "PU", "HUST"]
+    datasets = ["Electric_Motor", "HUST_Gearbox", "Mechanical_Gear"]#["UOEMD", "UORED", "CWRU", "PU", "HUST"]
 
     for ds_name in datasets:
         print(f"\n=== Processando {ds_name} (1D) ===")
