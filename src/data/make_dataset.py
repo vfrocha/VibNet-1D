@@ -149,7 +149,8 @@ if __name__ == "__main__":
     datasets = [
         # "UOEMD", "CWRU_12k", "CWRU_48k", "PU", "HUST", 
         # "HUST_Gearbox", "Mechanical_Gear", "Electric_Motor",
-         "UORED", "IMS", "MFPT", "UOC"
+        # "UORED", "IMS", "MFPT", "UOC"
+        "UOC"
     ]
     
     for ds_name in datasets:
