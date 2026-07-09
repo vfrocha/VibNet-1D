@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 import vibdata.raw as raw_datasets
-from vibdata.deep.signal.transforms import Sequential, Transform, Detrend
+from vibdata.deep.signal.transforms import Sequential, Transform
 from scipy.signal import detrend
 
 # --- CLASSES AUXILIARES (1D) ---
