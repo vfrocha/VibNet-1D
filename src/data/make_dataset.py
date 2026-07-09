@@ -62,6 +62,17 @@ PIPELINES = {
 
 # --- FUNÇÃO DE NOMES (Mantida para garantir Unbiased Split) ---
 def get_names(ds_name, meta):
+    if hasattr(meta, 'to_dict'):
+        if hasattr(meta, 'iloc') and len(getattr(meta, 'shape', [])) > 1: 
+            meta = meta.iloc[0].to_dict() # Converte DataFrame (ex: UOC)
+        else:
+            meta = meta.to_dict()         # Converte Series (ex: MFPT, IMS)
+    if not isinstance(meta, dict):
+        try:
+            meta = dict(meta)
+        except Exception:
+            pass
+    
     if "CWRU" in ds_name:
         load = meta.get('load', 0)
         try:
