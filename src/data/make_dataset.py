@@ -42,11 +42,14 @@ PIPELINES = {
     "CWRU_48k": Sequential([Detrend(), SimpleSplit(window_size=48000)]), # fs = 48.000 Hz
     "HUST": Sequential([Detrend(), SimpleSplit(window_size=51200)]),     # fs = 51.200 Hz (Corrigido)
     "HUST_Gearbox": Sequential([Detrend(), SimpleSplit(window_size=25600)]),
-    "UORED": Sequential([Detrend(), SimpleSplit(window_size=42000, overlap=37800)]),    # fs = 42.000 Hz (Corrigido) overlap de 90%
+    "UORED": Sequential([Detrend(), SimpleSplit(window_size=42000)]),    # fs = 42.000 Hz (Corrigido) overlap de 90%
     "PU": Sequential([Detrend(), SimpleSplit(window_size=64000)]),        # fs = 64.000 Hz
     "UOEMD": Sequential([Detrend(), SimpleSplit(window_size=42000)]),
     "Mechanical_Gear": Sequential([Detrend(), SimpleSplit(window_size=5000)]),
-    "Electric_Motor": Sequential([Detrend(), SimpleSplit(window_size=50000)])
+    "Electric_Motor": Sequential([Detrend(), SimpleSplit(window_size=50000)]),
+    "IMS": Sequential([Detrend(), SimpleSplit(window_size=20000)]),
+    "MFPT": Sequential([Detrend(), SimpleSplit(window_size=48828)]), # Ou 97656 dependendo da condição, ajuste se necessário
+    "UOC": Sequential([Detrend(), SimpleSplit(window_size=200000)])
 }
 
 # --- FUNÇÃO DE NOMES (Mantida para garantir Unbiased Split) ---
