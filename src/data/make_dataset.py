@@ -136,8 +136,12 @@ RAW_DATA_DIR = "/home/vfrocha/VibNet_Project/raw_data"
 FINAL_1D_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
 
 if __name__ == "__main__":
-    datasets = ["Electric_Motor", "HUST_Gearbox", "Mechanical_Gear"]#["UOEMD", "UORED", "CWRU", "PU", "HUST"]
-
+    datasets = [
+        # "UOEMD", "CWRU_12k", "CWRU_48k", "PU", "HUST", 
+        # "HUST_Gearbox", "Mechanical_Gear", "Electric_Motor",
+         "UORED", "IMS", "MFPT", "UOC"
+    ]
+    
     for ds_name in datasets:
         print(f"\n=== Processando {ds_name} (1D) ===")
 
