@@ -85,7 +85,7 @@ def get_names(ds_name, meta):
             return cond, "Class_Normal"
 
     elif ds_name == "UOEMD":
-        # Puxa os dados exatos que você programou na classe UOEMD_raw
+        # Dados exatos da classe UOEMD_raw
         load = meta.get('load', 'Unknown')
         speed = meta.get('speed', 'Unknown')
         
