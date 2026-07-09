@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 import vibdata.raw as raw_datasets
-from vibdata.deep.signal.transforms import Sequential, Transform
+from vibdata.deep.signal.transforms import Sequential, Transform, Detrend
 from scipy.signal import detrend
 
 # --- CLASSES AUXILIARES (1D) ---
@@ -36,6 +36,14 @@ class Detrend(Transform):
             data['signal'] = [detrend(s.flatten(), type='linear') if isinstance(s, np.ndarray) else s for s in sig]
         return data
 
+class UnpackMAT(Transform):
+    """Extrai sinais encapsulados em arrays de objetos (ex: UOC)"""
+    def transform(self, data):
+        data = data.copy()
+        if hasattr(data['signal'], 'dtype') and data['signal'].dtype == object:
+            data['signal'] = data['signal'][0]
+        return data
+
 # --- PIPELINES 1D (Janelamento de 1 Segundo Exato - BASEADO EM METADADOS) ---
 PIPELINES = {
     "CWRU_12k": Sequential([Detrend(), SimpleSplit(window_size=12000)]), # fs = 12.000 Hz
@@ -49,7 +57,7 @@ PIPELINES = {
     "Electric_Motor": Sequential([Detrend(), SimpleSplit(window_size=50000)]),
     "IMS": Sequential([Detrend(), SimpleSplit(window_size=20000)]),
     "MFPT": Sequential([Detrend(), SimpleSplit(window_size=48828)]), # Ou 97656 dependendo da condição, ajuste se necessário
-    "UOC": Sequential([Detrend(), SimpleSplit(window_size=200000)])
+    "UOC": Sequential([UnpackMAT(), Detrend(), SimpleSplit(window_size=2048)])
 }
 
 # --- FUNÇÃO DE NOMES (Mantida para garantir Unbiased Split) ---
