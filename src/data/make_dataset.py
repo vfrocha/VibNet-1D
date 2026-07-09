@@ -36,14 +36,6 @@ class Detrend(Transform):
             data['signal'] = [detrend(s.flatten(), type='linear') if isinstance(s, np.ndarray) else s for s in sig]
         return data
 
-class UnpackMAT(Transform):
-    """Extrai sinais encapsulados em arrays de objetos (ex: UOC)"""
-    def transform(self, data):
-        data = data.copy()
-        if hasattr(data['signal'], 'dtype') and data['signal'].dtype == object:
-            data['signal'] = data['signal'][0]
-        return data
-
 # --- PIPELINES 1D (Janelamento de 1 Segundo Exato - BASEADO EM METADADOS) ---
 PIPELINES = {
     "CWRU_12k": Sequential([Detrend(), SimpleSplit(window_size=12000)]), # fs = 12.000 Hz
@@ -57,22 +49,11 @@ PIPELINES = {
     "Electric_Motor": Sequential([Detrend(), SimpleSplit(window_size=50000)]),
     "IMS": Sequential([Detrend(), SimpleSplit(window_size=20000)]),
     "MFPT": Sequential([Detrend(), SimpleSplit(window_size=48828)]), # Ou 97656 dependendo da condição, ajuste se necessário
-    "UOC": Sequential([UnpackMAT(), Detrend(), SimpleSplit(window_size=2048)])
+    "UOC": Sequential([Detrend(), SimpleSplit(window_size=2048)])
 }
 
 # --- FUNÇÃO DE NOMES (Mantida para garantir Unbiased Split) ---
-def get_names(ds_name, meta):
-    if hasattr(meta, 'to_dict'):
-        if hasattr(meta, 'iloc') and len(getattr(meta, 'shape', [])) > 1: 
-            meta = meta.iloc[0].to_dict() # Converte DataFrame (ex: UOC)
-        else:
-            meta = meta.to_dict()         # Converte Series (ex: MFPT, IMS)
-    if not isinstance(meta, dict):
-        try:
-            meta = dict(meta)
-        except Exception:
-            pass
-    
+def get_names(ds_name, meta):   
     if "CWRU" in ds_name:
         load = meta.get('load', 0)
         try:
