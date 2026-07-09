@@ -100,8 +100,10 @@ def get_names(ds_name, meta):
         cond = f"Cond_{meta.get('condition', 'Unknown')}"
     
     elif ds_name == "IMS":
-        # IMS é dividido por canal (Channel 1 a 4) e tipo de rolamento
-        cond = f"Bearing_Test_{meta.get('test_id', 'Unknown')}_Ch_{meta.get('channel', 'Unknown')}"
+        # Usando as chaves exatas reveladas pelo terminal: 'test' e 'bearing'
+        test_num = meta.get('test', 'Unknown')
+        bearing_num = meta.get('bearing', 'Unknown')
+        cond = f"Test_{test_num}_Bearing_{bearing_num}"
         
     elif ds_name == "MFPT":
         # MFPT é dividido por carga (Load)
