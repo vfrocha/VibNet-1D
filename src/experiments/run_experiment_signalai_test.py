@@ -64,9 +64,9 @@ def run_signalai_test():
 
     print("\n[3] Extraindo features nativas do VibNet-1D...")
     
-    # ADICIONE O 'fs' AQUI NAS DUAS LINHAS:
-    X_train_vibnet = extract_advanced_features(X_train_raw, fs) 
-    X_test_vibnet  = extract_advanced_features(X_test_raw, fs)
+    # Passamos cada 'sinal' individualmente usando um loop rápido
+    X_train_vibnet = np.array([extract_advanced_features(sinal, fs) for sinal in X_train_raw])
+    X_test_vibnet  = np.array([extract_advanced_features(sinal, fs) for sinal in X_test_raw])
 
     print("\n[4] Fundindo (Feature Fusion) SignAI + VibNet-1D...")
     # O np.hstack junta as duas matrizes lado a lado
