@@ -9,7 +9,7 @@ from sklearn.metrics import balanced_accuracy_score, f1_score
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 from src.data.dataloader import load_vibration_data
-from src.features.signalai_wrapper import SignalAIWrapper
+from signalai.features.freq import SpectralEntropy, SpectralCentroid, SpectralBandwidth, SpectralFlatness
 
 # IMPORTANTE: Importe aqui a classe do SignAI que deseja testar
 from signalai.features.freq import SpectralEntropy
@@ -38,11 +38,16 @@ def run_signalai_test():
     # 2. Utilizando o Wrapper para extração de características
     print(f"\n[2] Inicializando SignalAIWrapper (fs={fs}Hz)...")
     
-    # Instancia o extrator desejado da biblioteca SignAI
-    signai_extractor = SpectralEntropy()
+    # Crie uma lista com todos os extratores que você quer usar
+    meus_extratores = [
+        SpectralEntropy(),
+        SpectralCentroid(),
+        SpectralBandwidth(),
+        SpectralFlatness()
+    ]
     
-    # Encapsula no seu wrapper
-    wrapper = SignalAIWrapper(sample_rate=fs, extractor_instance=signai_extractor)
+    # Encapsule a LISTA no seu wrapper
+    wrapper = SignalAIWrapper(sample_rate=fs, extractors_list=meus_extratores)
 
     print(f"  -> Extraindo features de {len(X_train_raw)} janelas de treino (Isso pode levar alguns segundos)...")
     X_train_features = wrapper.fit_transform(X_train_raw)
