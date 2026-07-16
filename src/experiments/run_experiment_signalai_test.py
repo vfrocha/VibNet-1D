@@ -9,10 +9,12 @@ from sklearn.metrics import balanced_accuracy_score, f1_score
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 from src.data.dataloader import load_vibration_data
-from signalai.features.freq import SpectralEntropy, SpectralCentroid, SpectralBandwidth, SpectralFlatness
 
-# IMPORTANTE: Importe aqui a classe do SignAI que deseja testar
-from signalai.features.freq import SpectralEntropy
+# Adicione esta linha de volta no topo do seu script
+from src.features.signalai_wrapper import SignalAIWrapper
+
+# (E certifique-se de manter os imports do SignAI logo abaixo dela)
+from signalai.features.freq import SpectralEntropy, SpectralCentroid, SpectralBandwidth, SpectralFlatness
 
 # --- CONFIGURAÇÃO GLOBAL ---
 DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
