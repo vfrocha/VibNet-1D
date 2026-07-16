@@ -5,11 +5,12 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import balanced_accuracy_score, f1_score
 
-from src.features.extractors_v2 import extract_advanced_features
+
 
 # Adiciona a raiz do projeto ao path para os imports funcionarem
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
+from src.features.extractors_v2 import extract_advanced_features
 from src.data.dataloader import load_vibration_data
 
 # Adicione esta linha de volta no topo do seu script
