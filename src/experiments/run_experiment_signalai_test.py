@@ -12,7 +12,7 @@ from src.data.dataloader import load_vibration_data
 from src.features.signalai_wrapper import SignalAIWrapper
 
 # IMPORTANTE: Importe aqui a classe do SignAI que deseja testar
-from signalai.features.time import TimeDomainFeatures 
+from signalai.features.freq import SpectralEntropy
 
 # --- CONFIGURAÇÃO GLOBAL ---
 DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
@@ -39,7 +39,7 @@ def run_signalai_test():
     print(f"\n[2] Inicializando SignalAIWrapper (fs={fs}Hz)...")
     
     # Instancia o extrator desejado da biblioteca SignAI
-    signai_extractor = TimeDomainFeatures() 
+    signai_extractor = SpectralEntropy()
     
     # Encapsula no seu wrapper
     wrapper = SignalAIWrapper(sample_rate=fs, extractor_instance=signai_extractor)
