@@ -63,13 +63,13 @@ def run_signalai_test():
     print(f"  -> Shape final das features: Treino {X_train_features.shape}, Teste {X_test_features.shape}")
 
     print("\n[3] Extraindo features nativas do VibNet-1D...")
-    # Passe a sua matriz raw (crua) para o seu extrator padrão
-    # (Atenção: verifique se a sua função pede algum parâmetro extra além de X_train_raw)
-    X_train_vibnet = extract_advanced_features(X_train_raw) 
-    X_test_vibnet  = extract_advanced_features(X_test_raw)
+    
+    # ADICIONE O 'fs' AQUI NAS DUAS LINHAS:
+    X_train_vibnet = extract_advanced_features(X_train_raw, fs) 
+    X_test_vibnet  = extract_advanced_features(X_test_raw, fs)
 
     print("\n[4] Fundindo (Feature Fusion) SignAI + VibNet-1D...")
-    # O np.hstack junta as duas matrizes lado a lado (adicionando as colunas)
+    # O np.hstack junta as duas matrizes lado a lado
     X_train_combined = np.hstack((X_train_vibnet, X_train_features))
     X_test_combined  = np.hstack((X_test_vibnet, X_test_features))
     
