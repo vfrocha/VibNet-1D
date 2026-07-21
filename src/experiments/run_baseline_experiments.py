@@ -25,9 +25,12 @@ BASELINE_CONFIGS = {
     "UOEMD": {
         "fs": 10000, # Atualize com o Sampling Rate real da UOEMD
         "task": "diagnosis",
-        "conditions": ["Cond_1", "Cond_2", "Cond_3", "Cond_4", "Cond_5", "Cond_6", "Cond_7", "Cond_8"]
+        "conditions": ["Load_Loaded_Speed_15Hz","Load_Loaded_Speed_Dec_45_to_15Hz","Load_No_Load_Speed_15Hz","Load_No_Load_Speed_Dec_45_to_15Hz",
+        "Load_Loaded_Speed_30Hz","Load_Loaded_Speed_Dec_60_to_30Hz","Load_No_Load_Speed_30Hz","Load_No_Load_Speed_Dec_60_to_30Hz",
+        "Load_Loaded_Speed_45Hz","Load_Loaded_Speed_Inc_15_to_45Hz","Load_No_Load_Speed_45Hz","Load_No_Load_Speed_Inc_15_to_45Hz",
+        "Load_Loaded_Speed_60Hz","Load_Loaded_Speed_Inc_30_to_60Hz","Load_No_Load_Speed_60Hz","Load_No_Load_Speed_Inc_30_to_60Hz"]
     },
-    "HUST_gearbox": {
+    "HUST_Gearbox": {
         "fs": 25600, # Atualize com o Sampling Rate real da HUST
         "task": "diagnosis",
         "conditions": ["Speed1_Load1", "Speed1_Load2", "Speed2_Load1"] # Atualize com as pastas reais
