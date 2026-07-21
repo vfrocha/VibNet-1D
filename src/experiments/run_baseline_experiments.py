@@ -104,8 +104,10 @@ def run_baselines():
             # 4. Modelos de Deep Learning Tabular (TabNet)
             print(f"     -> Treinando TabNet...")
             try:
+                tabnet_model = get_tabnet_classifier()
                 # O USO DE ARGUMENTOS NOMEADOS (kwargs) AQUI É VITAL PARA EVITAR O ERRO ANTERIOR
                 tabnet_acc, tabnet_f1, _ = train_and_evaluate_tabnet(
+                    model=tabnet_model,
                     X_train=X_train_clean, 
                     y_train=y_train, 
                     X_test=X_test_clean, 
