@@ -101,18 +101,23 @@ def run_baselines():
             xgb_acc, xgb_f1, _ = train_and_evaluate(xgb_pipeline, xgb_grid, X_train_fusion, y_train, X_test_fusion, y_test)
             master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond, "Model": "XGBoost", "Bal Acc": xgb_acc, "Macro F1": xgb_f1})
 
-            # 4. Modelos de Deep Learning Tabular (Podem usar as mesmas features!)
-            # ATENÇÃO: Remova o bloco do FT-Transformer/TabNet se não quiser testá-los nesta etapa
+            # 4. Modelos de Deep Learning Tabular
             print(f"     -> Treinando TabNet...")
             try:
+                # Forçamos o tipo para float32
                 X_train_tabnet = X_train_fusion.astype(np.float32)
                 X_test_tabnet  = X_test_fusion.astype(np.float32)
                 
+                # --- PASSANDO PELO NOME ---
                 tabnet_acc, tabnet_f1, _ = train_and_evaluate_tabnet(
-                    X_train_tabnet, y_train, X_test_tabnet, y_test, task
+                    X_train=X_train_tabnet, 
+                    y_train=y_train, 
+                    X_test=X_test_tabnet, 
+                    y_test=y_test, 
+                    task=task
                 )
-            # ADICIONE O 'as e' NESTA LINHA ABAIXO:
-            except Exception as e: 
+                # -------------------------------------------------
+            except Exception as e:
                 print(f"        [ERRO FATAL TABNET] O modelo quebrou devido a: {e}")
                 import traceback
                 traceback.print_exc()
