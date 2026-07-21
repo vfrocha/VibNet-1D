@@ -1,5 +1,6 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
+from xgboost import XGBClassifier # <-- Import do XGBoost aqui
 from sklearn.metrics import balanced_accuracy_score, f1_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
@@ -37,6 +38,29 @@ def get_svm(random_state=42):
     }
     
     return pipeline, param_grid
+
+# --- NOVO BLOCO DO XGBOOST ---
+def get_xgboost(random_state=42):
+    """Retorna um Pipeline e a grade de busca para o XGBoost."""
+    pipeline = Pipeline([
+        ('scaler', StandardScaler()),
+        ('xgb', XGBClassifier(
+            random_state=random_state, 
+            eval_metric='mlogloss', # Evita warnings
+            use_label_encoder=False
+        ))
+    ])
+    
+    # Espaço de busca clássico e otimizado para o XGBoost
+    param_grid = {
+        'xgb__n_estimators': [50, 100, 200],
+        'xgb__learning_rate': [0.01, 0.1, 0.2],
+        'xgb__max_depth': [3, 6, 10],
+        'xgb__subsample': [0.8, 1.0] # Ajuda a evitar overfitting
+    }
+    
+    return pipeline, param_grid
+# -----------------------------
 
 def train_and_evaluate(pipeline, param_grid, X_train, y_train, X_test, y_test):
     """
