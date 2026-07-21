@@ -1,10 +1,11 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
-from xgboost import XGBClassifier # <-- Import do XGBoost aqui
+from xgboost import XGBClassifier
 from sklearn.metrics import balanced_accuracy_score, f1_score, roc_auc_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
+import numpy as np
 
 def get_random_forest(random_state=42):
     """Retorna um Pipeline e a grade de busca para a Random Forest."""
