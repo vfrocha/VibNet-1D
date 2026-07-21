@@ -38,7 +38,7 @@ BASELINE_CONFIGS = {
         "fs": 25600, # Atualize com o Sampling Rate real da HUST
         "task": "diagnosis",
         # Como são 30 condições, liste os nomes das pastas aqui:
-        "conditions": ["Speed1_Load1", "Speed1_Load2", "Speed2_Load1"] 
+        "conditions": ["Cond_0"] 
     }
 }
 
