@@ -91,23 +91,32 @@ def get_all_signalai_extractors():
 def extract_fusion_features(X_raw, fs, vibnet_extractor_func):
     """
     Função modular que executa a Feature Fusion (VibNet + SignAI).
-    :param X_raw: Matriz 2D de sinais puros.
-    :param fs: Frequência de amostragem.
-    :param vibnet_extractor_func: A sua função extract_advanced_features.
-    :return: Matriz 2D com todas as features concatenadas.
     """
-    print(f"      -> [Fusion] Iniciando extração dupla para {X_raw.shape[0]} amostras...")
+    print(f"      -> [Fusion] Iniciando extração para {X_raw.shape[0]} amostras...")
     
     # 1. Extração SignAI
     extractors = get_all_signalai_extractors()
     wrapper = SignalAIWrapper(sample_rate=fs, extractors_list=extractors)
     X_signai = wrapper.fit_transform(X_raw)
+    print(f"         [Debug] Shape SignAI: {X_signai.shape} | Tipo: {type(X_signai)}")
     
     # 2. Extração VibNet-1D
     X_vibnet = np.array([vibnet_extractor_func(sinal, fs) for sinal in X_raw])
+    print(f"         [Debug] Shape VibNet: {X_vibnet.shape} | Tipo: {type(X_vibnet)}")
     
+    # GARANTIA DE 2D: Assegura que ambos os arrays são matrizes 2D antes do hstack
+    if X_signai.ndim == 1:
+        X_signai = X_signai.reshape(-1, 1)
+    if X_vibnet.ndim == 1:
+        X_vibnet = X_vibnet.reshape(-1, 1)
+
     # 3. Fusão
     X_fusion = np.hstack((X_vibnet, X_signai))
     print(f"      -> [Fusion] Shape final combinado: {X_fusion.shape}")
     
+    # GARANTIA DE RETORNO 2D
+    if X_fusion.ndim == 1:
+        print("         [ALERTA] A fusão resultou em 1D. Forçando para 2D.")
+        X_fusion = X_fusion.reshape(-1, 1)
+
     return X_fusion
