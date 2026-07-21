@@ -1,13 +1,14 @@
 import numpy as np
+import pandas as pd
 
 class SignalAIWrapper:
     def __init__(self, sample_rate, extractors_list):
         """
         :param sample_rate: Frequência de amostragem.
-        :param extractors_list: Uma lista de instâncias do SignAI (ex: [SpectralEntropy(), SpectralCentroid(), ...])
+        :param extractors_list: Uma lista de instâncias do SignAI.
         """
         self.sample_rate = sample_rate
-        # Se o usuário passar apenas um extrator, converte para lista para não quebrar o loop
+        # Garante que seja uma lista
         if not isinstance(extractors_list, list):
             self.extractors = [extractors_list]
         else:
@@ -19,19 +20,19 @@ class SignalAIWrapper:
         for i in range(X.shape[0]):
             signal_array = X[i, :]
 
-            # Monta o dicionário exigido pela signalai
+            # Nós enganamos a biblioteca dizendo que isso é uma linha de tabela do Pandas
             signal_dict = {
                 "signal": signal_array,
-                "metainfo": {
+                "metainfo": pd.Series({
                     "sample_rate": self.sample_rate
-                }
+                })
             }
+            # -----------------------------
 
-            # Armazena as features desta amostra específica
             current_sample_features = []
 
-            # Roda todos os extratores solicitados para este sinal
             for extractor in self.extractors:
+                # O extractor agora consegue usar o .copy(deep=False) que deu erro antes
                 features_out = extractor.transform(signal_dict)
 
                 if isinstance(features_out, dict):
