@@ -1,7 +1,7 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from xgboost import XGBClassifier # <-- Import do XGBoost aqui
-from sklearn.metrics import balanced_accuracy_score, f1_score
+from sklearn.metrics import balanced_accuracy_score, f1_score, roc_auc_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
@@ -27,7 +27,8 @@ def get_svm(random_state=42):
     """Retorna um Pipeline e a grade de busca para o SVM."""
     pipeline = Pipeline([
         ('scaler', StandardScaler()),
-        ('svm', SVC(random_state=random_state, class_weight='balanced'))
+        # --- ATIVE A PROBABILIDADE AQUI ---
+        ('svm', SVC(random_state=random_state, class_weight='balanced', probability=True))
     ])
     
     # Espaço de busca exato da Tabela 5 do artigo
@@ -63,35 +64,34 @@ def get_xgboost(random_state=42):
 # -----------------------------
 
 def train_and_evaluate(pipeline, param_grid, X_train, y_train, X_test, y_test):
-    """
-    Roda a validação aninhada (Grid Search) para encontrar os hiperparâmetros
-    ideais no conjunto de treino, e depois avalia no conjunto de teste inédito.
-    """
     print(f"  -> Otimizando hiperparâmetros (GridSearch em andamento...)")
     
-    # Configura o GridSearch (cv=3 dobras internas para acelerar, otimizando o Macro F1)
     grid_search = GridSearchCV(
-        estimator=pipeline,
-        param_grid=param_grid,
-        scoring='f1_macro',
-        cv=3,
-        n_jobs=-1, # Usa todos os núcleos da CPU
-        verbose=0
+        estimator=pipeline, param_grid=param_grid, scoring='f1_macro', cv=3, n_jobs=-1, verbose=0
     )
-    
-    # 1. Ajusta o GridSearch (Ele testa todas as combinações no X_train)
     grid_search.fit(X_train, y_train)
-    
-    # Extrai o melhor modelo já treinado
     best_model = grid_search.best_estimator_
     print(f"     Melhores parâmetros: {grid_search.best_params_}")
     
-    # 2. Predição Final no conjunto de Teste isolado
     y_pred = best_model.predict(X_test)
     
+    # --- NOVO: CÁLCULO SEGURO DO ROC-AUC MULTICLASSE ---
+    try:
+        y_proba = best_model.predict_proba(X_test)
+        # Checa se é problema binário ou multiclasse
+        if len(np.unique(y_train)) == 2:
+            roc_auc = roc_auc_score(y_test, y_proba[:, 1])
+        else:
+            roc_auc = roc_auc_score(y_test, y_proba, multi_class='ovr')
+    except Exception as e:
+        print(f"     [Aviso] Não foi possível calcular ROC-AUC: {e}")
+        roc_auc = 0.0
+    # --------------------------------------------------
+
     bal_acc = balanced_accuracy_score(y_test, y_pred)
     macro_f1 = f1_score(y_test, y_pred, average='macro')
     
-    print(f"     Bal Acc: {bal_acc:.4f} | F1: {macro_f1:.4f}")
+    print(f"     Bal Acc: {bal_acc:.4f} | F1: {macro_f1:.4f} | AUC: {roc_auc:.4f}")
     
-    return bal_acc, macro_f1, grid_search.best_params_
+    # Agora retorna 4 valores em vez de 3
+    return bal_acc, macro_f1, roc_auc, grid_search.best_params_
