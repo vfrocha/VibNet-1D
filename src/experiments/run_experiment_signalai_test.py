@@ -4,7 +4,11 @@ import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import balanced_accuracy_score, f1_score
-
+import inspect
+from vibdata.deep.signal.transforms import Transform # Classe base que os extratores usam
+import signalai.features.freq as freq
+import signalai.features.wavelet as wavelet
+import signalai.features.custom as custom
 
 
 # Adiciona a raiz do projeto ao path para os imports funcionarem
@@ -21,6 +25,35 @@ from signalai.features.freq import SpectralEntropy, SpectralCentroid, SpectralBa
 
 # --- CONFIGURAÇÃO GLOBAL ---
 DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
+
+def get_all_signalai_extractors():
+    """
+    Varre os módulos da biblioteca SignAI automaticamente em busca 
+    de todos os extratores de features disponíveis.
+    """
+    extractors = []
+    
+    # Lista de arquivos/módulos que vamos vasculhar
+    modules_to_scan = [freq, wavelet, custom] 
+    
+    for module in modules_to_scan:
+        # Pega todos os objetos dentro do arquivo que sejam Classes
+        for name, obj in inspect.getmembers(module, inspect.isclass):
+            
+            # Verifica se a classe herda de 'Transform' (ou seja, é um extrator de feature válido)
+            # E ignora a própria classe base 'Transform'
+            if issubclass(obj, Transform) and obj is not Transform:
+                try:
+                    # Instancia o extrator com os parâmetros padrão (ex: SpectralEntropy())
+                    instance = obj()
+                    extractors.append(instance)
+                except Exception as e:
+                    # Se alguma feature exigir um parâmetro obrigatório sem valor padrão,
+                    # ela será ignorada e avisará no console.
+                    print(f"  [Aviso] Pulando '{name}': Requer parâmetros obrigatórios. Erro: {e}")
+                    
+    print(f"\n[INFO] Auto-Discovery concluiu: {len(extractors)} features carregadas com sucesso!\n")
+    return extractors
 
 def run_signalai_test():
     print(f"{'='*60}\n TESTE DE INTEGRAÇÃO RÁPIDO: VIBNET-1D + SIGNAI WRAPPER \n{'='*60}")
@@ -43,22 +76,19 @@ def run_signalai_test():
     # 2. Utilizando o Wrapper para extração de características
     print(f"\n[2] Inicializando SignalAIWrapper (fs={fs}Hz)...")
     
-    # Crie uma lista com todos os extratores que você quer usar
-    meus_extratores = [
-        SpectralEntropy(),
-        SpectralCentroid(),
-        SpectralBandwidth(),
-        SpectralFlatness()
-    ]
+    # Busca todas as 100+ features automaticamente
+    meus_extratores = get_all_signalai_extractors()
     
-    # Encapsule a LISTA no seu wrapper
+    # Encapsula a LISTA GIGANTE no seu wrapper
     wrapper = SignalAIWrapper(sample_rate=fs, extractors_list=meus_extratores)
 
-    print(f"  -> Extraindo features de {len(X_train_raw)} janelas de treino (Isso pode levar alguns segundos)...")
+    print(f"  -> Extraindo {len(meus_extratores)} features de {len(X_train_raw)} janelas de treino (Isso VAI levar um tempo!)...")
     X_train_features = wrapper.fit_transform(X_train_raw)
     
     print(f"  -> Extraindo features de {len(X_test_raw)} janelas de teste...")
     X_test_features = wrapper.fit_transform(X_test_raw)
+
+    print(f"  -> Shape final das features SignAI: Treino {X_train_features.shape}, Teste {X_test_features.shape}")
 
     print(f"  -> Shape final das features: Treino {X_train_features.shape}, Teste {X_test_features.shape}")
 
