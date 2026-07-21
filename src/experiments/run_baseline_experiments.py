@@ -11,15 +11,11 @@ from src.data.dataloader import load_vibration_data
 from src.features.extractors_v2 import extract_advanced_features
 from src.features.signalai_wrapper import extract_fusion_features
 
-# Importando os modelos modulares (incluindo o XGBoost que adicionamos)
+# Importando os modelos modulares (incluindo o XGBoost)
 from src.models.build_sklearn import get_random_forest, get_svm, get_xgboost, train_and_evaluate
 from src.models.build_tabular import get_tabnet_classifier, train_and_evaluate_tabnet
-from src.models.build_fttransformer import train_and_evaluate_ft_transformer
-from src.models.build_tabnet_resnet import train_and_evaluate_hybrid
 
 # --- CONFIGURAÇÃO DOS DATASETS DE TESTE (BASELINE LOCO) ---
-# Aqui nós definimos apenas os datasets alvos da pesquisa.
-# ATENÇÃO: Preencha as listas de condições reais de acordo com as pastas do seu sistema.
 BASELINE_CONFIGS = {
     "CWRU_12k": {
         "fs": 12000,
@@ -29,16 +25,12 @@ BASELINE_CONFIGS = {
     "UOEMD": {
         "fs": 10000, # Atualize com o Sampling Rate real da UOEMD
         "task": "diagnosis",
-        "conditions": ["Load_Loaded_Speed_15Hz","Load_Loaded_Speed_Dec_45_to_15Hz","Load_No_Load_Speed_15Hz","Load_No_Load_Speed_Dec_45_to_15Hz",
-            "Load_Loaded_Speed_30Hz","Load_Loaded_Speed_Dec_60_to_30Hz","Load_No_Load_Speed_30Hz","Load_No_Load_Speed_Dec_60_to_30Hz",
-            "Load_Loaded_Speed_45Hz","Load_Loaded_Speed_Inc_15_to_45Hz","Load_No_Load_Speed_45Hz","Load_No_Load_Speed_Inc_15_to_45Hz",
-            "Load_Loaded_Speed_60Hz","Load_Loaded_Speed_Inc_30_to_60Hz","Load_No_Load_Speed_60Hz","Load_No_Load_Speed_Inc_30_to_60Hz"]
+        "conditions": ["Cond_1", "Cond_2", "Cond_3", "Cond_4", "Cond_5", "Cond_6", "Cond_7", "Cond_8"]
     },
-    "HUST_Gearbox": {
+    "HUST_gearbox": {
         "fs": 25600, # Atualize com o Sampling Rate real da HUST
         "task": "diagnosis",
-        # Como são 30 condições, liste os nomes das pastas aqui:
-        "conditions": ["Cond_0"] 
+        "conditions": ["Speed1_Load1", "Speed1_Load2", "Speed2_Load1"] # Atualize com as pastas reais
     }
 }
 
@@ -61,11 +53,10 @@ def run_baselines():
         
         print(f"\n[{dataset_name}] Processando {len(conditions)} dobras LOCO (Leave-One-Condition-Out)...")
         
-        # O Loop LOCO: Cada condição se torna o conjunto de teste uma vez
         for test_cond in conditions:
             print(f"\n  >>> Dobra Alvo (Teste): {test_cond} | Treino: Demais Condições")
             
-            # 1. Carregamento Inteligente (O Dataloader já separa Treino/Teste pelo LOCO)
+            # 1. Carregamento Inteligente (LOCO)
             X_train_raw, y_train, X_test_raw, y_test, le = load_vibration_data(
                 data_root=DATA_ROOT, dataset_name=dataset_name, test_condition=test_cond, task=task
             )
@@ -77,54 +68,59 @@ def run_baselines():
             # 2. Feature Fusion Modular (VibNet + SignAI)
             X_train_fusion = extract_fusion_features(X_train_raw, fs, extract_advanced_features)
             X_test_fusion  = extract_fusion_features(X_test_raw, fs, extract_advanced_features)
+
+            # --- BLINDAGEM DE DADOS: Limpeza Rigorosa ---
+            # Remove qualquer resquício do Pandas e converte para float puro
             # Transforma NaNs e Infinitos em 0.0 para não quebrar as redes neurais
-            X_train_fusion = np.nan_to_num(X_train_fusion, nan=0.0, posinf=0.0, neginf=0.0)
-            X_test_fusion  = np.nan_to_num(X_test_fusion, nan=0.0, posinf=0.0, neginf=0.0)
+            X_train_clean = np.nan_to_num(np.array(X_train_fusion, dtype=np.float32))
+            X_test_clean  = np.nan_to_num(np.array(X_test_fusion, dtype=np.float32))
             
-            # 3. Treinamento e Avaliação (Modelos Clássicos State-of-the-Art)
+            # Garante dimensionalidade 2D [n_amostras, n_features]
+            if X_train_clean.ndim == 1:
+                X_train_clean = X_train_clean.reshape(len(y_train), -1)
+            if X_test_clean.ndim == 1:
+                X_test_clean = X_test_clean.reshape(len(y_test), -1)
+
+            # 3. Treinamento e Avaliação Clássica
             
             # A) Random Forest
             print(f"     -> Treinando Random Forest...")
             rf_pipeline, rf_grid = get_random_forest()
-            rf_acc, rf_f1, _ = train_and_evaluate(rf_pipeline, rf_grid, X_train_fusion, y_train, X_test_fusion, y_test)
+            rf_acc, rf_f1, _ = train_and_evaluate(rf_pipeline, rf_grid, X_train_clean, y_train, X_test_clean, y_test)
             master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond, "Model": "Random Forest", "Bal Acc": rf_acc, "Macro F1": rf_f1})
 
             # B) SVM
             print(f"     -> Treinando SVM...")
             svm_pipeline, svm_grid = get_svm()
-            svm_acc, svm_f1, _ = train_and_evaluate(svm_pipeline, svm_grid, X_train_fusion, y_train, X_test_fusion, y_test)
+            svm_acc, svm_f1, _ = train_and_evaluate(svm_pipeline, svm_grid, X_train_clean, y_train, X_test_clean, y_test)
             master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond, "Model": "SVM", "Bal Acc": svm_acc, "Macro F1": svm_f1})
 
             # C) XGBoost
             print(f"     -> Treinando XGBoost...")
             xgb_pipeline, xgb_grid = get_xgboost()
-            xgb_acc, xgb_f1, _ = train_and_evaluate(xgb_pipeline, xgb_grid, X_train_fusion, y_train, X_test_fusion, y_test)
+            xgb_acc, xgb_f1, _ = train_and_evaluate(xgb_pipeline, xgb_grid, X_train_clean, y_train, X_test_clean, y_test)
             master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond, "Model": "XGBoost", "Bal Acc": xgb_acc, "Macro F1": xgb_f1})
 
-            # 4. Modelos de Deep Learning Tabular
+            # 4. Modelos de Deep Learning Tabular (TabNet)
             print(f"     -> Treinando TabNet...")
             try:
-                # Forçamos o tipo para float32
-                X_train_tabnet = X_train_fusion.astype(np.float32)
-                X_test_tabnet  = X_test_fusion.astype(np.float32)
-                
-                # --- PASSANDO PELO NOME ---
+                # O USO DE ARGUMENTOS NOMEADOS (kwargs) AQUI É VITAL PARA EVITAR O ERRO ANTERIOR
                 tabnet_acc, tabnet_f1, _ = train_and_evaluate_tabnet(
-                    X_train=X_train_tabnet, 
+                    X_train=X_train_clean, 
                     y_train=y_train, 
-                    X_test=X_test_tabnet, 
+                    X_test=X_test_clean, 
                     y_test=y_test, 
                     task=task
                 )
-                # -------------------------------------------------
             except Exception as e:
                 print(f"        [ERRO FATAL TABNET] O modelo quebrou devido a: {e}")
                 import traceback
                 traceback.print_exc()
                 tabnet_acc, tabnet_f1 = 0.0, 0.0
+            
             master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond, "Model": "TabNet", "Bal Acc": tabnet_acc, "Macro F1": tabnet_f1})
 
-            # Vai salvando no CSV incrementalmente para não perder dados se o PC desligar
+            # Salvando no CSV incrementalmente
             df = pd.DataFrame(master_results)
             df.to_csv(csv_filename, index=False)
 
