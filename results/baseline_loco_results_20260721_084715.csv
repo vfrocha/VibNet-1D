@@ -1,0 +1,81 @@
+Dataset,Task,Test Condition,Model,Bal Acc,Macro F1
+CWRU_12k,Diagnosis,Load_0HP,Random Forest,0.5849415204678363,0.5965979773476275
+CWRU_12k,Diagnosis,Load_0HP,SVM,0.5817251461988304,0.5987595070075888
+CWRU_12k,Diagnosis,Load_0HP,XGBoost,0.6609356725146198,0.6600759038547995
+CWRU_12k,Diagnosis,Load_0HP,TabNet,0.0,0.0
+CWRU_12k,Diagnosis,Load_1HP,Random Forest,0.7070760233918129,0.7067725673457179
+CWRU_12k,Diagnosis,Load_1HP,SVM,0.683625730994152,0.6824474727751219
+CWRU_12k,Diagnosis,Load_1HP,XGBoost,0.7298830409356725,0.7266923130850126
+CWRU_12k,Diagnosis,Load_1HP,TabNet,0.0,0.0
+CWRU_12k,Diagnosis,Load_2HP,Random Forest,0.7248538011695908,0.7243423615443036
+CWRU_12k,Diagnosis,Load_2HP,SVM,0.7411111111111112,0.7389583554363204
+CWRU_12k,Diagnosis,Load_2HP,XGBoost,0.7330994152046784,0.7321174605043858
+CWRU_12k,Diagnosis,Load_2HP,TabNet,0.0,0.0
+CWRU_12k,Diagnosis,Load_3HP,Random Forest,0.6673391812865497,0.665193655190097
+CWRU_12k,Diagnosis,Load_3HP,SVM,0.7147368421052632,0.7150927078720336
+CWRU_12k,Diagnosis,Load_3HP,XGBoost,0.7043713450292397,0.699295918156362
+CWRU_12k,Diagnosis,Load_3HP,TabNet,0.0,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,Random Forest,0.675,0.6121147371147371
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,SVM,0.575,0.543546365914787
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,XGBoost,0.5625,0.5063178780284043
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,TabNet,0.0,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,Random Forest,0.7625,0.7668588416227735
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,SVM,0.5750000000000001,0.5777456816059757
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,XGBoost,0.7125,0.7216410427807487
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,TabNet,0.0,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,Random Forest,0.6875,0.6497557997557998
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,SVM,0.425,0.4222756410256411
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,XGBoost,0.5375000000000001,0.4780972171477287
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,TabNet,0.0,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,Random Forest,0.8125,0.8083739177489178
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,SVM,0.525,0.47279314888010543
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,XGBoost,0.7250000000000001,0.7218261562998405
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,TabNet,0.0,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,Random Forest,0.8,0.780952380952381
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,SVM,0.475,0.475
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,XGBoost,0.775,0.7591365749260486
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,TabNet,0.0,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,Random Forest,0.7749999999999999,0.7651012145748988
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,SVM,0.5874999999999999,0.5392363433667782
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,XGBoost,0.7375,0.7276302022785399
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,TabNet,0.0,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,Random Forest,0.5375,0.49613899613899615
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,SVM,0.4,0.3421052631578947
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,XGBoost,0.5875,0.5496274558774559
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,TabNet,0.0,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,Random Forest,0.8125,0.7892567577350186
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,SVM,0.6375,0.6150964231846585
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,XGBoost,0.7124999999999999,0.6989692902332558
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,TabNet,0.0,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,Random Forest,0.8999999999999999,0.8877535719640983
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,SVM,0.5,0.5
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,XGBoost,0.9875,0.987468671679198
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,TabNet,0.0,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,Random Forest,0.8125,0.8153147608811224
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,SVM,0.5875,0.577056277056277
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,XGBoost,0.7999999999999999,0.8038714913883174
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,TabNet,0.0,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,Random Forest,0.875,0.8333333333333333
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,SVM,0.725,0.6808473389355743
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,XGBoost,0.85,0.843704850361197
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,TabNet,0.0,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,Random Forest,0.7749999999999999,0.7664473684210527
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,SVM,0.65,0.633347967821652
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,XGBoost,0.7875,0.7830340557275541
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,TabNet,0.0,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,Random Forest,0.5875,0.4959150326797385
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,SVM,0.6,0.5115684951315916
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,XGBoost,0.4,0.36742424242424243
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,TabNet,0.0,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,Random Forest,0.8125,0.8104287546818507
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,SVM,0.65,0.6482447854844038
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,XGBoost,0.7875000000000001,0.7841192032368502
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,TabNet,0.0,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,Random Forest,0.575,0.5669071976616733
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,SVM,0.5125,0.4842592592592592
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,XGBoost,0.5625,0.5222089314194577
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,TabNet,0.0,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,Random Forest,0.6875,0.684234022556391
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,SVM,0.5,0.4963611680716944
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,XGBoost,0.6375,0.6393032212885155
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,TabNet,0.0,0.0
