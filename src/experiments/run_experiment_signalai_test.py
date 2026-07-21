@@ -26,6 +26,7 @@ from signalai.features.freq import SpectralEntropy, SpectralCentroid, SpectralBa
 # --- CONFIGURAÇÃO GLOBAL ---
 DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
 
+
 def get_all_signalai_extractors():
     """
     Varre os módulos da biblioteca SignAI automaticamente em busca 
