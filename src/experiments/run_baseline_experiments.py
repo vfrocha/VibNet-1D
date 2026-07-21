@@ -86,28 +86,29 @@ def run_baselines():
             # A) Random Forest
             print(f"     -> Treinando Random Forest...")
             rf_pipeline, rf_grid = get_random_forest()
-            rf_acc, rf_f1, _ = train_and_evaluate(rf_pipeline, rf_grid, X_train_clean, y_train, X_test_clean, y_test)
-            master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond, "Model": "Random Forest", "Bal Acc": rf_acc, "Macro F1": rf_f1})
+            rf_acc, rf_f1, rf_auc, _ = train_and_evaluate(rf_pipeline, rf_grid, X_train_clean, y_train, X_test_clean, y_test)
+            master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond, "Model": "Random Forest", "Bal Acc": rf_acc, "Macro F1": rf_f1, "ROC-AUC": rf_auc})
 
             # B) SVM
             print(f"     -> Treinando SVM...")
             svm_pipeline, svm_grid = get_svm()
-            svm_acc, svm_f1, _ = train_and_evaluate(svm_pipeline, svm_grid, X_train_clean, y_train, X_test_clean, y_test)
-            master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond, "Model": "SVM", "Bal Acc": svm_acc, "Macro F1": svm_f1})
+            svm_acc, svm_f1, svm_auc, _ = train_and_evaluate(svm_pipeline, svm_grid, X_train_clean, y_train, X_test_clean, y_test)
+            master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond, "Model": "SVM", "Bal Acc": svm_acc, "Macro F1": svm_f1, "ROC-AUC": svm_auc})
 
             # C) XGBoost
             print(f"     -> Treinando XGBoost...")
             xgb_pipeline, xgb_grid = get_xgboost()
-            xgb_acc, xgb_f1, _ = train_and_evaluate(xgb_pipeline, xgb_grid, X_train_clean, y_train, X_test_clean, y_test)
-            master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond, "Model": "XGBoost", "Bal Acc": xgb_acc, "Macro F1": xgb_f1})
+            xgb_acc, xgb_f1, xgb_auc, _ = train_and_evaluate(xgb_pipeline, xgb_grid, X_train_clean, y_train, X_test_clean, y_test)
+            master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond, "Model": "XGBoost", "Bal Acc": xgb_acc, "Macro F1": xgb_f1, "ROC-AUC": xgb_auc})
 
             # 4. Modelos de Deep Learning Tabular (TabNet)
             print(f"     -> Treinando TabNet...")
             try:
                 tabnet_model = get_tabnet_classifier()
-                # O USO DE ARGUMENTOS NOMEADOS (kwargs) AQUI É VITAL PARA EVITAR O ERRO ANTERIOR
-                tabnet_acc, tabnet_f1, _ = train_and_evaluate_tabnet(
-                    model=tabnet_model,
+                
+                # Pegando os 3 primeiros valores e ignorando o resto (*_)
+                tabnet_acc, tabnet_f1, tabnet_auc, *_ = train_and_evaluate_tabnet(
+                    model=tabnet_model, 
                     X_train=X_train_clean, 
                     y_train=y_train, 
                     X_test=X_test_clean, 
@@ -118,10 +119,9 @@ def run_baselines():
                 print(f"        [ERRO FATAL TABNET] O modelo quebrou devido a: {e}")
                 import traceback
                 traceback.print_exc()
-                tabnet_acc, tabnet_f1 = 0.0, 0.0
+                tabnet_acc, tabnet_f1, tabnet_auc = 0.0, 0.0, 0.0
             
-            master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond, "Model": "TabNet", "Bal Acc": tabnet_acc, "Macro F1": tabnet_f1})
-
+            master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond, "Model": "TabNet", "Bal Acc": tabnet_acc, "Macro F1": tabnet_f1, "ROC-AUC": tabnet_auc})
             # Salvando no CSV incrementalmente
             df = pd.DataFrame(master_results)
             df.to_csv(csv_filename, index=False)
