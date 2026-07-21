@@ -77,7 +77,10 @@ def run_baselines():
             # 2. Feature Fusion Modular (VibNet + SignAI)
             X_train_fusion = extract_fusion_features(X_train_raw, fs, extract_advanced_features)
             X_test_fusion  = extract_fusion_features(X_test_raw, fs, extract_advanced_features)
-
+            # Transforma NaNs e Infinitos em 0.0 para não quebrar as redes neurais
+            X_train_fusion = np.nan_to_num(X_train_fusion, nan=0.0, posinf=0.0, neginf=0.0)
+            X_test_fusion  = np.nan_to_num(X_test_fusion, nan=0.0, posinf=0.0, neginf=0.0)
+            
             # 3. Treinamento e Avaliação (Modelos Clássicos State-of-the-Art)
             
             # A) Random Forest
@@ -104,6 +107,9 @@ def run_baselines():
             try:
                 tabnet_acc, tabnet_f1, _ = train_and_evaluate_tabnet(X_train_fusion, y_train, X_test_fusion, y_test, task)
             except Exception:
+                print(f"        [ERRO FATAL TABNET] O modelo quebrou devido a: {e}")
+                import traceback
+                traceback.print_exc() # Imprime a linha exata do erro
                 tabnet_acc, tabnet_f1 = 0.0, 0.0
             master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond, "Model": "TabNet", "Bal Acc": tabnet_acc, "Macro F1": tabnet_f1})
 
