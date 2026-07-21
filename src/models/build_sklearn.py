@@ -46,8 +46,8 @@ def get_xgboost(random_state=42):
         ('scaler', StandardScaler()),
         ('xgb', XGBClassifier(
             random_state=random_state, 
-            eval_metric='mlogloss', # Evita warnings
-            use_label_encoder=False
+            eval_metric='mlogloss' # Evita warnings use_label_encoder=False
+            
         ))
     ])
     
