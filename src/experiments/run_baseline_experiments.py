@@ -34,7 +34,7 @@ BASELINE_CONFIGS = {
             "Load_Loaded_Speed_45Hz","Load_Loaded_Speed_Inc_15_to_45Hz","Load_No_Load_Speed_45Hz","Load_No_Load_Speed_Inc_15_to_45Hz",
             "Load_Loaded_Speed_60Hz","Load_Loaded_Speed_Inc_30_to_60Hz","Load_No_Load_Speed_60Hz","Load_No_Load_Speed_Inc_30_to_60Hz"]
     },
-    "HUST_gearbox": {
+    "HUST_Gearbox": {
         "fs": 25600, # Atualize com o Sampling Rate real da HUST
         "task": "diagnosis",
         # Como são 30 condições, liste os nomes das pastas aqui:
