@@ -105,11 +105,17 @@ def run_baselines():
             # ATENÇÃO: Remova o bloco do FT-Transformer/TabNet se não quiser testá-los nesta etapa
             print(f"     -> Treinando TabNet...")
             try:
-                tabnet_acc, tabnet_f1, _ = train_and_evaluate_tabnet(X_train_fusion, y_train, X_test_fusion, y_test, task)
-            except Exception:
+                X_train_tabnet = X_train_fusion.astype(np.float32)
+                X_test_tabnet  = X_test_fusion.astype(np.float32)
+                
+                tabnet_acc, tabnet_f1, _ = train_and_evaluate_tabnet(
+                    X_train_tabnet, y_train, X_test_tabnet, y_test, task
+                )
+            # ADICIONE O 'as e' NESTA LINHA ABAIXO:
+            except Exception as e: 
                 print(f"        [ERRO FATAL TABNET] O modelo quebrou devido a: {e}")
                 import traceback
-                traceback.print_exc() # Imprime a linha exata do erro
+                traceback.print_exc()
                 tabnet_acc, tabnet_f1 = 0.0, 0.0
             master_results.append({"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond, "Model": "TabNet", "Bal Acc": tabnet_acc, "Macro F1": tabnet_f1})
 
