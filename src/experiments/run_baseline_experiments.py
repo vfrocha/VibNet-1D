@@ -23,7 +23,7 @@ BASELINE_CONFIGS = {
         "conditions": ["Load_0HP", "Load_1HP", "Load_2HP", "Load_3HP"]
     },
     "UOEMD": {
-        "fs": 10000, # Atualize com o Sampling Rate real da UOEMD
+        "fs": 42000,
         "task": "diagnosis",
         "conditions": ["Load_Loaded_Speed_15Hz","Load_Loaded_Speed_Dec_45_to_15Hz","Load_No_Load_Speed_15Hz","Load_No_Load_Speed_Dec_45_to_15Hz",
         "Load_Loaded_Speed_30Hz","Load_Loaded_Speed_Dec_60_to_30Hz","Load_No_Load_Speed_30Hz","Load_No_Load_Speed_Dec_60_to_30Hz",
@@ -31,7 +31,7 @@ BASELINE_CONFIGS = {
         "Load_Loaded_Speed_60Hz","Load_Loaded_Speed_Inc_30_to_60Hz","Load_No_Load_Speed_60Hz","Load_No_Load_Speed_Inc_30_to_60Hz"]
     },
     "HUST_Gearbox": {
-        "fs": 25600, # Atualize com o Sampling Rate real da HUST
+        "fs": 25600,
         "task": "diagnosis",
         "conditions": ["Speed1_Load1", "Speed1_Load2", "Speed2_Load1"] # Atualize com as pastas reais
     }
