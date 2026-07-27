@@ -112,6 +112,9 @@ def get_names(ds_name, meta):
     elif ds_name == "UOC":
         # UOC é dividido pela condição de falha específica
         cond = f"Cond_{meta.get('condition', 'Unknown')}"
+
+    elif ds_name == "HUST_Gearbox":
+        cond = f"Cond_{meta.get('condition', 'Unknown')}"
     
     else:
         val = meta.get('load', meta.get('rotation_hz', '0'))
