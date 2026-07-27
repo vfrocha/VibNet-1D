@@ -1,0 +1,2763 @@
+nohup: ignoring input
+[   INFO   ] MusicExtractorSVM: no classifier models were configured by default
+======================================================================
+ INICIANDO EXPERIMENTOS BASELINE (LOCO)
+======================================================================
+
+
+############################################################
+ TAREFA ATUAL: DETECTION
+############################################################
+
+[CWRU_12k] Processando 4 dobras LOCO...
+
+  >>> Dobra Alvo (Teste): Load_0HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2160 [00:00<?, ?it/s]Treino:  49%|████▉     | 1054/2160 [00:00<00:00, 10533.83it/s]Treino:  99%|█████████▉| 2141/2160 [00:00<00:00, 10729.93it/s]Treino: 100%|██████████| 2160/2160 [00:00<00:00, 10696.58it/s]
+Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 10783.62it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 2160 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (2160, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (2160, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (2160, 27)
+      -> [Fusion] Iniciando extração para 640 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (640, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (640, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (640, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 50}
+     Bal Acc: 0.5233 | F1: 0.5293 | AUC: 0.9667
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 0.1, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.7792 | F1: 0.7525 | AUC: 0.9601
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 50, 'xgb__subsample': 0.8}
+     Bal Acc: 0.5000 | F1: 0.4839 | AUC: 0.9667
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 34 with best_epoch = 14 and best_val_balanced_accuracy = 0.78
+     [Detecção] Bal Acc: 0.7800 | F1: 0.5455 | ROC-AUC: 0.8533
+
+  >>> Dobra Alvo (Teste): Load_1HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_1HP | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2080 [00:00<?, ?it/s]Treino:  54%|█████▎    | 1117/2080 [00:00<00:00, 11169.05it/s]Treino: 100%|██████████| 2080/2080 [00:00<00:00, 11104.57it/s]
+Teste:   0%|          | 0/720 [00:00<?, ?it/s]Teste: 100%|██████████| 720/720 [00:00<00:00, 10992.48it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 2080 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (2080, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (2080, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (2080, 27)
+      -> [Fusion] Iniciando extração para 720 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (720, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (720, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (720, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 200}
+     Bal Acc: 0.9266 | F1: 0.7973 | AUC: 0.9375
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 0.1, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 0.9352 | F1: 0.7945 | AUC: 0.9328
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 10, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 0.5602 | F1: 0.5779 | AUC: 0.9375
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 21 with best_epoch = 1 and best_val_balanced_accuracy = 0.72891
+     [Detecção] Bal Acc: 0.7289 | F1: 0.5091 | ROC-AUC: 0.9268
+
+  >>> Dobra Alvo (Teste): Load_2HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_2HP | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2080 [00:00<?, ?it/s]Treino:  55%|█████▍    | 1143/2080 [00:00<00:00, 11420.59it/s]Treino: 100%|██████████| 2080/2080 [00:00<00:00, 11329.79it/s]
+Teste:   0%|          | 0/720 [00:00<?, ?it/s]Teste: 100%|██████████| 720/720 [00:00<00:00, 11148.64it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 2080 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (2080, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (2080, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (2080, 27)
+      -> [Fusion] Iniciando extração para 720 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (720, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (720, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (720, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 50}
+     Bal Acc: 0.9320 | F1: 0.7987 | AUC: 0.9375
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9375 | F1: 0.8000 | AUC: 0.9375
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 6, 'xgb__n_estimators': 50, 'xgb__subsample': 1.0}
+     Bal Acc: 0.5820 | F1: 0.6063 | AUC: 0.9375
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 30 with best_epoch = 10 and best_val_balanced_accuracy = 0.9375
+     [Detecção] Bal Acc: 0.9375 | F1: 0.6667 | ROC-AUC: 0.9375
+
+  >>> Dobra Alvo (Teste): Load_3HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_3HP | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2080 [00:00<?, ?it/s]Treino:  54%|█████▎    | 1115/2080 [00:00<00:00, 11143.98it/s]Treino: 100%|██████████| 2080/2080 [00:00<00:00, 11041.72it/s]
+Teste:   0%|          | 0/720 [00:00<?, ?it/s]Teste: 100%|██████████| 720/720 [00:00<00:00, 10777.65it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 2080 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (2080, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (2080, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (2080, 27)
+      -> [Fusion] Iniciando extração para 720 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (720, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (720, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (720, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 0.7570 | F1: 0.7385 | AUC: 0.9375
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9375 | F1: 0.8000 | AUC: 0.9375
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 50, 'xgb__subsample': 0.8}
+     Bal Acc: 0.6258 | F1: 0.6521 | AUC: 0.9375
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 37 with best_epoch = 17 and best_val_balanced_accuracy = 0.9375
+     [Detecção] Bal Acc: 0.9375 | F1: 0.6667 | ROC-AUC: 0.9375
+
+[CWRU_48k] Ignorado para Detection (Não possui classe Normal).
+
+[UOEMD] Processando 16 dobras LOCO...
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_15Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_15Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  17%|█▋        | 199/1200 [00:00<00:00, 1889.57it/s]Treino:  66%|██████▌   | 787/1200 [00:00<00:00, 4183.81it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 4378.16it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 5761.51it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 200}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 1, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 1.0}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 25 with best_epoch = 5 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_Dec_45_to_15Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_Dec_45_to_15Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  49%|████▉     | 588/1200 [00:00<00:00, 5877.62it/s]Treino:  98%|█████████▊| 1177/1200 [00:00<00:00, 5884.04it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 5877.22it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 5733.25it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 1.0}
+     Bal Acc: 0.9500 | F1: 0.9701 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 28 with best_epoch = 8 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_15Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_15Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  49%|████▊     | 583/1200 [00:00<00:00, 5828.12it/s]Treino:  98%|█████████▊| 1176/1200 [00:00<00:00, 5885.54it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 5870.85it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 5651.08it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 200}
+     Bal Acc: 0.9857 | F1: 0.9473 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 1, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.01, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 1.0}
+     Bal Acc: 0.9857 | F1: 0.9473 | AUC: 0.9857
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 32 with best_epoch = 12 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_Dec_45_to_15Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_Dec_45_to_15Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  72%|███████▏  | 866/1200 [00:00<00:00, 8650.29it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8673.13it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8232.80it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 50}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 1, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 6, 'xgb__n_estimators': 50, 'xgb__subsample': 1.0}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 31 with best_epoch = 11 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_30Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_30Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  73%|███████▎  | 873/1200 [00:00<00:00, 8724.04it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8747.11it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8265.86it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 1, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 50, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 34 with best_epoch = 14 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_Dec_60_to_30Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_Dec_60_to_30Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  71%|███████   | 853/1200 [00:00<00:00, 8521.90it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8560.18it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8022.39it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 0.9000 | F1: 0.9374 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 1, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.01, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 31 with best_epoch = 11 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_30Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_30Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  71%|███████   | 851/1200 [00:00<00:00, 8508.02it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8538.10it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8129.68it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 1.0}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 27 with best_epoch = 7 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_Dec_60_to_30Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_Dec_60_to_30Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  74%|███████▎  | 883/1200 [00:00<00:00, 8825.30it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8852.80it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8173.44it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 50}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 1, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 0.9929 | F1: 0.9726 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.01, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 25 with best_epoch = 5 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_45Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_45Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  72%|███████▏  | 858/1200 [00:00<00:00, 8575.41it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8588.43it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8147.84it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 1, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 23 with best_epoch = 3 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_Inc_15_to_45Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_Inc_15_to_45Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  72%|███████▏  | 864/1200 [00:00<00:00, 8634.96it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8692.09it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8398.06it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 1, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 31 with best_epoch = 11 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_45Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_45Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  71%|███████   | 850/1200 [00:00<00:00, 8492.92it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8516.58it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 7814.99it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 50}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.01, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 24 with best_epoch = 4 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_Inc_15_to_45Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_Inc_15_to_45Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  72%|███████▏  | 859/1200 [00:00<00:00, 8584.65it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8582.44it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8426.53it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 200}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 1, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+     Bal Acc: 0.9929 | F1: 0.9726 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 29 with best_epoch = 9 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_60Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_60Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  72%|███████▏  | 868/1200 [00:00<00:00, 8676.20it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8690.31it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8138.75it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 1, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.01, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 25 with best_epoch = 5 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_Inc_30_to_60Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_Inc_30_to_60Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  63%|██████▎   | 759/1200 [00:00<00:00, 7583.25it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 7992.11it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8427.37it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 0.9000 | F1: 0.9374 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 1, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.9500 | F1: 0.9701 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 47 with best_epoch = 27 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_60Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_60Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  73%|███████▎  | 877/1200 [00:00<00:00, 8762.22it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8778.70it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8501.68it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 1, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 1.0}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 24 with best_epoch = 4 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_Inc_30_to_60Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_Inc_30_to_60Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  72%|███████▎  | 870/1200 [00:00<00:00, 8698.66it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8726.32it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8358.31it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 50}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.01, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 34 with best_epoch = 14 and best_val_balanced_accuracy = 1.0
+     [Detecção] Bal Acc: 1.0000 | F1: 1.0000 | ROC-AUC: 1.0000
+
+[HUST_Gearbox] Processando 30 dobras LOCO...
+
+  >>> Dobra Alvo (Teste): Cond_20_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_20_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:   3%|▎         | 27/870 [00:00<00:03, 244.32it/s]Treino:   6%|▌         | 52/870 [00:00<00:05, 159.19it/s]Treino:  10%|▉         | 85/870 [00:00<00:03, 213.21it/s]Treino:  16%|█▌        | 135/870 [00:00<00:02, 305.83it/s]Treino:  23%|██▎       | 198/870 [00:00<00:01, 407.52it/s]Treino:  28%|██▊       | 243/870 [00:00<00:02, 313.36it/s]Treino:  32%|███▏      | 280/870 [00:01<00:02, 212.86it/s]Treino:  44%|████▍     | 384/870 [00:01<00:01, 361.19it/s]Treino:  50%|████▉     | 434/870 [00:01<00:01, 368.96it/s]Treino:  55%|█████▌    | 481/870 [00:01<00:01, 229.10it/s]Treino:  63%|██████▎   | 545/870 [00:01<00:01, 292.68it/s]Treino:  68%|██████▊   | 590/870 [00:02<00:00, 286.78it/s]Treino:  75%|███████▌  | 655/870 [00:02<00:00, 339.60it/s]Treino:  80%|████████  | 698/870 [00:02<00:00, 230.47it/s]Treino:  88%|████████▊ | 767/870 [00:02<00:00, 302.85it/s]Treino:  93%|█████████▎| 812/870 [00:02<00:00, 265.72it/s]Treino:  98%|█████████▊| 849/870 [00:03<00:00, 262.25it/s]Treino: 100%|██████████| 870/870 [00:03<00:00, 270.28it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste:  20%|██        | 6/30 [00:00<00:00, 50.89it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 141.70it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_20_0 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_20_1 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_20_1 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  87%|████████▋ | 759/870 [00:00<00:00, 7583.53it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7589.10it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7088.17it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_20_1 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_20_2 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_20_2 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████ | 793/870 [00:00<00:00, 7923.49it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7869.99it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7223.67it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_20_2 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_20_3 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_20_3 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  92%|█████████▏| 798/870 [00:00<00:00, 7970.05it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7931.26it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7024.07it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_20_3 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_20_4 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_20_4 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  92%|█████████▏| 797/870 [00:00<00:00, 7964.50it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7919.79it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7044.51it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_20_4 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_25_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_25_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  92%|█████████▏| 797/870 [00:00<00:00, 7968.64it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7927.28it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7248.64it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_25_0 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_25_1 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_25_1 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 796/870 [00:00<00:00, 7950.28it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7907.25it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7025.63it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_25_1 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_25_2 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_25_2 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 796/870 [00:00<00:00, 7951.59it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7907.57it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7379.57it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_25_2 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_25_3 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_25_3 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  92%|█████████▏| 799/870 [00:00<00:00, 7986.64it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7943.27it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7344.25it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_25_3 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_25_4 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_25_4 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  92%|█████████▏| 797/870 [00:00<00:00, 7963.12it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7914.59it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7423.55it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_25_4 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_30_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_30_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  92%|█████████▏| 797/870 [00:00<00:00, 7963.19it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7923.52it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7210.42it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_30_0 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_30_1 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_30_1 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  92%|█████████▏| 797/870 [00:00<00:00, 7965.83it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7921.27it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 6904.58it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_30_1 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_30_2 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_30_2 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  92%|█████████▏| 797/870 [00:00<00:00, 7961.85it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7921.19it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7318.63it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_30_2 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_30_3 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_30_3 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  92%|█████████▏| 797/870 [00:00<00:00, 7968.01it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7924.49it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7211.66it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_30_3 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_30_4 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_30_4 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  92%|█████████▏| 799/870 [00:00<00:00, 7989.15it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7947.69it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7246.55it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_30_4 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_35_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_35_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 796/870 [00:00<00:00, 7956.23it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7914.26it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 6994.39it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_35_0 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_35_1 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_35_1 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  92%|█████████▏| 799/870 [00:00<00:00, 7979.54it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7920.29it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7288.95it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_35_1 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_35_2 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_35_2 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 796/870 [00:00<00:00, 7952.40it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7911.48it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7176.70it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_35_2 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_35_3 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_35_3 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 796/870 [00:00<00:00, 7958.24it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7911.17it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7133.98it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_35_3 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_35_4 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_35_4 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  92%|█████████▏| 797/870 [00:00<00:00, 7959.89it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7913.46it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7288.95it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_35_4 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_40_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  92%|█████████▏| 800/870 [00:00<00:00, 7992.98it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7942.77it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 6950.35it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_40_0 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_40_1 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_40_1 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 795/870 [00:00<00:00, 7945.35it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7897.30it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7000.62it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_40_1 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_40_2 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_40_2 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  92%|█████████▏| 797/870 [00:00<00:00, 7969.46it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7924.63it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7399.97it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_40_2 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_40_3 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_40_3 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  88%|████████▊ | 763/870 [00:00<00:00, 7621.63it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7480.06it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 6246.48it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_40_3 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_40_4 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_40_4 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  92%|█████████▏| 798/870 [00:00<00:00, 7976.47it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7929.43it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7133.57it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_40_4 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_L0_VS_0_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_L0_VS_0_40_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 795/870 [00:00<00:00, 7948.70it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7912.97it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7057.55it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_L0_VS_0_40_0 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_L1_VS_0_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_L1_VS_0_40_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 796/870 [00:00<00:00, 7954.19it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7914.47it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7390.41it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_L1_VS_0_40_0 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_L2_VS_0_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_L2_VS_0_40_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 796/870 [00:00<00:00, 7958.24it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7915.03it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7228.65it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_L2_VS_0_40_0 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_L3_VS_0_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_L3_VS_0_40_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 796/870 [00:00<00:00, 7952.90it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7911.77it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7268.74it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_L3_VS_0_40_0 na tarefa detection. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_L4_VS_0_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_L4_VS_0_40_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  90%|████████▉ | 782/870 [00:00<00:00, 7815.41it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7776.50it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7484.04it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_L4_VS_0_40_0 na tarefa detection. Pulando.
+
+
+############################################################
+ TAREFA ATUAL: DIAGNOSIS
+############################################################
+
+[CWRU_12k] Processando 4 dobras LOCO...
+
+  >>> Dobra Alvo (Teste): Load_0HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2160 [00:00<?, ?it/s]Treino:  53%|█████▎    | 1135/2160 [00:00<00:00, 11339.47it/s]Treino: 100%|██████████| 2160/2160 [00:00<00:00, 11110.47it/s]
+Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 10864.31it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+      -> [Fusion] Iniciando extração para 2160 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (2160, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (2160, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (2160, 27)
+      -> [Fusion] Iniciando extração para 640 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (640, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (640, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (640, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 50, 'rf__min_samples_split': 10, 'rf__n_estimators': 100}
+     Bal Acc: 0.5882 | F1: 0.5997 | AUC: 0.9356
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.5807 | F1: 0.5922 | AUC: 0.9200
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 10, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.6653 | F1: 0.6654 | AUC: 0.9542
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_val_balanced_accuracy = 0.63433
+     [Diagnóstico] Bal Acc: 0.6343 | Macro F1: 0.5684 | ROC-AUC: 0.9359
+
+  >>> Dobra Alvo (Teste): Load_1HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_1HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2080 [00:00<?, ?it/s]Treino:  59%|█████▉    | 1225/2080 [00:00<00:00, 12245.66it/s]Treino: 100%|██████████| 2080/2080 [00:00<00:00, 11737.51it/s]
+Teste:   0%|          | 0/720 [00:00<?, ?it/s]Teste: 100%|██████████| 720/720 [00:00<00:00, 11016.95it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+      -> [Fusion] Iniciando extração para 2080 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (2080, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (2080, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (2080, 27)
+      -> [Fusion] Iniciando extração para 720 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (720, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (720, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (720, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 0.7105 | F1: 0.7106 | AUC: 0.9633
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.6836 | F1: 0.6794 | AUC: 0.9506
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 10, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.7299 | F1: 0.7267 | AUC: 0.9640
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 64 with best_epoch = 44 and best_val_balanced_accuracy = 0.72175
+     [Diagnóstico] Bal Acc: 0.7218 | Macro F1: 0.7098 | ROC-AUC: 0.9555
+
+  >>> Dobra Alvo (Teste): Load_2HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_2HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2080 [00:00<?, ?it/s]Treino:  58%|█████▊    | 1206/2080 [00:00<00:00, 12058.52it/s]Treino: 100%|██████████| 2080/2080 [00:00<00:00, 11540.66it/s]
+Teste:   0%|          | 0/720 [00:00<?, ?it/s]Teste: 100%|██████████| 720/720 [00:00<00:00, 10849.36it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+      -> [Fusion] Iniciando extração para 2080 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (2080, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (2080, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (2080, 27)
+      -> [Fusion] Iniciando extração para 720 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (720, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (720, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (720, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 0.7112 | F1: 0.7044 | AUC: 0.9651
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.7411 | F1: 0.7390 | AUC: 0.9663
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 10, 'xgb__n_estimators': 50, 'xgb__subsample': 0.8}
+     Bal Acc: 0.7485 | F1: 0.7474 | AUC: 0.9683
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 84 with best_epoch = 64 and best_val_balanced_accuracy = 0.74865
+     [Diagnóstico] Bal Acc: 0.7487 | Macro F1: 0.6811 | ROC-AUC: 0.9674
+
+  >>> Dobra Alvo (Teste): Load_3HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_3HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2080 [00:00<?, ?it/s]Treino:  59%|█████▉    | 1230/2080 [00:00<00:00, 12297.43it/s]Treino: 100%|██████████| 2080/2080 [00:00<00:00, 11803.54it/s]
+Teste:   0%|          | 0/720 [00:00<?, ?it/s]Teste: 100%|██████████| 720/720 [00:00<00:00, 11052.22it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+      -> [Fusion] Iniciando extração para 2080 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (2080, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (2080, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (2080, 27)
+      -> [Fusion] Iniciando extração para 720 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (720, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (720, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (720, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 0.6706 | F1: 0.6684 | AUC: 0.9495
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.7147 | F1: 0.7147 | AUC: 0.9487
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 10, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.7090 | F1: 0.7041 | AUC: 0.9516
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 89 with best_epoch = 69 and best_val_balanced_accuracy = 0.73614
+     [Diagnóstico] Bal Acc: 0.7361 | Macro F1: 0.6697 | ROC-AUC: 0.9606
+
+[CWRU_48k] Processando 4 dobras LOCO...
+
+  >>> Dobra Alvo (Teste): Load_0HP | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_0HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/534 [00:00<?, ?it/s]Treino:   0%|          | 2/534 [00:00<00:27, 19.43it/s]Treino:   2%|▏         | 11/534 [00:00<00:09, 56.36it/s]Treino:   4%|▎         | 19/534 [00:00<00:08, 63.91it/s]Treino:   6%|▌         | 31/534 [00:00<00:06, 79.31it/s]Treino:   8%|▊         | 41/534 [00:00<00:06, 79.06it/s]Treino:  10%|▉         | 51/534 [00:00<00:05, 82.74it/s]Treino:  11%|█         | 60/534 [00:00<00:06, 71.52it/s]Treino:  13%|█▎        | 68/534 [00:00<00:06, 68.23it/s]Treino:  15%|█▍        | 79/534 [00:01<00:05, 77.79it/s]Treino:  16%|█▋        | 88/534 [00:01<00:06, 71.93it/s]Treino:  19%|█▊        | 100/534 [00:01<00:05, 80.92it/s]Treino:  21%|██        | 110/534 [00:01<00:05, 84.18it/s]Treino:  23%|██▎       | 123/534 [00:01<00:04, 91.06it/s]Treino:  25%|██▍       | 133/534 [00:01<00:05, 75.94it/s]Treino:  27%|██▋       | 142/534 [00:01<00:05, 73.10it/s]Treino:  29%|██▉       | 157/534 [00:02<00:04, 87.69it/s]Treino:  33%|███▎      | 174/534 [00:02<00:03, 104.05it/s]Treino:  35%|███▍      | 185/534 [00:02<00:04, 73.83it/s] Treino:  36%|███▋      | 194/534 [00:02<00:05, 66.61it/s]Treino:  38%|███▊      | 202/534 [00:02<00:04, 67.08it/s]Treino:  41%|████      | 217/534 [00:02<00:03, 81.37it/s]Treino:  44%|████▎     | 233/534 [00:02<00:03, 97.97it/s]Treino:  46%|████▌     | 244/534 [00:03<00:03, 83.94it/s]Treino:  48%|████▊     | 254/534 [00:03<00:03, 83.53it/s]Treino:  49%|████▉     | 264/534 [00:03<00:03, 86.11it/s]Treino:  52%|█████▏    | 278/534 [00:03<00:02, 96.53it/s]Treino:  55%|█████▍    | 293/534 [00:03<00:02, 109.80it/s]Treino:  57%|█████▋    | 305/534 [00:03<00:02, 94.13it/s] Treino:  59%|█████▉    | 316/534 [00:03<00:02, 82.18it/s]Treino:  61%|██████    | 325/534 [00:04<00:02, 80.87it/s]Treino:  64%|██████▍   | 342/534 [00:04<00:01, 101.65it/s]Treino:  67%|██████▋   | 359/534 [00:04<00:01, 111.43it/s]Treino:  69%|██████▉   | 371/534 [00:04<00:01, 85.98it/s] Treino:  71%|███████▏  | 381/534 [00:04<00:01, 85.71it/s]Treino:  73%|███████▎  | 391/534 [00:04<00:01, 76.66it/s]Treino:  76%|███████▌  | 406/534 [00:04<00:01, 88.32it/s]Treino:  78%|███████▊  | 416/534 [00:04<00:01, 90.23it/s]Treino:  80%|███████▉  | 426/534 [00:05<00:01, 76.40it/s]Treino:  81%|████████▏ | 435/534 [00:05<00:01, 75.70it/s]Treino:  83%|████████▎ | 445/534 [00:05<00:01, 78.73it/s]Treino:  85%|████████▌ | 454/534 [00:05<00:01, 73.68it/s]Treino:  89%|████████▉ | 475/534 [00:05<00:00, 103.80it/s]Treino:  91%|█████████ | 487/534 [00:05<00:00, 75.69it/s] Treino:  93%|█████████▎| 497/534 [00:06<00:00, 74.28it/s]Treino:  98%|█████████▊| 524/534 [00:06<00:00, 114.22it/s]Treino: 100%|██████████| 534/534 [00:06<00:00, 85.31it/s] 
+Teste:   0%|          | 0/68 [00:00<?, ?it/s]Teste:   9%|▉         | 6/68 [00:00<00:01, 58.73it/s]Teste:  19%|█▉        | 13/68 [00:00<00:00, 64.29it/s]Teste:  29%|██▉       | 20/68 [00:00<00:00, 64.32it/s]Teste:  40%|███▉      | 27/68 [00:00<00:00, 56.45it/s]Teste:  49%|████▊     | 33/68 [00:00<00:00, 53.38it/s]Teste:  74%|███████▎  | 50/68 [00:00<00:00, 85.01it/s]Teste:  87%|████████▋ | 59/68 [00:00<00:00, 76.05it/s]Teste:  99%|█████████▊| 67/68 [00:00<00:00, 72.02it/s]Teste: 100%|██████████| 68/68 [00:00<00:00, 69.89it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração para 534 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (534, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (534, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (534, 27)
+      -> [Fusion] Iniciando extração para 68 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (68, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (68, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (68, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 10, 'rf__n_estimators': 50}
+     Bal Acc: 0.7083 | F1: 0.7172 | AUC: 0.8791
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.6944 | F1: 0.6679 | AUC: 0.9196
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 0.7083 | F1: 0.7195 | AUC: 0.8817
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 30 with best_epoch = 10 and best_val_balanced_accuracy = 0.73889
+     [Diagnóstico] Bal Acc: 0.7389 | Macro F1: 0.7151 | ROC-AUC: 0.8051
+
+  >>> Dobra Alvo (Teste): Load_1HP | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_1HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/428 [00:00<?, ?it/s]Treino: 100%|██████████| 428/428 [00:00<00:00, 8386.18it/s]
+Teste:   0%|          | 0/174 [00:00<?, ?it/s]Teste: 100%|██████████| 174/174 [00:00<00:00, 8053.51it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração para 428 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (428, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (428, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (428, 27)
+      -> [Fusion] Iniciando extração para 174 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (174, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (174, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (174, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 100}
+     Bal Acc: 0.8556 | F1: 0.8464 | AUC: 0.9791
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8944 | F1: 0.8867 | AUC: 0.9266
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 6, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.8401 | F1: 0.8358 | AUC: 0.9796
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 84 with best_epoch = 64 and best_val_balanced_accuracy = 0.9321
+     [Diagnóstico] Bal Acc: 0.9321 | Macro F1: 0.9296 | ROC-AUC: 0.9461
+
+  >>> Dobra Alvo (Teste): Load_2HP | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_2HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/422 [00:00<?, ?it/s]Treino: 100%|██████████| 422/422 [00:00<00:00, 5691.98it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 5549.33it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração para 422 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (422, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (422, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (422, 27)
+      -> [Fusion] Iniciando extração para 180 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (180, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (180, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (180, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 100}
+     Bal Acc: 0.8722 | F1: 0.8737 | AUC: 0.9856
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 0.9333 | F1: 0.9330 | AUC: 0.9865
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 6, 'xgb__n_estimators': 100, 'xgb__subsample': 1.0}
+     Bal Acc: 0.8056 | F1: 0.8095 | AUC: 0.9518
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 89 with best_epoch = 69 and best_val_balanced_accuracy = 0.94444
+     [Diagnóstico] Bal Acc: 0.9444 | Macro F1: 0.9443 | ROC-AUC: 0.9805
+
+  >>> Dobra Alvo (Teste): Load_3HP | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_3HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/422 [00:00<?, ?it/s]Treino: 100%|██████████| 422/422 [00:00<00:00, 5786.93it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 5574.90it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração para 422 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (422, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (422, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (422, 27)
+      -> [Fusion] Iniciando extração para 180 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (180, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (180, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (180, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 0.8833 | F1: 0.8823 | AUC: 0.9880
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8278 | F1: 0.8285 | AUC: 0.9525
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.8611 | F1: 0.8621 | AUC: 0.9814
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 62 with best_epoch = 42 and best_val_balanced_accuracy = 0.84444
+     [Diagnóstico] Bal Acc: 0.8444 | Macro F1: 0.8415 | ROC-AUC: 0.9272
+
+[UOEMD] Processando 16 dobras LOCO...
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_15Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_15Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  50%|████▉     | 598/1200 [00:00<00:00, 5975.38it/s]Treino: 100%|█████████▉| 1196/1200 [00:00<00:00, 5943.25it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 5941.40it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 5674.21it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.5875 | F1: 0.4964 | AUC: 0.9377
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.6125 | F1: 0.5631 | AUC: 0.8655
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 10, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.5750 | F1: 0.5188 | AUC: 0.9023
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 79 with best_epoch = 59 and best_val_balanced_accuracy = 0.5625
+     [Diagnóstico] Bal Acc: 0.5625 | Macro F1: 0.4973 | ROC-AUC: 0.8546
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_Dec_45_to_15Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_Dec_45_to_15Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  72%|███████▏  | 866/1200 [00:00<00:00, 8651.43it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8680.46it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 2393.51it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 0.7375 | F1: 0.7352 | AUC: 0.9578
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.5875 | F1: 0.6043 | AUC: 0.8759
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.7250 | F1: 0.7262 | AUC: 0.9479
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 99 with best_epoch = 79 and best_val_balanced_accuracy = 0.675
+     [Diagnóstico] Bal Acc: 0.6750 | Macro F1: 0.6712 | ROC-AUC: 0.9057
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_15Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_15Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  72%|███████▎  | 870/1200 [00:00<00:00, 8692.30it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8729.18it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 6548.74it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.5750 | F1: 0.4688 | AUC: 0.9184
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.4250 | F1: 0.3652 | AUC: 0.8827
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 6, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.5875 | F1: 0.5687 | AUC: 0.9146
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 50 with best_epoch = 30 and best_val_balanced_accuracy = 0.5625
+     [Diagnóstico] Bal Acc: 0.5625 | Macro F1: 0.4918 | ROC-AUC: 0.9154
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_Dec_45_to_15Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_Dec_45_to_15Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  73%|███████▎  | 881/1200 [00:00<00:00, 8800.65it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8835.77it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8195.40it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 0.8125 | F1: 0.8097 | AUC: 0.9611
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.5875 | F1: 0.5621 | AUC: 0.8812
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 6, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.7500 | F1: 0.7469 | AUC: 0.9564
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 77 with best_epoch = 57 and best_val_balanced_accuracy = 0.6625
+     [Diagnóstico] Bal Acc: 0.6625 | Macro F1: 0.6583 | ROC-AUC: 0.8891
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_30Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_30Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  73%|███████▎  | 873/1200 [00:00<00:00, 8725.27it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8749.88it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8214.86it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.8500 | F1: 0.8395 | AUC: 0.9903
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.4750 | F1: 0.4681 | AUC: 0.8689
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 10, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.8250 | F1: 0.8158 | AUC: 0.9734
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 43 with best_epoch = 23 and best_val_balanced_accuracy = 0.6875
+     [Diagnóstico] Bal Acc: 0.6875 | Macro F1: 0.6341 | ROC-AUC: 0.8077
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_Dec_60_to_30Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_Dec_60_to_30Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  72%|███████▏  | 864/1200 [00:00<00:00, 8632.95it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8636.71it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8274.01it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.7875 | F1: 0.7837 | AUC: 0.9591
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.7500 | F1: 0.7366 | AUC: 0.9123
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 6, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.7500 | F1: 0.7458 | AUC: 0.9491
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 78 with best_epoch = 58 and best_val_balanced_accuracy = 0.675
+     [Diagnóstico] Bal Acc: 0.6750 | Macro F1: 0.6821 | ROC-AUC: 0.9241
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_30Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_30Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  73%|███████▎  | 880/1200 [00:00<00:00, 8796.55it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8819.73it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8381.07it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 50, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.6250 | F1: 0.5241 | AUC: 0.8221
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.4000 | F1: 0.3498 | AUC: 0.7830
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 10, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.5625 | F1: 0.4788 | AUC: 0.8557
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 31 with best_epoch = 11 and best_val_balanced_accuracy = 0.575
+     [Diagnóstico] Bal Acc: 0.5750 | Macro F1: 0.5094 | ROC-AUC: 0.8316
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_Dec_60_to_30Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_Dec_60_to_30Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  72%|███████▏  | 862/1200 [00:00<00:00, 8616.76it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8636.59it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 7999.24it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 50, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.8125 | F1: 0.7959 | AUC: 0.9653
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.6250 | F1: 0.6222 | AUC: 0.8998
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 10, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.7625 | F1: 0.7565 | AUC: 0.9509
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 33 with best_epoch = 13 and best_val_balanced_accuracy = 0.575
+     [Diagnóstico] Bal Acc: 0.5750 | Macro F1: 0.5399 | ROC-AUC: 0.8179
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_45Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_45Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  73%|███████▎  | 874/1200 [00:00<00:00, 8733.80it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8768.63it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8281.36it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.8750 | F1: 0.8333 | AUC: 0.9962
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.6375 | F1: 0.5625 | AUC: 0.9287
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 10, 'xgb__n_estimators': 50, 'xgb__subsample': 1.0}
+     Bal Acc: 0.7875 | F1: 0.7336 | AUC: 0.9875
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 62 with best_epoch = 42 and best_val_balanced_accuracy = 0.775
+     [Diagnóstico] Bal Acc: 0.7750 | Macro F1: 0.7267 | ROC-AUC: 0.9202
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_Inc_15_to_45Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_Inc_15_to_45Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  70%|███████   | 846/1200 [00:00<00:00, 8459.40it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8464.32it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 7912.85it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 50, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.8000 | F1: 0.8027 | AUC: 0.9739
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.6375 | F1: 0.6293 | AUC: 0.9305
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 10, 'xgb__n_estimators': 50, 'xgb__subsample': 0.8}
+     Bal Acc: 0.7750 | F1: 0.7767 | AUC: 0.9646
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 91 with best_epoch = 71 and best_val_balanced_accuracy = 0.75
+     [Diagnóstico] Bal Acc: 0.7500 | Macro F1: 0.7488 | ROC-AUC: 0.9420
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_45Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_45Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  73%|███████▎  | 872/1200 [00:00<00:00, 8713.63it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8755.45it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8214.46it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.8625 | F1: 0.8208 | AUC: 0.9763
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.7375 | F1: 0.6949 | AUC: 0.9214
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 6, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.8500 | F1: 0.8081 | AUC: 0.9814
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 45 with best_epoch = 25 and best_val_balanced_accuracy = 0.7375
+     [Diagnóstico] Bal Acc: 0.7375 | Macro F1: 0.6794 | ROC-AUC: 0.9373
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_Inc_15_to_45Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_Inc_15_to_45Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  71%|███████   | 851/1200 [00:00<00:00, 8502.04it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8505.03it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8376.67it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.7875 | F1: 0.7829 | AUC: 0.9723
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.6500 | F1: 0.6093 | AUC: 0.8791
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 0.7500 | F1: 0.7340 | AUC: 0.9704
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 88 with best_epoch = 68 and best_val_balanced_accuracy = 0.675
+     [Diagnóstico] Bal Acc: 0.6750 | Macro F1: 0.6692 | ROC-AUC: 0.9029
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_60Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_60Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  72%|███████▎  | 870/1200 [00:00<00:00, 8696.23it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8707.40it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8174.04it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.6250 | F1: 0.5408 | AUC: 0.8799
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.5750 | F1: 0.4988 | AUC: 0.9402
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 0.6000 | F1: 0.4961 | AUC: 0.8845
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 33 with best_epoch = 13 and best_val_balanced_accuracy = 0.6125
+     [Diagnóstico] Bal Acc: 0.6125 | Macro F1: 0.5400 | ROC-AUC: 0.7732
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_Inc_30_to_60Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_Inc_30_to_60Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  71%|███████▏  | 857/1200 [00:00<00:00, 8560.74it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8594.37it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8194.00it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 50, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.7500 | F1: 0.7434 | AUC: 0.9454
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.6875 | F1: 0.6849 | AUC: 0.8980
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 0.7250 | F1: 0.7180 | AUC: 0.9282
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 119 with best_epoch = 99 and best_val_balanced_accuracy = 0.7375
+     [Diagnóstico] Bal Acc: 0.7375 | Macro F1: 0.7440 | ROC-AUC: 0.9298
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_60Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_60Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  71%|███████   | 847/1200 [00:00<00:00, 8462.26it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8478.44it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8062.87it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.7625 | F1: 0.7238 | AUC: 0.9379
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.4875 | F1: 0.4404 | AUC: 0.8873
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 10, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.6250 | F1: 0.5098 | AUC: 0.8923
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 27 with best_epoch = 7 and best_val_balanced_accuracy = 0.65
+     [Diagnóstico] Bal Acc: 0.6500 | Macro F1: 0.5577 | ROC-AUC: 0.8539
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_Inc_30_to_60Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_Inc_30_to_60Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  72%|███████▏  | 864/1200 [00:00<00:00, 8637.02it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8663.25it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8126.33it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração para 1200 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (1200, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (1200, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (1200, 27)
+      -> [Fusion] Iniciando extração para 80 amostras...
+
+  -> [Wrapper] Validando compatibilidade dos extratores...
+     [Ignorado] PowerSpectralDensity incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] SpectralEnvelope incompatível com sinal 1D. (Erro: AttributeError)
+     [Ignorado] WaveletCoeffsFeatures incompatível com sinal 1D. (Erro: AttributeError)
+  -> [Wrapper] Restaram 11 extratores 100% estáveis para extração.
+
+         [Debug] Shape SignAI: (80, 11) | Tipo: <class 'numpy.ndarray'>
+         [Debug] Shape VibNet: (80, 16) | Tipo: <class 'numpy.ndarray'>
+      -> [Fusion] Shape final combinado: (80, 27)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.6500 | F1: 0.6420 | AUC: 0.9343
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.5250 | F1: 0.5231 | AUC: 0.8607
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 1.0}
+     Bal Acc: 0.6250 | F1: 0.6116 | AUC: 0.8993
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 90 with best_epoch = 70 and best_val_balanced_accuracy = 0.65
+     [Diagnóstico] Bal Acc: 0.6500 | Macro F1: 0.6480 | ROC-AUC: 0.9157
+
+[HUST_Gearbox] Processando 30 dobras LOCO...
+
+  >>> Dobra Alvo (Teste): Cond_20_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_20_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 10612.87it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 9638.39it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_20_0 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_20_1 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_20_1 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  88%|████████▊ | 769/870 [00:00<00:00, 7688.54it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7685.14it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7156.70it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_20_1 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_20_2 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_20_2 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 795/870 [00:00<00:00, 7948.51it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7913.82it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7131.55it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_20_2 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_20_3 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_20_3 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████ | 792/870 [00:00<00:00, 7917.25it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7874.94it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7230.73it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_20_3 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_20_4 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_20_4 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 795/870 [00:00<00:00, 7944.50it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7902.91it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7088.96it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_20_4 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_25_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_25_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████ | 792/870 [00:00<00:00, 7919.03it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7884.92it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7103.77it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_25_0 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_25_1 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_25_1 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  92%|█████████▏| 797/870 [00:00<00:00, 7956.27it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7911.74it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7151.01it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_25_1 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_25_2 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_25_2 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████ | 792/870 [00:00<00:00, 7911.07it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7870.53it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7105.38it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_25_2 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_25_3 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_25_3 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████ | 788/870 [00:00<00:00, 7876.44it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7836.89it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7355.85it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_25_3 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_25_4 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_25_4 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 795/870 [00:00<00:00, 7939.45it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7900.76it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7491.17it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_25_4 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_30_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_30_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 796/870 [00:00<00:00, 7955.53it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7907.30it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7117.03it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_30_0 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_30_1 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_30_1 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 795/870 [00:00<00:00, 7949.72it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7916.48it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 6878.16it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_30_1 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_30_2 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_30_2 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████ | 792/870 [00:00<00:00, 7914.08it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7869.68it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7006.08it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_30_2 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_30_3 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_30_3 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████ | 791/870 [00:00<00:00, 7906.71it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7859.95it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7185.72it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_30_3 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_30_4 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_30_4 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 795/870 [00:00<00:00, 7941.15it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7908.28it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7104.98it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_30_4 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_35_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_35_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████ | 793/870 [00:00<00:00, 7921.04it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7885.60it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7261.19it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_35_0 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_35_1 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_35_1 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 794/870 [00:00<00:00, 7931.89it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7889.86it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7032.70it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_35_1 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_35_2 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_35_2 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 794/870 [00:00<00:00, 7939.06it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7898.48it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7174.25it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_35_2 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_35_3 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_35_3 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  92%|█████████▏| 797/870 [00:00<00:00, 7964.22it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7925.66it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7096.16it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_35_3 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_35_4 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_35_4 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 795/870 [00:00<00:00, 7943.30it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7906.72it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7282.20it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_35_4 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_40_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████ | 789/870 [00:00<00:00, 7888.67it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7850.95it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7102.57it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_40_0 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_40_1 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_40_1 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████ | 793/870 [00:00<00:00, 7928.33it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7891.79it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 6988.95it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_40_1 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_40_2 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_40_2 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 794/870 [00:00<00:00, 7934.20it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7897.27it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7520.27it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_40_2 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_40_3 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_40_3 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████ | 792/870 [00:00<00:00, 7912.35it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7864.39it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7305.45it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_40_3 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_40_4 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_40_4 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 794/870 [00:00<00:00, 7934.01it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7893.89it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7005.30it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_40_4 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_L0_VS_0_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_L0_VS_0_40_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 795/870 [00:00<00:00, 7944.17it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7885.90it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7252.40it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_L0_VS_0_40_0 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_L1_VS_0_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_L1_VS_0_40_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████▏| 796/870 [00:00<00:00, 7954.75it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7919.78it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7248.64it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_L1_VS_0_40_0 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_L2_VS_0_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_L2_VS_0_40_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████ | 793/870 [00:00<00:00, 7926.96it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7885.10it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7192.70it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_L2_VS_0_40_0 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_L3_VS_0_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_L3_VS_0_40_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████ | 792/870 [00:00<00:00, 7915.42it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7868.56it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7361.87it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_L3_VS_0_40_0 na tarefa diagnosis. Pulando.
+
+  >>> Dobra Alvo (Teste): Cond_L4_VS_0_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_L4_VS_0_40_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 51200 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  91%|█████████ | 791/870 [00:00<00:00, 7901.81it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 7839.87it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7311.40it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: []
+      [Aviso] Dados insuficientes para Cond_L4_VS_0_40_0 na tarefa diagnosis. Pulando.
+
+======================================================================
+ EXPERIMENTOS CONCLUÍDOS! Relatório salvo em: /home/vfrocha/VibNet-1D/results/baseline_loco_results_20260727_082114.csv
+======================================================================
