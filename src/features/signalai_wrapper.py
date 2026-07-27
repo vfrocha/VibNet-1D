@@ -31,14 +31,11 @@ class SignalAIWrapper:
         self.extractors = extractors_list
 
     def fit_transform(self, X):
-        # 1. Cria um DataFrame Pandas real com N linhas (uma para cada sinal do batch)
-        # Isso resolve o erro "Series object has no attribute iterrows"
+        # 1. Cria um DataFrame Pandas real com N linhas
         metainfo_df = pd.DataFrame([{"sample_rate": self.fs}] * len(X))
-        
-        # 2. Converte a matriz do VibNet para uma lista nativa
         signals_list = list(X)
         
-        # 3. Estrutura o dicionário de batch EXATAMENTE como a SignAI gosta
+        # 2. Estrutura o dicionário de batch
         data_dict = {
             "signal": signals_list,
             "metainfo": metainfo_df
@@ -48,25 +45,32 @@ class SignalAIWrapper:
 
         for ext in self.extractors:
             try:
-                # Extrai a feature (escalar ou densa)
+                # Extrai a feature da SignAI
                 out = ext.transform(data_dict)
                 
-                # Se a SignAI retornar um dict modificado, pegamos a feature de lá
+                # Desempacota o resultado
                 if isinstance(out, dict):
                     keys = [k for k in out.keys() if k not in ["signal", "metainfo"]]
                     feat = np.array(out[keys[-1]]) if keys else np.array(out["signal"])
                 else:
                     feat = np.array(out)
                 
-                # Garante que seja 2D para a concatenação [N_amostras, N_features]
-                if feat.ndim == 1:
-                    feat = feat.reshape(-1, 1)
+                # --- A BLINDAGEM MATEMÁTICA ---
+                # Força o formato estrito 2D: [Número_de_Amostras, Todas_as_Features_Geradas]
+                # Isso impede o np.hstack de quebrar com arrays 1D ou 3D
+                feat_2d = feat.reshape(len(X), -1)
                 
-                extracted_features.append(feat)
+                extracted_features.append(feat_2d)
                 
             except Exception as e:
-                # Falhas esporádicas ficam silenciosas
+                # Se o extrator falhar ou retornar lixo, ignoramos silenciosamente
                 pass
+
+        # Empacota horizontalmente todas as colunas
+        if extracted_features:
+            return np.hstack(extracted_features)
+        else:
+            return np.zeros((len(X), 1))
 
         # Empacota horizontalmente todas as colunas
         if extracted_features:
