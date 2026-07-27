@@ -12,69 +12,6 @@ class CompatibleMeta(pd.Series):
     def iterrows(self):
         yield 0, self
 
-class SignalAIWrapper:
-    def __init__(self, sample_rate, extractors_list):
-        self.sample_rate = sample_rate
-        if not isinstance(extractors_list, list):
-            self.extractors = [extractors_list]
-        else:
-            self.extractors = extractors_list
-
-    def fit_transform(self, X):
-        # --- 1. DRY RUN (TESTE DE SEGURANÇA) ---
-        print("\n  -> [Wrapper] Validando compatibilidade dos extratores...")
-        valid_extractors = []
-        
-        # Pega apenas a primeira amostra para o teste
-        test_dict = {
-            "signal": X[0, :],
-            "metainfo": CompatibleMeta({"sample_rate": self.sample_rate})
-        }
-
-        for ext in self.extractors:
-            try:
-                # Testa se o extrator sobrevive a um sinal 1D
-                _ = ext.transform(test_dict)
-                valid_extractors.append(ext)
-            except Exception as e:
-                # Se quebrar, nós o removemos da lista sem travar o experimento
-                print(f"     [Ignorado] {ext.__class__.__name__} incompatível com sinal 1D. (Erro: {type(e).__name__})")
-        
-        print(f"  -> [Wrapper] Restaram {len(valid_extractors)} extratores 100% estáveis para extração.\n")
-        
-        if len(valid_extractors) == 0:
-            raise ValueError("Nenhum extrator sobreviveu ao teste. Verifique a biblioteca.")
-
-        # --- 2. EXTRAÇÃO REAL ---
-        all_samples_features = []
-
-        for i in range(X.shape[0]):
-            signal_array = X[i, :]
-
-            signal_dict = {
-                "signal": signal_array,
-                "metainfo": CompatibleMeta({"sample_rate": self.sample_rate})
-            }
-
-            current_sample_features = []
-
-            for extractor in valid_extractors:
-                # Como já filtramos os ruins, isso vai rodar liso
-                features_out = extractor.transform(signal_dict)
-
-                if isinstance(features_out, dict):
-                    feature_values = list(features_out.values())
-                elif getattr(features_out, "shape", None) != None: 
-                    feature_values = features_out.flatten().tolist()
-                else:
-                    feature_values = [features_out] 
-
-                current_sample_features.extend(feature_values)
-
-            all_samples_features.append(current_sample_features)
-
-        return np.array(all_samples_features)
-
 def get_all_signalai_extractors():
     """Varre os módulos da biblioteca SignAI automaticamente."""
     extractors = []
@@ -85,8 +22,78 @@ def get_all_signalai_extractors():
                 try:
                     extractors.append(obj())
                 except Exception:
-                    pass # Ignora silenciosamente os que precisam de parâmetros
+                    pass
     return extractors
+
+class SignalAIWrapper:
+    def __init__(self, sample_rate, extractors_list):
+        self.fs = sample_rate
+        self.extractors = extractors_list
+
+    def fit_transform(self, X):
+        # 1. Cria um DataFrame Pandas real com N linhas (uma para cada sinal do batch)
+        # Isso resolve o erro "Series object has no attribute iterrows"
+        metainfo_df = pd.DataFrame([{"sample_rate": self.fs}] * len(X))
+        
+        # 2. Converte a matriz do VibNet para uma lista nativa
+        signals_list = list(X)
+        
+        # 3. Estrutura o dicionário de batch EXATAMENTE como a SignAI gosta
+        data_dict = {
+            "signal": signals_list,
+            "metainfo": metainfo_df
+        }
+
+        extracted_features = []
+
+        for ext in self.extractors:
+            try:
+                # Extrai a feature (escalar ou densa)
+                out = ext.transform(data_dict)
+                
+                # Se a SignAI retornar um dict modificado, pegamos a feature de lá
+                if isinstance(out, dict):
+                    keys = [k for k in out.keys() if k not in ["signal", "metainfo"]]
+                    feat = np.array(out[keys[-1]]) if keys else np.array(out["signal"])
+                else:
+                    feat = np.array(out)
+                
+                # Garante que seja 2D para a concatenação [N_amostras, N_features]
+                if feat.ndim == 1:
+                    feat = feat.reshape(-1, 1)
+                
+                extracted_features.append(feat)
+                
+            except Exception as e:
+                # Falhas esporádicas ficam silenciosas
+                pass
+
+        # Empacota horizontalmente todas as colunas
+        if extracted_features:
+            return np.hstack(extracted_features)
+        else:
+            return np.zeros((len(X), 1))
+
+def extract_fusion_features(X_raw, fs, vibnet_extractor_func):
+    """Executa a Feature Fusion (VibNet + SignAI)."""
+    print(f"      -> [Fusion] Iniciando extração para {X_raw.shape[0]} amostras...")
+    
+    # 1. Extração VibNet-1D (As 16 características originais)
+    X_vibnet = np.array([vibnet_extractor_func(sinal, fs) for sinal in X_raw])
+    if X_vibnet.ndim == 1: X_vibnet = X_vibnet.reshape(-1, 1)
+    print(f"         [Debug] Shape VibNet: {X_vibnet.shape}")
+    
+    # 2. Extração SignAI (Agora em modo BATCH completo via Pandas DataFrame)
+    extractors = get_all_signalai_extractors()
+    wrapper = SignalAIWrapper(sample_rate=fs, extractors_list=extractors)
+    X_signai = wrapper.fit_transform(X_raw)
+    print(f"         [Debug] Shape SignAI (Destravado): {X_signai.shape}")
+
+    # 3. Fusão Final
+    X_fusion = np.hstack((X_vibnet, X_signai))
+    print(f"      -> [Fusion] Shape final combinado: {X_fusion.shape}")
+    
+    return X_fusion
 
 def extract_fusion_features(X_raw, fs, vibnet_extractor_func):
     """
