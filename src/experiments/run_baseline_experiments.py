@@ -38,7 +38,7 @@ BASELINE_CONFIGS = {
             "Load_No_Load_Speed_Inc_30_to_60Hz"
         ]
     },
-    "HUST_gearbox": {
+    "HUST_Gearbox": {
         "fs": 25600,
         "conditions": [
             "Cond_20_0", "Cond_20_1", "Cond_20_2", "Cond_20_3", "Cond_20_4",
