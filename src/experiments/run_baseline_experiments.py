@@ -25,7 +25,6 @@ BASELINE_CONFIGS = {
     },
     "CWRU_48k": {
         "fs": 48000,
-        # Ajuste os nomes das condições de 48k conforme as pastas do seu dataset
         "conditions": ["Load_0HP", "Load_1HP", "Load_2HP", "Load_3HP"] 
     },
     "UOEMD": {
@@ -41,7 +40,15 @@ BASELINE_CONFIGS = {
     },
     "HUST_gearbox": {
         "fs": 25600,
-        "conditions": ["Speed1_Load1", "Speed1_Load2", "Speed2_Load1"] # Atualize com as 30 pastas reais
+        "conditions": [
+            "Cond_20_0", "Cond_20_1", "Cond_20_2", "Cond_20_3", "Cond_20_4",
+            "Cond_25_0", "Cond_25_1", "Cond_25_2", "Cond_25_3", "Cond_25_4",
+            "Cond_30_0", "Cond_30_1", "Cond_30_2", "Cond_30_3", "Cond_30_4",
+            "Cond_35_0", "Cond_35_1", "Cond_35_2", "Cond_35_3", "Cond_35_4",
+            "Cond_40_0", "Cond_40_1", "Cond_40_2", "Cond_40_3", "Cond_40_4",
+            "Cond_L0_VS_0_40_0", "Cond_L1_VS_0_40_0", "Cond_L2_VS_0_40_0", 
+            "Cond_L3_VS_0_40_0", "Cond_L4_VS_0_40_0"
+        ]
     }
 }
 
