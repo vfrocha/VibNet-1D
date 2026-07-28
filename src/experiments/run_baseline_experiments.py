@@ -25,7 +25,9 @@ BASELINE_CONFIGS = {
     },
     "CWRU_48k": {
         "fs": 48000,
-        "conditions": ["Load_0HP", "Load_1HP", "Load_2HP", "Load_3HP"] 
+        "conditions": ["Load_0HP_Sev_0.007", "Load_0HP_Sev_0.021", "Load_1HP_Sev_0.014", "Load_2HP_Sev_0.007",
+                       "Load_2HP_Sev_0.021", "Load_3HP_Sev_0.014", "Load_0HP_Sev_0.014", "Load_1HP_Sev_0.007",
+                       "Load_1HP_Sev_0.021",  "Load_2HP_Sev_0.014",  "Load_3HP_Sev_0.007", "Load_3HP_Sev_0.021"] 
     },
     "UOEMD": {
         "fs": 42000,
