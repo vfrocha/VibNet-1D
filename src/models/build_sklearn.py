@@ -77,30 +77,23 @@ def train_and_evaluate(pipeline, param_grid, X_train, y_train, X_test, y_test, t
     # 1. Gerar predições
     y_pred = best_model.predict(X_test)
     y_probs = best_model.predict_proba(X_test)
-    
-    # 2. Balanced Accuracy é igual para ambas as tarefas
+
+    # 2. Balanced Accuracy
     bal_acc = balanced_accuracy_score(y_test, y_pred)
     
     # 3. Ramificação das Métricas
     if task.lower() == 'detection':
-        # PROBLEMA BINÁRIO: Foco na classe positiva (Anomalia)
-        # Assumindo que: 0 = Normal, 1 = Anomalia
         f1 = f1_score(y_test, y_pred, average='binary', pos_label=1)
-        
-        # Para o ROC-AUC binário, passamos apenas as probabilidades da classe 1
         roc_auc = roc_auc_score(y_test, y_probs[:, 1])
         
     elif task.lower() == 'diagnosis':
-        # PROBLEMA MULTICLASSE: Média macro para avaliar o desbalanceamento geral
         f1 = f1_score(y_test, y_pred, average='macro')
-        
-        # OVR (One-vs-Rest) é o padrão ouro para ROC-AUC multiclasse
         roc_auc = roc_auc_score(y_test, y_probs, multi_class='ovr', average='macro')
         
     else:
         raise ValueError(f"Task desconhecida: {task}. Escolha 'detection' ou 'diagnosis'.")
         
-    print(f"     Bal Acc: {bal_acc:.4f} | F1: {macro_f1:.4f} | AUC: {roc_auc:.4f}")
-    
-    # Agora retorna 4 valores em vez de 3
-    return bal_acc, macro_f1, roc_auc, grid_search.best_params_
+    # Variável 'f1' usada corretamente no print
+    print(f"     Bal Acc: {bal_acc:.4f} | F1: {f1:.4f} | AUC: {roc_auc:.4f}")
+        
+    return bal_acc, f1, roc_auc, grid_search.best_params_
