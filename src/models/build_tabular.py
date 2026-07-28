@@ -48,10 +48,6 @@ def train_and_evaluate_tabnet(model, X_train, y_train, X_test, y_test, task='dia
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
     
-    # Opcional (se você quisesse separar uma parte do treino para validação estrita)
-    # Aqui usaremos o próprio X_test para monitorar o early stopping de forma prática,
-    # como feito no Deep Learning clássico de prototipagem.
-    
     # 2. Treinamento
     model.fit(
         X_train=X_train_scaled, y_train=y_train,
@@ -72,22 +68,34 @@ def train_and_evaluate_tabnet(model, X_train, y_train, X_test, y_test, task='dia
     
     bal_acc = balanced_accuracy_score(y_test, y_pred)
     
-    if task == 'detection':
-        # Na detecção (Binário), usamos ROC-AUC e F1-score padrão
-        # Assumindo que a classe 'Fault' (1) é a coluna 1 da probabilidade
-        roc_auc = roc_auc_score(y_test, y_pred_probs[:, 1])
-        macro_f1 = f1_score(y_test, y_pred, average='binary') 
-        print(f"     [Detecção] Bal Acc: {bal_acc:.4f} | F1: {macro_f1:.4f} | ROC-AUC: {roc_auc:.4f}")
+    # --- LOGICA CORRIGIDA E BLINDADA ---
+    if task.lower() == 'detection':
+        # Na detecção (Binário), focamos apenas na classe de anomalia (assumindo que seja '1')
+        try:
+            # Extrair índice da classe positiva (se ela existir no vetor de classes do modelo)
+            # O TabNet salva as classes conhecidas em model.classes_
+            pos_class_index = np.where(model.classes_ == 1)[0][0]
+            roc_auc = roc_auc_score(y_test, y_pred_probs[:, pos_class_index])
+        except IndexError:
+            roc_auc = roc_auc_score(y_test, y_pred_probs[:, 1]) # Fallback padrão
+
+        # F1_score binário explicitly focando no label '1'
+        macro_f1 = f1_score(y_test, y_pred, average='binary', pos_label=1) 
+        
+        print(f"     [Detecção] Bal Acc: {bal_acc:.4f} | F1 (Bin): {macro_f1:.4f} | ROC-AUC: {roc_auc:.4f}")
         return bal_acc, macro_f1, roc_auc, model
     
-    else:
-        # No diagnóstico (Multiclasse), usamos o F1 Macro e calculamos um Pseudo-AUC
-        # O ROC-AUC multiclasse requer o parâmetro 'ovr' (One-vs-Rest)
+    elif task.lower() == 'diagnosis':
+        # No diagnóstico (Multiclasse), usamos o F1 Macro e calculamos o ROC-AUC multiclasse
         try:
-            roc_auc = roc_auc_score(y_test, y_pred_probs, multi_class='ovr')
+            # Adicionado o 'average="macro"' também no ROC-AUC multiclasse
+            roc_auc = roc_auc_score(y_test, y_pred_probs, multi_class='ovr', average='macro')
         except ValueError:
             roc_auc = 0.0 # Caso extremo onde só há uma classe real no teste
             
         macro_f1 = f1_score(y_test, y_pred, average='macro')
         print(f"     [Diagnóstico] Bal Acc: {bal_acc:.4f} | Macro F1: {macro_f1:.4f} | ROC-AUC: {roc_auc:.4f}")
         return bal_acc, macro_f1, roc_auc, model
+    
+    else:
+        raise ValueError(f"Tarefa desconhecida: {task}")
