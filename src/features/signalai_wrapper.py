@@ -1,12 +1,20 @@
 import numpy as np
 import pandas as pd
-from signalai.features.pipelines import get_feature_pipeline
+import signalai.features.pipelines as pipe_module
 
 class SignalAIWrapper:
     def __init__(self, sample_rate, pipeline_name='all'):
         self.fs = sample_rate
-        # Pega o super-pipeline pronto da biblioteca do orientador
-        self.pipeline = get_feature_pipeline(pipeline_name)
+        
+        # Resgate Dinâmico: Procura pelo nome que o seu orientador usou no arquivo
+        if hasattr(pipe_module, 'get_pipeline'):
+            self.pipeline = pipe_module.get_pipeline(pipeline_name)
+        elif hasattr(pipe_module, 'get_feature_pipeline'):
+            self.pipeline = pipe_module.get_feature_pipeline(pipeline_name)
+        elif hasattr(pipe_module, 'pipelines') and isinstance(pipe_module.pipelines, dict):
+            self.pipeline = pipe_module.pipelines[pipeline_name]
+        else:
+            raise ImportError(f"Estrutura não reconhecida no pipelines.py. Encontrados: {dir(pipe_module)}")
 
     def fit_transform(self, X):
         # 1. Cria o DataFrame de metadados exigido pela SignAI
@@ -25,7 +33,7 @@ class SignalAIWrapper:
         try:
             out_dict = self.pipeline.transform(data_dict)
             
-            # A SignAI coloca as features num dicionário. Vamos pegar todas as matrizes exceto os sinais puros
+            # A SignAI coloca as features num dicionário. Pegamos todas as matrizes exceto os sinais puros
             feature_keys = [k for k in out_dict.keys() if k not in ["signal", "metainfo"]]
             
             extracted_features = []
