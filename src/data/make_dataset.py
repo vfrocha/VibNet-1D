@@ -67,7 +67,7 @@ def get_names(ds_name, meta):
         except: load = 0
         
         # Puxa o diâmetro da falha. Se não existir (ex: Normal), usa '0.000'
-        sev = meta.get('fault_diameter', meta.get('severity', '0.000'))
+        sev = meta.get('fault_size', meta.get('severity', '0.000'))
         # Limpa o valor se ele vier como número solto (ex: 0.007)
         if isinstance(sev, (float, int)):
             sev = f"{sev:.3f}"
