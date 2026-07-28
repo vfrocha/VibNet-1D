@@ -52,79 +52,57 @@ PIPELINES = {
     "UOC": Sequential([Detrend(), SimpleSplit(window_size=2048)])
 }
 
-# --- FUNÇÃO DE NOMES (Mantida para garantir Unbiased Split) ---
-def get_names(ds_name, meta):   
-    if "CWRU" in ds_name:
+def get_names(ds_name, meta):
+    # 1. CWRU 12k -> 4 Condições (Apenas Carga)
+    if ds_name == "CWRU_12k":
         load = meta.get('load', 0)
-        try:
-            load = int(load)
-        except:
-            load = 0
+        try: load = int(load)
+        except: load = 0
         cond = f"Load_{load}HP"
 
-    elif ds_name == "PU":
-        fname = str(meta.get('file_name', ''))
-        speed_code = fname[:3]
-        torque = meta.get('load_nm', 0)
-        radial = meta.get('radial_force_n', 0)
-        if speed_code == "N15" and torque == 0.7 and radial == 1000: cond = "C1_1500rpm_0.7Nm_1000N"
-        elif speed_code == "N09" and torque == 0.7 and radial == 1000: cond = "C2_900rpm_0.7Nm_1000N"
-        elif speed_code == "N15" and torque == 0.1 and radial == 1000: cond = "C3_1500rpm_0.1Nm_1000N"
-        elif speed_code == "N15" and torque == 0.7 and radial == 400:  cond = "C4_1500rpm_0.7Nm_400N"
-        else: cond = f"Cx_Other_{speed_code}_{torque}Nm"
+    # 2. CWRU 48k -> 12 Condições (Carga x Severidade)
+    elif ds_name == "CWRU_48k":
+        load = meta.get('load', 0)
+        try: load = int(load)
+        except: load = 0
+        
+        # Puxa o diâmetro da falha. Se não existir (ex: Normal), usa '0.000'
+        sev = meta.get('fault_diameter', meta.get('severity', '0.000'))
+        # Limpa o valor se ele vier como número solto (ex: 0.007)
+        if isinstance(sev, (float, int)):
+            sev = f"{sev:.3f}"
+        cond = f"Load_{load}HP_Sev_{sev}"
 
-    elif ds_name == "HUST":
-        load_w = meta.get('load_W', 0)
-        cond = f"Load_{load_w}W"
-
-    elif ds_name == "UORED":
-        bid = meta.get('bearing_id', meta.get('bearing.id', 'Unknown'))
-        cond = f"Bearing_{bid}"
-        stage = meta.get('stage', 'unknown')
-        if stage == 'healthy':
-            return cond, "Class_Normal"
-
+    # 3. UOEMD -> 8 ou 16 Condições (Carga x Velocidade)
     elif ds_name == "UOEMD":
-        # Dados exatos da classe UOEMD_raw
-        load = meta.get('load', 'Unknown')
         speed = meta.get('speed', 'Unknown')
-        
-        # Cria a pasta de condição agrupando Carga e Velocidade
-        # Exemplo de saída: "Load_No_Load_Speed_15Hz"
+        load = meta.get('load', 'Unknown')
+        # Cria exatamente o padrão do seu dicionário: "Load_Loaded_Speed_15Hz"
         cond = f"Load_{load}_Speed_{speed}"
-        
-    elif ds_name == "Mechanical_Gear":
-        cond = f"Cond_{meta.get('condition', 'Unknown')}"
 
-    elif ds_name == "Electric_Motor":
-        cond = f"Cond_{meta.get('condition', 'Unknown')}"
-    
-    elif ds_name == "IMS":
-        # Usando as chaves exatas reveladas pelo terminal: 'test' e 'bearing'
-        test_num = meta.get('test', 'Unknown')
-        bearing_num = meta.get('bearing', 'Unknown')
-        cond = f"Test_{test_num}_Bearing_{bearing_num}"
-        
-    elif ds_name == "MFPT":
-        # MFPT é dividido por carga (Load)
-        cond = f"Load_{meta.get('load', 'Unknown')}"
-        
-    elif ds_name == "UOC":
-        # UOC é dividido pela condição de falha específica
-        cond = f"Cond_{meta.get('condition', 'Unknown')}"
+    # 4. HUST Gearbox -> 30 Condições (Velocidade x Carga)
+    elif "HUST" in ds_name:
+        speed = meta.get('rotation_hz', meta.get('speed', '0'))
+        load = meta.get('load_W', meta.get('load', '0'))
+        # Cria exatamente o padrão do seu dicionário: "Cond_20_0" ou "Cond_L0_VS_0_40_0"
+        cond = f"Cond_{speed}_{load}"
 
-    elif ds_name == "HUST_Gearbox":
-        cond = f"Cond_{meta.get('condition', 'Unknown')}"
-    
+    # 5. Outros Datasets (PU, UORED, etc)
     else:
         val = meta.get('load', meta.get('rotation_hz', '0'))
         cond = f"Cond_{str(val).replace('.', '')}"
 
-    # A classe final (ex: Class_Misalignment)
-    orig_label = meta.get('label')
+    # --- DEFINIÇÃO DA CLASSE (Rótulos) ---
+    orig_label = meta.get('label', '')
     if isinstance(orig_label, pd.Series): orig_label = orig_label.item()
-    label_name = f"Class_{orig_label}"
     
+    # Padroniza a Classe Normal independentemente do dataset
+    label_str = str(orig_label).lower()
+    if 'normal' in label_str or 'healthy' in label_str or label_str == '0':
+        label_name = "Class_Normal"
+    else:
+        label_name = f"Class_{orig_label}"
+        
     return cond, label_name
 
 def extract_signal(item):
