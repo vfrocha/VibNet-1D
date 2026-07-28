@@ -16,7 +16,7 @@ from src.models.build_sklearn import get_random_forest, get_svm, get_xgboost, tr
 from src.models.build_tabular import get_tabnet_classifier, train_and_evaluate_tabnet
 
 # --- CONFIGURAÇÃO GLOBAL ---
-TASKS = ["detection", "diagnosis"]
+TASKS = ["diagnosis", "detection"]
 
 BASELINE_CONFIGS = {
     "CWRU_12k": {
