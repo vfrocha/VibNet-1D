@@ -67,19 +67,19 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
     # A) Random Forest
     print(f"     -> Treinando Random Forest...")
     rf_pipeline, rf_grid = get_random_forest()
-    rf_acc, rf_f1, rf_auc, _ = train_and_evaluate(rf_pipeline, rf_grid, X_train, y_train, X_test, y_test)
+    rf_acc, rf_f1, rf_auc, _ = train_and_evaluate(rf_pipeline, rf_grid, X_train, y_train, X_test, y_test, task=task)
     fold_results.append({**base_info, "Model": "Random Forest", "Bal Acc": rf_acc, "Macro F1": rf_f1, "ROC-AUC": rf_auc})
 
     # B) SVM
     print(f"     -> Treinando SVM...")
     svm_pipeline, svm_grid = get_svm()
-    svm_acc, svm_f1, svm_auc, _ = train_and_evaluate(svm_pipeline, svm_grid, X_train, y_train, X_test, y_test)
+    svm_acc, svm_f1, svm_auc, _ = train_and_evaluate(svm_pipeline, svm_grid, X_train, y_train, X_test, y_test, task=task)
     fold_results.append({**base_info, "Model": "SVM", "Bal Acc": svm_acc, "Macro F1": svm_f1, "ROC-AUC": svm_auc})
 
     # C) XGBoost
     print(f"     -> Treinando XGBoost...")
     xgb_pipeline, xgb_grid = get_xgboost()
-    xgb_acc, xgb_f1, xgb_auc, _ = train_and_evaluate(xgb_pipeline, xgb_grid, X_train, y_train, X_test, y_test)
+    xgb_acc, xgb_f1, xgb_auc, _ = train_and_evaluate(xgb_pipeline, xgb_grid, X_train, y_train, X_test, y_test, task=task)
     fold_results.append({**base_info, "Model": "XGBoost", "Bal Acc": xgb_acc, "Macro F1": xgb_f1, "ROC-AUC": xgb_auc})
 
     # D) TabNet
