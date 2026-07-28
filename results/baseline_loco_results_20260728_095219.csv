@@ -1,0 +1,417 @@
+Dataset,Task,Test Condition,Model,Bal Acc,Macro F1,ROC-AUC
+CWRU_12k,Diagnosis,Load_0HP,Random Forest,0.6839766081871346,0.6839385412220624,0.9540970760233918
+CWRU_12k,Diagnosis,Load_0HP,SVM,0.6442690058479533,0.6379897293181561,0.9132196542079838
+CWRU_12k,Diagnosis,Load_0HP,XGBoost,0.6775438596491228,0.6549365217024866,0.9520766590389016
+CWRU_12k,Diagnosis,Load_0HP,TabNet,0.6592982456140352,0.5869163957823221,0.9170112636664124
+CWRU_12k,Diagnosis,Load_1HP,Random Forest,0.7456140350877194,0.744273915101294,0.968830740372945
+CWRU_12k,Diagnosis,Load_1HP,SVM,0.7378362573099414,0.7370165993689934,0.9524067780679278
+CWRU_12k,Diagnosis,Load_1HP,XGBoost,0.7519298245614034,0.7218074535998332,0.9714388376018078
+CWRU_12k,Diagnosis,Load_1HP,TabNet,0.7375438596491228,0.7375090704141094,0.95238716433525
+CWRU_12k,Diagnosis,Load_2HP,Random Forest,0.7935672514619883,0.7933171096691156,0.9748012308899433
+CWRU_12k,Diagnosis,Load_2HP,SVM,0.7630994152046784,0.7604625912635015,0.972380558314024
+CWRU_12k,Diagnosis,Load_2HP,XGBoost,0.79,0.7876808487270021,0.9749777953502438
+CWRU_12k,Diagnosis,Load_2HP,TabNet,0.7804678362573099,0.7712890655826498,0.9725291988998819
+CWRU_12k,Diagnosis,Load_3HP,Random Forest,0.6838596491228071,0.6854104378630109,0.955916242679842
+CWRU_12k,Diagnosis,Load_3HP,SVM,0.7269005847953217,0.72700641767884,0.9533139402781353
+CWRU_12k,Diagnosis,Load_3HP,XGBoost,0.7233333333333334,0.6936214810341947,0.9582704096019224
+CWRU_12k,Diagnosis,Load_3HP,TabNet,0.7026315789473685,0.6912751573122391,0.935054905782976
+CWRU_48k,Diagnosis,Load_0HP,Random Forest,0.9305555555555555,0.9297937691970163,0.9558080808080808
+CWRU_48k,Diagnosis,Load_0HP,SVM,0.9305555555555555,0.9274692031356807,0.985479797979798
+CWRU_48k,Diagnosis,Load_0HP,XGBoost,0.8361111111111111,0.8439055012019047,0.9463383838383838
+CWRU_48k,Diagnosis,Load_0HP,TabNet,0.875,0.8708204255566706,0.9157512626262626
+CWRU_48k,Diagnosis,Load_1HP,Random Forest,0.9833333333333334,0.9829829791243715,0.997514619883041
+CWRU_48k,Diagnosis,Load_1HP,SVM,0.9820987654320987,0.9826914080773429,0.9996074290664932
+CWRU_48k,Diagnosis,Load_1HP,XGBoost,0.9500000000000001,0.9483102767938526,0.9962286116525884
+CWRU_48k,Diagnosis,Load_1HP,TabNet,0.8450617283950618,0.8408301439387635,0.960141867013212
+CWRU_48k,Diagnosis,Load_2HP,Random Forest,0.9944444444444445,0.9944440586151817,0.9996990740740741
+CWRU_48k,Diagnosis,Load_2HP,SVM,0.9555555555555556,0.9554343632742501,0.9988425925925926
+CWRU_48k,Diagnosis,Load_2HP,XGBoost,0.9833333333333334,0.9833229101521784,0.9993055555555556
+CWRU_48k,Diagnosis,Load_2HP,TabNet,0.9666666666666667,0.9665694174307676,0.9812962962962962
+CWRU_48k,Diagnosis,Load_3HP,Random Forest,0.8611111111111112,0.8571620738690956,0.9874999999999999
+CWRU_48k,Diagnosis,Load_3HP,SVM,0.8055555555555555,0.8096766971895971,0.9235648148148147
+CWRU_48k,Diagnosis,Load_3HP,XGBoost,0.8777777777777778,0.8761074922631527,0.9836574074074074
+CWRU_48k,Diagnosis,Load_3HP,TabNet,0.9444444444444443,0.9436095931997572,0.9760648148148148
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,Random Forest,0.6375,0.5868298368298368,0.9710714285714286
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,SVM,0.6375,0.5762882447665056,0.8846428571428571
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,XGBoost,0.625,0.5657894736842105,0.9285714285714286
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,TabNet,0.6875,0.615507299717826,0.8935714285714286
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,Random Forest,0.9,0.8993314439706955,0.9934821428571429
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,SVM,0.8375,0.8389557226399331,0.9753571428571429
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,XGBoost,0.8875000000000001,0.8900092253807425,0.98875
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,TabNet,0.7749999999999999,0.7778409090909091,0.9550000000000001
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,Random Forest,0.8375,0.7949701619778345,0.9328571428571428
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,SVM,0.825,0.811774371700001,0.98375
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,XGBoost,0.6125,0.5391101953601953,0.9767857142857143
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,TabNet,0.825,0.8126929642947949,0.9875
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,Random Forest,0.925,0.9220556404379934,0.9908928571428572
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,SVM,0.825,0.8277777777777777,0.9810714285714286
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,XGBoost,0.8875,0.8904135338345864,0.9782142857142857
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,TabNet,0.8625,0.8641604010025062,0.9730357142857143
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,SVM,0.7875000000000001,0.7641641983747247,0.9923214285714286
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,XGBoost,0.95,0.9479166666666667,1.0
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,TabNet,0.7875,0.7622053872053872,0.9528571428571428
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,Random Forest,0.8875,0.8879397692091191,0.9948214285714286
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,SVM,0.8625,0.8626461988304093,0.9908928571428572
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,XGBoost,0.8875,0.8856791600212652,0.9939285714285715
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,TabNet,0.825,0.8200051759834368,0.9646428571428571
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,Random Forest,0.7375,0.680921052631579,0.9053571428571427
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,SVM,0.675,0.6373327108621226,0.9048214285714287
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,XGBoost,0.7875,0.7633374689826302,0.9242857142857144
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,TabNet,0.8,0.7521295155993433,0.9253571428571429
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,Random Forest,0.975,0.974968671679198,0.9995535714285715
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,SVM,0.9,0.8994949494949496,0.9930357142857142
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,XGBoost,0.925,0.9229267464561582,0.9953571428571428
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,TabNet,0.8375,0.8248588643325485,0.9741071428571428
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,SVM,0.85,0.8083020050125312,0.9792857142857143
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,XGBoost,1.0,1.0,1.0
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,TabNet,0.975,0.9749373433583959,0.9996428571428572
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,Random Forest,0.9375,0.9372161464266727,0.9949107142857143
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,SVM,0.85,0.8461365227909345,0.9794642857142857
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,XGBoost,0.925,0.9246534897850687,0.9944642857142858
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,TabNet,0.875,0.8753968253968254,0.969107142857143
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,SVM,0.75,0.7409924274982458,0.9767857142857144
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,XGBoost,0.9624999999999999,0.963227815916603,1.0
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,TabNet,0.6875,0.6311717561717562,0.9039285714285714
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,Random Forest,0.9625,0.9622161464266727,0.9983928571428571
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,SVM,0.9624999999999999,0.9624373433583959,0.9983928571428571
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,XGBoost,0.8875,0.8841478696741855,0.9894642857142857
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,TabNet,0.9,0.8992843070242451,0.989107142857143
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,Random Forest,0.625,0.5335144927536233,0.9530357142857143
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,SVM,0.625,0.5753082614784741,0.9785714285714286
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,XGBoost,0.5375,0.4925854287556415,0.9444642857142858
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,TabNet,0.625,0.5808619733924612,0.8053571428571429
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,Random Forest,0.8374999999999999,0.8370369418163536,0.9889285714285714
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,SVM,0.85,0.851548490209481,0.9810714285714286
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,XGBoost,0.85,0.8487431523472713,0.9755357142857143
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,TabNet,0.7625,0.7553243969652639,0.9248214285714286
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,Random Forest,0.9125,0.8978937728937729,1.0
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,SVM,0.6375,0.5678571428571428,0.9489285714285715
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,XGBoost,0.9875,0.987468671679198,1.0
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,TabNet,0.725,0.6755050505050505,0.9076785714285713
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,Random Forest,0.925,0.9258040935672515,0.9925892857142857
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,SVM,0.875,0.871912401324166,0.9875
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,XGBoost,0.8625,0.8623710010319917,0.98375
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,TabNet,0.8500000000000001,0.8514619883040935,0.9689285714285714
+HUST_Gearbox,Diagnosis,Cond_20_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_0,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_0,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_0,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_1,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_1,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_1,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_1,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_2,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_2,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_2,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_2,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_3,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_3,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_3,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_3,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_4,Random Forest,0.6666666666666666,0.5555555555555555,0.6666666666666666
+HUST_Gearbox,Diagnosis,Cond_20_4,SVM,0.46666666666666673,0.4612794612794613,0.6933333333333334
+HUST_Gearbox,Diagnosis,Cond_20_4,XGBoost,0.6666666666666666,0.5555555555555555,0.9633333333333334
+HUST_Gearbox,Diagnosis,Cond_20_4,TabNet,0.6666666666666666,0.5555555555555555,0.6649999999999999
+HUST_Gearbox,Diagnosis,Cond_25_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_0,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_0,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_0,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_1,Random Forest,0.8333333333333334,0.8222222222222223,1.0
+HUST_Gearbox,Diagnosis,Cond_25_1,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_1,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_1,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_2,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_2,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_2,XGBoost,0.7333333333333334,0.6825396825396824,1.0
+HUST_Gearbox,Diagnosis,Cond_25_2,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_3,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_3,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_3,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_3,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_4,Random Forest,0.6666666666666666,0.5555555555555555,1.0
+HUST_Gearbox,Diagnosis,Cond_25_4,SVM,0.6666666666666666,0.5555555555555555,1.0
+HUST_Gearbox,Diagnosis,Cond_25_4,XGBoost,0.9666666666666667,0.9665831244778612,1.0
+HUST_Gearbox,Diagnosis,Cond_25_4,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_0,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_0,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_0,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_1,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_1,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_1,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_1,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_2,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_2,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_2,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_2,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_3,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_3,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_3,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_3,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_4,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_4,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_4,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_4,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_0,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_0,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_0,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_1,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_1,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_1,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_1,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_2,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_2,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_2,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_2,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_3,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_3,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_3,XGBoost,0.9666666666666667,0.9665831244778612,1.0
+HUST_Gearbox,Diagnosis,Cond_35_3,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_4,Random Forest,0.8666666666666667,0.8573153899240856,0.96
+HUST_Gearbox,Diagnosis,Cond_35_4,SVM,0.9666666666666667,0.9665831244778613,0.9500000000000001
+HUST_Gearbox,Diagnosis,Cond_35_4,XGBoost,0.8666666666666667,0.8573153899240856,0.9666666666666667
+HUST_Gearbox,Diagnosis,Cond_35_4,TabNet,0.8666666666666667,0.8611111111111112,0.81
+HUST_Gearbox,Diagnosis,Cond_40_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_0,SVM,0.9666666666666667,0.9665831244778612,1.0
+HUST_Gearbox,Diagnosis,Cond_40_0,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_0,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_1,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_1,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_1,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_1,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_2,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_2,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_2,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_2,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_3,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_3,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_3,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_3,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_4,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_4,SVM,0.9333333333333332,0.9326599326599326,1.0
+HUST_Gearbox,Diagnosis,Cond_40_4,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_4,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L0_VS_0_40_0,Random Forest,0.9666666666666667,0.9665831244778613,1.0
+HUST_Gearbox,Diagnosis,Cond_L0_VS_0_40_0,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L0_VS_0_40_0,XGBoost,0.6333333333333334,0.6455026455026455,0.8916666666666666
+HUST_Gearbox,Diagnosis,Cond_L0_VS_0_40_0,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L1_VS_0_40_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L1_VS_0_40_0,SVM,0.9666666666666667,0.9665831244778612,1.0
+HUST_Gearbox,Diagnosis,Cond_L1_VS_0_40_0,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L1_VS_0_40_0,TabNet,1.0,1.0,0.9783333333333334
+HUST_Gearbox,Diagnosis,Cond_L2_VS_0_40_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L2_VS_0_40_0,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L2_VS_0_40_0,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L2_VS_0_40_0,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L3_VS_0_40_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L3_VS_0_40_0,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L3_VS_0_40_0,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L3_VS_0_40_0,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L4_VS_0_40_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L4_VS_0_40_0,SVM,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L4_VS_0_40_0,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L4_VS_0_40_0,TabNet,1.0,1.0,1.0
+CWRU_12k,Detection,Load_0HP,Random Forest,0.5,0.0,0.9666666666666667
+CWRU_12k,Detection,Load_0HP,SVM,0.9666666666666667,0.6666666666666666,0.9666666666666667
+CWRU_12k,Detection,Load_0HP,XGBoost,0.5,0.0,0.9666666666666666
+CWRU_12k,Detection,Load_0HP,TabNet,0.9666666666666667,0.6666666666666666,0.9666666666666667
+CWRU_12k,Detection,Load_1HP,Random Forest,0.7953125000000001,0.574468085106383,0.9375
+CWRU_12k,Detection,Load_1HP,SVM,0.9375,0.6666666666666666,0.9375
+CWRU_12k,Detection,Load_1HP,XGBoost,0.5875,0.2857142857142857,0.9375
+CWRU_12k,Detection,Load_1HP,TabNet,0.9375,0.6666666666666666,0.9375
+CWRU_12k,Detection,Load_2HP,Random Forest,0.9320312500000001,0.6638655462184874,0.9375
+CWRU_12k,Detection,Load_2HP,SVM,0.9375,0.6666666666666666,0.9375
+CWRU_12k,Detection,Load_2HP,XGBoost,0.6859375,0.4594594594594595,0.9375
+CWRU_12k,Detection,Load_2HP,TabNet,0.9375,0.6666666666666666,0.9375
+CWRU_12k,Detection,Load_3HP,Random Forest,0.54921875,0.1836734693877551,0.9375
+CWRU_12k,Detection,Load_3HP,SVM,0.9375,0.6666666666666666,0.9375
+CWRU_12k,Detection,Load_3HP,XGBoost,0.68046875,0.4520547945205479,0.9375
+CWRU_12k,Detection,Load_3HP,TabNet,0.9375,0.6666666666666666,0.9375
+UOEMD,Detection,Load_Loaded_Speed_15Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_15Hz,SVM,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_15Hz,XGBoost,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_15Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_45_to_15Hz,Random Forest,1.0,1.0,0.9999999999999999
+UOEMD,Detection,Load_Loaded_Speed_Dec_45_to_15Hz,SVM,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_45_to_15Hz,XGBoost,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_45_to_15Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_15Hz,Random Forest,0.9928571428571429,0.9523809523809523,0.9999999999999999
+UOEMD,Detection,Load_No_Load_Speed_15Hz,SVM,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_15Hz,XGBoost,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_15Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_45_to_15Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_45_to_15Hz,SVM,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_45_to_15Hz,XGBoost,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_45_to_15Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_30Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_30Hz,SVM,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_30Hz,XGBoost,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_30Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_60_to_30Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_60_to_30Hz,SVM,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_60_to_30Hz,XGBoost,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_60_to_30Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_30Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_30Hz,SVM,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_30Hz,XGBoost,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_30Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_60_to_30Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_60_to_30Hz,SVM,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_60_to_30Hz,XGBoost,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_60_to_30Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_45Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_45Hz,SVM,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_45Hz,XGBoost,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_45Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_15_to_45Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_15_to_45Hz,SVM,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_15_to_45Hz,XGBoost,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_15_to_45Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_45Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_45Hz,SVM,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_45Hz,XGBoost,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_45Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_15_to_45Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_15_to_45Hz,SVM,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_15_to_45Hz,XGBoost,0.8928571428571429,0.8421052631578947,0.9928571428571429
+UOEMD,Detection,Load_No_Load_Speed_Inc_15_to_45Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_60Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_60Hz,SVM,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_60Hz,XGBoost,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_60Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_30_to_60Hz,Random Forest,0.95,0.9473684210526315,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_30_to_60Hz,SVM,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_30_to_60Hz,XGBoost,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_30_to_60Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_60Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_60Hz,SVM,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_60Hz,XGBoost,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_60Hz,TabNet,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_30_to_60Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_30_to_60Hz,SVM,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_30_to_60Hz,XGBoost,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_30_to_60Hz,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_0,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_0,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_0,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_1,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_1,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_1,XGBoost,0.95,0.9473684210526315,1.0
+HUST_Gearbox,Detection,Cond_20_1,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_2,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_2,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_2,XGBoost,0.975,0.9523809523809523,1.0
+HUST_Gearbox,Detection,Cond_20_2,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_3,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_3,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_3,XGBoost,0.975,0.9523809523809523,1.0
+HUST_Gearbox,Detection,Cond_20_3,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_4,Random Forest,0.75,0.6666666666666666,0.5
+HUST_Gearbox,Detection,Cond_20_4,SVM,0.375,0.1111111111111111,0.545
+HUST_Gearbox,Detection,Cond_20_4,XGBoost,0.8,0.7272727272727273,0.835
+HUST_Gearbox,Detection,Cond_20_4,TabNet,0.9,0.8888888888888888,1.0
+HUST_Gearbox,Detection,Cond_25_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_0,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_0,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_0,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_1,Random Forest,0.9,0.8888888888888888,1.0
+HUST_Gearbox,Detection,Cond_25_1,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_1,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_1,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_2,Random Forest,0.875,0.8,1.0
+HUST_Gearbox,Detection,Cond_25_2,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_2,XGBoost,0.875,0.8,1.0
+HUST_Gearbox,Detection,Cond_25_2,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_3,Random Forest,0.95,0.9090909090909091,1.0
+HUST_Gearbox,Detection,Cond_25_3,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_3,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_3,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_4,Random Forest,0.75,0.6666666666666666,1.0
+HUST_Gearbox,Detection,Cond_25_4,SVM,0.75,0.6666666666666666,1.0
+HUST_Gearbox,Detection,Cond_25_4,XGBoost,0.75,0.6666666666666666,1.0
+HUST_Gearbox,Detection,Cond_25_4,TabNet,0.975,0.9523809523809523,0.995
+HUST_Gearbox,Detection,Cond_30_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_0,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_0,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_0,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_1,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_1,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_1,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_1,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_2,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_2,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_2,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_2,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_3,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_3,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_3,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_3,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_4,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_4,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_4,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_4,TabNet,0.95,0.9090909090909091,1.0
+HUST_Gearbox,Detection,Cond_35_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_0,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_0,XGBoost,0.9,0.8888888888888888,1.0
+HUST_Gearbox,Detection,Cond_35_0,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_1,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_1,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_1,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_1,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_2,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_2,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_2,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_2,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_3,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_3,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_3,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_3,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_4,Random Forest,0.8,0.75,0.9500000000000001
+HUST_Gearbox,Detection,Cond_35_4,SVM,0.7,0.5714285714285714,1.0
+HUST_Gearbox,Detection,Cond_35_4,XGBoost,0.9,0.8888888888888888,0.88
+HUST_Gearbox,Detection,Cond_35_4,TabNet,0.95,0.9473684210526315,0.99
+HUST_Gearbox,Detection,Cond_40_0,Random Forest,0.85,0.8235294117647058,1.0
+HUST_Gearbox,Detection,Cond_40_0,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_0,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_0,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_1,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_1,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_1,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_1,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_2,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_2,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_2,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_2,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_3,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_3,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_3,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_3,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_4,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_4,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_4,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_4,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L0_VS_0_40_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L0_VS_0_40_0,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L0_VS_0_40_0,XGBoost,0.75,0.6666666666666666,1.0
+HUST_Gearbox,Detection,Cond_L0_VS_0_40_0,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L1_VS_0_40_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L1_VS_0_40_0,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L1_VS_0_40_0,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L1_VS_0_40_0,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L2_VS_0_40_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L2_VS_0_40_0,SVM,0.95,0.9473684210526315,1.0
+HUST_Gearbox,Detection,Cond_L2_VS_0_40_0,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L2_VS_0_40_0,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L3_VS_0_40_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L3_VS_0_40_0,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L3_VS_0_40_0,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L3_VS_0_40_0,TabNet,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L4_VS_0_40_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L4_VS_0_40_0,SVM,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L4_VS_0_40_0,XGBoost,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L4_VS_0_40_0,TabNet,0.9,0.8333333333333334,0.99
