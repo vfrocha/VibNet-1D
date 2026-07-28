@@ -64,7 +64,7 @@ def get_xgboost(random_state=42):
     return pipeline, param_grid
 # -----------------------------
 
-def train_and_evaluate(pipeline, param_grid, X_train, y_train, X_test, y_test):
+def train_and_evaluate(pipeline, param_grid, X_train, y_train, X_test, y_test, task="diagnosis"):
     print(f"  -> Otimizando hiperparâmetros (GridSearch em andamento...)")
     
     grid_search = GridSearchCV(
@@ -73,25 +73,33 @@ def train_and_evaluate(pipeline, param_grid, X_train, y_train, X_test, y_test):
     grid_search.fit(X_train, y_train)
     best_model = grid_search.best_estimator_
     print(f"     Melhores parâmetros: {grid_search.best_params_}")
-    
-    y_pred = best_model.predict(X_test)
-    
-    # --- NOVO: CÁLCULO SEGURO DO ROC-AUC MULTICLASSE ---
-    try:
-        y_proba = best_model.predict_proba(X_test)
-        # Checa se é problema binário ou multiclasse
-        if len(np.unique(y_train)) == 2:
-            roc_auc = roc_auc_score(y_test, y_proba[:, 1])
-        else:
-            roc_auc = roc_auc_score(y_test, y_proba, multi_class='ovr')
-    except Exception as e:
-        print(f"     [Aviso] Não foi possível calcular ROC-AUC: {e}")
-        roc_auc = 0.0
-    # --------------------------------------------------
 
-    bal_acc = balanced_accuracy_score(y_test, y_pred)
-    macro_f1 = f1_score(y_test, y_pred, average='macro')
+    # 1. Gerar predições
+    y_pred = best_model.predict(X_test)
+    y_probs = best_model.predict_proba(X_test)
     
+    # 2. Balanced Accuracy é igual para ambas as tarefas
+    bal_acc = balanced_accuracy_score(y_test, y_pred)
+    
+    # 3. Ramificação das Métricas
+    if task.lower() == 'detection':
+        # PROBLEMA BINÁRIO: Foco na classe positiva (Anomalia)
+        # Assumindo que: 0 = Normal, 1 = Anomalia
+        f1 = f1_score(y_test, y_pred, average='binary', pos_label=1)
+        
+        # Para o ROC-AUC binário, passamos apenas as probabilidades da classe 1
+        roc_auc = roc_auc_score(y_test, y_probs[:, 1])
+        
+    elif task.lower() == 'diagnosis':
+        # PROBLEMA MULTICLASSE: Média macro para avaliar o desbalanceamento geral
+        f1 = f1_score(y_test, y_pred, average='macro')
+        
+        # OVR (One-vs-Rest) é o padrão ouro para ROC-AUC multiclasse
+        roc_auc = roc_auc_score(y_test, y_probs, multi_class='ovr', average='macro')
+        
+    else:
+        raise ValueError(f"Task desconhecida: {task}. Escolha 'detection' ou 'diagnosis'.")
+        
     print(f"     Bal Acc: {bal_acc:.4f} | F1: {macro_f1:.4f} | AUC: {roc_auc:.4f}")
     
     # Agora retorna 4 valores em vez de 3
