@@ -5,26 +5,35 @@ import pandas as pd
 from datetime import datetime
 from tqdm import tqdm
 
+# Importações do Scikit-Learn diretas para não depender do build_sklearn.py
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import balanced_accuracy_score, f1_score, roc_auc_score
+
 # Adiciona a raiz do projeto ao path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 from src.features.extractors_v2 import extract_advanced_features
 from src.features.signalai_wrapper import extract_fusion_features
-from src.models.build_sklearn import evaluate_all_models
 
 # --- CONFIGURAÇÃO GLOBAL ---
 DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
 RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../results'))
 
-# Lista das bases que participarão do Transfer Learning
+# Expandido para usar todas as 9 bases que possuem a classe "Normal" mapeada!
 DATASETS_CONFIG = {
     "CWRU_12k": 12000,
     "CWRU_48k": 48000,
     "UOEMD": 42000,
-    "HUST_Gearbox": 25600
+    "HUST_Gearbox": 25600,
+    "HUST": 51200,
+    "PU": 64000,
+    "UORED": 200000,          # ou 42000, dependendo do FS que você definiu no dataloader
+    "Mechanical_Gear": 5000,
+    "Electric_Motor": 50000
 }
 
-# Focaremos na detecção para garantir harmonia entre rótulos de máquinas diferentes
 TASK = "detection" 
 
 class Logger(object):
@@ -42,7 +51,6 @@ class Logger(object):
 def load_entire_dataset_for_tl(dataset_name, fs):
     """
     Carrega TODOS os arquivos de uma base de dados específica.
-    Como é Transfer Learning, não separamos por condição (Fold), carregamos a máquina inteira.
     Converte os rótulos para Binário (0 = Normal, 1 = Fault).
     """
     dataset_path = os.path.join(DATA_ROOT, dataset_name)
@@ -53,7 +61,6 @@ def load_entire_dataset_for_tl(dataset_name, fs):
     X_raw = []
     y_raw = []
     
-    print(f"  -> Lendo arquivos de {dataset_name}...")
     # Percorre todas as pastas (Condições) e subpastas (Classes)
     for root, dirs, files in os.walk(dataset_path):
         for file in files:
@@ -61,20 +68,65 @@ def load_entire_dataset_for_tl(dataset_name, fs):
                 class_name = os.path.basename(root)
                 file_path = os.path.join(root, file)
                 
-                # Mapeamento Universal Binário (Harmonização)
-                if 'normal' in class_name.lower():
+                # Mapeamento Universal Binário
+                if 'normal' in class_name.lower() or 'healthy' in class_name.lower():
                     label = 0 # Saudável
                 else:
-                    label = 1 # Falha (Qualquer tipo)
+                    label = 1 # Falha
                     
-                # Ignora a CWRU_48k se não tiver dados normais, pois enviesaria a detecção
+                # CWRU_48k não tem dados normais, pegamos só as falhas para usar no treino
                 if dataset_name == "CWRU_48k" and label == 0:
-                    continue # Segurança extra, embora já saibamos que 48k não tem normal
+                    continue 
                     
                 X_raw.append(np.load(file_path))
                 y_raw.append(label)
                 
     return X_raw, y_raw
+
+def evaluate_transfer_models(X_train, y_train, X_test, y_test, source_name, target_name):
+    """
+    Avalia a generalização treinando nas origens (source) e testando no alvo (target).
+    """
+    results = []
+    scaler = StandardScaler()
+    X_train_s = scaler.fit_transform(X_train)
+    X_test_s = scaler.transform(X_test)
+    
+    models = {
+        "Random Forest": RandomForestClassifier(n_estimators=100, random_state=42, n_jobs=-1),
+        "SVM (RBF)": SVC(kernel='rbf', probability=True, random_state=42)
+    }
+    
+    for model_name, model in models.items():
+        print(f"     -> Treinando {model_name}...")
+        try:
+            model.fit(X_train_s, y_train)
+            y_pred = model.predict(X_test_s)
+            y_probs = model.predict_proba(X_test_s)
+            
+            bal_acc = balanced_accuracy_score(y_test, y_pred)
+            macro_f1 = f1_score(y_test, y_pred, average='binary')
+            
+            try:
+                roc_auc = roc_auc_score(y_test, y_probs[:, 1])
+            except ValueError:
+                roc_auc = 0.0 # Ocorre se o Target tiver apenas 1 classe presente no teste
+                
+            print(f"        [{model_name}] Bal Acc: {bal_acc:.4f} | F1: {macro_f1:.4f} | ROC-AUC: {roc_auc:.4f}")
+            
+            results.append({
+                "Source Domains": source_name,
+                "Target Domain": target_name,
+                "Task": "Detection",
+                "Model": model_name,
+                "Bal Acc": bal_acc,
+                "Macro F1": macro_f1,
+                "ROC-AUC": roc_auc
+            })
+        except Exception as e:
+            print(f"        [ERRO] Falha ao treinar {model_name}: {e}")
+            
+    return results
 
 def run_transfer_learning():
     os.makedirs(RESULTS_DIR, exist_ok=True)
@@ -88,9 +140,6 @@ def run_transfer_learning():
     print(f"Datsets disponíveis: {list(DATASETS_CONFIG.keys())}\n")
 
     master_results = []
-    
-    # Pré-carrega e extrai as features de todas as bases para economizar memória e tempo
-    # A MÁGICA: O fs é diferente para cada base, mas o extrator gera sempre 141 colunas padronizadas!
     db_features = {}
     db_labels = {}
     
@@ -98,63 +147,51 @@ def run_transfer_learning():
     for ds_name, fs in DATASETS_CONFIG.items():
         X_raw, y_raw = load_entire_dataset_for_tl(ds_name, fs)
         if len(X_raw) > 0:
-            print(f"  -> Extraindo Fusion Features (141 cols) para {ds_name} (fs={fs}Hz)...")
+            print(f"  -> {ds_name} carregado: {len(X_raw)} janelas. Extraindo 141 features (fs={fs}Hz)...")
             X_fusion = extract_fusion_features(X_raw, fs, extract_advanced_features)
             
-            # Limpeza de NaNs
             X_clean = np.nan_to_num(np.array(X_fusion, dtype=np.float32))
             if X_clean.ndim == 1: X_clean = X_clean.reshape(len(y_raw), -1)
             
             db_features[ds_name] = X_clean
             db_labels[ds_name] = np.array(y_raw)
-            print(f"  -> {ds_name} pronto: {X_clean.shape[0]} amostras.\n")
+        else:
+            print(f"  -> {ds_name}: Nenhuma amostra encontrada. Pulando.")
 
     # --- FASE 2: VALIDAÇÃO CRUZADA LEAVE-ONE-DOMAIN-OUT ---
     print("\n--- FASE 2: TREINAMENTO MULTI-SOURCE ---")
     available_datasets = list(db_features.keys())
     
     for target_ds in available_datasets:
-        # Se CWRU_48k não tem dados normais, não podemos usá-lo como alvo de teste para Detecção
-        if target_ds == "CWRU_48k" or len(np.unique(db_labels[target_ds])) < 2:
-            print(f"\n[!] Pulando {target_ds} como Alvo (Não possui as duas classes para Detecção).")
+        # Se a base alvo não possui dados normais E falhas simultaneamente, o teste quebra.
+        if len(np.unique(db_labels[target_ds])) < 2:
+            print(f"\n[!] Pulando {target_ds} como Alvo de Teste (Não possui dados saudáveis para medir F1-Score).")
             continue
             
         print(f"\n{'#'*60}")
         print(f" ALVO DE TESTE (TARGET DOMAIN): {target_ds}")
         
-        # Define os domínios de origem (Source) - Tudo que não for o Target
         source_datasets = [ds for ds in available_datasets if ds != target_ds]
         print(f" TREINADO EM (SOURCE DOMAINS): {', '.join(source_datasets)}")
         print(f"{'#'*60}")
         
-        # Concatena todas as amostras das bases Source
         X_train_list = [db_features[ds] for ds in source_datasets]
         y_train_list = [db_labels[ds] for ds in source_datasets]
         
         X_train = np.vstack(X_train_list)
         y_train = np.concatenate(y_train_list)
         
-        # Pega a base Target para Teste
         X_test = db_features[target_ds]
         y_test = db_labels[target_ds]
         
-        print(f"  -> Tamanho do Treino (Múltiplas Máquinas): {X_train.shape[0]} amostras")
-        print(f"  -> Tamanho do Teste (Máquina Desconhecida): {X_test.shape[0]} amostras")
+        print(f"  -> Volume de Treino: {X_train.shape[0]} amostras de {len(source_datasets)} máquinas")
+        print(f"  -> Volume de Teste: {X_test.shape[0]} amostras (Máquina Desconhecida)")
         
-        # O modelo vai prever as métricas e salvar
-        # Usamos 'dataset_name' na tabela como os Sources, e 'test_cond' como o Target
-        source_name_str = "+".join(source_datasets)
+        source_name_str = f"All_Except_{target_ds}"
         
-        current_results = evaluate_all_models(
-            X_train, y_train, X_test, y_test, 
-            dataset_name=source_name_str, 
-            task=TASK, 
-            test_cond=target_ds # O Fold agora é o Dataset inteiro!
-        )
-        
+        current_results = evaluate_transfer_models(X_train, y_train, X_test, y_test, source_name_str, target_ds)
         master_results.extend(current_results)
         
-        # Salva incrementalmente
         df = pd.DataFrame(master_results)
         df.to_csv(csv_file, index=False)
 
@@ -163,7 +200,7 @@ def run_transfer_learning():
     if master_results:
         df = pd.DataFrame(master_results)
         print("\n--- RESUMO GERAL DO TRANSFER LEARNING (MACRO F1) ---")
-        summary = df.groupby(['Test Condition', 'Model'])['Macro F1'].mean().unstack()
+        summary = df.groupby(['Target Domain', 'Model'])['Macro F1'].mean().unstack()
         print(summary.to_string())
 
 if __name__ == "__main__":
