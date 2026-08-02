@@ -147,7 +147,10 @@ def run_transfer_learning():
     for ds_name, fs in DATASETS_CONFIG.items():
         X_raw, y_raw = load_entire_dataset_for_tl(ds_name, fs)
         if len(X_raw) > 0:
-            print(f"  -> {ds_name} carregado: {len(X_raw)} janelas. Extraindo 141 features (fs={fs}Hz)...")
+            # FIX AQUI: Converter lista para NumPy Array para compatibilidade com o SignAI Wrapper
+            X_raw = np.array(X_raw)
+            
+            print(f"  -> {ds_name} carregado: {X_raw.shape[0]} janelas. Extraindo 141 features (fs={fs}Hz)...")
             X_fusion = extract_fusion_features(X_raw, fs, extract_advanced_features)
             
             X_clean = np.nan_to_num(np.array(X_fusion, dtype=np.float32))
