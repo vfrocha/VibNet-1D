@@ -1,0 +1,160 @@
+nohup: ignoring input
+[   INFO   ] MusicExtractorSVM: no classifier models were configured by default
+================================================================================
+EXPERIMENTOS DE TRANSFER LEARNING (MULTI-SOURCE -> SINGLE TARGET)
+================================================================================
+Tarefa: DETECTION (0 = Normal, 1 = Fault)
+Datsets disponíveis: ['CWRU_12k', 'CWRU_48k', 'UOEMD', 'HUST_Gearbox', 'HUST', 'PU', 'UORED', 'Mechanical_Gear', 'Electric_Motor']
+
+--- FASE 1: EXTRAÇÃO DE FEATURES DE TODAS AS MÁQUINAS ---
+  -> CWRU_12k carregado: 2520 janelas. Extraindo 141 features (fs=12000Hz)...
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+  -> CWRU_48k carregado: 602 janelas. Extraindo 141 features (fs=48000Hz)...
+      -> [Fusion] Iniciando extração DUPLA para 602 amostras...
+         [Debug] Shape VibNet: (602, 16)
+         [Debug] Shape SignAI: (602, 125)
+      -> [Fusion] Shape final combinado: (602, 141)
+  -> UOEMD carregado: 1280 janelas. Extraindo 141 features (fs=42000Hz)...
+      -> [Fusion] Iniciando extração DUPLA para 1280 amostras...
+         [Debug] Shape VibNet: (1280, 16)
+         [Debug] Shape SignAI: (1280, 125)
+      -> [Fusion] Shape final combinado: (1280, 141)
+  -> HUST_Gearbox carregado: 900 janelas. Extraindo 141 features (fs=25600Hz)...
+      -> [Fusion] Iniciando extração DUPLA para 900 amostras...
+         [Debug] Shape VibNet: (900, 16)
+         [Debug] Shape SignAI: (900, 125)
+      -> [Fusion] Shape final combinado: (900, 141)
+  -> HUST carregado: 1101 janelas. Extraindo 141 features (fs=51200Hz)...
+      -> [Fusion] Iniciando extração DUPLA para 1101 amostras...
+         [Debug] Shape VibNet: (1101, 16)
+         [Debug] Shape SignAI: (1101, 125)
+      -> [Fusion] Shape final combinado: (1101, 141)
+  -> PU carregado: 8394 janelas. Extraindo 141 features (fs=64000Hz)...
+      -> [Fusion] Iniciando extração DUPLA para 8394 amostras...
+         [Debug] Shape VibNet: (8394, 16)
+         [Debug] Shape SignAI: (8394, 125)
+      -> [Fusion] Shape final combinado: (8394, 141)
+  -> UORED carregado: 370 janelas. Extraindo 141 features (fs=200000Hz)...
+      -> [Fusion] Iniciando extração DUPLA para 370 amostras...
+         [Debug] Shape VibNet: (370, 16)
+         [Debug] Shape SignAI: (370, 125)
+      -> [Fusion] Shape final combinado: (370, 141)
+  -> Mechanical_Gear carregado: 180 janelas. Extraindo 141 features (fs=5000Hz)...
+      -> [Fusion] Iniciando extração DUPLA para 180 amostras...
+         [Debug] Shape VibNet: (180, 16)
+         [Debug] Shape SignAI: (180, 125)
+      -> [Fusion] Shape final combinado: (180, 141)
+  -> Electric_Motor carregado: 66 janelas. Extraindo 141 features (fs=50000Hz)...
+      -> [Fusion] Iniciando extração DUPLA para 66 amostras...
+         [Debug] Shape VibNet: (66, 16)
+         [Debug] Shape SignAI: (66, 125)
+      -> [Fusion] Shape final combinado: (66, 141)
+
+--- FASE 2: TREINAMENTO MULTI-SOURCE ---
+
+############################################################
+ ALVO DE TESTE (TARGET DOMAIN): CWRU_12k
+ TREINADO EM (SOURCE DOMAINS): CWRU_48k, UOEMD, HUST_Gearbox, HUST, PU, UORED, Mechanical_Gear, Electric_Motor
+############################################################
+  -> Volume de Treino: 12893 amostras de 8 máquinas
+  -> Volume de Teste: 2520 amostras (Máquina Desconhecida)
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.8866 | F1: 0.9333 | ROC-AUC: 0.9503
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.7212 | F1: 0.6134 | ROC-AUC: 0.9423
+
+[!] Pulando CWRU_48k como Alvo de Teste (Não possui dados saudáveis para medir F1-Score).
+
+############################################################
+ ALVO DE TESTE (TARGET DOMAIN): UOEMD
+ TREINADO EM (SOURCE DOMAINS): CWRU_12k, CWRU_48k, HUST_Gearbox, HUST, PU, UORED, Mechanical_Gear, Electric_Motor
+############################################################
+  -> Volume de Treino: 14133 amostras de 8 máquinas
+  -> Volume de Teste: 1280 amostras (Máquina Desconhecida)
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.5000 | F1: 0.9333 | ROC-AUC: 0.1253
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5598 | F1: 0.8892 | ROC-AUC: 0.5176
+
+############################################################
+ ALVO DE TESTE (TARGET DOMAIN): HUST_Gearbox
+ TREINADO EM (SOURCE DOMAINS): CWRU_12k, CWRU_48k, UOEMD, HUST, PU, UORED, Mechanical_Gear, Electric_Motor
+############################################################
+  -> Volume de Treino: 14513 amostras de 8 máquinas
+  -> Volume de Teste: 900 amostras (Máquina Desconhecida)
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.5000 | F1: 0.8000 | ROC-AUC: 0.6354
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5233 | F1: 0.7967 | ROC-AUC: 0.7097
+
+############################################################
+ ALVO DE TESTE (TARGET DOMAIN): HUST
+ TREINADO EM (SOURCE DOMAINS): CWRU_12k, CWRU_48k, UOEMD, HUST_Gearbox, PU, UORED, Mechanical_Gear, Electric_Motor
+############################################################
+  -> Volume de Treino: 14312 amostras de 8 máquinas
+  -> Volume de Teste: 1101 amostras (Máquina Desconhecida)
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.5000 | F1: 0.9269 | ROC-AUC: 0.4865
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5590 | F1: 0.9254 | ROC-AUC: 0.4497
+
+############################################################
+ ALVO DE TESTE (TARGET DOMAIN): PU
+ TREINADO EM (SOURCE DOMAINS): CWRU_12k, CWRU_48k, UOEMD, HUST_Gearbox, HUST, UORED, Mechanical_Gear, Electric_Motor
+############################################################
+  -> Volume de Treino: 7019 amostras de 8 máquinas
+  -> Volume de Teste: 8394 amostras (Máquina Desconhecida)
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.4958 | F1: 0.8636 | ROC-AUC: 0.6498
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5000 | F1: 0.8710 | ROC-AUC: 0.6909
+
+############################################################
+ ALVO DE TESTE (TARGET DOMAIN): UORED
+ TREINADO EM (SOURCE DOMAINS): CWRU_12k, CWRU_48k, UOEMD, HUST_Gearbox, HUST, PU, Mechanical_Gear, Electric_Motor
+############################################################
+  -> Volume de Treino: 15043 amostras de 8 máquinas
+  -> Volume de Teste: 370 amostras (Máquina Desconhecida)
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.5000 | F1: 0.6786 | ROC-AUC: 0.4176
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5000 | F1: 0.6786 | ROC-AUC: 0.5203
+
+############################################################
+ ALVO DE TESTE (TARGET DOMAIN): Mechanical_Gear
+ TREINADO EM (SOURCE DOMAINS): CWRU_12k, CWRU_48k, UOEMD, HUST_Gearbox, HUST, PU, UORED, Electric_Motor
+############################################################
+  -> Volume de Treino: 15233 amostras de 8 máquinas
+  -> Volume de Teste: 180 amostras (Máquina Desconhecida)
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.6133 | F1: 0.3696 | ROC-AUC: 0.6351
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5000 | F1: 0.9091 | ROC-AUC: 0.5880
+
+############################################################
+ ALVO DE TESTE (TARGET DOMAIN): Electric_Motor
+ TREINADO EM (SOURCE DOMAINS): CWRU_12k, CWRU_48k, UOEMD, HUST_Gearbox, HUST, PU, UORED, Mechanical_Gear
+############################################################
+  -> Volume de Treino: 15347 amostras de 8 máquinas
+  -> Volume de Teste: 66 amostras (Máquina Desconhecida)
+     -> Treinando Random Forest...
+        [Random Forest] Bal Acc: 0.5000 | F1: 0.9688 | ROC-AUC: 0.7198
+     -> Treinando SVM (RBF)...
+        [SVM (RBF)] Bal Acc: 0.5000 | F1: 0.9688 | ROC-AUC: 0.5000
+
+[SUCESSO] Tabela de Transfer Learning exportada para: /home/vfrocha/VibNet-1D/results/tl_results_20260803_071723.csv
+
+--- RESUMO GERAL DO TRANSFER LEARNING (MACRO F1) ---
+Model            Random Forest  SVM (RBF)
+Target Domain                            
+CWRU_12k              0.933333   0.613432
+Electric_Motor        0.968750   0.968750
+HUST                  0.926901   0.925373
+HUST_Gearbox          0.800000   0.796703
+Mechanical_Gear       0.369565   0.909091
+PU                    0.863615   0.871015
+UOEMD                 0.933333   0.889187
+UORED                 0.678571   0.678571
