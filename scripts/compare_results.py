@@ -9,7 +9,7 @@ TL_CSV = "tl_results_20260803_071723.csv"
 OUTPUT_CSV = "comparacao_tl_vs_baseline.csv"
 
 # Diretório base onde os resultados costumam ficar salvos
-RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../results'))
+RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../results'))
 
 def format_variation(val):
     """Formata a variação com sinal de + ou - e um emoji de status."""
