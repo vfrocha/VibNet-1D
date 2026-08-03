@@ -61,7 +61,6 @@ RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../res
 def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, test_cond):
     """
     Treina e avalia todos os modelos configurados, retornando uma lista de dicionários de resultados.
-    Isso mantém o loop principal limpo e legível.
     """
     fold_results = []
     base_info = {"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond}
@@ -128,7 +127,7 @@ def run_baselines():
         # Loop 2: Iterar pelos Datasets
         for dataset_name, config in BASELINE_CONFIGS.items():
             
-            # --- REGRA DE EXCEÇÃO METODOLÓGICA ---
+            # --- REGRA DE EXCEÇÃO ---
             if task == "detection" and dataset_name == "CWRU_48k":
                 print(f"\n[{dataset_name}] Ignorado para Detection (Não possui classe Normal).")
                 continue
@@ -148,7 +147,7 @@ def run_baselines():
                     data_root=DATA_ROOT, dataset_name=dataset_name, test_condition=test_cond, task=task
                 )
                 
-                # Se para essa tarefa a base não tiver dados suficientes (ex: UOEMD falhando em carregar binário), pula.
+                # Se para essa tarefa a base não tiver dados suficientes, pula.
                 if len(X_train_raw) == 0:
                     print(f"      [Aviso] Dados insuficientes para {test_cond} na tarefa {task}. Pulando.")
                     continue
@@ -157,7 +156,7 @@ def run_baselines():
                 X_train_fusion = extract_fusion_features(X_train_raw, fs, extract_advanced_features)
                 X_test_fusion  = extract_fusion_features(X_test_raw, fs, extract_advanced_features)
 
-                # 3. Limpeza Rigorosa de Dados (Anti-Pandas / Anti-NaN)
+                # 3. Limpeza de Dados (Anti-Pandas / Anti-NaN)
                 X_train_clean = np.nan_to_num(np.array(X_train_fusion, dtype=np.float32))
                 X_test_clean  = np.nan_to_num(np.array(X_test_fusion, dtype=np.float32))
                 
