@@ -16,7 +16,7 @@ from src.models.build_sklearn import get_random_forest, get_svm, get_xgboost, tr
 from src.models.build_tabular import get_tabnet_classifier, train_and_evaluate_tabnet
 
 # --- CONFIGURAÇÃO GLOBAL ---
-TASKS = ["diagnosis", "detection"]
+TASKS = ["diagnosis"]
 
 BASELINE_CONFIGS = {
     # CWRU_12k readicionado para comparação direta
@@ -35,7 +35,7 @@ DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/
 RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../results'))
 
 # --- MÓDULO DE AVALIAÇÃO ---
-def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, test_cond):
+def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, test_cond, pipeline_name):
     """
     Treina e avalia todos os modelos configurados, retornando uma lista de dicionários de resultados.
     """
@@ -50,7 +50,7 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
     except Exception as e:
         print(f"        [AVISO Random Forest] O modelo falhou: {e}")
         rf_acc, rf_f1, rf_auc = 0.0, 0.0, 0.0
-    fold_results.append({**base_info, "Model": "Random Forest", "Bal Acc": rf_acc, "Macro F1": rf_f1, "ROC-AUC": rf_auc})
+    fold_results.append({**base_info, "Model": "Random Forest", "Pipeline": pipeline_name, "Bal Acc": rf_acc, "Macro F1": rf_f1, "ROC-AUC": rf_auc})
 
     # B) SVM
     print(f"     -> Treinando SVM...")
@@ -72,13 +72,6 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
         xgb_acc, xgb_f1, xgb_auc = 0.0, 0.0, 0.0
     fold_results.append({**base_info, "Model": "XGBoost", "Bal Acc": xgb_acc, "Macro F1": xgb_f1, "ROC-AUC": xgb_auc})
 
-    # D) TabNet
-    print(f"     -> Treinando TabNet...")
-    try:
-        tabnet_model = get_tabnet_classifier()
-        tabnet_acc, tabnet_f1, tabnet_auc, *_ = train_and_evaluate_tabnet(
-            model=tabnet_model, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, task=task
-        )
     except Exception as e:
         print(f"        [AVISO TABNET] O modelo falhou: {e}")
         tabnet_acc, tabnet_f1, tabnet_auc = 0.0, 0.0, 0.0
@@ -149,7 +142,7 @@ def run_baselines():
 
                 # 4. Avaliação Limpa e Modular
                 current_results = evaluate_all_models(
-                    X_train_clean, y_train, X_test_clean, y_test, dataset_name, task, test_cond
+                    X_train_clean, y_train, X_test_clean, y_test, dataset_name, task, test_cond, pipeline_name
                 )
                 
                 master_results.extend(current_results)
