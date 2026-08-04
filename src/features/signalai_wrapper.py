@@ -6,13 +6,8 @@ class SignalAIWrapper:
     def __init__(self, sample_rate, pipeline_name='all'):
         self.fs = sample_rate
         
-        # Resgate Dinâmico: Procura pelo nome que o seu orientador usou no arquivo
         if hasattr(pipe_module, 'get_pipeline'):
             self.pipeline = pipe_module.get_pipeline(pipeline_name)
-        elif hasattr(pipe_module, 'get_feature_pipeline'):
-            self.pipeline = pipe_module.get_feature_pipeline(pipeline_name)
-        elif hasattr(pipe_module, 'pipelines') and isinstance(pipe_module.pipelines, dict):
-            self.pipeline = pipe_module.pipelines[pipeline_name]
         else:
             raise ImportError(f"Estrutura não reconhecida no pipelines.py. Encontrados: {dir(pipe_module)}")
 
@@ -56,7 +51,7 @@ class SignalAIWrapper:
             traceback.print_exc()
             return np.zeros((len(X), 1))
 
-def extract_fusion_features(X_raw, fs, vibnet_extractor_func):
+def extract_fusion_features(X_raw, fs, vibnet_extractor_func, pipeline_name='all'):
     """Executa a Feature Fusion (VibNet + SignAI)."""
     print(f"      -> [Fusion] Iniciando extração DUPLA para {X_raw.shape[0]} amostras...")
     
@@ -65,7 +60,7 @@ def extract_fusion_features(X_raw, fs, vibnet_extractor_func):
     if X_vibnet.ndim == 1: X_vibnet = X_vibnet.reshape(-1, 1)
     
     # 2. Extração SignAI (Pipeline 'all' = 71 Features)
-    wrapper = SignalAIWrapper(sample_rate=fs, pipeline_name='all')
+    wrapper = SignalAIWrapper(sample_rate=fs, pipeline_name)
     X_signai = wrapper.fit_transform(X_raw)
 
     print(f"         [Debug] Shape VibNet: {X_vibnet.shape}")
