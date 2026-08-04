@@ -40,7 +40,7 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
     Treina e avalia todos os modelos configurados, retornando uma lista de dicionários de resultados.
     """
     fold_results = []
-    base_info = {"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond}
+    base_info = {"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond, "Pipeline": pipeline_name,}
 
     # A) Random Forest
     print(f"     -> Treinando Random Forest...")
@@ -50,7 +50,7 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
     except Exception as e:
         print(f"        [AVISO Random Forest] O modelo falhou: {e}")
         rf_acc, rf_f1, rf_auc = 0.0, 0.0, 0.0
-    fold_results.append({**base_info, "Model": "Random Forest", "Pipeline": pipeline_name, "Bal Acc": rf_acc, "Macro F1": rf_f1, "ROC-AUC": rf_auc})
+    fold_results.append({**base_info, "Model": "Random Forest", "Bal Acc": rf_acc, "Macro F1": rf_f1, "ROC-AUC": rf_auc})
 
     # B) SVM
     print(f"     -> Treinando SVM...")
@@ -71,12 +71,6 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
         print(f"        [AVISO XGBoost] O modelo falhou: {e}")
         xgb_acc, xgb_f1, xgb_auc = 0.0, 0.0, 0.0
     fold_results.append({**base_info, "Model": "XGBoost", "Bal Acc": xgb_acc, "Macro F1": xgb_f1, "ROC-AUC": xgb_auc})
-
-    except Exception as e:
-        print(f"        [AVISO TABNET] O modelo falhou: {e}")
-        tabnet_acc, tabnet_f1, tabnet_auc = 0.0, 0.0, 0.0
-    
-    fold_results.append({**base_info, "Model": "TabNet", "Bal Acc": tabnet_acc, "Macro F1": tabnet_f1, "ROC-AUC": tabnet_auc})
 
     return fold_results
 
