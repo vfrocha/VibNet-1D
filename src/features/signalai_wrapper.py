@@ -60,7 +60,7 @@ def extract_fusion_features(X_raw, fs, vibnet_extractor_func, pipeline_name='all
     if X_vibnet.ndim == 1: X_vibnet = X_vibnet.reshape(-1, 1)
     
     # 2. Extração SignAI (Pipeline 'all' = 71 Features)
-    wrapper = SignalAIWrapper(sample_rate=fs, pipeline_name)
+    wrapper = SignalAIWrapper(sample_rate=fs, pipeline_name=pipeline_name)
     X_signai = wrapper.fit_transform(X_raw)
 
     print(f"         [Debug] Shape VibNet: {X_vibnet.shape}")
