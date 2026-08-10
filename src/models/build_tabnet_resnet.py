@@ -11,9 +11,8 @@ import numpy as np
 # ---------------------------------------------------------------------------
 class MiniTabNetEncoder(nn.Module):
     """
-    Uma versão simplificada do encoder do TabNet para extrair um estado latente.
-    Para uma implementação completa do TabNet, recomenda-se a biblioteca pytorch-tabnet,
-    mas esta classe ilustra o conceito de atenção e projeção para o estado latente.
+    Encoder focado em Atenção Esparsa. Aprende a focar apenas nas features
+    que sobrevivem à mudança de domínio (Transfer Learning).
     """
     def __init__(self, input_dim, output_dim=64):
         super().__init__()
@@ -26,13 +25,9 @@ class MiniTabNetEncoder(nn.Module):
         self.fc_latent = nn.Linear(input_dim, output_dim)
 
     def forward(self, x):
-        # Processamento inicial
         hidden = self.relu(self.bn1(self.fc1(x)))
-        # Gera pesos de atenção (Softmax para que sum(pesos) = 1 ou Sigmoid)
         attn_weights = torch.sigmoid(self.attention(hidden))
-        # Aplica a máscara de atenção nas features de entrada
         masked_x = x * attn_weights
-        # Projeta as features mascaradas para o estado latente
         latent = self.fc_latent(masked_x)
         return latent, attn_weights
 
@@ -57,14 +52,11 @@ class ResidualBlock1D(nn.Module):
 
     def forward(self, x):
         identity = self.downsample(x)
-        
         out = self.conv1(x)
         out = self.bn1(out)
         out = self.relu(out)
-        
         out = self.conv2(out)
         out = self.bn2(out)
-        
         out += identity
         out = self.relu(out)
         return out
@@ -75,18 +67,13 @@ class ResidualBlock1D(nn.Module):
 class TabNetResNet1D(nn.Module):
     def __init__(self, num_features, num_classes, latent_dim=64, expansion_size=1024):
         super().__init__()
-        # 1. O Encoder Tabular
         self.tabnet_encoder = MiniTabNetEncoder(input_dim=num_features, output_dim=latent_dim)
         
-        # 2. Projeção Contrastiva / Aumento do Estado Latente
-        # Expande de 64 para, por exemplo, 1024 valores para simular um sinal espacial
         self.expansion_size = expansion_size
         self.expand_layer = nn.Linear(latent_dim, expansion_size)
         self.expand_bn = nn.BatchNorm1d(expansion_size)
         self.expand_relu = nn.ReLU()
         
-        # 3. ResNet1D
-        # A entrada será formatada como (Batch, Canais=1, Comprimento=expansion_size)
         self.conv_in = nn.Conv1d(1, 16, kernel_size=7, stride=2, padding=3, bias=False)
         self.bn_in = nn.BatchNorm1d(16)
         self.relu = nn.ReLU(inplace=True)
@@ -96,65 +83,56 @@ class TabNetResNet1D(nn.Module):
         self.layer2 = ResidualBlock1D(32, 64, stride=2)
         
         self.global_pool = nn.AdaptiveAvgPool1d(1)
-        
-        # 4. Classificador Final
         self.fc_out = nn.Linear(64, num_classes)
 
     def forward(self, x):
-        # -- Fase 1: TabNet Encoder --
-        latent, attn_weights = self.tabnet_encoder(x) # latent shape: (Batch, latent_dim)
-        
-        # -- Fase 2: Expansão do Latente --
-        expanded = self.expand_relu(self.expand_bn(self.expand_layer(latent))) # (Batch, expansion_size)
-        
-        # Reshape para ser um "sinal" 1D de 1 canal: (Batch, 1, expansion_size)
+        latent, attn_weights = self.tabnet_encoder(x) 
+        expanded = self.expand_relu(self.expand_bn(self.expand_layer(latent)))
         synthetic_signal = expanded.unsqueeze(1) 
         
-        # -- Fase 3: ResNet1D --
         out = self.relu(self.bn_in(self.conv_in(synthetic_signal)))
         out = self.pool(out)
-        
         out = self.layer1(out)
         out = self.layer2(out)
-        
-        out = self.global_pool(out) # (Batch, 64, 1)
-        out = out.squeeze(-1)       # (Batch, 64)
-        
-        # -- Fase 4: Classificação --
+        out = self.global_pool(out).squeeze(-1)       
         logits = self.fc_out(out)
-        
         return logits, attn_weights
 
 # ---------------------------------------------------------------------------
-# 4. FUNÇÃO DE TREINAMENTO E AVALIAÇÃO
+# 4. FUNÇÃO DE TREINAMENTO E AVALIAÇÃO (Otimizada para Transfer Learning)
 # ---------------------------------------------------------------------------
-def train_and_evaluate_hybrid(X_train, y_train, X_test, y_test, task):
+def train_and_evaluate_hybrid(X_train, y_train, X_test, y_test, task, epochs=15, batch_size=512):
+    """
+    Recebe os dados brutos, normaliza isoladamente, treina em batch via GPU 
+    e retorna as métricas idênticas às do Scikit-Learn.
+    """
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
-    # Normalização das features de entrada
+    # 1. Normalização Blindada (Evita Data Leakage do Teste)
     scaler = StandardScaler()
     X_train_s = scaler.fit_transform(X_train)
     X_test_s = scaler.transform(X_test)
     
+    # 2. Conversão para Tensores
     X_tr_t = torch.tensor(X_train_s, dtype=torch.float32)
     y_tr_t = torch.tensor(y_train, dtype=torch.long)
     X_te_t = torch.tensor(X_test_s, dtype=torch.float32)
     y_te_t = torch.tensor(y_test, dtype=torch.long)
     
-    train_loader = DataLoader(TensorDataset(X_tr_t, y_tr_t), batch_size=64, shuffle=True)
+    # Batch Size alto (512) é vital para Transfer Learning com 200k+ amostras
+    train_loader = DataLoader(TensorDataset(X_tr_t, y_tr_t), batch_size=batch_size, shuffle=True)
     
     num_classes = 2 if task == 'detection' else len(np.unique(y_train))
     num_features = X_train.shape[1]
     
-    # Instancia o modelo híbrido
     model = TabNetResNet1D(num_features=num_features, num_classes=num_classes).to(device)
-    
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
     
-    epochs = 40
+    # 3. Treinamento
     model.train()
     for epoch in range(epochs):
+        epoch_loss = 0.0
         for bx, by in train_loader:
             bx, by = bx.to(device), by.to(device)
             optimizer.zero_grad()
@@ -162,18 +140,29 @@ def train_and_evaluate_hybrid(X_train, y_train, X_test, y_test, task):
             loss = criterion(logits, by)
             loss.backward()
             optimizer.step()
+            epoch_loss += loss.item()
             
-    # Avaliação
+    # 4. Avaliação
     model.eval()
     with torch.no_grad():
-        X_te_t = X_te_t.to(device)
-        logits, attn_weights = model(X_te_t)
+        # Para testes grandes, processa em mini-batches para evitar Out Of Memory na GPU
+        test_loader = DataLoader(TensorDataset(X_te_t, y_te_t), batch_size=1024, shuffle=False)
+        all_logits = []
+        all_attn = []
+        for bx, _ in test_loader:
+            bx = bx.to(device)
+            l, a = model(bx)
+            all_logits.append(l.cpu())
+            all_attn.append(a.cpu())
+            
+        final_logits = torch.cat(all_logits, dim=0)
+        final_attn = torch.cat(all_attn, dim=0)
         
-        probs = torch.softmax(logits, dim=1).cpu().numpy()
+        probs = torch.softmax(final_logits, dim=1).numpy()
         preds = np.argmax(probs, axis=1)
+        mean_attention = final_attn.mean(dim=0).numpy()
         
-        mean_attention = attn_weights.mean(dim=0).cpu().numpy()
-        
+    # 5. Cálculo de Métricas
     bal_acc = balanced_accuracy_score(y_test, preds)
     if task == 'detection':
         roc_auc = roc_auc_score(y_test, probs[:, 1])
