@@ -1,0 +1,250 @@
+nohup: ignoring input
+[   INFO   ] MusicExtractorSVM: no classifier models were configured by default
+======================================================================
+ INICIANDO EXPERIMENTOS COMPARATIVOS (SIGNAI ONLY - LOCO)
+======================================================================
+
+
+############################################################
+ TAREFA ATUAL: DIAGNOSIS
+############################################################
+
+[CWRU_12k] Processando 4 dobras LOCO...
+
+  >>> Dobra Alvo (Teste): Load_0HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:   0%|          | 5/1920 [00:00<00:39, 48.66it/s]Treino:   1%|          | 12/1920 [00:00<00:34, 55.91it/s]Treino:   1%|          | 20/1920 [00:00<00:30, 62.98it/s]Treino:   1%|▏         | 27/1920 [00:00<00:31, 59.74it/s]Treino:   2%|▏         | 34/1920 [00:00<00:30, 61.08it/s]Treino:   2%|▏         | 43/1920 [00:00<00:26, 69.89it/s]Treino:   3%|▎         | 52/1920 [00:00<00:24, 75.37it/s]Treino:   3%|▎         | 60/1920 [00:00<00:28, 65.73it/s]Treino:   4%|▎         | 68/1920 [00:01<00:27, 66.15it/s]Treino:   4%|▍         | 77/1920 [00:01<00:26, 70.28it/s]Treino:   4%|▍         | 85/1920 [00:01<00:26, 69.45it/s]Treino:   5%|▍         | 93/1920 [00:01<00:29, 61.36it/s]Treino:   5%|▌         | 100/1920 [00:01<00:30, 60.19it/s]Treino:   6%|▌         | 108/1920 [00:01<00:28, 63.78it/s]Treino:   6%|▌         | 115/1920 [00:01<00:28, 62.63it/s]Treino:   6%|▋         | 123/1920 [00:01<00:27, 65.87it/s]Treino:   7%|▋         | 131/1920 [00:01<00:25, 69.43it/s]Treino:   7%|▋         | 139/1920 [00:02<00:25, 68.77it/s]Treino:   8%|▊         | 146/1920 [00:02<00:25, 68.60it/s]Treino:   8%|▊         | 153/1920 [00:02<00:25, 68.16it/s]Treino:   8%|▊         | 161/1920 [00:02<00:25, 68.98it/s]Treino:   9%|▉         | 173/1920 [00:02<00:21, 80.03it/s]Treino:  10%|▉         | 183/1920 [00:02<00:20, 83.54it/s]Treino:  10%|█         | 192/1920 [00:02<00:22, 76.13it/s]Treino:  10%|█         | 200/1920 [00:02<00:26, 65.64it/s]Treino:  11%|█         | 207/1920 [00:03<00:27, 63.35it/s]Treino:  11%|█         | 214/1920 [00:03<00:26, 63.55it/s]Treino:  12%|█▏        | 221/1920 [00:03<00:30, 55.94it/s]Treino:  12%|█▏        | 227/1920 [00:03<00:32, 51.69it/s]Treino:  12%|█▏        | 233/1920 [00:03<00:33, 50.81it/s]Treino:  13%|█▎        | 243/1920 [00:03<00:27, 62.10it/s]Treino:  13%|█▎        | 250/1920 [00:03<00:30, 55.12it/s]Treino:  13%|█▎        | 256/1920 [00:04<00:30, 53.85it/s]Treino:  14%|█▎        | 263/1920 [00:04<00:29, 55.57it/s]Treino:  14%|█▍        | 269/1920 [00:04<00:30, 54.27it/s]Treino:  14%|█▍        | 276/1920 [00:04<00:28, 57.87it/s]Treino:  15%|█▍        | 285/1920 [00:04<00:27, 59.24it/s]Treino:  15%|█▌        | 294/1920 [00:04<00:24, 65.68it/s]Treino:  16%|█▌        | 302/1920 [00:04<00:23, 68.90it/s]Treino:  16%|█▌        | 311/1920 [00:04<00:22, 71.19it/s]Treino:  17%|█▋        | 319/1920 [00:04<00:23, 68.17it/s]Treino:  17%|█▋        | 326/1920 [00:05<00:24, 66.11it/s]Treino:  17%|█▋        | 333/1920 [00:05<00:25, 62.71it/s]Treino:  18%|█▊        | 340/1920 [00:05<00:24, 64.55it/s]Treino:  18%|█▊        | 348/1920 [00:05<00:23, 66.66it/s]Treino:  19%|█▊        | 357/1920 [00:05<00:22, 70.74it/s]Treino:  19%|█▉        | 365/1920 [00:05<00:22, 68.41it/s]Treino:  19%|█▉        | 372/1920 [00:05<00:23, 65.74it/s]Treino:  20%|█▉        | 379/1920 [00:05<00:24, 61.77it/s]Treino:  20%|██        | 386/1920 [00:06<00:30, 50.31it/s]Treino:  20%|██        | 393/1920 [00:06<00:28, 53.33it/s]Treino:  21%|██        | 400/1920 [00:06<00:26, 56.40it/s]Treino:  21%|██        | 406/1920 [00:06<00:27, 55.98it/s]Treino:  21%|██▏       | 412/1920 [00:06<00:27, 53.86it/s]Treino:  22%|██▏       | 418/1920 [00:06<00:27, 55.36it/s]Treino:  22%|██▏       | 424/1920 [00:06<00:28, 53.25it/s]Treino:  22%|██▏       | 431/1920 [00:06<00:27, 54.30it/s]Treino:  23%|██▎       | 437/1920 [00:07<00:26, 55.55it/s]Treino:  23%|██▎       | 443/1920 [00:07<00:26, 55.96it/s]Treino:  23%|██▎       | 451/1920 [00:07<00:23, 62.45it/s]Treino:  24%|██▍       | 458/1920 [00:07<00:24, 60.37it/s]Treino:  24%|██▍       | 465/1920 [00:07<00:24, 59.60it/s]Treino:  25%|██▍       | 473/1920 [00:07<00:22, 64.12it/s]Treino:  25%|██▌       | 480/1920 [00:07<00:22, 64.21it/s]Treino:  25%|██▌       | 487/1920 [00:07<00:24, 58.94it/s]Treino:  26%|██▌       | 494/1920 [00:07<00:23, 60.51it/s]Treino:  26%|██▋       | 504/1920 [00:08<00:20, 68.92it/s]Treino:  27%|██▋       | 511/1920 [00:08<00:20, 67.11it/s]Treino:  27%|██▋       | 518/1920 [00:08<00:23, 60.67it/s]Treino:  27%|██▋       | 525/1920 [00:08<00:22, 62.29it/s]Treino:  28%|██▊       | 532/1920 [00:08<00:22, 61.93it/s]Treino:  28%|██▊       | 540/1920 [00:08<00:21, 63.39it/s]Treino:  28%|██▊       | 547/1920 [00:08<00:22, 61.78it/s]Treino:  29%|██▉       | 554/1920 [00:08<00:22, 60.73it/s]Treino:  29%|██▉       | 564/1920 [00:08<00:19, 69.27it/s]Treino:  30%|██▉       | 572/1920 [00:09<00:19, 70.62it/s]Treino:  30%|███       | 581/1920 [00:09<00:18, 74.22it/s]Treino:  31%|███       | 591/1920 [00:09<00:16, 79.62it/s]Treino:  31%|███▏      | 600/1920 [00:09<00:17, 77.16it/s]Treino:  32%|███▏      | 608/1920 [00:09<00:17, 76.76it/s]Treino:  32%|███▏      | 618/1920 [00:09<00:15, 82.06it/s]Treino:  33%|███▎      | 632/1920 [00:09<00:13, 93.04it/s]Treino:  33%|███▎      | 642/1920 [00:09<00:14, 90.78it/s]Treino:  34%|███▍      | 652/1920 [00:10<00:17, 73.62it/s]Treino:  34%|███▍      | 660/1920 [00:10<00:18, 69.32it/s]Treino:  35%|███▍      | 668/1920 [00:10<00:20, 61.77it/s]Treino:  35%|███▌      | 675/1920 [00:10<00:19, 63.51it/s]Treino:  36%|███▌      | 683/1920 [00:10<00:18, 67.49it/s]Treino:  36%|███▌      | 691/1920 [00:10<00:18, 64.81it/s]Treino:  36%|███▋      | 699/1920 [00:10<00:18, 67.09it/s]Treino:  37%|███▋      | 706/1920 [00:10<00:17, 67.46it/s]Treino:  37%|███▋      | 717/1920 [00:11<00:15, 76.13it/s]Treino:  38%|███▊      | 726/1920 [00:11<00:14, 79.86it/s]Treino:  38%|███▊      | 735/1920 [00:11<00:15, 78.65it/s]Treino:  39%|███▊      | 743/1920 [00:11<00:16, 70.90it/s]Treino:  39%|███▉      | 752/1920 [00:11<00:16, 72.30it/s]Treino:  40%|███▉      | 760/1920 [00:11<00:16, 69.52it/s]Treino:  40%|████      | 768/1920 [00:11<00:16, 68.29it/s]Treino:  40%|████      | 775/1920 [00:11<00:17, 65.96it/s]Treino:  41%|████      | 783/1920 [00:12<00:17, 66.45it/s]Treino:  41%|████      | 790/1920 [00:12<00:19, 59.36it/s]Treino:  42%|████▏     | 802/1920 [00:12<00:15, 70.55it/s]Treino:  42%|████▏     | 810/1920 [00:12<00:16, 66.68it/s]Treino:  43%|████▎     | 819/1920 [00:12<00:15, 71.23it/s]Treino:  43%|████▎     | 827/1920 [00:12<00:15, 69.02it/s]Treino:  43%|████▎     | 835/1920 [00:12<00:16, 66.27it/s]Treino:  44%|████▍     | 844/1920 [00:12<00:15, 70.47it/s]Treino:  44%|████▍     | 853/1920 [00:12<00:14, 73.59it/s]Treino:  45%|████▍     | 861/1920 [00:13<00:15, 69.79it/s]Treino:  45%|████▌     | 869/1920 [00:13<00:16, 62.39it/s]Treino:  46%|████▌     | 876/1920 [00:13<00:16, 62.42it/s]Treino:  46%|████▌     | 884/1920 [00:13<00:15, 66.28it/s]Treino:  46%|████▋     | 891/1920 [00:13<00:15, 66.01it/s]Treino:  47%|████▋     | 898/1920 [00:13<00:16, 63.55it/s]Treino:  47%|████▋     | 906/1920 [00:13<00:15, 67.36it/s]Treino:  48%|████▊     | 913/1920 [00:13<00:15, 65.75it/s]Treino:  48%|████▊     | 921/1920 [00:14<00:15, 64.20it/s]Treino:  48%|████▊     | 931/1920 [00:14<00:14, 70.63it/s]Treino:  49%|████▉     | 939/1920 [00:14<00:15, 61.70it/s]Treino:  49%|████▉     | 948/1920 [00:14<00:14, 65.21it/s]Treino:  50%|████▉     | 955/1920 [00:14<00:15, 63.43it/s]Treino:  50%|█████     | 962/1920 [00:14<00:15, 62.98it/s]Treino:  50%|█████     | 969/1920 [00:14<00:15, 62.82it/s]Treino:  51%|█████     | 976/1920 [00:14<00:15, 59.73it/s]Treino:  51%|█████     | 983/1920 [00:15<00:16, 57.29it/s]Treino:  52%|█████▏    | 990/1920 [00:15<00:15, 59.17it/s]Treino:  52%|█████▏    | 996/1920 [00:15<00:15, 58.65it/s]Treino:  52%|█████▏    | 1002/1920 [00:15<00:17, 53.16it/s]Treino:  52%|█████▎    | 1008/1920 [00:15<00:16, 54.44it/s]Treino:  53%|█████▎    | 1015/1920 [00:15<00:16, 56.15it/s]Treino:  53%|█████▎    | 1021/1920 [00:15<00:16, 54.31it/s]Treino:  53%|█████▎    | 1027/1920 [00:15<00:17, 49.92it/s]Treino:  54%|█████▍    | 1033/1920 [00:16<00:17, 50.59it/s]Treino:  54%|█████▍    | 1041/1920 [00:16<00:15, 55.77it/s]Treino:  55%|█████▍    | 1047/1920 [00:16<00:15, 55.98it/s]Treino:  55%|█████▍    | 1054/1920 [00:16<00:14, 59.02it/s]Treino:  55%|█████▌    | 1061/1920 [00:16<00:14, 60.71it/s]Treino:  56%|█████▌    | 1068/1920 [00:16<00:13, 61.10it/s]Treino:  56%|█████▌    | 1075/1920 [00:16<00:13, 60.94it/s]Treino:  56%|█████▋    | 1082/1920 [00:16<00:14, 58.39it/s]Treino:  57%|█████▋    | 1088/1920 [00:16<00:14, 58.69it/s]Treino:  57%|█████▋    | 1094/1920 [00:17<00:14, 57.51it/s]Treino:  57%|█████▋    | 1100/1920 [00:17<00:14, 55.30it/s]Treino:  58%|█████▊    | 1106/1920 [00:17<00:14, 55.01it/s]Treino:  58%|█████▊    | 1114/1920 [00:17<00:13, 60.46it/s]Treino:  58%|█████▊    | 1122/1920 [00:17<00:12, 63.44it/s]Treino:  59%|█████▉    | 1129/1920 [00:17<00:12, 62.15it/s]Treino:  59%|█████▉    | 1136/1920 [00:17<00:12, 61.81it/s]Treino:  60%|█████▉    | 1144/1920 [00:17<00:12, 63.05it/s]Treino:  60%|██████    | 1152/1920 [00:17<00:11, 66.07it/s]Treino:  60%|██████    | 1159/1920 [00:18<00:12, 62.16it/s]Treino:  61%|██████    | 1166/1920 [00:18<00:12, 59.60it/s]Treino:  61%|██████    | 1173/1920 [00:18<00:12, 59.12it/s]Treino:  61%|██████▏   | 1179/1920 [00:18<00:12, 57.93it/s]Treino:  62%|██████▏   | 1185/1920 [00:18<00:13, 56.37it/s]Treino:  62%|██████▏   | 1192/1920 [00:18<00:12, 58.16it/s]Treino:  62%|██████▏   | 1199/1920 [00:18<00:11, 60.48it/s]Treino:  63%|██████▎   | 1208/1920 [00:18<00:10, 67.19it/s]Treino:  63%|██████▎   | 1216/1920 [00:19<00:10, 70.35it/s]Treino:  64%|██████▍   | 1224/1920 [00:19<00:09, 72.06it/s]Treino:  64%|██████▍   | 1233/1920 [00:19<00:09, 73.50it/s]Treino:  65%|██████▍   | 1243/1920 [00:19<00:08, 78.28it/s]Treino:  65%|██████▌   | 1251/1920 [00:19<00:08, 77.51it/s]Treino:  66%|██████▌   | 1261/1920 [00:19<00:07, 83.69it/s]Treino:  66%|██████▌   | 1270/1920 [00:19<00:08, 78.66it/s]Treino:  67%|██████▋   | 1281/1920 [00:19<00:07, 82.29it/s]Treino:  67%|██████▋   | 1290/1920 [00:19<00:09, 68.92it/s]Treino:  68%|██████▊   | 1298/1920 [00:20<00:10, 61.88it/s]Treino:  68%|██████▊   | 1305/1920 [00:20<00:10, 58.39it/s]Treino:  68%|██████▊   | 1312/1920 [00:20<00:10, 57.25it/s]Treino:  69%|██████▊   | 1318/1920 [00:20<00:12, 48.88it/s]Treino:  69%|██████▉   | 1324/1920 [00:20<00:12, 46.21it/s]Treino:  69%|██████▉   | 1330/1920 [00:20<00:12, 47.86it/s]Treino:  70%|██████▉   | 1336/1920 [00:20<00:11, 48.71it/s]Treino:  70%|███████   | 1348/1920 [00:21<00:08, 63.74it/s]Treino:  71%|███████   | 1355/1920 [00:21<00:09, 59.36it/s]Treino:  71%|███████   | 1362/1920 [00:21<00:09, 58.76it/s]Treino:  71%|███████▏  | 1369/1920 [00:21<00:09, 60.58it/s]Treino:  72%|███████▏  | 1376/1920 [00:21<00:09, 54.77it/s]Treino:  72%|███████▏  | 1384/1920 [00:21<00:08, 59.72it/s]Treino:  73%|███████▎  | 1393/1920 [00:21<00:07, 66.95it/s]Treino:  73%|███████▎  | 1400/1920 [00:21<00:08, 64.64it/s]Treino:  73%|███████▎  | 1408/1920 [00:22<00:07, 66.71it/s]Treino:  74%|███████▎  | 1415/1920 [00:22<00:07, 64.60it/s]Treino:  74%|███████▍  | 1423/1920 [00:22<00:07, 66.71it/s]Treino:  75%|███████▍  | 1431/1920 [00:22<00:07, 68.75it/s]Treino:  75%|███████▌  | 1442/1920 [00:22<00:06, 79.06it/s]Treino:  76%|███████▌  | 1451/1920 [00:22<00:06, 71.50it/s]Treino:  76%|███████▌  | 1460/1920 [00:22<00:06, 73.00it/s]Treino:  76%|███████▋  | 1468/1920 [00:22<00:06, 67.43it/s]Treino:  77%|███████▋  | 1475/1920 [00:23<00:06, 66.19it/s]Treino:  77%|███████▋  | 1483/1920 [00:23<00:06, 68.49it/s]Treino:  78%|███████▊  | 1490/1920 [00:23<00:06, 65.17it/s]Treino:  78%|███████▊  | 1497/1920 [00:23<00:06, 63.58it/s]Treino:  78%|███████▊  | 1504/1920 [00:23<00:06, 60.24it/s]Treino:  79%|███████▊  | 1511/1920 [00:23<00:06, 59.64it/s]Treino:  79%|███████▉  | 1518/1920 [00:23<00:06, 59.80it/s]Treino:  79%|███████▉  | 1526/1920 [00:23<00:06, 61.76it/s]Treino:  80%|███████▉  | 1533/1920 [00:23<00:06, 57.00it/s]Treino:  80%|████████  | 1543/1920 [00:24<00:05, 65.20it/s]Treino:  81%|████████  | 1550/1920 [00:24<00:05, 64.05it/s]Treino:  81%|████████  | 1557/1920 [00:24<00:05, 64.75it/s]Treino:  82%|████████▏ | 1565/1920 [00:24<00:05, 68.81it/s]Treino:  82%|████████▏ | 1572/1920 [00:24<00:05, 66.65it/s]Treino:  82%|████████▏ | 1579/1920 [00:24<00:05, 59.98it/s]Treino:  83%|████████▎ | 1587/1920 [00:24<00:05, 64.26it/s]Treino:  83%|████████▎ | 1598/1920 [00:24<00:04, 73.40it/s]Treino:  84%|████████▎ | 1606/1920 [00:25<00:04, 69.02it/s]Treino:  84%|████████▍ | 1615/1920 [00:25<00:04, 72.51it/s]Treino:  85%|████████▍ | 1624/1920 [00:25<00:03, 75.10it/s]Treino:  85%|████████▌ | 1633/1920 [00:25<00:03, 77.60it/s]Treino:  86%|████████▌ | 1642/1920 [00:25<00:03, 79.12it/s]Treino:  86%|████████▌ | 1650/1920 [00:25<00:03, 67.66it/s]Treino:  86%|████████▋ | 1658/1920 [00:25<00:04, 64.96it/s]Treino:  87%|████████▋ | 1665/1920 [00:25<00:04, 53.57it/s]Treino:  87%|████████▋ | 1671/1920 [00:26<00:04, 51.50it/s]Treino:  87%|████████▋ | 1677/1920 [00:26<00:04, 52.86it/s]Treino:  88%|████████▊ | 1684/1920 [00:26<00:04, 57.04it/s]Treino:  88%|████████▊ | 1690/1920 [00:26<00:04, 56.33it/s]Treino:  88%|████████▊ | 1696/1920 [00:26<00:03, 56.19it/s]Treino:  89%|████████▊ | 1702/1920 [00:26<00:04, 54.36it/s]Treino:  89%|████████▉ | 1709/1920 [00:26<00:03, 57.41it/s]Treino:  89%|████████▉ | 1715/1920 [00:26<00:03, 56.60it/s]Treino:  90%|████████▉ | 1721/1920 [00:26<00:03, 57.48it/s]Treino:  90%|████████▉ | 1727/1920 [00:27<00:03, 56.68it/s]Treino:  90%|█████████ | 1734/1920 [00:27<00:03, 58.08it/s]Treino:  91%|█████████ | 1741/1920 [00:27<00:03, 59.25it/s]Treino:  91%|█████████ | 1747/1920 [00:27<00:02, 58.56it/s]Treino:  91%|█████████▏| 1753/1920 [00:27<00:03, 54.82it/s]Treino:  92%|█████████▏| 1760/1920 [00:27<00:02, 58.92it/s]Treino:  92%|█████████▏| 1766/1920 [00:27<00:02, 58.39it/s]Treino:  92%|█████████▏| 1772/1920 [00:27<00:02, 56.81it/s]Treino:  93%|█████████▎| 1778/1920 [00:27<00:02, 56.30it/s]Treino:  93%|█████████▎| 1785/1920 [00:28<00:02, 58.14it/s]Treino:  93%|█████████▎| 1791/1920 [00:28<00:02, 55.97it/s]Treino:  94%|█████████▎| 1799/1920 [00:28<00:01, 62.54it/s]Treino:  94%|█████████▍| 1806/1920 [00:28<00:01, 63.39it/s]Treino:  94%|█████████▍| 1813/1920 [00:28<00:01, 63.02it/s]Treino:  95%|█████████▍| 1820/1920 [00:28<00:01, 59.65it/s]Treino:  95%|█████████▌| 1827/1920 [00:28<00:01, 57.12it/s]Treino:  96%|█████████▌| 1835/1920 [00:28<00:01, 59.72it/s]Treino:  96%|█████████▌| 1842/1920 [00:29<00:01, 59.95it/s]Treino:  96%|█████████▋| 1850/1920 [00:29<00:01, 62.86it/s]Treino:  97%|█████████▋| 1858/1920 [00:29<00:00, 67.39it/s]Treino:  97%|█████████▋| 1866/1920 [00:29<00:00, 69.19it/s]Treino:  98%|█████████▊| 1873/1920 [00:29<00:00, 65.39it/s]Treino:  98%|█████████▊| 1880/1920 [00:29<00:00, 65.97it/s]Treino:  98%|█████████▊| 1890/1920 [00:29<00:00, 75.31it/s]Treino:  99%|█████████▉| 1901/1920 [00:29<00:00, 82.95it/s]Treino:  99%|█████████▉| 1910/1920 [00:29<00:00, 82.83it/s]Treino: 100%|██████████| 1920/1920 [00:30<00:00, 84.41it/s]Treino: 100%|██████████| 1920/1920 [00:30<00:00, 64.00it/s]
+Teste:   0%|          | 0/600 [00:00<?, ?it/s]Teste:   1%|          | 6/600 [00:00<00:11, 53.98it/s]Teste:   2%|▏         | 12/600 [00:00<00:11, 51.86it/s]Teste:   3%|▎         | 19/600 [00:00<00:10, 57.61it/s]Teste:   4%|▍         | 25/600 [00:00<00:10, 55.00it/s]Teste:   5%|▌         | 31/600 [00:00<00:11, 47.55it/s]Teste:   6%|▋         | 39/600 [00:00<00:10, 53.14it/s]Teste:   8%|▊         | 45/600 [00:00<00:10, 51.11it/s]Teste:   9%|▉         | 54/600 [00:00<00:09, 59.53it/s]Teste:  10%|█         | 61/600 [00:01<00:08, 61.17it/s]Teste:  11%|█▏        | 68/600 [00:01<00:08, 59.80it/s]Teste:  13%|█▎        | 80/600 [00:01<00:06, 75.79it/s]Teste:  15%|█▍        | 88/600 [00:01<00:08, 62.46it/s]Teste:  16%|█▌        | 96/600 [00:01<00:07, 65.85it/s]Teste:  17%|█▋        | 104/600 [00:01<00:08, 56.53it/s]Teste:  19%|█▊        | 112/600 [00:01<00:08, 60.76it/s]Teste:  20%|█▉        | 119/600 [00:01<00:07, 62.79it/s]Teste:  21%|██        | 127/600 [00:02<00:07, 65.67it/s]Teste:  22%|██▏       | 134/600 [00:02<00:07, 59.71it/s]Teste:  24%|██▎       | 141/600 [00:02<00:07, 60.19it/s]Teste:  25%|██▍       | 148/600 [00:02<00:08, 55.43it/s]Teste:  27%|██▋       | 160/600 [00:02<00:06, 68.80it/s]Teste:  28%|██▊       | 168/600 [00:02<00:06, 65.08it/s]Teste:  29%|██▉       | 175/600 [00:02<00:06, 66.09it/s]Teste:  30%|███       | 182/600 [00:03<00:06, 60.91it/s]Teste:  32%|███▏      | 189/600 [00:03<00:06, 59.11it/s]Teste:  33%|███▎      | 196/600 [00:03<00:06, 60.23it/s]Teste:  34%|███▍      | 203/600 [00:03<00:06, 58.52it/s]Teste:  35%|███▍      | 209/600 [00:03<00:06, 57.50it/s]Teste:  36%|███▌      | 215/600 [00:03<00:06, 56.88it/s]Teste:  37%|███▋      | 221/600 [00:03<00:07, 52.32it/s]Teste:  38%|███▊      | 227/600 [00:03<00:06, 54.11it/s]Teste:  39%|███▉      | 235/600 [00:03<00:05, 60.93it/s]Teste:  40%|████      | 242/600 [00:04<00:06, 58.76it/s]Teste:  42%|████▏     | 249/600 [00:04<00:05, 61.68it/s]Teste:  43%|████▎     | 256/600 [00:04<00:05, 62.01it/s]Teste:  44%|████▍     | 264/600 [00:04<00:05, 63.68it/s]Teste:  46%|████▌     | 273/600 [00:04<00:04, 68.36it/s]Teste:  47%|████▋     | 280/600 [00:04<00:05, 63.46it/s]Teste:  48%|████▊     | 287/600 [00:04<00:04, 63.66it/s]Teste:  49%|████▉     | 294/600 [00:04<00:04, 64.52it/s]Teste:  50%|█████     | 301/600 [00:04<00:04, 64.05it/s]Teste:  51%|█████▏    | 308/600 [00:05<00:04, 61.02it/s]Teste:  52%|█████▎    | 315/600 [00:05<00:04, 62.72it/s]Teste:  54%|█████▎    | 322/600 [00:05<00:04, 63.83it/s]Teste:  55%|█████▍    | 329/600 [00:05<00:04, 63.18it/s]Teste:  56%|█████▌    | 336/600 [00:05<00:04, 61.10it/s]Teste:  57%|█████▋    | 343/600 [00:05<00:04, 55.88it/s]Teste:  58%|█████▊    | 351/600 [00:05<00:04, 60.97it/s]Teste:  60%|█████▉    | 358/600 [00:05<00:03, 61.57it/s]Teste:  61%|██████    | 365/600 [00:06<00:03, 59.79it/s]Teste:  62%|██████▏   | 372/600 [00:06<00:04, 54.89it/s]Teste:  63%|██████▎   | 379/600 [00:06<00:03, 58.57it/s]Teste:  64%|██████▍   | 386/600 [00:06<00:03, 55.17it/s]Teste:  65%|██████▌   | 392/600 [00:06<00:04, 51.57it/s]Teste:  66%|██████▋   | 398/600 [00:06<00:04, 50.32it/s]Teste:  67%|██████▋   | 404/600 [00:06<00:03, 50.94it/s]Teste:  68%|██████▊   | 410/600 [00:06<00:03, 49.39it/s]Teste:  70%|██████▉   | 417/600 [00:07<00:03, 54.35it/s]Teste:  70%|███████   | 423/600 [00:07<00:03, 54.16it/s]Teste:  72%|███████▏  | 431/600 [00:07<00:02, 60.50it/s]Teste:  73%|███████▎  | 439/600 [00:07<00:02, 63.80it/s]Teste:  74%|███████▍  | 446/600 [00:07<00:02, 61.39it/s]Teste:  76%|███████▌  | 454/600 [00:07<00:02, 65.79it/s]Teste:  77%|███████▋  | 461/600 [00:07<00:02, 61.56it/s]Teste:  78%|███████▊  | 469/600 [00:07<00:01, 65.96it/s]Teste:  79%|███████▉  | 476/600 [00:07<00:01, 64.77it/s]Teste:  80%|████████  | 483/600 [00:08<00:01, 62.81it/s]Teste:  82%|████████▏ | 490/600 [00:08<00:01, 58.23it/s]Teste:  83%|████████▎ | 498/600 [00:08<00:01, 62.32it/s]Teste:  85%|████████▍ | 508/600 [00:08<00:01, 69.86it/s]Teste:  86%|████████▌ | 516/600 [00:08<00:01, 72.34it/s]Teste:  87%|████████▋ | 524/600 [00:08<00:01, 69.39it/s]Teste:  89%|████████▊ | 532/600 [00:08<00:01, 62.32it/s]Teste:  90%|████████▉ | 539/600 [00:08<00:01, 58.85it/s]Teste:  91%|█████████▏| 548/600 [00:09<00:00, 64.83it/s]Teste:  92%|█████████▎| 555/600 [00:09<00:00, 63.20it/s]Teste:  94%|█████████▎| 562/600 [00:09<00:00, 57.32it/s]Teste:  95%|█████████▌| 571/600 [00:09<00:00, 63.10it/s]Teste:  97%|█████████▋| 580/600 [00:09<00:00, 68.77it/s]Teste:  98%|█████████▊| 589/600 [00:09<00:00, 73.00it/s]Teste: 100%|██████████| 600/600 [00:09<00:00, 82.76it/s]Teste: 100%|██████████| 600/600 [00:09<00:00, 61.48it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 1920 amostras...
+         [Debug] Shape VibNet: (1920, 16)
+         [Debug] Shape SignAI: (1920, 33)
+      -> [Fusion] Shape final combinado: (1920, 49)
+      -> [Fusion] Iniciando extração DUPLA para 600 amostras...
+         [Debug] Shape VibNet: (600, 16)
+         [Debug] Shape SignAI: (600, 33)
+      -> [Fusion] Shape final combinado: (600, 49)
+      [SignAI Wrapper] Features isoladas: Shape atual de treino (1920, 33)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 5, 'rf__n_estimators': 50}
+     Bal Acc: 0.8336 | F1: 0.8335 | AUC: 0.9317
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.7832 | F1: 0.7808 | AUC: 0.8973
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 6, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.8401 | F1: 0.8396 | AUC: 0.9344
+
+  >>> Dobra Alvo (Teste): Load_1HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_1HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  75%|███████▍  | 1408/1880 [00:00<00:00, 14076.52it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 14055.20it/s]
+Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 12533.46it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 1880 amostras...
+         [Debug] Shape VibNet: (1880, 16)
+         [Debug] Shape SignAI: (1880, 33)
+      -> [Fusion] Shape final combinado: (1880, 49)
+      -> [Fusion] Iniciando extração DUPLA para 640 amostras...
+         [Debug] Shape VibNet: (640, 16)
+         [Debug] Shape SignAI: (640, 33)
+      -> [Fusion] Shape final combinado: (640, 49)
+      [SignAI Wrapper] Features isoladas: Shape atual de treino (1880, 33)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.8847 | F1: 0.8839 | AUC: 0.9798
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8671 | F1: 0.8671 | AUC: 0.9597
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 6, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.8798 | F1: 0.8795 | AUC: 0.9786
+
+  >>> Dobra Alvo (Teste): Load_2HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_2HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  74%|███████▍  | 1395/1880 [00:00<00:00, 13945.39it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 13961.66it/s]
+Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 12588.12it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 1880 amostras...
+         [Debug] Shape VibNet: (1880, 16)
+         [Debug] Shape SignAI: (1880, 33)
+      -> [Fusion] Shape final combinado: (1880, 49)
+      -> [Fusion] Iniciando extração DUPLA para 640 amostras...
+         [Debug] Shape VibNet: (640, 16)
+         [Debug] Shape SignAI: (640, 33)
+      -> [Fusion] Shape final combinado: (640, 49)
+      [SignAI Wrapper] Features isoladas: Shape atual de treino (1880, 33)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 200}
+     Bal Acc: 0.9346 | F1: 0.9345 | AUC: 0.9942
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9162 | F1: 0.9148 | AUC: 0.9878
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 0.9590 | F1: 0.9594 | AUC: 0.9968
+
+  >>> Dobra Alvo (Teste): Load_3HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_3HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  77%|███████▋  | 1445/1880 [00:00<00:00, 14449.22it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 14463.83it/s]
+Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 12967.96it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 1880 amostras...
+         [Debug] Shape VibNet: (1880, 16)
+         [Debug] Shape SignAI: (1880, 33)
+      -> [Fusion] Shape final combinado: (1880, 49)
+      -> [Fusion] Iniciando extração DUPLA para 640 amostras...
+         [Debug] Shape VibNet: (640, 16)
+         [Debug] Shape SignAI: (640, 33)
+      -> [Fusion] Shape final combinado: (640, 49)
+      [SignAI Wrapper] Features isoladas: Shape atual de treino (1880, 33)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 0.8564 | F1: 0.8540 | AUC: 0.9724
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8780 | F1: 0.8765 | AUC: 0.9618
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 6, 'xgb__n_estimators': 50, 'xgb__subsample': 1.0}
+     Bal Acc: 0.8653 | F1: 0.8639 | AUC: 0.9732
+
+[CWRU_48k] Processando 4 dobras LOCO...
+
+  >>> Dobra Alvo (Teste): Load_0HP | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_0HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/534 [00:00<?, ?it/s]Treino:   1%|▏         | 8/534 [00:00<00:07, 73.60it/s]Treino:   3%|▎         | 17/534 [00:00<00:06, 78.66it/s]Treino:   5%|▍         | 26/534 [00:00<00:06, 81.51it/s]Treino:   7%|▋         | 35/534 [00:00<00:06, 76.72it/s]Treino:   8%|▊         | 43/534 [00:00<00:06, 70.57it/s]Treino:  10%|▉         | 51/534 [00:00<00:06, 72.37it/s]Treino:  11%|█         | 59/534 [00:00<00:06, 68.02it/s]Treino:  12%|█▏        | 66/534 [00:00<00:07, 66.55it/s]Treino:  14%|█▍        | 74/534 [00:01<00:06, 69.68it/s]Treino:  15%|█▌        | 82/534 [00:01<00:06, 68.20it/s]Treino:  17%|█▋        | 91/534 [00:01<00:06, 72.64it/s]Treino:  19%|█▉        | 101/534 [00:01<00:05, 77.99it/s]Treino:  20%|██        | 109/534 [00:01<00:05, 72.20it/s]Treino:  22%|██▏       | 118/534 [00:01<00:05, 75.72it/s]Treino:  24%|██▍       | 129/534 [00:01<00:05, 80.35it/s]Treino:  26%|██▌       | 138/534 [00:01<00:05, 77.36it/s]Treino:  27%|██▋       | 146/534 [00:01<00:05, 77.01it/s]Treino:  29%|██▉       | 154/534 [00:02<00:04, 77.21it/s]Treino:  31%|███       | 164/534 [00:02<00:04, 78.58it/s]Treino:  33%|███▎      | 174/534 [00:02<00:04, 83.89it/s]Treino:  34%|███▍      | 183/534 [00:02<00:04, 77.84it/s]Treino:  36%|███▌      | 191/534 [00:02<00:04, 73.04it/s]Treino:  37%|███▋      | 199/534 [00:02<00:04, 70.79it/s]Treino:  39%|███▉      | 207/534 [00:02<00:04, 72.62it/s]Treino:  40%|████      | 215/534 [00:02<00:04, 65.91it/s]Treino:  42%|████▏     | 222/534 [00:03<00:05, 58.55it/s]Treino:  43%|████▎     | 229/534 [00:03<00:04, 61.29it/s]Treino:  45%|████▍     | 238/534 [00:03<00:04, 65.58it/s]Treino:  46%|████▌     | 245/534 [00:03<00:04, 66.38it/s]Treino:  47%|████▋     | 253/534 [00:03<00:04, 68.11it/s]Treino:  49%|████▉     | 263/534 [00:03<00:03, 76.37it/s]Treino:  51%|█████     | 273/534 [00:03<00:03, 81.79it/s]Treino:  53%|█████▎    | 282/534 [00:03<00:03, 67.43it/s]Treino:  54%|█████▍    | 290/534 [00:04<00:03, 69.67it/s]Treino:  56%|█████▌    | 298/534 [00:04<00:03, 65.91it/s]Treino:  57%|█████▋    | 305/534 [00:04<00:03, 64.55it/s]Treino:  58%|█████▊    | 312/534 [00:04<00:03, 65.12it/s]Treino:  60%|█████▉    | 319/534 [00:04<00:03, 54.48it/s]Treino:  61%|██████▏   | 328/534 [00:04<00:03, 60.60it/s]Treino:  63%|██████▎   | 335/534 [00:04<00:03, 62.55it/s]Treino:  65%|██████▍   | 345/534 [00:04<00:03, 61.92it/s]Treino:  66%|██████▋   | 355/534 [00:05<00:02, 68.93it/s]Treino:  68%|██████▊   | 363/534 [00:05<00:02, 64.92it/s]Treino:  69%|██████▉   | 371/534 [00:05<00:02, 66.73it/s]Treino:  71%|███████   | 378/534 [00:05<00:02, 67.14it/s]Treino:  72%|███████▏  | 387/534 [00:05<00:02, 70.98it/s]Treino:  74%|███████▍  | 395/534 [00:05<00:01, 72.23it/s]Treino:  76%|███████▌  | 405/534 [00:05<00:01, 75.40it/s]Treino:  77%|███████▋  | 413/534 [00:05<00:01, 66.40it/s]Treino:  79%|███████▊  | 420/534 [00:06<00:01, 59.47it/s]Treino:  80%|███████▉  | 427/534 [00:06<00:01, 59.37it/s]Treino:  81%|████████▏ | 434/534 [00:06<00:01, 57.19it/s]Treino:  82%|████████▏ | 440/534 [00:06<00:01, 54.29it/s]Treino:  84%|████████▍ | 449/534 [00:06<00:01, 62.45it/s]Treino:  86%|████████▌ | 459/534 [00:06<00:01, 68.60it/s]Treino:  87%|████████▋ | 466/534 [00:06<00:01, 65.20it/s]Treino:  89%|████████▉ | 475/534 [00:06<00:00, 70.59it/s]Treino:  90%|█████████ | 483/534 [00:07<00:00, 65.15it/s]Treino:  92%|█████████▏| 490/534 [00:07<00:00, 57.32it/s]Treino:  93%|█████████▎| 498/534 [00:07<00:00, 61.50it/s]Treino:  95%|█████████▍| 505/534 [00:07<00:00, 63.16it/s]Treino:  96%|█████████▋| 514/534 [00:07<00:00, 68.42it/s]Treino:  98%|█████████▊| 522/534 [00:07<00:00, 70.44it/s]Treino:  99%|█████████▉| 530/534 [00:07<00:00, 65.38it/s]Treino: 100%|██████████| 534/534 [00:07<00:00, 67.83it/s]
+Teste:   0%|          | 0/68 [00:00<?, ?it/s]Teste:  12%|█▏        | 8/68 [00:00<00:00, 76.86it/s]Teste:  24%|██▎       | 16/68 [00:00<00:00, 76.18it/s]Teste:  38%|███▊      | 26/68 [00:00<00:00, 84.96it/s]Teste:  51%|█████▏    | 35/68 [00:00<00:00, 66.64it/s]Teste:  63%|██████▎   | 43/68 [00:00<00:00, 58.75it/s]Teste:  74%|███████▎  | 50/68 [00:00<00:00, 60.69it/s]Teste:  87%|████████▋ | 59/68 [00:00<00:00, 68.04it/s]Teste:  99%|█████████▊| 67/68 [00:00<00:00, 66.26it/s]Teste: 100%|██████████| 68/68 [00:01<00:00, 67.14it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 534 amostras...
+         [Debug] Shape VibNet: (534, 16)
+         [Debug] Shape SignAI: (534, 33)
+      -> [Fusion] Shape final combinado: (534, 49)
+      -> [Fusion] Iniciando extração DUPLA para 68 amostras...
+         [Debug] Shape VibNet: (68, 16)
+         [Debug] Shape SignAI: (68, 33)
+      -> [Fusion] Shape final combinado: (68, 49)
+      [SignAI Wrapper] Features isoladas: Shape atual de treino (534, 33)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 50}
+     Bal Acc: 0.8750 | F1: 0.8736 | AUC: 0.9552
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9028 | F1: 0.9024 | AUC: 0.9729
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.8306 | F1: 0.8330 | AUC: 0.9572
+
+  >>> Dobra Alvo (Teste): Load_1HP | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_1HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/428 [00:00<?, ?it/s]Treino: 100%|██████████| 428/428 [00:00<00:00, 8262.28it/s]
+Teste:   0%|          | 0/174 [00:00<?, ?it/s]Teste: 100%|██████████| 174/174 [00:00<00:00, 6888.69it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 428 amostras...
+         [Debug] Shape VibNet: (428, 16)
+         [Debug] Shape SignAI: (428, 33)
+      -> [Fusion] Shape final combinado: (428, 49)
+      -> [Fusion] Iniciando extração DUPLA para 174 amostras...
+         [Debug] Shape VibNet: (174, 16)
+         [Debug] Shape SignAI: (174, 33)
+      -> [Fusion] Shape final combinado: (174, 49)
+      [SignAI Wrapper] Features isoladas: Shape atual de treino (428, 33)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 0.8889 | F1: 0.8863 | AUC: 0.9769
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+     Bal Acc: 0.8981 | F1: 0.8952 | AUC: 0.9906
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 6, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 0.8901 | F1: 0.8903 | AUC: 0.9771
+
+  >>> Dobra Alvo (Teste): Load_2HP | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_2HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/422 [00:00<?, ?it/s]Treino: 100%|██████████| 422/422 [00:00<00:00, 8428.51it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 7226.44it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 422 amostras...
+         [Debug] Shape VibNet: (422, 16)
+         [Debug] Shape SignAI: (422, 33)
+      -> [Fusion] Shape final combinado: (422, 49)
+      -> [Fusion] Iniciando extração DUPLA para 180 amostras...
+         [Debug] Shape VibNet: (180, 16)
+         [Debug] Shape SignAI: (180, 33)
+      -> [Fusion] Shape final combinado: (180, 49)
+      [SignAI Wrapper] Features isoladas: Shape atual de treino (422, 33)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 100}
+     Bal Acc: 0.9389 | F1: 0.9389 | AUC: 0.9987
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9333 | F1: 0.9330 | AUC: 0.9920
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 10, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 0.8667 | F1: 0.8701 | AUC: 0.9857
+
+  >>> Dobra Alvo (Teste): Load_3HP | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_3HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/422 [00:00<?, ?it/s]Treino: 100%|██████████| 422/422 [00:00<00:00, 8472.00it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 8165.60it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 422 amostras...
+         [Debug] Shape VibNet: (422, 16)
+         [Debug] Shape SignAI: (422, 33)
+      -> [Fusion] Shape final combinado: (422, 49)
+      -> [Fusion] Iniciando extração DUPLA para 180 amostras...
+         [Debug] Shape VibNet: (180, 16)
+         [Debug] Shape SignAI: (180, 33)
+      -> [Fusion] Shape final combinado: (180, 49)
+      [SignAI Wrapper] Features isoladas: Shape atual de treino (422, 33)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.9444 | F1: 0.9452 | AUC: 0.9978
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9056 | F1: 0.9054 | AUC: 0.9901
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 1.0}
+     Bal Acc: 0.8667 | F1: 0.8701 | AUC: 0.9573
+
+======================================================================
+ EXPERIMENTOS CONCLUÍDOS! Relatório salvo em: /home/vfrocha/VibNet-1D/results/comparativo_signai_cwru12k_48k_results_20260804_110139.csv
+======================================================================

@@ -112,7 +112,7 @@ def run_baselines():
                     print(f"      [Aviso] Dados insuficientes para {test_cond} na tarefa {task}. Pulando.")
                     continue
 
-                pipeline_name = "time"
+                pipeline_name = "time_and_frequency"
                 
                 # 2. Feature Fusion Modular (Extrai tudo mas filtraremos depois)
                 X_train_fusion = extract_fusion_features(X_train_raw, fs, extract_advanced_features, pipeline_name)

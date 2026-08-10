@@ -1,0 +1,177 @@
+nohup: ignoring input
+[   INFO   ] MusicExtractorSVM: no classifier models were configured by default
+======================================================================
+ INICIANDO EXPERIMENTOS CWRU 48k (LEAVE-ONE-SEVERITY-OUT)
+======================================================================
+
+
+############################################################
+ TAREFA ATUAL: DIAGNOSIS
+############################################################
+>>> Carregando e mapeando todas as condições (Cache)...
+Carregando CWRU_48k | Condição: Load_0HP_Sev_0.007 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/572 [00:00<?, ?it/s]Treino:   1%|          | 6/572 [00:00<00:10, 51.72it/s]Treino:   2%|▏         | 12/572 [00:00<00:11, 49.36it/s]Treino:   3%|▎         | 20/572 [00:00<00:09, 60.12it/s]Treino:   5%|▌         | 29/572 [00:00<00:07, 68.63it/s]Treino:   6%|▋         | 36/572 [00:00<00:08, 66.37it/s]Treino:   8%|▊         | 43/572 [00:00<00:07, 66.88it/s]Treino:   9%|▉         | 51/572 [00:00<00:07, 69.92it/s]Treino:  10%|█         | 59/572 [00:00<00:08, 58.35it/s]Treino:  12%|█▏        | 66/572 [00:01<00:09, 51.68it/s]Treino:  13%|█▎        | 74/572 [00:01<00:08, 56.82it/s]Treino:  14%|█▍        | 81/572 [00:01<00:08, 57.45it/s]Treino:  16%|█▌        | 90/572 [00:01<00:07, 64.14it/s]Treino:  17%|█▋        | 100/572 [00:01<00:06, 69.71it/s]Treino:  19%|█▉        | 108/572 [00:01<00:07, 63.66it/s]Treino:  20%|██        | 117/572 [00:01<00:06, 68.24it/s]Treino:  22%|██▏       | 125/572 [00:01<00:06, 65.93it/s]Treino:  24%|██▎       | 135/572 [00:02<00:05, 73.12it/s]Treino:  25%|██▌       | 143/572 [00:02<00:05, 73.44it/s]Treino:  26%|██▋       | 151/572 [00:02<00:05, 70.80it/s]Treino:  28%|██▊       | 163/572 [00:02<00:05, 81.56it/s]Treino:  30%|███       | 172/572 [00:02<00:04, 82.22it/s]Treino:  32%|███▏      | 181/572 [00:02<00:04, 79.00it/s]Treino:  33%|███▎      | 189/572 [00:02<00:05, 73.99it/s]Treino:  34%|███▍      | 197/572 [00:02<00:05, 70.71it/s]Treino:  36%|███▌      | 205/572 [00:03<00:05, 71.67it/s]Treino:  37%|███▋      | 213/572 [00:03<00:04, 72.29it/s]Treino:  39%|███▊      | 221/572 [00:03<00:06, 57.83it/s]Treino:  40%|████      | 229/572 [00:03<00:05, 62.28it/s]Treino:  41%|████▏     | 237/572 [00:03<00:05, 65.44it/s]Treino:  43%|████▎     | 245/572 [00:03<00:04, 68.32it/s]Treino:  44%|████▍     | 254/572 [00:03<00:04, 73.50it/s]Treino:  46%|████▌     | 262/572 [00:03<00:04, 66.29it/s]Treino:  47%|████▋     | 269/572 [00:04<00:04, 63.80it/s]Treino:  48%|████▊     | 276/572 [00:04<00:04, 64.77it/s]Treino:  50%|████▉     | 284/572 [00:04<00:04, 67.98it/s]Treino:  51%|█████     | 291/572 [00:04<00:04, 67.10it/s]Treino:  53%|█████▎    | 301/572 [00:04<00:03, 75.78it/s]Treino:  54%|█████▍    | 311/572 [00:04<00:03, 81.43it/s]Treino:  56%|█████▌    | 320/572 [00:04<00:03, 67.14it/s]Treino:  57%|█████▋    | 328/572 [00:04<00:03, 69.46it/s]Treino:  59%|█████▊    | 336/572 [00:04<00:03, 65.76it/s]Treino:  60%|█████▉    | 343/572 [00:05<00:03, 66.04it/s]Treino:  61%|██████    | 350/572 [00:05<00:03, 66.22it/s]Treino:  62%|██████▏   | 357/572 [00:05<00:03, 66.82it/s]Treino:  64%|██████▍   | 365/572 [00:05<00:03, 68.30it/s]Treino:  65%|██████▌   | 372/572 [00:05<00:03, 66.01it/s]Treino:  67%|██████▋   | 383/572 [00:05<00:02, 78.09it/s]Treino:  68%|██████▊   | 391/572 [00:05<00:02, 78.16it/s]Treino:  70%|██████▉   | 399/572 [00:05<00:02, 71.57it/s]Treino:  71%|███████   | 407/572 [00:05<00:02, 67.83it/s]Treino:  72%|███████▏  | 414/572 [00:06<00:02, 68.21it/s]Treino:  74%|███████▍  | 423/572 [00:06<00:02, 74.05it/s]Treino:  76%|███████▌  | 432/572 [00:06<00:01, 77.82it/s]Treino:  77%|███████▋  | 442/572 [00:06<00:01, 81.36it/s]Treino:  79%|███████▉  | 451/572 [00:06<00:01, 69.19it/s]Treino:  80%|████████  | 459/572 [00:06<00:01, 61.78it/s]Treino:  81%|████████▏ | 466/572 [00:06<00:01, 63.36it/s]Treino:  83%|████████▎ | 473/572 [00:07<00:01, 55.30it/s]Treino:  84%|████████▎ | 479/572 [00:07<00:01, 54.00it/s]Treino:  85%|████████▌ | 489/572 [00:07<00:01, 63.77it/s]Treino:  87%|████████▋ | 500/572 [00:07<00:00, 73.39it/s]Treino:  89%|████████▉ | 508/572 [00:07<00:00, 70.82it/s]Treino:  90%|█████████ | 516/572 [00:07<00:00, 66.47it/s]Treino:  92%|█████████▏| 525/572 [00:07<00:00, 70.54it/s]Treino:  93%|█████████▎| 533/572 [00:07<00:00, 71.08it/s]Treino:  95%|█████████▍| 541/572 [00:07<00:00, 70.25it/s]Treino:  96%|█████████▌| 549/572 [00:08<00:00, 72.17it/s]Treino:  98%|█████████▊| 558/572 [00:08<00:00, 75.61it/s]Treino:  99%|█████████▉| 567/572 [00:08<00:00, 77.07it/s]Treino: 100%|██████████| 572/572 [00:08<00:00, 68.07it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste:  17%|█▋        | 5/30 [00:00<00:00, 39.10it/s]Teste:  47%|████▋     | 14/30 [00:00<00:00, 62.14it/s]Teste:  83%|████████▎ | 25/30 [00:00<00:00, 81.62it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 71.37it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_0HP_Sev_0.021 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/584 [00:00<?, ?it/s]Treino: 100%|██████████| 584/584 [00:00<00:00, 8227.83it/s]
+Teste:   0%|          | 0/18 [00:00<?, ?it/s]Teste: 100%|██████████| 18/18 [00:00<00:00, 7036.11it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_1HP_Sev_0.014 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/548 [00:00<?, ?it/s]Treino: 100%|██████████| 548/548 [00:00<00:00, 8253.18it/s]
+Teste:   0%|          | 0/54 [00:00<?, ?it/s]Teste: 100%|██████████| 54/54 [00:00<00:00, 7503.72it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_2HP_Sev_0.007 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8237.51it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 8016.89it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_2HP_Sev_0.021 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8294.43it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 7959.33it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_3HP_Sev_0.014 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8315.49it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 7986.11it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_0HP_Sev_0.014 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/582 [00:00<?, ?it/s]Treino: 100%|██████████| 582/582 [00:00<00:00, 8325.58it/s]
+Teste:   0%|          | 0/20 [00:00<?, ?it/s]Teste: 100%|██████████| 20/20 [00:00<00:00, 7476.48it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_1HP_Sev_0.007 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8332.28it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 7892.68it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_1HP_Sev_0.021 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8351.72it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 7989.40it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_2HP_Sev_0.014 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8365.92it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 8038.66it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_3HP_Sev_0.007 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8350.71it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 7941.50it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_3HP_Sev_0.021 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8112.77it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 7936.99it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+
+ >>> Dobra Alvo (Teste): Severidade 0.007 | Treino: Demais Severidades
+      [Info] Janelas de Treino: 392 | Janelas de Teste: 210
+      -> [Fusion] Iniciando extração DUPLA para 392 amostras...
+         [Debug] Shape VibNet: (392, 16)
+         [Debug] Shape SignAI: (392, 125)
+      -> [Fusion] Shape final combinado: (392, 141)
+      -> [Fusion] Iniciando extração DUPLA para 210 amostras...
+         [Debug] Shape VibNet: (210, 16)
+         [Debug] Shape SignAI: (210, 125)
+      -> [Fusion] Shape final combinado: (210, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 50}
+     Bal Acc: 0.0667 | F1: 0.0552 | AUC: 0.2606
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.0762 | F1: 0.0738 | AUC: 0.2599
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 50, 'xgb__subsample': 0.8}
+     Bal Acc: 0.1048 | F1: 0.1010 | AUC: 0.3641
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 20 with best_epoch = 0 and best_val_balanced_accuracy = 0.42857
+     [Diagnóstico] Bal Acc: 0.4286 | Macro F1: 0.3928 | ROC-AUC: 0.6184
+
+ >>> Dobra Alvo (Teste): Severidade 0.014 | Treino: Demais Severidades
+      [Info] Janelas de Treino: 408 | Janelas de Teste: 194
+      -> [Fusion] Iniciando extração DUPLA para 408 amostras...
+         [Debug] Shape VibNet: (408, 16)
+         [Debug] Shape SignAI: (408, 125)
+      -> [Fusion] Shape final combinado: (408, 141)
+      -> [Fusion] Iniciando extração DUPLA para 194 amostras...
+         [Debug] Shape VibNet: (194, 16)
+         [Debug] Shape SignAI: (194, 125)
+      -> [Fusion] Shape final combinado: (194, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 200}
+     Bal Acc: 0.1429 | F1: 0.1044 | AUC: 0.2867
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 1, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.0571 | F1: 0.0522 | AUC: 0.3163
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.01, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.0952 | F1: 0.0736 | AUC: 0.2413
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 29 with best_epoch = 9 and best_val_balanced_accuracy = 0.33668
+     [Diagnóstico] Bal Acc: 0.3367 | Macro F1: 0.3001 | ROC-AUC: 0.4350
+
+ >>> Dobra Alvo (Teste): Severidade 0.021 | Treino: Demais Severidades
+      [Info] Janelas de Treino: 404 | Janelas de Teste: 198
+      -> [Fusion] Iniciando extração DUPLA para 404 amostras...
+         [Debug] Shape VibNet: (404, 16)
+         [Debug] Shape SignAI: (404, 125)
+      -> [Fusion] Shape final combinado: (404, 141)
+      -> [Fusion] Iniciando extração DUPLA para 198 amostras...
+         [Debug] Shape VibNet: (198, 16)
+         [Debug] Shape SignAI: (198, 125)
+      -> [Fusion] Shape final combinado: (198, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 0.3455 | F1: 0.2339 | AUC: 0.4409
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.1961 | F1: 0.1301 | AUC: 0.3103
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.4132 | F1: 0.3516 | AUC: 0.7008
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 31 with best_epoch = 11 and best_val_balanced_accuracy = 0.42054
+     [Diagnóstico] Bal Acc: 0.4205 | Macro F1: 0.3498 | ROC-AUC: 0.6250
+
+======================================================================
+ EXPERIMENTOS CONCLUÍDOS! Relatório salvo em: /home/vfrocha/VibNet-1D/results/cwru48k_severity_loco_results_20260808_080012.csv
+======================================================================

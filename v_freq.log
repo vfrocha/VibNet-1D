@@ -1,0 +1,250 @@
+nohup: ignoring input
+[   INFO   ] MusicExtractorSVM: no classifier models were configured by default
+======================================================================
+ INICIANDO EXPERIMENTOS COMPARATIVOS (SIGNAI ONLY - LOCO)
+======================================================================
+
+
+############################################################
+ TAREFA ATUAL: DIAGNOSIS
+############################################################
+
+[CWRU_12k] Processando 4 dobras LOCO...
+
+  >>> Dobra Alvo (Teste): Load_0HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:  56%|█████▋    | 1080/1920 [00:00<00:00, 10797.95it/s]Treino: 100%|██████████| 1920/1920 [00:00<00:00, 10969.07it/s]
+Teste:   0%|          | 0/600 [00:00<?, ?it/s]Teste: 100%|██████████| 600/600 [00:00<00:00, 11114.57it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 1920 amostras...
+         [Debug] Shape VibNet: (1920, 16)
+         [Debug] Shape SignAI: (1920, 1)
+      -> [Fusion] Shape final combinado: (1920, 17)
+      -> [Fusion] Iniciando extração DUPLA para 600 amostras...
+         [Debug] Shape VibNet: (600, 16)
+         [Debug] Shape SignAI: (600, 1)
+      -> [Fusion] Shape final combinado: (600, 17)
+      [SignAI Wrapper] Features isoladas: Shape atual de treino (1920, 1)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 0.2500 | F1: 0.0312 | AUC: 0.5000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+     Bal Acc: 0.2500 | F1: 0.1154 | AUC: 0.5000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.01, 'xgb__max_depth': 3, 'xgb__n_estimators': 50, 'xgb__subsample': 0.8}
+     Bal Acc: 0.2500 | F1: 0.1203 | AUC: 0.5000
+
+  >>> Dobra Alvo (Teste): Load_1HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_1HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  76%|███████▌  | 1429/1880 [00:00<00:00, 14288.07it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 14297.54it/s]
+Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 12948.32it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 1880 amostras...
+         [Debug] Shape VibNet: (1880, 16)
+         [Debug] Shape SignAI: (1880, 1)
+      -> [Fusion] Shape final combinado: (1880, 17)
+      -> [Fusion] Iniciando extração DUPLA para 640 amostras...
+         [Debug] Shape VibNet: (640, 16)
+         [Debug] Shape SignAI: (640, 1)
+      -> [Fusion] Shape final combinado: (640, 17)
+      [SignAI Wrapper] Features isoladas: Shape atual de treino (1880, 1)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 0.2500 | F1: 0.1145 | AUC: 0.5000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+     Bal Acc: 0.2500 | F1: 0.1098 | AUC: 0.5000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.01, 'xgb__max_depth': 3, 'xgb__n_estimators': 50, 'xgb__subsample': 0.8}
+     Bal Acc: 0.2500 | F1: 0.1145 | AUC: 0.5000
+
+  >>> Dobra Alvo (Teste): Load_2HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_2HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  74%|███████▍  | 1392/1880 [00:00<00:00, 13911.12it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 13970.58it/s]
+Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 12878.68it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 1880 amostras...
+         [Debug] Shape VibNet: (1880, 16)
+         [Debug] Shape SignAI: (1880, 1)
+      -> [Fusion] Shape final combinado: (1880, 17)
+      -> [Fusion] Iniciando extração DUPLA para 640 amostras...
+         [Debug] Shape VibNet: (640, 16)
+         [Debug] Shape SignAI: (640, 1)
+      -> [Fusion] Shape final combinado: (640, 17)
+      [SignAI Wrapper] Features isoladas: Shape atual de treino (1880, 1)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 0.2500 | F1: 0.0556 | AUC: 0.5000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+     Bal Acc: 0.2500 | F1: 0.1098 | AUC: 0.5000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.01, 'xgb__max_depth': 3, 'xgb__n_estimators': 50, 'xgb__subsample': 0.8}
+     Bal Acc: 0.2500 | F1: 0.1145 | AUC: 0.5000
+
+  >>> Dobra Alvo (Teste): Load_3HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_3HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  75%|███████▍  | 1407/1880 [00:00<00:00, 14062.80it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 14066.51it/s]
+Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 13012.97it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 1880 amostras...
+         [Debug] Shape VibNet: (1880, 16)
+         [Debug] Shape SignAI: (1880, 1)
+      -> [Fusion] Shape final combinado: (1880, 17)
+      -> [Fusion] Iniciando extração DUPLA para 640 amostras...
+         [Debug] Shape VibNet: (640, 16)
+         [Debug] Shape SignAI: (640, 1)
+      -> [Fusion] Shape final combinado: (640, 17)
+      [SignAI Wrapper] Features isoladas: Shape atual de treino (1880, 1)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 0.2500 | F1: 0.0556 | AUC: 0.5000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+     Bal Acc: 0.2500 | F1: 0.1098 | AUC: 0.5000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.01, 'xgb__max_depth': 3, 'xgb__n_estimators': 50, 'xgb__subsample': 0.8}
+     Bal Acc: 0.2500 | F1: 0.1145 | AUC: 0.5000
+
+[CWRU_48k] Processando 4 dobras LOCO...
+
+  >>> Dobra Alvo (Teste): Load_0HP | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_0HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/534 [00:00<?, ?it/s]Treino: 100%|██████████| 534/534 [00:00<00:00, 8054.25it/s]
+Teste:   0%|          | 0/68 [00:00<?, ?it/s]Teste: 100%|██████████| 68/68 [00:00<00:00, 6639.03it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 534 amostras...
+         [Debug] Shape VibNet: (534, 16)
+         [Debug] Shape SignAI: (534, 1)
+      -> [Fusion] Shape final combinado: (534, 17)
+      -> [Fusion] Iniciando extração DUPLA para 68 amostras...
+         [Debug] Shape VibNet: (68, 16)
+         [Debug] Shape SignAI: (68, 1)
+      -> [Fusion] Shape final combinado: (68, 17)
+      [SignAI Wrapper] Features isoladas: Shape atual de treino (534, 1)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.3333 | F1: 0.1515 | AUC: 0.5000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 0.1, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+     Bal Acc: 0.3333 | F1: 0.1739 | AUC: 0.5000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.01, 'xgb__max_depth': 3, 'xgb__n_estimators': 50, 'xgb__subsample': 0.8}
+     Bal Acc: 0.3333 | F1: 0.1739 | AUC: 0.5000
+
+  >>> Dobra Alvo (Teste): Load_1HP | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_1HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/428 [00:00<?, ?it/s]Treino: 100%|██████████| 428/428 [00:00<00:00, 8301.44it/s]
+Teste:   0%|          | 0/174 [00:00<?, ?it/s]Teste: 100%|██████████| 174/174 [00:00<00:00, 8103.95it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 428 amostras...
+         [Debug] Shape VibNet: (428, 16)
+         [Debug] Shape SignAI: (428, 1)
+      -> [Fusion] Shape final combinado: (428, 17)
+      -> [Fusion] Iniciando extração DUPLA para 174 amostras...
+         [Debug] Shape VibNet: (174, 16)
+         [Debug] Shape SignAI: (174, 1)
+      -> [Fusion] Shape final combinado: (174, 17)
+      [SignAI Wrapper] Features isoladas: Shape atual de treino (428, 1)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 0.3333 | F1: 0.1579 | AUC: 0.5000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 0.1, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+     Bal Acc: 0.3333 | F1: 0.1709 | AUC: 0.5000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.01, 'xgb__max_depth': 3, 'xgb__n_estimators': 50, 'xgb__subsample': 0.8}
+     Bal Acc: 0.3333 | F1: 0.1709 | AUC: 0.5000
+
+  >>> Dobra Alvo (Teste): Load_2HP | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_2HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/422 [00:00<?, ?it/s]Treino: 100%|██████████| 422/422 [00:00<00:00, 8479.88it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 8359.17it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 422 amostras...
+         [Debug] Shape VibNet: (422, 16)
+         [Debug] Shape SignAI: (422, 1)
+      -> [Fusion] Shape final combinado: (422, 17)
+      -> [Fusion] Iniciando extração DUPLA para 180 amostras...
+         [Debug] Shape VibNet: (180, 16)
+         [Debug] Shape SignAI: (180, 1)
+      -> [Fusion] Shape final combinado: (180, 17)
+      [SignAI Wrapper] Features isoladas: Shape atual de treino (422, 1)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 0.3333 | F1: 0.1667 | AUC: 0.5000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 0.1, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+     Bal Acc: 0.3333 | F1: 0.1667 | AUC: 0.5000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.01, 'xgb__max_depth': 3, 'xgb__n_estimators': 50, 'xgb__subsample': 0.8}
+     Bal Acc: 0.3333 | F1: 0.1667 | AUC: 0.5000
+
+  >>> Dobra Alvo (Teste): Load_3HP | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_3HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/422 [00:00<?, ?it/s]Treino: 100%|██████████| 422/422 [00:00<00:00, 8076.31it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 8154.22it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 422 amostras...
+         [Debug] Shape VibNet: (422, 16)
+         [Debug] Shape SignAI: (422, 1)
+      -> [Fusion] Shape final combinado: (422, 17)
+      -> [Fusion] Iniciando extração DUPLA para 180 amostras...
+         [Debug] Shape VibNet: (180, 16)
+         [Debug] Shape SignAI: (180, 1)
+      -> [Fusion] Shape final combinado: (180, 17)
+      [SignAI Wrapper] Features isoladas: Shape atual de treino (422, 1)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.3333 | F1: 0.1667 | AUC: 0.5000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 0.1, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+     Bal Acc: 0.3333 | F1: 0.1667 | AUC: 0.5000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.01, 'xgb__max_depth': 3, 'xgb__n_estimators': 50, 'xgb__subsample': 0.8}
+     Bal Acc: 0.3333 | F1: 0.1667 | AUC: 0.5000
+
+======================================================================
+ EXPERIMENTOS CONCLUÍDOS! Relatório salvo em: /home/vfrocha/VibNet-1D/results/comparativo_signai_cwru12k_48k_results_20260804_092910.csv
+======================================================================
