@@ -1,0 +1,449 @@
+Dataset,Task,Test Condition,Model,Bal Acc,Macro F1,ROC-AUC
+CWRU_12k,Detection,Load_0HP,Random Forest,1.0,1.0,1.0
+CWRU_12k,Detection,Load_0HP,SVM (RBF),1.0,1.0,1.0
+CWRU_12k,Detection,Load_0HP,Hybrid DL (MLP),0.925,0.9946714031971581,1.0
+CWRU_12k,Detection,Load_0HP,Hybrid DL (TABNET),0.9625,0.9973285841495992,1.0
+CWRU_12k,Detection,Load_1HP,Random Forest,1.0,1.0,1.0
+CWRU_12k,Detection,Load_1HP,SVM (RBF),1.0,1.0,1.0
+CWRU_12k,Detection,Load_1HP,Hybrid DL (MLP),1.0,1.0,1.0
+CWRU_12k,Detection,Load_1HP,Hybrid DL (TABNET),1.0,1.0,1.0
+CWRU_12k,Detection,Load_2HP,Random Forest,1.0,1.0,1.0
+CWRU_12k,Detection,Load_2HP,SVM (RBF),1.0,1.0,1.0
+CWRU_12k,Detection,Load_2HP,Hybrid DL (MLP),1.0,1.0,1.0
+CWRU_12k,Detection,Load_2HP,Hybrid DL (TABNET),1.0,1.0,1.0
+CWRU_12k,Detection,Load_3HP,Random Forest,1.0,1.0,1.0
+CWRU_12k,Detection,Load_3HP,SVM (RBF),0.9991071428571429,0.9991063449508489,1.0
+CWRU_12k,Detection,Load_3HP,Hybrid DL (MLP),1.0,1.0,1.0
+CWRU_12k,Detection,Load_3HP,Hybrid DL (TABNET),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_15Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_15Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_15Hz,Hybrid DL (MLP),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_15Hz,Hybrid DL (TABNET),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_30Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_30Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_30Hz,Hybrid DL (MLP),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_30Hz,Hybrid DL (TABNET),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_45Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_45Hz,SVM (RBF),0.5,0.9333333333333333,1.0
+UOEMD,Detection,Load_Loaded_Speed_45Hz,Hybrid DL (MLP),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_45Hz,Hybrid DL (TABNET),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_60Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_60Hz,SVM (RBF),0.65,0.9523809523809523,1.0
+UOEMD,Detection,Load_Loaded_Speed_60Hz,Hybrid DL (MLP),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_60Hz,Hybrid DL (TABNET),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_45_to_15Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_45_to_15Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_45_to_15Hz,Hybrid DL (MLP),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_45_to_15Hz,Hybrid DL (TABNET),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_60_to_30Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_60_to_30Hz,SVM (RBF),0.9,0.9859154929577465,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_60_to_30Hz,Hybrid DL (MLP),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Dec_60_to_30Hz,Hybrid DL (TABNET),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_15_to_45Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_15_to_45Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_15_to_45Hz,Hybrid DL (MLP),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_15_to_45Hz,Hybrid DL (TABNET),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_30_to_60Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_30_to_60Hz,SVM (RBF),0.9,0.9859154929577465,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_30_to_60Hz,Hybrid DL (MLP),1.0,1.0,1.0
+UOEMD,Detection,Load_Loaded_Speed_Inc_30_to_60Hz,Hybrid DL (TABNET),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_15Hz,Random Forest,0.9357142857142857,0.9312977099236641,1.0
+UOEMD,Detection,Load_No_Load_Speed_15Hz,SVM (RBF),0.8928571428571428,0.9323308270676691,0.9857142857142858
+UOEMD,Detection,Load_No_Load_Speed_15Hz,Hybrid DL (MLP),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_15Hz,Hybrid DL (TABNET),0.9928571428571429,0.9928057553956835,1.0
+UOEMD,Detection,Load_No_Load_Speed_30Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_30Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_30Hz,Hybrid DL (MLP),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_30Hz,Hybrid DL (TABNET),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_45Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_45Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_45Hz,Hybrid DL (MLP),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_45Hz,Hybrid DL (TABNET),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_60Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_60Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_60Hz,Hybrid DL (MLP),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_60Hz,Hybrid DL (TABNET),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_45_to_15Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_45_to_15Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_45_to_15Hz,Hybrid DL (MLP),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_45_to_15Hz,Hybrid DL (TABNET),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_60_to_30Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_60_to_30Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_60_to_30Hz,Hybrid DL (MLP),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Dec_60_to_30Hz,Hybrid DL (TABNET),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_15_to_45Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_15_to_45Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_15_to_45Hz,Hybrid DL (MLP),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_15_to_45Hz,Hybrid DL (TABNET),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_30_to_60Hz,Random Forest,1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_30_to_60Hz,SVM (RBF),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_30_to_60Hz,Hybrid DL (MLP),1.0,1.0,1.0
+UOEMD,Detection,Load_No_Load_Speed_Inc_30_to_60Hz,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_0,SVM (RBF),0.5,0.631578947368421,0.5900000000000001
+HUST_Gearbox,Detection,Cond_20_0,Hybrid DL (MLP),0.8,0.9090909090909091,1.0
+HUST_Gearbox,Detection,Cond_20_0,Hybrid DL (TABNET),0.8,0.9090909090909091,1.0
+HUST_Gearbox,Detection,Cond_20_1,Random Forest,0.85,0.9302325581395349,1.0
+HUST_Gearbox,Detection,Cond_20_1,SVM (RBF),0.8,0.75,0.915
+HUST_Gearbox,Detection,Cond_20_1,Hybrid DL (MLP),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_1,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_2,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_2,SVM (RBF),0.85,0.8235294117647058,0.995
+HUST_Gearbox,Detection,Cond_20_2,Hybrid DL (MLP),0.75,0.8888888888888888,1.0
+HUST_Gearbox,Detection,Cond_20_2,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_3,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_20_3,SVM (RBF),0.42500000000000004,0.6341463414634146,0.61
+HUST_Gearbox,Detection,Cond_20_3,Hybrid DL (MLP),0.6,0.8333333333333334,0.97
+HUST_Gearbox,Detection,Cond_20_3,Hybrid DL (TABNET),0.975,0.9743589743589743,1.0
+HUST_Gearbox,Detection,Cond_20_4,Random Forest,0.75,0.6666666666666666,0.5775
+HUST_Gearbox,Detection,Cond_20_4,SVM (RBF),0.5,0.8,0.7150000000000001
+HUST_Gearbox,Detection,Cond_20_4,Hybrid DL (MLP),0.75,0.6666666666666666,0.605
+HUST_Gearbox,Detection,Cond_20_4,Hybrid DL (TABNET),0.5,0.8,0.62
+HUST_Gearbox,Detection,Cond_25_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_0,SVM (RBF),0.65,0.625,0.625
+HUST_Gearbox,Detection,Cond_25_0,Hybrid DL (MLP),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_0,Hybrid DL (TABNET),0.875,0.8571428571428571,1.0
+HUST_Gearbox,Detection,Cond_25_1,Random Forest,0.8,0.9090909090909091,1.0
+HUST_Gearbox,Detection,Cond_25_1,SVM (RBF),0.825,0.8717948717948718,0.925
+HUST_Gearbox,Detection,Cond_25_1,Hybrid DL (MLP),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_1,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_2,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_2,SVM (RBF),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_2,Hybrid DL (MLP),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_2,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_3,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_3,SVM (RBF),0.65,0.851063829787234,0.835
+HUST_Gearbox,Detection,Cond_25_3,Hybrid DL (MLP),0.925,0.918918918918919,1.0
+HUST_Gearbox,Detection,Cond_25_3,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_25_4,Random Forest,0.75,0.6666666666666666,1.0
+HUST_Gearbox,Detection,Cond_25_4,SVM (RBF),0.875,0.8571428571428571,0.97
+HUST_Gearbox,Detection,Cond_25_4,Hybrid DL (MLP),0.975,0.9743589743589743,1.0
+HUST_Gearbox,Detection,Cond_25_4,Hybrid DL (TABNET),0.975,0.9743589743589743,1.0
+HUST_Gearbox,Detection,Cond_30_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_0,SVM (RBF),0.85,0.9302325581395349,1.0
+HUST_Gearbox,Detection,Cond_30_0,Hybrid DL (MLP),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_0,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_1,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_1,SVM (RBF),0.85,0.9302325581395349,1.0
+HUST_Gearbox,Detection,Cond_30_1,Hybrid DL (MLP),0.75,0.8888888888888888,1.0
+HUST_Gearbox,Detection,Cond_30_1,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_2,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_2,SVM (RBF),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_2,Hybrid DL (MLP),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_2,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_3,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_3,SVM (RBF),0.9,0.9523809523809523,1.0
+HUST_Gearbox,Detection,Cond_30_3,Hybrid DL (MLP),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_3,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_4,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_30_4,SVM (RBF),0.75,0.8888888888888888,0.995
+HUST_Gearbox,Detection,Cond_30_4,Hybrid DL (MLP),0.95,0.975609756097561,1.0
+HUST_Gearbox,Detection,Cond_30_4,Hybrid DL (TABNET),0.9,0.9523809523809523,1.0
+HUST_Gearbox,Detection,Cond_35_0,Random Forest,0.55,0.8163265306122449,1.0
+HUST_Gearbox,Detection,Cond_35_0,SVM (RBF),0.5,0.8,0.965
+HUST_Gearbox,Detection,Cond_35_0,Hybrid DL (MLP),0.875,0.8947368421052632,0.9749999999999999
+HUST_Gearbox,Detection,Cond_35_0,Hybrid DL (TABNET),0.5,0.8,0.89
+HUST_Gearbox,Detection,Cond_35_1,Random Forest,0.75,0.8888888888888888,1.0
+HUST_Gearbox,Detection,Cond_35_1,SVM (RBF),0.55,0.8163265306122449,1.0
+HUST_Gearbox,Detection,Cond_35_1,Hybrid DL (MLP),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_1,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_2,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_2,SVM (RBF),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_2,Hybrid DL (MLP),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_2,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_3,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_3,SVM (RBF),0.85,0.9302325581395349,0.97
+HUST_Gearbox,Detection,Cond_35_3,Hybrid DL (MLP),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_3,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_35_4,Random Forest,0.8,0.9090909090909091,0.965
+HUST_Gearbox,Detection,Cond_35_4,SVM (RBF),0.75,0.8888888888888888,0.89
+HUST_Gearbox,Detection,Cond_35_4,Hybrid DL (MLP),0.675,0.8444444444444444,0.8899999999999999
+HUST_Gearbox,Detection,Cond_35_4,Hybrid DL (TABNET),0.65,0.851063829787234,1.0
+HUST_Gearbox,Detection,Cond_40_0,Random Forest,0.5,0.8,1.0
+HUST_Gearbox,Detection,Cond_40_0,SVM (RBF),0.5,0.8,0.9099999999999999
+HUST_Gearbox,Detection,Cond_40_0,Hybrid DL (MLP),0.825,0.9047619047619048,0.975
+HUST_Gearbox,Detection,Cond_40_0,Hybrid DL (TABNET),0.8,0.9090909090909091,1.0
+HUST_Gearbox,Detection,Cond_40_1,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_1,SVM (RBF),0.85,0.9302325581395349,1.0
+HUST_Gearbox,Detection,Cond_40_1,Hybrid DL (MLP),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_1,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_2,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_2,SVM (RBF),0.5,0.8,0.9849999999999999
+HUST_Gearbox,Detection,Cond_40_2,Hybrid DL (MLP),0.75,0.8888888888888888,1.0
+HUST_Gearbox,Detection,Cond_40_2,Hybrid DL (TABNET),0.9,0.9523809523809523,1.0
+HUST_Gearbox,Detection,Cond_40_3,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_3,SVM (RBF),0.7,0.8695652173913043,1.0
+HUST_Gearbox,Detection,Cond_40_3,Hybrid DL (MLP),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_3,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_4,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_4,SVM (RBF),0.65,0.851063829787234,1.0
+HUST_Gearbox,Detection,Cond_40_4,Hybrid DL (MLP),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_40_4,Hybrid DL (TABNET),0.95,0.9473684210526315,1.0
+HUST_Gearbox,Detection,Cond_L0_VS_0_40_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L0_VS_0_40_0,SVM (RBF),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L0_VS_0_40_0,Hybrid DL (MLP),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L0_VS_0_40_0,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L1_VS_0_40_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L1_VS_0_40_0,SVM (RBF),0.875,0.8571428571428571,0.97
+HUST_Gearbox,Detection,Cond_L1_VS_0_40_0,Hybrid DL (MLP),0.925,0.918918918918919,1.0
+HUST_Gearbox,Detection,Cond_L1_VS_0_40_0,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L2_VS_0_40_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L2_VS_0_40_0,SVM (RBF),0.95,0.975609756097561,0.98
+HUST_Gearbox,Detection,Cond_L2_VS_0_40_0,Hybrid DL (MLP),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L2_VS_0_40_0,Hybrid DL (TABNET),0.95,0.975609756097561,1.0
+HUST_Gearbox,Detection,Cond_L3_VS_0_40_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L3_VS_0_40_0,SVM (RBF),0.875,0.8947368421052632,0.9650000000000001
+HUST_Gearbox,Detection,Cond_L3_VS_0_40_0,Hybrid DL (MLP),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L3_VS_0_40_0,Hybrid DL (TABNET),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L4_VS_0_40_0,Random Forest,1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L4_VS_0_40_0,SVM (RBF),1.0,1.0,1.0
+HUST_Gearbox,Detection,Cond_L4_VS_0_40_0,Hybrid DL (MLP),0.75,0.8571428571428571,0.94
+HUST_Gearbox,Detection,Cond_L4_VS_0_40_0,Hybrid DL (TABNET),1.0,1.0,1.0
+CWRU_12k,Diagnosis,Load_0HP,Random Forest,0.8655701754385965,0.8655414075006416,0.0
+CWRU_12k,Diagnosis,Load_0HP,SVM (RBF),0.6888888888888889,0.5500213793521531,0.0
+CWRU_12k,Diagnosis,Load_0HP,Hybrid DL (MLP),0.8094298245614036,0.6479702540680761,0.0
+CWRU_12k,Diagnosis,Load_0HP,Hybrid DL (TABNET),0.8297514619883041,0.8290193610728852,0.0
+CWRU_12k,Diagnosis,Load_1HP,Random Forest,0.935891812865497,0.9358921899945419,0.0
+CWRU_12k,Diagnosis,Load_1HP,SVM (RBF),0.8038011695906433,0.8030874065441824,0.0
+CWRU_12k,Diagnosis,Load_1HP,Hybrid DL (MLP),0.8152777777777778,0.8146871349456443,0.0
+CWRU_12k,Diagnosis,Load_1HP,Hybrid DL (TABNET),0.8105994152046783,0.8054480164680577,0.0
+CWRU_12k,Diagnosis,Load_2HP,Random Forest,0.9959795321637427,0.9959794592647996,0.0
+CWRU_12k,Diagnosis,Load_2HP,SVM (RBF),0.8315058479532164,0.831787172417522,0.0
+CWRU_12k,Diagnosis,Load_2HP,Hybrid DL (MLP),0.8644005847953217,0.8641293588301462,0.0
+CWRU_12k,Diagnosis,Load_2HP,Hybrid DL (TABNET),0.9048976608187135,0.9070695640646823,0.0
+CWRU_12k,Diagnosis,Load_3HP,Random Forest,0.8560672514619883,0.8585108855160852,0.0
+CWRU_12k,Diagnosis,Load_3HP,SVM (RBF),0.7693713450292398,0.6211003604574616,0.0
+CWRU_12k,Diagnosis,Load_3HP,Hybrid DL (MLP),0.8244152046783626,0.8206166050366367,0.0
+CWRU_12k,Diagnosis,Load_3HP,Hybrid DL (TABNET),0.7818713450292397,0.6228919631093545,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,Random Forest,0.6625,0.6001762632197415,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,SVM (RBF),0.4875,0.37525987525987525,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,Hybrid DL (MLP),0.5875,0.5218181818181818,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,Hybrid DL (TABNET),0.725,0.6487068965517242,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,Random Forest,0.9375,0.9333333333333333,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,SVM (RBF),0.5375000000000001,0.44481399359448137,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,Hybrid DL (MLP),0.44999999999999996,0.4494949494949495,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,Hybrid DL (TABNET),0.625,0.6,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,Random Forest,1.0,1.0,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,SVM (RBF),0.4625,0.4230769230769231,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,Hybrid DL (MLP),0.375,0.3125,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,Hybrid DL (TABNET),0.5,0.3974358974358974,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,Random Forest,0.625,0.5305555555555556,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,SVM (RBF),0.3875,0.3198970840480274,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,Hybrid DL (MLP),0.4625,0.3605769230769231,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,Hybrid DL (TABNET),0.5,0.41666666666666663,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,Random Forest,0.8875,0.8883630645240552,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,SVM (RBF),0.5249999999999999,0.46178875590640295,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,Hybrid DL (MLP),0.4125,0.3250971250971251,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,Hybrid DL (TABNET),0.5249999999999999,0.5204142262965792,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,Random Forest,0.9375,0.9365741720028973,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,SVM (RBF),0.5125,0.45040041695795463,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,Hybrid DL (MLP),0.4125,0.382165991902834,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,Hybrid DL (TABNET),0.5375,0.45517276840806253,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,Random Forest,0.9375,0.9373205741626793,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,SVM (RBF),0.5874999999999999,0.5627829485786968,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,Hybrid DL (MLP),0.35,0.31926020408163264,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,Hybrid DL (TABNET),0.48750000000000004,0.4146907673223462,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,Random Forest,0.8625,0.8603178609353734,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,SVM (RBF),0.45,0.4139677271256218,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,Hybrid DL (MLP),0.4375,0.39487975792323615,0.0
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,Hybrid DL (TABNET),0.5125,0.50953139589169,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,Random Forest,0.5375,0.46106521549086454,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,SVM (RBF),0.4625,0.3482142857142857,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,Hybrid DL (MLP),0.4625,0.4018474215842637,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,Hybrid DL (TABNET),0.6,0.5395192846467209,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,Random Forest,0.7,0.6505681818181819,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,SVM (RBF),0.525,0.4174127688059577,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,Hybrid DL (MLP),0.4875,0.45211038961038963,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,Hybrid DL (TABNET),0.65,0.6057625948930296,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,Random Forest,0.975,0.9747474747474747,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,SVM (RBF),0.375,0.375,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,Hybrid DL (MLP),0.675,0.6183035714285714,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,Hybrid DL (TABNET),0.5125,0.44684517497348886,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,Random Forest,1.0,1.0,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,SVM (RBF),0.75,0.6794258373205742,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,Hybrid DL (MLP),0.5,0.41666666666666663,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,Hybrid DL (TABNET),0.6375,0.5797619047619047,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,Random Forest,0.925,0.9220243121171914,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,SVM (RBF),0.525,0.47205435463659146,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,Hybrid DL (MLP),0.44999999999999996,0.38928571428571423,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,Hybrid DL (TABNET),0.4875,0.4511446886446887,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,Random Forest,0.95,0.9492794486215539,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,SVM (RBF),0.6499999999999999,0.6424824549384971,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,Hybrid DL (MLP),0.6125,0.5943981481481482,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,Hybrid DL (TABNET),0.5874999999999999,0.577945841848285,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,Random Forest,0.925,0.9221590909090909,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,SVM (RBF),0.5875,0.5242535242535242,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,Hybrid DL (MLP),0.5375000000000001,0.4715805640437994,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,Hybrid DL (TABNET),0.6375,0.6036684782608696,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,Random Forest,0.925,0.9203335042150832,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,SVM (RBF),0.6375,0.6410084652189916,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,Hybrid DL (MLP),0.5375000000000001,0.48403679653679654,0.0
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,Hybrid DL (TABNET),0.6125,0.579398616734143,0.0
+HUST_Gearbox,Diagnosis,Cond_20_0,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_20_0,SVM (RBF),0.7000000000000001,0.6238244514106583,0.0
+HUST_Gearbox,Diagnosis,Cond_20_0,Hybrid DL (MLP),0.9,0.8976982097186701,0.0
+HUST_Gearbox,Diagnosis,Cond_20_0,Hybrid DL (TABNET),0.9333333333333332,0.9326599326599326,0.0
+HUST_Gearbox,Diagnosis,Cond_20_1,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_20_1,SVM (RBF),0.6666666666666666,0.5555555555555555,0.0
+HUST_Gearbox,Diagnosis,Cond_20_1,Hybrid DL (MLP),0.9333333333333332,0.9326599326599326,0.0
+HUST_Gearbox,Diagnosis,Cond_20_1,Hybrid DL (TABNET),0.7999999999999999,0.7802197802197801,0.0
+HUST_Gearbox,Diagnosis,Cond_20_2,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_20_2,SVM (RBF),0.6666666666666666,0.4547104438211516,0.0
+HUST_Gearbox,Diagnosis,Cond_20_2,Hybrid DL (MLP),0.7999999999999999,0.7802197802197801,0.0
+HUST_Gearbox,Diagnosis,Cond_20_2,Hybrid DL (TABNET),0.7999999999999999,0.7802197802197801,0.0
+HUST_Gearbox,Diagnosis,Cond_20_3,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_20_3,SVM (RBF),0.6666666666666666,0.5555555555555555,0.0
+HUST_Gearbox,Diagnosis,Cond_20_3,Hybrid DL (MLP),0.6666666666666666,0.5555555555555555,0.0
+HUST_Gearbox,Diagnosis,Cond_20_3,Hybrid DL (TABNET),0.6666666666666666,0.5555555555555555,0.0
+HUST_Gearbox,Diagnosis,Cond_20_4,Random Forest,0.6666666666666666,0.5555555555555555,0.0
+HUST_Gearbox,Diagnosis,Cond_20_4,SVM (RBF),0.6,0.5833333333333334,0.0
+HUST_Gearbox,Diagnosis,Cond_20_4,Hybrid DL (MLP),0.6666666666666666,0.5555555555555555,0.0
+HUST_Gearbox,Diagnosis,Cond_20_4,Hybrid DL (TABNET),0.6666666666666666,0.5555555555555555,0.0
+HUST_Gearbox,Diagnosis,Cond_25_0,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_25_0,SVM (RBF),0.6666666666666666,0.5555555555555555,0.0
+HUST_Gearbox,Diagnosis,Cond_25_0,Hybrid DL (MLP),0.6666666666666666,0.5555555555555555,0.0
+HUST_Gearbox,Diagnosis,Cond_25_0,Hybrid DL (TABNET),0.9333333333333332,0.9326599326599326,0.0
+HUST_Gearbox,Diagnosis,Cond_25_1,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_25_1,SVM (RBF),0.6666666666666666,0.4547104438211516,0.0
+HUST_Gearbox,Diagnosis,Cond_25_1,Hybrid DL (MLP),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_25_1,Hybrid DL (TABNET),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_25_2,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_25_2,SVM (RBF),0.9333333333333332,0.9326599326599326,0.0
+HUST_Gearbox,Diagnosis,Cond_25_2,Hybrid DL (MLP),0.9333333333333332,0.9326599326599326,0.0
+HUST_Gearbox,Diagnosis,Cond_25_2,Hybrid DL (TABNET),0.9666666666666667,0.9665831244778612,0.0
+HUST_Gearbox,Diagnosis,Cond_25_3,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_25_3,SVM (RBF),0.7666666666666666,0.7340930674264007,0.0
+HUST_Gearbox,Diagnosis,Cond_25_3,Hybrid DL (MLP),0.9666666666666667,0.9665831244778612,0.0
+HUST_Gearbox,Diagnosis,Cond_25_3,Hybrid DL (TABNET),0.7000000000000001,0.6238244514106583,0.0
+HUST_Gearbox,Diagnosis,Cond_25_4,Random Forest,0.6666666666666666,0.5555555555555555,0.0
+HUST_Gearbox,Diagnosis,Cond_25_4,SVM (RBF),0.7000000000000001,0.6238244514106583,0.0
+HUST_Gearbox,Diagnosis,Cond_25_4,Hybrid DL (MLP),0.7333333333333334,0.6825396825396824,0.0
+HUST_Gearbox,Diagnosis,Cond_25_4,Hybrid DL (TABNET),0.9666666666666667,0.9665831244778612,0.0
+HUST_Gearbox,Diagnosis,Cond_30_0,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_30_0,SVM (RBF),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_30_0,Hybrid DL (MLP),0.7000000000000001,0.6238244514106583,0.0
+HUST_Gearbox,Diagnosis,Cond_30_0,Hybrid DL (TABNET),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_30_1,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_30_1,SVM (RBF),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_30_1,Hybrid DL (MLP),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_30_1,Hybrid DL (TABNET),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_30_2,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_30_2,SVM (RBF),0.8666666666666667,0.8611111111111112,0.0
+HUST_Gearbox,Diagnosis,Cond_30_2,Hybrid DL (MLP),0.8666666666666667,0.8611111111111112,0.0
+HUST_Gearbox,Diagnosis,Cond_30_2,Hybrid DL (TABNET),0.9666666666666667,0.9665831244778612,0.0
+HUST_Gearbox,Diagnosis,Cond_30_3,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_30_3,SVM (RBF),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_30_3,Hybrid DL (MLP),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_30_3,Hybrid DL (TABNET),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_30_4,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_30_4,SVM (RBF),0.9666666666666667,0.9665831244778613,0.0
+HUST_Gearbox,Diagnosis,Cond_30_4,Hybrid DL (MLP),0.9333333333333332,0.9326599326599326,0.0
+HUST_Gearbox,Diagnosis,Cond_30_4,Hybrid DL (TABNET),0.7333333333333334,0.6825396825396827,0.0
+HUST_Gearbox,Diagnosis,Cond_35_0,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_35_0,SVM (RBF),0.9666666666666667,0.9665831244778612,0.0
+HUST_Gearbox,Diagnosis,Cond_35_0,Hybrid DL (MLP),0.9666666666666667,0.9665831244778612,0.0
+HUST_Gearbox,Diagnosis,Cond_35_0,Hybrid DL (TABNET),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_35_1,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_35_1,SVM (RBF),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_35_1,Hybrid DL (MLP),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_35_1,Hybrid DL (TABNET),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_35_2,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_35_2,SVM (RBF),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_35_2,Hybrid DL (MLP),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_35_2,Hybrid DL (TABNET),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_35_3,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_35_3,SVM (RBF),0.9666666666666667,0.9665831244778613,0.0
+HUST_Gearbox,Diagnosis,Cond_35_3,Hybrid DL (MLP),0.9666666666666667,0.9665831244778613,0.0
+HUST_Gearbox,Diagnosis,Cond_35_3,Hybrid DL (TABNET),0.9333333333333332,0.9326599326599326,0.0
+HUST_Gearbox,Diagnosis,Cond_35_4,Random Forest,0.9333333333333332,0.9326599326599326,0.0
+HUST_Gearbox,Diagnosis,Cond_35_4,SVM (RBF),0.9666666666666667,0.7368421052631579,0.0
+HUST_Gearbox,Diagnosis,Cond_35_4,Hybrid DL (MLP),0.9666666666666667,0.7368421052631579,0.0
+HUST_Gearbox,Diagnosis,Cond_35_4,Hybrid DL (TABNET),0.9333333333333332,0.5777777777777777,0.0
+HUST_Gearbox,Diagnosis,Cond_40_0,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_40_0,SVM (RBF),0.7999999999999999,0.797979797979798,0.0
+HUST_Gearbox,Diagnosis,Cond_40_0,Hybrid DL (MLP),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_40_0,Hybrid DL (TABNET),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_40_1,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_40_1,SVM (RBF),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_40_1,Hybrid DL (MLP),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_40_1,Hybrid DL (TABNET),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_40_2,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_40_2,SVM (RBF),0.7000000000000001,0.49874686716791977,0.0
+HUST_Gearbox,Diagnosis,Cond_40_2,Hybrid DL (MLP),0.7333333333333334,0.6825396825396827,0.0
+HUST_Gearbox,Diagnosis,Cond_40_2,Hybrid DL (TABNET),0.7333333333333334,0.6825396825396827,0.0
+HUST_Gearbox,Diagnosis,Cond_40_3,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_40_3,SVM (RBF),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_40_3,Hybrid DL (MLP),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_40_3,Hybrid DL (TABNET),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_40_4,Random Forest,0.6666666666666666,0.5555555555555555,0.0
+HUST_Gearbox,Diagnosis,Cond_40_4,SVM (RBF),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_40_4,Hybrid DL (MLP),0.8333333333333334,0.8222222222222223,0.0
+HUST_Gearbox,Diagnosis,Cond_40_4,Hybrid DL (TABNET),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_L0_VS_0_40_0,Random Forest,0.9666666666666667,0.9665831244778613,0.0
+HUST_Gearbox,Diagnosis,Cond_L0_VS_0_40_0,SVM (RBF),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_L0_VS_0_40_0,Hybrid DL (MLP),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_L0_VS_0_40_0,Hybrid DL (TABNET),0.9333333333333332,0.9333333333333332,0.0
+HUST_Gearbox,Diagnosis,Cond_L1_VS_0_40_0,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_L1_VS_0_40_0,SVM (RBF),0.7999999999999999,0.6035087719298246,0.0
+HUST_Gearbox,Diagnosis,Cond_L1_VS_0_40_0,Hybrid DL (MLP),0.8333333333333334,0.8222222222222223,0.0
+HUST_Gearbox,Diagnosis,Cond_L1_VS_0_40_0,Hybrid DL (TABNET),0.9,0.8976982097186701,0.0
+HUST_Gearbox,Diagnosis,Cond_L2_VS_0_40_0,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_L2_VS_0_40_0,SVM (RBF),0.7000000000000001,0.5666666666666667,0.0
+HUST_Gearbox,Diagnosis,Cond_L2_VS_0_40_0,Hybrid DL (MLP),0.9,0.899749373433584,0.0
+HUST_Gearbox,Diagnosis,Cond_L2_VS_0_40_0,Hybrid DL (TABNET),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_L3_VS_0_40_0,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_L3_VS_0_40_0,SVM (RBF),0.7000000000000001,0.474025974025974,0.0
+HUST_Gearbox,Diagnosis,Cond_L3_VS_0_40_0,Hybrid DL (MLP),0.8666666666666667,0.8611111111111112,0.0
+HUST_Gearbox,Diagnosis,Cond_L3_VS_0_40_0,Hybrid DL (TABNET),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_L4_VS_0_40_0,Random Forest,1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_L4_VS_0_40_0,SVM (RBF),0.8666666666666667,0.6616541353383458,0.0
+HUST_Gearbox,Diagnosis,Cond_L4_VS_0_40_0,Hybrid DL (MLP),1.0,1.0,0.0
+HUST_Gearbox,Diagnosis,Cond_L4_VS_0_40_0,Hybrid DL (TABNET),0.9333333333333332,0.9326599326599326,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.007,Random Forest,0.7999999999999999,0.7802197802197801,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.007,SVM (RBF),0.7999999999999999,0.7802197802197801,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.007,Hybrid DL (MLP),0.7999999999999999,0.7896825396825395,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.007,Hybrid DL (TABNET),0.7333333333333334,0.7263616557734206,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.014,Random Forest,0.6,0.5238095238095238,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.014,SVM (RBF),0.5,0.3333333333333333,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.014,Hybrid DL (MLP),0.9,0.898989898989899,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.014,Hybrid DL (TABNET),0.75,0.7493734335839599,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.021,Random Forest,1.0,1.0,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.021,SVM (RBF),0.5,0.4166666666666667,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.021,Hybrid DL (MLP),0.5,0.3703703703703704,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.021,Hybrid DL (TABNET),0.85,0.8362573099415204,0.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.007,Random Forest,0.9666666666666667,0.9665831244778613,0.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.007,SVM (RBF),0.7999999999999999,0.5926724137931034,0.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.007,Hybrid DL (MLP),0.6666666666666666,0.5335467520341469,0.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.007,Hybrid DL (TABNET),0.8333333333333334,0.8195343177921575,0.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.014,Random Forest,1.0,1.0,0.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.014,SVM (RBF),0.6785714285714285,0.6711742168131619,0.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.014,Hybrid DL (MLP),0.5,0.42122719734660025,0.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.014,Hybrid DL (TABNET),0.5238095238095238,0.5001473622163277,0.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.021,Random Forest,1.0,1.0,0.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.021,SVM (RBF),0.9500000000000001,0.9497171590194847,0.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.021,Hybrid DL (MLP),0.9500000000000001,0.9497171590194845,0.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.021,Hybrid DL (TABNET),0.9833333333333334,0.9833229101521784,0.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.007,Random Forest,1.0,1.0,0.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.007,SVM (RBF),0.8166666666666668,0.8126555126555126,0.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.007,Hybrid DL (MLP),0.8000000000000002,0.7930134707589941,0.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.007,Hybrid DL (TABNET),0.8833333333333334,0.883260371065249,0.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.014,Random Forest,0.9833333333333334,0.9833229101521784,0.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.014,SVM (RBF),0.6166666666666667,0.47183462532299736,0.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.014,Hybrid DL (MLP),0.85,0.8477676912459522,0.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.014,Hybrid DL (TABNET),0.6833333333333332,0.6731928543775233,0.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.021,Random Forest,1.0,1.0,0.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.021,SVM (RBF),0.7999999999999999,0.7902238314680711,0.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.021,Hybrid DL (MLP),1.0,1.0,0.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.021,Hybrid DL (TABNET),0.8833333333333333,0.8796475392220073,0.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.007,Random Forest,1.0,1.0,0.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.007,SVM (RBF),0.85,0.6396276595744681,0.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.007,Hybrid DL (MLP),1.0,1.0,0.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.007,Hybrid DL (TABNET),0.9666666666666667,0.9665831244778612,0.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.014,Random Forest,0.7833333333333333,0.5880929504288104,0.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.014,SVM (RBF),0.6833333333333332,0.4156196943972835,0.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.014,Hybrid DL (MLP),0.7333333333333334,0.5331384015594542,0.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.014,Hybrid DL (TABNET),1.0,1.0,0.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.021,Random Forest,0.9166666666666666,0.9153439153439153,0.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.021,SVM (RBF),0.8166666666666668,0.7987664704233248,0.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.021,Hybrid DL (MLP),0.8166666666666668,0.8016677935542033,0.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.021,Hybrid DL (TABNET),0.9666666666666667,0.9665831244778613,0.0
