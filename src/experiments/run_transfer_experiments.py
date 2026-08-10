@@ -14,7 +14,6 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')
 
 from src.features.extractors_v2 import extract_advanced_features
 from src.features.signalai_wrapper import extract_fusion_features
-# A INCLUSÃO DE DEEP LEARNING MODULAR!
 from src.models.build_tabnet_resnet import train_and_evaluate_hybrid
 
 # --- CONFIGURAÇÃO GLOBAL ---
@@ -112,21 +111,26 @@ def evaluate_transfer_models(X_train, y_train, X_test, y_test, target_name, test
             print(f"          [ERRO] Falha ao treinar {model_name}: {e}")
             
     # ----------------------------------------------------
-    # 2. MODELO PROFUNDO: TABNET + RESNET1D (Transfer Learning)
+    # 2. MODELOS PROFUNDOS: ESTUDO DE ABLAÇÃO (MLP vs TabNet)
     # ----------------------------------------------------
-    print(f"       -> Treinando TabNet-ResNet1D (Arquitetura Híbrida DL)...")
-    try:
-        # Passamos X bruto, pois o PyTorch faz a escala no DataLoader dele por segurança
-        bal_acc, macro_f1, roc_auc, _ = train_and_evaluate_hybrid(
-            X_train, y_train, X_test, y_test, 
-            task="detection", 
-            epochs=15,          # 15 épocas são suficientes com 200k dados
-            batch_size=512      # Lote grande para velocidade na GPU
-        )
-        print(f"          [TabNet-ResNet1D] Bal Acc: {bal_acc:.4f} | F1: {macro_f1:.4f} | ROC-AUC: {roc_auc:.4f}")
-        results.append({"Dataset": target_name, "Task": "Detection", "Test Condition": test_cond, "Model": "TabNet-ResNet1D", "Bal Acc": bal_acc, "Macro F1": macro_f1, "ROC-AUC": roc_auc})
-    except Exception as e:
-        print(f"          [ERRO] Falha ao treinar TabNet-ResNet1D: {e}")
+    dl_encoders = ['mlp', 'tabnet']
+    
+    for enc in dl_encoders:
+        model_name = f"Hybrid DL ({enc.upper()})"
+        print(f"       -> Treinando {model_name}...")
+        try:
+            # Passamos X bruto, pois o PyTorch faz a escala no DataLoader dele por segurança
+            bal_acc, macro_f1, roc_auc, _ = train_and_evaluate_hybrid(
+                X_train, y_train, X_test, y_test, 
+                task="detection", 
+                epochs=15,          
+                batch_size=512,      
+                encoder_type=enc   # A MÁGICA: Alterna automaticamente entre os dois
+            )
+            print(f"          [{model_name}] Bal Acc: {bal_acc:.4f} | F1: {macro_f1:.4f} | ROC-AUC: {roc_auc:.4f}")
+            results.append({"Dataset": target_name, "Task": "Detection", "Test Condition": test_cond, "Model": model_name, "Bal Acc": bal_acc, "Macro F1": macro_f1, "ROC-AUC": roc_auc})
+        except Exception as e:
+            print(f"          [ERRO] Falha ao treinar {model_name}: {e}")
 
     return results
 
