@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 
-# Importações do Scikit-Learn diretas para não depender do build_sklearn.py
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
@@ -15,12 +14,13 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')
 
 from src.features.extractors_v2 import extract_advanced_features
 from src.features.signalai_wrapper import extract_fusion_features
+# A INCLUSÃO DE DEEP LEARNING MODULAR!
+from src.models.build_tabnet_resnet import train_and_evaluate_hybrid
 
 # --- CONFIGURAÇÃO GLOBAL ---
 DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
 RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../results'))
 
-# Todas as bases
 DATASETS_CONFIG = {
     "CWRU_12k": 12000,
     "CWRU_48k": 48000,
@@ -33,7 +33,6 @@ DATASETS_CONFIG = {
     "Electric_Motor": 50000
 }
 
-# Bases que queremos ativamente analisar o F1-Score do Teste (os alvos do Baseline)
 TARGET_DATASETS = ["CWRU_12k", "UOEMD", "HUST_Gearbox"] 
 
 class Logger(object):
@@ -49,10 +48,6 @@ class Logger(object):
         self.log.flush()
 
 def load_entire_dataset_for_tl(dataset_name, fs):
-    """
-    Carrega TODOS os arquivos de uma base, capturando a 'Condição' (Folder Pai) 
-    para podermos isolar os testes exatamente como no Baseline LOCO.
-    """
     dataset_path = os.path.join(DATA_ROOT, dataset_name)
     if not os.path.exists(dataset_path):
         print(f"[Aviso] Dataset {dataset_name} não encontrado no disco.")
@@ -63,16 +58,14 @@ def load_entire_dataset_for_tl(dataset_name, fs):
     for root, dirs, files in os.walk(dataset_path):
         for file in files:
             if file.endswith('.npy'):
-                # Exemplo: root = ".../CWRU_12k/Load_0HP/Class_Normal"
                 class_name = os.path.basename(root)
                 cond_name = os.path.basename(os.path.dirname(root))
                 file_path = os.path.join(root, file)
                 
-                # Mapeamento Universal Binário
                 if 'normal' in class_name.lower() or 'healthy' in class_name.lower():
-                    label = 0 # Saudável
+                    label = 0 
                 else:
-                    label = 1 # Falha
+                    label = 1 
                     
                 if dataset_name == "CWRU_48k" and label == 0:
                     continue 
@@ -85,10 +78,13 @@ def load_entire_dataset_for_tl(dataset_name, fs):
 
 def evaluate_transfer_models(X_train, y_train, X_test, y_test, target_name, test_cond):
     """
-    Avalia a generalização. As métricas são as mesmas do baseline para viabilizar 
-    o cruzamento do compare_results.py
+    Avalia a generalização de Modelos Rasos Clássicos + Redes Neurais Híbridas (TabNet)
     """
     results = []
+    
+    # ----------------------------------------------------
+    # 1. MODELOS CLÁSSICOS (Scikit-Learn)
+    # ----------------------------------------------------
     scaler = StandardScaler()
     X_train_s = scaler.fit_transform(X_train)
     X_test_s = scaler.transform(X_test)
@@ -107,27 +103,31 @@ def evaluate_transfer_models(X_train, y_train, X_test, y_test, target_name, test
             
             bal_acc = balanced_accuracy_score(y_test, y_pred)
             macro_f1 = f1_score(y_test, y_pred, average='binary')
-            
-            try:
-                roc_auc = roc_auc_score(y_test, y_probs[:, 1])
-            except ValueError:
-                roc_auc = 0.0 
+            try: roc_auc = roc_auc_score(y_test, y_probs[:, 1])
+            except ValueError: roc_auc = 0.0 
                 
             print(f"          [{model_name}] Bal Acc: {bal_acc:.4f} | F1: {macro_f1:.4f} | ROC-AUC: {roc_auc:.4f}")
-            
-            # A nomenclatura exata para o compare_results.py achar
-            results.append({
-                "Dataset": target_name,
-                "Task": "Detection",
-                "Test Condition": test_cond,
-                "Model": model_name,
-                "Bal Acc": bal_acc,
-                "Macro F1": macro_f1,
-                "ROC-AUC": roc_auc
-            })
+            results.append({"Dataset": target_name, "Task": "Detection", "Test Condition": test_cond, "Model": model_name, "Bal Acc": bal_acc, "Macro F1": macro_f1, "ROC-AUC": roc_auc})
         except Exception as e:
             print(f"          [ERRO] Falha ao treinar {model_name}: {e}")
             
+    # ----------------------------------------------------
+    # 2. MODELO PROFUNDO: TABNET + RESNET1D (Transfer Learning)
+    # ----------------------------------------------------
+    print(f"       -> Treinando TabNet-ResNet1D (Arquitetura Híbrida DL)...")
+    try:
+        # Passamos X bruto, pois o PyTorch faz a escala no DataLoader dele por segurança
+        bal_acc, macro_f1, roc_auc, _ = train_and_evaluate_hybrid(
+            X_train, y_train, X_test, y_test, 
+            task="detection", 
+            epochs=15,          # 15 épocas são suficientes com 200k dados
+            batch_size=512      # Lote grande para velocidade na GPU
+        )
+        print(f"          [TabNet-ResNet1D] Bal Acc: {bal_acc:.4f} | F1: {macro_f1:.4f} | ROC-AUC: {roc_auc:.4f}")
+        results.append({"Dataset": target_name, "Task": "Detection", "Test Condition": test_cond, "Model": "TabNet-ResNet1D", "Bal Acc": bal_acc, "Macro F1": macro_f1, "ROC-AUC": roc_auc})
+    except Exception as e:
+        print(f"          [ERRO] Falha ao treinar TabNet-ResNet1D: {e}")
+
     return results
 
 def run_transfer_learning():
@@ -164,7 +164,6 @@ def run_transfer_learning():
         else:
             print(f"  -> {ds_name}: Nenhuma amostra encontrada. Pulando.")
 
-    # --- FASE 2: VALIDAÇÃO TL-LOCO (IDÊNTICA AO BASELINE) ---
     print("\n--- FASE 2: TESTE CONDIÇÃO POR CONDIÇÃO (Idêntico ao Baseline) ---")
     available_datasets = list(db_features.keys())
     
@@ -177,7 +176,6 @@ def run_transfer_learning():
         for test_cond in unique_conds:
             print(f"\n   --- Dobra de Teste: {test_cond} ---")
             
-            # 1. Isola o conjunto de Teste Exato (Igual ao Baseline)
             test_mask = (db_conds[target_ds] == test_cond)
             X_test = db_features[target_ds][test_mask]
             y_test = db_labels[target_ds][test_mask]
@@ -186,16 +184,13 @@ def run_transfer_learning():
                 print(f"      [Aviso] Dados insuficientes/Falta da classe Normal para {test_cond}. Pulando.")
                 continue
                 
-            # 2. Isola o conjunto de Treino do Próprio Target (Igual ao Baseline)
             train_target_mask = (db_conds[target_ds] != test_cond)
             X_train_local = db_features[target_ds][train_target_mask]
             y_train_local = db_labels[target_ds][train_target_mask]
             
-            # 3. Puxa as 8 Máquinas Externas (O Diferencial do Transfer Learning)
             X_external_list = [db_features[ds] for ds in available_datasets if ds != target_ds]
             y_external_list = [db_labels[ds] for ds in available_datasets if ds != target_ds]
             
-            # 4. Une tudo no grande conjunto de Treinamento
             X_train_global = np.vstack(X_external_list + [X_train_local])
             y_train_global = np.concatenate(y_external_list + [y_train_local])
             
