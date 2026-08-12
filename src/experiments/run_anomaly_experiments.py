@@ -20,8 +20,27 @@ DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/
 RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../results'))
 
 BASELINE_CONFIGS = {
-    "CWRU_12k": {"fs": 12000, "conditions": ["Load_0HP", "Load_1HP", "Load_2HP", "Load_3HP"]},
-    "UOEMD": {"fs": 42000, "conditions": ["Load_Loaded_Speed_60Hz", "Load_No_Load_Speed_60Hz"]}
+    "CWRU_12k": {
+        "fs": 12000,
+        "conditions": ["Load_0HP", "Load_1HP", "Load_2HP", "Load_3HP"]
+    },
+    "HUST_Gearbox": {
+        "fs": 25600,
+        "conditions": ["Cond_20_0", "Cond_20_1", "Cond_20_2", "Cond_20_3", "Cond_20_4",
+                       "Cond_25_0", "Cond_25_1", "Cond_25_2", "Cond_25_3", "Cond_25_4",
+                       "Cond_30_0", "Cond_30_1", "Cond_30_2", "Cond_30_3", "Cond_30_4",
+                       "Cond_35_0", "Cond_35_1", "Cond_35_2", "Cond_35_3", "Cond_35_4",
+                       "Cond_40_0", "Cond_40_1", "Cond_40_2", "Cond_40_3", "Cond_40_4",
+                       "Cond_L0_VS_0_40_0", "Cond_L1_VS_0_40_0", "Cond_L2_VS_0_40_0", "Cond_L3_VS_0_40_0", "Cond_L4_VS_0_40_0"]
+    },
+    "UOEMD": {
+        "fs": 42000,
+        "conditions": ["Load_Loaded_Speed_15Hz", "Load_Loaded_Speed_30Hz", "Load_Loaded_Speed_45Hz", "Load_Loaded_Speed_60Hz",
+                       "Load_Loaded_Speed_Dec_45_to_15Hz", "Load_Loaded_Speed_Dec_60_to_30Hz", "Load_Loaded_Speed_Inc_15_to_45Hz",
+                       "Load_Loaded_Speed_Inc_30_to_60Hz", "Load_No_Load_Speed_15Hz", "Load_No_Load_Speed_30Hz",
+                       "Load_No_Load_Speed_45Hz", "Load_No_Load_Speed_60Hz", "Load_No_Load_Speed_Dec_45_to_15Hz",
+                       "Load_No_Load_Speed_Dec_60_to_30Hz", "Load_No_Load_Speed_Inc_15_to_45Hz", "Load_No_Load_Speed_Inc_30_to_60Hz"]
+    }
 }
 
 class Logger(object):
@@ -96,14 +115,14 @@ def run_anomaly_detection():
             results_classical = evaluate_classical_anomaly(X_train_s, X_test_s, y_test)
             for r in results_classical:
                 r.update({"Dataset": dataset_name, "Test Condition": test_cond})
-                print(f"         [{r['Model']}] F1: {r['Macro F1']:.4f}")
+                print(f"         [{r['Model']}] F1 (Anomaly): {r['F1 (Anomaly)']:.4f}")
             
             # 5. Avaliação: Autoencoder Deep Learning com Limiares
             print("      -> Avaliando MLP Autoencoder com limiares estatísticos...")
             results_ae = evaluate_autoencoder_anomaly(X_train_s, X_test_s, y_test)
             for r in results_ae:
                 r.update({"Dataset": dataset_name, "Test Condition": test_cond})
-                print(f"         [{r['Model']}] F1: {r['Macro F1']:.4f}")
+                print(f"         [{r['Model']}] F1 (Anomaly): {r['F1 (Anomaly)']:.4f}")
             
             # Adiciona na tabela geral
             master_results.extend(results_classical)
