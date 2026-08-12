@@ -135,7 +135,7 @@ def evaluate_autoencoder_anomaly(X_train_normal, X_test, y_test, epochs=30, batc
         results.append({
             "Model": thr_name,
             "Bal Acc": bal_acc,
-            "Macro F1": f1,
+            "F1": f1,
             "ROC-AUC": auc
         })
         
