@@ -41,7 +41,7 @@ def evaluate_classical_anomaly(X_train_normal, X_test, y_test):
         results.append({
             "Model": name,
             "Bal Acc": bal_acc,
-            "Macro F1": f1,
+            "F1": f1,
             "ROC-AUC": auc
         })
         
