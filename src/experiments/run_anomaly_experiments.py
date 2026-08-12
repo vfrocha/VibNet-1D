@@ -67,29 +67,31 @@ def run_anomaly_detection():
     
     master_results = []
     
-    for dataset_name, config in BASELINE_CONFIGS.items():
-        fs = config["fs"]
-        conditions = config["conditions"]
-        print(f"\n{'#'*60}\n DATASET: {dataset_name} | Fs: {fs}Hz\n{'#'*60}")
-        
-        for test_cond in conditions:
+    for test_cond in conditions:
             print(f"\n   --- Dobra de Teste: {test_cond} ---")
             
-            # 1. Carrega dados no esquema LOCO
-            X_train_raw, y_train_str, X_test_raw, y_test_str = load_vibration_data(
-                DATA_ROOT, dataset_name, test_cond
+            # 1. Carrega dados no esquema LOCO passando a task='detection'
+            # O dataloader retorna 5 variáveis: X_train, y_train_enc, X_test, y_test_enc, label_encoder
+            X_train_raw, y_train_encoded, X_test_raw, y_test_encoded, le = load_vibration_data(
+                DATA_ROOT, dataset_name, test_cond, task='detection'
             )
             
-            # Mapeamento para Binário (0 = Normal, 1 = Falha)
-            y_train = np.array([0 if ('normal' in l.lower() or 'healthy' in l.lower()) else 1 for l in y_train_str])
-            y_test  = np.array([0 if ('normal' in l.lower() or 'healthy' in l.lower()) else 1 for l in y_test_str])
+            # Identifica qual número o LabelEncoder atribuiu à classe 'Normal'
+            try:
+                normal_idx = le.transform(['Normal'])[0]
+            except ValueError:
+                print(f"      [Aviso] Classe 'Normal' não encontrada no treino para {test_cond}. Pulando.")
+                continue
+                
+            # Mapeamento Estrito para Anomalia: 0 = Normal, 1 = Falha
+            y_train = (y_train_encoded != normal_idx).astype(int)
+            y_test  = (y_test_encoded != normal_idx).astype(int)
             
             # ---------------------------------------------------------
             # A MÁGICA DA ANOMALIA: FILTRAR O TREINO APENAS PARA NORMAL
             # ---------------------------------------------------------
             mask_normal_train = (y_train == 0)
             X_train_raw_normal = np.array(X_train_raw)[mask_normal_train]
-            y_train_normal = y_train[mask_normal_train]
             
             if len(X_train_raw_normal) == 0:
                 print(f"      [Aviso] Nenhum dado Normal no treino para {test_cond}. Pulando.")
