@@ -1,30 +1,0 @@
-[   INFO   ] MusicExtractorSVM: no classifier models were configured by default
-======================================================================
- INICIANDO EXPERIMENTOS COMPARATIVOS (SIGNAI ONLY - LOCO)
-======================================================================
-
-
-############################################################
- TAREFA ATUAL: DIAGNOSIS
-############################################################
-
-[CWRU_12k] Processando 4 dobras LOCO...
-
-  >>> Dobra Alvo (Teste): Load_0HP | Treino: Demais Condições
-Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DIAGNOSIS
-  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
--> Lendo arquivos .npy...
-Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:  56%|█████▋    | 1083/1920 [00:00<00:00, 10820.65it/s]Treino: 100%|██████████| 1920/1920 [00:00<00:00, 10971.46it/s]
-Teste:   0%|          | 0/600 [00:00<?, ?it/s]Teste: 100%|██████████| 600/600 [00:00<00:00, 11109.81it/s]
-  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
-      -> [Fusion] Iniciando extração DUPLA para 1920 amostras...
-         [Debug] Shape VibNet: (1920, 16)
-         [Debug] Shape SignAI: (1920, 33)
-      -> [Fusion] Shape final combinado: (1920, 49)
-      -> [Fusion] Iniciando extração DUPLA para 600 amostras...
-         [Debug] Shape VibNet: (600, 16)
-         [Debug] Shape SignAI: (600, 33)
-      -> [Fusion] Shape final combinado: (600, 49)
-      [SignAI Wrapper] Features isoladas: Shape atual de treino (1920, 33)
-     -> Treinando Random Forest...
-  -> Otimizando hiperparâmetros (GridSearch em andamento...)
