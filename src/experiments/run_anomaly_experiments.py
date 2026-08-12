@@ -67,7 +67,12 @@ def run_anomaly_detection():
     
     master_results = []
     
-    for test_cond in conditions:
+    for dataset_name, config in BASELINE_CONFIGS.items():
+        fs = config["fs"]
+        conditions = config["conditions"]
+        print(f"\n{'#'*60}\n DATASET: {dataset_name} | Fs: {fs}Hz\n{'#'*60}")
+        
+        for test_cond in conditions:
             print(f"\n   --- Dobra de Teste: {test_cond} ---")
             
             # 1. Carrega dados no esquema LOCO passando a task='detection'
