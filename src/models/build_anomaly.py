@@ -47,21 +47,32 @@ def evaluate_classical_anomaly(X_train_normal, X_test, y_test):
         
     return results
 
-# --- 2. DEEP LEARNING: AUTOENCODER (PyTorch) ---
+# --- 2. DEEP LEARNING: AUTOENCODER ESPELHADO (PyTorch) ---
 class MLPAutoencoder(nn.Module):
     def __init__(self, input_dim):
         super().__init__()
+        
+        # ENCODER: Cópia exata da profundidade usada no Transfer Learning
         self.encoder = nn.Sequential(
-            nn.Linear(input_dim, 64),
-            nn.BatchNorm1d(64),
+            nn.Linear(input_dim, 256),
+            nn.BatchNorm1d(256),
             nn.ReLU(),
-            nn.Linear(64, 32) # Espaço Latente (Bottleneck)
+            nn.Dropout(0.2), # Dropout mantido para evitar overfit na reconstrução
+            nn.Linear(256, 128),
+            nn.BatchNorm1d(128),
+            nn.ReLU(),
+            nn.Linear(128, 64) # Espaço Latente (Bottleneck idêntico)
         )
+        
+        # DECODER: O Espelho exato (64 -> 128 -> 256 -> input_dim)
         self.decoder = nn.Sequential(
-            nn.Linear(32, 64),
-            nn.BatchNorm1d(64),
+            nn.Linear(64, 128),
+            nn.BatchNorm1d(128),
             nn.ReLU(),
-            nn.Linear(64, input_dim)
+            nn.Linear(128, 256),
+            nn.BatchNorm1d(256),
+            nn.ReLU(),
+            nn.Linear(256, input_dim) # Camada de Saída Sem Ativação para MSE Loss
         )
 
     def forward(self, x):
@@ -71,49 +82,47 @@ class MLPAutoencoder(nn.Module):
 
 def evaluate_autoencoder_anomaly(X_train_normal, X_test, y_test, epochs=30, batch_size=256):
     """
-    Treina um Autoencoder para reconstruir apenas os dados normais.
+    Treina um Autoencoder para reconstruir apenas os dados normais usando MSELoss.
     Aplica 3 limiares diferentes para classificar anomalias no teste.
     """
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     input_dim = X_train_normal.shape[1]
     
     model = MLPAutoencoder(input_dim).to(device)
-    criterion = nn.MSELoss(reduction='none') # Loss sem redução para pegarmos o erro por amostra
+    criterion = nn.MSELoss(reduction='none') # Erro Quadrático Médio sem redução (por amostra)
     optimizer = optim.Adam(model.parameters(), lr=0.001)
     
-    # Prepara os dados (Assumimos que já vieram padronizados do script principal)
     X_tr_t = torch.tensor(X_train_normal, dtype=torch.float32)
     train_loader = DataLoader(TensorDataset(X_tr_t), batch_size=batch_size, shuffle=True)
     
-    # 1. TREINAMENTO (Aprender a reconstruir a máquina saudável)
+    # 1. TREINAMENTO (Minimizando o Erro de Reconstrução)
     model.train()
     for epoch in range(epochs):
         for batch in train_loader:
             bx = batch[0].to(device)
             optimizer.zero_grad()
             reconstructed = model(bx)
-            loss = criterion(reconstructed, bx).mean() # Média do batch para retropropagar
+            loss = criterion(reconstructed, bx).mean()
             loss.backward()
             optimizer.step()
             
-    # 2. DEFINIÇÃO DOS LIMIARES (Com base no erro do Treinamento)
+    # 2. DEFINIÇÃO DOS LIMIARES ESTATÍSTICOS
     model.eval()
     with torch.no_grad():
         X_tr_device = X_tr_t.to(device)
         recon_train = model(X_tr_device)
-        # Erro de reconstrução médio por amostra no treino
+        # Erro MSE de reconstrução médio por amostra no treino saudável
         train_errors = criterion(recon_train, X_tr_device).mean(dim=1).cpu().numpy()
         
-    # Cálculos Estatísticos exigidos pelo Flávio
     mean_err = np.mean(train_errors)
     std_err = np.std(train_errors)
     median_err = np.median(train_errors)
-    mad_err = np.median(np.abs(train_errors - median_err)) # Median Absolute Deviation
+    mad_err = np.median(np.abs(train_errors - median_err))
     
     thresholds = {
         "AE (Média + 2σ)": mean_err + 2 * std_err,
         "AE (Percentil 99)": np.percentile(train_errors, 99),
-        "AE (Mediana + 3*MAD)": median_err + 3 * mad_err # Convencionalmente usa-se 3x MAD para anomalia
+        "AE (Mediana + 3*MAD)": median_err + 3 * mad_err 
     }
     
     # 3. TESTE E AVALIAÇÃO
@@ -125,12 +134,12 @@ def evaluate_autoencoder_anomaly(X_train_normal, X_test, y_test, epochs=30, batc
     results = []
     
     for thr_name, threshold in thresholds.items():
-        # Predição: 1 se o erro for maior que o limiar (Anomalia), 0 se for menor (Normal)
+        # Classificação baseada no limite de reconstrução
         preds = (test_errors > threshold).astype(int)
         
         bal_acc = balanced_accuracy_score(y_test, preds)
         f1 = f1_score(y_test, preds, average='binary')
-        auc = roc_auc_score(y_test, test_errors) # O AUC usa o erro contínuo
+        auc = roc_auc_score(y_test, test_errors)
         
         results.append({
             "Model": thr_name,
