@@ -14,13 +14,14 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')
 
 from src.features.extractors_v2 import extract_advanced_features
 from src.features.signalai_wrapper import extract_fusion_features
-from src.models.build_tabnet_resnet import train_and_evaluate_hybrid
+# Importação ATUALIZADA para a nova função Multi-Head
+from src.models.build_tabnet_resnet import train_and_evaluate_multihead 
 
 # --- CONFIGURAÇÃO GLOBAL ---
 DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
 RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../results'))
 
-TASKS = ["detection", "diagnosis"]
+TASKS = ["diagnosis"] #"detection"
 
 DATASETS_CONFIG = {
     "CWRU_12k": 12000,
@@ -78,17 +79,13 @@ def load_entire_dataset_for_tl(dataset_name, fs):
                 
     return X_raw, y_raw_str, cond_raw
 
-def evaluate_transfer_models(X_train, y_train, X_test, y_test, target_name, test_cond, task):
+def evaluate_transfer_models(X_train_c, y_train_c, X_test_c, y_test_c, train_data_dict_dl, X_test_dl, y_test_dl, target_name, test_cond, task):
     """
-    Avalia a generalização de Modelos Rasos Clássicos + Redes Neurais Híbridas (MLP/TabNet)
+    Avalia a generalização. Recebe as matrizes clássicas já padronizadas, e o dicionário bruto para a rede DL.
     """
     results = []
     
     # 1. MODELOS CLÁSSICOS (Scikit-Learn)
-    scaler = StandardScaler()
-    X_train_s = scaler.fit_transform(X_train)
-    X_test_s = scaler.transform(X_test)
-    
     models = {
         "Random Forest": RandomForestClassifier(n_estimators=100, random_state=42, n_jobs=-1),
         "SVM (RBF)": SVC(kernel='rbf', probability=True, random_state=42)
@@ -97,18 +94,18 @@ def evaluate_transfer_models(X_train, y_train, X_test, y_test, target_name, test
     for model_name, model in models.items():
         print(f"       -> Treinando {model_name}...")
         try:
-            model.fit(X_train_s, y_train)
-            y_pred = model.predict(X_test_s)
-            y_probs = model.predict_proba(X_test_s)
+            model.fit(X_train_c, y_train_c)
+            y_pred = model.predict(X_test_c)
+            y_probs = model.predict_proba(X_test_c)
             
-            bal_acc = balanced_accuracy_score(y_test, y_pred)
+            bal_acc = balanced_accuracy_score(y_test_c, y_pred)
             if task == 'detection':
-                macro_f1 = f1_score(y_test, y_pred, average='binary')
-                try: roc_auc = roc_auc_score(y_test, y_probs[:, 1])
+                macro_f1 = f1_score(y_test_c, y_pred, average='binary')
+                try: roc_auc = roc_auc_score(y_test_c, y_probs[:, 1])
                 except ValueError: roc_auc = 0.0 
             else:
-                macro_f1 = f1_score(y_test, y_pred, average='macro')
-                try: roc_auc = roc_auc_score(y_test, y_probs, multi_class='ovr')
+                macro_f1 = f1_score(y_test_c, y_pred, average='macro')
+                try: roc_auc = roc_auc_score(y_test_c, y_probs, multi_class='ovr')
                 except ValueError: roc_auc = 0.0 
                 
             print(f"          [{model_name}] Bal Acc: {bal_acc:.4f} | F1: {macro_f1:.4f} | ROC-AUC: {roc_auc:.4f}")
@@ -116,43 +113,45 @@ def evaluate_transfer_models(X_train, y_train, X_test, y_test, target_name, test
         except Exception as e:
             print(f"          [ERRO] Falha ao treinar {model_name}: {e}")
             
-    # 2. MODELOS PROFUNDOS: ESTUDO DE ABLAÇÃO (MLP vs TabNet)
-    dl_encoders = ['mlp', 'tabnet']
-    
-    for enc in dl_encoders:
-        model_name = f"Hybrid DL ({enc.upper()})"
-        print(f"       -> Treinando {model_name}...")
-        try:
-            bal_acc, macro_f1, roc_auc, _ = train_and_evaluate_hybrid(
-                X_train, y_train, X_test, y_test, 
-                task=task, 
-                epochs=15,          
-                batch_size=512,      
-                encoder_type=enc
-            )
-            print(f"          [{model_name}] Bal Acc: {bal_acc:.4f} | F1: {macro_f1:.4f} | ROC-AUC: {roc_auc:.4f}")
-            results.append({"Dataset": target_name, "Task": task.capitalize(), "Test Condition": test_cond, "Model": model_name, "Bal Acc": bal_acc, "Macro F1": macro_f1, "ROC-AUC": roc_auc})
-        except Exception as e:
-            print(f"          [ERRO] Falha ao treinar {model_name}: {e}")
+    # 2. MODELOS PROFUNDOS: MULTI-HEAD (Ajuste de Magnitude Interno)
+    if len(y_test_dl) > 0:
+        dl_encoders = ['mlp', 'tabnet']
+        for enc in dl_encoders:
+            model_name = f"Multi-Head DL ({enc.upper()})"
+            print(f"       -> Treinando {model_name}...")
+            try:
+                bal_acc, macro_f1, roc_auc, _ = train_and_evaluate_multihead(
+                    train_data_dict=train_data_dict_dl,
+                    target_dataset_name=target_name,
+                    X_test=X_test_dl,
+                    y_test=y_test_dl,
+                    task=task,
+                    epochs=15,          
+                    batch_size=512,      
+                    encoder_type=enc
+                )
+                print(f"          [{model_name}] Bal Acc: {bal_acc:.4f} | F1: {macro_f1:.4f} | ROC-AUC: {roc_auc:.4f}")
+                results.append({"Dataset": target_name, "Task": task.capitalize(), "Test Condition": test_cond, "Model": model_name, "Bal Acc": bal_acc, "Macro F1": macro_f1, "ROC-AUC": roc_auc})
+            except Exception as e:
+                print(f"          [ERRO] Falha ao treinar {model_name}: {e}")
+    else:
+        print("       -> [Aviso] Multi-Head DL ignorado (Classes insuficientes no teste).")
 
     return results
 
 def run_transfer_learning():
     os.makedirs(RESULTS_DIR, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    log_file = os.path.join(RESULTS_DIR, f"log_tl_completo_{timestamp}.txt")
-    csv_file = os.path.join(RESULTS_DIR, f"tl_completo_results_{timestamp}.csv")
+    log_file = os.path.join(RESULTS_DIR, f"log_tl_multihead_{timestamp}.txt")
+    csv_file = os.path.join(RESULTS_DIR, f"tl_multihead_results_{timestamp}.csv")
     sys.stdout = Logger(log_file)
     
-    print(f"{'='*80}\n EXPERIMENTO FINAL DE TRANSFER LEARNING (DETECTION & DIAGNOSIS)\n{'='*80}")
+    print(f"{'='*80}\n EXPERIMENTO DE TRANSFER LEARNING (MULTI-HEAD & MAGNITUDE ADJUST)\n{'='*80}")
     print(f"Alvos (Targets): {TARGET_DATASETS}")
     print(f"Bases de Conhecimento: {list(DATASETS_CONFIG.keys())}\n")
 
     master_results = []
-    
-    db_features = {}
-    db_labels_raw = {}
-    db_conds = {}
+    db_features, db_labels_raw, db_conds = {}, {}, {}
     
     print("--- FASE 1: EXTRAÇÃO GLOBAL NA MEMÓRIA RAM ---")
     for ds_name, fs in DATASETS_CONFIG.items():
@@ -178,27 +177,22 @@ def run_transfer_learning():
     for task in TASKS:
         print(f"\n\n{'*'*60}\n INICIANDO TAREFA: {task.upper()}\n{'*'*60}")
         
-        # 1. Estratégia Inteligente de Mapeamento de Rótulos (Label Harmonization)
+        # 1. Mapeamento de Rótulos Unificado
         db_labels_mapped = {}
         for ds in available_datasets:
             mapped = []
             for lbl in db_labels_raw[ds]:
                 is_normal = ('normal' in lbl.lower() or 'healthy' in lbl.lower())
-                
                 if task == 'detection':
                     mapped.append(0 if is_normal else 1)
                 elif task == 'diagnosis':
-                    if is_normal:
-                        mapped.append("Universal_Normal") # Unifica os dados saudáveis do mundo inteiro
-                    else:
-                        mapped.append(f"{ds}_{lbl}")      # Isola o defeito para não cruzar classes diferentes
-            
+                    if is_normal: mapped.append("Universal_Normal") 
+                    else: mapped.append(f"{ds}_{lbl}")      
             db_labels_mapped[ds] = np.array(mapped)
 
         # 2. Execução da Validação Cruzada (LOCO + External)
         for target_ds in TARGET_DATASETS:
             if target_ds not in db_features: continue
-            
             if task == 'detection' and target_ds == "CWRU_48k":
                 print(f"\n   [!] Pulando CWRU_48k para Detecção (não possui dados Normal)")
                 continue
@@ -221,38 +215,83 @@ def run_transfer_learning():
                 X_train_local = db_features[target_ds][train_target_mask]
                 y_train_local = db_labels_mapped[target_ds][train_target_mask]
                 
+                # =========================================================================
+                # SETUP A: TRATAMENTO PARA MODELOS CLÁSSICOS (Global Encoding & Individual Scaling)
+                # =========================================================================
                 X_external_list = [db_features[ds] for ds in available_datasets if ds != target_ds]
                 y_external_list = [db_labels_mapped[ds] for ds in available_datasets if ds != target_ds]
                 
-                X_train_global = np.vstack(X_external_list + [X_train_local])
-                y_train_global = np.concatenate(y_external_list + [y_train_local])
+                y_train_global_raw = np.concatenate(y_external_list + [y_train_local])
+                le_global = LabelEncoder()
+                le_global.fit(y_train_global_raw)
                 
-                # 3. Label Encoding para transformar strings em Inteiros para a Rede Neural e Sklearn
-                le = LabelEncoder()
-                y_train_encoded = le.fit_transform(y_train_global)
+                valid_test_idx_c = [i for i, label in enumerate(y_test_raw) if label in le_global.classes_]
+                if len(valid_test_idx_c) == 0: continue
                 
-                # Proteção: Garantir que o Teste só contenha classes que o modelo viu no Treino
-                valid_test_idx = [i for i, label in enumerate(y_test_raw) if label in le.classes_]
-                if len(valid_test_idx) < len(y_test_raw):
-                    print(f"      [Aviso] {len(y_test_raw)-len(valid_test_idx)} janelas descartadas (Classe inédita no Treino)")
+                X_test_valid_c = X_test_raw[valid_test_idx_c]
+                y_test_c_enc = le_global.transform(y_test_raw[valid_test_idx_c])
+
+                X_train_classical_list = []
+                y_train_classical_list = []
+                target_scaler = None
+
+                for ds in available_datasets:
+                    if ds == target_ds:
+                        if len(X_train_local) == 0: continue
+                        X_tr, y_tr_raw = X_train_local, y_train_local
+                    else:
+                        if len(db_features[ds]) == 0: continue
+                        X_tr, y_tr_raw = db_features[ds], db_labels_mapped[ds]
+
+                    # Ajuste de Magnitude Isolado (O Segredo do Orientador)
+                    scaler = StandardScaler()
+                    X_tr_s = scaler.fit_transform(X_tr)
+                    
+                    if ds == target_ds: target_scaler = scaler
+                        
+                    X_train_classical_list.append(X_tr_s)
+                    y_train_classical_list.append(le_global.transform(y_tr_raw))
+
+                X_train_classical = np.vstack(X_train_classical_list)
+                y_train_classical = np.concatenate(y_train_classical_list)
                 
-                X_test = X_test_raw[valid_test_idx]
-                y_test_encoded = le.transform(y_test_raw[valid_test_idx])
-                
-                if len(y_test_encoded) == 0: continue
-                
-                print(f"      -> Treinando com: {X_train_global.shape[0]} janelas ({len(le.classes_)} classes simultâneas)")
-                print(f"      -> Testando em: {X_test.shape[0]} janelas ({test_cond} Puro)")
+                X_test_classical_s = target_scaler.transform(X_test_valid_c) if target_scaler else StandardScaler().fit_transform(X_test_valid_c)
+
+                # =========================================================================
+                # SETUP B: TRATAMENTO PARA MULTI-HEAD DL (Local Encoding & Data Dictionary)
+                # =========================================================================
+                train_data_dict_dl = {}
+                le_target_local = LabelEncoder()
+
+                for ds in available_datasets:
+                    le_local = LabelEncoder()
+                    if ds == target_ds:
+                        if len(X_train_local) > 0:
+                            y_tr_local = le_local.fit_transform(y_train_local)
+                            train_data_dict_dl[ds] = (X_train_local, y_tr_local)
+                            le_target_local = le_local
+                    else:
+                        if len(db_features[ds]) > 0:
+                            y_tr_local = le_local.fit_transform(db_labels_mapped[ds])
+                            train_data_dict_dl[ds] = (db_features[ds], y_tr_local)
+
+                valid_test_idx_dl = [i for i, label in enumerate(y_test_raw) if label in le_target_local.classes_]
+                X_test_dl = X_test_raw[valid_test_idx_dl]
+                y_test_dl_enc = le_target_local.transform(y_test_raw[valid_test_idx_dl]) if len(valid_test_idx_dl) > 0 else []
+
+                print(f"      -> Treinando com: {X_train_classical.shape[0]} janelas (Classes Globais Clássico: {len(le_global.classes_)} | Classes Locais DL: {len(le_target_local.classes_)})")
                 
                 current_results = evaluate_transfer_models(
-                    X_train_global, y_train_encoded, X_test, y_test_encoded, target_ds, test_cond, task
+                    X_train_classical, y_train_classical, X_test_classical_s, y_test_c_enc,
+                    train_data_dict_dl, X_test_dl, y_test_dl_enc,
+                    target_ds, test_cond, task
                 )
                 master_results.extend(current_results)
                 
                 df = pd.DataFrame(master_results)
                 df.to_csv(csv_file, index=False)
 
-    print(f"\n[SUCESSO] Tabela Completa de Transfer Learning exportada para: {csv_file}")
+    print(f"\n[SUCESSO] Tabela Multi-Head de Transfer Learning exportada para: {csv_file}")
 
 if __name__ == "__main__":
     run_transfer_learning()
