@@ -1,0 +1,1168 @@
+================================================================================
+EXPERIMENTOS DE DETECÇÃO DE ANOMALIAS (ONE-CLASS CLASSIFICATION)
+================================================================================
+Regra: O modelo será treinado EXCLUSIVAMENTE com a classe Normal (0).
+
+############################################################
+ DATASET: CWRU_12k | Fs: 12000Hz
+############################################################
+
+   --- Dobra de Teste: Load_0HP ---
+Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 240 amostras
+      -> Teste (Saudável + Falhas): 600 amostras
+      -> [Fusion] Iniciando extração DUPLA para 240 amostras...
+         [Debug] Shape VibNet: (240, 16)
+         [Debug] Shape SignAI: (240, 125)
+      -> [Fusion] Shape final combinado: (240, 141)
+      -> [Fusion] Iniciando extração DUPLA para 600 amostras...
+         [Debug] Shape VibNet: (600, 16)
+         [Debug] Shape SignAI: (600, 125)
+      -> [Fusion] Shape final combinado: (600, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.9655
+         [One-Class SVM] F1 (Anomaly): 0.9655
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9655
+         [AE (Percentil 99)] F1 (Anomaly): 0.9655
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9655
+
+   --- Dobra de Teste: Load_1HP ---
+Carregando CWRU_12k | Condição: Load_1HP | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 200 amostras
+      -> Teste (Saudável + Falhas): 640 amostras
+      -> [Fusion] Iniciando extração DUPLA para 200 amostras...
+         [Debug] Shape VibNet: (200, 16)
+         [Debug] Shape SignAI: (200, 125)
+      -> [Fusion] Shape final combinado: (200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 640 amostras...
+         [Debug] Shape VibNet: (640, 16)
+         [Debug] Shape SignAI: (640, 125)
+      -> [Fusion] Shape final combinado: (640, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 1.0000
+         [One-Class SVM] F1 (Anomaly): 0.9333
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9333
+         [AE (Percentil 99)] F1 (Anomaly): 0.9589
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9333
+
+   --- Dobra de Teste: Load_2HP ---
+Carregando CWRU_12k | Condição: Load_2HP | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 200 amostras
+      -> Teste (Saudável + Falhas): 640 amostras
+      -> [Fusion] Iniciando extração DUPLA para 200 amostras...
+         [Debug] Shape VibNet: (200, 16)
+         [Debug] Shape SignAI: (200, 125)
+      -> [Fusion] Shape final combinado: (200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 640 amostras...
+         [Debug] Shape VibNet: (640, 16)
+         [Debug] Shape SignAI: (640, 125)
+      -> [Fusion] Shape final combinado: (640, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 1.0000
+         [One-Class SVM] F1 (Anomaly): 0.9782
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9973
+         [AE (Percentil 99)] F1 (Anomaly): 0.9973
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9947
+
+   --- Dobra de Teste: Load_3HP ---
+Carregando CWRU_12k | Condição: Load_3HP | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 200 amostras
+      -> Teste (Saudável + Falhas): 640 amostras
+      -> [Fusion] Iniciando extração DUPLA para 200 amostras...
+         [Debug] Shape VibNet: (200, 16)
+         [Debug] Shape SignAI: (200, 125)
+      -> [Fusion] Shape final combinado: (200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 640 amostras...
+         [Debug] Shape VibNet: (640, 16)
+         [Debug] Shape SignAI: (640, 125)
+      -> [Fusion] Shape final combinado: (640, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.9938
+         [One-Class SVM] F1 (Anomaly): 0.9333
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9444
+         [AE (Percentil 99)] F1 (Anomaly): 0.9564
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9380
+
+############################################################
+ DATASET: HUST_Gearbox | Fs: 25600Hz
+############################################################
+
+   --- Dobra de Teste: Cond_20_0 ---
+Carregando HUST_Gearbox | Condição: Cond_20_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.8000
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.5405
+
+   --- Dobra de Teste: Cond_20_1 ---
+Carregando HUST_Gearbox | Condição: Cond_20_1 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.9189
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.6667
+
+   --- Dobra de Teste: Cond_20_2 ---
+Carregando HUST_Gearbox | Condição: Cond_20_2 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.6667
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.6667
+
+   --- Dobra de Teste: Cond_20_3 ---
+Carregando HUST_Gearbox | Condição: Cond_20_3 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.5714
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.6667
+
+   --- Dobra de Teste: Cond_20_4 ---
+Carregando HUST_Gearbox | Condição: Cond_20_4 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.8085
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9189
+
+   --- Dobra de Teste: Cond_25_0 ---
+Carregando HUST_Gearbox | Condição: Cond_25_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 1.0000
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.6667
+
+   --- Dobra de Teste: Cond_25_1 ---
+Carregando HUST_Gearbox | Condição: Cond_25_1 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 1.0000
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.6667
+
+   --- Dobra de Teste: Cond_25_2 ---
+Carregando HUST_Gearbox | Condição: Cond_25_2 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.8889
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.7097
+
+   --- Dobra de Teste: Cond_25_3 ---
+Carregando HUST_Gearbox | Condição: Cond_25_3 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.6667
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.6667
+
+   --- Dobra de Teste: Cond_25_4 ---
+Carregando HUST_Gearbox | Condição: Cond_25_4 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.6667
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.6667
+
+   --- Dobra de Teste: Cond_30_0 ---
+Carregando HUST_Gearbox | Condição: Cond_30_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 1.0000
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 1.0000
+
+   --- Dobra de Teste: Cond_30_1 ---
+Carregando HUST_Gearbox | Condição: Cond_30_1 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.9744
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9744
+
+   --- Dobra de Teste: Cond_30_2 ---
+Carregando HUST_Gearbox | Condição: Cond_30_2 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 1.0000
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9189
+
+   --- Dobra de Teste: Cond_30_3 ---
+Carregando HUST_Gearbox | Condição: Cond_30_3 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 1.0000
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 1.0000
+
+   --- Dobra de Teste: Cond_30_4 ---
+Carregando HUST_Gearbox | Condição: Cond_30_4 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.8000
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.7660
+
+   --- Dobra de Teste: Cond_35_0 ---
+Carregando HUST_Gearbox | Condição: Cond_35_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.8000
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.8649
+
+   --- Dobra de Teste: Cond_35_1 ---
+Carregando HUST_Gearbox | Condição: Cond_35_1 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 1.0000
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9744
+
+   --- Dobra de Teste: Cond_35_2 ---
+Carregando HUST_Gearbox | Condição: Cond_35_2 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 1.0000
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 1.0000
+
+   --- Dobra de Teste: Cond_35_3 ---
+Carregando HUST_Gearbox | Condição: Cond_35_3 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.9744
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.7879
+
+   --- Dobra de Teste: Cond_35_4 ---
+Carregando HUST_Gearbox | Condição: Cond_35_4 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.5714
+         [One-Class SVM] F1 (Anomaly): 0.6364
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.5000
+         [AE (Percentil 99)] F1 (Anomaly): 0.5128
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.7234
+
+   --- Dobra de Teste: Cond_40_0 ---
+Carregando HUST_Gearbox | Condição: Cond_40_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.9500
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9500
+
+   --- Dobra de Teste: Cond_40_1 ---
+Carregando HUST_Gearbox | Condição: Cond_40_1 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.9756
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9756
+
+   --- Dobra de Teste: Cond_40_2 ---
+Carregando HUST_Gearbox | Condição: Cond_40_2 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.8333
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6452
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.8333
+
+   --- Dobra de Teste: Cond_40_3 ---
+Carregando HUST_Gearbox | Condição: Cond_40_3 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.9756
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.6667
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 1.0000
+
+   --- Dobra de Teste: Cond_40_4 ---
+Carregando HUST_Gearbox | Condição: Cond_40_4 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.8163
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.5882
+         [AE (Percentil 99)] F1 (Anomaly): 0.6061
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.8333
+
+   --- Dobra de Teste: Cond_L0_VS_0_40_0 ---
+Carregando HUST_Gearbox | Condição: Cond_L0_VS_0_40_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6207
+         [One-Class SVM] F1 (Anomaly): 0.8889
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9474
+         [AE (Percentil 99)] F1 (Anomaly): 0.5714
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9302
+
+   --- Dobra de Teste: Cond_L1_VS_0_40_0 ---
+Carregando HUST_Gearbox | Condição: Cond_L1_VS_0_40_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.4615
+         [One-Class SVM] F1 (Anomaly): 1.0000
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.7879
+         [AE (Percentil 99)] F1 (Anomaly): 0.6667
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9524
+
+   --- Dobra de Teste: Cond_L2_VS_0_40_0 ---
+Carregando HUST_Gearbox | Condição: Cond_L2_VS_0_40_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.5714
+         [One-Class SVM] F1 (Anomaly): 0.8889
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9474
+         [AE (Percentil 99)] F1 (Anomaly): 0.7097
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.8889
+
+   --- Dobra de Teste: Cond_L3_VS_0_40_0 ---
+Carregando HUST_Gearbox | Condição: Cond_L3_VS_0_40_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.7879
+         [One-Class SVM] F1 (Anomaly): 0.8696
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9302
+         [AE (Percentil 99)] F1 (Anomaly): 0.9048
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.8511
+
+   --- Dobra de Teste: Cond_L4_VS_0_40_0 ---
+Carregando HUST_Gearbox | Condição: Cond_L4_VS_0_40_0 | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 290 amostras
+      -> Teste (Saudável + Falhas): 30 amostras
+      -> [Fusion] Iniciando extração DUPLA para 290 amostras...
+         [Debug] Shape VibNet: (290, 16)
+         [Debug] Shape SignAI: (290, 125)
+      -> [Fusion] Shape final combinado: (290, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6667
+         [One-Class SVM] F1 (Anomaly): 0.8163
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9744
+         [AE (Percentil 99)] F1 (Anomaly): 0.8571
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.8000
+
+############################################################
+ DATASET: UOEMD | Fs: 42000Hz
+############################################################
+
+   --- Dobra de Teste: Load_Loaded_Speed_15Hz ---
+Carregando UOEMD | Condição: Load_Loaded_Speed_15Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 150 amostras
+      -> Teste (Saudável + Falhas): 80 amostras
+      -> [Fusion] Iniciando extração DUPLA para 150 amostras...
+         [Debug] Shape VibNet: (150, 16)
+         [Debug] Shape SignAI: (150, 125)
+      -> [Fusion] Shape final combinado: (150, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.4270
+         [One-Class SVM] F1 (Anomaly): 0.9333
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9313
+         [AE (Percentil 99)] F1 (Anomaly): 0.7500
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 1.0000
+
+   --- Dobra de Teste: Load_Loaded_Speed_30Hz ---
+Carregando UOEMD | Condição: Load_Loaded_Speed_30Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 150 amostras
+      -> Teste (Saudável + Falhas): 80 amostras
+      -> [Fusion] Iniciando extração DUPLA para 150 amostras...
+         [Debug] Shape VibNet: (150, 16)
+         [Debug] Shape SignAI: (150, 125)
+      -> [Fusion] Shape final combinado: (150, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 1.0000
+         [One-Class SVM] F1 (Anomaly): 1.0000
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 1.0000
+         [AE (Percentil 99)] F1 (Anomaly): 0.9474
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 1.0000
+
+   --- Dobra de Teste: Load_Loaded_Speed_45Hz ---
+Carregando UOEMD | Condição: Load_Loaded_Speed_45Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 150 amostras
+      -> Teste (Saudável + Falhas): 80 amostras
+      -> [Fusion] Iniciando extração DUPLA para 150 amostras...
+         [Debug] Shape VibNet: (150, 16)
+         [Debug] Shape SignAI: (150, 125)
+      -> [Fusion] Shape final combinado: (150, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 1.0000
+         [One-Class SVM] F1 (Anomaly): 0.9333
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9333
+         [AE (Percentil 99)] F1 (Anomaly): 0.9929
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9333
+
+   --- Dobra de Teste: Load_Loaded_Speed_60Hz ---
+Carregando UOEMD | Condição: Load_Loaded_Speed_60Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 150 amostras
+      -> Teste (Saudável + Falhas): 80 amostras
+      -> [Fusion] Iniciando extração DUPLA para 150 amostras...
+         [Debug] Shape VibNet: (150, 16)
+         [Debug] Shape SignAI: (150, 125)
+      -> [Fusion] Shape final combinado: (150, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.9929
+         [One-Class SVM] F1 (Anomaly): 0.9929
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 1.0000
+         [AE (Percentil 99)] F1 (Anomaly): 1.0000
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 1.0000
+
+   --- Dobra de Teste: Load_Loaded_Speed_Dec_45_to_15Hz ---
+Carregando UOEMD | Condição: Load_Loaded_Speed_Dec_45_to_15Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 150 amostras
+      -> Teste (Saudável + Falhas): 80 amostras
+      -> [Fusion] Iniciando extração DUPLA para 150 amostras...
+         [Debug] Shape VibNet: (150, 16)
+         [Debug] Shape SignAI: (150, 125)
+      -> [Fusion] Shape final combinado: (150, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.9147
+         [One-Class SVM] F1 (Anomaly): 0.9655
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9857
+         [AE (Percentil 99)] F1 (Anomaly): 0.9630
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9452
+
+   --- Dobra de Teste: Load_Loaded_Speed_Dec_60_to_30Hz ---
+Carregando UOEMD | Condição: Load_Loaded_Speed_Dec_60_to_30Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 150 amostras
+      -> Teste (Saudável + Falhas): 80 amostras
+      -> [Fusion] Iniciando extração DUPLA para 150 amostras...
+         [Debug] Shape VibNet: (150, 16)
+         [Debug] Shape SignAI: (150, 125)
+      -> [Fusion] Shape final combinado: (150, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.9928
+         [One-Class SVM] F1 (Anomaly): 0.9589
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9859
+         [AE (Percentil 99)] F1 (Anomaly): 1.0000
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9722
+
+   --- Dobra de Teste: Load_Loaded_Speed_Inc_15_to_45Hz ---
+Carregando UOEMD | Condição: Load_Loaded_Speed_Inc_15_to_45Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 150 amostras
+      -> Teste (Saudável + Falhas): 80 amostras
+      -> [Fusion] Iniciando extração DUPLA para 150 amostras...
+         [Debug] Shape VibNet: (150, 16)
+         [Debug] Shape SignAI: (150, 125)
+      -> [Fusion] Shape final combinado: (150, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.9559
+         [One-Class SVM] F1 (Anomaly): 0.9790
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9929
+         [AE (Percentil 99)] F1 (Anomaly): 0.9928
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9790
+
+   --- Dobra de Teste: Load_Loaded_Speed_Inc_30_to_60Hz ---
+Carregando UOEMD | Condição: Load_Loaded_Speed_Inc_30_to_60Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 150 amostras
+      -> Teste (Saudável + Falhas): 80 amostras
+      -> [Fusion] Iniciando extração DUPLA para 150 amostras...
+         [Debug] Shape VibNet: (150, 16)
+         [Debug] Shape SignAI: (150, 125)
+      -> [Fusion] Shape final combinado: (150, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.9859
+         [One-Class SVM] F1 (Anomaly): 0.9524
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9859
+         [AE (Percentil 99)] F1 (Anomaly): 1.0000
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9790
+
+   --- Dobra de Teste: Load_No_Load_Speed_15Hz ---
+Carregando UOEMD | Condição: Load_No_Load_Speed_15Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 150 amostras
+      -> Teste (Saudável + Falhas): 80 amostras
+      -> [Fusion] Iniciando extração DUPLA para 150 amostras...
+         [Debug] Shape VibNet: (150, 16)
+         [Debug] Shape SignAI: (150, 125)
+      -> [Fusion] Shape final combinado: (150, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.6078
+         [One-Class SVM] F1 (Anomaly): 0.9333
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9023
+         [AE (Percentil 99)] F1 (Anomaly): 0.7434
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9459
+
+   --- Dobra de Teste: Load_No_Load_Speed_30Hz ---
+Carregando UOEMD | Condição: Load_No_Load_Speed_30Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 150 amostras
+      -> Teste (Saudável + Falhas): 80 amostras
+      -> [Fusion] Iniciando extração DUPLA para 150 amostras...
+         [Debug] Shape VibNet: (150, 16)
+         [Debug] Shape SignAI: (150, 125)
+      -> [Fusion] Shape final combinado: (150, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.9313
+         [One-Class SVM] F1 (Anomaly): 1.0000
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9706
+         [AE (Percentil 99)] F1 (Anomaly): 0.9394
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 1.0000
+
+   --- Dobra de Teste: Load_No_Load_Speed_45Hz ---
+Carregando UOEMD | Condição: Load_No_Load_Speed_45Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 150 amostras
+      -> Teste (Saudável + Falhas): 80 amostras
+      -> [Fusion] Iniciando extração DUPLA para 150 amostras...
+         [Debug] Shape VibNet: (150, 16)
+         [Debug] Shape SignAI: (150, 125)
+      -> [Fusion] Shape final combinado: (150, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 1.0000
+         [One-Class SVM] F1 (Anomaly): 0.9524
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 1.0000
+         [AE (Percentil 99)] F1 (Anomaly): 1.0000
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 1.0000
+
+   --- Dobra de Teste: Load_No_Load_Speed_60Hz ---
+Carregando UOEMD | Condição: Load_No_Load_Speed_60Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 150 amostras
+      -> Teste (Saudável + Falhas): 80 amostras
+      -> [Fusion] Iniciando extração DUPLA para 150 amostras...
+         [Debug] Shape VibNet: (150, 16)
+         [Debug] Shape SignAI: (150, 125)
+      -> [Fusion] Shape final combinado: (150, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 1.0000
+         [One-Class SVM] F1 (Anomaly): 0.9929
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 1.0000
+         [AE (Percentil 99)] F1 (Anomaly): 1.0000
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 1.0000
+
+   --- Dobra de Teste: Load_No_Load_Speed_Dec_45_to_15Hz ---
+Carregando UOEMD | Condição: Load_No_Load_Speed_Dec_45_to_15Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 150 amostras
+      -> Teste (Saudável + Falhas): 80 amostras
+      -> [Fusion] Iniciando extração DUPLA para 150 amostras...
+         [Debug] Shape VibNet: (150, 16)
+         [Debug] Shape SignAI: (150, 125)
+      -> [Fusion] Shape final combinado: (150, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.8640
+         [One-Class SVM] F1 (Anomaly): 0.9655
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9645
+         [AE (Percentil 99)] F1 (Anomaly): 0.9552
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9655
+
+   --- Dobra de Teste: Load_No_Load_Speed_Dec_60_to_30Hz ---
+Carregando UOEMD | Condição: Load_No_Load_Speed_Dec_60_to_30Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 150 amostras
+      -> Teste (Saudável + Falhas): 80 amostras
+      -> [Fusion] Iniciando extração DUPLA para 150 amostras...
+         [Debug] Shape VibNet: (150, 16)
+         [Debug] Shape SignAI: (150, 125)
+      -> [Fusion] Shape final combinado: (150, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.9706
+         [One-Class SVM] F1 (Anomaly): 0.9722
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9781
+         [AE (Percentil 99)] F1 (Anomaly): 0.9781
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 1.0000
+
+   --- Dobra de Teste: Load_No_Load_Speed_Inc_15_to_45Hz ---
+Carregando UOEMD | Condição: Load_No_Load_Speed_Inc_15_to_45Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 150 amostras
+      -> Teste (Saudável + Falhas): 80 amostras
+      -> [Fusion] Iniciando extração DUPLA para 150 amostras...
+         [Debug] Shape VibNet: (150, 16)
+         [Debug] Shape SignAI: (150, 125)
+      -> [Fusion] Shape final combinado: (150, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 0.8992
+         [One-Class SVM] F1 (Anomaly): 0.9524
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9583
+         [AE (Percentil 99)] F1 (Anomaly): 0.9577
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9524
+
+   --- Dobra de Teste: Load_No_Load_Speed_Inc_30_to_60Hz ---
+Carregando UOEMD | Condição: Load_No_Load_Speed_Inc_30_to_60Hz | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 150 amostras
+      -> Teste (Saudável + Falhas): 80 amostras
+      -> [Fusion] Iniciando extração DUPLA para 150 amostras...
+         [Debug] Shape VibNet: (150, 16)
+         [Debug] Shape SignAI: (150, 125)
+      -> [Fusion] Shape final combinado: (150, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...
+         [Isolation Forest] F1 (Anomaly): 1.0000
+         [One-Class SVM] F1 (Anomaly): 0.9524
+      -> Avaliando MLP Autoencoder com limiares estatísticos...
+         [AE (Média + 2σ)] F1 (Anomaly): 0.9929
+         [AE (Percentil 99)] F1 (Anomaly): 0.9929
+         [AE (Mediana + 3*MAD)] F1 (Anomaly): 0.9929
+
+[SUCESSO] Resultados de Anomalia exportados para: /home/vfrocha/VibNet-1D/results/anomaly_results_20260812_084311.csv

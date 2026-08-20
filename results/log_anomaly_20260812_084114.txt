@@ -1,0 +1,25 @@
+================================================================================
+EXPERIMENTOS DE DETECÇÃO DE ANOMALIAS (ONE-CLASS CLASSIFICATION)
+================================================================================
+Regra: O modelo será treinado EXCLUSIVAMENTE com a classe Normal (0).
+
+############################################################
+ DATASET: CWRU_12k | Fs: 12000Hz
+############################################################
+
+   --- Dobra de Teste: Load_0HP ---
+Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DETECTION
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Fault' 'Normal']
+      -> Treinamento (Apenas Saudável): 240 amostras
+      -> Teste (Saudável + Falhas): 600 amostras
+      -> [Fusion] Iniciando extração DUPLA para 240 amostras...
+         [Debug] Shape VibNet: (240, 16)
+         [Debug] Shape SignAI: (240, 125)
+      -> [Fusion] Shape final combinado: (240, 141)
+      -> [Fusion] Iniciando extração DUPLA para 600 amostras...
+         [Debug] Shape VibNet: (600, 16)
+         [Debug] Shape SignAI: (600, 125)
+      -> [Fusion] Shape final combinado: (600, 141)
+      -> Avaliando Isolation Forest e One-Class SVM...

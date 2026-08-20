@@ -1,0 +1,4 @@
+================================================================================
+EXPERIMENTOS DE DETECÇÃO DE ANOMALIAS (ONE-CLASS CLASSIFICATION)
+================================================================================
+Regra: O modelo será treinado EXCLUSIVAMENTE com a classe Normal (0).
