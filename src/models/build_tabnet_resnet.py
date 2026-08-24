@@ -6,6 +6,9 @@ from sklearn.metrics import balanced_accuracy_score, f1_score, roc_auc_score
 from sklearn.preprocessing import StandardScaler
 import numpy as np
 
+from imblearn.over_sampling import SMOTE
+from imblearn.under_sampling import RandomUnderSampler
+
 # ---------------------------------------------------------------------------
 # 1. ENCODERS
 # ---------------------------------------------------------------------------
@@ -129,10 +132,11 @@ class HybridDLModel(nn.Module):
 # ---------------------------------------------------------------------------
 # 4. FUNÇÃO DE TREINAMENTO (Otimizada para Multi-Head e Múltiplos Scalers)
 # ---------------------------------------------------------------------------
-def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y_test, task, epochs=15, batch_size=512, encoder_type='mlp'):
+def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y_test, task, epochs=15, batch_size=512, encoder_type='mlp', max_samples_per_class=5000):
     """
-    train_data_dict: dict contendo matrizes brutas -> {'CWRU': (X_train, y_train), 'HUST': (X_train, y_train)}
-    target_dataset_name: string com o nome do dataset de teste (ex: 'UOEMD')
+    train_data_dict: dict contendo matrizes brutas -> {'CWRU': (X_train, y_train), ...}
+    max_samples_per_class: O "teto" mágico. Se um dataset for maior que isso, ele é cortado. 
+                           Se for menor, o SMOTE cria dados sintéticos até nivelar.
     """
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
@@ -141,17 +145,39 @@ def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y
     num_features = None
     target_scaler = None
     
-    # 1. Padronização INDIVIDUAL e montagem de DataLoaders por Dataset
+    # 1. Padronização e Balanceamento por Dataset
     for d_name, (X_tr, y_tr) in train_data_dict.items():
         if num_features is None:
             num_features = X_tr.shape[1]
             
+        # A. Padronização INDIVIDUAL (Z-Score) - Deve ocorrer ANTES do SMOTE
         scaler = StandardScaler()
         X_tr_s = scaler.fit_transform(X_tr)
         
-        # Salva o scaler do dataset alvo para usá-lo na matriz de Teste
         if d_name == target_dataset_name:
             target_scaler = scaler
+            
+        # =====================================================================
+        # B. NOVIDADE: ESTRATÉGIA ANTI-DOMINÂNCIA (SMOTE + UnderSampling)
+        # =====================================================================
+        unique, counts = np.unique(y_tr, return_counts=True)
+        
+        # O SMOTE aumenta as classes minoritárias para igualar à maior classe daquele dataset
+        if len(unique) > 1: # SMOTE precisa de pelo menos 2 classes
+            try:
+                smote = SMOTE(random_state=42)
+                X_tr_s, y_tr = smote.fit_resample(X_tr_s, y_tr)
+            except ValueError as e:
+                print(f"      [Aviso] SMOTE falhou em {d_name} (poucas amostras?). Erro: {e}")
+        
+        # O UnderSampler 'corta' as classes que ficaram gigantes para não dominarem a rede
+        unique, counts = np.unique(y_tr, return_counts=True)
+        if counts.max() > max_samples_per_class:
+            # Cria um dicionário limitando cada classe ao teto máximo
+            sampling_strategy = {c: min(max_samples_per_class, count) for c, count in zip(unique, counts)}
+            rus = RandomUnderSampler(sampling_strategy=sampling_strategy, random_state=42)
+            X_tr_s, y_tr = rus.fit_resample(X_tr_s, y_tr)
+        # =====================================================================
             
         num_classes = 2 if task == 'detection' else len(np.unique(y_tr))
         dataset_classes_dict[d_name] = num_classes
@@ -160,37 +186,32 @@ def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y
         y_tr_t = torch.tensor(y_tr, dtype=torch.long)
         train_loaders[d_name] = DataLoader(TensorDataset(X_tr_t, y_tr_t), batch_size=batch_size, shuffle=True)
 
-    # Verifica se o dataset alvo estava no treino para usar o scaler. Se não, cria um novo (Zero-Shot).
+    # 2. Configuração do Teste (Zero-shot handling)
     if target_scaler is None:
         target_scaler = StandardScaler()
         X_test_s = target_scaler.fit_transform(X_test)
-        # O modelo vai precisar da cabeça do Target também, mesmo que não tenha sido treinada (Zero-shot)
         dataset_classes_dict[target_dataset_name] = 2 if task == 'detection' else len(np.unique(y_test))
     else:
         X_test_s = target_scaler.transform(X_test)
 
-    # 2. Inicialização do Modelo Multi-Head
+    # 3. Inicialização do Modelo Multi-Head
     model = HybridDLModel(num_features=num_features, dataset_classes_dict=dataset_classes_dict, encoder_type=encoder_type).to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
     
-    # 3. Laço de Treinamento
+    # 4. Laço de Treinamento
     model.train()
     for epoch in range(epochs):
-        # Itera sobre cada dataset individualmente
         for d_name, loader in train_loaders.items():
             for bx, by in loader:
                 bx, by = bx.to(device), by.to(device)
                 optimizer.zero_grad()
-                
-                # Passa o nome do dataset para ativar apenas a cabeça dele
                 logits, _ = model(bx, dataset_name=d_name)
-                
                 loss = criterion(logits, by)
                 loss.backward()
                 optimizer.step()
                 
-    # 4. Avaliação (Usando a cabeça do Dataset Alvo)
+    # 5. Avaliação (Usando a cabeça do Dataset Alvo)
     model.eval()
     X_te_t = torch.tensor(X_test_s, dtype=torch.float32)
     y_te_t = torch.tensor(y_test, dtype=torch.long)
@@ -200,7 +221,6 @@ def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y
     with torch.no_grad():
         for bx, _ in test_loader:
             bx = bx.to(device)
-            # Avalia usando ESPECIFICAMENTE a cabeça do target
             l, a = model(bx, dataset_name=target_dataset_name)
             all_logits.append(l.cpu())
             all_attn.append(a.cpu())
@@ -211,7 +231,7 @@ def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y
     preds = np.argmax(probs, axis=1)
     mean_attention = final_attn.mean(dim=0).numpy()
     
-    # 5. Cálculo das Métricas
+    # 6. Cálculo das Métricas
     bal_acc = balanced_accuracy_score(y_test, preds)
     if task == 'detection':
         roc_auc = roc_auc_score(y_test, probs[:, 1])
