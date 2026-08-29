@@ -14,9 +14,10 @@ from src.features.signalai_wrapper import extract_fusion_features
 # Importando os modelos modulares
 from src.models.build_sklearn import get_random_forest, get_svm, get_xgboost, train_and_evaluate
 from src.models.build_tabular import get_tabnet_classifier, train_and_evaluate_tabnet
+from src.models.build_pytorch_baselines import train_and_evaluate_pure_mlp
 
 # --- CONFIGURAÇÃO GLOBAL ---
-TASKS = ["diagnosis", "detection"]
+TASKS = ["diagnosis"] #"detection"
 
 BASELINE_CONFIGS = {
     "CWRU_12k": {
@@ -105,6 +106,24 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
     except Exception as e:
         print(f"        [AVISO TABNET] O modelo falhou: {e}")
         tabnet_acc, tabnet_f1, tabnet_auc = 0.0, 0.0, 0.0
+
+    # E) Pure MLP (From Scratch - PyTorch)
+    print(f"     -> Treinando PyTorch MLP (From Scratch)...")
+    try:
+        mlp_acc, mlp_f1, mlp_auc, _ = train_and_evaluate_pure_mlp(
+            X_train, y_train, X_test, y_test, task=task
+        )
+    except Exception as e:
+        print(f"        [AVISO MLP] O modelo falhou: {e}")
+        mlp_acc, mlp_f1, mlp_auc = 0.0, 0.0, 0.0
+        
+    fold_results.append({
+        **base_info, 
+        "Model": "MLP (Scratch)", 
+        "Bal Acc": mlp_acc, 
+        "Macro F1": mlp_f1, 
+        "ROC-AUC": mlp_auc
+    })
     
     fold_results.append({**base_info, "Model": "TabNet", "Bal Acc": tabnet_acc, "Macro F1": tabnet_f1, "ROC-AUC": tabnet_auc})
 
