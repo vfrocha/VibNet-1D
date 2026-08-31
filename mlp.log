@@ -1,0 +1,2327 @@
+nohup: ignoring input
+[   INFO   ] MusicExtractorSVM: no classifier models were configured by default
+======================================================================
+ INICIANDO EXPERIMENTOS BASELINE (LOCO)
+======================================================================
+
+
+############################################################
+ TAREFA ATUAL: DIAGNOSIS
+############################################################
+
+[CWRU_12k] Processando 4 dobras LOCO...
+
+  >>> Dobra Alvo (Teste): Load_0HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_0HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1920 [00:00<?, ?it/s]Treino:   0%|          | 5/1920 [00:00<00:44, 42.73it/s]Treino:   1%|          | 12/1920 [00:00<00:35, 53.27it/s]Treino:   1%|          | 20/1920 [00:00<00:34, 55.76it/s]Treino:   1%|▏         | 26/1920 [00:00<00:34, 55.58it/s]Treino:   2%|▏         | 32/1920 [00:00<00:34, 54.92it/s]Treino:   2%|▏         | 42/1920 [00:00<00:28, 66.43it/s]Treino:   3%|▎         | 54/1920 [00:00<00:23, 78.27it/s]Treino:   3%|▎         | 62/1920 [00:00<00:27, 68.15it/s]Treino:   4%|▎         | 70/1920 [00:01<00:26, 68.89it/s]Treino:   4%|▍         | 80/1920 [00:01<00:24, 75.86it/s]Treino:   5%|▍         | 88/1920 [00:01<00:27, 67.72it/s]Treino:   5%|▌         | 99/1920 [00:01<00:24, 74.08it/s]Treino:   6%|▌         | 107/1920 [00:01<00:25, 71.92it/s]Treino:   6%|▌         | 115/1920 [00:01<00:26, 67.57it/s]Treino:   6%|▋         | 123/1920 [00:01<00:26, 67.63it/s]Treino:   7%|▋         | 132/1920 [00:01<00:24, 72.37it/s]Treino:   7%|▋         | 140/1920 [00:02<00:24, 73.13it/s]Treino:   8%|▊         | 148/1920 [00:02<00:25, 68.98it/s]Treino:   8%|▊         | 155/1920 [00:02<00:26, 67.10it/s]Treino:   8%|▊         | 163/1920 [00:02<00:25, 70.19it/s]Treino:   9%|▉         | 176/1920 [00:02<00:20, 86.62it/s]Treino:  10%|▉         | 185/1920 [00:02<00:20, 82.62it/s]Treino:  10%|█         | 194/1920 [00:02<00:23, 72.84it/s]Treino:  11%|█         | 206/1920 [00:02<00:20, 84.43it/s]Treino:  11%|█         | 215/1920 [00:03<00:22, 75.89it/s]Treino:  12%|█▏        | 224/1920 [00:03<00:24, 68.03it/s]Treino:  12%|█▏        | 232/1920 [00:03<00:26, 64.43it/s]Treino:  13%|█▎        | 241/1920 [00:03<00:23, 70.15it/s]Treino:  13%|█▎        | 249/1920 [00:03<00:26, 63.41it/s]Treino:  13%|█▎        | 256/1920 [00:03<00:28, 58.98it/s]Treino:  14%|█▎        | 263/1920 [00:03<00:28, 57.96it/s]Treino:  14%|█▍        | 269/1920 [00:03<00:29, 56.06it/s]Treino:  14%|█▍        | 276/1920 [00:04<00:31, 51.46it/s]Treino:  15%|█▍        | 282/1920 [00:04<00:52, 31.35it/s]Treino:  15%|█▍        | 287/1920 [00:04<00:48, 33.67it/s]Treino:  15%|█▌        | 294/1920 [00:04<00:42, 38.29it/s]Treino:  16%|█▌        | 302/1920 [00:04<00:37, 43.69it/s]Treino:  16%|█▌        | 309/1920 [00:05<00:33, 47.88it/s]Treino:  17%|█▋        | 319/1920 [00:05<00:27, 58.10it/s]Treino:  17%|█▋        | 327/1920 [00:05<00:25, 63.22it/s]Treino:  17%|█▋        | 334/1920 [00:05<00:25, 62.16it/s]Treino:  18%|█▊        | 341/1920 [00:05<00:25, 62.20it/s]Treino:  18%|█▊        | 350/1920 [00:05<00:23, 66.33it/s]Treino:  19%|█▉        | 362/1920 [00:05<00:19, 80.24it/s]Treino:  19%|█▉        | 371/1920 [00:05<00:19, 79.46it/s]Treino:  20%|█▉        | 380/1920 [00:05<00:22, 67.99it/s]Treino:  20%|██        | 388/1920 [00:06<00:24, 62.53it/s]Treino:  21%|██        | 395/1920 [00:06<00:24, 63.49it/s]Treino:  21%|██        | 402/1920 [00:06<00:24, 62.56it/s]Treino:  21%|██▏       | 409/1920 [00:06<00:23, 64.38it/s]Treino:  22%|██▏       | 416/1920 [00:06<00:23, 64.09it/s]Treino:  22%|██▏       | 423/1920 [00:06<00:25, 57.67it/s]Treino:  22%|██▏       | 429/1920 [00:06<00:25, 57.71it/s]Treino:  23%|██▎       | 435/1920 [00:06<00:25, 58.03it/s]Treino:  23%|██▎       | 442/1920 [00:07<00:24, 59.16it/s]Treino:  23%|██▎       | 450/1920 [00:07<00:23, 63.67it/s]Treino:  24%|██▍       | 457/1920 [00:07<00:25, 58.36it/s]Treino:  24%|██▍       | 464/1920 [00:07<00:24, 59.33it/s]Treino:  25%|██▍       | 476/1920 [00:07<00:20, 70.88it/s]Treino:  25%|██▌       | 484/1920 [00:07<00:22, 65.20it/s]Treino:  26%|██▌       | 491/1920 [00:07<00:23, 60.96it/s]Treino:  26%|██▌       | 500/1920 [00:07<00:21, 67.49it/s]Treino:  26%|██▋       | 507/1920 [00:08<00:21, 64.98it/s]Treino:  27%|██▋       | 514/1920 [00:08<00:22, 61.18it/s]Treino:  27%|██▋       | 521/1920 [00:08<00:24, 57.70it/s]Treino:  28%|██▊       | 529/1920 [00:08<00:22, 61.75it/s]Treino:  28%|██▊       | 536/1920 [00:08<00:21, 63.70it/s]Treino:  28%|██▊       | 543/1920 [00:08<00:23, 59.67it/s]Treino:  29%|██▊       | 550/1920 [00:08<00:23, 57.73it/s]Treino:  29%|██▉       | 561/1920 [00:08<00:20, 67.36it/s]Treino:  30%|██▉       | 568/1920 [00:09<00:20, 67.54it/s]Treino:  30%|███       | 577/1920 [00:09<00:18, 71.04it/s]Treino:  30%|███       | 585/1920 [00:09<00:18, 72.54it/s]Treino:  31%|███       | 596/1920 [00:09<00:16, 81.62it/s]Treino:  32%|███▏      | 605/1920 [00:09<00:17, 75.53it/s]Treino:  32%|███▏      | 615/1920 [00:09<00:16, 80.62it/s]Treino:  33%|███▎      | 627/1920 [00:09<00:14, 90.50it/s]Treino:  33%|███▎      | 637/1920 [00:09<00:14, 85.87it/s]Treino:  34%|███▎      | 646/1920 [00:09<00:17, 74.93it/s]Treino:  34%|███▍      | 654/1920 [00:10<00:17, 71.46it/s]Treino:  34%|███▍      | 662/1920 [00:10<00:18, 69.76it/s]Treino:  35%|███▍      | 670/1920 [00:10<00:20, 59.79it/s]Treino:  35%|███▌      | 677/1920 [00:10<00:20, 59.43it/s]Treino:  36%|███▌      | 685/1920 [00:10<00:19, 61.92it/s]Treino:  36%|███▌      | 692/1920 [00:10<00:19, 63.69it/s]Treino:  36%|███▋      | 700/1920 [00:10<00:18, 66.75it/s]Treino:  37%|███▋      | 710/1920 [00:10<00:16, 73.70it/s]Treino:  38%|███▊      | 722/1920 [00:11<00:13, 85.64it/s]Treino:  38%|███▊      | 731/1920 [00:11<00:15, 79.05it/s]Treino:  39%|███▊      | 740/1920 [00:11<00:15, 74.46it/s]Treino:  39%|███▉      | 748/1920 [00:11<00:16, 69.85it/s]Treino:  39%|███▉      | 756/1920 [00:11<00:17, 65.81it/s]Treino:  40%|███▉      | 765/1920 [00:11<00:16, 71.33it/s]Treino:  40%|████      | 773/1920 [00:11<00:16, 67.51it/s]Treino:  41%|████      | 781/1920 [00:11<00:16, 69.08it/s]Treino:  41%|████      | 789/1920 [00:12<00:17, 63.24it/s]Treino:  42%|████▏     | 799/1920 [00:12<00:16, 69.94it/s]Treino:  42%|████▏     | 808/1920 [00:12<00:15, 70.81it/s]Treino:  42%|████▎     | 816/1920 [00:12<00:16, 67.83it/s]Treino:  43%|████▎     | 825/1920 [00:12<00:15, 70.67it/s]Treino:  43%|████▎     | 833/1920 [00:12<00:15, 69.49it/s]Treino:  44%|████▍     | 842/1920 [00:12<00:14, 73.22it/s]Treino:  44%|████▍     | 852/1920 [00:12<00:13, 78.27it/s]Treino:  45%|████▍     | 860/1920 [00:13<00:15, 69.37it/s]Treino:  45%|████▌     | 868/1920 [00:13<00:16, 63.33it/s]Treino:  46%|████▌     | 875/1920 [00:13<00:17, 59.97it/s]Treino:  46%|████▌     | 884/1920 [00:13<00:15, 66.40it/s]Treino:  46%|████▋     | 891/1920 [00:13<00:15, 66.08it/s]Treino:  47%|████▋     | 898/1920 [00:13<00:16, 63.77it/s]Treino:  47%|████▋     | 906/1920 [00:13<00:15, 67.37it/s]Treino:  48%|████▊     | 913/1920 [00:13<00:15, 65.76it/s]Treino:  48%|████▊     | 920/1920 [00:14<00:15, 63.76it/s]Treino:  48%|████▊     | 929/1920 [00:14<00:14, 68.28it/s]Treino:  49%|████▉     | 936/1920 [00:14<00:15, 62.41it/s]Treino:  49%|████▉     | 944/1920 [00:14<00:14, 65.17it/s]Treino:  50%|████▉     | 951/1920 [00:14<00:15, 63.49it/s]Treino:  50%|████▉     | 959/1920 [00:14<00:14, 66.51it/s]Treino:  50%|█████     | 966/1920 [00:14<00:14, 63.69it/s]Treino:  51%|█████     | 975/1920 [00:14<00:16, 57.61it/s]Treino:  51%|█████     | 981/1920 [00:15<00:18, 51.73it/s]Treino:  51%|█████▏    | 987/1920 [00:15<00:17, 53.58it/s]Treino:  52%|█████▏    | 993/1920 [00:15<00:18, 51.29it/s]Treino:  52%|█████▏    | 1000/1920 [00:15<00:17, 51.40it/s]Treino:  52%|█████▏    | 1006/1920 [00:15<00:17, 52.25it/s]Treino:  53%|█████▎    | 1014/1920 [00:15<00:15, 58.35it/s]Treino:  53%|█████▎    | 1020/1920 [00:15<00:16, 54.50it/s]Treino:  53%|█████▎    | 1026/1920 [00:15<00:16, 53.22it/s]Treino:  54%|█████▍    | 1032/1920 [00:16<00:17, 51.46it/s]Treino:  54%|█████▍    | 1039/1920 [00:16<00:16, 54.54it/s]Treino:  54%|█████▍    | 1046/1920 [00:16<00:14, 58.52it/s]Treino:  55%|█████▍    | 1053/1920 [00:16<00:14, 60.46it/s]Treino:  55%|█████▌    | 1060/1920 [00:16<00:14, 60.87it/s]Treino:  56%|█████▌    | 1067/1920 [00:16<00:13, 61.50it/s]Treino:  56%|█████▌    | 1074/1920 [00:16<00:13, 63.82it/s]Treino:  56%|█████▋    | 1081/1920 [00:16<00:14, 57.35it/s]Treino:  57%|█████▋    | 1088/1920 [00:16<00:14, 57.72it/s]Treino:  57%|█████▋    | 1094/1920 [00:17<00:14, 56.89it/s]Treino:  57%|█████▋    | 1100/1920 [00:17<00:14, 54.94it/s]Treino:  58%|█████▊    | 1106/1920 [00:17<00:14, 54.76it/s]Treino:  58%|█████▊    | 1114/1920 [00:17<00:13, 60.20it/s]Treino:  58%|█████▊    | 1121/1920 [00:17<00:12, 62.48it/s]Treino:  59%|█████▉    | 1128/1920 [00:17<00:13, 58.31it/s]Treino:  59%|█████▉    | 1136/1920 [00:17<00:12, 63.07it/s]Treino:  60%|█████▉    | 1144/1920 [00:17<00:12, 63.98it/s]Treino:  60%|██████    | 1152/1920 [00:17<00:11, 66.68it/s]Treino:  60%|██████    | 1159/1920 [00:18<00:12, 62.60it/s]Treino:  61%|██████    | 1167/1920 [00:18<00:11, 64.52it/s]Treino:  61%|██████    | 1174/1920 [00:18<00:11, 65.46it/s]Treino:  62%|██████▏   | 1183/1920 [00:18<00:10, 69.90it/s]Treino:  62%|██████▏   | 1191/1920 [00:18<00:10, 70.51it/s]Treino:  63%|██████▎   | 1207/1920 [00:18<00:07, 93.65it/s]Treino:  63%|██████▎   | 1219/1920 [00:18<00:07, 97.35it/s]Treino:  64%|██████▍   | 1235/1920 [00:18<00:06, 112.68it/s]Treino:  65%|██████▍   | 1247/1920 [00:19<00:06, 101.99it/s]Treino:  66%|██████▌   | 1258/1920 [00:19<00:06, 100.82it/s]Treino:  66%|██████▌   | 1269/1920 [00:19<00:07, 82.99it/s] Treino:  67%|██████▋   | 1285/1920 [00:19<00:06, 98.90it/s]Treino:  68%|██████▊   | 1296/1920 [00:19<00:08, 76.31it/s]Treino:  68%|██████▊   | 1305/1920 [00:19<00:08, 68.86it/s]Treino:  68%|██████▊   | 1313/1920 [00:20<00:10, 59.72it/s]Treino:  69%|██████▉   | 1320/1920 [00:20<00:10, 58.39it/s]Treino:  69%|██████▉   | 1327/1920 [00:20<00:10, 57.78it/s]Treino:  69%|██████▉   | 1334/1920 [00:20<00:11, 53.25it/s]Treino:  70%|██████▉   | 1341/1920 [00:20<00:10, 56.31it/s]Treino:  70%|███████   | 1352/1920 [00:20<00:08, 67.58it/s]Treino:  71%|███████   | 1360/1920 [00:20<00:08, 64.36it/s]Treino:  71%|███████   | 1367/1920 [00:20<00:09, 58.37it/s]Treino:  72%|███████▏  | 1374/1920 [00:21<00:10, 51.20it/s]Treino:  72%|███████▏  | 1380/1920 [00:21<00:11, 47.66it/s]Treino:  72%|███████▏  | 1390/1920 [00:21<00:08, 59.06it/s]Treino:  73%|███████▎  | 1397/1920 [00:21<00:09, 55.85it/s]Treino:  73%|███████▎  | 1403/1920 [00:21<00:09, 55.14it/s]Treino:  73%|███████▎  | 1409/1920 [00:21<00:09, 53.11it/s]Treino:  74%|███████▎  | 1415/1920 [00:21<00:09, 53.62it/s]Treino:  74%|███████▍  | 1423/1920 [00:21<00:08, 60.23it/s]Treino:  75%|███████▍  | 1431/1920 [00:22<00:07, 64.11it/s]Treino:  75%|███████▌  | 1440/1920 [00:22<00:06, 68.58it/s]Treino:  76%|███████▌  | 1450/1920 [00:22<00:06, 76.65it/s]Treino:  76%|███████▌  | 1458/1920 [00:22<00:06, 75.29it/s]Treino:  76%|███████▋  | 1466/1920 [00:22<00:06, 71.36it/s]Treino:  77%|███████▋  | 1474/1920 [00:22<00:06, 69.03it/s]Treino:  77%|███████▋  | 1483/1920 [00:22<00:05, 73.21it/s]Treino:  78%|███████▊  | 1491/1920 [00:22<00:05, 72.86it/s]Treino:  78%|███████▊  | 1499/1920 [00:23<00:06, 63.09it/s]Treino:  78%|███████▊  | 1506/1920 [00:23<00:06, 59.89it/s]Treino:  79%|███████▉  | 1516/1920 [00:23<00:05, 67.81it/s]Treino:  79%|███████▉  | 1524/1920 [00:23<00:05, 66.09it/s]Treino:  80%|███████▉  | 1531/1920 [00:23<00:06, 63.56it/s]Treino:  80%|████████  | 1538/1920 [00:23<00:06, 63.36it/s]Treino:  81%|████████  | 1548/1920 [00:23<00:05, 70.01it/s]Treino:  81%|████████  | 1556/1920 [00:23<00:05, 66.26it/s]Treino:  81%|████████▏ | 1564/1920 [00:24<00:05, 69.20it/s]Treino:  82%|████████▏ | 1572/1920 [00:24<00:05, 66.64it/s]Treino:  82%|████████▏ | 1579/1920 [00:24<00:05, 61.76it/s]Treino:  83%|████████▎ | 1587/1920 [00:24<00:05, 63.86it/s]Treino:  83%|████████▎ | 1598/1920 [00:24<00:04, 72.85it/s]Treino:  84%|████████▎ | 1606/1920 [00:24<00:04, 68.77it/s]Treino:  84%|████████▍ | 1617/1920 [00:24<00:03, 76.49it/s]Treino:  85%|████████▍ | 1625/1920 [00:24<00:03, 75.36it/s]Treino:  85%|████████▌ | 1634/1920 [00:24<00:03, 77.70it/s]Treino:  86%|████████▌ | 1645/1920 [00:25<00:03, 83.74it/s]Treino:  86%|████████▌ | 1654/1920 [00:25<00:03, 68.83it/s]Treino:  87%|████████▋ | 1662/1920 [00:25<00:03, 68.86it/s]Treino:  87%|████████▋ | 1671/1920 [00:25<00:03, 71.32it/s]Treino:  87%|████████▋ | 1679/1920 [00:25<00:03, 67.73it/s]Treino:  88%|████████▊ | 1686/1920 [00:25<00:03, 65.23it/s]Treino:  88%|████████▊ | 1693/1920 [00:25<00:03, 63.33it/s]Treino:  89%|████████▊ | 1700/1920 [00:26<00:03, 60.08it/s]Treino:  89%|████████▉ | 1709/1920 [00:26<00:03, 65.84it/s]Treino:  90%|████████▉ | 1722/1920 [00:26<00:02, 79.00it/s]Treino:  91%|█████████ | 1738/1920 [00:26<00:01, 97.37it/s]Treino:  91%|█████████ | 1748/1920 [00:26<00:01, 95.10it/s]Treino:  92%|█████████▏| 1758/1920 [00:26<00:01, 92.38it/s]Treino:  92%|█████████▏| 1768/1920 [00:26<00:01, 81.72it/s]Treino:  93%|█████████▎| 1777/1920 [00:26<00:02, 70.45it/s]Treino:  93%|█████████▎| 1785/1920 [00:27<00:01, 68.30it/s]Treino:  94%|█████████▎| 1796/1920 [00:27<00:01, 76.32it/s]Treino:  95%|█████████▍| 1815/1920 [00:27<00:01, 102.90it/s]Treino:  95%|█████████▌| 1826/1920 [00:27<00:01, 83.11it/s] Treino:  96%|█████████▌| 1836/1920 [00:27<00:01, 73.56it/s]Treino:  96%|█████████▌| 1845/1920 [00:27<00:01, 71.14it/s]Treino:  97%|█████████▋| 1853/1920 [00:27<00:00, 72.94it/s]Treino:  97%|█████████▋| 1861/1920 [00:28<00:00, 71.61it/s]Treino:  98%|█████████▊| 1873/1920 [00:28<00:00, 83.54it/s]Treino:  98%|█████████▊| 1887/1920 [00:28<00:00, 95.73it/s]Treino:  99%|█████████▉| 1897/1920 [00:28<00:00, 91.99it/s]Treino:  99%|█████████▉| 1908/1920 [00:28<00:00, 95.54it/s]Treino: 100%|█████████▉| 1918/1920 [00:28<00:00, 96.46it/s]Treino: 100%|██████████| 1920/1920 [00:28<00:00, 67.18it/s]
+Teste:   0%|          | 0/600 [00:00<?, ?it/s]Teste:   1%|          | 6/600 [00:00<00:11, 53.73it/s]Teste:   2%|▏         | 12/600 [00:00<00:11, 49.23it/s]Teste:   3%|▎         | 20/600 [00:00<00:09, 59.24it/s]Teste:   4%|▍         | 26/600 [00:00<00:09, 58.21it/s]Teste:   5%|▌         | 32/600 [00:00<00:10, 55.58it/s]Teste:   6%|▋         | 39/600 [00:00<00:09, 59.58it/s]Teste:   8%|▊         | 46/600 [00:00<00:09, 61.08it/s]Teste:   9%|▉         | 55/600 [00:00<00:08, 66.50it/s]Teste:  11%|█         | 64/600 [00:01<00:07, 69.52it/s]Teste:  12%|█▏        | 72/600 [00:01<00:07, 69.98it/s]Teste:  14%|█▍        | 84/600 [00:01<00:06, 79.01it/s]Teste:  16%|█▌        | 93/600 [00:01<00:06, 78.18it/s]Teste:  17%|█▋        | 101/600 [00:01<00:07, 62.67it/s]Teste:  18%|█▊        | 108/600 [00:01<00:08, 56.79it/s]Teste:  19%|█▉        | 115/600 [00:01<00:08, 58.09it/s]Teste:  20%|██        | 122/600 [00:01<00:08, 57.34it/s]Teste:  22%|██▏       | 129/600 [00:02<00:07, 60.18it/s]Teste:  23%|██▎       | 136/600 [00:02<00:07, 59.71it/s]Teste:  24%|██▍       | 143/600 [00:02<00:07, 57.41it/s]Teste:  25%|██▍       | 149/600 [00:02<00:08, 54.68it/s]Teste:  27%|██▋       | 161/600 [00:02<00:06, 70.89it/s]Teste:  28%|██▊       | 169/600 [00:02<00:06, 64.73it/s]Teste:  29%|██▉       | 176/600 [00:02<00:07, 59.68it/s]Teste:  30%|███       | 183/600 [00:02<00:07, 58.88it/s]Teste:  32%|███▏      | 190/600 [00:03<00:06, 58.98it/s]Teste:  33%|███▎      | 197/600 [00:03<00:06, 59.51it/s]Teste:  34%|███▍      | 204/600 [00:03<00:06, 57.36it/s]Teste:  35%|███▌      | 211/600 [00:03<00:06, 57.18it/s]Teste:  36%|███▌      | 217/600 [00:03<00:06, 55.01it/s]Teste:  37%|███▋      | 223/600 [00:03<00:07, 52.85it/s]Teste:  38%|███▊      | 230/600 [00:03<00:06, 55.87it/s]Teste:  40%|███▉      | 237/600 [00:03<00:06, 57.98it/s]Teste:  40%|████      | 243/600 [00:04<00:06, 56.94it/s]Teste:  42%|████▏     | 251/600 [00:04<00:05, 61.92it/s]Teste:  43%|████▎     | 259/600 [00:04<00:05, 65.77it/s]Teste:  46%|████▌     | 274/600 [00:04<00:03, 88.34it/s]Teste:  47%|████▋     | 283/600 [00:04<00:04, 75.84it/s]Teste:  48%|████▊     | 291/600 [00:04<00:04, 75.08it/s]Teste:  50%|█████     | 301/600 [00:04<00:03, 79.53it/s]Teste:  52%|█████▏    | 310/600 [00:04<00:03, 75.55it/s]Teste:  53%|█████▎    | 318/600 [00:04<00:04, 70.22it/s]Teste:  54%|█████▍    | 326/600 [00:05<00:03, 71.51it/s]Teste:  56%|█████▌    | 334/600 [00:05<00:03, 69.27it/s]Teste:  57%|█████▋    | 342/600 [00:05<00:03, 64.89it/s]Teste:  58%|█████▊    | 350/600 [00:05<00:03, 67.00it/s]Teste:  60%|█████▉    | 357/600 [00:05<00:03, 64.83it/s]Teste:  61%|██████    | 364/600 [00:05<00:03, 62.07it/s]Teste:  62%|██████▏   | 371/600 [00:05<00:03, 58.58it/s]Teste:  63%|██████▎   | 378/600 [00:05<00:03, 61.40it/s]Teste:  64%|██████▍   | 385/600 [00:06<00:03, 60.75it/s]Teste:  65%|██████▌   | 392/600 [00:06<00:03, 55.70it/s]Teste:  66%|██████▋   | 398/600 [00:06<00:03, 55.82it/s]Teste:  67%|██████▋   | 404/600 [00:06<00:03, 54.89it/s]Teste:  68%|██████▊   | 410/600 [00:06<00:03, 51.91it/s]Teste:  70%|██████▉   | 417/600 [00:06<00:03, 56.45it/s]Teste:  70%|███████   | 423/600 [00:06<00:03, 55.64it/s]Teste:  72%|███████▏  | 429/600 [00:06<00:03, 56.36it/s]Teste:  72%|███████▎  | 435/600 [00:07<00:03, 54.36it/s]Teste:  74%|███████▎  | 442/600 [00:07<00:02, 55.80it/s]Teste:  75%|███████▍  | 449/600 [00:07<00:02, 57.74it/s]Teste:  76%|███████▌  | 455/600 [00:07<00:02, 57.48it/s]Teste:  77%|███████▋  | 462/600 [00:07<00:02, 59.85it/s]Teste:  79%|███████▊  | 472/600 [00:07<00:01, 70.70it/s]Teste:  80%|████████  | 480/600 [00:07<00:01, 61.65it/s]Teste:  81%|████████  | 487/600 [00:07<00:01, 59.70it/s]Teste:  82%|████████▎ | 495/600 [00:07<00:01, 63.73it/s]Teste:  84%|████████▎ | 502/600 [00:08<00:01, 63.15it/s]Teste:  85%|████████▍ | 509/600 [00:08<00:01, 62.53it/s]Teste:  86%|████████▋ | 519/600 [00:08<00:01, 69.42it/s]Teste:  88%|████████▊ | 527/600 [00:08<00:01, 62.23it/s]Teste:  89%|████████▉ | 534/600 [00:08<00:01, 56.26it/s]Teste:  90%|█████████ | 540/600 [00:08<00:01, 55.26it/s]Teste:  92%|█████████▏| 549/600 [00:08<00:00, 60.94it/s]Teste:  93%|█████████▎| 556/600 [00:08<00:00, 58.82it/s]Teste:  94%|█████████▎| 562/600 [00:09<00:00, 56.91it/s]Teste:  96%|█████████▋| 578/600 [00:09<00:00, 82.97it/s]Teste:  98%|█████████▊| 588/600 [00:09<00:00, 87.08it/s]Teste: 100%|█████████▉| 599/600 [00:09<00:00, 89.51it/s]Teste: 100%|██████████| 600/600 [00:09<00:00, 63.63it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 1920 amostras...
+         [Debug] Shape VibNet: (1920, 16)
+         [Debug] Shape SignAI: (1920, 125)
+      -> [Fusion] Shape final combinado: (1920, 141)
+      -> [Fusion] Iniciando extração DUPLA para 600 amostras...
+         [Debug] Shape VibNet: (600, 16)
+         [Debug] Shape SignAI: (600, 125)
+      -> [Fusion] Shape final combinado: (600, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 10, 'rf__n_estimators': 100}
+     Bal Acc: 0.8590 | F1: 0.8590 | AUC: 0.9564
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8039 | F1: 0.7972 | AUC: 0.9036
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.8447 | F1: 0.8407 | AUC: 0.9505
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 77 with best_epoch = 57 and best_val_balanced_accuracy = 0.82346
+     [Diagnóstico] Bal Acc: 0.8235 | Macro F1: 0.8168 | ROC-AUC: 0.9122
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_1HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_1HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  62%|██████▏   | 1163/1880 [00:00<00:00, 11623.06it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 11551.09it/s]
+Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 11429.64it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 1880 amostras...
+         [Debug] Shape VibNet: (1880, 16)
+         [Debug] Shape SignAI: (1880, 125)
+      -> [Fusion] Shape final combinado: (1880, 141)
+      -> [Fusion] Iniciando extração DUPLA para 640 amostras...
+         [Debug] Shape VibNet: (640, 16)
+         [Debug] Shape SignAI: (640, 125)
+      -> [Fusion] Shape final combinado: (640, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 5, 'rf__n_estimators': 50}
+     Bal Acc: 0.9262 | F1: 0.9259 | AUC: 0.9893
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9264 | F1: 0.9261 | AUC: 0.9722
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.9469 | F1: 0.9472 | AUC: 0.9940
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 73 with best_epoch = 53 and best_val_balanced_accuracy = 0.91294
+     [Diagnóstico] Bal Acc: 0.9129 | Macro F1: 0.9129 | ROC-AUC: 0.9650
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_2HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_2HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  60%|██████    | 1134/1880 [00:00<00:00, 11332.07it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 11299.75it/s]
+Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 11190.36it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 1880 amostras...
+         [Debug] Shape VibNet: (1880, 16)
+         [Debug] Shape SignAI: (1880, 125)
+      -> [Fusion] Shape final combinado: (1880, 141)
+      -> [Fusion] Iniciando extração DUPLA para 640 amostras...
+         [Debug] Shape VibNet: (640, 16)
+         [Debug] Shape SignAI: (640, 125)
+      -> [Fusion] Shape final combinado: (640, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 200}
+     Bal Acc: 0.9960 | F1: 0.9960 | AUC: 0.9998
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9539 | F1: 0.9531 | AUC: 0.9962
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 0.9031 | F1: 0.9211 | AUC: 0.9978
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 82 with best_epoch = 62 and best_val_balanced_accuracy = 0.96126
+     [Diagnóstico] Bal Acc: 0.9613 | Macro F1: 0.9613 | ROC-AUC: 0.9889
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_3HP | Treino: Demais Condições
+Carregando CWRU_12k | Condição: Load_3HP | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1880 [00:00<?, ?it/s]Treino:  59%|█████▊    | 1100/1880 [00:00<00:00, 10991.52it/s]Treino: 100%|██████████| 1880/1880 [00:00<00:00, 10974.44it/s]
+Teste:   0%|          | 0/640 [00:00<?, ?it/s]Teste: 100%|██████████| 640/640 [00:00<00:00, 10955.48it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 1880 amostras...
+         [Debug] Shape VibNet: (1880, 16)
+         [Debug] Shape SignAI: (1880, 125)
+      -> [Fusion] Shape final combinado: (1880, 141)
+      -> [Fusion] Iniciando extração DUPLA para 640 amostras...
+         [Debug] Shape VibNet: (640, 16)
+         [Debug] Shape SignAI: (640, 125)
+      -> [Fusion] Shape final combinado: (640, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.8521 | F1: 0.8540 | AUC: 0.9675
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9126 | F1: 0.9134 | AUC: 0.9727
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 6, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.8852 | F1: 0.8869 | AUC: 0.9660
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 73 with best_epoch = 53 and best_val_balanced_accuracy = 0.87222
+     [Diagnóstico] Bal Acc: 0.8722 | Macro F1: 0.8680 | ROC-AUC: 0.9541
+     -> Treinando PyTorch MLP (From Scratch)...
+
+[CWRU_48k] Processando 12 dobras LOCO...
+
+  >>> Dobra Alvo (Teste): Load_0HP_Sev_0.007 | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_0HP_Sev_0.007 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/572 [00:00<?, ?it/s]Treino:   3%|▎         | 18/572 [00:00<00:03, 173.83it/s]Treino:   6%|▋         | 36/572 [00:00<00:03, 151.49it/s]Treino:   9%|▉         | 52/572 [00:00<00:04, 121.73it/s]Treino:  11%|█▏        | 65/572 [00:00<00:06, 80.61it/s] Treino:  13%|█▎        | 75/572 [00:00<00:06, 80.08it/s]Treino:  15%|█▍        | 84/572 [00:00<00:06, 77.33it/s]Treino:  16%|█▋        | 93/572 [00:01<00:06, 78.97it/s]Treino:  18%|█▊        | 103/572 [00:01<00:05, 82.32it/s]Treino:  20%|█▉        | 113/572 [00:01<00:05, 85.06it/s]Treino:  22%|██▏       | 123/572 [00:01<00:05, 88.49it/s]Treino:  23%|██▎       | 133/572 [00:01<00:05, 87.69it/s]Treino:  25%|██▍       | 142/572 [00:01<00:04, 87.02it/s]Treino:  27%|██▋       | 153/572 [00:01<00:04, 93.32it/s]Treino:  29%|██▉       | 166/572 [00:01<00:03, 103.44it/s]Treino:  31%|███       | 178/572 [00:01<00:03, 104.51it/s]Treino:  34%|███▎      | 193/572 [00:01<00:03, 113.84it/s]Treino:  36%|███▌      | 205/572 [00:02<00:03, 111.41it/s]Treino:  38%|███▊      | 219/572 [00:02<00:03, 117.03it/s]Treino:  40%|████      | 231/572 [00:02<00:03, 110.82it/s]Treino:  42%|████▏     | 243/572 [00:02<00:03, 98.36it/s] Treino:  44%|████▍     | 254/572 [00:02<00:03, 94.35it/s]Treino:  46%|████▌     | 264/572 [00:02<00:03, 89.44it/s]Treino:  48%|████▊     | 274/572 [00:02<00:03, 90.97it/s]Treino:  50%|████▉     | 284/572 [00:02<00:03, 92.00it/s]Treino:  51%|█████▏    | 294/572 [00:03<00:02, 93.18it/s]Treino:  54%|█████▍    | 309/572 [00:03<00:02, 103.87it/s]Treino:  56%|█████▌    | 320/572 [00:03<00:02, 86.40it/s] Treino:  59%|█████▉    | 337/572 [00:03<00:02, 105.39it/s]Treino:  62%|██████▏   | 353/572 [00:03<00:01, 117.07it/s]Treino:  64%|██████▍   | 366/572 [00:03<00:01, 113.28it/s]Treino:  67%|██████▋   | 383/572 [00:03<00:01, 123.52it/s]Treino:  70%|███████   | 403/572 [00:03<00:01, 140.87it/s]Treino:  73%|███████▎  | 418/572 [00:04<00:01, 113.68it/s]Treino:  79%|███████▉  | 451/572 [00:04<00:00, 162.50it/s]Treino:  82%|████████▏ | 470/572 [00:04<00:00, 114.93it/s]Treino:  85%|████████▍ | 485/572 [00:04<00:00, 95.75it/s] Treino:  87%|████████▋ | 498/572 [00:04<00:00, 93.26it/s]Treino:  89%|████████▉ | 510/572 [00:05<00:00, 86.69it/s]Treino:  91%|█████████ | 520/572 [00:05<00:00, 77.48it/s]Treino:  92%|█████████▏| 529/572 [00:05<00:00, 75.93it/s]Treino:  94%|█████████▍| 538/572 [00:05<00:00, 73.86it/s]Treino:  95%|█████████▌| 546/572 [00:05<00:00, 74.24it/s]Treino:  97%|█████████▋| 554/572 [00:05<00:00, 75.00it/s]Treino:  98%|█████████▊| 562/572 [00:05<00:00, 72.81it/s]Treino: 100%|█████████▉| 570/572 [00:06<00:00, 65.04it/s]Treino: 100%|██████████| 572/572 [00:06<00:00, 94.35it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste:  30%|███       | 9/30 [00:00<00:00, 80.31it/s]Teste:  60%|██████    | 18/30 [00:00<00:00, 77.39it/s]Teste:  93%|█████████▎| 28/30 [00:00<00:00, 85.21it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 83.98it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 572 amostras...
+         [Debug] Shape VibNet: (572, 16)
+         [Debug] Shape SignAI: (572, 125)
+      -> [Fusion] Shape final combinado: (572, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.8000 | F1: 0.7802 | AUC: 0.8883
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.8333 | F1: 0.8222 | AUC: 0.8750
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 25 with best_epoch = 5 and best_val_balanced_accuracy = 0.5
+     [Diagnóstico] Bal Acc: 0.5000 | Macro F1: 0.5185 | ROC-AUC: 0.5950
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_0HP_Sev_0.021 | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_0HP_Sev_0.021 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/584 [00:00<?, ?it/s]Treino: 100%|██████████| 584/584 [00:00<00:00, 7977.70it/s]
+Teste:   0%|          | 0/18 [00:00<?, ?it/s]Teste: 100%|██████████| 18/18 [00:00<00:00, 7477.96it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 584 amostras...
+         [Debug] Shape VibNet: (584, 16)
+         [Debug] Shape SignAI: (584, 125)
+      -> [Fusion] Shape final combinado: (584, 141)
+      -> [Fusion] Iniciando extração DUPLA para 18 amostras...
+         [Debug] Shape VibNet: (18, 16)
+         [Debug] Shape SignAI: (18, 125)
+      -> [Fusion] Shape final combinado: (18, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 0.9167 | F1: 0.9365 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 0.7333 | F1: 0.6111 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 45 with best_epoch = 25 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_1HP_Sev_0.014 | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_1HP_Sev_0.014 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/548 [00:00<?, ?it/s]Treino: 100%|██████████| 548/548 [00:00<00:00, 8082.36it/s]
+Teste:   0%|          | 0/54 [00:00<?, ?it/s]Teste: 100%|██████████| 54/54 [00:00<00:00, 7557.30it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 548 amostras...
+         [Debug] Shape VibNet: (548, 16)
+         [Debug] Shape SignAI: (548, 125)
+      -> [Fusion] Shape final combinado: (548, 141)
+      -> [Fusion] Iniciando extração DUPLA para 54 amostras...
+         [Debug] Shape VibNet: (54, 16)
+         [Debug] Shape SignAI: (54, 125)
+      -> [Fusion] Shape final combinado: (54, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.9167 | F1: 0.9075 | AUC: 0.9909
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9524 | F1: 0.9585 | AUC: 0.9990
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.8833 | F1: 0.8689 | AUC: 0.9586
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 82 with best_epoch = 62 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_2HP_Sev_0.007 | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_2HP_Sev_0.007 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8251.20it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 8117.48it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 542 amostras...
+         [Debug] Shape VibNet: (542, 16)
+         [Debug] Shape SignAI: (542, 125)
+      -> [Fusion] Shape final combinado: (542, 141)
+      -> [Fusion] Iniciando extração DUPLA para 60 amostras...
+         [Debug] Shape VibNet: (60, 16)
+         [Debug] Shape SignAI: (60, 125)
+      -> [Fusion] Shape final combinado: (60, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 200}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9500 | F1: 0.9497 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.9833 | F1: 0.9833 | AUC: 0.9996
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 80 with best_epoch = 60 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_2HP_Sev_0.021 | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_2HP_Sev_0.021 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8471.79it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 8230.31it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 542 amostras...
+         [Debug] Shape VibNet: (542, 16)
+         [Debug] Shape SignAI: (542, 125)
+      -> [Fusion] Shape final combinado: (542, 141)
+      -> [Fusion] Iniciando extração DUPLA para 60 amostras...
+         [Debug] Shape VibNet: (60, 16)
+         [Debug] Shape SignAI: (60, 125)
+      -> [Fusion] Shape final combinado: (60, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 50}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 75 with best_epoch = 55 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_3HP_Sev_0.014 | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_3HP_Sev_0.014 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8414.38it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 5359.33it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 542 amostras...
+         [Debug] Shape VibNet: (542, 16)
+         [Debug] Shape SignAI: (542, 125)
+      -> [Fusion] Shape final combinado: (542, 141)
+      -> [Fusion] Iniciando extração DUPLA para 60 amostras...
+         [Debug] Shape VibNet: (60, 16)
+         [Debug] Shape SignAI: (60, 125)
+      -> [Fusion] Shape final combinado: (60, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 0.8333 | F1: 0.8303 | AUC: 0.9921
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9667 | F1: 0.9666 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.9667 | F1: 0.9666 | AUC: 0.9771
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 42 with best_epoch = 22 and best_val_balanced_accuracy = 0.83333
+     [Diagnóstico] Bal Acc: 0.8333 | Macro F1: 0.8317 | ROC-AUC: 0.9129
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_0HP_Sev_0.014 | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_0HP_Sev_0.014 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/582 [00:00<?, ?it/s]Treino: 100%|██████████| 582/582 [00:00<00:00, 8401.57it/s]
+Teste:   0%|          | 0/20 [00:00<?, ?it/s]Teste: 100%|██████████| 20/20 [00:00<00:00, 6974.23it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 582 amostras...
+         [Debug] Shape VibNet: (582, 16)
+         [Debug] Shape SignAI: (582, 125)
+      -> [Fusion] Shape final combinado: (582, 141)
+      -> [Fusion] Iniciando extração DUPLA para 20 amostras...
+         [Debug] Shape VibNet: (20, 16)
+         [Debug] Shape SignAI: (20, 125)
+      -> [Fusion] Shape final combinado: (20, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 200}
+        [AVISO Random Forest] O modelo falhou: Number of classes in y_true not equal to the number of columns in 'y_score'
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+        [AVISO SVM] O modelo falhou: Number of classes in y_true not equal to the number of columns in 'y_score'
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+        [AVISO XGBoost] O modelo falhou: Number of classes in y_true not equal to the number of columns in 'y_score'
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 35 with best_epoch = 15 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 0.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_1HP_Sev_0.007 | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_1HP_Sev_0.007 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8185.25it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 6114.59it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 542 amostras...
+         [Debug] Shape VibNet: (542, 16)
+         [Debug] Shape SignAI: (542, 125)
+      -> [Fusion] Shape final combinado: (542, 141)
+      -> [Fusion] Iniciando extração DUPLA para 60 amostras...
+         [Debug] Shape VibNet: (60, 16)
+         [Debug] Shape SignAI: (60, 125)
+      -> [Fusion] Shape final combinado: (60, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 50}
+     Bal Acc: 0.9833 | F1: 0.9833 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9833 | F1: 0.9833 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 1.0}
+     Bal Acc: 0.8333 | F1: 0.8222 | AUC: 0.9992
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 69 with best_epoch = 49 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_1HP_Sev_0.021 | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_1HP_Sev_0.021 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8417.56it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 8167.01it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 542 amostras...
+         [Debug] Shape VibNet: (542, 16)
+         [Debug] Shape SignAI: (542, 125)
+      -> [Fusion] Shape final combinado: (542, 141)
+      -> [Fusion] Iniciando extração DUPLA para 60 amostras...
+         [Debug] Shape VibNet: (60, 16)
+         [Debug] Shape SignAI: (60, 125)
+      -> [Fusion] Shape final combinado: (60, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 6, 'xgb__n_estimators': 50, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 56 with best_epoch = 36 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_2HP_Sev_0.014 | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_2HP_Sev_0.014 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8451.45it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 8154.04it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 542 amostras...
+         [Debug] Shape VibNet: (542, 16)
+         [Debug] Shape SignAI: (542, 125)
+      -> [Fusion] Shape final combinado: (542, 141)
+      -> [Fusion] Iniciando extração DUPLA para 60 amostras...
+         [Debug] Shape VibNet: (60, 16)
+         [Debug] Shape SignAI: (60, 125)
+      -> [Fusion] Shape final combinado: (60, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 0.9833 | F1: 0.9833 | AUC: 0.9950
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8500 | F1: 0.8428 | AUC: 0.9938
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.9333 | F1: 0.9316 | AUC: 0.9925
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 61 with best_epoch = 41 and best_val_balanced_accuracy = 0.81667
+     [Diagnóstico] Bal Acc: 0.8167 | Macro F1: 0.8169 | ROC-AUC: 0.9517
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_3HP_Sev_0.007 | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_3HP_Sev_0.007 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 7866.30it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 5281.06it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 542 amostras...
+         [Debug] Shape VibNet: (542, 16)
+         [Debug] Shape SignAI: (542, 125)
+      -> [Fusion] Shape final combinado: (542, 141)
+      -> [Fusion] Iniciando extração DUPLA para 60 amostras...
+         [Debug] Shape VibNet: (60, 16)
+         [Debug] Shape SignAI: (60, 125)
+      -> [Fusion] Shape final combinado: (60, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8333 | F1: 0.8222 | AUC: 0.9975
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 6, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 0.9333 | F1: 0.9327 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 50 with best_epoch = 30 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_3HP_Sev_0.021 | Treino: Demais Condições
+Carregando CWRU_48k | Condição: Load_3HP_Sev_0.021 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8164.23it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 7719.34it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+      -> [Fusion] Iniciando extração DUPLA para 542 amostras...
+         [Debug] Shape VibNet: (542, 16)
+         [Debug] Shape SignAI: (542, 125)
+      -> [Fusion] Shape final combinado: (542, 141)
+      -> [Fusion] Iniciando extração DUPLA para 60 amostras...
+         [Debug] Shape VibNet: (60, 16)
+         [Debug] Shape SignAI: (60, 125)
+      -> [Fusion] Shape final combinado: (60, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 0.8333 | F1: 0.8175 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 1, 'svm__gamma': 'scale', 'svm__kernel': 'linear'}
+     Bal Acc: 0.5500 | F1: 0.5156 | AUC: 0.8050
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.8000 | F1: 0.7727 | AUC: 0.9912
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 77 with best_epoch = 57 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+[UOEMD] Processando 16 dobras LOCO...
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_15Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_15Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:   9%|▉         | 105/1200 [00:00<00:01, 978.29it/s]Treino:  17%|█▋        | 203/1200 [00:01<00:06, 160.46it/s]Treino:  21%|██        | 250/1200 [00:01<00:06, 136.13it/s]Treino:  23%|██▎       | 280/1200 [00:01<00:07, 122.84it/s]Treino:  25%|██▌       | 302/1200 [00:02<00:07, 115.99it/s]Treino:  27%|██▋       | 319/1200 [00:02<00:08, 105.87it/s]Treino:  28%|██▊       | 333/1200 [00:02<00:09, 94.87it/s] Treino:  29%|██▉       | 345/1200 [00:02<00:08, 96.43it/s]Treino:  30%|██▉       | 357/1200 [00:02<00:08, 94.44it/s]Treino:  31%|███       | 368/1200 [00:03<00:10, 81.05it/s]Treino:  31%|███▏      | 377/1200 [00:03<00:10, 80.63it/s]Treino:  32%|███▏      | 386/1200 [00:03<00:10, 80.81it/s]Treino:  33%|███▎      | 395/1200 [00:03<00:10, 73.73it/s]Treino:  34%|███▎      | 403/1200 [00:03<00:10, 74.61it/s]Treino:  34%|███▍      | 413/1200 [00:03<00:09, 79.35it/s]Treino:  35%|███▌      | 422/1200 [00:03<00:10, 71.12it/s]Treino:  36%|███▌      | 431/1200 [00:03<00:10, 75.21it/s]Treino:  37%|███▋      | 442/1200 [00:04<00:09, 82.64it/s]Treino:  38%|███▊      | 451/1200 [00:04<00:09, 79.43it/s]Treino:  38%|███▊      | 460/1200 [00:04<00:09, 81.24it/s]Treino:  39%|███▉      | 469/1200 [00:04<00:08, 81.84it/s]Treino:  40%|████      | 481/1200 [00:04<00:07, 90.43it/s]Treino:  41%|████      | 494/1200 [00:04<00:07, 98.60it/s]Treino:  42%|████▏     | 506/1200 [00:04<00:06, 103.01it/s]Treino:  43%|████▎     | 517/1200 [00:04<00:08, 85.21it/s] Treino:  44%|████▍     | 529/1200 [00:04<00:07, 92.55it/s]Treino:  45%|████▍     | 539/1200 [00:05<00:07, 86.13it/s]Treino:  46%|████▋     | 555/1200 [00:05<00:06, 102.75it/s]Treino:  47%|████▋     | 566/1200 [00:05<00:06, 95.41it/s] Treino:  48%|████▊     | 579/1200 [00:05<00:06, 102.44it/s]Treino:  49%|████▉     | 590/1200 [00:05<00:06, 97.82it/s] Treino:  50%|█████     | 601/1200 [00:05<00:06, 98.78it/s]Treino:  51%|█████     | 612/1200 [00:05<00:06, 86.33it/s]Treino:  53%|█████▎    | 633/1200 [00:05<00:04, 116.28it/s]Treino:  54%|█████▍    | 646/1200 [00:06<00:04, 113.95it/s]Treino:  57%|█████▋    | 680/1200 [00:06<00:03, 167.14it/s]Treino:  59%|█████▊    | 704/1200 [00:06<00:02, 184.67it/s]Treino:  60%|██████    | 724/1200 [00:06<00:04, 113.04it/s]Treino:  62%|██████▏   | 740/1200 [00:06<00:04, 108.71it/s]Treino:  63%|██████▎   | 754/1200 [00:06<00:04, 102.92it/s]Treino:  64%|██████▍   | 767/1200 [00:07<00:05, 73.51it/s] Treino:  65%|██████▍   | 777/1200 [00:07<00:09, 46.15it/s]Treino:  65%|██████▌   | 785/1200 [00:08<00:09, 45.19it/s]Treino:  66%|██████▌   | 794/1200 [00:08<00:08, 50.50it/s]Treino:  67%|██████▋   | 801/1200 [00:08<00:07, 50.52it/s]Treino:  67%|██████▋   | 808/1200 [00:08<00:09, 42.44it/s]Treino:  68%|██████▊   | 815/1200 [00:08<00:08, 46.43it/s]Treino:  69%|██████▊   | 823/1200 [00:08<00:07, 52.47it/s]Treino:  69%|██████▉   | 830/1200 [00:08<00:06, 55.48it/s]Treino:  70%|██████▉   | 837/1200 [00:08<00:06, 57.44it/s]Treino:  72%|███████▏  | 858/1200 [00:09<00:03, 92.36it/s]Treino:  72%|███████▏  | 869/1200 [00:09<00:04, 78.14it/s]Treino:  78%|███████▊  | 932/1200 [00:09<00:01, 202.50it/s]Treino:  80%|███████▉  | 957/1200 [00:09<00:01, 213.04it/s]Treino:  82%|████████▏ | 982/1200 [00:09<00:01, 160.09it/s]Treino:  84%|████████▎ | 1003/1200 [00:09<00:01, 130.96it/s]Treino:  85%|████████▌ | 1020/1200 [00:10<00:01, 112.89it/s]Treino:  86%|████████▋ | 1035/1200 [00:10<00:01, 105.95it/s]Treino:  87%|████████▋ | 1048/1200 [00:10<00:01, 100.54it/s]Treino:  99%|█████████▉| 1187/1200 [00:10<00:00, 348.29it/s]Treino: 100%|██████████| 1200/1200 [00:10<00:00, 111.82it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste:   9%|▉         | 7/80 [00:00<00:01, 69.35it/s]Teste:  20%|██        | 16/80 [00:00<00:00, 78.00it/s]Teste:  30%|███       | 24/80 [00:00<00:00, 74.91it/s]Teste:  40%|████      | 32/80 [00:00<00:00, 51.08it/s]Teste:  48%|████▊     | 38/80 [00:00<00:00, 45.53it/s]Teste:  55%|█████▌    | 44/80 [00:00<00:00, 46.45it/s]Teste:  62%|██████▎   | 50/80 [00:01<00:00, 33.01it/s]Teste:  71%|███████▏  | 57/80 [00:01<00:00, 39.99it/s]Teste:  78%|███████▊  | 62/80 [00:01<00:00, 35.39it/s]Teste:  89%|████████▉ | 71/80 [00:01<00:00, 45.08it/s]Teste:  96%|█████████▋| 77/80 [00:02<00:00, 26.16it/s]Teste: 100%|██████████| 80/80 [00:02<00:00, 37.63it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração DUPLA para 1200 amostras...
+         [Debug] Shape VibNet: (1200, 16)
+         [Debug] Shape SignAI: (1200, 125)
+      -> [Fusion] Shape final combinado: (1200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.6375 | F1: 0.5868 | AUC: 0.9711
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.6375 | F1: 0.5763 | AUC: 0.8846
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 10, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.6250 | F1: 0.5658 | AUC: 0.9286
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 56 with best_epoch = 36 and best_val_balanced_accuracy = 0.7375
+     [Diagnóstico] Bal Acc: 0.7375 | Macro F1: 0.6955 | ROC-AUC: 0.9279
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_Dec_45_to_15Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_Dec_45_to_15Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  15%|█▌        | 180/1200 [00:00<00:00, 1508.07it/s]Treino:  28%|██▊       | 331/1200 [00:00<00:00, 878.35it/s] Treino:  49%|████▊     | 583/1200 [00:00<00:00, 1388.70it/s]Treino:  63%|██████▎   | 753/1200 [00:01<00:00, 596.50it/s] Treino:  72%|███████▏  | 867/1200 [00:01<00:00, 634.66it/s]Treino:  81%|████████  | 969/1200 [00:01<00:00, 359.25it/s]Treino:  88%|████████▊ | 1050/1200 [00:01<00:00, 404.28it/s]Treino:  94%|█████████▎| 1123/1200 [00:02<00:00, 282.65it/s]Treino: 100%|██████████| 1200/1200 [00:02<00:00, 474.03it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste:  21%|██▏       | 17/80 [00:00<00:00, 167.26it/s]Teste:  42%|████▎     | 34/80 [00:00<00:00, 128.16it/s]Teste:  68%|██████▊   | 54/80 [00:00<00:00, 152.28it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 175.61it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração DUPLA para 1200 amostras...
+         [Debug] Shape VibNet: (1200, 16)
+         [Debug] Shape SignAI: (1200, 125)
+      -> [Fusion] Shape final combinado: (1200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 0.9000 | F1: 0.8993 | AUC: 0.9935
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8375 | F1: 0.8390 | AUC: 0.9754
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.8875 | F1: 0.8900 | AUC: 0.9888
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 100 with best_epoch = 80 and best_val_balanced_accuracy = 0.85
+     [Diagnóstico] Bal Acc: 0.8500 | Macro F1: 0.8526 | ROC-AUC: 0.9554
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_15Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_15Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  67%|██████▋   | 809/1200 [00:00<00:00, 8089.18it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 7200.32it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 5776.88it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração DUPLA para 1200 amostras...
+         [Debug] Shape VibNet: (1200, 16)
+         [Debug] Shape SignAI: (1200, 125)
+      -> [Fusion] Shape final combinado: (1200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.8375 | F1: 0.7950 | AUC: 0.9329
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8250 | F1: 0.8118 | AUC: 0.9838
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 0.6125 | F1: 0.5391 | AUC: 0.9768
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 76 with best_epoch = 56 and best_val_balanced_accuracy = 0.7375
+     [Diagnóstico] Bal Acc: 0.7375 | Macro F1: 0.6883 | ROC-AUC: 0.9229
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_Dec_45_to_15Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_Dec_45_to_15Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  73%|███████▎  | 871/1200 [00:00<00:00, 8707.29it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8669.22it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 7823.19it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração DUPLA para 1200 amostras...
+         [Debug] Shape VibNet: (1200, 16)
+         [Debug] Shape SignAI: (1200, 125)
+      -> [Fusion] Shape final combinado: (1200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.9250 | F1: 0.9221 | AUC: 0.9909
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8250 | F1: 0.8278 | AUC: 0.9811
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 1.0}
+     Bal Acc: 0.8875 | F1: 0.8904 | AUC: 0.9782
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 91 with best_epoch = 71 and best_val_balanced_accuracy = 0.825
+     [Diagnóstico] Bal Acc: 0.8250 | Macro F1: 0.8333 | ROC-AUC: 0.9680
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_30Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_30Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  75%|███████▌  | 905/1200 [00:00<00:00, 9042.85it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 9008.84it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 7219.73it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração DUPLA para 1200 amostras...
+         [Debug] Shape VibNet: (1200, 16)
+         [Debug] Shape SignAI: (1200, 125)
+      -> [Fusion] Shape final combinado: (1200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.7875 | F1: 0.7642 | AUC: 0.9923
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.9500 | F1: 0.9479 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 75 with best_epoch = 55 and best_val_balanced_accuracy = 0.9875
+     [Diagnóstico] Bal Acc: 0.9875 | Macro F1: 0.9875 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_Dec_60_to_30Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_Dec_60_to_30Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  75%|███████▍  | 899/1200 [00:00<00:00, 8986.49it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8957.48it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 7062.16it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração DUPLA para 1200 amostras...
+         [Debug] Shape VibNet: (1200, 16)
+         [Debug] Shape SignAI: (1200, 125)
+      -> [Fusion] Shape final combinado: (1200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.8875 | F1: 0.8879 | AUC: 0.9948
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8625 | F1: 0.8626 | AUC: 0.9909
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 0.8875 | F1: 0.8857 | AUC: 0.9939
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 82 with best_epoch = 62 and best_val_balanced_accuracy = 0.8875
+     [Diagnóstico] Bal Acc: 0.8875 | Macro F1: 0.8822 | ROC-AUC: 0.9870
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_30Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_30Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  76%|███████▌  | 910/1200 [00:00<00:00, 9090.91it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 9055.11it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8572.93it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração DUPLA para 1200 amostras...
+         [Debug] Shape VibNet: (1200, 16)
+         [Debug] Shape SignAI: (1200, 125)
+      -> [Fusion] Shape final combinado: (1200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 0.7375 | F1: 0.6809 | AUC: 0.9054
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.6750 | F1: 0.6373 | AUC: 0.9048
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 10, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.7875 | F1: 0.7633 | AUC: 0.9243
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 70 with best_epoch = 50 and best_val_balanced_accuracy = 0.8
+     [Diagnóstico] Bal Acc: 0.8000 | Macro F1: 0.7851 | ROC-AUC: 0.9363
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_Dec_60_to_30Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_Dec_60_to_30Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  73%|███████▎  | 872/1200 [00:00<00:00, 8719.70it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8678.98it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8251.83it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração DUPLA para 1200 amostras...
+         [Debug] Shape VibNet: (1200, 16)
+         [Debug] Shape SignAI: (1200, 125)
+      -> [Fusion] Shape final combinado: (1200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.9750 | F1: 0.9750 | AUC: 0.9996
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9000 | F1: 0.8995 | AUC: 0.9930
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 0.9250 | F1: 0.9229 | AUC: 0.9954
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+Stop training because you reached max_epochs = 150 with best_epoch = 136 and best_val_balanced_accuracy = 0.9375
+     [Diagnóstico] Bal Acc: 0.9375 | Macro F1: 0.9374 | ROC-AUC: 0.9966
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_45Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_45Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  75%|███████▌  | 901/1200 [00:00<00:00, 9005.20it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8958.84it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8472.27it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração DUPLA para 1200 amostras...
+         [Debug] Shape VibNet: (1200, 16)
+         [Debug] Shape SignAI: (1200, 125)
+      -> [Fusion] Shape final combinado: (1200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8500 | F1: 0.8083 | AUC: 0.9793
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_val_balanced_accuracy = 0.975
+     [Diagnóstico] Bal Acc: 0.9750 | Macro F1: 0.9747 | ROC-AUC: 0.9996
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_Inc_15_to_45Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_Inc_15_to_45Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  75%|███████▍  | 895/1200 [00:00<00:00, 8939.84it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8919.54it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8592.90it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração DUPLA para 1200 amostras...
+         [Debug] Shape VibNet: (1200, 16)
+         [Debug] Shape SignAI: (1200, 125)
+      -> [Fusion] Shape final combinado: (1200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.9375 | F1: 0.9372 | AUC: 0.9949
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8500 | F1: 0.8461 | AUC: 0.9795
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.9250 | F1: 0.9247 | AUC: 0.9945
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 70 with best_epoch = 50 and best_val_balanced_accuracy = 0.8375
+     [Diagnóstico] Bal Acc: 0.8375 | Macro F1: 0.8337 | ROC-AUC: 0.9636
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_45Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_45Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  74%|███████▍  | 889/1200 [00:00<00:00, 8879.91it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8834.70it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8231.19it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração DUPLA para 1200 amostras...
+         [Debug] Shape VibNet: (1200, 16)
+         [Debug] Shape SignAI: (1200, 125)
+      -> [Fusion] Shape final combinado: (1200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.7500 | F1: 0.7410 | AUC: 0.9768
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 6, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.9625 | F1: 0.9632 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 72 with best_epoch = 52 and best_val_balanced_accuracy = 0.85
+     [Diagnóstico] Bal Acc: 0.8500 | Macro F1: 0.8143 | ROC-AUC: 0.9643
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_Inc_15_to_45Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_Inc_15_to_45Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  73%|███████▎  | 874/1200 [00:00<00:00, 8739.59it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8689.89it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8326.58it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração DUPLA para 1200 amostras...
+         [Debug] Shape VibNet: (1200, 16)
+         [Debug] Shape SignAI: (1200, 125)
+      -> [Fusion] Shape final combinado: (1200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 5, 'rf__n_estimators': 200}
+     Bal Acc: 0.9625 | F1: 0.9622 | AUC: 0.9984
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9625 | F1: 0.9624 | AUC: 0.9984
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 10, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.8875 | F1: 0.8841 | AUC: 0.9895
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 81 with best_epoch = 61 and best_val_balanced_accuracy = 0.9
+     [Diagnóstico] Bal Acc: 0.9000 | Macro F1: 0.9005 | ROC-AUC: 0.9864
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_60Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_60Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  74%|███████▍  | 894/1200 [00:00<00:00, 8935.75it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8895.27it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8380.02it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração DUPLA para 1200 amostras...
+         [Debug] Shape VibNet: (1200, 16)
+         [Debug] Shape SignAI: (1200, 125)
+      -> [Fusion] Shape final combinado: (1200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.6250 | F1: 0.5335 | AUC: 0.9530
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.6250 | F1: 0.5753 | AUC: 0.9786
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.5375 | F1: 0.4926 | AUC: 0.9445
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 75 with best_epoch = 55 and best_val_balanced_accuracy = 0.7375
+     [Diagnóstico] Bal Acc: 0.7375 | Macro F1: 0.7178 | ROC-AUC: 0.9179
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_Loaded_Speed_Inc_30_to_60Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_Loaded_Speed_Inc_30_to_60Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  73%|███████▎  | 874/1200 [00:00<00:00, 8728.08it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 8720.42it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8450.51it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração DUPLA para 1200 amostras...
+         [Debug] Shape VibNet: (1200, 16)
+         [Debug] Shape SignAI: (1200, 125)
+      -> [Fusion] Shape final combinado: (1200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.8375 | F1: 0.8370 | AUC: 0.9889
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8500 | F1: 0.8515 | AUC: 0.9811
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 0.8500 | F1: 0.8487 | AUC: 0.9755
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 75 with best_epoch = 55 and best_val_balanced_accuracy = 0.825
+     [Diagnóstico] Bal Acc: 0.8250 | Macro F1: 0.8264 | ROC-AUC: 0.9682
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_60Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_60Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  76%|███████▌  | 908/1200 [00:00<00:00, 9077.09it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 9041.32it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8437.76it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração DUPLA para 1200 amostras...
+         [Debug] Shape VibNet: (1200, 16)
+         [Debug] Shape SignAI: (1200, 125)
+      -> [Fusion] Shape final combinado: (1200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.9125 | F1: 0.8979 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.6375 | F1: 0.5679 | AUC: 0.9489
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 6, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.9875 | F1: 0.9875 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 64 with best_epoch = 44 and best_val_balanced_accuracy = 0.75
+     [Diagnóstico] Bal Acc: 0.7500 | Macro F1: 0.6667 | ROC-AUC: 0.8739
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Load_No_Load_Speed_Inc_30_to_60Hz | Treino: Demais Condições
+Carregando UOEMD | Condição: Load_No_Load_Speed_Inc_30_to_60Hz | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 42000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/1200 [00:00<?, ?it/s]Treino:  75%|███████▌  | 905/1200 [00:00<00:00, 9044.06it/s]Treino: 100%|██████████| 1200/1200 [00:00<00:00, 9013.16it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 8750.67it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Bowed Rotor' 'Class_Broken Rotor Bar' 'Class_Faulty Bearing'
+ 'Class_Misalignment' 'Class_Normal' 'Class_Stator Winding'
+ 'Class_Unbalance' 'Class_Voltage Imbalance']
+      -> [Fusion] Iniciando extração DUPLA para 1200 amostras...
+         [Debug] Shape VibNet: (1200, 16)
+         [Debug] Shape SignAI: (1200, 125)
+      -> [Fusion] Shape final combinado: (1200, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+     Bal Acc: 0.9250 | F1: 0.9258 | AUC: 0.9926
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.8750 | F1: 0.8719 | AUC: 0.9875
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.8625 | F1: 0.8624 | AUC: 0.9838
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 114 with best_epoch = 94 and best_val_balanced_accuracy = 0.8875
+     [Diagnóstico] Bal Acc: 0.8875 | Macro F1: 0.8844 | ROC-AUC: 0.9695
+     -> Treinando PyTorch MLP (From Scratch)...
+
+[HUST_Gearbox] Processando 30 dobras LOCO...
+
+  >>> Dobra Alvo (Teste): Cond_20_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_20_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:   1%|          | 9/870 [00:00<00:09, 87.63it/s]Treino:   2%|▏         | 19/870 [00:00<00:09, 89.62it/s]Treino:   3%|▎         | 30/870 [00:00<00:08, 94.55it/s]Treino:   5%|▍         | 41/870 [00:00<00:08, 97.17it/s]Treino:   6%|▌         | 51/870 [00:00<00:09, 88.82it/s]Treino:   7%|▋         | 60/870 [00:00<00:10, 78.98it/s]Treino:   8%|▊         | 69/870 [00:00<00:11, 71.49it/s]Treino:   9%|▉         | 78/870 [00:00<00:10, 74.94it/s]Treino:  10%|█         | 88/870 [00:01<00:09, 79.73it/s]Treino:  11%|█         | 97/870 [00:01<00:10, 71.16it/s]Treino:  12%|█▏        | 105/870 [00:01<00:10, 72.77it/s]Treino:  13%|█▎        | 113/870 [00:01<00:11, 67.34it/s]Treino:  14%|█▍        | 123/870 [00:01<00:09, 74.79it/s]Treino:  15%|█▌        | 131/870 [00:01<00:10, 72.58it/s]Treino:  16%|█▌        | 139/870 [00:01<00:12, 60.19it/s]Treino:  17%|█▋        | 146/870 [00:01<00:11, 61.69it/s]Treino:  18%|█▊        | 155/870 [00:02<00:10, 67.26it/s]Treino:  19%|█▉        | 169/870 [00:02<00:08, 84.73it/s]Treino:  20%|██        | 178/870 [00:02<00:08, 82.52it/s]Treino:  21%|██▏       | 187/870 [00:02<00:08, 81.65it/s]Treino:  23%|██▎       | 196/870 [00:02<00:08, 78.08it/s]Treino:  24%|██▎       | 206/870 [00:02<00:08, 82.20it/s]Treino:  25%|██▍       | 215/870 [00:02<00:09, 70.22it/s]Treino:  26%|██▌       | 223/870 [00:02<00:09, 70.88it/s]Treino:  27%|██▋       | 231/870 [00:03<00:09, 68.66it/s]Treino:  28%|██▊       | 245/870 [00:03<00:07, 86.70it/s]Treino:  29%|██▉       | 255/870 [00:03<00:07, 86.52it/s]Treino:  30%|███       | 264/870 [00:04<00:34, 17.67it/s]Treino:  31%|███       | 271/870 [00:06<00:50, 11.86it/s]Treino:  32%|███▏      | 276/870 [00:07<01:05,  9.12it/s]Treino:  33%|███▎      | 283/870 [00:07<00:48, 12.00it/s]Treino:  34%|███▎      | 293/870 [00:07<00:32, 17.58it/s]Treino:  35%|███▍      | 301/870 [00:07<00:25, 22.46it/s]Treino:  35%|███▌      | 308/870 [00:07<00:21, 26.58it/s]Treino:  36%|███▋      | 317/870 [00:07<00:16, 34.52it/s]Treino:  38%|███▊      | 327/870 [00:07<00:12, 44.19it/s]Treino:  39%|███▊      | 337/870 [00:07<00:09, 53.94it/s]Treino:  40%|████      | 351/870 [00:08<00:07, 70.44it/s]Treino:  41%|████▏     | 361/870 [00:08<00:07, 69.24it/s]Treino:  43%|████▎     | 370/870 [00:08<00:09, 51.34it/s]Treino:  43%|████▎     | 378/870 [00:08<00:08, 56.47it/s]Treino:  44%|████▍     | 386/870 [00:08<00:08, 55.52it/s]Treino:  45%|████▌     | 393/870 [00:08<00:08, 56.97it/s]Treino:  47%|████▋     | 407/870 [00:08<00:06, 75.06it/s]Treino:  48%|████▊     | 416/870 [00:09<00:06, 73.70it/s]Treino:  49%|████▉     | 425/870 [00:09<00:05, 76.12it/s]Treino:  50%|█████     | 436/870 [00:09<00:05, 84.51it/s]Treino:  51%|█████▏    | 446/870 [00:09<00:05, 83.33it/s]Treino:  52%|█████▏    | 455/870 [00:09<00:05, 81.43it/s]Treino:  53%|█████▎    | 464/870 [00:09<00:05, 73.87it/s]Treino:  54%|█████▍    | 473/870 [00:09<00:05, 76.95it/s]Treino:  55%|█████▌    | 481/870 [00:09<00:05, 68.76it/s]Treino:  57%|█████▋    | 492/870 [00:10<00:04, 78.12it/s]Treino:  58%|█████▊    | 501/870 [00:10<00:04, 79.05it/s]Treino:  59%|█████▊    | 510/870 [00:10<00:04, 81.95it/s]Treino:  60%|█████▉    | 519/870 [00:10<00:04, 79.62it/s]Treino:  61%|██████    | 528/870 [00:10<00:04, 79.27it/s]Treino:  62%|██████▏   | 539/870 [00:10<00:03, 87.31it/s]Treino:  63%|██████▎   | 548/870 [00:10<00:03, 85.96it/s]Treino:  64%|██████▍   | 560/870 [00:10<00:03, 95.15it/s]Treino:  66%|██████▌   | 570/870 [00:10<00:03, 84.15it/s]Treino:  67%|██████▋   | 580/870 [00:11<00:03, 86.42it/s]Treino:  68%|██████▊   | 589/870 [00:11<00:03, 72.91it/s]Treino:  69%|██████▉   | 600/870 [00:11<00:03, 80.10it/s]Treino:  70%|███████   | 609/870 [00:11<00:03, 78.71it/s]Treino:  71%|███████   | 618/870 [00:11<00:03, 67.69it/s]Treino:  72%|███████▏  | 626/870 [00:11<00:03, 68.47it/s]Treino:  73%|███████▎  | 636/870 [00:11<00:03, 73.68it/s]Treino:  74%|███████▍  | 644/870 [00:12<00:03, 70.12it/s]Treino:  75%|███████▍  | 652/870 [00:12<00:03, 72.23it/s]Treino:  77%|███████▋  | 669/870 [00:12<00:02, 93.51it/s]Treino:  78%|███████▊  | 679/870 [00:12<00:02, 89.03it/s]Treino:  79%|███████▉  | 689/870 [00:12<00:02, 87.07it/s]Treino:  80%|████████  | 699/870 [00:12<00:01, 90.23it/s]Treino:  81%|████████▏ | 709/870 [00:12<00:02, 78.97it/s]Treino:  83%|████████▎ | 718/870 [00:12<00:02, 70.34it/s]Treino:  84%|████████▎ | 727/870 [00:13<00:01, 72.92it/s]Treino:  84%|████████▍ | 735/870 [00:13<00:02, 63.78it/s]Treino:  85%|████████▌ | 742/870 [00:13<00:02, 55.08it/s]Treino:  87%|████████▋ | 753/870 [00:13<00:01, 65.44it/s]Treino:  89%|████████▊ | 771/870 [00:13<00:01, 87.23it/s]Treino:  90%|████████▉ | 781/870 [00:13<00:01, 78.61it/s]Treino:  91%|█████████ | 793/870 [00:13<00:00, 86.32it/s]Treino:  93%|█████████▎| 809/870 [00:13<00:00, 104.23it/s]Treino:  94%|█████████▍| 821/870 [00:14<00:00, 97.60it/s] Treino:  96%|█████████▌| 832/870 [00:14<00:00, 97.74it/s]Treino:  97%|█████████▋| 844/870 [00:14<00:00, 103.30it/s]Treino:  98%|█████████▊| 855/870 [00:14<00:00, 91.87it/s] Treino:  99%|█████████▉| 865/870 [00:14<00:00, 89.62it/s]Treino: 100%|██████████| 870/870 [00:14<00:00, 59.27it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste:  33%|███▎      | 10/30 [00:00<00:00, 97.63it/s]Teste:  73%|███████▎  | 22/30 [00:00<00:00, 107.65it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 124.30it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 31 with best_epoch = 11 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_20_1 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_20_1 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11045.19it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10207.60it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 33 with best_epoch = 13 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_20_2 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_20_2 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 10991.33it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10037.42it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 6, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 30 with best_epoch = 10 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_20_3 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_20_3 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino:  94%|█████████▍| 819/870 [00:00<00:00, 8189.64it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 8157.97it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 7323.74it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 50}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 6, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 41 with best_epoch = 21 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_20_4 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_20_4 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 10693.39it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 9880.57it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 100}
+     Bal Acc: 0.6667 | F1: 0.5556 | AUC: 0.6667
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.4667 | F1: 0.4613 | AUC: 0.6933
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 6, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.6667 | F1: 0.5556 | AUC: 0.9633
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 33 with best_epoch = 13 and best_val_balanced_accuracy = 0.86667
+     [Diagnóstico] Bal Acc: 0.8667 | Macro F1: 0.8667 | ROC-AUC: 0.9600
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_25_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_25_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11215.82it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10455.27it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 27 with best_epoch = 7 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_25_1 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_25_1 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 10732.55it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10224.19it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 0.8333 | F1: 0.8222 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 25 with best_epoch = 5 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_25_2 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_25_2 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11145.46it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10408.56it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 10, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.7333 | F1: 0.6825 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 27 with best_epoch = 7 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_25_3 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_25_3 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11327.55it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10534.04it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 35 with best_epoch = 15 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_25_4 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_25_4 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11363.46it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10252.52it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 100}
+     Bal Acc: 0.6667 | F1: 0.5556 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 10, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.6667 | F1: 0.5556 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 0.9667 | F1: 0.9666 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 32 with best_epoch = 12 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_30_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_30_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11359.92it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10412.01it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 10, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 32 with best_epoch = 12 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_30_1 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_30_1 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11264.81it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10510.28it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 32 with best_epoch = 12 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_30_2 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_30_2 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11234.71it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10165.55it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 27 with best_epoch = 7 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_30_3 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_30_3 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11214.10it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10449.19it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 10, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 28 with best_epoch = 8 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_30_4 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_30_4 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11220.96it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 9882.13it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 27 with best_epoch = 7 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_35_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_35_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11321.19it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10049.45it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 200}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 32 with best_epoch = 12 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_35_1 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_35_1 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11270.66it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10313.86it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 27 with best_epoch = 7 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_35_2 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_35_2 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11232.01it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 9875.92it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 25 with best_epoch = 5 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_35_3 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_35_3 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11340.15it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10450.92it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 10, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+     Bal Acc: 0.9667 | F1: 0.9666 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 26 with best_epoch = 6 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_35_4 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_35_4 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11291.51it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10566.77it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 100}
+     Bal Acc: 0.8667 | F1: 0.8573 | AUC: 0.9600
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 0.9667 | F1: 0.9666 | AUC: 0.9500
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 1.0}
+     Bal Acc: 0.8667 | F1: 0.8573 | AUC: 0.9667
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 41 with best_epoch = 21 and best_val_balanced_accuracy = 0.9
+     [Diagnóstico] Bal Acc: 0.9000 | Macro F1: 0.8950 | ROC-AUC: 0.9067
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_40_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11156.33it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10274.28it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 50}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'poly'}
+     Bal Acc: 0.9667 | F1: 0.9666 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 28 with best_epoch = 8 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_40_1 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_40_1 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11324.38it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 9911.71it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 50}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 28 with best_epoch = 8 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_40_2 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_40_2 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11238.20it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10479.65it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 23 with best_epoch = 3 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_40_3 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_40_3 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11363.03it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10271.76it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 28 with best_epoch = 8 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_40_4 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_40_4 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11390.24it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10484.01it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'poly'}
+     Bal Acc: 0.9333 | F1: 0.9327 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 6, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 29 with best_epoch = 9 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_L0_VS_0_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_L0_VS_0_40_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11370.29it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10613.12it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 100}
+     Bal Acc: 0.9667 | F1: 0.9666 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 0.6333 | F1: 0.6455 | AUC: 0.8917
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 65 with best_epoch = 45 and best_val_balanced_accuracy = 0.96667
+     [Diagnóstico] Bal Acc: 0.9667 | Macro F1: 0.9666 | ROC-AUC: 0.9967
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_L1_VS_0_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_L1_VS_0_40_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11213.54it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10109.19it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+     Bal Acc: 0.9667 | F1: 0.9666 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 29 with best_epoch = 9 and best_val_balanced_accuracy = 0.83333
+     [Diagnóstico] Bal Acc: 0.8333 | Macro F1: 0.8325 | ROC-AUC: 0.9617
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_L2_VS_0_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_L2_VS_0_40_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11302.67it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10477.03it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 5, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 100, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 53 with best_epoch = 33 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_L3_VS_0_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_L3_VS_0_40_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 11282.37it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10230.84it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 6, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 44 with best_epoch = 24 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+  >>> Dobra Alvo (Teste): Cond_L4_VS_0_40_0 | Treino: Demais Condições
+Carregando HUST_Gearbox | Condição: Cond_L4_VS_0_40_0 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 25600 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/870 [00:00<?, ?it/s]Treino: 100%|██████████| 870/870 [00:00<00:00, 10919.82it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 10005.50it/s]
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_Broken' 'Class_Missing' 'Class_Normal']
+      -> [Fusion] Iniciando extração DUPLA para 870 amostras...
+         [Debug] Shape VibNet: (870, 16)
+         [Debug] Shape SignAI: (870, 125)
+      -> [Fusion] Shape final combinado: (870, 141)
+      -> [Fusion] Iniciando extração DUPLA para 30 amostras...
+         [Debug] Shape VibNet: (30, 16)
+         [Debug] Shape SignAI: (30, 125)
+      -> [Fusion] Shape final combinado: (30, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 10, 'rf__n_estimators': 100}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'poly'}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 6, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+     Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 31 with best_epoch = 11 and best_val_balanced_accuracy = 1.0
+     [Diagnóstico] Bal Acc: 1.0000 | Macro F1: 1.0000 | ROC-AUC: 1.0000
+     -> Treinando PyTorch MLP (From Scratch)...
+
+======================================================================
+ EXPERIMENTOS CONCLUÍDOS! Relatório salvo em: /home/vfrocha/VibNet-1D/results/baseline_loco_results_20260829_084039.csv
+======================================================================
