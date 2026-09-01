@@ -52,6 +52,25 @@ The LOCO validation will be applied such that, given a set of conditions $C = \{
     
 3.  The process is repeated $n$ times to cover all conditions as testing.
     
+## 5. Physical Units and Scale Heterogeneity
+
+The vibration signals across the utilized datasets were acquired using different data acquisition systems (DAQ), sensors, and calibration standards. Consequently, the raw data exists in disjointed physical units and magnitude scales. 
+
+This heterogeneity presents a severe risk for neural network training: if raw signals are concatenated directly, the model will disproportionately weight datasets with larger numeric magnitudes (e.g., raw Volts) while ignoring subtle signatures in calibrated datasets (e.g., $g$-force).
+
+| Dataset | Component | Typical Original Unit | Physical Scale Category |
+| :--- | :--- | :--- | :--- |
+| **CWRU (12K & 48K)** | Bearing | Acceleration ($g$) | Calibrated ($g$-force) |
+| **PU** | Bearing | Voltage ($V$) | Raw Sensor Output |
+| **IMS** | Bearing | Acceleration ($g$) | Calibrated ($g$-force) |
+| **MFPT** | Bearing | Acceleration ($g$) | Calibrated ($g$-force) |
+| **HUST Bearing** | Bearing | Acceleration ($m/s^2$) | Calibrated (Kinematic) |
+| **HUST Gearbox** | Gearbox | Acceleration ($m/s^2$) | Calibrated (Kinematic) |
+| **UORED** | Bearing | Acceleration ($g$) | Calibrated ($g$-force) |
+| **UOEMD** | Electric Motor | Voltage ($V$) | Raw Sensor Output |
+| **Mechanical Gear** | Gearbox | Voltage ($mV$ or $V$) | Raw Sensor Output |
+| **Electric Motor** | Electric Motor | Acceleration ($m/s^2$) | Calibrated (Kinematic) |
+| **UOC** | Gearbox | Acceleration ($m/s^2$) | Calibrated (Kinematic) |
 
 ### Justification for Avoiding Similarity Bias
 
