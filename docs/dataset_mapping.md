@@ -64,8 +64,8 @@ This heterogeneity presents a severe risk for neural network training: if raw si
 | **PU** | Bearing | Voltage ($V$) | Raw Sensor Output |
 | **IMS** | Bearing | Acceleration ($g$) | Calibrated ($g$-force) |
 | **MFPT** | Bearing | Acceleration ($g$) | Calibrated ($g$-force) |
-| **HUST Bearing** | Bearing | Acceleration ($m/s^2$) | Calibrated (Kinematic) |
-| **HUST Gearbox** | Gearbox | Acceleration ($m/s^2$) | Calibrated (Kinematic) |
+| **HUST Bearing** | Bearing | ?? Acceleration ($m/s^2$) | Calibrated (Kinematic) |
+| **HUST Gearbox** | Gearbox | ?? Voltage ($V$) | Calibrated (Kinematic) |
 | **UORED** | Bearing | Acceleration ($g$) | Calibrated ($g$-force) |
 | **UOEMD** | Electric Motor | Voltage ($V$) | Raw Sensor Output |
 | **Mechanical Gear** | Gearbox | Voltage ($mV$ or $V$) | Raw Sensor Output |
