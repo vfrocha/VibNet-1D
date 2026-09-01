@@ -58,7 +58,7 @@ The vibration signals across the utilized datasets were acquired using different
 
 This heterogeneity presents a severe risk for neural network training: if raw signals are concatenated directly, the model will disproportionately weight datasets with larger numeric magnitudes (e.g., raw Volts) while ignoring subtle signatures in calibrated datasets (e.g., $g$-force).
 
-| Dataset | Component | Typical Original Unit | Physical Scale Category |
+| Dataset | Component | Original Unit | Physical Scale Category |
 | :--- | :--- | :--- | :--- |
 | **CWRU (12K & 48K)** | Bearing | Acceleration ($g$) | Calibrated ($g$-force) |
 | **PU** | Bearing | Voltage ($V$) | Raw Sensor Output |
