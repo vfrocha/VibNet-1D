@@ -1,0 +1,382 @@
+nohup: ignoring input
+[   INFO   ] MusicExtractorSVM: no classifier models were configured by default
+================================================================================
+ EXPERIMENTO: MATRIZ DE NORMALIZAÇÃO DE JANELAS (LODO-CV)
+================================================================================
+
+
+************************************************************
+ EXECUTANDO: 0_Baseline
+************************************************************
+  -> Sinal na Fase Pré-Treino (Source): raw
+  -> Sinal na Fase Teste/Target: raw
+      -> Extraindo features para CWRU_12k (raw)...
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+      -> Extraindo features para HUST_Gearbox (raw)...
+      -> [Fusion] Iniciando extração DUPLA para 900 amostras...
+         [Debug] Shape VibNet: (900, 16)
+         [Debug] Shape SignAI: (900, 125)
+      -> [Fusion] Shape final combinado: (900, 141)
+      -> Extraindo features para PU (raw)...
+      -> [Fusion] Iniciando extração DUPLA para 8394 amostras...
+         [Debug] Shape VibNet: (8394, 16)
+         [Debug] Shape SignAI: (8394, 125)
+      -> [Fusion] Shape final combinado: (8394, 141)
+      -> Extraindo features para UOEMD (raw)...
+      -> [Fusion] Iniciando extração DUPLA para 1280 amostras...
+         [Debug] Shape VibNet: (1280, 16)
+         [Debug] Shape SignAI: (1280, 125)
+      -> [Fusion] Shape final combinado: (1280, 141)
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.7000 | Macro F1: 0.6562
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8750 | Macro F1: 0.8572
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 1.0000 | Macro F1: 1.0000
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.5500 | Macro F1: 0.4911
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Dec_45_to_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9000 | Macro F1: 0.8989
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Dec_60_to_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8750 | Macro F1: 0.8749
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Inc_15_to_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9250 | Macro F1: 0.9226
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Inc_30_to_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8250 | Macro F1: 0.8195
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8375 | Macro F1: 0.8069
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.7500 | Macro F1: 0.6875
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 1.0000 | Macro F1: 1.0000
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 1.0000 | Macro F1: 1.0000
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Dec_45_to_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9375 | Macro F1: 0.9359
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Dec_60_to_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9500 | Macro F1: 0.9465
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Inc_15_to_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9250 | Macro F1: 0.9222
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Inc_30_to_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9250 | Macro F1: 0.9229
+
+
+************************************************************
+ EXECUTANDO: 1_Estrategia_A_Pura
+************************************************************
+  -> Sinal na Fase Pré-Treino (Source): window_zscore
+  -> Sinal na Fase Teste/Target: window_zscore
+      -> Extraindo features para CWRU_12k (window_zscore)...
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+      -> Extraindo features para HUST_Gearbox (window_zscore)...
+      -> [Fusion] Iniciando extração DUPLA para 900 amostras...
+         [Debug] Shape VibNet: (900, 16)
+         [Debug] Shape SignAI: (900, 125)
+      -> [Fusion] Shape final combinado: (900, 141)
+      -> Extraindo features para PU (window_zscore)...
+      -> [Fusion] Iniciando extração DUPLA para 8394 amostras...
+         [Debug] Shape VibNet: (8394, 16)
+         [Debug] Shape SignAI: (8394, 125)
+      -> [Fusion] Shape final combinado: (8394, 141)
+      -> Extraindo features para UOEMD (window_zscore)...
+      -> [Fusion] Iniciando extração DUPLA para 1280 amostras...
+         [Debug] Shape VibNet: (1280, 16)
+         [Debug] Shape SignAI: (1280, 125)
+      -> [Fusion] Shape final combinado: (1280, 141)
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.6500 | Macro F1: 0.6004
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.7375 | Macro F1: 0.7203
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9250 | Macro F1: 0.9260
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.5875 | Macro F1: 0.5279
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Dec_45_to_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8500 | Macro F1: 0.8480
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Dec_60_to_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9000 | Macro F1: 0.9005
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Inc_15_to_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8750 | Macro F1: 0.8737
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Inc_30_to_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.7875 | Macro F1: 0.7846
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.4375 | Macro F1: 0.4135
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.6500 | Macro F1: 0.5886
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9125 | Macro F1: 0.9051
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8250 | Macro F1: 0.7886
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Dec_45_to_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9375 | Macro F1: 0.9375
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Dec_60_to_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9000 | Macro F1: 0.8966
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Inc_15_to_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9250 | Macro F1: 0.9253
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Inc_30_to_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9000 | Macro F1: 0.8972
+
+
+************************************************************
+ EXECUTANDO: 2_Estrategia_B_Pura
+************************************************************
+  -> Sinal na Fase Pré-Treino (Source): window_rms
+  -> Sinal na Fase Teste/Target: window_rms
+      -> Extraindo features para CWRU_12k (window_rms)...
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+      -> Extraindo features para HUST_Gearbox (window_rms)...
+      -> [Fusion] Iniciando extração DUPLA para 900 amostras...
+         [Debug] Shape VibNet: (900, 16)
+         [Debug] Shape SignAI: (900, 125)
+      -> [Fusion] Shape final combinado: (900, 141)
+      -> Extraindo features para PU (window_rms)...
+      -> [Fusion] Iniciando extração DUPLA para 8394 amostras...
+         [Debug] Shape VibNet: (8394, 16)
+         [Debug] Shape SignAI: (8394, 125)
+      -> [Fusion] Shape final combinado: (8394, 141)
+      -> Extraindo features para UOEMD (window_rms)...
+      -> [Fusion] Iniciando extração DUPLA para 1280 amostras...
+         [Debug] Shape VibNet: (1280, 16)
+         [Debug] Shape SignAI: (1280, 125)
+      -> [Fusion] Shape final combinado: (1280, 141)
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.6500 | Macro F1: 0.6004
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.7375 | Macro F1: 0.7203
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9250 | Macro F1: 0.9260
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.5875 | Macro F1: 0.5279
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Dec_45_to_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8500 | Macro F1: 0.8480
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Dec_60_to_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9000 | Macro F1: 0.9005
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Inc_15_to_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8750 | Macro F1: 0.8737
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Inc_30_to_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.7875 | Macro F1: 0.7846
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.4375 | Macro F1: 0.4135
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.6500 | Macro F1: 0.5886
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9125 | Macro F1: 0.9051
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8250 | Macro F1: 0.7886
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Dec_45_to_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9375 | Macro F1: 0.9375
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Dec_60_to_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9000 | Macro F1: 0.8966
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Inc_15_to_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9250 | Macro F1: 0.9253
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Inc_30_to_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9000 | Macro F1: 0.8972
+
+
+************************************************************
+ EXECUTANDO: 3_Estrategia_C_com_A
+************************************************************
+  -> Sinal na Fase Pré-Treino (Source): window_zscore
+  -> Sinal na Fase Teste/Target: raw
+      -> Extraindo features para CWRU_12k (window_zscore)...
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+      -> Extraindo features para HUST_Gearbox (window_zscore)...
+      -> [Fusion] Iniciando extração DUPLA para 900 amostras...
+         [Debug] Shape VibNet: (900, 16)
+         [Debug] Shape SignAI: (900, 125)
+      -> [Fusion] Shape final combinado: (900, 141)
+      -> Extraindo features para PU (window_zscore)...
+      -> [Fusion] Iniciando extração DUPLA para 8394 amostras...
+         [Debug] Shape VibNet: (8394, 16)
+         [Debug] Shape SignAI: (8394, 125)
+      -> [Fusion] Shape final combinado: (8394, 141)
+      -> Extraindo features para UOEMD (raw)...
+      -> [Fusion] Iniciando extração DUPLA para 1280 amostras...
+         [Debug] Shape VibNet: (1280, 16)
+         [Debug] Shape SignAI: (1280, 125)
+      -> [Fusion] Shape final combinado: (1280, 141)
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.6625 | Macro F1: 0.6271
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8125 | Macro F1: 0.8007
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 1.0000 | Macro F1: 1.0000
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.6000 | Macro F1: 0.5342
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Dec_45_to_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8750 | Macro F1: 0.8757
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Dec_60_to_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8875 | Macro F1: 0.8893
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Inc_15_to_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9375 | Macro F1: 0.9372
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Inc_30_to_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8625 | Macro F1: 0.8635
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8375 | Macro F1: 0.8001
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.7125 | Macro F1: 0.6654
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 1.0000 | Macro F1: 1.0000
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9750 | Macro F1: 0.9747
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Dec_45_to_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9375 | Macro F1: 0.9344
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Dec_60_to_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9375 | Macro F1: 0.9366
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Inc_15_to_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9375 | Macro F1: 0.9363
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Inc_30_to_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9000 | Macro F1: 0.9009
+
+
+************************************************************
+ EXECUTANDO: 4_Estrategia_C_com_B
+************************************************************
+  -> Sinal na Fase Pré-Treino (Source): window_rms
+  -> Sinal na Fase Teste/Target: raw
+      -> Extraindo features para CWRU_12k (window_rms)...
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+      -> Extraindo features para HUST_Gearbox (window_rms)...
+      -> [Fusion] Iniciando extração DUPLA para 900 amostras...
+         [Debug] Shape VibNet: (900, 16)
+         [Debug] Shape SignAI: (900, 125)
+      -> [Fusion] Shape final combinado: (900, 141)
+      -> Extraindo features para PU (window_rms)...
+      -> [Fusion] Iniciando extração DUPLA para 8394 amostras...
+         [Debug] Shape VibNet: (8394, 16)
+         [Debug] Shape SignAI: (8394, 125)
+      -> [Fusion] Shape final combinado: (8394, 141)
+      -> Extraindo features para UOEMD (raw)...
+      -> [Fusion] Iniciando extração DUPLA para 1280 amostras...
+         [Debug] Shape VibNet: (1280, 16)
+         [Debug] Shape SignAI: (1280, 125)
+      -> [Fusion] Shape final combinado: (1280, 141)
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.6625 | Macro F1: 0.6271
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8125 | Macro F1: 0.8007
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 1.0000 | Macro F1: 1.0000
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.6000 | Macro F1: 0.5342
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Dec_45_to_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8750 | Macro F1: 0.8757
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Dec_60_to_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8875 | Macro F1: 0.8893
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Inc_15_to_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9375 | Macro F1: 0.9372
+
+   --- Avaliando Dobra de Teste: Load_Loaded_Speed_Inc_30_to_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8625 | Macro F1: 0.8635
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.8375 | Macro F1: 0.8001
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.7125 | Macro F1: 0.6654
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 1.0000 | Macro F1: 1.0000
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9750 | Macro F1: 0.9747
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Dec_45_to_15Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9375 | Macro F1: 0.9344
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Dec_60_to_30Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9375 | Macro F1: 0.9366
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Inc_15_to_45Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9375 | Macro F1: 0.9363
+
+   --- Avaliando Dobra de Teste: Load_No_Load_Speed_Inc_30_to_60Hz ---
+      [RESULTADO] Random Forest -> Bal Acc: 0.9000 | Macro F1: 0.9009
+
+[SUCESSO] Relatório exportado para: /home/vfrocha/VibNet-1D/results/normalization_abc_results_20260904_181157.csv
