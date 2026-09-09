@@ -1,0 +1,73 @@
+nohup: ignoring input
+[   INFO   ] MusicExtractorSVM: no classifier models were configured by default
+================================================================================
+ EXPERIMENTO DE TRANSFER LEARNING COM Z-SCORE ISOLADO
+================================================================================
+--- FASE 1: EXTRAÇÃO BRUTA ---
+  -> CWRU_12k: Extraindo features de 2520 amostras...
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+  -> CWRU_48k: Extraindo features de 602 amostras...
+      -> [Fusion] Iniciando extração DUPLA para 602 amostras...
+         [Debug] Shape VibNet: (602, 16)
+         [Debug] Shape SignAI: (602, 125)
+      -> [Fusion] Shape final combinado: (602, 141)
+  -> UOEMD: Extraindo features de 1280 amostras...
+      -> [Fusion] Iniciando extração DUPLA para 1280 amostras...
+         [Debug] Shape VibNet: (1280, 16)
+         [Debug] Shape SignAI: (1280, 125)
+      -> [Fusion] Shape final combinado: (1280, 141)
+  -> HUST_Gearbox: Extraindo features de 900 amostras...
+      -> [Fusion] Iniciando extração DUPLA para 900 amostras...
+         [Debug] Shape VibNet: (900, 16)
+         [Debug] Shape SignAI: (900, 125)
+      -> [Fusion] Shape final combinado: (900, 141)
+  -> HUST: Extraindo features de 1101 amostras...
+      -> [Fusion] Iniciando extração DUPLA para 1101 amostras...
+         [Debug] Shape VibNet: (1101, 16)
+         [Debug] Shape SignAI: (1101, 125)
+      -> [Fusion] Shape final combinado: (1101, 141)
+  -> PU: Extraindo features de 8394 amostras...
+      -> [Fusion] Iniciando extração DUPLA para 8394 amostras...
+         [Debug] Shape VibNet: (8394, 16)
+         [Debug] Shape SignAI: (8394, 125)
+      -> [Fusion] Shape final combinado: (8394, 141)
+  -> UORED: Extraindo features de 370 amostras...
+      -> [Fusion] Iniciando extração DUPLA para 370 amostras...
+         [Debug] Shape VibNet: (370, 16)
+         [Debug] Shape SignAI: (370, 125)
+      -> [Fusion] Shape final combinado: (370, 141)
+  -> Mechanical_Gear: Extraindo features de 180 amostras...
+      -> [Fusion] Iniciando extração DUPLA para 180 amostras...
+         [Debug] Shape VibNet: (180, 16)
+         [Debug] Shape SignAI: (180, 125)
+      -> [Fusion] Shape final combinado: (180, 141)
+  -> Electric_Motor: Extraindo features de 66 amostras...
+      -> [Fusion] Iniciando extração DUPLA para 66 amostras...
+         [Debug] Shape VibNet: (66, 16)
+         [Debug] Shape SignAI: (66, 125)
+      -> [Fusion] Shape final combinado: (66, 141)
+
+--- FASE 2: SEPARAÇÃO LOCO NO ALVO (UOEMD) ---
+  -> Amostras de Treino no Alvo: 1200
+  -> Amostras de Teste no Alvo: 80
+
+--- FASE 3: NORMALIZAÇÃO Z-SCORE ISOLADA ---
+  -> CWRU_12k (Source Inteira): Padronizado isoladamente.
+  -> CWRU_48k (Source Inteira): Padronizado isoladamente.
+  -> UOEMD (Alvo - Treino): Padronizado isoladamente.
+  -> HUST_Gearbox (Source Inteira): Padronizado isoladamente.
+  -> HUST (Source Inteira): Padronizado isoladamente.
+  -> PU (Source Inteira): Padronizado isoladamente.
+  -> UORED (Source Inteira): Padronizado isoladamente.
+  -> Mechanical_Gear (Source Inteira): Padronizado isoladamente.
+  -> Electric_Motor (Source Inteira): Padronizado isoladamente.
+
+Matriz de Treino Global Final: (15333, 141)
+Matriz de Teste Final: (80, 141)
+Classes identificadas: ['Fault' 'Normal']
+
+--- FASE 4: TREINAMENTO E AVALIAÇÃO ---
+Random Forest (Multi-Source TL Isolado) -> Bal Acc: 1.0000 | Macro F1: 1.0000

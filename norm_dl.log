@@ -1,0 +1,2654 @@
+nohup: ignoring input
+[   INFO   ] MusicExtractorSVM: no classifier models were configured by default
+================================================================================
+ ABLATION STUDY: TRANSFER LEARNING DL COM NORMALIZAÇÃO DE JANELA
+================================================================================
+--- FASE 1: EXTRAÇÃO MULTI-ESTRATÉGIA EM CACHE ---
+  -> Processando CWRU_12k (2520 amostras)...
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+  -> Processando CWRU_48k (602 amostras)...
+      -> [Fusion] Iniciando extração DUPLA para 602 amostras...
+         [Debug] Shape VibNet: (602, 16)
+         [Debug] Shape SignAI: (602, 125)
+      -> [Fusion] Shape final combinado: (602, 141)
+      -> [Fusion] Iniciando extração DUPLA para 602 amostras...
+         [Debug] Shape VibNet: (602, 16)
+         [Debug] Shape SignAI: (602, 125)
+      -> [Fusion] Shape final combinado: (602, 141)
+      -> [Fusion] Iniciando extração DUPLA para 602 amostras...
+         [Debug] Shape VibNet: (602, 16)
+         [Debug] Shape SignAI: (602, 125)
+      -> [Fusion] Shape final combinado: (602, 141)
+  -> Processando UOEMD (1280 amostras)...
+      -> [Fusion] Iniciando extração DUPLA para 1280 amostras...
+         [Debug] Shape VibNet: (1280, 16)
+         [Debug] Shape SignAI: (1280, 125)
+      -> [Fusion] Shape final combinado: (1280, 141)
+      -> [Fusion] Iniciando extração DUPLA para 1280 amostras...
+         [Debug] Shape VibNet: (1280, 16)
+         [Debug] Shape SignAI: (1280, 125)
+      -> [Fusion] Shape final combinado: (1280, 141)
+      -> [Fusion] Iniciando extração DUPLA para 1280 amostras...
+         [Debug] Shape VibNet: (1280, 16)
+         [Debug] Shape SignAI: (1280, 125)
+      -> [Fusion] Shape final combinado: (1280, 141)
+  -> Processando HUST_Gearbox (900 amostras)...
+      -> [Fusion] Iniciando extração DUPLA para 900 amostras...
+         [Debug] Shape VibNet: (900, 16)
+         [Debug] Shape SignAI: (900, 125)
+      -> [Fusion] Shape final combinado: (900, 141)
+      -> [Fusion] Iniciando extração DUPLA para 900 amostras...
+         [Debug] Shape VibNet: (900, 16)
+         [Debug] Shape SignAI: (900, 125)
+      -> [Fusion] Shape final combinado: (900, 141)
+      -> [Fusion] Iniciando extração DUPLA para 900 amostras...
+         [Debug] Shape VibNet: (900, 16)
+         [Debug] Shape SignAI: (900, 125)
+      -> [Fusion] Shape final combinado: (900, 141)
+  -> Processando HUST (1101 amostras)...
+      -> [Fusion] Iniciando extração DUPLA para 1101 amostras...
+         [Debug] Shape VibNet: (1101, 16)
+         [Debug] Shape SignAI: (1101, 125)
+      -> [Fusion] Shape final combinado: (1101, 141)
+      -> [Fusion] Iniciando extração DUPLA para 1101 amostras...
+         [Debug] Shape VibNet: (1101, 16)
+         [Debug] Shape SignAI: (1101, 125)
+      -> [Fusion] Shape final combinado: (1101, 141)
+      -> [Fusion] Iniciando extração DUPLA para 1101 amostras...
+         [Debug] Shape VibNet: (1101, 16)
+         [Debug] Shape SignAI: (1101, 125)
+      -> [Fusion] Shape final combinado: (1101, 141)
+  -> Processando PU (8394 amostras)...
+      -> [Fusion] Iniciando extração DUPLA para 8394 amostras...
+         [Debug] Shape VibNet: (8394, 16)
+         [Debug] Shape SignAI: (8394, 125)
+      -> [Fusion] Shape final combinado: (8394, 141)
+      -> [Fusion] Iniciando extração DUPLA para 8394 amostras...
+         [Debug] Shape VibNet: (8394, 16)
+         [Debug] Shape SignAI: (8394, 125)
+      -> [Fusion] Shape final combinado: (8394, 141)
+      -> [Fusion] Iniciando extração DUPLA para 8394 amostras...
+         [Debug] Shape VibNet: (8394, 16)
+         [Debug] Shape SignAI: (8394, 125)
+      -> [Fusion] Shape final combinado: (8394, 141)
+  -> Processando UORED (370 amostras)...
+      -> [Fusion] Iniciando extração DUPLA para 370 amostras...
+         [Debug] Shape VibNet: (370, 16)
+         [Debug] Shape SignAI: (370, 125)
+      -> [Fusion] Shape final combinado: (370, 141)
+      -> [Fusion] Iniciando extração DUPLA para 370 amostras...
+         [Debug] Shape VibNet: (370, 16)
+         [Debug] Shape SignAI: (370, 125)
+      -> [Fusion] Shape final combinado: (370, 141)
+      -> [Fusion] Iniciando extração DUPLA para 370 amostras...
+         [Debug] Shape VibNet: (370, 16)
+         [Debug] Shape SignAI: (370, 125)
+      -> [Fusion] Shape final combinado: (370, 141)
+  -> Processando Mechanical_Gear (180 amostras)...
+      -> [Fusion] Iniciando extração DUPLA para 180 amostras...
+         [Debug] Shape VibNet: (180, 16)
+         [Debug] Shape SignAI: (180, 125)
+      -> [Fusion] Shape final combinado: (180, 141)
+      -> [Fusion] Iniciando extração DUPLA para 180 amostras...
+         [Debug] Shape VibNet: (180, 16)
+         [Debug] Shape SignAI: (180, 125)
+      -> [Fusion] Shape final combinado: (180, 141)
+      -> [Fusion] Iniciando extração DUPLA para 180 amostras...
+         [Debug] Shape VibNet: (180, 16)
+         [Debug] Shape SignAI: (180, 125)
+      -> [Fusion] Shape final combinado: (180, 141)
+  -> Processando Electric_Motor (66 amostras)...
+      -> [Fusion] Iniciando extração DUPLA para 66 amostras...
+         [Debug] Shape VibNet: (66, 16)
+         [Debug] Shape SignAI: (66, 125)
+      -> [Fusion] Shape final combinado: (66, 141)
+      -> [Fusion] Iniciando extração DUPLA para 66 amostras...
+         [Debug] Shape VibNet: (66, 16)
+         [Debug] Shape SignAI: (66, 125)
+      -> [Fusion] Shape final combinado: (66, 141)
+      -> [Fusion] Iniciando extração DUPLA para 66 amostras...
+         [Debug] Shape VibNet: (66, 16)
+         [Debug] Shape SignAI: (66, 125)
+      -> [Fusion] Shape final combinado: (66, 141)
+
+
+================================================================================
+ EXECUTANDO: 0_Baseline (Source: raw | Target: raw)
+================================================================================
+
+**************************************** TAREFA: DIAGNOSIS ****************************************
+
+   [Alvo: CWRU_12k | Dobra: Load_0HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6192 | F1: 0.5325
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6868 | F1: 0.6488
+
+   [Alvo: CWRU_12k | Dobra: Load_1HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5637 | F1: 0.5013
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6836 | F1: 0.6445
+
+   [Alvo: CWRU_12k | Dobra: Load_2HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6736 | F1: 0.6455
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7535 | F1: 0.7208
+
+   [Alvo: CWRU_12k | Dobra: Load_3HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6394 | F1: 0.5766
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7042 | F1: 0.6527
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4250 | F1: 0.3293
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.3750 | F1: 0.2500
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.2250 | F1: 0.2384
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6625 | F1: 0.5758
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5750 | F1: 0.4865
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4875 | F1: 0.3693
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.2125 | F1: 0.1780
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4125 | F1: 0.3404
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Dec_45_to_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4750 | F1: 0.4652
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5750 | F1: 0.5623
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Dec_60_to_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3750 | F1: 0.3153
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6125 | F1: 0.5761
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Inc_15_to_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3625 | F1: 0.2870
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4750 | F1: 0.4463
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Inc_30_to_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4500 | F1: 0.4374
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4500 | F1: 0.3788
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3375 | F1: 0.3076
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4375 | F1: 0.3884
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.1250 | F1: 0.1250
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4375 | F1: 0.3541
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6125 | F1: 0.5375
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.3000 | F1: 0.2127
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5250 | F1: 0.4647
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5750 | F1: 0.5075
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Dec_45_to_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5500 | F1: 0.5000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4375 | F1: 0.3861
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Dec_60_to_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5500 | F1: 0.5001
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5000 | F1: 0.4638
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Inc_15_to_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4625 | F1: 0.4432
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5875 | F1: 0.5560
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Inc_30_to_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3875 | F1: 0.3896
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6750 | F1: 0.6508
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8667 | F1: 0.8611
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9000 | F1: 0.8977
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9333 | F1: 0.9327
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.3333 | F1: 0.3333
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9667 | F1: 0.9666
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5667 | F1: 0.5062
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8333 | F1: 0.8222
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9000 | F1: 0.8977
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5342
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8333 | F1: 0.8222
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L0_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5368
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5342
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L1_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8333 | F1: 0.8222
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9000 | F1: 0.8977
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L2_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7000 | F1: 0.6238
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9333 | F1: 0.9327
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L3_VS_0_40_0]
+      -> Treinando MLP (TL)...
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7667 | F1: 0.7341
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7667 | F1: 0.7341
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L4_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9333 | F1: 0.9327
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9000 | F1: 0.8977
+
+   [Alvo: CWRU_48k | Dobra: Load_0HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3667 | F1: 0.3293
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5000 | F1: 0.4000
+
+   [Alvo: CWRU_48k | Dobra: Load_0HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3500 | F1: 0.2206
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.1000 | F1: 0.0606
+
+   [Alvo: CWRU_48k | Dobra: Load_0HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5833 | F1: 0.5253
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7500 | F1: 0.7565
+
+   [Alvo: CWRU_48k | Dobra: Load_1HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8667 | F1: 0.8611
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8167 | F1: 0.8017
+
+   [Alvo: CWRU_48k | Dobra: Load_1HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5000 | F1: 0.4212
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5881 | F1: 0.5689
+
+   [Alvo: CWRU_48k | Dobra: Load_1HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7000 | F1: 0.6905
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8333 | F1: 0.8175
+
+   [Alvo: CWRU_48k | Dobra: Load_2HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3500 | F1: 0.3699
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5000 | F1: 0.4000
+
+   [Alvo: CWRU_48k | Dobra: Load_2HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3167 | F1: 0.1836
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.3667 | F1: 0.3066
+
+   [Alvo: CWRU_48k | Dobra: Load_2HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5833 | F1: 0.5607
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6167 | F1: 0.5845
+
+   [Alvo: CWRU_48k | Dobra: Load_3HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8500 | F1: 0.8420
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5000 | F1: 0.4044
+
+   [Alvo: CWRU_48k | Dobra: Load_3HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3667 | F1: 0.2928
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5833 | F1: 0.5690
+
+   [Alvo: CWRU_48k | Dobra: Load_3HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6333 | F1: 0.6412
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7000 | F1: 0.7021
+
+
+================================================================================
+ EXECUTANDO: 1_Estrategia_A (Source: window_zscore | Target: window_zscore)
+================================================================================
+
+**************************************** TAREFA: DIAGNOSIS ****************************************
+
+   [Alvo: CWRU_12k | Dobra: Load_0HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7637 | F1: 0.6948
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8084 | F1: 0.8044
+
+   [Alvo: CWRU_12k | Dobra: Load_1HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7248 | F1: 0.6770
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8472 | F1: 0.8477
+
+   [Alvo: CWRU_12k | Dobra: Load_2HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7741 | F1: 0.7639
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7933 | F1: 0.7785
+
+   [Alvo: CWRU_12k | Dobra: Load_3HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7390 | F1: 0.7089
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7597 | F1: 0.7264
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4250 | F1: 0.3547
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4250 | F1: 0.3359
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6000 | F1: 0.5079
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.3875 | F1: 0.3352
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.2375 | F1: 0.1118
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5125 | F1: 0.3991
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3250 | F1: 0.2830
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.3750 | F1: 0.2736
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Dec_45_to_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4625 | F1: 0.4159
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5500 | F1: 0.5328
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Dec_60_to_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5000 | F1: 0.4348
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4750 | F1: 0.4124
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Inc_15_to_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4000 | F1: 0.3733
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4875 | F1: 0.3981
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Inc_30_to_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4625 | F1: 0.4196
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4250 | F1: 0.3767
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.2750 | F1: 0.2022
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5125 | F1: 0.4080
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4250 | F1: 0.3457
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4375 | F1: 0.3667
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6375 | F1: 0.5737
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5000 | F1: 0.4712
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4875 | F1: 0.3889
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4125 | F1: 0.3345
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Dec_45_to_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5625 | F1: 0.5239
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6375 | F1: 0.5634
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Dec_60_to_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6125 | F1: 0.5669
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5750 | F1: 0.5151
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Inc_15_to_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5875 | F1: 0.5540
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6000 | F1: 0.5682
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Inc_30_to_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4500 | F1: 0.4322
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5875 | F1: 0.5576
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8333 | F1: 0.8222
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8333 | F1: 0.8329
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8000 | F1: 0.7802
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9667 | F1: 0.9666
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9667 | F1: 0.9666
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.3667 | F1: 0.3651
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3667 | F1: 0.2828
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9333 | F1: 0.9327
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7000 | F1: 0.6238
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8667 | F1: 0.8611
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9667 | F1: 0.9666
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6000 | F1: 0.5891
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7667 | F1: 0.7341
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8000 | F1: 0.7802
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9000 | F1: 0.8977
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6000 | F1: 0.5079
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7000 | F1: 0.6238
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8667 | F1: 0.8611
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7333 | F1: 0.6825
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6000 | F1: 0.5046
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9333 | F1: 0.9327
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L0_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L1_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8667 | F1: 0.8611
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L2_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9667 | F1: 0.9666
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8000 | F1: 0.7802
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L3_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L4_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9667 | F1: 0.9666
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: CWRU_48k | Dobra: Load_0HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5000 | F1: 0.4444
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5000 | F1: 0.4796
+
+   [Alvo: CWRU_48k | Dobra: Load_0HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.1500 | F1: 0.1347
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9000 | F1: 0.6296
+
+   [Alvo: CWRU_48k | Dobra: Load_0HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.4815
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8333 | F1: 0.8745
+
+   [Alvo: CWRU_48k | Dobra: Load_1HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8833 | F1: 0.8777
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8333 | F1: 0.8222
+
+   [Alvo: CWRU_48k | Dobra: Load_1HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9595 | F1: 0.9632
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8000 | F1: 0.7840
+
+   [Alvo: CWRU_48k | Dobra: Load_1HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8167 | F1: 0.7988
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9833 | F1: 0.9833
+
+   [Alvo: CWRU_48k | Dobra: Load_2HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.6667
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7333 | F1: 0.7172
+
+   [Alvo: CWRU_48k | Dobra: Load_2HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4667 | F1: 0.3959
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8333 | F1: 0.8285
+
+   [Alvo: CWRU_48k | Dobra: Load_2HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6833 | F1: 0.6405
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8667 | F1: 0.8611
+
+   [Alvo: CWRU_48k | Dobra: Load_3HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4333 | F1: 0.4296
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7833 | F1: 0.7545
+
+   [Alvo: CWRU_48k | Dobra: Load_3HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4500 | F1: 0.3923
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7500 | F1: 0.7460
+
+   [Alvo: CWRU_48k | Dobra: Load_3HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.6587
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7833 | F1: 0.7577
+
+
+================================================================================
+ EXECUTANDO: 2_Estrategia_B (Source: window_rms | Target: window_rms)
+================================================================================
+
+**************************************** TAREFA: DIAGNOSIS ****************************************
+
+   [Alvo: CWRU_12k | Dobra: Load_0HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7877 | F1: 0.7863
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6963 | F1: 0.6613
+
+   [Alvo: CWRU_12k | Dobra: Load_1HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7015 | F1: 0.6890
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7949 | F1: 0.7803
+
+   [Alvo: CWRU_12k | Dobra: Load_2HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7937 | F1: 0.7684
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7840 | F1: 0.7641
+
+   [Alvo: CWRU_12k | Dobra: Load_3HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6621 | F1: 0.6152
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7707 | F1: 0.7599
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3875 | F1: 0.2393
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.3750 | F1: 0.2917
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5625 | F1: 0.4848
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5875 | F1: 0.4936
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4125 | F1: 0.3584
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4000 | F1: 0.3272
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3125 | F1: 0.2890
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4625 | F1: 0.3941
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Dec_45_to_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5375 | F1: 0.4661
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5250 | F1: 0.4974
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Dec_60_to_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4625 | F1: 0.4110
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5125 | F1: 0.4390
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Inc_15_to_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5375 | F1: 0.4961
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5375 | F1: 0.5072
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Inc_30_to_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5125 | F1: 0.4325
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4625 | F1: 0.3912
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4750 | F1: 0.4104
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.3125 | F1: 0.2260
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5875 | F1: 0.4992
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4000 | F1: 0.3392
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6875 | F1: 0.6048
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.3625 | F1: 0.2846
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5000 | F1: 0.3839
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4000 | F1: 0.3530
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Dec_45_to_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6125 | F1: 0.5640
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5000 | F1: 0.4712
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Dec_60_to_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5375 | F1: 0.4721
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6000 | F1: 0.5944
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Inc_15_to_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4250 | F1: 0.3694
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4875 | F1: 0.4292
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Inc_30_to_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6125 | F1: 0.5920
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5750 | F1: 0.5811
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9000 | F1: 0.8977
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9667 | F1: 0.9666
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8000 | F1: 0.7802
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8667 | F1: 0.8611
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8000 | F1: 0.7802
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9667 | F1: 0.9666
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9667 | F1: 0.9666
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6333 | F1: 0.5402
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5667 | F1: 0.5243
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9667 | F1: 0.9666
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9667 | F1: 0.9666
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9333 | F1: 0.9332
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8667 | F1: 0.8611
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9667 | F1: 0.9666
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5667 | F1: 0.4676
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6333 | F1: 0.5167
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8333 | F1: 0.8283
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9667 | F1: 0.9666
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9667 | F1: 0.9666
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_3]
+      -> Treinando MLP (TL)...
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8000 | F1: 0.7944
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L0_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5368
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8333 | F1: 0.8222
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L1_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8333 | F1: 0.8222
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L2_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9667 | F1: 0.9666
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9333 | F1: 0.9327
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L3_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9000 | F1: 0.8977
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9667 | F1: 0.9666
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L4_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: CWRU_48k | Dobra: Load_0HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4333 | F1: 0.4607
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8333 | F1: 0.8222
+
+   [Alvo: CWRU_48k | Dobra: Load_0HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4000 | F1: 0.2857
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5000 | F1: 0.3915
+
+   [Alvo: CWRU_48k | Dobra: Load_0HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8333 | F1: 0.8586
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7833 | F1: 0.7432
+
+   [Alvo: CWRU_48k | Dobra: Load_1HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8000 | F1: 0.7944
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9667 | F1: 0.9666
+
+   [Alvo: CWRU_48k | Dobra: Load_1HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6500 | F1: 0.6562
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8500 | F1: 0.8420
+
+   [Alvo: CWRU_48k | Dobra: Load_1HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8000 | F1: 0.7952
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9000 | F1: 0.8977
+
+   [Alvo: CWRU_48k | Dobra: Load_2HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8333 | F1: 0.8222
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8333 | F1: 0.8222
+
+   [Alvo: CWRU_48k | Dobra: Load_2HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5000 | F1: 0.5110
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6833 | F1: 0.6777
+
+   [Alvo: CWRU_48k | Dobra: Load_2HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9833 | F1: 0.9833
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: CWRU_48k | Dobra: Load_3HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9833 | F1: 0.9833
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8500 | F1: 0.8420
+
+   [Alvo: CWRU_48k | Dobra: Load_3HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6000 | F1: 0.5666
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7333 | F1: 0.7266
+
+   [Alvo: CWRU_48k | Dobra: Load_3HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8000 | F1: 0.7995
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9333 | F1: 0.9316
+
+
+================================================================================
+ EXECUTANDO: 3_Estrategia_C_com_A (Source: window_zscore | Target: raw)
+================================================================================
+
+**************************************** TAREFA: DIAGNOSIS ****************************************
+
+   [Alvo: CWRU_12k | Dobra: Load_0HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6806 | F1: 0.6100
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6864 | F1: 0.6849
+
+   [Alvo: CWRU_12k | Dobra: Load_1HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6974 | F1: 0.6522
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7649 | F1: 0.7544
+
+   [Alvo: CWRU_12k | Dobra: Load_2HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6864 | F1: 0.6484
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7227 | F1: 0.6859
+
+   [Alvo: CWRU_12k | Dobra: Load_3HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5928 | F1: 0.5261
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7958 | F1: 0.7778
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3750 | F1: 0.2924
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4625 | F1: 0.4045
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4000 | F1: 0.3498
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.3875 | F1: 0.3333
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.2250 | F1: 0.1422
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6000 | F1: 0.5061
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4750 | F1: 0.3833
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5000 | F1: 0.4189
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Dec_45_to_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3500 | F1: 0.2966
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5250 | F1: 0.4995
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Dec_60_to_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5125 | F1: 0.4850
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4750 | F1: 0.4453
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Inc_15_to_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4625 | F1: 0.4183
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5875 | F1: 0.5538
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Inc_30_to_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3125 | F1: 0.2865
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4125 | F1: 0.4184
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5250 | F1: 0.4436
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4125 | F1: 0.3408
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4750 | F1: 0.3842
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5000 | F1: 0.4444
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5000 | F1: 0.4335
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4000 | F1: 0.4261
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5000 | F1: 0.3833
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5000 | F1: 0.4385
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Dec_45_to_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4250 | F1: 0.3847
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5750 | F1: 0.5410
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Dec_60_to_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5625 | F1: 0.5097
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4875 | F1: 0.4833
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Inc_15_to_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4000 | F1: 0.3587
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4250 | F1: 0.3890
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Inc_30_to_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4375 | F1: 0.4270
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4625 | F1: 0.4512
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.3667 | F1: 0.2616
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3333 | F1: 0.2222
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5411
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5342
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3333 | F1: 0.1961
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7000 | F1: 0.6162
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9667 | F1: 0.9666
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9667 | F1: 0.9666
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9667 | F1: 0.9666
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3667 | F1: 0.2828
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9333 | F1: 0.9327
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8667 | F1: 0.8611
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9667 | F1: 0.9666
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9333 | F1: 0.9327
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8000 | F1: 0.7802
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9667 | F1: 0.9666
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7000 | F1: 0.6238
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7333 | F1: 0.6825
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9000 | F1: 0.8950
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L0_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8333 | F1: 0.8222
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7000 | F1: 0.7021
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L1_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9000 | F1: 0.8977
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5333 | F1: 0.4461
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L2_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L3_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5473
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L4_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7667 | F1: 0.7571
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8667 | F1: 0.8611
+
+   [Alvo: CWRU_48k | Dobra: Load_0HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4000 | F1: 0.3916
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.3333 | F1: 0.2222
+
+   [Alvo: CWRU_48k | Dobra: Load_0HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5000 | F1: 0.2381
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.2000 | F1: 0.1778
+
+   [Alvo: CWRU_48k | Dobra: Load_0HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8333 | F1: 0.8222
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.4815
+
+   [Alvo: CWRU_48k | Dobra: Load_1HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6500 | F1: 0.6362
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8333 | F1: 0.8195
+
+   [Alvo: CWRU_48k | Dobra: Load_1HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3167 | F1: 0.2147
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7500 | F1: 0.7489
+
+   [Alvo: CWRU_48k | Dobra: Load_1HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8667 | F1: 0.8564
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9833 | F1: 0.9833
+
+   [Alvo: CWRU_48k | Dobra: Load_2HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7333 | F1: 0.6825
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: CWRU_48k | Dobra: Load_2HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7667 | F1: 0.7567
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5500 | F1: 0.5146
+
+   [Alvo: CWRU_48k | Dobra: Load_2HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8333 | F1: 0.8328
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7833 | F1: 0.7765
+
+   [Alvo: CWRU_48k | Dobra: Load_3HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5333 | F1: 0.4411
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5333 | F1: 0.5542
+
+   [Alvo: CWRU_48k | Dobra: Load_3HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7167 | F1: 0.7221
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6500 | F1: 0.6166
+
+   [Alvo: CWRU_48k | Dobra: Load_3HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7000 | F1: 0.6906
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+
+================================================================================
+ EXECUTANDO: 4_Estrategia_C_com_B (Source: window_rms | Target: raw)
+================================================================================
+
+**************************************** TAREFA: DIAGNOSIS ****************************************
+
+   [Alvo: CWRU_12k | Dobra: Load_0HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6255 | F1: 0.5897
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6975 | F1: 0.6827
+
+   [Alvo: CWRU_12k | Dobra: Load_1HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7273 | F1: 0.7004
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7689 | F1: 0.7501
+
+   [Alvo: CWRU_12k | Dobra: Load_2HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7354 | F1: 0.6952
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7494 | F1: 0.7365
+
+   [Alvo: CWRU_12k | Dobra: Load_3HP]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6093 | F1: 0.5358
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7079 | F1: 0.6651
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3750 | F1: 0.3069
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4375 | F1: 0.4004
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3375 | F1: 0.3023
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5000 | F1: 0.3766
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3875 | F1: 0.3090
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4250 | F1: 0.3592
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4000 | F1: 0.3234
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5875 | F1: 0.5377
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Dec_45_to_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.3625 | F1: 0.2931
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5625 | F1: 0.5139
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Dec_60_to_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4625 | F1: 0.4507
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.3750 | F1: 0.3267
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Inc_15_to_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5000 | F1: 0.4467
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5375 | F1: 0.4557
+
+   [Alvo: UOEMD | Dobra: Load_Loaded_Speed_Inc_30_to_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4375 | F1: 0.4226
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4875 | F1: 0.4346
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4000 | F1: 0.2985
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.3750 | F1: 0.2440
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4125 | F1: 0.2961
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.2500 | F1: 0.2500
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.1250 | F1: 0.1250
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7125 | F1: 0.6587
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4625 | F1: 0.3529
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7500 | F1: 0.6667
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Dec_45_to_15Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4625 | F1: 0.4091
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4375 | F1: 0.4232
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Dec_60_to_30Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4500 | F1: 0.4217
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4875 | F1: 0.4235
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Inc_15_to_45Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5125 | F1: 0.4486
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5500 | F1: 0.5244
+
+   [Alvo: UOEMD | Dobra: Load_No_Load_Speed_Inc_30_to_60Hz]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5625 | F1: 0.5586
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5750 | F1: 0.5785
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8000 | F1: 0.7802
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7333 | F1: 0.6825
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4333 | F1: 0.3340
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9667 | F1: 0.9666
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.3333 | F1: 0.2222
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_20_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9000 | F1: 0.8977
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7667 | F1: 0.7341
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9667 | F1: 0.9666
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_25_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8000 | F1: 0.7963
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4000 | F1: 0.2987
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.5556
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9333 | F1: 0.9327
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9667 | F1: 0.9666
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_30_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7667 | F1: 0.7341
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7667 | F1: 0.7341
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9333 | F1: 0.9327
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_35_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8333 | F1: 0.8222
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8333 | F1: 0.8222
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7000 | F1: 0.6238
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_1]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_2]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7333 | F1: 0.6825
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8000 | F1: 0.7802
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_3]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_40_4]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9667 | F1: 0.9666
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L0_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6000 | F1: 0.6145
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6667 | F1: 0.5556
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L1_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7667 | F1: 0.7628
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8333 | F1: 0.8222
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L2_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9333 | F1: 0.9327
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 1.0000 | F1: 1.0000
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L3_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5000 | F1: 0.4127
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9000 | F1: 0.8977
+
+   [Alvo: HUST_Gearbox | Dobra: Cond_L4_VS_0_40_0]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8333 | F1: 0.8222
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8000 | F1: 0.7897
+
+   [Alvo: CWRU_48k | Dobra: Load_0HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8333 | F1: 0.8222
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.3333 | F1: 0.2222
+
+   [Alvo: CWRU_48k | Dobra: Load_0HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.9000 | F1: 0.8990
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5000 | F1: 0.3333
+
+   [Alvo: CWRU_48k | Dobra: Load_0HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6667 | F1: 0.4815
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9000 | F1: 0.8503
+
+   [Alvo: CWRU_48k | Dobra: Load_1HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5667 | F1: 0.4765
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8167 | F1: 0.8017
+
+   [Alvo: CWRU_48k | Dobra: Load_1HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.6833 | F1: 0.6829
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6333 | F1: 0.5352
+
+   [Alvo: CWRU_48k | Dobra: Load_1HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 1.0000 | F1: 1.0000
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9667 | F1: 0.9666
+
+   [Alvo: CWRU_48k | Dobra: Load_2HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8500 | F1: 0.8420
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.9500 | F1: 0.9497
+
+   [Alvo: CWRU_48k | Dobra: Load_2HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7167 | F1: 0.7080
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.4500 | F1: 0.3801
+
+   [Alvo: CWRU_48k | Dobra: Load_2HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.7333 | F1: 0.6676
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.6833 | F1: 0.6742
+
+   [Alvo: CWRU_48k | Dobra: Load_3HP_Sev_0.007]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.5167 | F1: 0.4546
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.8000 | F1: 0.7897
+
+   [Alvo: CWRU_48k | Dobra: Load_3HP_Sev_0.014]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.4833 | F1: 0.4562
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.7833 | F1: 0.7833
+
+   [Alvo: CWRU_48k | Dobra: Load_3HP_Sev_0.021]
+      -> Treinando MLP (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [MLP (TL)] Bal Acc: 0.8167 | F1: 0.8137
+      -> Treinando TABNET (TL)...
+      [Aviso] SMOTE falhou em Electric_Motor (poucas amostras?). Erro: Expected n_neighbors <= n_samples_fit, but n_neighbors = 6, n_samples_fit = 4, n_samples = 4
+         [TABNET (TL)] Bal Acc: 0.5333 | F1: 0.4498
+
+[SUCESSO] Relatório Final da Matriz DL Exportado: /home/vfrocha/VibNet-1D/results/norm_tl_dl_results_20260905_080429.csv

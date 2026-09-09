@@ -1,0 +1,57 @@
+======================================================================
+ AUDITORIA DE AMPLITUDES FÍSICAS NOS DADOS PROCESSADOS (.npy)
+======================================================================
+Dataset: CWRU_12K (2520 janelas analisadas)
+  -> Pico Máximo Global: 11.6623
+  -> Pico Mínimo Global: -10.1035
+  -> Desvio Padrão Médio (Energia): 0.2149
+  -> [Diagnóstico]: Amplitudes compactas. Sinal provavelmente calibrado em aceleração (g) ou m/s².
+----------------------------------------------------------------------
+Dataset: CWRU_48K (602 janelas analisadas)
+  -> Pico Máximo Global: 6.5301
+  -> Pico Mínimo Global: -6.1602
+  -> Desvio Padrão Médio (Energia): 0.2995
+  -> [Diagnóstico]: Amplitudes compactas. Sinal provavelmente calibrado em aceleração (g) ou m/s².
+----------------------------------------------------------------------
+Dataset: UOEMD (1280 janelas analisadas)
+  -> Pico Máximo Global: 357.3594
+  -> Pico Mínimo Global: -313.7476
+  -> Desvio Padrão Médio (Energia): 18.3630
+  -> [Diagnóstico]: Amplitudes elevadas. Sinal provavelmente em Volts (mV) brutos do DAQ.
+----------------------------------------------------------------------
+Dataset: HUST_GEARBOX (900 janelas analisadas)
+  -> Pico Máximo Global: 2.0105
+  -> Pico Mínimo Global: -3.4920
+  -> Desvio Padrão Médio (Energia): 0.1302
+  -> [Diagnóstico]: Amplitudes compactas. Sinal provavelmente calibrado em aceleração (g) ou m/s².
+----------------------------------------------------------------------
+Dataset: HUST (1101 janelas analisadas)
+  -> Pico Máximo Global: 51.4895
+  -> Pico Mínimo Global: -51.2176
+  -> Desvio Padrão Médio (Energia): 1.3113
+  -> [Diagnóstico]: Amplitudes elevadas. Sinal provavelmente em Volts (mV) brutos do DAQ.
+----------------------------------------------------------------------
+Dataset: PU (8394 janelas analisadas)
+  -> Pico Máximo Global: 10.5033
+  -> Pico Mínimo Global: -9.5532
+  -> Desvio Padrão Médio (Energia): 0.3095
+  -> [Diagnóstico]: Amplitudes compactas. Sinal provavelmente calibrado em aceleração (g) ou m/s².
+----------------------------------------------------------------------
+Dataset: UORED (370 janelas analisadas)
+  -> Pico Máximo Global: 1072.4930
+  -> Pico Mínimo Global: -767.8650
+  -> Desvio Padrão Médio (Energia): 21.3433
+  -> [Diagnóstico]: Amplitudes elevadas. Sinal provavelmente em Volts (mV) brutos do DAQ.
+----------------------------------------------------------------------
+Dataset: MECHANICAL_GEAR (180 janelas analisadas)
+  -> Pico Máximo Global: 0.2848
+  -> Pico Mínimo Global: -0.2632
+  -> Desvio Padrão Médio (Energia): 0.0079
+  -> [Diagnóstico]: Amplitudes compactas. Sinal provavelmente calibrado em aceleração (g) ou m/s².
+----------------------------------------------------------------------
+Dataset: ELECTRIC_MOTOR (66 janelas analisadas)
+  -> Pico Máximo Global: 8133.9017
+  -> Pico Mínimo Global: -8813.8000
+  -> Desvio Padrão Médio (Energia): 1776.3136
+  -> [Diagnóstico]: Amplitudes elevadas. Sinal provavelmente em Volts (mV) brutos do DAQ.
+----------------------------------------------------------------------
