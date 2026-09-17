@@ -1,0 +1,81 @@
+================================================================================
+ EXPERIMENTO BASELINE (TREINAMENTO FROM SCRATCH)
+================================================================================
+--- FASE 1: EXTRAÇÃO DE FEATURES DOS ALVOS ---
+  -> UOEMD carregado: 1280 amostras. Extraindo features...
+      -> [Fusion] Iniciando extração DUPLA para 1280 amostras...
+         [Debug] Shape VibNet: (1280, 16)
+         [Debug] Shape SignAI: (1280, 125)
+      -> [Fusion] Shape final combinado: (1280, 141)
+
+--- FASE 2: AVALIAÇÃO LOCO (ISOLADA POR MÁQUINA) ---
+
+########################################
+ ALVO FIXO: UOEMD
+########################################
+
+   --- Dobra de Teste: Load_Loaded_Speed_15Hz ---
+      -> Treinando DO ZERO na própria máquina: UOEMD
+          [Multi-Head DL (TABNET)] Bal Acc: 0.6000 | F1: 0.5642 | ROC-AUC: 0.8070
+
+   --- Dobra de Teste: Load_Loaded_Speed_30Hz ---
+      -> Treinando DO ZERO na própria máquina: UOEMD
+          [Multi-Head DL (TABNET)] Bal Acc: 0.8625 | F1: 0.8216 | ROC-AUC: 0.9870
+
+   --- Dobra de Teste: Load_Loaded_Speed_45Hz ---
+      -> Treinando DO ZERO na própria máquina: UOEMD
+          [Multi-Head DL (TABNET)] Bal Acc: 0.7875 | F1: 0.7760 | ROC-AUC: 0.9973
+
+   --- Dobra de Teste: Load_Loaded_Speed_60Hz ---
+      -> Treinando DO ZERO na própria máquina: UOEMD
+          [Multi-Head DL (TABNET)] Bal Acc: 0.6250 | F1: 0.5500 | ROC-AUC: 0.9213
+
+   --- Dobra de Teste: Load_Loaded_Speed_Dec_45_to_15Hz ---
+      -> Treinando DO ZERO na própria máquina: UOEMD
+          [Multi-Head DL (TABNET)] Bal Acc: 0.7500 | F1: 0.7460 | ROC-AUC: 0.9586
+
+   --- Dobra de Teste: Load_Loaded_Speed_Dec_60_to_30Hz ---
+      -> Treinando DO ZERO na própria máquina: UOEMD
+          [Multi-Head DL (TABNET)] Bal Acc: 0.7875 | F1: 0.7794 | ROC-AUC: 0.9845
+
+   --- Dobra de Teste: Load_Loaded_Speed_Inc_15_to_45Hz ---
+      -> Treinando DO ZERO na própria máquina: UOEMD
+          [Multi-Head DL (TABNET)] Bal Acc: 0.8500 | F1: 0.8411 | ROC-AUC: 0.9730
+
+   --- Dobra de Teste: Load_Loaded_Speed_Inc_30_to_60Hz ---
+      -> Treinando DO ZERO na própria máquina: UOEMD
+          [Multi-Head DL (TABNET)] Bal Acc: 0.7375 | F1: 0.7326 | ROC-AUC: 0.9564
+
+   --- Dobra de Teste: Load_No_Load_Speed_15Hz ---
+      -> Treinando DO ZERO na própria máquina: UOEMD
+          [Multi-Head DL (TABNET)] Bal Acc: 0.6000 | F1: 0.5411 | ROC-AUC: 0.9389
+
+   --- Dobra de Teste: Load_No_Load_Speed_30Hz ---
+      -> Treinando DO ZERO na própria máquina: UOEMD
+          [Multi-Head DL (TABNET)] Bal Acc: 0.6500 | F1: 0.5991 | ROC-AUC: 0.9473
+
+   --- Dobra de Teste: Load_No_Load_Speed_45Hz ---
+      -> Treinando DO ZERO na própria máquina: UOEMD
+          [Multi-Head DL (TABNET)] Bal Acc: 0.7875 | F1: 0.7693 | ROC-AUC: 0.9788
+
+   --- Dobra de Teste: Load_No_Load_Speed_60Hz ---
+      -> Treinando DO ZERO na própria máquina: UOEMD
+          [Multi-Head DL (TABNET)] Bal Acc: 0.7250 | F1: 0.6593 | ROC-AUC: 0.9459
+
+   --- Dobra de Teste: Load_No_Load_Speed_Dec_45_to_15Hz ---
+      -> Treinando DO ZERO na própria máquina: UOEMD
+          [Multi-Head DL (TABNET)] Bal Acc: 0.7500 | F1: 0.7562 | ROC-AUC: 0.9602
+
+   --- Dobra de Teste: Load_No_Load_Speed_Dec_60_to_30Hz ---
+      -> Treinando DO ZERO na própria máquina: UOEMD
+          [Multi-Head DL (TABNET)] Bal Acc: 0.9125 | F1: 0.9096 | ROC-AUC: 0.9923
+
+   --- Dobra de Teste: Load_No_Load_Speed_Inc_15_to_45Hz ---
+      -> Treinando DO ZERO na própria máquina: UOEMD
+          [Multi-Head DL (TABNET)] Bal Acc: 0.8750 | F1: 0.8723 | ROC-AUC: 0.9818
+
+   --- Dobra de Teste: Load_No_Load_Speed_Inc_30_to_60Hz ---
+      -> Treinando DO ZERO na própria máquina: UOEMD
+          [Multi-Head DL (TABNET)] Bal Acc: 0.8000 | F1: 0.8025 | ROC-AUC: 0.9630
+
+[SUCESSO] Relatório de Baseline Exportado: /home/vfrocha/VibNet-1D/results/baseline_scratch_results_20260917_101613.csv
