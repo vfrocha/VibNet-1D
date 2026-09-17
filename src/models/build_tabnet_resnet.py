@@ -81,63 +81,53 @@ class ResidualBlock1D(nn.Module):
 # 3. A ARQUITETURA HÍBRIDA MULTI-HEAD
 # ---------------------------------------------------------------------------
 class HybridDLModel(nn.Module):
-    def __init__(self, num_features, dataset_classes_dict, encoder_type='mlp', latent_dim=64, expansion_size=1024):
+    def __init__(self, num_features, dataset_classes_dict, encoder_type='mlp', latent_dim=64):
         """
-        dataset_classes_dict: Um dicionário mapeando o nome do dataset para o número de classes.
-                              Ex: {'CWRU': 4, 'HUST': 3, 'UOEMD': 5}
+        Versão Otimizada: Removemos os blocos convolucionais (ResNet1D). 
+        Dados tabulares não possuem localidade espacial. Agora, o vetor latente 
+        altamente rico é roteado diretamente para as cabeças de classificação.
         """
         super().__init__()
         
         if encoder_type == 'mlp':
             self.encoder = MLPEncoder(input_dim=num_features, output_dim=latent_dim)
         elif encoder_type == 'tabnet':
+            # Nota: Este ainda é o MiniTabNet. Se quiser o poder total, o ideal 
+            # é usar o TabNetClassifier puro. Mas este roteamento direto já melhorará absurdamente.
             self.encoder = MiniTabNetEncoder(input_dim=num_features, output_dim=latent_dim)
         else:
             raise ValueError("encoder_type deve ser 'mlp' ou 'tabnet'")
             
-        self.expansion_size = expansion_size
-        self.expand_layer = nn.Linear(latent_dim, expansion_size)
-        self.expand_bn = nn.BatchNorm1d(expansion_size)
-        self.expand_relu = nn.ReLU()
+        # Adicionamos um Bottleneck robusto antes das cabeças em vez de convoluções
+        self.bottleneck = nn.Sequential(
+            nn.Linear(latent_dim, 128),
+            nn.BatchNorm1d(128),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(128, 64),
+            nn.BatchNorm1d(64),
+            nn.ReLU()
+        )
         
-        self.conv_in = nn.Conv1d(1, 16, kernel_size=7, stride=2, padding=3, bias=False)
-        self.bn_in = nn.BatchNorm1d(16)
-        self.relu = nn.ReLU(inplace=True)
-        self.pool = nn.MaxPool1d(kernel_size=3, stride=2, padding=1)
-        
-        self.layer1 = ResidualBlock1D(16, 32, stride=2)
-        self.layer2 = ResidualBlock1D(32, 64, stride=2)
-        self.global_pool = nn.AdaptiveAvgPool1d(1)
-        
-        # [MODIFICAÇÃO AQUI]: Substituímos a fc_out única por múltiplas cabeças
+        # Múltiplas cabeças de classificação
         self.heads = nn.ModuleDict({
             d_name: nn.Linear(64, n_classes) for d_name, n_classes in dataset_classes_dict.items()
         })
 
     def forward(self, x, dataset_name):
         latent, attn_weights = self.encoder(x) 
-        expanded = self.expand_relu(self.expand_bn(self.expand_layer(latent)))
-        synthetic_signal = expanded.unsqueeze(1) 
         
-        out = self.relu(self.bn_in(self.conv_in(synthetic_signal)))
-        out = self.pool(out)
-        out = self.layer1(out)
-        out = self.layer2(out)
-        out = self.global_pool(out).squeeze(-1)       
+        # Passa pelo bottleneck linear em vez de transformar em sinal 1D
+        out = self.bottleneck(latent)
         
-        # [MODIFICAÇÃO AQUI]: A rede roteia a extração para a cabeça correspondente ao dataset
+        # Roteia a extração para a cabeça correspondente ao dataset
         logits = self.heads[dataset_name](out)
         return logits, attn_weights
 
 # ---------------------------------------------------------------------------
 # 4. FUNÇÃO DE TREINAMENTO (Otimizada para Multi-Head e Múltiplos Scalers)
 # ---------------------------------------------------------------------------
-def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y_test, task, epochs=15, batch_size=512, encoder_type='mlp', max_samples_per_class=5000):
-    """
-    train_data_dict: dict contendo matrizes brutas -> {'CWRU': (X_train, y_train), ...}
-    max_samples_per_class: O "teto" mágico. Se um dataset for maior que isso, ele é cortado. 
-                           Se for menor, o SMOTE cria dados sintéticos até nivelar.
-    """
+def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y_test, task, epochs=60, batch_size=256, encoder_type='mlp'):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
     train_loaders = {}
@@ -145,48 +135,29 @@ def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y
     num_features = None
     target_scaler = None
     
-    # 1. Padronização e Balanceamento por Dataset
+    # 1. Padronização por Dataset (Z-Score)
     for d_name, (X_tr, y_tr) in train_data_dict.items():
         if num_features is None:
             num_features = X_tr.shape[1]
             
-        # A. Padronização INDIVIDUAL (Z-Score) - Deve ocorrer ANTES do SMOTE
         scaler = StandardScaler()
         X_tr_s = scaler.fit_transform(X_tr)
         
         if d_name == target_dataset_name:
             target_scaler = scaler
             
-        # =====================================================================
-        # B. NOVIDADE: ESTRATÉGIA ANTI-DOMINÂNCIA (SMOTE + UnderSampling)
-        # =====================================================================
-        unique, counts = np.unique(y_tr, return_counts=True)
-        
-        # O SMOTE aumenta as classes minoritárias para igualar à maior classe daquele dataset
-        if len(unique) > 1: # SMOTE precisa de pelo menos 2 classes
-            try:
-                smote = SMOTE(random_state=42)
-                X_tr_s, y_tr = smote.fit_resample(X_tr_s, y_tr)
-            except ValueError as e:
-                print(f"      [Aviso] SMOTE falhou em {d_name} (poucas amostras?). Erro: {e}")
-        
-        # O UnderSampler 'corta' as classes que ficaram gigantes para não dominarem a rede
-        unique, counts = np.unique(y_tr, return_counts=True)
-        if counts.max() > max_samples_per_class:
-            # Cria um dicionário limitando cada classe ao teto máximo
-            sampling_strategy = {c: min(max_samples_per_class, count) for c, count in zip(unique, counts)}
-            rus = RandomUnderSampler(sampling_strategy=sampling_strategy, random_state=42)
-            X_tr_s, y_tr = rus.fit_resample(X_tr_s, y_tr)
-        # =====================================================================
+        # REMOVIDO: SMOTE agressivo. Redes neurais preferem dados originais, 
+        # lidaremos com o desbalanceamento através dos pesos ou deixaremos a atenção agir.
             
         num_classes = 2 if task == 'detection' else len(np.unique(y_tr))
         dataset_classes_dict[d_name] = num_classes
         
         X_tr_t = torch.tensor(X_tr_s, dtype=torch.float32)
         y_tr_t = torch.tensor(y_tr, dtype=torch.long)
+        # Reduzimos o batch_size de 512 para 256 para o gradiente ter mais saltos estocásticos
         train_loaders[d_name] = DataLoader(TensorDataset(X_tr_t, y_tr_t), batch_size=batch_size, shuffle=True)
 
-    # 2. Configuração do Teste (Zero-shot handling)
+    # 2. Configuração do Teste
     if target_scaler is None:
         target_scaler = StandardScaler()
         X_test_s = target_scaler.fit_transform(X_test)
@@ -196,11 +167,16 @@ def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y
 
     # 3. Inicialização do Modelo Multi-Head
     model = HybridDLModel(num_features=num_features, dataset_classes_dict=dataset_classes_dict, encoder_type=encoder_type).to(device)
+    
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=0.001)
+    # Aumentamos o LR para 0.005 e adicionamos Weight Decay (Regularização L2)
+    optimizer = optim.Adam(model.parameters(), lr=0.005, weight_decay=1e-5)
+    # Adicionamos um Scheduler para diminuir a taxa de aprendizado igual ao baseline puro
+    scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=20, gamma=0.5)
     
     # 4. Laço de Treinamento
     model.train()
+    # Aumentamos consideravelmente o número de épocas para permitir convergência (15 era muito pouco)
     for epoch in range(epochs):
         for d_name, loader in train_loaders.items():
             for bx, by in loader:
@@ -210,12 +186,13 @@ def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y
                 loss = criterion(logits, by)
                 loss.backward()
                 optimizer.step()
+        scheduler.step()
                 
     # 5. Avaliação (Usando a cabeça do Dataset Alvo)
     model.eval()
     X_te_t = torch.tensor(X_test_s, dtype=torch.float32)
     y_te_t = torch.tensor(y_test, dtype=torch.long)
-    test_loader = DataLoader(TensorDataset(X_te_t, y_te_t), batch_size=1024, shuffle=False)
+    test_loader = DataLoader(TensorDataset(X_te_t, y_te_t), batch_size=512, shuffle=False)
     
     all_logits, all_attn = [], []
     with torch.no_grad():
