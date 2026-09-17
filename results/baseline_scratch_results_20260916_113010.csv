@@ -1,0 +1,17 @@
+Target Dataset,Task,Test Condition,Source Combo,Model,Bal Acc,Macro F1,ROC-AUC
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,Baseline (Scratch),Multi-Head DL (TABNET),0.5,0.453125,0.7642857142857142
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,Baseline (Scratch),Multi-Head DL (TABNET),0.6375,0.5981116584564861,0.9025000000000001
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,Baseline (Scratch),Multi-Head DL (TABNET),0.6875,0.6305273833671399,0.8725
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,Baseline (Scratch),Multi-Head DL (TABNET),0.5375,0.47848598769651396,0.8942857142857144
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,Baseline (Scratch),Multi-Head DL (TABNET),0.5875,0.526997620990756,0.8925000000000001
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,Baseline (Scratch),Multi-Head DL (TABNET),0.625,0.6042989406160761,0.9094642857142857
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,Baseline (Scratch),Multi-Head DL (TABNET),0.625,0.5990819439904108,0.9366071428571429
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,Baseline (Scratch),Multi-Head DL (TABNET),0.5625,0.5465447154471544,0.8717857142857143
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,Baseline (Scratch),Multi-Head DL (TABNET),0.45,0.4277777777777778,0.8851785714285714
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,Baseline (Scratch),Multi-Head DL (TABNET),0.45,0.35671191553544496,0.8314285714285714
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,Baseline (Scratch),Multi-Head DL (TABNET),0.5,0.4569377990430622,0.8782142857142857
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,Baseline (Scratch),Multi-Head DL (TABNET),0.7375,0.6573995472552348,0.9844642857142858
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,Baseline (Scratch),Multi-Head DL (TABNET),0.575,0.5377665454286122,0.9007142857142858
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,Baseline (Scratch),Multi-Head DL (TABNET),0.725,0.6990996925779533,0.9496428571428572
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,Baseline (Scratch),Multi-Head DL (TABNET),0.675,0.6319229892914103,0.9560714285714286
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,Baseline (Scratch),Multi-Head DL (TABNET),0.6625000000000001,0.6506428212310565,0.9267857142857143
