@@ -103,11 +103,29 @@ def run_severity_baselines():
         print(">>> Carregando e mapeando todas as condições (Cache)...")
         cached_data = {}
         for cond in ALL_CONDITIONS:
-            # Apontamos para o novo dataset "CWRU_12k_Severity"
-            _, _, X_cond, y_cond, _ = load_vibration_data(
-                data_root=DATA_ROOT, dataset_name="CWRU_12k_Severity", test_condition=cond, task=task
-            )
-            cached_data[cond] = (X_cond, y_cond)
+                X_c, y_c = cached_data[cond]
+                
+                if len(X_c) == 0:
+                    continue
+                    
+                # REGRA ESPECIAL: A classe Normal (0.000) é dividida 50/50 entre Treino e Teste
+                if "0.000" in cond:
+                    split_idx = len(X_c) // 2
+                    X_train_list.append(X_c[:split_idx])
+                    y_train_list.append(y_c[:split_idx])
+                    
+                    X_test_list.append(X_c[split_idx:])
+                    y_test_list.append(y_c[split_idx:])
+                    
+                # Se a severidade alvo (ex: '0.007') estiver no nome, vai pro Teste.
+                elif test_sev in cond:
+                    X_test_list.append(X_c)
+                    y_test_list.append(y_c)
+                    
+                # Caso contrário (outras severidades de falha), vai pro Treino.
+                else:
+                    X_train_list.append(X_c)
+                    y_train_list.append(y_c)
 
         # 2. Loop pelas Severidades (A nova dobra LOCO)
         for test_sev in TARGET_SEVERITIES:
