@@ -3,6 +3,7 @@ import sys
 import numpy as np
 import pandas as pd
 from datetime import datetime
+from sklearn.preprocessing import LabelEncoder
 
 # Adiciona a raiz do projeto ao path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
@@ -30,7 +31,7 @@ ALL_CONDITIONS = [
 ]
 
 # As severidades que usaremos como dobras (folds) no Leave-One-Severity-Out
-TARGET_SEVERITIES = ["0.007", "0.014", "0.021", "0.028"]
+TARGET_SEVERITIES = ["0.007", "0.014", "0.021"]
 
 DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
 RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../results'))
@@ -150,9 +151,14 @@ def run_severity_baselines():
             if X_train_clean.ndim == 1: X_train_clean = X_train_clean.reshape(len(y_train), -1)
             if X_test_clean.ndim == 1:  X_test_clean = X_test_clean.reshape(len(y_test), -1)
 
+            # NOVO: Mapeia as classes dinamicamente para [0, 1, 2] XGBoost
+            le = LabelEncoder()
+            y_train_enc = le.fit_transform(y_train)
+            y_test_enc = le.transform(y_test)
+            
             # 5. Avaliação Limpa e Modular
             current_results = evaluate_all_models(
-                X_train_clean, y_train, X_test_clean, y_test, 
+                X_train_clean, y_train_enc, X_test_clean, y_test_enc, 
                 dataset_name="CWRU_12k_Severity", task=task, test_cond=f"Severity_{test_sev}"
             )
             
