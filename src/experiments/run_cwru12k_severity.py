@@ -108,14 +108,10 @@ def run_severity_baselines():
                 if len(X_c) == 0:
                     continue
                     
-                # REGRA ESPECIAL: A classe Normal (0.000) é dividida 50/50 entre Treino e Teste
+                # NOVA REGRA: Ignorar completamente a classe Normal (0.000) 
+                # para parear a complexidade exatamente com a base CWRU 48k.
                 if "0.000" in cond:
-                    split_idx = len(X_c) // 2
-                    X_train_list.append(X_c[:split_idx])
-                    y_train_list.append(y_c[:split_idx])
-                    
-                    X_test_list.append(X_c[split_idx:])
-                    y_test_list.append(y_c[split_idx:])
+                    continue
                     
                 # Se a severidade alvo (ex: '0.007') estiver no nome, vai pro Teste.
                 elif test_sev in cond:
