@@ -1,0 +1,441 @@
+nohup: ignoring input
+[   INFO   ] MusicExtractorSVM: no classifier models were configured by default
+======================================================================
+ INICIANDO EXPERIMENTOS CWRU 12k (LEAVE-ONE-SEVERITY-OUT)
+======================================================================
+
+
+############################################################
+ TAREFA ATUAL: DIAGNOSIS
+############################################################
+>>> Carregando e mapeando todas as condições (Cache)...
+Carregando CWRU_12k_Severity | Condição: Load_0HP_Sev_0.000 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2480 [00:00<?, ?it/s]Treino:  40%|███▉      | 987/2480 [00:00<00:00, 9864.81it/s]Treino:  84%|████████▍ | 2084/2480 [00:00<00:00, 10514.17it/s]Treino: 100%|██████████| 2480/2480 [00:00<00:00, 10501.18it/s]
+Teste:   0%|          | 0/40 [00:00<?, ?it/s]Teste: 100%|██████████| 40/40 [00:00<00:00, 9649.84it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_0HP_Sev_0.007 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2340 [00:00<?, ?it/s]Treino:  60%|█████▉    | 1399/2340 [00:00<00:00, 13981.38it/s]Treino: 100%|██████████| 2340/2340 [00:00<00:00, 14002.28it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 13598.74it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_0HP_Sev_0.014 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2340 [00:00<?, ?it/s]Treino:  60%|█████▉    | 1402/2340 [00:00<00:00, 14010.56it/s]Treino: 100%|██████████| 2340/2340 [00:00<00:00, 14028.82it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 13569.16it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_0HP_Sev_0.021 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2340 [00:00<?, ?it/s]Treino:  60%|█████▉    | 1402/2340 [00:00<00:00, 14016.64it/s]Treino: 100%|██████████| 2340/2340 [00:00<00:00, 14075.75it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 13540.93it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_0HP_Sev_0.028 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2500 [00:00<?, ?it/s]Treino:  56%|█████▌    | 1402/2500 [00:00<00:00, 14013.46it/s]Treino: 100%|██████████| 2500/2500 [00:00<00:00, 14069.22it/s]
+Teste:   0%|          | 0/20 [00:00<?, ?it/s]Teste: 100%|██████████| 20/20 [00:00<00:00, 11507.01it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_1HP_Sev_0.000 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2440 [00:00<?, ?it/s]Treino:  58%|█████▊    | 1409/2440 [00:00<00:00, 14081.82it/s]Treino: 100%|██████████| 2440/2440 [00:00<00:00, 14120.23it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 13164.80it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_1HP_Sev_0.007 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2340 [00:00<?, ?it/s]Treino:  60%|██████    | 1407/2340 [00:00<00:00, 14068.17it/s]Treino: 100%|██████████| 2340/2340 [00:00<00:00, 14116.79it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 13586.99it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_1HP_Sev_0.014 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2340 [00:00<?, ?it/s]Treino:  60%|██████    | 1407/2340 [00:00<00:00, 14061.30it/s]Treino: 100%|██████████| 2340/2340 [00:00<00:00, 14041.78it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 13642.48it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_1HP_Sev_0.021 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2340 [00:00<?, ?it/s]Treino:  60%|█████▉    | 1399/2340 [00:00<00:00, 13987.15it/s]Treino: 100%|██████████| 2340/2340 [00:00<00:00, 14026.35it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 13689.48it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_1HP_Sev_0.028 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2500 [00:00<?, ?it/s]Treino:  56%|█████▌    | 1404/2500 [00:00<00:00, 14034.26it/s]Treino: 100%|██████████| 2500/2500 [00:00<00:00, 14116.51it/s]
+Teste:   0%|          | 0/20 [00:00<?, ?it/s]Teste: 100%|██████████| 20/20 [00:00<00:00, 11631.46it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_2HP_Sev_0.000 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2440 [00:00<?, ?it/s]Treino:  58%|█████▊    | 1406/2440 [00:00<00:00, 14055.86it/s]Treino: 100%|██████████| 2440/2440 [00:00<00:00, 14091.84it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 13128.23it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_2HP_Sev_0.007 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2340 [00:00<?, ?it/s]Treino:  60%|██████    | 1404/2340 [00:00<00:00, 14038.77it/s]Treino: 100%|██████████| 2340/2340 [00:00<00:00, 14093.18it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 13595.31it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_2HP_Sev_0.014 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2340 [00:00<?, ?it/s]Treino:  60%|██████    | 1409/2340 [00:00<00:00, 14083.60it/s]Treino: 100%|██████████| 2340/2340 [00:00<00:00, 14138.41it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 13608.30it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_2HP_Sev_0.021 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2340 [00:00<?, ?it/s]Treino:  60%|██████    | 1407/2340 [00:00<00:00, 14065.22it/s]Treino: 100%|██████████| 2340/2340 [00:00<00:00, 14120.98it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 13591.15it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_2HP_Sev_0.028 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2500 [00:00<?, ?it/s]Treino:  56%|█████▌    | 1392/2500 [00:00<00:00, 13917.69it/s]Treino: 100%|██████████| 2500/2500 [00:00<00:00, 14006.47it/s]
+Teste:   0%|          | 0/20 [00:00<?, ?it/s]Teste: 100%|██████████| 20/20 [00:00<00:00, 11599.29it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_3HP_Sev_0.000 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2440 [00:00<?, ?it/s]Treino:  58%|█████▊    | 1407/2440 [00:00<00:00, 14064.58it/s]Treino: 100%|██████████| 2440/2440 [00:00<00:00, 14107.21it/s]
+Teste:   0%|          | 0/80 [00:00<?, ?it/s]Teste: 100%|██████████| 80/80 [00:00<00:00, 13103.11it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_3HP_Sev_0.007 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2340 [00:00<?, ?it/s]Treino:  60%|██████    | 1411/2340 [00:00<00:00, 14107.93it/s]Treino: 100%|██████████| 2340/2340 [00:00<00:00, 14098.32it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 13596.29it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_3HP_Sev_0.014 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2340 [00:00<?, ?it/s]Treino:  60%|█████▉    | 1395/2340 [00:00<00:00, 13948.08it/s]Treino: 100%|██████████| 2340/2340 [00:00<00:00, 13995.23it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 13673.61it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_3HP_Sev_0.021 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2340 [00:00<?, ?it/s]Treino:  60%|██████    | 1405/2340 [00:00<00:00, 14048.51it/s]Treino: 100%|██████████| 2340/2340 [00:00<00:00, 14095.91it/s]
+Teste:   0%|          | 0/180 [00:00<?, ?it/s]Teste: 100%|██████████| 180/180 [00:00<00:00, 13629.67it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_12k_Severity | Condição: Load_3HP_Sev_0.028 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 12000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/2500 [00:00<?, ?it/s]Treino:  56%|█████▋    | 1408/2500 [00:00<00:00, 14071.16it/s]Treino: 100%|██████████| 2500/2500 [00:00<00:00, 14119.69it/s]
+Teste:   0%|          | 0/20 [00:00<?, ?it/s]Teste: 100%|██████████| 20/20 [00:00<00:00, 12637.25it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_0' 'Class_1' 'Class_2' 'Class_3']
+
+ >>> Dobra Alvo (Teste): Severidade 0.007 | Treino: Demais Severidades
+      [Info] Janelas de Treino: 1800 | Janelas de Teste: 720
+      -> [Fusion] Iniciando extração DUPLA para 1800 amostras...
+         [Debug] Shape VibNet: (1800, 16)
+         [Debug] Shape SignAI: (1800, 125)
+      -> [Fusion] Shape final combinado: (1800, 141)
+      -> [Fusion] Iniciando extração DUPLA para 720 amostras...
+         [Debug] Shape VibNet: (720, 16)
+         [Debug] Shape SignAI: (720, 125)
+      -> [Fusion] Shape final combinado: (720, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 10, 'rf__n_estimators': 50}
+        [AVISO Random Forest] O modelo falhou: Number of classes in y_true not equal to the number of columns in 'y_score'
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+        [AVISO SVM] O modelo falhou: Number of classes in y_true not equal to the number of columns in 'y_score'
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 6, 'xgb__n_estimators': 50, 'xgb__subsample': 1.0}
+        [AVISO XGBoost] O modelo falhou: Number of classes in y_true not equal to the number of columns in 'y_score'
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 49 with best_epoch = 29 and best_val_balanced_accuracy = 0.65417
+     [Diagnóstico] Bal Acc: 0.6542 | Macro F1: 0.6554 | ROC-AUC: 0.0000
+
+ >>> Dobra Alvo (Teste): Severidade 0.014 | Treino: Demais Severidades
+      [Info] Janelas de Treino: 1800 | Janelas de Teste: 720
+      -> [Fusion] Iniciando extração DUPLA para 1800 amostras...
+         [Debug] Shape VibNet: (1800, 16)
+         [Debug] Shape SignAI: (1800, 125)
+      -> [Fusion] Shape final combinado: (1800, 141)
+      -> [Fusion] Iniciando extração DUPLA para 720 amostras...
+         [Debug] Shape VibNet: (720, 16)
+         [Debug] Shape SignAI: (720, 125)
+      -> [Fusion] Shape final combinado: (720, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'entropy', 'rf__max_depth': 10, 'rf__min_samples_split': 2, 'rf__n_estimators': 50}
+        [AVISO Random Forest] O modelo falhou: Number of classes in y_true not equal to the number of columns in 'y_score'
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+        [AVISO SVM] O modelo falhou: Number of classes in y_true not equal to the number of columns in 'y_score'
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 6, 'xgb__n_estimators': 100, 'xgb__subsample': 1.0}
+        [AVISO XGBoost] O modelo falhou: Number of classes in y_true not equal to the number of columns in 'y_score'
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 40 with best_epoch = 20 and best_val_balanced_accuracy = 0.50139
+     [Diagnóstico] Bal Acc: 0.5014 | Macro F1: 0.4845 | ROC-AUC: 0.0000
+
+ >>> Dobra Alvo (Teste): Severidade 0.021 | Treino: Demais Severidades
+      [Info] Janelas de Treino: 1800 | Janelas de Teste: 720
+      -> [Fusion] Iniciando extração DUPLA para 1800 amostras...
+         [Debug] Shape VibNet: (1800, 16)
+         [Debug] Shape SignAI: (1800, 125)
+      -> [Fusion] Shape final combinado: (1800, 141)
+      -> [Fusion] Iniciando extração DUPLA para 720 amostras...
+         [Debug] Shape VibNet: (720, 16)
+         [Debug] Shape SignAI: (720, 125)
+      -> [Fusion] Shape final combinado: (720, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+        [AVISO Random Forest] O modelo falhou: Number of classes in y_true not equal to the number of columns in 'y_score'
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'scale', 'svm__kernel': 'rbf'}
+        [AVISO SVM] O modelo falhou: Number of classes in y_true not equal to the number of columns in 'y_score'
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.2, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 0.8}
+        [AVISO XGBoost] O modelo falhou: Number of classes in y_true not equal to the number of columns in 'y_score'
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 39 with best_epoch = 19 and best_val_balanced_accuracy = 0.575
+     [Diagnóstico] Bal Acc: 0.5750 | Macro F1: 0.5750 | ROC-AUC: 0.0000
+
+ >>> Dobra Alvo (Teste): Severidade 0.028 | Treino: Demais Severidades
+      [Info] Janelas de Treino: 2440 | Janelas de Teste: 80
+      -> [Fusion] Iniciando extração DUPLA para 2440 amostras...
+         [Debug] Shape VibNet: (2440, 16)
+         [Debug] Shape SignAI: (2440, 125)
+      -> [Fusion] Shape final combinado: (2440, 141)
+      -> [Fusion] Iniciando extração DUPLA para 80 amostras...
+         [Debug] Shape VibNet: (80, 16)
+         [Debug] Shape SignAI: (80, 125)
+      -> [Fusion] Shape final combinado: (80, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'rf__criterion': 'gini', 'rf__max_depth': 25, 'rf__min_samples_split': 2, 'rf__n_estimators': 200}
+        [AVISO Random Forest] O modelo falhou: Number of classes in y_true not equal to the number of columns in 'y_score'
+     -> Treinando SVM...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'svm__C': 100, 'svm__gamma': 'auto', 'svm__kernel': 'rbf'}
+        [AVISO SVM] O modelo falhou: Number of classes in y_true not equal to the number of columns in 'y_score'
+     -> Treinando XGBoost...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+     Melhores parâmetros: {'xgb__learning_rate': 0.1, 'xgb__max_depth': 3, 'xgb__n_estimators': 200, 'xgb__subsample': 1.0}
+        [AVISO XGBoost] O modelo falhou: Number of classes in y_true not equal to the number of columns in 'y_score'
+     -> Treinando TabNet...
+  -> Treinando arquitetura TabNet (Autoencoder Tabular)...
+
+Early stopping occurred at epoch 35 with best_epoch = 15 and best_val_balanced_accuracy = 0.8375
+     [Diagnóstico] Bal Acc: 0.8375 | Macro F1: 0.4368 | ROC-AUC: 0.0000
+
+======================================================================
+ EXPERIMENTOS CONCLUÍDOS! Relatório salvo em: /home/vfrocha/VibNet-1D/results/cwru12k_severity_loco_results_20260921_091642.csv
+======================================================================
