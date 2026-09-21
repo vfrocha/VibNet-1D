@@ -15,22 +15,21 @@ from src.features.signalai_wrapper import extract_fusion_features
 from src.models.build_sklearn import get_random_forest, get_svm, get_xgboost, train_and_evaluate
 from src.models.build_tabular import get_tabnet_classifier, train_and_evaluate_tabnet
 
-# --- CONFIGURAÇÃO GLOBAL FOCADA ---
-# Mantemos apenas "diagnosis" para comparar diretamente com o experimento da base 48k
+# --- CONFIGURAÇÃO GLOBAL ---
 TASKS = ["diagnosis"] 
 
 FS = 12000
 
-# Todas as 20 condições geradas no seu diretório CWRU_12k_Severity
+# SOLUÇÃO DEFINITIVA: Lista com exatas 16 condições (Classes Saudáveis 0.000 foram removidas)
+# Isso garante que o modelo enfrente um problema estrito de 3 classes (pareado com a 48k)
 ALL_CONDITIONS = [
-    "Load_0HP_Sev_0.000", "Load_0HP_Sev_0.007", "Load_0HP_Sev_0.014", "Load_0HP_Sev_0.021", "Load_0HP_Sev_0.028",
-    "Load_1HP_Sev_0.000", "Load_1HP_Sev_0.007", "Load_1HP_Sev_0.014", "Load_1HP_Sev_0.021", "Load_1HP_Sev_0.028",
-    "Load_2HP_Sev_0.000", "Load_2HP_Sev_0.007", "Load_2HP_Sev_0.014", "Load_2HP_Sev_0.021", "Load_2HP_Sev_0.028",
-    "Load_3HP_Sev_0.000", "Load_3HP_Sev_0.007", "Load_3HP_Sev_0.014", "Load_3HP_Sev_0.021", "Load_3HP_Sev_0.028"
+    "Load_0HP_Sev_0.007", "Load_0HP_Sev_0.014", "Load_0HP_Sev_0.021", "Load_0HP_Sev_0.028",
+    "Load_1HP_Sev_0.007", "Load_1HP_Sev_0.014", "Load_1HP_Sev_0.021", "Load_1HP_Sev_0.028",
+    "Load_2HP_Sev_0.007", "Load_2HP_Sev_0.014", "Load_2HP_Sev_0.021", "Load_2HP_Sev_0.028",
+    "Load_3HP_Sev_0.007", "Load_3HP_Sev_0.014", "Load_3HP_Sev_0.021", "Load_3HP_Sev_0.028"
 ]
 
 # As severidades que usaremos como dobras (folds) no Leave-One-Severity-Out
-# (Ignoramos o 0.000 como target pois ele não representa uma falha para testar severidade)
 TARGET_SEVERITIES = ["0.007", "0.014", "0.021", "0.028"]
 
 DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
@@ -99,29 +98,14 @@ def run_severity_baselines():
     for task in TASKS:
         print(f"\n\n{'#'*60}\n TAREFA ATUAL: {task.upper()}\n{'#'*60}")
         
-        # 1. Carregamento em Cache (Buscamos todas as 20 condições uma única vez para ganhar tempo)
-        print(">>> Carregando e mapeando todas as condições (Cache)...")
+        # 1. Carregamento em Cache (Lê apenas as 16 condições de falha)
+        print(">>> Carregando e mapeando todas as condições de Falha (Cache)...")
         cached_data = {}
         for cond in ALL_CONDITIONS:
-                X_c, y_c = cached_data[cond]
-                
-                if len(X_c) == 0:
-                    continue
-                    
-                # NOVA REGRA: Ignorar completamente a classe Normal (0.000) 
-                # para parear a complexidade exatamente com a base CWRU 48k.
-                if "0.000" in cond:
-                    continue
-                    
-                # Se a severidade alvo (ex: '0.007') estiver no nome, vai pro Teste.
-                elif test_sev in cond:
-                    X_test_list.append(X_c)
-                    y_test_list.append(y_c)
-                    
-                # Caso contrário (outras severidades de falha), vai pro Treino.
-                else:
-                    X_train_list.append(X_c)
-                    y_train_list.append(y_c)
+            _, _, X_cond, y_cond, _ = load_vibration_data(
+                data_root=DATA_ROOT, dataset_name="CWRU_12k_Severity", test_condition=cond, task=task
+            )
+            cached_data[cond] = (X_cond, y_cond)
 
         # 2. Loop pelas Severidades (A nova dobra LOCO)
         for test_sev in TARGET_SEVERITIES:
@@ -130,18 +114,16 @@ def run_severity_baselines():
             X_train_list, y_train_list = [], []
             X_test_list, y_test_list = [], []
             
-            # Agrupamento dinâmico baseado na string da severidade
+            # Agrupamento dinâmico sem lógicas adicionais (Tudo flui organicamente)
             for cond in ALL_CONDITIONS:
                 X_c, y_c = cached_data[cond]
                 
                 if len(X_c) == 0:
                     continue
                     
-                # Se a severidade alvo (ex: '0.007') estiver no nome da condição, vai pro Teste.
                 if test_sev in cond:
                     X_test_list.append(X_c)
                     y_test_list.append(y_c)
-                # Caso contrário (incluindo o Normal 0.000 e outras falhas), vai pro Treino.
                 else:
                     X_train_list.append(X_c)
                     y_train_list.append(y_c)
@@ -150,7 +132,6 @@ def run_severity_baselines():
                 print(f"      [Aviso] Dados insuficientes para severidade {test_sev}. Pulando.")
                 continue
                 
-            # Concatenamos as listas para formar os arrays NumPy finais
             X_train_raw = np.concatenate(X_train_list, axis=0)
             y_train = np.concatenate(y_train_list, axis=0)
             X_test_raw = np.concatenate(X_test_list, axis=0)
@@ -162,7 +143,7 @@ def run_severity_baselines():
             X_train_fusion = extract_fusion_features(X_train_raw, FS, extract_advanced_features)
             X_test_fusion  = extract_fusion_features(X_test_raw, FS, extract_advanced_features)
 
-            # 4. Limpeza de Dados (Anti-Pandas / Anti-NaN)
+            # 4. Limpeza de Dados
             X_train_clean = np.nan_to_num(np.array(X_train_fusion, dtype=np.float32))
             X_test_clean  = np.nan_to_num(np.array(X_test_fusion, dtype=np.float32))
             
@@ -176,7 +157,7 @@ def run_severity_baselines():
             )
             
             master_results.extend(current_results)
-
+            
             # 6. Salvamento Incremental
             df = pd.DataFrame(master_results)
             df.to_csv(csv_filename, index=False)
