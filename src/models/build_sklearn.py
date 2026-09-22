@@ -79,6 +79,7 @@ def train_and_evaluate(pipeline, param_grid, X_train, y_train, X_test, y_test, t
     y_probs = best_model.predict_proba(X_test)
 
     # 2. Balanced Accuracy
+    acc = accuracy_score(y_test, y_pred)
     bal_acc = balanced_accuracy_score(y_test, y_pred)
     
     # 3. Ramificação das Métricas
@@ -94,6 +95,6 @@ def train_and_evaluate(pipeline, param_grid, X_train, y_train, X_test, y_test, t
         raise ValueError(f"Task desconhecida: {task}. Escolha 'detection' ou 'diagnosis'.")
         
     # Variável 'f1' usada corretamente no print
-    print(f"     Bal Acc: {bal_acc:.4f} | F1: {f1:.4f} | AUC: {roc_auc:.4f}")
+    print(f"     Acc: {acc:.4f} | Bal Acc: {bal_acc:.4f} | F1: {f1:.4f} | AUC: {roc_auc:.4f}")
         
-    return bal_acc, f1, roc_auc, grid_search.best_params_
+    return acc, bal_acc, f1, roc_auc, grid_search.best_params_
