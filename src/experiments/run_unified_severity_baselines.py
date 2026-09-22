@@ -49,18 +49,6 @@ TARGET_SEVERITIES = ["0.007", "0.014", "0.021"]
 DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
 RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../results'))
 
-def _safe_accuracy(y_true, X_test, extra_out):
-    """Extrai a acurácia simples com segurança a partir dos retornos da função genérica de treino."""
-    try:
-        if hasattr(extra_out, 'predict'):
-            y_pred = extra_out.predict(X_test)
-        else:
-            y_pred = extra_out
-        return accuracy_score(y_true, y_pred)
-    except Exception:
-        return 0.0
-
-# --- MÓDULO DE AVALIAÇÃO COM NOVA MÉTRICA ---
 def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, test_cond):
     fold_results = []
     base_info = {"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond}
@@ -69,8 +57,7 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
     print(f"     -> Treinando Random Forest...")
     try:
         rf_pipeline, rf_grid = get_random_forest()
-        rf_bacc, rf_f1, rf_auc, rf_extra = train_and_evaluate(rf_pipeline, rf_grid, X_train, y_train, X_test, y_test, task=task)
-        rf_acc = _safe_accuracy(y_test, X_test, rf_extra)
+        rf_acc, rf_bacc, rf_f1, rf_auc = train_and_evaluate(rf_pipeline, rf_grid, X_train, y_train, X_test, y_test, task=task)
     except Exception as e:
         print(f"        [AVISO Random Forest] O modelo falhou: {e}")
         rf_acc, rf_bacc, rf_f1, rf_auc = 0.0, 0.0, 0.0, 0.0
@@ -80,8 +67,7 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
     print(f"     -> Treinando SVM...")
     try:
         svm_pipeline, svm_grid = get_svm()
-        svm_bacc, svm_f1, svm_auc, svm_extra = train_and_evaluate(svm_pipeline, svm_grid, X_train, y_train, X_test, y_test, task=task)
-        svm_acc = _safe_accuracy(y_test, X_test, svm_extra)
+        svm_acc, svm_bacc, svm_f1, svm_auc = train_and_evaluate(svm_pipeline, svm_grid, X_train, y_train, X_test, y_test, task=task)
     except Exception as e:
         print(f"        [AVISO SVM] O modelo falhou: {e}")
         svm_acc, svm_bacc, svm_f1, svm_auc = 0.0, 0.0, 0.0, 0.0
@@ -91,8 +77,7 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
     print(f"     -> Treinando XGBoost...")
     try:
         xgb_pipeline, xgb_grid = get_xgboost()
-        xgb_bacc, xgb_f1, xgb_auc, xgb_extra = train_and_evaluate(xgb_pipeline, xgb_grid, X_train, y_train, X_test, y_test, task=task)
-        xgb_acc = _safe_accuracy(y_test, X_test, xgb_extra)
+        xgb_acc, xgb_bacc, xgb_f1, xgb_auc = train_and_evaluate(xgb_pipeline, xgb_grid, X_train, y_train, X_test, y_test, task=task)
     except Exception as e:
         print(f"        [AVISO XGBoost] O modelo falhou: {e}")
         xgb_acc, xgb_bacc, xgb_f1, xgb_auc = 0.0, 0.0, 0.0, 0.0
@@ -102,10 +87,10 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
     print(f"     -> Treinando TabNet...")
     try:
         tabnet_model = get_tabnet_classifier()
-        tabnet_bacc, tabnet_f1, tabnet_auc, tabnet_extra = train_and_evaluate_tabnet(
+        # Note o "_ " no final para capturar e descartar o modelo retornado
+        tabnet_acc, tabnet_bacc, tabnet_f1, tabnet_auc, _ = train_and_evaluate_tabnet(
             model=tabnet_model, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, task=task
         )
-        tabnet_acc = _safe_accuracy(y_test, X_test, tabnet_extra)
     except Exception as e:
         print(f"        [AVISO TABNET] O modelo falhou: {e}")
         tabnet_acc, tabnet_bacc, tabnet_f1, tabnet_auc = 0.0, 0.0, 0.0, 0.0
