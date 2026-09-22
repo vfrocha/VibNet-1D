@@ -3,7 +3,7 @@ import numpy as np
 import torch
 from pytorch_tabnet.tab_model import TabNetClassifier
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import balanced_accuracy_score, f1_score, roc_auc_score
+from sklearn.metrics import accuracy_score, balanced_accuracy_score, f1_score, roc_auc_score
 
 def get_tabnet_classifier(seed=42):
     """
@@ -65,7 +65,8 @@ def train_and_evaluate_tabnet(model, X_train, y_train, X_test, y_test, task='dia
     # 3. Predição e Métricas
     y_pred = model.predict(X_test_scaled)
     y_pred_probs = model.predict_proba(X_test_scaled)
-    
+
+    acc = accuracy_score(y_test, y_pred)
     bal_acc = balanced_accuracy_score(y_test, y_pred)
     
     # --- LOGICA CORRIGIDA E BLINDADA ---
@@ -82,8 +83,8 @@ def train_and_evaluate_tabnet(model, X_train, y_train, X_test, y_test, task='dia
         # F1_score binário explicitly focando no label '1'
         macro_f1 = f1_score(y_test, y_pred, average='binary', pos_label=1) 
         
-        print(f"     [Detecção] Bal Acc: {bal_acc:.4f} | F1 (Bin): {macro_f1:.4f} | ROC-AUC: {roc_auc:.4f}")
-        return bal_acc, macro_f1, roc_auc, model
+        print(f"     [Detecção] Acc: {acc:.4f} | Bal Acc: {bal_acc:.4f} | F1 (Bin): {macro_f1:.4f} | ROC-AUC: {roc_auc:.4f}")
+        return acc, bal_acc, macro_f1, roc_auc, model
     
     elif task.lower() == 'diagnosis':
         # No diagnóstico (Multiclasse), usamos o F1 Macro e calculamos o ROC-AUC multiclasse
@@ -94,8 +95,8 @@ def train_and_evaluate_tabnet(model, X_train, y_train, X_test, y_test, task='dia
             roc_auc = 0.0 # Caso extremo onde só há uma classe real no teste
             
         macro_f1 = f1_score(y_test, y_pred, average='macro')
-        print(f"     [Diagnóstico] Bal Acc: {bal_acc:.4f} | Macro F1: {macro_f1:.4f} | ROC-AUC: {roc_auc:.4f}")
-        return bal_acc, macro_f1, roc_auc, model
+        print(f"     [Diagnóstico] Acc: {acc:.4f} | Bal Acc: {bal_acc:.4f} | Macro F1: {macro_f1:.4f} | ROC-AUC: {roc_auc:.4f}")
+        return acc, bal_acc, macro_f1, roc_auc, model
     
     else:
         raise ValueError(f"Tarefa desconhecida: {task}")
