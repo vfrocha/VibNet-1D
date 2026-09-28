@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 # Define o caminho para a pasta onde as janelas (.npy) estão processadas
-DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data/processed'))
+DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data/processed'))
 
 def generate_dataset_statistics():
     print("Mapeando a distribuição de classes nos datasets processados...\n")
