@@ -1,64 +1,61 @@
-Dataset,Classe,Nº de Exemplos (Janelas),Representação no Dataset
-CWRU_12k,Class_0,280,10.0%
-CWRU_12k,Class_1,760,27.1%
-CWRU_12k,Class_2,720,25.7%
-CWRU_12k,Class_3,760,27.1%
-CWRU_12k,Class_Normal,280,10.0%
-CWRU_12k_Severity,Class_0,280,11.1%
-CWRU_12k_Severity,Class_1,760,30.2%
-CWRU_12k_Severity,Class_2,720,28.6%
-CWRU_12k_Severity,Class_3,760,30.2%
-CWRU_48k,Class_1,194,32.2%
-CWRU_48k,Class_2,204,33.9%
-CWRU_48k,Class_3,204,33.9%
-Electric_Motor,Class_Combined_Fault,32,48.5%
-Electric_Motor,Class_Electrical_Fault,10,15.2%
-Electric_Motor,Class_Healthy,4,6.1%
-Electric_Motor,Class_Mechanical_Fault,20,30.3%
-HUST,Class_40,150,13.6%
-HUST,Class_41,150,13.6%
-HUST,Class_42,150,13.6%
-HUST,Class_43,100,9.1%
-HUST,Class_44,120,10.9%
-HUST,Class_45,150,13.6%
-HUST,Class_46,131,11.9%
-HUST,Class_Normal,150,13.6%
-HUST_Gearbox,Class_Broken,300,33.3%
-HUST_Gearbox,Class_Missing,300,33.3%
-HUST_Gearbox,Class_Normal,300,33.3%
-IMS,Class_10,112,0.5%
-IMS,Class_11,900,4.2%
-IMS,Class_12,612,2.9%
-IMS,Class_6,18392,86.8%
-IMS,Class_7,500,2.4%
-IMS,Class_8,68,0.3%
-IMS,Class_9,600,2.8%
-MFPT,Class_23,36,31.6%
-MFPT,Class_24,21,18.4%
-MFPT,Class_25,57,50.0%
-Mechanical_Gear,Class_Eccentricity,30,16.7%
-Mechanical_Gear,Class_Healthy,30,16.7%
-Mechanical_Gear,Class_Missing Tooth,30,16.7%
-Mechanical_Gear,Class_Root Crack,30,16.7%
-Mechanical_Gear,Class_Surface Fault,30,16.7%
-Mechanical_Gear,Class_Tooth Chipped Fault,30,16.7%
-PU,Class_26,1918,22.8%
-PU,Class_27,3811,45.4%
-PU,Class_29,747,8.9%
-PU,Class_Normal,1918,22.8%
-UOC,Class_35,104,11.1%
-UOC,Class_36,104,11.1%
-UOC,Class_37,104,11.1%
-UOC,Class_38,104,11.1%
-UOC,Class_39,520,55.6%
-UOEMD,Class_Bowed Rotor,160,12.5%
-UOEMD,Class_Broken Rotor Bar,160,12.5%
-UOEMD,Class_Faulty Bearing,160,12.5%
-UOEMD,Class_Misalignment,160,12.5%
-UOEMD,Class_Normal,160,12.5%
-UOEMD,Class_Stator Winding,160,12.5%
-UOEMD,Class_Unbalance,160,12.5%
-UOEMD,Class_Voltage Imbalance,160,12.5%
-UORED,Class_Ball,100,27.0%
-UORED,Class_Cage,90,24.3%
-UORED,Class_Normal,180,48.6%
+Dataset,Defeito Físico (Rótulo),Nº de Exemplos (Janelas),Representação
+CWRU_12k,Ball,760,30.2%
+CWRU_12k,Inner Race,760,30.2%
+CWRU_12k,Normal,280,11.1%
+CWRU_12k,Outer Race,720,28.6%
+CWRU_12k_Severity,Ball,760,30.2%
+CWRU_12k_Severity,Inner Race,760,30.2%
+CWRU_12k_Severity,Normal,280,11.1%
+CWRU_12k_Severity,Outer Race,720,28.6%
+CWRU_48k,Ball,204,33.9%
+CWRU_48k,Inner Race,194,32.2%
+CWRU_48k,Outer Race,204,33.9%
+Electric_Motor,Combined Fault,32,48.5%
+Electric_Motor,Electrical Fault,10,15.2%
+Electric_Motor,Healthy,4,6.1%
+Electric_Motor,Mechanical Fault,20,30.3%
+HUST,Ball,100,9.1%
+HUST,Inner Race,150,13.6%
+HUST,Inner Race and Ball,120,10.9%
+HUST,Inner Race and Outer Race,150,13.6%
+HUST,Normal,300,27.2%
+HUST,Outer Race,150,13.6%
+HUST,Outer Race and Ball,131,11.9%
+HUST_Gearbox,Broken,300,33.3%
+HUST_Gearbox,Missing,300,33.3%
+HUST_Gearbox,Normal,300,33.3%
+IMS,Degraded Inner Race,600,2.8%
+IMS,Degraded Outer Race,500,2.4%
+IMS,Degraded Roller Race,900,4.2%
+IMS,Inner Race,112,0.5%
+IMS,Normal,18392,86.8%
+IMS,Outer Race,68,0.3%
+IMS,Roller Race,612,2.9%
+MFPT,Inner Race,21,18.4%
+MFPT,Normal,36,31.6%
+MFPT,Outer Race,57,50.0%
+Mechanical_Gear,Eccentricity,30,16.7%
+Mechanical_Gear,Healthy,30,16.7%
+Mechanical_Gear,Missing Tooth,30,16.7%
+Mechanical_Gear,Root Crack,30,16.7%
+Mechanical_Gear,Surface Fault,30,16.7%
+Mechanical_Gear,Tooth Chipped Fault,30,16.7%
+PU,Normal,3836,45.7%
+PU,Outer And Inner Ring Fault,747,8.9%
+PU,Outer Ring Fault,3811,45.4%
+UOC,Chipping Tip,520,55.6%
+UOC,Healthy,104,11.1%
+UOC,Missing Tooth,104,11.1%
+UOC,Root Crack,104,11.1%
+UOC,Spalling,104,11.1%
+UOEMD,Bowed Rotor,160,12.5%
+UOEMD,Broken Rotor Bar,160,12.5%
+UOEMD,Faulty Bearing,160,12.5%
+UOEMD,Misalignment,160,12.5%
+UOEMD,Normal,160,12.5%
+UOEMD,Stator Winding,160,12.5%
+UOEMD,Unbalance,160,12.5%
+UOEMD,Voltage Imbalance,160,12.5%
+UORED,Ball,100,27.0%
+UORED,Cage,90,24.3%
+UORED,Normal,180,48.6%
