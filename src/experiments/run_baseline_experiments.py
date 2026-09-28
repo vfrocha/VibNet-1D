@@ -61,35 +61,35 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
     fold_results = []
     base_info = {"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond}
 
-    # A) Random Forest (Usa os próprios Pipelines ou lida bem com dados não escalados)
+    # A) Random Forest
     print(f"     -> Treinando Random Forest...")
     try:
         rf_pipeline, rf_grid = get_random_forest()
-        rf_acc, rf_f1, rf_auc, _ = train_and_evaluate(rf_pipeline, rf_grid, X_train, y_train, X_test, y_test, task=task)
+        rf_acc, rf_bacc, rf_f1, rf_auc = train_and_evaluate(rf_pipeline, rf_grid, X_train, y_train, X_test, y_test, task=task)
     except Exception as e:
         print(f"        [AVISO Random Forest] O modelo falhou: {e}")
-        rf_acc, rf_f1, rf_auc = 0.0, 0.0, 0.0
-    fold_results.append({**base_info, "Model": "Random Forest", "Bal Acc": rf_acc, "Macro F1": rf_f1, "ROC-AUC": rf_auc})
+        rf_acc, rf_bacc, rf_f1, rf_auc = 0.0, 0.0, 0.0, 0.0
+    fold_results.append({**base_info, "Model": "Random Forest", "Accuracy": rf_acc, "Bal Acc": rf_bacc, "Macro F1": rf_f1, "ROC-AUC": rf_auc})
 
     # B) SVM
     print(f"     -> Treinando SVM...")
     try:
         svm_pipeline, svm_grid = get_svm()
-        svm_acc, svm_f1, svm_auc, _ = train_and_evaluate(svm_pipeline, svm_grid, X_train, y_train, X_test, y_test, task=task)
+        svm_acc, svm_bacc, svm_f1, svm_auc = train_and_evaluate(svm_pipeline, svm_grid, X_train, y_train, X_test, y_test, task=task)
     except Exception as e:
         print(f"        [AVISO SVM] O modelo falhou: {e}")
-        svm_acc, svm_f1, svm_auc = 0.0, 0.0, 0.0
-    fold_results.append({**base_info, "Model": "SVM", "Bal Acc": svm_acc, "Macro F1": svm_f1, "ROC-AUC": svm_auc})
+        svm_acc, svm_bacc, svm_f1, svm_auc = 0.0, 0.0, 0.0, 0.0
+    fold_results.append({**base_info, "Model": "SVM", "Accuracy": svm_acc, "Bal Acc": svm_bacc, "Macro F1": svm_f1, "ROC-AUC": svm_auc})
 
     # C) XGBoost
     print(f"     -> Treinando XGBoost...")
     try:
         xgb_pipeline, xgb_grid = get_xgboost()
-        xgb_acc, xgb_f1, xgb_auc, _ = train_and_evaluate(xgb_pipeline, xgb_grid, X_train, y_train, X_test, y_test, task=task)
+        xgb_acc, xgb_bacc, xgb_f1, xgb_auc = train_and_evaluate(xgb_pipeline, xgb_grid, X_train, y_train, X_test, y_test, task=task)
     except Exception as e:
         print(f"        [AVISO XGBoost] O modelo falhou: {e}")
-        xgb_acc, xgb_f1, xgb_auc = 0.0, 0.0, 0.0
-    fold_results.append({**base_info, "Model": "XGBoost", "Bal Acc": xgb_acc, "Macro F1": xgb_f1, "ROC-AUC": xgb_auc})
+        xgb_acc, xgb_bacc, xgb_f1, xgb_auc = 0.0, 0.0, 0.0, 0.0
+    fold_results.append({**base_info, "Model": "XGBoost", "Accuracy": xgb_acc, "Bal Acc": xgb_bacc, "Macro F1": xgb_f1, "ROC-AUC": xgb_auc})
 
     # =========================================================================
     # BLINDAGEM DE ESCALA PARA DEEP LEARNING (MLP e TABNET)
@@ -98,32 +98,33 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    # D) TabNet Puro (Usando a matriz padronizada)
+    # D) TabNet Puro
     print(f"     -> Treinando TabNet Puro...")
     try:
         tabnet_model = get_tabnet_classifier()
-        tabnet_acc, tabnet_f1, tabnet_auc, *_ = train_and_evaluate_tabnet(
+        tabnet_acc, tabnet_bacc, tabnet_f1, tabnet_auc, *_ = train_and_evaluate_tabnet(
             model=tabnet_model, X_train=X_train_scaled, y_train=y_train, X_test=X_test_scaled, y_test=y_test, task=task
         )
     except Exception as e:
         print(f"        [AVISO TABNET] O modelo falhou: {e}")
-        tabnet_acc, tabnet_f1, tabnet_auc = 0.0, 0.0, 0.0
-    fold_results.append({**base_info, "Model": "TabNet", "Bal Acc": tabnet_acc, "Macro F1": tabnet_f1, "ROC-AUC": tabnet_auc})
+        tabnet_acc, tabnet_bacc, tabnet_f1, tabnet_auc = 0.0, 0.0, 0.0, 0.0
+    fold_results.append({**base_info, "Model": "TabNet", "Accuracy": tabnet_acc, "Bal Acc": tabnet_bacc, "Macro F1": tabnet_f1, "ROC-AUC": tabnet_auc})
 
     # E) Pure MLP (From Scratch - PyTorch)
     print(f"     -> Treinando PyTorch MLP (From Scratch)...")
     try:
-        mlp_acc, mlp_f1, mlp_auc, _ = train_and_evaluate_pure_mlp(
+        mlp_acc, mlp_bacc, mlp_f1, mlp_auc, *_ = train_and_evaluate_pure_mlp(
             X_train_scaled, y_train, X_test_scaled, y_test, task=task
         )
     except Exception as e:
         print(f"        [AVISO MLP] O modelo falhou: {e}")
-        mlp_acc, mlp_f1, mlp_auc = 0.0, 0.0, 0.0
+        mlp_acc, mlp_bacc, mlp_f1, mlp_auc = 0.0, 0.0, 0.0, 0.0
         
     fold_results.append({
         **base_info, 
         "Model": "MLP (Scratch)", 
-        "Bal Acc": mlp_acc, 
+        "Accuracy": mlp_acc,
+        "Bal Acc": mlp_bacc, 
         "Macro F1": mlp_f1, 
         "ROC-AUC": mlp_auc
     })
