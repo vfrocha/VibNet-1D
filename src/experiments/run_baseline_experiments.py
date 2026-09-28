@@ -3,6 +3,7 @@ import sys
 import numpy as np
 import pandas as pd
 from datetime import datetime
+from sklearn.preprocessing import StandardScaler
 
 # Adiciona a raiz do projeto ao path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
@@ -30,16 +31,10 @@ BASELINE_CONFIGS = {
                        "Load_2HP_Sev_0.021", "Load_3HP_Sev_0.014", "Load_0HP_Sev_0.014", "Load_1HP_Sev_0.007",
                        "Load_1HP_Sev_0.021",  "Load_2HP_Sev_0.014",  "Load_3HP_Sev_0.007", "Load_3HP_Sev_0.021"] 
     },
-    "UOEMD": {
-        "fs": 42000,
-        "conditions": [
-            "Load_Loaded_Speed_15Hz","Load_Loaded_Speed_Dec_45_to_15Hz","Load_No_Load_Speed_15Hz",
-            "Load_No_Load_Speed_Dec_45_to_15Hz","Load_Loaded_Speed_30Hz","Load_Loaded_Speed_Dec_60_to_30Hz",
-            "Load_No_Load_Speed_30Hz","Load_No_Load_Speed_Dec_60_to_30Hz","Load_Loaded_Speed_45Hz",
-            "Load_Loaded_Speed_Inc_15_to_45Hz","Load_No_Load_Speed_45Hz","Load_No_Load_Speed_Inc_15_to_45Hz",
-            "Load_Loaded_Speed_60Hz","Load_Loaded_Speed_Inc_30_to_60Hz","Load_No_Load_Speed_60Hz",
-            "Load_No_Load_Speed_Inc_30_to_60Hz"
-        ]
+    "PU": {
+        "fs": 64000,
+        "conditions": ["C1_1500rpm_0.7Nm_1000N", "C2_900rpm_0.7Nm_1000N", 
+                       "C3_1500rpm_0.1Nm_1000N", "C4_1500rpm_0.7Nm_400N"]
     },
     "HUST_Gearbox": {
         "fs": 25600,
@@ -66,7 +61,7 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
     fold_results = []
     base_info = {"Dataset": dataset_name, "Task": task.capitalize(), "Test Condition": test_cond}
 
-    # A) Random Forest
+    # A) Random Forest (Usa os próprios Pipelines ou lida bem com dados não escalados)
     print(f"     -> Treinando Random Forest...")
     try:
         rf_pipeline, rf_grid = get_random_forest()
@@ -96,22 +91,30 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
         xgb_acc, xgb_f1, xgb_auc = 0.0, 0.0, 0.0
     fold_results.append({**base_info, "Model": "XGBoost", "Bal Acc": xgb_acc, "Macro F1": xgb_f1, "ROC-AUC": xgb_auc})
 
-    # D) TabNet
-    print(f"     -> Treinando TabNet...")
+    # =========================================================================
+    # BLINDAGEM DE ESCALA PARA DEEP LEARNING (MLP e TABNET)
+    # =========================================================================
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+
+    # D) TabNet Puro (Usando a matriz padronizada)
+    print(f"     -> Treinando TabNet Puro...")
     try:
         tabnet_model = get_tabnet_classifier()
         tabnet_acc, tabnet_f1, tabnet_auc, *_ = train_and_evaluate_tabnet(
-            model=tabnet_model, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, task=task
+            model=tabnet_model, X_train=X_train_scaled, y_train=y_train, X_test=X_test_scaled, y_test=y_test, task=task
         )
     except Exception as e:
         print(f"        [AVISO TABNET] O modelo falhou: {e}")
         tabnet_acc, tabnet_f1, tabnet_auc = 0.0, 0.0, 0.0
+    fold_results.append({**base_info, "Model": "TabNet", "Bal Acc": tabnet_acc, "Macro F1": tabnet_f1, "ROC-AUC": tabnet_auc})
 
     # E) Pure MLP (From Scratch - PyTorch)
     print(f"     -> Treinando PyTorch MLP (From Scratch)...")
     try:
         mlp_acc, mlp_f1, mlp_auc, _ = train_and_evaluate_pure_mlp(
-            X_train, y_train, X_test, y_test, task=task
+            X_train_scaled, y_train, X_test_scaled, y_test, task=task
         )
     except Exception as e:
         print(f"        [AVISO MLP] O modelo falhou: {e}")
@@ -125,8 +128,6 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
         "ROC-AUC": mlp_auc
     })
     
-    fold_results.append({**base_info, "Model": "TabNet", "Bal Acc": tabnet_acc, "Macro F1": tabnet_f1, "ROC-AUC": tabnet_auc})
-
     return fold_results
 
 # --- ORQUESTRADOR PRINCIPAL ---
@@ -139,34 +140,27 @@ def run_baselines():
 
     print(f"{'='*70}\n INICIANDO EXPERIMENTOS BASELINE (LOCO)\n{'='*70}")
 
-    # Novo Loop 1: Iterar pelas Tarefas (Detection -> Diagnosis)
     for task in TASKS:
         print(f"\n\n{'#'*60}\n TAREFA ATUAL: {task.upper()}\n{'#'*60}")
 
-        # Loop 2: Iterar pelos Datasets
         for dataset_name, config in BASELINE_CONFIGS.items():
             
-            # --- REGRA DE EXCEÇÃO ---
             if task == "detection" and dataset_name == "CWRU_48k":
                 print(f"\n[{dataset_name}] Ignorado para Detection (Não possui classe Normal).")
                 continue
-            # ------------------------------------
             
             fs = config["fs"]
             conditions = config["conditions"]
             
             print(f"\n[{dataset_name}] Processando {len(conditions)} dobras LOCO...")
             
-            # Loop 3: Iterar pelas Condições de Teste (LOCO)
             for test_cond in conditions:
                 print(f"\n  >>> Dobra Alvo (Teste): {test_cond} | Treino: Demais Condições")
                 
-                # 1. Carregamento Inteligente (LOCO)
                 X_train_raw, y_train, X_test_raw, y_test, le = load_vibration_data(
                     data_root=DATA_ROOT, dataset_name=dataset_name, test_condition=test_cond, task=task
                 )
                 
-                # Se para essa tarefa a base não tiver dados suficientes, pula.
                 if len(X_train_raw) == 0:
                     print(f"      [Aviso] Dados insuficientes para {test_cond} na tarefa {task}. Pulando.")
                     continue
