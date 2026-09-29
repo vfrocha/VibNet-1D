@@ -57,7 +57,7 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
     print(f"     -> Treinando Random Forest...")
     try:
         rf_pipeline, rf_grid = get_random_forest()
-        rf_acc, rf_bacc, rf_f1, rf_auc = train_and_evaluate(rf_pipeline, rf_grid, X_train, y_train, X_test, y_test, task=task)
+        rf_acc, rf_bacc, rf_f1, rf_auc, *_ = train_and_evaluate(rf_pipeline, rf_grid, X_train, y_train, X_test, y_test, task=task)
     except Exception as e:
         print(f"        [AVISO Random Forest] O modelo falhou: {e}")
         rf_acc, rf_bacc, rf_f1, rf_auc = 0.0, 0.0, 0.0, 0.0
@@ -67,7 +67,7 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
     print(f"     -> Treinando SVM...")
     try:
         svm_pipeline, svm_grid = get_svm()
-        svm_acc, svm_bacc, svm_f1, svm_auc = train_and_evaluate(svm_pipeline, svm_grid, X_train, y_train, X_test, y_test, task=task)
+        svm_acc, svm_bacc, svm_f1, svm_auc, *_ = train_and_evaluate(svm_pipeline, svm_grid, X_train, y_train, X_test, y_test, task=task)
     except Exception as e:
         print(f"        [AVISO SVM] O modelo falhou: {e}")
         svm_acc, svm_bacc, svm_f1, svm_auc = 0.0, 0.0, 0.0, 0.0
@@ -77,7 +77,7 @@ def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, te
     print(f"     -> Treinando XGBoost...")
     try:
         xgb_pipeline, xgb_grid = get_xgboost()
-        xgb_acc, xgb_bacc, xgb_f1, xgb_auc = train_and_evaluate(xgb_pipeline, xgb_grid, X_train, y_train, X_test, y_test, task=task)
+        xgb_acc, xgb_bacc, xgb_f1, xgb_auc, *_ = train_and_evaluate(xgb_pipeline, xgb_grid, X_train, y_train, X_test, y_test, task=task)
     except Exception as e:
         print(f"        [AVISO XGBoost] O modelo falhou: {e}")
         xgb_acc, xgb_bacc, xgb_f1, xgb_auc = 0.0, 0.0, 0.0, 0.0
