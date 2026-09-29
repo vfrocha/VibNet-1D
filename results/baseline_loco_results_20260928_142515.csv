@@ -1,0 +1,951 @@
+Dataset,Task,Test Condition,Model,Accuracy,Bal Acc,Macro F1,ROC-AUC
+CWRU_12k,Diagnosis,Load_0HP,Random Forest,0.8416666666666667,0.8721491228070175,0.8726268637983738,0.9632156929417038
+CWRU_12k,Diagnosis,Load_0HP,SVM,0.755,0.803874269005848,0.7971949019915647,0.903059049215179
+CWRU_12k,Diagnosis,Load_0HP,XGBoost,0.795,0.8347222222222223,0.8304107285619029,0.9477443099618966
+CWRU_12k,Diagnosis,Load_0HP,TabNet,0.8016666666666666,0.8401315789473685,0.8389243520216609,0.9161337201404596
+CWRU_12k,Diagnosis,Load_0HP,MLP (Scratch),0.7998538011695907,0.7969464107930984,0.906516025412447,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=4, bias=True)
+)"
+CWRU_12k,Diagnosis,Load_1HP,Random Forest,0.91875,0.9292397660818714,0.9289638693865981,0.9906676042461225
+CWRU_12k,Diagnosis,Load_1HP,SVM,0.915625,0.9263888888888888,0.9260818611562206,0.971397342995169
+CWRU_12k,Diagnosis,Load_1HP,XGBoost,0.925,0.9344298245614036,0.9344637537393485,0.9937509534706331
+CWRU_12k,Diagnosis,Load_1HP,TabNet,0.9296875,0.9388888888888889,0.9393492964195986,0.9838421052631579
+CWRU_12k,Diagnosis,Load_1HP,MLP (Scratch),0.9148391812865497,0.9148055016977246,0.9773892384947875,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=4, bias=True)
+)"
+CWRU_12k,Diagnosis,Load_2HP,Random Forest,0.9921875,0.9931286549707603,0.9932710550956043,0.9998235125858124
+CWRU_12k,Diagnosis,Load_2HP,SVM,0.9453125,0.9538742690058479,0.9531034916046293,0.9961725146198831
+CWRU_12k,Diagnosis,Load_2HP,XGBoost,0.94375,0.903125,0.9210973585620952,0.9978422959572845
+CWRU_12k,Diagnosis,Load_2HP,TabNet,0.9875,0.9893274853801168,0.9893124041072183,0.999670321637427
+CWRU_12k,Diagnosis,Load_2HP,MLP (Scratch),0.9723684210526315,0.9718598706294894,0.9989866514111365,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=4, bias=True)
+)"
+CWRU_12k,Diagnosis,Load_3HP,Random Forest,0.834375,0.8576023391812866,0.8606540345158347,0.9674767829900839
+CWRU_12k,Diagnosis,Load_3HP,SVM,0.9,0.9126461988304094,0.9134304320311859,0.9733081934909739
+CWRU_12k,Diagnosis,Load_3HP,XGBoost,0.8359375,0.8589181286549707,0.8590035003367654,0.9624944380879735
+CWRU_12k,Diagnosis,Load_3HP,TabNet,0.884375,0.8996345029239765,0.90176339766718,0.9609145690312738
+CWRU_12k,Diagnosis,Load_3HP,MLP (Scratch),0.9334795321637427,0.9349592888995062,0.9803613653699466,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=4, bias=True)
+)"
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.007,Random Forest,0.8,0.7999999999999999,0.7802197802197801,0.8883333333333333
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.007,SVM,1.0,1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.007,XGBoost,0.8333333333333334,0.8333333333333334,0.8222222222222223,0.875
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.007,TabNet,0.6666666666666666,0.6666666666666666,0.6555555555555556,0.6749999999999999
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.007,MLP (Scratch),0.5666666666666667,0.4626945786366076,0.8866666666666667,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.021,Random Forest,0.9444444444444444,0.9166666666666666,0.9365079365079364,1.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.021,SVM,1.0,1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.021,XGBoost,0.5555555555555556,0.7333333333333334,0.611111111111111,1.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.021,TabNet,1.0,1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.021,MLP (Scratch),0.85,0.8362573099415204,0.9392857142857144,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.014,Random Forest,0.9074074074074074,0.9166666666666666,0.9074630330997054,0.9909313725490195
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.014,SVM,0.9629629629629629,0.9523809523809524,0.9584859584859585,0.9990196078431373
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.014,XGBoost,0.8703703703703703,0.8833333333333333,0.8688880267827637,0.9586134453781513
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.014,TabNet,0.8888888888888888,0.9,0.888157894736842,0.9599789915966387
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.014,MLP (Scratch),0.9761904761904763,0.9795242396868412,0.9989145658263304,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.007,Random Forest,1.0,1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.007,SVM,0.95,0.9500000000000001,0.9497171590194847,1.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.007,XGBoost,0.9833333333333333,0.9833333333333334,0.9833229101521784,0.9995833333333334
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.007,TabNet,0.9333333333333333,0.9333333333333332,0.9331662489557226,0.9470833333333334
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.007,MLP (Scratch),0.85,0.8480963480963482,0.9970833333333333,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.021,Random Forest,1.0,1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.021,SVM,1.0,1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.021,XGBoost,1.0,1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.021,TabNet,1.0,1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.021,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.014,Random Forest,0.8333333333333334,0.8333333333333334,0.830322559645868,0.9920833333333333
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.014,SVM,0.9666666666666667,0.9666666666666667,0.9665831244778612,1.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.014,XGBoost,0.9666666666666667,0.9666666666666667,0.9665831244778613,0.9770833333333333
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.014,TabNet,0.95,0.9499999999999998,0.9499687304565354,0.9941666666666666
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.014,MLP (Scratch),0.9,0.9019408424442749,0.9499999999999998,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.014,Random Forest,0.0,0.0,0.0,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.014,SVM,0.0,0.0,0.0,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.014,XGBoost,0.0,0.0,0.0,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.014,TabNet,1.0,1.0,1.0,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.014,MLP (Scratch),0.6000000000000001,0.43333333333333335,0.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.007,Random Forest,0.9833333333333333,0.9833333333333334,0.9833229101521784,1.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.007,SVM,0.9833333333333333,0.9833333333333334,0.9833229101521784,1.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.007,XGBoost,0.8333333333333334,0.8333333333333334,0.8222222222222223,0.9991666666666666
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.007,TabNet,0.9833333333333333,0.9833333333333334,0.9833229101521784,0.99125
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.007,MLP (Scratch),0.9833333333333334,0.9833229101521784,0.9974999999999999,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.021,Random Forest,1.0,1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.021,SVM,1.0,1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.021,XGBoost,1.0,1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.021,TabNet,1.0,1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.021,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.014,Random Forest,0.9833333333333333,0.9833333333333334,0.9833229101521784,0.9950000000000001
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.014,SVM,0.85,0.85,0.8427788523533204,0.99375
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.014,XGBoost,0.9333333333333333,0.9333333333333332,0.9315770677086616,0.9925
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.014,TabNet,1.0,1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.014,MLP (Scratch),0.8333333333333334,0.8217976993599724,0.9495833333333333,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.007,Random Forest,1.0,1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.007,SVM,0.8333333333333334,0.8333333333333334,0.8222222222222223,0.9975
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.007,XGBoost,0.9333333333333333,0.9333333333333332,0.9326599326599326,1.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.007,TabNet,0.7333333333333333,0.7333333333333334,0.7368844817357404,0.8779166666666667
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.007,MLP (Scratch),0.8666666666666667,0.8611111111111112,0.9945833333333334,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.021,Random Forest,0.8333333333333334,0.8333333333333334,0.8174603174603176,1.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.021,SVM,0.55,0.5499999999999999,0.5156325156325156,0.805
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.021,XGBoost,0.8,0.7999999999999999,0.7726625533934505,0.99125
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.021,TabNet,1.0,1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.021,MLP (Scratch),0.9500000000000001,0.9489698757991442,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+PU,Diagnosis,C1_1500rpm_0.7Nm_1000N,Random Forest,0.7724039829302988,0.75,0.7499956596468689,0.9263351749539595
+PU,Diagnosis,C1_1500rpm_0.7Nm_1000N,SVM,0.7705073494547179,0.7469117884212224,0.7468944261043948,0.9263241658180317
+PU,Diagnosis,C1_1500rpm_0.7Nm_1000N,XGBoost,0.7724039829302988,0.75,0.7499305362600722,0.9263351749539595
+PU,Diagnosis,C1_1500rpm_0.7Nm_1000N,TabNet,0.7724039829302988,0.75,0.6666666666666666,0.9263330967362391
+PU,Diagnosis,C1_1500rpm_0.7Nm_1000N,MLP (Scratch),0.75,0.6666666666666666,0.9263346953652547,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=4, bias=True)
+)"
+PU,Diagnosis,C2_900rpm_0.7Nm_1000N,Random Forest,0.5829746532759446,0.4278487031227798,0.40208300913266415,0.8062898995045793
+PU,Diagnosis,C2_900rpm_0.7Nm_1000N,SVM,0.40793878527020566,0.3395812611352184,0.3128562761215792,0.7192978060536758
+PU,Diagnosis,C2_900rpm_0.7Nm_1000N,XGBoost,0.4131994261119082,0.3507853403141361,0.30904627497961557,0.7522318545614617
+PU,Diagnosis,C2_900rpm_0.7Nm_1000N,TabNet,0.40937350549976087,0.4089948156105462,0.4243892183529391,0.7004363620645643
+PU,Diagnosis,C2_900rpm_0.7Nm_1000N,MLP (Scratch),0.37303992829739097,0.2754067219088675,0.6942572746236622,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=4, bias=True)
+)"
+PU,Diagnosis,C3_1500rpm_0.1Nm_1000N,Random Forest,0.7558305568776773,0.7328125000000001,0.7326567216023108,0.9259716224552745
+PU,Diagnosis,C3_1500rpm_0.1Nm_1000N,SVM,0.6758686339838172,0.6798410087719298,0.6315051548794275,0.9172537082244605
+PU,Diagnosis,C3_1500rpm_0.1Nm_1000N,XGBoost,0.7591623036649214,0.7246373254799302,0.7320613374871554,0.9259679667657871
+PU,Diagnosis,C3_1500rpm_0.1Nm_1000N,TabNet,0.7601142313184198,0.7413651315789473,0.6518307104016693,0.9257788418089482
+PU,Diagnosis,C3_1500rpm_0.1Nm_1000N,MLP (Scratch),0.7457894736842104,0.6624745654174927,0.9259497675380588,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=4, bias=True)
+)"
+PU,Diagnosis,C4_1500rpm_0.7Nm_400N,Random Forest,0.7486860965121834,0.710980135834066,0.7226937098072196,0.9238806310935345
+PU,Diagnosis,C4_1500rpm_0.7Nm_400N,SVM,0.6908743430482561,0.6802421882541989,0.6446170248274729,0.9129140211194603
+PU,Diagnosis,C4_1500rpm_0.7Nm_400N,XGBoost,0.7472527472527473,0.709281868485099,0.7210998059677993,0.9197144815749818
+PU,Diagnosis,C4_1500rpm_0.7Nm_400N,TabNet,0.7228858098423315,0.7234768907563026,0.6569333417051787,0.9052059362661442
+PU,Diagnosis,C4_1500rpm_0.7Nm_400N,MLP (Scratch),0.7005685470909675,0.6272225310357606,0.9081202559785191,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=4, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_20_0,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_0,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_0,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_0,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_0,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_20_1,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_1,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_1,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_1,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_1,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_20_2,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_2,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_2,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_2,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_2,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_20_3,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_3,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_3,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_3,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_3,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_20_4,Random Forest,0.6666666666666666,0.6666666666666666,0.5555555555555555,0.6666666666666666
+HUST_Gearbox,Diagnosis,Cond_20_4,SVM,0.4666666666666667,0.46666666666666673,0.4612794612794613,0.6933333333333334
+HUST_Gearbox,Diagnosis,Cond_20_4,XGBoost,0.6666666666666666,0.6666666666666666,0.5555555555555555,0.9633333333333334
+HUST_Gearbox,Diagnosis,Cond_20_4,TabNet,0.6666666666666666,0.6666666666666666,0.5555555555555555,0.8533333333333334
+HUST_Gearbox,Diagnosis,Cond_20_4,MLP (Scratch),0.3333333333333333,0.3333333333333333,0.6666666666666666,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_25_0,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_0,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_0,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_0,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_0,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_25_1,Random Forest,0.8333333333333334,0.8333333333333334,0.8222222222222223,1.0
+HUST_Gearbox,Diagnosis,Cond_25_1,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_1,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_1,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_1,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_25_2,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_2,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_2,XGBoost,0.7333333333333333,0.7333333333333334,0.6825396825396824,1.0
+HUST_Gearbox,Diagnosis,Cond_25_2,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_2,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_25_3,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_3,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_3,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_3,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_3,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_25_4,Random Forest,0.6666666666666666,0.6666666666666666,0.5555555555555555,1.0
+HUST_Gearbox,Diagnosis,Cond_25_4,SVM,0.6666666666666666,0.6666666666666666,0.5555555555555555,1.0
+HUST_Gearbox,Diagnosis,Cond_25_4,XGBoost,0.9666666666666667,0.9666666666666667,0.9665831244778612,1.0
+HUST_Gearbox,Diagnosis,Cond_25_4,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_4,MLP (Scratch),0.6666666666666666,0.5555555555555555,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_30_0,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_0,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_0,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_0,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_0,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_30_1,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_1,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_1,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_1,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_1,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_30_2,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_2,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_2,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_2,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_2,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_30_3,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_3,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_3,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_3,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_3,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_30_4,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_4,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_4,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_4,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_4,MLP (Scratch),0.9,0.8976982097186701,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_35_0,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_0,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_0,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_0,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_0,MLP (Scratch),0.9666666666666667,0.9665831244778613,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_35_1,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_1,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_1,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_1,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_1,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_35_2,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_2,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_2,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_2,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_2,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_35_3,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_3,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_3,XGBoost,0.9666666666666667,0.9666666666666667,0.9665831244778612,1.0
+HUST_Gearbox,Diagnosis,Cond_35_3,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_3,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_35_4,Random Forest,0.8666666666666667,0.8666666666666667,0.8573153899240856,0.96
+HUST_Gearbox,Diagnosis,Cond_35_4,SVM,0.9666666666666667,0.9666666666666667,0.9665831244778613,0.9500000000000001
+HUST_Gearbox,Diagnosis,Cond_35_4,XGBoost,0.8666666666666667,0.8666666666666667,0.8573153899240856,0.9666666666666667
+HUST_Gearbox,Diagnosis,Cond_35_4,TabNet,0.9,0.9,0.8950004244121891,0.9
+HUST_Gearbox,Diagnosis,Cond_35_4,MLP (Scratch),0.9,0.8950004244121891,0.8983333333333333,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_40_0,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_0,SVM,0.9666666666666667,0.9666666666666667,0.9665831244778612,1.0
+HUST_Gearbox,Diagnosis,Cond_40_0,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_0,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_0,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_40_1,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_1,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_1,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_1,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_1,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_40_2,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_2,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_2,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_2,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_2,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_40_3,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_3,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_3,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_3,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_3,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_40_4,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_4,SVM,0.9333333333333333,0.9333333333333332,0.9326599326599326,1.0
+HUST_Gearbox,Diagnosis,Cond_40_4,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_4,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_4,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_L0_VS_0_40_0,Random Forest,0.9666666666666667,0.9666666666666667,0.9665831244778613,1.0
+HUST_Gearbox,Diagnosis,Cond_L0_VS_0_40_0,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L0_VS_0_40_0,XGBoost,0.6333333333333333,0.6333333333333334,0.6455026455026455,0.8916666666666666
+HUST_Gearbox,Diagnosis,Cond_L0_VS_0_40_0,TabNet,0.9666666666666667,0.9666666666666667,0.9665831244778613,0.9933333333333333
+HUST_Gearbox,Diagnosis,Cond_L0_VS_0_40_0,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_L1_VS_0_40_0,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L1_VS_0_40_0,SVM,0.9666666666666667,0.9666666666666667,0.9665831244778612,1.0
+HUST_Gearbox,Diagnosis,Cond_L1_VS_0_40_0,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L1_VS_0_40_0,TabNet,0.9666666666666667,0.9666666666666667,0.9665831244778612,0.9883333333333333
+HUST_Gearbox,Diagnosis,Cond_L1_VS_0_40_0,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_L2_VS_0_40_0,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L2_VS_0_40_0,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L2_VS_0_40_0,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L2_VS_0_40_0,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L2_VS_0_40_0,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_L3_VS_0_40_0,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L3_VS_0_40_0,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L3_VS_0_40_0,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L3_VS_0_40_0,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L3_VS_0_40_0,MLP (Scratch),0.9666666666666667,0.9665831244778612,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"
+HUST_Gearbox,Diagnosis,Cond_L4_VS_0_40_0,Random Forest,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L4_VS_0_40_0,SVM,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L4_VS_0_40_0,XGBoost,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L4_VS_0_40_0,TabNet,1.0,1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L4_VS_0_40_0,MLP (Scratch),1.0,1.0,1.0,"PureMLPBaseline(
+  (encoder): MLPEncoder(
+    (network): Sequential(
+      (0): Linear(in_features=141, out_features=256, bias=True)
+      (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.2, inplace=False)
+      (4): Linear(in_features=256, out_features=128, bias=True)
+      (5): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Linear(in_features=128, out_features=64, bias=True)
+    )
+  )
+  (classifier): Linear(in_features=64, out_features=3, bias=True)
+)"

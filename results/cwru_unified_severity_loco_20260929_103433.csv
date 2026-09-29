@@ -1,0 +1,25 @@
+Dataset,Task,Test Condition,Model,Accuracy,Bal Acc,Macro F1,ROC-AUC
+CWRU_48k,Diagnosis,Severity_0.007,Random Forest,0.0,0.0,0.0,0.0
+CWRU_48k,Diagnosis,Severity_0.007,SVM,0.0,0.0,0.0,0.0
+CWRU_48k,Diagnosis,Severity_0.007,XGBoost,0.0,0.0,0.0,0.0
+CWRU_48k,Diagnosis,Severity_0.007,TabNet,0.40476190476190477,0.4047619047619047,0.4056693972828585,0.5730272108843538
+CWRU_48k,Diagnosis,Severity_0.014,Random Forest,0.0,0.0,0.0,0.0
+CWRU_48k,Diagnosis,Severity_0.014,SVM,0.0,0.0,0.0,0.0
+CWRU_48k,Diagnosis,Severity_0.014,XGBoost,0.0,0.0,0.0,0.0
+CWRU_48k,Diagnosis,Severity_0.014,TabNet,0.42783505154639173,0.41075837742504406,0.3945544703683608,0.5699308755760369
+CWRU_48k,Diagnosis,Severity_0.021,Random Forest,0.0,0.0,0.0,0.0
+CWRU_48k,Diagnosis,Severity_0.021,SVM,0.0,0.0,0.0,0.0
+CWRU_48k,Diagnosis,Severity_0.021,XGBoost,0.0,0.0,0.0,0.0
+CWRU_48k,Diagnosis,Severity_0.021,TabNet,0.3434343434343434,0.3287202380952381,0.2510539569363099,0.43939065831556506
+CWRU_12k_Severity,Diagnosis,Severity_0.007,Random Forest,0.0,0.0,0.0,0.0
+CWRU_12k_Severity,Diagnosis,Severity_0.007,SVM,0.0,0.0,0.0,0.0
+CWRU_12k_Severity,Diagnosis,Severity_0.007,XGBoost,0.0,0.0,0.0,0.0
+CWRU_12k_Severity,Diagnosis,Severity_0.007,TabNet,0.5944444444444444,0.5944444444444444,0.5867684355455469,0.7585054976851852
+CWRU_12k_Severity,Diagnosis,Severity_0.014,Random Forest,0.0,0.0,0.0,0.0
+CWRU_12k_Severity,Diagnosis,Severity_0.014,SVM,0.0,0.0,0.0,0.0
+CWRU_12k_Severity,Diagnosis,Severity_0.014,XGBoost,0.0,0.0,0.0,0.0
+CWRU_12k_Severity,Diagnosis,Severity_0.014,TabNet,0.4486111111111111,0.44861111111111107,0.4267079331317289,0.5802980324074074
+CWRU_12k_Severity,Diagnosis,Severity_0.021,Random Forest,0.0,0.0,0.0,0.0
+CWRU_12k_Severity,Diagnosis,Severity_0.021,SVM,0.0,0.0,0.0,0.0
+CWRU_12k_Severity,Diagnosis,Severity_0.021,XGBoost,0.0,0.0,0.0,0.0
+CWRU_12k_Severity,Diagnosis,Severity_0.021,TabNet,0.45,0.45,0.431499990176525,0.6825636574074073

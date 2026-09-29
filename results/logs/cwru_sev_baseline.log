@@ -1,0 +1,102 @@
+nohup: ignoring input
+[   INFO   ] MusicExtractorSVM: no classifier models were configured by default
+================================================================================
+ EXPERIMENTOS UNIFICADOS CWRU (12k e 48k) - SEVERITY LOCO
+================================================================================
+
+
+############################################################
+ TAREFA ATUAL: DIAGNOSIS
+############################################################
+
+==================================================
+ PROCESSANDO DATASET: CWRU_48k (fs=48000Hz)
+==================================================
+>>> Carregando e mapeando condições (Cache)...
+Carregando CWRU_48k | Condição: Load_0HP_Sev_0.007 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/572 [00:00<?, ?it/s]Treino:  94%|█████████▍| 539/572 [00:00<00:00, 5379.22it/s]Treino: 100%|██████████| 572/572 [00:00<00:00, 5373.82it/s]
+Teste:   0%|          | 0/30 [00:00<?, ?it/s]Teste: 100%|██████████| 30/30 [00:00<00:00, 5092.85it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_0HP_Sev_0.014 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/582 [00:00<?, ?it/s]Treino: 100%|██████████| 582/582 [00:00<00:00, 8084.48it/s]
+Teste:   0%|          | 0/20 [00:00<?, ?it/s]Teste: 100%|██████████| 20/20 [00:00<00:00, 7355.20it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_0HP_Sev_0.021 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/584 [00:00<?, ?it/s]Treino: 100%|██████████| 584/584 [00:00<00:00, 8158.28it/s]
+Teste:   0%|          | 0/18 [00:00<?, ?it/s]Teste: 100%|██████████| 18/18 [00:00<00:00, 7186.13it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_1HP_Sev_0.007 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8134.69it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 7847.40it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_1HP_Sev_0.014 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/548 [00:00<?, ?it/s]Treino: 100%|██████████| 548/548 [00:00<00:00, 8106.22it/s]
+Teste:   0%|          | 0/54 [00:00<?, ?it/s]Teste: 100%|██████████| 54/54 [00:00<00:00, 7899.15it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_1HP_Sev_0.021 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8118.57it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 7766.51it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_2HP_Sev_0.007 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8119.64it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 7821.06it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_2HP_Sev_0.014 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8130.39it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 7889.96it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_2HP_Sev_0.021 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8129.98it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 7861.86it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_3HP_Sev_0.007 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8098.90it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 7804.57it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_3HP_Sev_0.014 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8071.04it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 6804.33it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+Carregando CWRU_48k | Condição: Load_3HP_Sev_0.021 | Tarefa: DIAGNOSIS
+  -> [DEBUG Dataloader] Tamanho de janela de 1s esperado: 48000 pontos
+-> Lendo arquivos .npy...
+Treino:   0%|          | 0/542 [00:00<?, ?it/s]Treino: 100%|██████████| 542/542 [00:00<00:00, 8082.89it/s]
+Teste:   0%|          | 0/60 [00:00<?, ?it/s]Teste: 100%|██████████| 60/60 [00:00<00:00, 7770.35it/s]
+  -> [DEBUG Dataloader] Classes FINAIS no Treino: ['Class_1' 'Class_2' 'Class_3']
+
+ >>> Dobra Alvo (Teste): Severidade 0.007 | Treino: Demais Severidades
+      [Info] Janelas de Treino: 392 | Janelas de Teste: 210
+      -> [Fusion] Iniciando extração DUPLA para 392 amostras...
+         [Debug] Shape VibNet: (392, 16)
+         [Debug] Shape SignAI: (392, 125)
+      -> [Fusion] Shape final combinado: (392, 141)
+      -> [Fusion] Iniciando extração DUPLA para 210 amostras...
+         [Debug] Shape VibNet: (210, 16)
+         [Debug] Shape SignAI: (210, 125)
+      -> [Fusion] Shape final combinado: (210, 141)
+     -> Treinando Random Forest...
+  -> Otimizando hiperparâmetros (GridSearch em andamento...)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
