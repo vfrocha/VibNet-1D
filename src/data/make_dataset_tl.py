@@ -2,7 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
-from scipy.signal import detrend
+from scipy.signal import detrend, resample_poly
 
 import vibdata.raw as raw_datasets
 from vibdata.deep.signal.transforms import Sequential, Transform
@@ -86,6 +86,9 @@ TL_OUTPUT_DIR = os.path.abspath(
 # Os datasets efetivamente usados no experimento atual.
 SOURCE_DATASETS = ["CWRU", "MFPT"]
 
+# Para o MFPT, todos os sinais são harmonizados para 48.828 Hz
+# antes do janelamento, de modo que cada janela tenha 1 segundo.
+# O baseline original é 97.656 Hz e é reduzido por fator 2.
 
 # Para cada dataset, definimos o tamanho de janela.
 WINDOW_SIZES = {
@@ -98,6 +101,38 @@ WINDOW_SIZES = {
 # ============================================================
 # NOMES DE CONDIÇÃO / CLASSE
 # ============================================================
+
+def harmonize_mfpt_sample_rate(signal, meta):
+    """
+    Harmoniza o MFPT para 48.828 Hz.
+
+    O MFPT possui:
+        - baseline normal (Class_23): 97.656 Hz
+        - falhas (Class_24/Class_25): 48.828 Hz
+
+    Para manter 1 segundo = 48.828 amostras em todas as classes,
+    os sinais de 97.656 Hz são reduzidos por fator 2 usando
+    resample_poly(up=1, down=2), que inclui filtragem anti-aliasing.
+    """
+    try:
+        sample_rate = float(meta.get("sample_rate"))
+    except (TypeError, ValueError):
+        return signal
+
+    target_rate = 48828.0
+
+    if np.isclose(sample_rate, target_rate):
+        return signal
+
+    if np.isclose(sample_rate, 2 * target_rate):
+        signal = np.asarray(signal).reshape(-1)
+        return resample_poly(signal, up=1, down=2)
+
+    raise ValueError(
+        f"Taxa de amostragem MFPT não suportada: "
+        f"{sample_rate} Hz. Esperado 48828 ou 97656 Hz."
+    )
+
 
 def get_names(ds_name, meta):
     """
@@ -248,6 +283,9 @@ def process_dataset(ds_name, ds):
     Gera as duas versões do dataset:
         processed_tl/raw/
         processed_tl/detrended/
+
+    No MFPT, o baseline de 97.656 Hz é reduzido para 48.828 Hz
+    antes do janelamento, mantendo 1 segundo por janela.
     """
 
     pipelines = {
@@ -287,6 +325,13 @@ def process_dataset(ds_name, ds):
 
             if isinstance(meta, pd.DataFrame):
                 meta = meta.iloc[0]
+
+            # MFPT: converte o baseline de 97.656 Hz para 48.828 Hz.
+            if ds_name == "MFPT":
+                sig_array = harmonize_mfpt_sample_rate(
+                    sig_array,
+                    meta,
+                )
 
             # Gera as duas versões usando o MESMO sinal de origem.
             for variant, pipeline in pipelines.items():
