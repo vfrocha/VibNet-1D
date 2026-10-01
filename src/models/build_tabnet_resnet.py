@@ -127,7 +127,7 @@ class HybridDLModel(nn.Module):
 # ---------------------------------------------------------------------------
 # 4. FUNÇÃO DE TREINAMENTO (Otimizada para Multi-Head e Múltiplos Scalers)
 # ---------------------------------------------------------------------------
-def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y_test, task, epochs=60, batch_size=256, encoder_type='mlp'):
+def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y_test, task, epochs=15, batch_size=512, encoder_type='mlp'):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
     train_loaders = {}
@@ -135,7 +135,7 @@ def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y
     num_features = None
     target_scaler = None
     
-    # 1. Padronização por Dataset (Z-Score)
+    # 1. Padronização por Dataset (sem SMOTE para não distorcer as normalizações do experimento)
     for d_name, (X_tr, y_tr) in train_data_dict.items():
         if num_features is None:
             num_features = X_tr.shape[1]
@@ -146,18 +146,16 @@ def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y
         if d_name == target_dataset_name:
             target_scaler = scaler
             
-        # REMOVIDO: SMOTE agressivo. Redes neurais preferem dados originais, 
-        # lidaremos com o desbalanceamento através dos pesos ou deixaremos a atenção agir.
-            
         num_classes = 2 if task == 'detection' else len(np.unique(y_tr))
         dataset_classes_dict[d_name] = num_classes
         
         X_tr_t = torch.tensor(X_tr_s, dtype=torch.float32)
         y_tr_t = torch.tensor(y_tr, dtype=torch.long)
-        # Reduzimos o batch_size de 512 para 256 para o gradiente ter mais saltos estocásticos
-        train_loaders[d_name] = DataLoader(TensorDataset(X_tr_t, y_tr_t), batch_size=batch_size, shuffle=True)
+        
+        # Usa lotes menores para o target para garantir mais passos de gradiente
+        current_bs = min(128, batch_size) if d_name == target_dataset_name else batch_size
+        train_loaders[d_name] = DataLoader(TensorDataset(X_tr_t, y_tr_t), batch_size=current_bs, shuffle=True)
 
-    # 2. Configuração do Teste
     if target_scaler is None:
         target_scaler = StandardScaler()
         X_test_s = target_scaler.fit_transform(X_test)
@@ -165,18 +163,14 @@ def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y
     else:
         X_test_s = target_scaler.transform(X_test)
 
-    # 3. Inicialização do Modelo Multi-Head
     model = HybridDLModel(num_features=num_features, dataset_classes_dict=dataset_classes_dict, encoder_type=encoder_type).to(device)
-    
     criterion = nn.CrossEntropyLoss()
-    # Aumentamos o LR para 0.005 e adicionamos Weight Decay (Regularização L2)
-    optimizer = optim.Adam(model.parameters(), lr=0.005, weight_decay=1e-5)
-    # Adicionamos um Scheduler para diminuir a taxa de aprendizado igual ao baseline puro
-    scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=20, gamma=0.5)
     
-    # 4. Laço de Treinamento
+    # -------------------------------------------------------------------------
+    # ETAPA 1: Pré-treinamento Multi-Domínio (Sources + Target)
+    # -------------------------------------------------------------------------
+    optimizer = optim.Adam(model.parameters(), lr=0.002, weight_decay=1e-5)
     model.train()
-    # Aumentamos consideravelmente o número de épocas para permitir convergência (15 era muito pouco)
     for epoch in range(epochs):
         for d_name, loader in train_loaders.items():
             for bx, by in loader:
@@ -186,13 +180,31 @@ def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y
                 loss = criterion(logits, by)
                 loss.backward()
                 optimizer.step()
-        scheduler.step()
-                
-    # 5. Avaliação (Usando a cabeça do Dataset Alvo)
+
+    # -------------------------------------------------------------------------
+    # ETAPA 2: Fine-Tuning Exclusivo no Target Dataset
+    # -------------------------------------------------------------------------
+    if target_dataset_name in train_loaders:
+        ft_optimizer = optim.Adam(model.parameters(), lr=0.0005, weight_decay=1e-5)
+        target_loader = train_loaders[target_dataset_name]
+        ft_epochs = max(20, epochs) # Garante convergência na máquina-alvo
+        
+        for epoch in range(ft_epochs):
+            for bx, by in target_loader:
+                bx, by = bx.to(device), by.to(device)
+                ft_optimizer.zero_grad()
+                logits, _ = model(bx, dataset_name=target_dataset_name)
+                loss = criterion(logits, by)
+                loss.backward()
+                ft_optimizer.step()
+
+    # -------------------------------------------------------------------------
+    # AVALIAÇÃO
+    # -------------------------------------------------------------------------
     model.eval()
     X_te_t = torch.tensor(X_test_s, dtype=torch.float32)
     y_te_t = torch.tensor(y_test, dtype=torch.long)
-    test_loader = DataLoader(TensorDataset(X_te_t, y_te_t), batch_size=512, shuffle=False)
+    test_loader = DataLoader(TensorDataset(X_te_t, y_te_t), batch_size=1024, shuffle=False)
     
     all_logits, all_attn = [], []
     with torch.no_grad():
@@ -208,7 +220,6 @@ def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y
     preds = np.argmax(probs, axis=1)
     mean_attention = final_attn.mean(dim=0).numpy()
     
-    # 6. Cálculo das Métricas
     bal_acc = balanced_accuracy_score(y_test, preds)
     if task == 'detection':
         roc_auc = roc_auc_score(y_test, probs[:, 1])
@@ -220,4 +231,5 @@ def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y
             roc_auc = 0.0
         macro_f1 = f1_score(y_test, preds, average='macro')
         
+    # Retorno compatível com extract_predictions
     return bal_acc, macro_f1, roc_auc, {'y_pred': preds, 'mean_attention': mean_attention}
