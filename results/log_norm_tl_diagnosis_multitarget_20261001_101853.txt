@@ -1,0 +1,2383 @@
+==========================================================================================
+EXPERIMENTO: TL + DIAGNOSIS + NORMALIZAÇÃO
+==========================================================================================
+Targets/Teste: CWRU_12k, PU, HUST_Gearbox, CWRU_48k
+UOEMD será source sempre que não for o target (e, neste protocolo, nunca é target).
+Modelos: mlp, tabnet
+Tarefa: diagnosis
+Epochs: 15 | Batch size: 512
+Critério principal para seleção da estratégia: Macro F1 médio entre as dobras LOCO.
+
+==========================================================================================
+FASE 1: CARGA E EXTRAÇÃO COMPLETA DAS FEATURES
+==========================================================================================
+  -> CWRU_12k: 2520 janelas | fs=12000 Hz
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+     Features utilizadas: 141
+  -> CWRU_48k: 602 janelas | fs=48000 Hz
+      -> [Fusion] Iniciando extração DUPLA para 602 amostras...
+         [Debug] Shape VibNet: (602, 16)
+         [Debug] Shape SignAI: (602, 125)
+      -> [Fusion] Shape final combinado: (602, 141)
+      -> [Fusion] Iniciando extração DUPLA para 602 amostras...
+         [Debug] Shape VibNet: (602, 16)
+         [Debug] Shape SignAI: (602, 125)
+      -> [Fusion] Shape final combinado: (602, 141)
+      -> [Fusion] Iniciando extração DUPLA para 602 amostras...
+         [Debug] Shape VibNet: (602, 16)
+         [Debug] Shape SignAI: (602, 125)
+      -> [Fusion] Shape final combinado: (602, 141)
+     Features utilizadas: 141
+  -> UOEMD: 1280 janelas | fs=42000 Hz
+      -> [Fusion] Iniciando extração DUPLA para 1280 amostras...
+         [Debug] Shape VibNet: (1280, 16)
+         [Debug] Shape SignAI: (1280, 125)
+      -> [Fusion] Shape final combinado: (1280, 141)
+      -> [Fusion] Iniciando extração DUPLA para 1280 amostras...
+         [Debug] Shape VibNet: (1280, 16)
+         [Debug] Shape SignAI: (1280, 125)
+      -> [Fusion] Shape final combinado: (1280, 141)
+      -> [Fusion] Iniciando extração DUPLA para 1280 amostras...
+         [Debug] Shape VibNet: (1280, 16)
+         [Debug] Shape SignAI: (1280, 125)
+      -> [Fusion] Shape final combinado: (1280, 141)
+     Features utilizadas: 141
+  -> HUST_Gearbox: 900 janelas | fs=25600 Hz
+      -> [Fusion] Iniciando extração DUPLA para 900 amostras...
+         [Debug] Shape VibNet: (900, 16)
+         [Debug] Shape SignAI: (900, 125)
+      -> [Fusion] Shape final combinado: (900, 141)
+      -> [Fusion] Iniciando extração DUPLA para 900 amostras...
+         [Debug] Shape VibNet: (900, 16)
+         [Debug] Shape SignAI: (900, 125)
+      -> [Fusion] Shape final combinado: (900, 141)
+      -> [Fusion] Iniciando extração DUPLA para 900 amostras...
+         [Debug] Shape VibNet: (900, 16)
+         [Debug] Shape SignAI: (900, 125)
+      -> [Fusion] Shape final combinado: (900, 141)
+     Features utilizadas: 141
+  -> HUST: 1101 janelas | fs=51200 Hz
+      -> [Fusion] Iniciando extração DUPLA para 1101 amostras...
+         [Debug] Shape VibNet: (1101, 16)
+         [Debug] Shape SignAI: (1101, 125)
+      -> [Fusion] Shape final combinado: (1101, 141)
+      -> [Fusion] Iniciando extração DUPLA para 1101 amostras...
+         [Debug] Shape VibNet: (1101, 16)
+         [Debug] Shape SignAI: (1101, 125)
+      -> [Fusion] Shape final combinado: (1101, 141)
+      -> [Fusion] Iniciando extração DUPLA para 1101 amostras...
+         [Debug] Shape VibNet: (1101, 16)
+         [Debug] Shape SignAI: (1101, 125)
+      -> [Fusion] Shape final combinado: (1101, 141)
+     Features utilizadas: 141
+  -> PU: 8394 janelas | fs=64000 Hz
+      -> [Fusion] Iniciando extração DUPLA para 8394 amostras...
+         [Debug] Shape VibNet: (8394, 16)
+         [Debug] Shape SignAI: (8394, 125)
+      -> [Fusion] Shape final combinado: (8394, 141)
+      -> [Fusion] Iniciando extração DUPLA para 8394 amostras...
+         [Debug] Shape VibNet: (8394, 16)
+         [Debug] Shape SignAI: (8394, 125)
+      -> [Fusion] Shape final combinado: (8394, 141)
+      -> [Fusion] Iniciando extração DUPLA para 8394 amostras...
+         [Debug] Shape VibNet: (8394, 16)
+         [Debug] Shape SignAI: (8394, 125)
+      -> [Fusion] Shape final combinado: (8394, 141)
+     Features utilizadas: 141
+  -> UORED: 370 janelas | fs=42000 Hz
+      -> [Fusion] Iniciando extração DUPLA para 370 amostras...
+         [Debug] Shape VibNet: (370, 16)
+         [Debug] Shape SignAI: (370, 125)
+      -> [Fusion] Shape final combinado: (370, 141)
+      -> [Fusion] Iniciando extração DUPLA para 370 amostras...
+         [Debug] Shape VibNet: (370, 16)
+         [Debug] Shape SignAI: (370, 125)
+      -> [Fusion] Shape final combinado: (370, 141)
+      -> [Fusion] Iniciando extração DUPLA para 370 amostras...
+         [Debug] Shape VibNet: (370, 16)
+         [Debug] Shape SignAI: (370, 125)
+      -> [Fusion] Shape final combinado: (370, 141)
+     Features utilizadas: 141
+  -> Mechanical_Gear: 180 janelas | fs=5000 Hz
+      -> [Fusion] Iniciando extração DUPLA para 180 amostras...
+         [Debug] Shape VibNet: (180, 16)
+         [Debug] Shape SignAI: (180, 125)
+      -> [Fusion] Shape final combinado: (180, 141)
+      -> [Fusion] Iniciando extração DUPLA para 180 amostras...
+         [Debug] Shape VibNet: (180, 16)
+         [Debug] Shape SignAI: (180, 125)
+      -> [Fusion] Shape final combinado: (180, 141)
+      -> [Fusion] Iniciando extração DUPLA para 180 amostras...
+         [Debug] Shape VibNet: (180, 16)
+         [Debug] Shape SignAI: (180, 125)
+      -> [Fusion] Shape final combinado: (180, 141)
+     Features utilizadas: 141
+  -> Electric_Motor: 66 janelas | fs=50000 Hz
+      -> [Fusion] Iniciando extração DUPLA para 66 amostras...
+         [Debug] Shape VibNet: (66, 16)
+         [Debug] Shape SignAI: (66, 125)
+      -> [Fusion] Shape final combinado: (66, 141)
+      -> [Fusion] Iniciando extração DUPLA para 66 amostras...
+         [Debug] Shape VibNet: (66, 16)
+         [Debug] Shape SignAI: (66, 125)
+      -> [Fusion] Shape final combinado: (66, 141)
+      -> [Fusion] Iniciando extração DUPLA para 66 amostras...
+         [Debug] Shape VibNet: (66, 16)
+         [Debug] Shape SignAI: (66, 125)
+      -> [Fusion] Shape final combinado: (66, 141)
+     Features utilizadas: 141
+Número de datasets disponíveis: 9
+Número de features utilizadas: 141
+Datasets: CWRU_12k, CWRU_48k, Electric_Motor, HUST, HUST_Gearbox, Mechanical_Gear, PU, UOEMD, UORED
+
+==========================================================================================
+FASE 2: MATRIZ EXPERIMENTAL / MULTI-TARGET LOCO
+==========================================================================================
+
+==========================================================================================
+TARGET DATASET: CWRU_12k
+==========================================================================================
+Sources (8): CWRU_48k, Electric_Motor, HUST, HUST_Gearbox, Mechanical_Gear, PU, UOEMD, UORED
+Condições LOCO: 4
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 0_Baseline
+  Pretrain: raw
+  Fine-tune: raw
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=CWRU_12k | Test condition=Load_0HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7550 | Bal Acc=0.8040 | Macro F1=0.7991 | ROC-AUC=0.9096
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 25 with best_epoch = 22 and best_val_0_unsup_loss_numpy = 0.42719000577926636
+
+Early stopping occurred at epoch 58 with best_epoch = 38 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7533 | Bal Acc=0.8029 | Macro F1=0.7994 | ROC-AUC=0.9276
+
+[LOCO] Target=CWRU_12k | Test condition=Load_1HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9109 | Bal Acc=0.9225 | Macro F1=0.9223 | ROC-AUC=0.9790
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 89 with best_epoch = 69 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9000 | Bal Acc=0.9122 | Macro F1=0.9112 | ROC-AUC=0.9833
+
+[LOCO] Target=CWRU_12k | Test condition=Load_2HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9875 | Bal Acc=0.9893 | Macro F1=0.9892 | ROC-AUC=0.9997
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 84 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9625 | Bal Acc=0.9676 | Macro F1=0.9676 | ROC-AUC=0.9970
+
+[LOCO] Target=CWRU_12k | Test condition=Load_3HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9313 | Bal Acc=0.9404 | Macro F1=0.9415 | ROC-AUC=0.9841
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 73 with best_epoch = 53 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9250 | Bal Acc=0.9328 | Macro F1=0.9354 | ROC-AUC=0.9684
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 1_ZScore_Puro
+  Pretrain: window_zscore
+  Fine-tune: window_zscore
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=CWRU_12k | Test condition=Load_0HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7817 | Bal Acc=0.8262 | Macro F1=0.8211 | ROC-AUC=0.9294
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 25 with best_epoch = 24 and best_val_0_unsup_loss_numpy = 0.478520005941391
+
+Early stopping occurred at epoch 66 with best_epoch = 46 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7150 | Bal Acc=0.5749 | Macro F1=0.5526 | ROC-AUC=0.9008
+
+[LOCO] Target=CWRU_12k | Test condition=Load_1HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8953 | Bal Acc=0.9096 | Macro F1=0.9099 | ROC-AUC=0.9844
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 82 and best_train_balanced_accuracy = 0.99956
+     [TABNET (TL)] ACC=0.9156 | Bal Acc=0.9277 | Macro F1=0.9272 | ROC-AUC=0.9933
+
+[LOCO] Target=CWRU_12k | Test condition=Load_2HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9641 | Bal Acc=0.9693 | Macro F1=0.9691 | ROC-AUC=0.9978
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 92 with best_epoch = 72 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9484 | Bal Acc=0.9557 | Macro F1=0.9560 | ROC-AUC=0.9963
+
+[LOCO] Target=CWRU_12k | Test condition=Load_3HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9250 | Bal Acc=0.9350 | Macro F1=0.9358 | ROC-AUC=0.9801
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 81 with best_epoch = 61 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8609 | Bal Acc=0.8805 | Macro F1=0.8823 | ROC-AUC=0.9647
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 2_RMS_Puro
+  Pretrain: window_rms
+  Fine-tune: window_rms
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=CWRU_12k | Test condition=Load_0HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7833 | Bal Acc=0.8273 | Macro F1=0.8210 | ROC-AUC=0.9380
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 86 with best_epoch = 66 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.6650 | Bal Acc=0.5732 | Macro F1=0.5865 | ROC-AUC=0.9032
+
+[LOCO] Target=CWRU_12k | Test condition=Load_1HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8859 | Bal Acc=0.9008 | Macro F1=0.9003 | ROC-AUC=0.9764
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 98 with best_epoch = 78 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9281 | Bal Acc=0.9387 | Macro F1=0.9385 | ROC-AUC=0.9917
+
+[LOCO] Target=CWRU_12k | Test condition=Load_2HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9563 | Bal Acc=0.9625 | Macro F1=0.9623 | ROC-AUC=0.9965
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 91 with best_epoch = 71 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9531 | Bal Acc=0.9599 | Macro F1=0.9596 | ROC-AUC=0.9943
+
+[LOCO] Target=CWRU_12k | Test condition=Load_3HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9250 | Bal Acc=0.9352 | Macro F1=0.9361 | ROC-AUC=0.9788
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 82 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8734 | Bal Acc=0.8902 | Macro F1=0.8910 | ROC-AUC=0.9681
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 3_ZScore_Raw
+  Pretrain: window_zscore
+  Fine-tune: raw
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=CWRU_12k | Test condition=Load_0HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7550 | Bal Acc=0.8040 | Macro F1=0.7989 | ROC-AUC=0.9148
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 81 with best_epoch = 61 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7533 | Bal Acc=0.7682 | Macro F1=0.7794 | ROC-AUC=0.9151
+
+[LOCO] Target=CWRU_12k | Test condition=Load_1HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9141 | Bal Acc=0.9250 | Macro F1=0.9247 | ROC-AUC=0.9757
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 81 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9094 | Bal Acc=0.9212 | Macro F1=0.9212 | ROC-AUC=0.9758
+
+[LOCO] Target=CWRU_12k | Test condition=Load_2HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9828 | Bal Acc=0.9855 | Macro F1=0.9852 | ROC-AUC=0.9999
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 96 with best_epoch = 76 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9547 | Bal Acc=0.9604 | Macro F1=0.9608 | ROC-AUC=0.9949
+
+[LOCO] Target=CWRU_12k | Test condition=Load_3HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9375 | Bal Acc=0.9453 | Macro F1=0.9468 | ROC-AUC=0.9743
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 95 with best_epoch = 75 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8438 | Bal Acc=0.8656 | Macro F1=0.8675 | ROC-AUC=0.9521
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 4_RMS_Raw
+  Pretrain: window_rms
+  Fine-tune: raw
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=CWRU_12k | Test condition=Load_0HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7567 | Bal Acc=0.8052 | Macro F1=0.8008 | ROC-AUC=0.9334
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 81 with best_epoch = 61 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7533 | Bal Acc=0.7682 | Macro F1=0.7794 | ROC-AUC=0.9151
+
+[LOCO] Target=CWRU_12k | Test condition=Load_1HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9109 | Bal Acc=0.9223 | Macro F1=0.9221 | ROC-AUC=0.9753
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 81 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9094 | Bal Acc=0.9212 | Macro F1=0.9212 | ROC-AUC=0.9758
+
+[LOCO] Target=CWRU_12k | Test condition=Load_2HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9781 | Bal Acc=0.9816 | Macro F1=0.9812 | ROC-AUC=0.9997
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 96 with best_epoch = 76 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9547 | Bal Acc=0.9604 | Macro F1=0.9608 | ROC-AUC=0.9949
+
+[LOCO] Target=CWRU_12k | Test condition=Load_3HP
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9422 | Bal Acc=0.9495 | Macro F1=0.9510 | ROC-AUC=0.9703
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 95 with best_epoch = 75 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8438 | Bal Acc=0.8656 | Macro F1=0.8675 | ROC-AUC=0.9521
+
+==========================================================================================
+TARGET DATASET: PU
+==========================================================================================
+Sources (8): CWRU_12k, CWRU_48k, Electric_Motor, HUST, HUST_Gearbox, Mechanical_Gear, UOEMD, UORED
+Condições LOCO: 5
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 0_Baseline
+  Pretrain: raw
+  Fine-tune: raw
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=PU | Test condition=C1_1500rpm_0.7Nm_1000N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7066 | Bal Acc=0.6681 | Macro F1=0.5021 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 21 with best_epoch = 11 and best_val_0_unsup_loss_numpy = 0.48138999938964844
+
+Early stopping occurred at epoch 56 with best_epoch = 36 and best_train_balanced_accuracy = 0.79951
+     [TABNET (TL)] ACC=0.7121 | Bal Acc=0.6743 | Macro F1=0.5112 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=C2_900rpm_0.7Nm_1000N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1514 | Bal Acc=0.0913 | Macro F1=0.1069 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 38 with best_epoch = 18 and best_train_balanced_accuracy = 0.8123
+     [TABNET (TL)] ACC=0.2717 | Bal Acc=0.2748 | Macro F1=0.2905 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=C3_1500rpm_0.1Nm_1000N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6928 | Bal Acc=0.6604 | Macro F1=0.4864 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 29 with best_epoch = 9 and best_train_balanced_accuracy = 0.78603
+     [TABNET (TL)] ACC=0.5965 | Bal Acc=0.6169 | Macro F1=0.4184 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=C4_1500rpm_0.7Nm_400N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6363 | Bal Acc=0.5965 | Macro F1=0.4530 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 84 and best_train_balanced_accuracy = 0.81139
+     [TABNET (TL)] ACC=0.6450 | Bal Acc=0.6323 | Macro F1=0.4584 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=Class_Normal
+  [AVISO] Nenhuma classe do teste está presente no treino target. Pulando.
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 1_ZScore_Puro
+  Pretrain: window_zscore
+  Fine-tune: window_zscore
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=PU | Test condition=C1_1500rpm_0.7Nm_1000N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6998 | Bal Acc=0.6635 | Macro F1=0.4988 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 25 with best_epoch = 24 and best_val_0_unsup_loss_numpy = 0.4681999981403351
+Stop training because you reached max_epochs = 100 with best_epoch = 94 and best_train_balanced_accuracy = 0.81017
+     [TABNET (TL)] ACC=0.6937 | Bal Acc=0.6600 | Macro F1=0.4937 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=C2_900rpm_0.7Nm_1000N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1563 | Bal Acc=0.1946 | Macro F1=0.1755 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 47 with best_epoch = 27 and best_train_balanced_accuracy = 0.81243
+     [TABNET (TL)] ACC=0.1749 | Bal Acc=0.2279 | Macro F1=0.1800 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=C3_1500rpm_0.1Nm_1000N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7020 | Bal Acc=0.6642 | Macro F1=0.4978 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 47 with best_epoch = 27 and best_train_balanced_accuracy = 0.79873
+     [TABNET (TL)] ACC=0.7070 | Bal Acc=0.6712 | Macro F1=0.5059 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=C4_1500rpm_0.7Nm_400N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.4895 | Bal Acc=0.4914 | Macro F1=0.3977 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 98 with best_epoch = 78 and best_train_balanced_accuracy = 0.81222
+     [TABNET (TL)] ACC=0.5347 | Bal Acc=0.5361 | Macro F1=0.4360 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=Class_Normal
+  [AVISO] Nenhuma classe do teste está presente no treino target. Pulando.
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 2_RMS_Puro
+  Pretrain: window_rms
+  Fine-tune: window_rms
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=PU | Test condition=C1_1500rpm_0.7Nm_1000N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7017 | Bal Acc=0.6646 | Macro F1=0.4992 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 44 with best_epoch = 24 and best_train_balanced_accuracy = 0.79564
+     [TABNET (TL)] ACC=0.6998 | Bal Acc=0.6677 | Macro F1=0.5006 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=C2_900rpm_0.7Nm_1000N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1948 | Bal Acc=0.2863 | Macro F1=0.2122 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 40 with best_epoch = 20 and best_train_balanced_accuracy = 0.81222
+     [TABNET (TL)] ACC=0.2060 | Bal Acc=0.2378 | Macro F1=0.2115 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=C3_1500rpm_0.1Nm_1000N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7008 | Bal Acc=0.6635 | Macro F1=0.4962 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 99 and best_train_balanced_accuracy = 0.80813
+     [TABNET (TL)] ACC=0.6848 | Bal Acc=0.6558 | Macro F1=0.4805 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=C4_1500rpm_0.7Nm_400N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.4839 | Bal Acc=0.4868 | Macro F1=0.4125 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 36 with best_epoch = 16 and best_train_balanced_accuracy = 0.80423
+     [TABNET (TL)] ACC=0.6295 | Bal Acc=0.5601 | Macro F1=0.4403 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=Class_Normal
+  [AVISO] Nenhuma classe do teste está presente no treino target. Pulando.
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 3_ZScore_Raw
+  Pretrain: window_zscore
+  Fine-tune: raw
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=PU | Test condition=C1_1500rpm_0.7Nm_1000N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7053 | Bal Acc=0.6667 | Macro F1=0.5000 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 98 and best_train_balanced_accuracy = 0.80391
+     [TABNET (TL)] ACC=0.7060 | Bal Acc=0.6677 | Macro F1=0.5013 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=C2_900rpm_0.7Nm_1000N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1439 | Bal Acc=0.0810 | Macro F1=0.0902 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 48 with best_epoch = 28 and best_train_balanced_accuracy = 0.81243
+     [TABNET (TL)] ACC=0.1917 | Bal Acc=0.1079 | Macro F1=0.1077 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=C3_1500rpm_0.1Nm_1000N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6996 | Bal Acc=0.6642 | Macro F1=0.4946 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 88 with best_epoch = 68 and best_train_balanced_accuracy = 0.80569
+     [TABNET (TL)] ACC=0.7064 | Bal Acc=0.6687 | Macro F1=0.5046 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=C4_1500rpm_0.7Nm_400N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6128 | Bal Acc=0.5802 | Macro F1=0.4608 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 87 and best_train_balanced_accuracy = 0.81183
+     [TABNET (TL)] ACC=0.6270 | Bal Acc=0.5868 | Macro F1=0.4680 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=Class_Normal
+  [AVISO] Nenhuma classe do teste está presente no treino target. Pulando.
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 4_RMS_Raw
+  Pretrain: window_rms
+  Fine-tune: raw
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=PU | Test condition=C1_1500rpm_0.7Nm_1000N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7053 | Bal Acc=0.6667 | Macro F1=0.5000 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 98 and best_train_balanced_accuracy = 0.80391
+     [TABNET (TL)] ACC=0.7060 | Bal Acc=0.6677 | Macro F1=0.5013 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=C2_900rpm_0.7Nm_1000N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1483 | Bal Acc=0.0834 | Macro F1=0.0886 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 48 with best_epoch = 28 and best_train_balanced_accuracy = 0.81243
+     [TABNET (TL)] ACC=0.1917 | Bal Acc=0.1079 | Macro F1=0.1077 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=C3_1500rpm_0.1Nm_1000N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7014 | Bal Acc=0.6653 | Macro F1=0.4969 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 88 with best_epoch = 68 and best_train_balanced_accuracy = 0.80569
+     [TABNET (TL)] ACC=0.7064 | Bal Acc=0.6687 | Macro F1=0.5046 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=C4_1500rpm_0.7Nm_400N
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.5967 | Bal Acc=0.5594 | Macro F1=0.4512 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 87 and best_train_balanced_accuracy = 0.81183
+     [TABNET (TL)] ACC=0.6270 | Bal Acc=0.5868 | Macro F1=0.4680 | ROC-AUC=0.0000
+
+[LOCO] Target=PU | Test condition=Class_Normal
+  [AVISO] Nenhuma classe do teste está presente no treino target. Pulando.
+
+==========================================================================================
+TARGET DATASET: HUST_Gearbox
+==========================================================================================
+Sources (8): CWRU_12k, CWRU_48k, Electric_Motor, HUST, Mechanical_Gear, PU, UOEMD, UORED
+Condições LOCO: 30
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 0_Baseline
+  Pretrain: raw
+  Fine-tune: raw
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 25 with best_epoch = 23 and best_val_0_unsup_loss_numpy = 0.44666001200675964
+
+Early stopping occurred at epoch 49 with best_epoch = 29 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 33 with best_epoch = 13 and best_train_balanced_accuracy = 0.99655
+     [TABNET (TL)] ACC=0.8333 | Bal Acc=0.8333 | Macro F1=0.8222 | ROC-AUC=0.9767
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 38 with best_epoch = 18 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 39 with best_epoch = 19 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8667 | Bal Acc=0.8667 | Macro F1=0.8611 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.3667 | Bal Acc=0.3667 | Macro F1=0.3651 | ROC-AUC=0.6667
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 36 with best_epoch = 16 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.3667 | Bal Acc=0.3667 | Macro F1=0.3651 | ROC-AUC=0.4833
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 56 with best_epoch = 36 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 40 with best_epoch = 20 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 43 with best_epoch = 23 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 49 with best_epoch = 29 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 41 with best_epoch = 21 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 43 with best_epoch = 23 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 49 with best_epoch = 29 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 42 with best_epoch = 22 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 43 with best_epoch = 23 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 45 with best_epoch = 25 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 58 with best_epoch = 38 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 41 with best_epoch = 21 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 51 with best_epoch = 31 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 47 with best_epoch = 27 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8333 | Bal Acc=0.8333 | Macro F1=0.8222 | ROC-AUC=0.8500
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 38 with best_epoch = 18 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9000 | Bal Acc=0.9000 | Macro F1=0.8950 | ROC-AUC=0.8767
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 57 with best_epoch = 37 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 43 with best_epoch = 23 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 40 with best_epoch = 20 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 47 with best_epoch = 27 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 47 with best_epoch = 27 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L0_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 39 with best_epoch = 19 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8000 | Bal Acc=0.8000 | Macro F1=0.7802 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L1_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 45 with best_epoch = 25 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9000 | Bal Acc=0.9000 | Macro F1=0.8977 | ROC-AUC=0.9967
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L2_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 51 with best_epoch = 31 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9000 | Bal Acc=0.9000 | Macro F1=0.8977 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L3_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 45 with best_epoch = 25 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L4_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 42 with best_epoch = 22 and best_train_balanced_accuracy = 0.99885
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 1_ZScore_Puro
+  Pretrain: window_zscore
+  Fine-tune: window_zscore
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 25 with best_epoch = 23 and best_val_0_unsup_loss_numpy = 0.4268699884414673
+
+Early stopping occurred at epoch 56 with best_epoch = 36 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 83 with best_epoch = 63 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 65 with best_epoch = 45 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=0.9933
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 56 with best_epoch = 36 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=0.6667
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=0.8733
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 51 with best_epoch = 31 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7000 | Bal Acc=0.7000 | Macro F1=0.6238 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 69 with best_epoch = 49 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7333 | Bal Acc=0.7333 | Macro F1=0.6825 | ROC-AUC=0.9983
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8000 | Bal Acc=0.8000 | Macro F1=0.7802 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 64 with best_epoch = 44 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8000 | Bal Acc=0.8000 | Macro F1=0.7802 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8333 | Bal Acc=0.8333 | Macro F1=0.8222 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 42 with best_epoch = 22 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7000 | Bal Acc=0.7000 | Macro F1=0.6238 | ROC-AUC=0.9983
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 59 with best_epoch = 39 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 53 with best_epoch = 33 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 46 with best_epoch = 26 and best_train_balanced_accuracy = 0.99885
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 59 with best_epoch = 39 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 62 with best_epoch = 42 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 40 with best_epoch = 20 and best_train_balanced_accuracy = 0.99885
+     [TABNET (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=0.8883
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 57 with best_epoch = 37 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 60 with best_epoch = 40 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 63 with best_epoch = 43 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8667 | Bal Acc=0.8667 | Macro F1=0.8611 | ROC-AUC=0.9333
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7333 | Bal Acc=0.7333 | Macro F1=0.6676 | ROC-AUC=0.9083
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 50 with best_epoch = 30 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8667 | Bal Acc=0.8667 | Macro F1=0.8573 | ROC-AUC=0.9017
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8667 | Bal Acc=0.8667 | Macro F1=0.8611 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 53 with best_epoch = 33 and best_train_balanced_accuracy = 0.9977
+     [TABNET (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=0.9417
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 62 with best_epoch = 42 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8667 | Bal Acc=0.8667 | Macro F1=0.8611 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 56 with best_epoch = 36 and best_train_balanced_accuracy = 0.99885
+     [TABNET (TL)] ACC=0.7333 | Bal Acc=0.7333 | Macro F1=0.6825 | ROC-AUC=0.9467
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 64 with best_epoch = 44 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 57 with best_epoch = 37 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L0_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 81 with best_epoch = 61 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8667 | Bal Acc=0.8667 | Macro F1=0.8611 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L1_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 59 with best_epoch = 39 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9333 | Bal Acc=0.9333 | Macro F1=0.9327 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L2_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 40 with best_epoch = 20 and best_train_balanced_accuracy = 0.99885
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L3_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9333 | Bal Acc=0.9333 | Macro F1=0.9327 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 64 with best_epoch = 44 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L4_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 75 with best_epoch = 55 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 2_RMS_Puro
+  Pretrain: window_rms
+  Fine-tune: window_rms
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 62 with best_epoch = 42 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 83 with best_epoch = 63 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 64 with best_epoch = 44 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.6333 | Bal Acc=0.6333 | Macro F1=0.5402 | ROC-AUC=0.9617
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 61 with best_epoch = 41 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=0.6933
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 46 with best_epoch = 26 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.3333 | Bal Acc=0.3333 | Macro F1=0.3333 | ROC-AUC=0.6667
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 62 with best_epoch = 42 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 70 with best_epoch = 50 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 68 with best_epoch = 48 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=0.9850
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8667 | Bal Acc=0.8667 | Macro F1=0.8611 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 53 with best_epoch = 33 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8000 | Bal Acc=0.8000 | Macro F1=0.7802 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8000 | Bal Acc=0.8000 | Macro F1=0.7802 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 42 with best_epoch = 22 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8667 | Bal Acc=0.8667 | Macro F1=0.8611 | ROC-AUC=0.9583
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 58 with best_epoch = 38 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 69 with best_epoch = 49 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 56 with best_epoch = 36 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 71 with best_epoch = 51 and best_train_balanced_accuracy = 0.99885
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 64 with best_epoch = 44 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 52 with best_epoch = 32 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 65 with best_epoch = 45 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 49 with best_epoch = 29 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 50 with best_epoch = 30 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7333 | Bal Acc=0.7333 | Macro F1=0.6676 | ROC-AUC=0.9000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7333 | Bal Acc=0.7333 | Macro F1=0.6676 | ROC-AUC=0.7817
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9333 | Bal Acc=0.9333 | Macro F1=0.9327 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 47 with best_epoch = 27 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=0.8133
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 58 with best_epoch = 38 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7333 | Bal Acc=0.7333 | Macro F1=0.6825 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 65 with best_epoch = 45 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7333 | Bal Acc=0.7333 | Macro F1=0.6825 | ROC-AUC=0.7533
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 67 with best_epoch = 47 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 59 with best_epoch = 39 and best_train_balanced_accuracy = 0.99885
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L0_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 61 with best_epoch = 41 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8667 | Bal Acc=0.8667 | Macro F1=0.8611 | ROC-AUC=0.9967
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L1_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 65 with best_epoch = 45 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9333 | Bal Acc=0.9333 | Macro F1=0.9327 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L2_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 53 with best_epoch = 33 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L3_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 68 with best_epoch = 48 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L4_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 63 with best_epoch = 43 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 3_ZScore_Raw
+  Pretrain: window_zscore
+  Fine-tune: raw
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 43 with best_epoch = 23 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 50 with best_epoch = 30 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 49 with best_epoch = 29 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 45 with best_epoch = 25 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8667 | Bal Acc=0.8667 | Macro F1=0.8611 | ROC-AUC=0.9867
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.3333 | Bal Acc=0.3333 | Macro F1=0.3333 | ROC-AUC=0.6667
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 40 with best_epoch = 20 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.5667 | Bal Acc=0.5667 | Macro F1=0.5062 | ROC-AUC=0.6250
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 60 with best_epoch = 40 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 44 with best_epoch = 24 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 64 with best_epoch = 44 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=0.9983
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 42 with best_epoch = 22 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=0.9867
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 47 with best_epoch = 27 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 42 with best_epoch = 22 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 52 with best_epoch = 32 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 43 with best_epoch = 23 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 41 with best_epoch = 21 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 62 with best_epoch = 42 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 57 with best_epoch = 37 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 57 with best_epoch = 37 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8667 | Bal Acc=0.8667 | Macro F1=0.8611 | ROC-AUC=0.9133
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 43 with best_epoch = 23 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9333 | Bal Acc=0.9333 | Macro F1=0.9327 | ROC-AUC=0.9667
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 53 with best_epoch = 33 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 52 with best_epoch = 32 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7667 | Bal Acc=0.7667 | Macro F1=0.7341 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 61 with best_epoch = 41 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 65 with best_epoch = 45 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L0_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9333 | Bal Acc=0.9333 | Macro F1=0.9327 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 38 with best_epoch = 18 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9000 | Bal Acc=0.9000 | Macro F1=0.8977 | ROC-AUC=0.9417
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L1_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 53 with best_epoch = 33 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9000 | Bal Acc=0.9000 | Macro F1=0.8977 | ROC-AUC=0.9900
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L2_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 51 with best_epoch = 31 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L3_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 43 with best_epoch = 23 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9000 | Bal Acc=0.9000 | Macro F1=0.8997 | ROC-AUC=0.9800
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L4_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 47 with best_epoch = 27 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 4_RMS_Raw
+  Pretrain: window_rms
+  Fine-tune: raw
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 43 with best_epoch = 23 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 50 with best_epoch = 30 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 49 with best_epoch = 29 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 45 with best_epoch = 25 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8667 | Bal Acc=0.8667 | Macro F1=0.8611 | ROC-AUC=0.9867
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_20_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.3333 | Bal Acc=0.3333 | Macro F1=0.3333 | ROC-AUC=0.6667
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 40 with best_epoch = 20 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.5667 | Bal Acc=0.5667 | Macro F1=0.5062 | ROC-AUC=0.6250
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 60 with best_epoch = 40 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 44 with best_epoch = 24 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 64 with best_epoch = 44 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_25_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=0.9883
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 42 with best_epoch = 22 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.6667 | Bal Acc=0.6667 | Macro F1=0.5556 | ROC-AUC=0.9867
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 47 with best_epoch = 27 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 42 with best_epoch = 22 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 52 with best_epoch = 32 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 43 with best_epoch = 23 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_30_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 41 with best_epoch = 21 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 62 with best_epoch = 42 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 57 with best_epoch = 37 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 57 with best_epoch = 37 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_35_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8667 | Bal Acc=0.8667 | Macro F1=0.8611 | ROC-AUC=0.9333
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 43 with best_epoch = 23 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9333 | Bal Acc=0.9333 | Macro F1=0.9327 | ROC-AUC=0.9667
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_1
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 53 with best_epoch = 33 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_2
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 52 with best_epoch = 32 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7667 | Bal Acc=0.7667 | Macro F1=0.7341 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_3
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 61 with best_epoch = 41 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_40_4
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 65 with best_epoch = 45 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L0_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8667 | Bal Acc=0.8667 | Macro F1=0.8611 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 38 with best_epoch = 18 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9000 | Bal Acc=0.9000 | Macro F1=0.8977 | ROC-AUC=0.9417
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L1_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 53 with best_epoch = 33 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9000 | Bal Acc=0.9000 | Macro F1=0.8977 | ROC-AUC=0.9900
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L2_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 51 with best_epoch = 31 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L3_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 43 with best_epoch = 23 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9000 | Bal Acc=0.9000 | Macro F1=0.8997 | ROC-AUC=0.9800
+
+[LOCO] Target=HUST_Gearbox | Test condition=Cond_L4_VS_0_40_0
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 47 with best_epoch = 27 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+==========================================================================================
+TARGET DATASET: CWRU_48k
+==========================================================================================
+Sources (8): CWRU_12k, Electric_Motor, HUST, HUST_Gearbox, Mechanical_Gear, PU, UOEMD, UORED
+Condições LOCO: 12
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 0_Baseline
+  Pretrain: raw
+  Fine-tune: raw
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=CWRU_48k | Test condition=Load_0HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.5667 | Bal Acc=0.5667 | Macro F1=0.4627 | ROC-AUC=0.8883
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 25 with best_epoch = 24 and best_val_0_unsup_loss_numpy = 0.43042001128196716
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8333 | Bal Acc=0.8333 | Macro F1=0.8222 | ROC-AUC=0.9217
+
+[LOCO] Target=CWRU_48k | Test condition=Load_0HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9000 | Bal Acc=0.9000 | Macro F1=0.8990 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 54 with best_epoch = 34 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8000 | Bal Acc=0.8000 | Macro F1=0.5630 | ROC-AUC=0.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_0HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8889 | Bal Acc=0.9333 | Macro F1=0.8963 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 60 with best_epoch = 40 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7222 | Bal Acc=0.6833 | Macro F1=0.6825 | ROC-AUC=0.9250
+
+[LOCO] Target=CWRU_48k | Test condition=Load_1HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 65 with best_epoch = 45 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7833 | Bal Acc=0.7833 | Macro F1=0.7765 | ROC-AUC=0.9504
+
+[LOCO] Target=CWRU_48k | Test condition=Load_1HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8333 | Bal Acc=0.8000 | Macro F1=0.8064 | ROC-AUC=0.9554
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 61 with best_epoch = 41 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8148 | Bal Acc=0.7833 | Macro F1=0.7886 | ROC-AUC=0.9106
+
+[LOCO] Target=CWRU_48k | Test condition=Load_1HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 71 with best_epoch = 51 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=1.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_2HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9833 | Bal Acc=0.9833 | Macro F1=0.9833 | ROC-AUC=0.9996
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 76 with best_epoch = 56 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8833 | Bal Acc=0.8833 | Macro F1=0.8796 | ROC-AUC=0.9896
+
+[LOCO] Target=CWRU_48k | Test condition=Load_2HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9662 | ROC-AUC=0.9792
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8000 | Bal Acc=0.8000 | Macro F1=0.7932 | ROC-AUC=0.9562
+
+[LOCO] Target=CWRU_48k | Test condition=Load_2HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 54 with best_epoch = 34 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9833 | Bal Acc=0.9833 | Macro F1=0.9833 | ROC-AUC=1.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_3HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8833 | Bal Acc=0.8833 | Macro F1=0.8796 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 61 with best_epoch = 41 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8333 | Bal Acc=0.8333 | Macro F1=0.8151 | ROC-AUC=0.9850
+
+[LOCO] Target=CWRU_48k | Test condition=Load_3HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=0.9500
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 61 with best_epoch = 41 and best_train_balanced_accuracy = 0.99819
+     [TABNET (TL)] ACC=0.8167 | Bal Acc=0.8167 | Macro F1=0.8084 | ROC-AUC=0.9750
+
+[LOCO] Target=CWRU_48k | Test condition=Load_3HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9833 | Bal Acc=0.9833 | Macro F1=0.9833 | ROC-AUC=0.9996
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 68 with best_epoch = 48 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9833 | Bal Acc=0.9833 | Macro F1=0.9833 | ROC-AUC=1.0000
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 1_ZScore_Puro
+  Pretrain: window_zscore
+  Fine-tune: window_zscore
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=CWRU_48k | Test condition=Load_0HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8667 | Bal Acc=0.8667 | Macro F1=0.8611 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 25 with best_epoch = 21 and best_val_0_unsup_loss_numpy = 0.4727500081062317
+
+Early stopping occurred at epoch 59 with best_epoch = 39 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8333 | Bal Acc=0.8333 | Macro F1=0.8222 | ROC-AUC=0.8667
+
+[LOCO] Target=CWRU_48k | Test condition=Load_0HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 61 with best_epoch = 41 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.6000 | Bal Acc=0.6000 | Macro F1=0.3675 | ROC-AUC=0.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_0HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8889 | Bal Acc=0.9333 | Macro F1=0.8963 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 65 with best_epoch = 45 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8889 | Bal Acc=0.8333 | Macro F1=0.8222 | ROC-AUC=1.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_1HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 63 with best_epoch = 43 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8333 | Bal Acc=0.8333 | Macro F1=0.8222 | ROC-AUC=1.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_1HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9815 | Bal Acc=0.9833 | Macro F1=0.9833 | ROC-AUC=0.9975
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 72 with best_epoch = 52 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8333 | Bal Acc=0.8429 | Macro F1=0.8352 | ROC-AUC=0.9734
+
+[LOCO] Target=CWRU_48k | Test condition=Load_1HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 66 with best_epoch = 46 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_2HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8333 | Bal Acc=0.8333 | Macro F1=0.8195 | ROC-AUC=0.9758
+
+[LOCO] Target=CWRU_48k | Test condition=Load_2HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9667 | ROC-AUC=0.9983
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 76 with best_epoch = 56 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9500 | Bal Acc=0.9500 | Macro F1=0.9499 | ROC-AUC=0.9846
+
+[LOCO] Target=CWRU_48k | Test condition=Load_2HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 71 with best_epoch = 51 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_3HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8333 | Bal Acc=0.8333 | Macro F1=0.8222 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 69 with best_epoch = 49 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9833 | Bal Acc=0.9833 | Macro F1=0.9833 | ROC-AUC=1.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_3HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=0.9500
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 67 with best_epoch = 47 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8833 | Bal Acc=0.8833 | Macro F1=0.8823 | ROC-AUC=0.9863
+
+[LOCO] Target=CWRU_48k | Test condition=Load_3HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 60 with best_epoch = 40 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9333 | Bal Acc=0.9333 | Macro F1=0.9316 | ROC-AUC=0.9983
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 2_RMS_Puro
+  Pretrain: window_rms
+  Fine-tune: window_rms
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=CWRU_48k | Test condition=Load_0HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8333 | Bal Acc=0.8333 | Macro F1=0.8222 | ROC-AUC=0.9983
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 59 with best_epoch = 39 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8333 | Bal Acc=0.8333 | Macro F1=0.8222 | ROC-AUC=0.8667
+
+[LOCO] Target=CWRU_48k | Test condition=Load_0HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 61 with best_epoch = 41 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.6000 | Bal Acc=0.6000 | Macro F1=0.3675 | ROC-AUC=0.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_0HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8889 | Bal Acc=0.9333 | Macro F1=0.8963 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 65 with best_epoch = 45 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8889 | Bal Acc=0.8333 | Macro F1=0.8222 | ROC-AUC=1.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_1HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 63 with best_epoch = 43 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8333 | Bal Acc=0.8333 | Macro F1=0.8222 | ROC-AUC=1.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_1HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9815 | Bal Acc=0.9833 | Macro F1=0.9833 | ROC-AUC=0.9990
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 72 with best_epoch = 52 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8333 | Bal Acc=0.8429 | Macro F1=0.8352 | ROC-AUC=0.9734
+
+[LOCO] Target=CWRU_48k | Test condition=Load_1HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 66 with best_epoch = 46 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_2HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8333 | Bal Acc=0.8333 | Macro F1=0.8195 | ROC-AUC=0.9758
+
+[LOCO] Target=CWRU_48k | Test condition=Load_2HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9667 | ROC-AUC=0.9992
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 76 with best_epoch = 56 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9500 | Bal Acc=0.9500 | Macro F1=0.9499 | ROC-AUC=0.9846
+
+[LOCO] Target=CWRU_48k | Test condition=Load_2HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 71 with best_epoch = 51 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_3HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8333 | Bal Acc=0.8333 | Macro F1=0.8222 | ROC-AUC=0.7662
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 69 with best_epoch = 49 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9833 | Bal Acc=0.9833 | Macro F1=0.9833 | ROC-AUC=1.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_3HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=0.9500
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 67 with best_epoch = 47 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8833 | Bal Acc=0.8833 | Macro F1=0.8823 | ROC-AUC=0.9863
+
+[LOCO] Target=CWRU_48k | Test condition=Load_3HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9833 | Bal Acc=0.9833 | Macro F1=0.9833 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 60 with best_epoch = 40 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9333 | Bal Acc=0.9333 | Macro F1=0.9316 | ROC-AUC=0.9983
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 3_ZScore_Raw
+  Pretrain: window_zscore
+  Fine-tune: raw
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=CWRU_48k | Test condition=Load_0HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.5000 | Bal Acc=0.5000 | Macro F1=0.4000 | ROC-AUC=0.8567
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.6333 | Bal Acc=0.6333 | Macro F1=0.6154 | ROC-AUC=0.8967
+
+[LOCO] Target=CWRU_48k | Test condition=Load_0HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8000 | Bal Acc=0.8000 | Macro F1=0.5530 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9000 | Bal Acc=0.9000 | Macro F1=0.6296 | ROC-AUC=0.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_0HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 60 with best_epoch = 40 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8889 | Bal Acc=0.8333 | Macro F1=0.8586 | ROC-AUC=0.9464
+
+[LOCO] Target=CWRU_48k | Test condition=Load_1HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9833 | Bal Acc=0.9833 | Macro F1=0.9833 | ROC-AUC=0.9992
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 72 with best_epoch = 52 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8500 | Bal Acc=0.8500 | Macro F1=0.8420 | ROC-AUC=0.9925
+
+[LOCO] Target=CWRU_48k | Test condition=Load_1HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9259 | Bal Acc=0.9333 | Macro F1=0.9241 | ROC-AUC=0.9956
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 70 with best_epoch = 50 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7963 | Bal Acc=0.7738 | Macro F1=0.7742 | ROC-AUC=0.9395
+
+[LOCO] Target=CWRU_48k | Test condition=Load_1HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 65 with best_epoch = 45 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_2HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 74 with best_epoch = 54 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9500 | Bal Acc=0.9500 | Macro F1=0.9497 | ROC-AUC=0.9987
+
+[LOCO] Target=CWRU_48k | Test condition=Load_2HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9833 | Bal Acc=0.9833 | Macro F1=0.9833 | ROC-AUC=0.9925
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 54 with best_epoch = 34 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7333 | Bal Acc=0.7333 | Macro F1=0.7278 | ROC-AUC=0.8063
+
+[LOCO] Target=CWRU_48k | Test condition=Load_2HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 77 with best_epoch = 57 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_3HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8500 | Bal Acc=0.8500 | Macro F1=0.8420 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 76 with best_epoch = 56 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9000 | Bal Acc=0.9000 | Macro F1=0.8977 | ROC-AUC=0.9517
+
+[LOCO] Target=CWRU_48k | Test condition=Load_3HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=0.9500
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 59 with best_epoch = 39 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7500 | Bal Acc=0.7500 | Macro F1=0.7469 | ROC-AUC=0.8708
+
+[LOCO] Target=CWRU_48k | Test condition=Load_3HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 73 with best_epoch = 53 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9833 | Bal Acc=0.9833 | Macro F1=0.9833 | ROC-AUC=0.9992
+
+------------------------------------------------------------------------------------------
+ESTRATÉGIA 4_RMS_Raw
+  Pretrain: window_rms
+  Fine-tune: raw
+------------------------------------------------------------------------------------------
+
+[LOCO] Target=CWRU_48k | Test condition=Load_0HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.4667 | Bal Acc=0.4667 | Macro F1=0.3675 | ROC-AUC=0.8550
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.6333 | Bal Acc=0.6333 | Macro F1=0.6154 | ROC-AUC=0.8967
+
+[LOCO] Target=CWRU_48k | Test condition=Load_0HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9000 | Bal Acc=0.9000 | Macro F1=0.6296 | ROC-AUC=0.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 55 with best_epoch = 35 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9000 | Bal Acc=0.9000 | Macro F1=0.6296 | ROC-AUC=0.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_0HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 60 with best_epoch = 40 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8889 | Bal Acc=0.8333 | Macro F1=0.8586 | ROC-AUC=0.9464
+
+[LOCO] Target=CWRU_48k | Test condition=Load_1HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9833 | Bal Acc=0.9833 | Macro F1=0.9833 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 72 with best_epoch = 52 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8500 | Bal Acc=0.8500 | Macro F1=0.8420 | ROC-AUC=0.9925
+
+[LOCO] Target=CWRU_48k | Test condition=Load_1HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9259 | Bal Acc=0.9333 | Macro F1=0.9241 | ROC-AUC=0.9980
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 70 with best_epoch = 50 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7963 | Bal Acc=0.7738 | Macro F1=0.7742 | ROC-AUC=0.9395
+
+[LOCO] Target=CWRU_48k | Test condition=Load_1HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 65 with best_epoch = 45 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_2HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9666 | ROC-AUC=0.9996
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 74 with best_epoch = 54 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9500 | Bal Acc=0.9500 | Macro F1=0.9497 | ROC-AUC=0.9987
+
+[LOCO] Target=CWRU_48k | Test condition=Load_2HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9667 | Bal Acc=0.9667 | Macro F1=0.9667 | ROC-AUC=0.9992
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 54 with best_epoch = 34 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7333 | Bal Acc=0.7333 | Macro F1=0.7278 | ROC-AUC=0.8063
+
+[LOCO] Target=CWRU_48k | Test condition=Load_2HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 77 with best_epoch = 57 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+
+[LOCO] Target=CWRU_48k | Test condition=Load_3HP_Sev_0.007
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8333 | Bal Acc=0.8333 | Macro F1=0.8222 | ROC-AUC=0.9671
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 76 with best_epoch = 56 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9000 | Bal Acc=0.9000 | Macro F1=0.8977 | ROC-AUC=0.9517
+
+[LOCO] Target=CWRU_48k | Test condition=Load_3HP_Sev_0.014
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9167 | Bal Acc=0.9167 | Macro F1=0.9184 | ROC-AUC=0.9492
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 59 with best_epoch = 39 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.7500 | Bal Acc=0.7500 | Macro F1=0.7469 | ROC-AUC=0.8708
+
+[LOCO] Target=CWRU_48k | Test condition=Load_3HP_Sev_0.021
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=1.0000 | Bal Acc=1.0000 | Macro F1=1.0000 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 73 with best_epoch = 53 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.9833 | Bal Acc=0.9833 | Macro F1=0.9833 | ROC-AUC=0.9992
+
+==========================================================================================
+RESUMO POR TARGET / MODELO / ESTRATÉGIA
+==========================================================================================
+Target Dataset Experiment ID Pretrain Strategy Finetune Strategy       Model  N_Folds  ACC_Mean  ACC_Std  Bal_Acc_Mean  Bal_Acc_Std  Macro_F1_Mean  Macro_F1_Std  Macro_F1_Median  Macro_F1_Min  ROC_AUC_Mean  ROC_AUC_Std
+      CWRU_12k    0_Baseline               raw               raw    MLP (TL)        4  0.896172 0.099530      0.914072     0.078614       0.913016      0.081013         0.931888      0.799068      0.968087     0.039996
+      CWRU_12k    0_Baseline               raw               raw TABNET (TL)        4  0.885208 0.091592      0.903879     0.071127       0.903405      0.073070         0.923309      0.799416      0.969067     0.030022
+      CWRU_12k 1_ZScore_Puro     window_zscore     window_zscore    MLP (TL)        4  0.891510 0.078455      0.910033     0.061018       0.908969      0.063391         0.922858      0.821091      0.972927     0.029990
+      CWRU_12k 1_ZScore_Puro     window_zscore     window_zscore TABNET (TL)        4  0.860000 0.103185      0.834686     0.175980       0.829537      0.187082         0.904754      0.552632      0.963765     0.044327
+      CWRU_12k    2_RMS_Puro        window_rms        window_rms    MLP (TL)        4  0.887630 0.075246      0.906451     0.058470       0.904930      0.061430         0.918214      0.821023      0.972436     0.024644
+      CWRU_12k    2_RMS_Puro        window_rms        window_rms TABNET (TL)        4  0.854922 0.130914      0.840515     0.180551       0.843896      0.173997         0.914764      0.586466      0.964322     0.042425
+      CWRU_12k  3_ZScore_Raw     window_zscore               raw    MLP (TL)        4  0.897344 0.099094      0.914967     0.078123       0.913933      0.080637         0.935776      0.798936      0.966183     0.036212
+      CWRU_12k  3_ZScore_Raw     window_zscore               raw TABNET (TL)        4  0.865286 0.087433      0.878865     0.083367       0.882227      0.078520         0.894361      0.779362      0.959482     0.034406
+      CWRU_12k     4_RMS_Raw        window_rms               raw    MLP (TL)        4  0.896979 0.097487      0.914638     0.076883       0.913790      0.079093         0.936556      0.800813      0.969672     0.027350
+      CWRU_12k     4_RMS_Raw        window_rms               raw TABNET (TL)        4  0.865286 0.087433      0.878865     0.083367       0.882227      0.078520         0.894361      0.779362      0.959482     0.034406
+      CWRU_48k    0_Baseline               raw               raw    MLP (TL)       12  0.911574 0.121195      0.912500     0.123527       0.900837      0.150015         0.966390      0.462695      0.897672     0.284723
+      CWRU_48k    0_Baseline               raw               raw TABNET (TL)       12  0.851698 0.084702      0.845833     0.092147       0.821864      0.123244         0.811777      0.562963      0.884463     0.280404
+      CWRU_48k 1_ZScore_Puro     window_zscore     window_zscore    MLP (TL)       12  0.958642 0.060257      0.962500     0.056909       0.958017      0.062526         0.991661      0.822222      0.912157     0.287610
+      CWRU_48k 1_ZScore_Puro     window_zscore     window_zscore TABNET (TL)       12  0.881019 0.110540      0.877183     0.111040       0.853010      0.169652         0.858781      0.367521      0.898752     0.285480
+      CWRU_48k    2_RMS_Puro        window_rms        window_rms    MLP (TL)       12  0.954475 0.064578      0.958333     0.061751       0.953386      0.067873         0.983323      0.822222      0.892731     0.289052
+      CWRU_48k    2_RMS_Puro        window_rms        window_rms TABNET (TL)       12  0.881019 0.110540      0.877183     0.111040       0.853010      0.169652         0.858781      0.367521      0.898752     0.285480
+      CWRU_48k  3_ZScore_Raw     window_zscore               raw    MLP (TL)       12  0.917438 0.147049      0.918056     0.147103       0.887697      0.200190         0.983323      0.400000      0.899493     0.286341
+      CWRU_48k  3_ZScore_Raw     window_zscore               raw TABNET (TL)       12  0.865432 0.116725      0.858929     0.118114       0.835438      0.137348         0.850294      0.615351      0.866810     0.279766
+      CWRU_48k     4_RMS_Raw        window_rms               raw    MLP (TL)       12  0.913272 0.149816      0.913889     0.149888       0.881536      0.194312         0.966620      0.367521      0.897337     0.285756
+      CWRU_48k     4_RMS_Raw        window_rms               raw TABNET (TL)       12  0.865432 0.116725      0.858929     0.118114       0.835438      0.137348         0.850294      0.615351      0.866810     0.279766
+  HUST_Gearbox    0_Baseline               raw               raw    MLP (TL)       30  0.961111 0.130746      0.961111     0.130746       0.956981      0.141160         1.000000      0.365079      0.983889     0.065869
+  HUST_Gearbox    0_Baseline               raw               raw TABNET (TL)       30  0.938889 0.133644      0.938889     0.133644       0.933592      0.144048         1.000000      0.365079      0.977778     0.096113
+  HUST_Gearbox 1_ZScore_Puro     window_zscore     window_zscore    MLP (TL)       30  0.934444 0.111926      0.934444     0.111926       0.920883      0.141834         1.000000      0.555556      0.985833     0.062558
+  HUST_Gearbox 1_ZScore_Puro     window_zscore     window_zscore TABNET (TL)       30  0.905556 0.132203      0.905556     0.132203       0.883451      0.169935         1.000000      0.555556      0.982500     0.037017
+  HUST_Gearbox    2_RMS_Puro        window_rms        window_rms    MLP (TL)       30  0.934444 0.118898      0.934444     0.118898       0.918580      0.152927         1.000000      0.555556      0.986444     0.058289
+  HUST_Gearbox    2_RMS_Puro        window_rms        window_rms TABNET (TL)       30  0.893333 0.165721      0.893333     0.165721       0.874175      0.192934         1.000000      0.333333      0.963889     0.086859
+  HUST_Gearbox  3_ZScore_Raw     window_zscore               raw    MLP (TL)       30  0.958889 0.134957      0.958889     0.134957       0.954975      0.144568         1.000000      0.333333      0.985944     0.062339
+  HUST_Gearbox  3_ZScore_Raw     window_zscore               raw TABNET (TL)       30  0.947778 0.106019      0.947778     0.106019       0.940597      0.126393         1.000000      0.506173      0.982556     0.068699
+  HUST_Gearbox     4_RMS_Raw        window_rms               raw    MLP (TL)       30  0.957778 0.136158      0.957778     0.136158       0.953704      0.145774         1.000000      0.333333      0.986278     0.061600
+  HUST_Gearbox     4_RMS_Raw        window_rms               raw TABNET (TL)       30  0.947778 0.106019      0.947778     0.106019       0.940597      0.126393         1.000000      0.506173      0.982556     0.068699
+            PU    0_Baseline               raw               raw    MLP (TL)        4  0.546756 0.265341      0.504037     0.277048       0.387092      0.187903         0.469691      0.106912      0.000000     0.000000
+            PU    0_Baseline               raw               raw TABNET (TL)        4  0.556333 0.195573      0.549562     0.184795       0.419622      0.094125         0.438414      0.290458      0.000000     0.000000
+            PU 1_ZScore_Puro     window_zscore     window_zscore    MLP (TL)        4  0.511912 0.257163      0.503445     0.221356       0.392435      0.152221         0.447727      0.175473      0.000000     0.000000
+            PU 1_ZScore_Puro     window_zscore     window_zscore TABNET (TL)        4  0.527571 0.247774      0.523813     0.206529       0.403886      0.152352         0.464859      0.179972      0.000000     0.000000
+            PU    2_RMS_Puro        window_rms        window_rms    MLP (TL)        4  0.520285 0.239968      0.525308     0.179893       0.405041      0.134681         0.454365      0.212224      0.000000     0.000000
+            PU    2_RMS_Puro        window_rms        window_rms TABNET (TL)        4  0.555006 0.234657      0.530327     0.200895       0.408222      0.133532         0.460415      0.211479      0.000000     0.000000
+            PU  3_ZScore_Raw     window_zscore               raw    MLP (TL)        4  0.540398 0.267689      0.498022     0.280918       0.386398      0.198223         0.477694      0.090202      0.000000     0.000000
+            PU  3_ZScore_Raw     window_zscore               raw TABNET (TL)        4  0.557752 0.246879      0.507778     0.269364       0.395405      0.192489         0.484640      0.107741      0.000000     0.000000
+            PU     4_RMS_Raw        window_rms               raw    MLP (TL)        4  0.537919 0.264603      0.493677     0.278084       0.384185      0.198281         0.474044      0.088650      0.000000     0.000000
+            PU     4_RMS_Raw        window_rms               raw TABNET (TL)        4  0.557752 0.246879      0.507778     0.269364       0.395405      0.192489         0.484640      0.107741      0.000000     0.000000
+
+==========================================================================================
+RESUMO POR ESTRATÉGIA E MODELO
+==========================================================================================
+Experiment ID Pretrain Strategy Finetune Strategy       Model  N_Targets  Macro_F1_Mean_Targets  Macro_F1_Std_Targets  Macro_F1_Min_Target  Macro_F1_Max_Target  ACC_Mean_Targets  Bal_Acc_Mean_Targets  ROC_AUC_Mean_Targets
+   0_Baseline               raw               raw    MLP (TL)          4               0.789482              0.269341             0.387092             0.956981          0.828903              0.822930              0.712412
+   0_Baseline               raw               raw TABNET (TL)          4               0.769621              0.238057             0.419622             0.933592          0.808032              0.809541              0.707827
+1_ZScore_Puro     window_zscore     window_zscore    MLP (TL)          4               0.795076              0.269238             0.392435             0.958017          0.824127              0.827606              0.717729
+1_ZScore_Puro     window_zscore     window_zscore TABNET (TL)          4               0.742471              0.226800             0.403886             0.883451          0.793536              0.785309              0.711254
+   2_RMS_Puro        window_rms        window_rms    MLP (TL)          4               0.795484              0.261094             0.405041             0.953386          0.824209              0.831134              0.712903
+   2_RMS_Puro        window_rms        window_rms TABNET (TL)          4               0.744826              0.224761             0.408222             0.874175          0.796070              0.785339              0.706741
+ 3_ZScore_Raw     window_zscore               raw    MLP (TL)          4               0.785751              0.267671             0.386398             0.954975          0.828517              0.822483              0.712905
+ 3_ZScore_Raw     window_zscore               raw TABNET (TL)          4               0.763417              0.249084             0.395405             0.940597          0.809062              0.798337              0.702212
+    4_RMS_Raw        window_rms               raw    MLP (TL)          4               0.783304              0.267712             0.384185             0.953704          0.826487              0.819996              0.713322
+    4_RMS_Raw        window_rms               raw TABNET (TL)          4               0.763417              0.249084             0.395405             0.940597          0.809062              0.798337              0.702212
+
+==========================================================================================
+COMPARAÇÃO FINAL DAS ESTRATÉGIAS
+==========================================================================================
+Experiment ID Pretrain Strategy Finetune Strategy  N_Models  Macro_F1_Selection_Score  Macro_F1_Model_Std  Macro_F1_Worst_Target  ACC_Selection_Mean  Bal_Acc_Selection_Mean  ROC_AUC_Selection_Mean
+   0_Baseline               raw               raw         2                  0.779551            0.014044               0.387092            0.818468                0.816235                0.710119
+ 3_ZScore_Raw     window_zscore               raw         2                  0.774584            0.015792               0.386398            0.818790                0.810410                0.707559
+    4_RMS_Raw        window_rms               raw         2                  0.773360            0.014062               0.384185            0.817775                0.809166                0.707767
+   2_RMS_Puro        window_rms        window_rms         2                  0.770155            0.035821               0.405041            0.810139                0.808237                0.709822
+1_ZScore_Puro     window_zscore     window_zscore         2                  0.768774            0.037197               0.392435            0.808832                0.806457                0.714492
+
+==========================================================================================
+CRITÉRIO PRIMÁRIO DE SELEÇÃO
+==========================================================================================
+Macro F1 médio entre targets (peso igual por target) e entre MLP/TabNet.
+Estratégia com maior Macro F1 Selection Score: 0_Baseline | Score=0.7796
+Recomendação metodológica para a análise: verificar também a variabilidade entre condições e a consistência entre MLP e TabNet antes de fixar a estratégia para a etapa seguinte.
+
+[SUCESSO] Resultados detalhados: /home/vfrocha/VibNet-1D/results/norm_tl_diagnosis_multitarget_results_20261001_101853.csv
+[SUCESSO] Resumo: /home/vfrocha/VibNet-1D/results/norm_tl_diagnosis_multitarget_summary_20261001_101853.csv
+[SUCESSO] Log: /home/vfrocha/VibNet-1D/results/log_norm_tl_diagnosis_multitarget_20261001_101853.txt
