@@ -5,9 +5,158 @@ from torch.utils.data import TensorDataset, DataLoader
 from sklearn.metrics import balanced_accuracy_score, f1_score, roc_auc_score
 from sklearn.preprocessing import StandardScaler
 import numpy as np
+import copy
 
 from imblearn.over_sampling import SMOTE
 from imblearn.under_sampling import RandomUnderSampler
+
+from pytorch_tabnet.pretraining import TabNetPretrainer
+from pytorch_tabnet.tab_model import TabNetClassifier
+
+# Cache em memória para não repetir o pré-treino auto-supervisionado 
+# nas várias dobras LOCO do mesmo Target + Estratégia
+_PRETRAINER_CACHE = {}
+
+def train_and_evaluate_tabnet_tl(
+    train_data_dict,
+    target_dataset_name,
+    X_test,
+    y_test,
+    task,
+    pretrain_epochs=30,
+    finetune_epochs=100,
+    batch_size=512,
+    seed=42
+):
+    """
+    Transfer Learning Oficial com TabNetPretrainer (Auto-Supervisionado nas Sources)
+    seguido de Fine-Tuning Supervisionado com TabNetClassifier no Target.
+    """
+    torch.manual_seed(seed)
+    np.random.seed(seed)
+
+    source_matrices = []
+    X_target_tr_s, y_target_tr = None, None
+    target_scaler = None
+
+    # 1. Padronização Z-Score individual por domínio
+    for d_name, (X_tr, y_tr) in train_data_dict.items():
+        scaler = StandardScaler()
+        X_tr_s = scaler.fit_transform(X_tr)
+
+        if d_name == target_dataset_name:
+            target_scaler = scaler
+            X_target_tr_s = X_tr_s
+            y_target_tr = y_tr
+        else:
+            source_matrices.append(X_tr_s)
+
+    if target_scaler is None or X_target_tr_s is None:
+        raise ValueError(f"Target dataset '{target_dataset_name}' não encontrado em train_data_dict.")
+
+    X_test_s = target_scaler.transform(X_test)
+
+    # 2. Chave de Cache para as Sources (evita re-treinar o Pretrainer a cada fold LOCO)
+    # A assinatura usa os nomes das sources, shapes e a soma da primeira linha para identificar a estratégia
+    cache_signature = (
+        target_dataset_name,
+        tuple(
+            (k, v[0].shape, float(np.sum(v[0][0])))
+            for k, v in sorted(train_data_dict.items())
+            if k != target_dataset_name
+        ),
+        seed
+    )
+
+    # 3. Etapa 1: Pré-treinamento Auto-Supervisionado nas Sources
+    if cache_signature in _PRETRAINER_CACHE:
+        unsupervised_model = copy.deepcopy(_PRETRAINER_CACHE[cache_signature])
+    else:
+        X_pretrain = np.vstack(source_matrices) if len(source_matrices) > 0 else X_target_tr_s
+
+        unsupervised_model = TabNetPretrainer(
+            n_d=16,
+            n_a=16,
+            n_steps=5,
+            gamma=1.5,
+            n_independent=2,
+            n_shared=2,
+            lambda_sparse=1e-4,
+            optimizer_fn=torch.optim.Adam,
+            optimizer_params=dict(lr=2e-2, weight_decay=1e-5),
+            scheduler_fn=torch.optim.lr_scheduler.StepLR,
+            scheduler_params=dict(step_size=10, gamma=0.9),
+            mask_type='entmax',
+            verbose=0,
+            seed=seed
+        )
+
+        unsupervised_model.fit(
+            X_train=X_pretrain,
+            eval_set=[X_pretrain[:min(2048, len(X_pretrain))]],
+            max_epochs=pretrain_epochs,
+            patience=10,
+            batch_size=batch_size,
+            virtual_batch_size=128,
+            num_workers=0,
+            drop_last=False,
+            pretraining_ratio=0.8
+        )
+        _PRETRAINER_CACHE[cache_signature] = copy.deepcopy(unsupervised_model)
+
+    # 4. Etapa 2: Fine-Tuning Supervisionado no Target (mesma arquitetura do Baseline Puro)
+    clf = TabNetClassifier(
+        n_d=16,
+        n_a=16,
+        n_steps=5,
+        gamma=1.5,
+        n_independent=2,
+        n_shared=2,
+        lambda_sparse=1e-4,
+        optimizer_fn=torch.optim.Adam,
+        optimizer_params=dict(lr=1e-2, weight_decay=1e-5), # LR levemente menor para preservar o pré-treino
+        scheduler_fn=torch.optim.lr_scheduler.StepLR,
+        scheduler_params=dict(step_size=20, gamma=0.9),
+        mask_type='entmax',
+        verbose=0,
+        seed=seed
+    )
+
+    # Nota: Usamos apenas o treino para monitorar ou sem early stopping no X_test 
+    # caso haja classes desbalanceadas, ou eval_set no X_test_s se todas as classes existirem
+    clf.fit(
+        X_train=X_target_tr_s,
+        y_train=y_target_tr,
+        eval_set=[(X_target_tr_s, y_target_tr)],
+        eval_name=['train'],
+        eval_metric=['balanced_accuracy'],
+        max_epochs=finetune_epochs,
+        patience=20,
+        batch_size=min(256, len(X_target_tr_s)),
+        virtual_batch_size=min(128, len(X_target_tr_s)),
+        num_workers=0,
+        drop_last=False,
+        from_unsupervised=unsupervised_model
+    )
+
+    # 5. Predição e Extração de Métricas
+    preds = clf.predict(X_test_s)
+    probs = clf.predict_proba(X_test_s)
+    mean_attention = clf.feature_importances_
+
+    bal_acc = balanced_accuracy_score(y_test, preds)
+    if task == 'detection':
+        roc_auc = roc_auc_score(y_test, probs[:, 1])
+        macro_f1 = f1_score(y_test, preds, average='binary')
+    else:
+        try:
+            roc_auc = roc_auc_score(y_test, probs, multi_class='ovr')
+        except ValueError:
+            roc_auc = 0.0
+        macro_f1 = f1_score(y_test, preds, average='macro')
+
+    return bal_acc, macro_f1, roc_auc, {'y_pred': preds, 'mean_attention': mean_attention}
+
 
 # ---------------------------------------------------------------------------
 # 1. ENCODERS
@@ -128,6 +277,19 @@ class HybridDLModel(nn.Module):
 # 4. FUNÇÃO DE TREINAMENTO (Otimizada para Multi-Head e Múltiplos Scalers)
 # ---------------------------------------------------------------------------
 def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y_test, task, epochs=15, batch_size=512, encoder_type='mlp'):
+
+    if encoder_type == 'tabnet':
+        return train_and_evaluate_tabnet_tl(
+            train_data_dict=train_data_dict,
+            target_dataset_name=target_dataset_name,
+            X_test=X_test,
+            y_test=y_test,
+            task=task,
+            pretrain_epochs=max(25, epochs),
+            finetune_epochs=100,
+            batch_size=batch_size
+        )
+    
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
     train_loaders = {}
