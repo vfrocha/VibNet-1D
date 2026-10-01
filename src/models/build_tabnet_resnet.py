@@ -220,4 +220,4 @@ def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y
             roc_auc = 0.0
         macro_f1 = f1_score(y_test, preds, average='macro')
         
-    return bal_acc, macro_f1, roc_auc, mean_attention
+    return bal_acc, macro_f1, roc_auc, {'y_pred': preds, 'mean_attention': mean_attention}
