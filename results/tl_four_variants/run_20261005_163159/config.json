@@ -1,0 +1,27 @@
+{
+  "source_datasets": [
+    "CWRU_12k",
+    "MFPT"
+  ],
+  "target_dataset": "CWRU_48k",
+  "variants": [
+    "raw",
+    "detrended",
+    "raw_rms",
+    "detrended_rms"
+  ],
+  "models": [
+    "mlp",
+    "tabnet"
+  ],
+  "seed": 42,
+  "epochs": 15,
+  "batch_size": 512,
+  "primary_metric": "Macro F1",
+  "data_root": "/home/vfrocha/VibNet-1D/data/processed_tl",
+  "dataset_sampling_rates": {
+    "CWRU_12k": 12000,
+    "MFPT": 48828,
+    "CWRU_48k": 48000
+  }
+}
