@@ -1,0 +1,311 @@
+==========================================================================================
+EXPERIMENTO: TL + DIAGNOSIS + BALANCEAMENTO
+==========================================================================================
+
+Sources: CWRU_12k, MFPT
+Target: CWRU_48k
+Modelos: mlp, tabnet
+Variantes: detrended_rms
+Epochs=15 | Batch size=512 | Seed=42
+
+Métrica primária: Macro F1
+Avaliação target: LOCO por condição
+Pré-processamento temporal adicional neste script: nenhum
+
+==========================================================================================
+FASE 1: CARGA E EXTRAÇÃO DE FEATURES
+==========================================================================================
+
+[CWRU_12k] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+  Janelas : 2520
+  Features: 141
+  fs      : 12000 Hz
+
+[MFPT] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 78 amostras...
+         [Debug] Shape VibNet: (78, 16)
+         [Debug] Shape SignAI: (78, 125)
+      -> [Fusion] Shape final combinado: (78, 141)
+  Janelas : 78
+  Features: 141
+  fs      : 48828 Hz
+
+[CWRU_48k] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 602 amostras...
+         [Debug] Shape VibNet: (602, 16)
+         [Debug] Shape SignAI: (602, 125)
+      -> [Fusion] Shape final combinado: (602, 141)
+  Janelas : 602
+  Features: 141
+  fs      : 48000 Hz
+
+Dimensão final das features: 141
+
+==========================================================================================
+FASE 2: TRANSFER LEARNING SOURCE → TARGET
+==========================================================================================
+Condições LOCO no target: 12
+Condições: Load_0HP_Sev_0.007, Load_0HP_Sev_0.014, Load_0HP_Sev_0.021, Load_1HP_Sev_0.007, Load_1HP_Sev_0.014, Load_1HP_Sev_0.021, Load_2HP_Sev_0.007, Load_2HP_Sev_0.014, Load_2HP_Sev_0.021, Load_3HP_Sev_0.007, Load_3HP_Sev_0.014, Load_3HP_Sev_0.021
+
+==========================================================================================
+VARIANTE: detrended_rms
+==========================================================================================
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_0HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 184, 1: 194, 2: 194} | after={0: 194, 1: 194, 2: 194}
+  ACC      = 0.6667
+  Bal Acc  = 0.6667
+  Macro F1 = 0.5556
+  ROC-AUC  = 0.8867
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+Stop training because you reached max_epochs = 25 with best_epoch = 23 and best_val_0_unsup_loss_numpy = 0.5727699995040894
+
+Early stopping occurred at epoch 96 with best_epoch = 76 and best_train_balanced_accuracy = 1.0
+  ACC      = 0.5000
+  Bal Acc  = 0.5000
+  Macro F1 = 0.4000
+  ROC-AUC  = 0.5567
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_0HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 194, 1: 194, 2: 194} | after={0: 194, 1: 194, 2: 194}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 0.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 66 with best_epoch = 46 and best_train_balanced_accuracy = 0.99828
+  ACC      = 0.9000
+  Bal Acc  = 0.9000
+  Macro F1 = 0.8990
+  ROC-AUC  = 0.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_0HP_Sev_0.021
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 184, 1: 200, 2: 200} | after={0: 200, 1: 200, 2: 200}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 92 with best_epoch = 72 and best_train_balanced_accuracy = 1.0
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_1HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 61 with best_epoch = 41 and best_train_balanced_accuracy = 0.99638
+  ACC      = 0.9833
+  Bal Acc  = 0.9833
+  Macro F1 = 0.9833
+  ROC-AUC  = 0.9812
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_1HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 180, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 0.9815
+  Bal Acc  = 0.9833
+  Macro F1 = 0.9833
+  ROC-AUC  = 0.9961
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 68 with best_epoch = 48 and best_train_balanced_accuracy = 0.99819
+  ACC      = 0.9444
+  Bal Acc  = 0.9500
+  Macro F1 = 0.9497
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_1HP_Sev_0.021
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 87 with best_epoch = 67 and best_train_balanced_accuracy = 0.99457
+  ACC      = 0.9833
+  Bal Acc  = 0.9833
+  Macro F1 = 0.9833
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_2HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 94 with best_epoch = 74 and best_train_balanced_accuracy = 1.0
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_2HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 0.8833
+  Bal Acc  = 0.8833
+  Macro F1 = 0.8815
+  ROC-AUC  = 0.9829
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+Stop training because you reached max_epochs = 100 with best_epoch = 85 and best_train_balanced_accuracy = 1.0
+  ACC      = 0.8833
+  Bal Acc  = 0.8833
+  Macro F1 = 0.8840
+  ROC-AUC  = 0.9633
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_2HP_Sev_0.021
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 80 with best_epoch = 60 and best_train_balanced_accuracy = 1.0
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_3HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 0.8833
+  Bal Acc  = 0.8833
+  Macro F1 = 0.8796
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 69 with best_epoch = 49 and best_train_balanced_accuracy = 0.97283
+  ACC      = 0.9167
+  Bal Acc  = 0.9167
+  Macro F1 = 0.9153
+  ROC-AUC  = 0.9996
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_3HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 0.9667
+  Bal Acc  = 0.9667
+  Macro F1 = 0.9666
+  ROC-AUC  = 0.9500
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 91 with best_epoch = 71 and best_train_balanced_accuracy = 0.99638
+  ACC      = 0.8167
+  Bal Acc  = 0.8167
+  Macro F1 = 0.8116
+  ROC-AUC  = 0.9154
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_3HP_Sev_0.021
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 76 with best_epoch = 56 and best_train_balanced_accuracy = 0.99638
+  ACC      = 0.8000
+  Bal Acc  = 0.8000
+  Macro F1 = 0.7944
+  ROC-AUC  = 0.9854
+
+==========================================================================================
+FASE 3: RESUMOS
+==========================================================================================
+
+Resumo por variante/modelo:
+      Variant  Model  N_Folds  N_Test_Samples  ACC_Mean  ACC_Std  Bal_Acc_Mean  Bal_Acc_Std  Macro_F1_Mean  Macro_F1_Std  Macro_F1_Median  Macro_F1_Min  Macro_F1_Max  ROC_AUC_Mean  ROC_AUC_Std
+detrended_rms    MLP       12             602  0.948457 0.099044      0.948611     0.099102       0.938885      0.128851         1.000000      0.555556           1.0      0.901305     0.285842
+detrended_rms TABNET       12             602  0.893981 0.142360      0.894444     0.142548       0.885066      0.168719         0.932531      0.400000           1.0      0.866806     0.300412
+
+Resumo final por variante:
+      Variant  N_Models  N_Folds_Total  Macro_F1_Selection_Score  Macro_F1_Model_Std  Macro_F1_Worst_Model  Macro_F1_Best_Model  ACC_Selection_Mean  Bal_Acc_Selection_Mean  ROC_AUC_Selection_Mean
+detrended_rms         2             24                  0.911975            0.038056              0.885066             0.938885            0.921219                0.921528                0.884055
+
+==========================================================================================
+SELEÇÃO DA VARIANTE
+==========================================================================================
+Critério: maior Macro F1 médio entre os modelos, após média dos folds LOCO.
+Melhor variante: detrended_rms
+Macro F1 Selection Score: 0.9120
+
+==========================================================================================
+ARQUIVOS
+==========================================================================================
+Diretório: /home/vfrocha/VibNet-1D/results/tl_balance_strategies/run_20261012_150540
+Detalhado: /home/vfrocha/VibNet-1D/results/tl_balance_strategies/run_20261012_150540/results.csv
+Log     : /home/vfrocha/VibNet-1D/results/tl_balance_strategies/run_20261012_150540/experiment.log

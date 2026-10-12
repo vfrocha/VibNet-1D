@@ -1,0 +1,2 @@
+Variant,N_Models,N_Folds_Total,Macro_F1_Selection_Score,Macro_F1_Model_Std,Macro_F1_Worst_Model,Macro_F1_Best_Model,ACC_Selection_Mean,Bal_Acc_Selection_Mean,ROC_AUC_Selection_Mean
+detrended_rms,2,24,0.8438304652379047,0.01224572706062013,0.8351714285927806,0.8524895018830287,0.8617283950617284,0.8552579365079365,0.8803962418300653
