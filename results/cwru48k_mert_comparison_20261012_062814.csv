@@ -1,0 +1,9 @@
+Dataset,Task,Test Condition,Window Preprocessing,Model,Bal Acc,Macro F1,ROC-AUC
+CWRU_48k_1024pts,Diagnosis,Domain_9 (Load_0HP_Sev_0.021),none,Random Forest,0.0,0.0,0.0
+CWRU_48k_1024pts,Diagnosis,Domain_9 (Load_0HP_Sev_0.021),none,SVM,0.0,0.0,0.0
+CWRU_48k_1024pts,Diagnosis,Domain_9 (Load_0HP_Sev_0.021),none,XGBoost,0.0,0.0,0.0
+CWRU_48k_1024pts,Diagnosis,Domain_9 (Load_0HP_Sev_0.021),none,TabNet,0.5966183574879227,0.48731884057971014,0.4830421781505969
+CWRU_48k_1024pts,Diagnosis,Domain_9 (Load_0HP_Sev_0.021),rms,Random Forest,0.0,0.0,0.0
+CWRU_48k_1024pts,Diagnosis,Domain_9 (Load_0HP_Sev_0.021),rms,SVM,0.0,0.0,0.0
+CWRU_48k_1024pts,Diagnosis,Domain_9 (Load_0HP_Sev_0.021),rms,XGBoost,0.0,0.0,0.0
+CWRU_48k_1024pts,Diagnosis,Domain_9 (Load_0HP_Sev_0.021),rms,TabNet,0.5531400966183575,0.6155797101449275,0.5760611048564392
