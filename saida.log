@@ -1,0 +1,1442 @@
+nohup: ignoring input
+[   INFO   ] MusicExtractorSVM: no classifier models were configured by default
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+==========================================================================================
+EXPERIMENTO: TL + DIAGNOSIS + BALANCEAMENTO
+==========================================================================================
+
+Sources: CWRU_12k, MFPT
+Target: CWRU_48k
+Modelos: mlp, tabnet
+Variantes: detrended_rms
+Epochs=15 | Batch size=512 | Seed=42
+
+Métrica primária: Macro F1
+Avaliação target: LOCO por condição
+Pré-processamento temporal adicional neste script: nenhum
+
+==========================================================================================
+FASE 1: CARGA E EXTRAÇÃO DE FEATURES
+==========================================================================================
+
+[CWRU_12k] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+  Janelas : 2520
+  Features: 141
+  fs      : 12000 Hz
+
+[MFPT] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 78 amostras...
+         [Debug] Shape VibNet: (78, 16)
+         [Debug] Shape SignAI: (78, 125)
+      -> [Fusion] Shape final combinado: (78, 141)
+  Janelas : 78
+  Features: 141
+  fs      : 48828 Hz
+
+[CWRU_48k] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 602 amostras...
+         [Debug] Shape VibNet: (602, 16)
+         [Debug] Shape SignAI: (602, 125)
+      -> [Fusion] Shape final combinado: (602, 141)
+  Janelas : 602
+  Features: 141
+  fs      : 48000 Hz
+
+Dimensão final das features: 141
+
+==========================================================================================
+FASE 2: TRANSFER LEARNING SOURCE → TARGET
+==========================================================================================
+Condições LOCO no target: 12
+Condições: Load_0HP_Sev_0.007, Load_0HP_Sev_0.014, Load_0HP_Sev_0.021, Load_1HP_Sev_0.007, Load_1HP_Sev_0.014, Load_1HP_Sev_0.021, Load_2HP_Sev_0.007, Load_2HP_Sev_0.014, Load_2HP_Sev_0.021, Load_3HP_Sev_0.007, Load_3HP_Sev_0.014, Load_3HP_Sev_0.021
+
+==========================================================================================
+VARIANTE: detrended_rms
+==========================================================================================
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_0HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=none | before={0: 184, 1: 194, 2: 194} | after={0: 184, 1: 194, 2: 194}
+  ACC      = 0.6667
+  Bal Acc  = 0.6667
+  Macro F1 = 0.5556
+  ROC-AUC  = 0.9217
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+Stop training because you reached max_epochs = 25 with best_epoch = 23 and best_val_0_unsup_loss_numpy = 0.5727699995040894
+
+Early stopping occurred at epoch 78 with best_epoch = 58 and best_train_balanced_accuracy = 1.0
+  ACC      = 0.4667
+  Bal Acc  = 0.4667
+  Macro F1 = 0.3675
+  ROC-AUC  = 0.8300
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_0HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=none | before={0: 194, 1: 194, 2: 194} | after={0: 194, 1: 194, 2: 194}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 0.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 66 with best_epoch = 46 and best_train_balanced_accuracy = 0.99828
+  ACC      = 0.9000
+  Bal Acc  = 0.9000
+  Macro F1 = 0.8990
+  ROC-AUC  = 0.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_0HP_Sev_0.021
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=none | before={0: 184, 1: 200, 2: 200} | after={0: 184, 1: 200, 2: 200}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 91 with best_epoch = 71 and best_train_balanced_accuracy = 1.0
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_1HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=none | before={0: 174, 1: 184, 2: 184} | after={0: 174, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+Stop training because you reached max_epochs = 100 with best_epoch = 86 and best_train_balanced_accuracy = 1.0
+  ACC      = 0.8833
+  Bal Acc  = 0.8833
+  Macro F1 = 0.8764
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_1HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=none | before={0: 180, 1: 184, 2: 184} | after={0: 180, 1: 184, 2: 184}
+  ACC      = 0.8333
+  Bal Acc  = 0.8071
+  Macro F1 = 0.8184
+  ROC-AUC  = 0.9941
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+Stop training because you reached max_epochs = 100 with best_epoch = 96 and best_train_balanced_accuracy = 1.0
+  ACC      = 0.7778
+  Bal Acc  = 0.8000
+  Macro F1 = 0.7833
+  ROC-AUC  = 0.9627
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_1HP_Sev_0.021
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=none | before={0: 174, 1: 184, 2: 184} | after={0: 174, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 86 with best_epoch = 66 and best_train_balanced_accuracy = 1.0
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_2HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=none | before={0: 174, 1: 184, 2: 184} | after={0: 174, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+Stop training because you reached max_epochs = 100 with best_epoch = 86 and best_train_balanced_accuracy = 1.0
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_2HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=none | before={0: 174, 1: 184, 2: 184} | after={0: 174, 1: 184, 2: 184}
+  ACC      = 0.8833
+  Bal Acc  = 0.8833
+  Macro F1 = 0.8796
+  ROC-AUC  = 0.9733
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+Stop training because you reached max_epochs = 100 with best_epoch = 97 and best_train_balanced_accuracy = 0.99819
+  ACC      = 0.9500
+  Bal Acc  = 0.9500
+  Macro F1 = 0.9504
+  ROC-AUC  = 0.9925
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_2HP_Sev_0.021
+------------------------------------------------------------------------------------------
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=none | before={0: 174, 1: 184, 2: 184} | after={0: 174, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 73 with best_epoch = 53 and best_train_balanced_accuracy = 1.0
+  ACC      = 0.9667
+  Bal Acc  = 0.9667
+  Macro F1 = 0.9666
+  ROC-AUC  = 0.9921
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_3HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=none | before={0: 174, 1: 184, 2: 184} | after={0: 174, 1: 184, 2: 184}
+  ACC      = 0.8333
+  Bal Acc  = 0.8333
+  Macro F1 = 0.8222
+  ROC-AUC  = 0.9367
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+Stop training because you reached max_epochs = 100 with best_epoch = 87 and best_train_balanced_accuracy = 1.0
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_3HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=none | before={0: 174, 1: 184, 2: 184} | after={0: 174, 1: 184, 2: 184}
+  ACC      = 0.9667
+  Bal Acc  = 0.9667
+  Macro F1 = 0.9666
+  ROC-AUC  = 0.9500
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 91 with best_epoch = 71 and best_train_balanced_accuracy = 0.99819
+  ACC      = 0.9500
+  Bal Acc  = 0.9500
+  Macro F1 = 0.9496
+  ROC-AUC  = 0.9633
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_3HP_Sev_0.021
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=none | before={0: 174, 1: 184, 2: 184} | after={0: 174, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+Stop training because you reached max_epochs = 100 with best_epoch = 87 and best_train_balanced_accuracy = 1.0
+  ACC      = 0.9000
+  Bal Acc  = 0.9000
+  Macro F1 = 0.8977
+  ROC-AUC  = 0.9929
+
+==========================================================================================
+FASE 3: RESUMOS
+==========================================================================================
+
+Resumo por variante/modelo:
+      Variant  Model  N_Folds  N_Test_Samples  ACC_Mean  ACC_Std  Bal_Acc_Mean  Bal_Acc_Std  Macro_F1_Mean  Macro_F1_Std  Macro_F1_Median  Macro_F1_Min  Macro_F1_Max  ROC_AUC_Mean  ROC_AUC_Std
+detrended_rms    MLP       12             602  0.931944 0.106945      0.929762     0.109380       0.920203      0.135275         1.000000      0.555556           1.0      0.897982     0.284206
+detrended_rms TABNET       12             602  0.899537 0.151488      0.901389     0.149993       0.890872      0.177390         0.949979      0.367521           1.0      0.894465     0.285745
+
+Resumo final por variante:
+      Variant  N_Models  N_Folds_Total  Macro_F1_Selection_Score  Macro_F1_Model_Std  Macro_F1_Worst_Model  Macro_F1_Best_Model  ACC_Selection_Mean  Bal_Acc_Selection_Mean  ROC_AUC_Selection_Mean
+detrended_rms         2             24                  0.905538             0.02074              0.890872             0.920203            0.915741                0.915575                0.896223
+
+==========================================================================================
+SELEÇÃO DA VARIANTE
+==========================================================================================
+Critério: maior Macro F1 médio entre os modelos, após média dos folds LOCO.
+Melhor variante: detrended_rms
+Macro F1 Selection Score: 0.9055
+
+==========================================================================================
+ARQUIVOS
+==========================================================================================
+Diretório: /home/vfrocha/VibNet-1D/results/tl_balance_strategies/run_20261012_145854
+Detalhado: /home/vfrocha/VibNet-1D/results/tl_balance_strategies/run_20261012_145854/results.csv
+Log     : /home/vfrocha/VibNet-1D/results/tl_balance_strategies/run_20261012_145854/experiment.log
+[   INFO   ] MusicExtractorSVM: no classifier models were configured by default
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+==========================================================================================
+EXPERIMENTO: TL + DIAGNOSIS + BALANCEAMENTO
+==========================================================================================
+
+Sources: CWRU_12k, MFPT
+Target: CWRU_48k
+Modelos: mlp, tabnet
+Variantes: detrended_rms
+Epochs=15 | Batch size=512 | Seed=42
+
+Métrica primária: Macro F1
+Avaliação target: LOCO por condição
+Pré-processamento temporal adicional neste script: nenhum
+
+==========================================================================================
+FASE 1: CARGA E EXTRAÇÃO DE FEATURES
+==========================================================================================
+
+[CWRU_12k] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+  Janelas : 2520
+  Features: 141
+  fs      : 12000 Hz
+
+[MFPT] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 78 amostras...
+         [Debug] Shape VibNet: (78, 16)
+         [Debug] Shape SignAI: (78, 125)
+      -> [Fusion] Shape final combinado: (78, 141)
+  Janelas : 78
+  Features: 141
+  fs      : 48828 Hz
+
+[CWRU_48k] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 602 amostras...
+         [Debug] Shape VibNet: (602, 16)
+         [Debug] Shape SignAI: (602, 125)
+      -> [Fusion] Shape final combinado: (602, 141)
+  Janelas : 602
+  Features: 141
+  fs      : 48000 Hz
+
+Dimensão final das features: 141
+
+==========================================================================================
+FASE 2: TRANSFER LEARNING SOURCE → TARGET
+==========================================================================================
+Condições LOCO no target: 12
+Condições: Load_0HP_Sev_0.007, Load_0HP_Sev_0.014, Load_0HP_Sev_0.021, Load_1HP_Sev_0.007, Load_1HP_Sev_0.014, Load_1HP_Sev_0.021, Load_2HP_Sev_0.007, Load_2HP_Sev_0.014, Load_2HP_Sev_0.021, Load_3HP_Sev_0.007, Load_3HP_Sev_0.014, Load_3HP_Sev_0.021
+
+==========================================================================================
+VARIANTE: detrended_rms
+==========================================================================================
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_0HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=undersample | before={0: 184, 1: 194, 2: 194} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 0.6333
+  Bal Acc  = 0.6333
+  Macro F1 = 0.5244
+  ROC-AUC  = 0.8633
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+Stop training because you reached max_epochs = 25 with best_epoch = 23 and best_val_0_unsup_loss_numpy = 0.5727699995040894
+Stop training because you reached max_epochs = 100 with best_epoch = 89 and best_train_balanced_accuracy = 0.99638
+  ACC      = 0.7333
+  Bal Acc  = 0.7333
+  Macro F1 = 0.7264
+  ROC-AUC  = 0.9650
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_0HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=undersample | before={0: 194, 1: 194, 2: 194} | after={0: 194, 1: 194, 2: 194}
+  ACC      = 0.6000
+  Bal Acc  = 0.6000
+  Macro F1 = 0.5238
+  ROC-AUC  = 0.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 94 with best_epoch = 74 and best_train_balanced_accuracy = 1.0
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 0.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_0HP_Sev_0.021
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=undersample | before={0: 184, 1: 200, 2: 200} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 0.8889
+  Bal Acc  = 0.8333
+  Macro F1 = 0.8586
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+Stop training because you reached max_epochs = 100 with best_epoch = 97 and best_train_balanced_accuracy = 1.0
+  ACC      = 0.7222
+  Bal Acc  = 0.6833
+  Macro F1 = 0.6540
+  ROC-AUC  = 0.8548
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_1HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=undersample | before={0: 174, 1: 184, 2: 184} | after={0: 174, 1: 174, 2: 174}
+  ACC      = 0.8333
+  Bal Acc  = 0.8333
+  Macro F1 = 0.8175
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 66 with best_epoch = 46 and best_train_balanced_accuracy = 0.98659
+  ACC      = 0.9833
+  Bal Acc  = 0.9833
+  Macro F1 = 0.9833
+  ROC-AUC  = 0.9983
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_1HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=undersample | before={0: 180, 1: 184, 2: 184} | after={0: 180, 1: 180, 2: 180}
+  ACC      = 0.9259
+  Bal Acc  = 0.9119
+  Macro F1 = 0.9211
+  ROC-AUC  = 0.9951
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 75 with best_epoch = 55 and best_train_balanced_accuracy = 0.99815
+  ACC      = 0.6111
+  Bal Acc  = 0.5643
+  Macro F1 = 0.5380
+  ROC-AUC  = 0.8538
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_1HP_Sev_0.021
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=undersample | before={0: 174, 1: 184, 2: 184} | after={0: 174, 1: 174, 2: 174}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 98 with best_epoch = 78 and best_train_balanced_accuracy = 0.99042
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_2HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=undersample | before={0: 174, 1: 184, 2: 184} | after={0: 174, 1: 174, 2: 174}
+  ACC      = 0.9500
+  Bal Acc  = 0.9500
+  Macro F1 = 0.9499
+  ROC-AUC  = 0.9987
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 79 with best_epoch = 59 and best_train_balanced_accuracy = 0.98659
+  ACC      = 0.8667
+  Bal Acc  = 0.8667
+  Macro F1 = 0.8561
+  ROC-AUC  = 0.9592
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_2HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=undersample | before={0: 174, 1: 184, 2: 184} | after={0: 174, 1: 174, 2: 174}
+  ACC      = 0.8500
+  Bal Acc  = 0.8500
+  Macro F1 = 0.8458
+  ROC-AUC  = 0.9467
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 85 with best_epoch = 65 and best_train_balanced_accuracy = 0.99617
+  ACC      = 0.8333
+  Bal Acc  = 0.8333
+  Macro F1 = 0.8286
+  ROC-AUC  = 0.9583
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_2HP_Sev_0.021
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=undersample | before={0: 174, 1: 184, 2: 184} | after={0: 174, 1: 174, 2: 174}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 86 with best_epoch = 66 and best_train_balanced_accuracy = 0.99617
+  ACC      = 0.9667
+  Bal Acc  = 0.9667
+  Macro F1 = 0.9667
+  ROC-AUC  = 0.9975
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_3HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=undersample | before={0: 174, 1: 184, 2: 184} | after={0: 174, 1: 174, 2: 174}
+  ACC      = 0.8333
+  Bal Acc  = 0.8333
+  Macro F1 = 0.8222
+  ROC-AUC  = 0.9912
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 91 with best_epoch = 71 and best_train_balanced_accuracy = 1.0
+  ACC      = 0.9333
+  Bal Acc  = 0.9333
+  Macro F1 = 0.9331
+  ROC-AUC  = 0.9896
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_3HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=undersample | before={0: 174, 1: 184, 2: 184} | after={0: 174, 1: 174, 2: 174}
+  ACC      = 0.9667
+  Bal Acc  = 0.9667
+  Macro F1 = 0.9666
+  ROC-AUC  = 0.9500
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+Stop training because you reached max_epochs = 100 with best_epoch = 93 and best_train_balanced_accuracy = 0.99808
+  ACC      = 0.7667
+  Bal Acc  = 0.7667
+  Macro F1 = 0.7597
+  ROC-AUC  = 0.8842
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_3HP_Sev_0.021
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=undersample | before={0: 174, 1: 184, 2: 184} | after={0: 174, 1: 174, 2: 174}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 74 with best_epoch = 54 and best_train_balanced_accuracy = 0.98851
+  ACC      = 0.7833
+  Bal Acc  = 0.7833
+  Macro F1 = 0.7763
+  ROC-AUC  = 0.9237
+
+==========================================================================================
+FASE 3: RESUMOS
+==========================================================================================
+
+Resumo por variante/modelo:
+      Variant  Model  N_Folds  N_Test_Samples  ACC_Mean  ACC_Std  Bal_Acc_Mean  Bal_Acc_Std  Macro_F1_Mean  Macro_F1_Std  Macro_F1_Median  Macro_F1_Min  Macro_F1_Max  ROC_AUC_Mean  ROC_AUC_Std
+detrended_rms    MLP       12             602  0.873457 0.135441      0.867659     0.135338       0.852490      0.167992         0.889868       0.52381           1.0      0.895425     0.284907
+detrended_rms TABNET       12             602  0.850000 0.128729      0.842857     0.140676       0.835171      0.149488         0.842328       0.53796           1.0      0.865368     0.277805
+
+Resumo final por variante:
+      Variant  N_Models  N_Folds_Total  Macro_F1_Selection_Score  Macro_F1_Model_Std  Macro_F1_Worst_Model  Macro_F1_Best_Model  ACC_Selection_Mean  Bal_Acc_Selection_Mean  ROC_AUC_Selection_Mean
+detrended_rms         2             24                   0.84383            0.012246              0.835171              0.85249            0.861728                0.855258                0.880396
+
+==========================================================================================
+SELEÇÃO DA VARIANTE
+==========================================================================================
+Critério: maior Macro F1 médio entre os modelos, após média dos folds LOCO.
+Melhor variante: detrended_rms
+Macro F1 Selection Score: 0.8438
+
+==========================================================================================
+ARQUIVOS
+==========================================================================================
+Diretório: /home/vfrocha/VibNet-1D/results/tl_balance_strategies/run_20261012_150217
+Detalhado: /home/vfrocha/VibNet-1D/results/tl_balance_strategies/run_20261012_150217/results.csv
+Log     : /home/vfrocha/VibNet-1D/results/tl_balance_strategies/run_20261012_150217/experiment.log
+[   INFO   ] MusicExtractorSVM: no classifier models were configured by default
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+==========================================================================================
+EXPERIMENTO: TL + DIAGNOSIS + BALANCEAMENTO
+==========================================================================================
+
+Sources: CWRU_12k, MFPT
+Target: CWRU_48k
+Modelos: mlp, tabnet
+Variantes: detrended_rms
+Epochs=15 | Batch size=512 | Seed=42
+
+Métrica primária: Macro F1
+Avaliação target: LOCO por condição
+Pré-processamento temporal adicional neste script: nenhum
+
+==========================================================================================
+FASE 1: CARGA E EXTRAÇÃO DE FEATURES
+==========================================================================================
+
+[CWRU_12k] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+  Janelas : 2520
+  Features: 141
+  fs      : 12000 Hz
+
+[MFPT] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 78 amostras...
+         [Debug] Shape VibNet: (78, 16)
+         [Debug] Shape SignAI: (78, 125)
+      -> [Fusion] Shape final combinado: (78, 141)
+  Janelas : 78
+  Features: 141
+  fs      : 48828 Hz
+
+[CWRU_48k] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 602 amostras...
+         [Debug] Shape VibNet: (602, 16)
+         [Debug] Shape SignAI: (602, 125)
+      -> [Fusion] Shape final combinado: (602, 141)
+  Janelas : 602
+  Features: 141
+  fs      : 48000 Hz
+
+Dimensão final das features: 141
+
+==========================================================================================
+FASE 2: TRANSFER LEARNING SOURCE → TARGET
+==========================================================================================
+Condições LOCO no target: 12
+Condições: Load_0HP_Sev_0.007, Load_0HP_Sev_0.014, Load_0HP_Sev_0.021, Load_1HP_Sev_0.007, Load_1HP_Sev_0.014, Load_1HP_Sev_0.021, Load_2HP_Sev_0.007, Load_2HP_Sev_0.014, Load_2HP_Sev_0.021, Load_3HP_Sev_0.007, Load_3HP_Sev_0.014, Load_3HP_Sev_0.021
+
+==========================================================================================
+VARIANTE: detrended_rms
+==========================================================================================
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_0HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 184, 1: 194, 2: 194} | after={0: 194, 1: 194, 2: 194}
+  ACC      = 0.6667
+  Bal Acc  = 0.6667
+  Macro F1 = 0.5556
+  ROC-AUC  = 0.8867
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+Stop training because you reached max_epochs = 25 with best_epoch = 23 and best_val_0_unsup_loss_numpy = 0.5727699995040894
+
+Early stopping occurred at epoch 96 with best_epoch = 76 and best_train_balanced_accuracy = 1.0
+  ACC      = 0.5000
+  Bal Acc  = 0.5000
+  Macro F1 = 0.4000
+  ROC-AUC  = 0.5567
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_0HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 194, 1: 194, 2: 194} | after={0: 194, 1: 194, 2: 194}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 0.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 66 with best_epoch = 46 and best_train_balanced_accuracy = 0.99828
+  ACC      = 0.9000
+  Bal Acc  = 0.9000
+  Macro F1 = 0.8990
+  ROC-AUC  = 0.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_0HP_Sev_0.021
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 184, 1: 200, 2: 200} | after={0: 200, 1: 200, 2: 200}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 92 with best_epoch = 72 and best_train_balanced_accuracy = 1.0
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_1HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 61 with best_epoch = 41 and best_train_balanced_accuracy = 0.99638
+  ACC      = 0.9833
+  Bal Acc  = 0.9833
+  Macro F1 = 0.9833
+  ROC-AUC  = 0.9812
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_1HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 180, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 0.9815
+  Bal Acc  = 0.9833
+  Macro F1 = 0.9833
+  ROC-AUC  = 0.9961
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 68 with best_epoch = 48 and best_train_balanced_accuracy = 0.99819
+  ACC      = 0.9444
+  Bal Acc  = 0.9500
+  Macro F1 = 0.9497
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_1HP_Sev_0.021
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 87 with best_epoch = 67 and best_train_balanced_accuracy = 0.99457
+  ACC      = 0.9833
+  Bal Acc  = 0.9833
+  Macro F1 = 0.9833
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_2HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 94 with best_epoch = 74 and best_train_balanced_accuracy = 1.0
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_2HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 0.8833
+  Bal Acc  = 0.8833
+  Macro F1 = 0.8815
+  ROC-AUC  = 0.9829
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+Stop training because you reached max_epochs = 100 with best_epoch = 85 and best_train_balanced_accuracy = 1.0
+  ACC      = 0.8833
+  Bal Acc  = 0.8833
+  Macro F1 = 0.8840
+  ROC-AUC  = 0.9633
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_2HP_Sev_0.021
+------------------------------------------------------------------------------------------
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 80 with best_epoch = 60 and best_train_balanced_accuracy = 1.0
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_3HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 0.8833
+  Bal Acc  = 0.8833
+  Macro F1 = 0.8796
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 69 with best_epoch = 49 and best_train_balanced_accuracy = 0.97283
+  ACC      = 0.9167
+  Bal Acc  = 0.9167
+  Macro F1 = 0.9153
+  ROC-AUC  = 0.9996
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_3HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 0.9667
+  Bal Acc  = 0.9667
+  Macro F1 = 0.9666
+  ROC-AUC  = 0.9500
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 91 with best_epoch = 71 and best_train_balanced_accuracy = 0.99638
+  ACC      = 0.8167
+  Bal Acc  = 0.8167
+  Macro F1 = 0.8116
+  ROC-AUC  = 0.9154
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_3HP_Sev_0.021
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=smote | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 76 with best_epoch = 56 and best_train_balanced_accuracy = 0.99638
+  ACC      = 0.8000
+  Bal Acc  = 0.8000
+  Macro F1 = 0.7944
+  ROC-AUC  = 0.9854
+
+==========================================================================================
+FASE 3: RESUMOS
+==========================================================================================
+
+Resumo por variante/modelo:
+      Variant  Model  N_Folds  N_Test_Samples  ACC_Mean  ACC_Std  Bal_Acc_Mean  Bal_Acc_Std  Macro_F1_Mean  Macro_F1_Std  Macro_F1_Median  Macro_F1_Min  Macro_F1_Max  ROC_AUC_Mean  ROC_AUC_Std
+detrended_rms    MLP       12             602  0.948457 0.099044      0.948611     0.099102       0.938885      0.128851         1.000000      0.555556           1.0      0.901305     0.285842
+detrended_rms TABNET       12             602  0.893981 0.142360      0.894444     0.142548       0.885066      0.168719         0.932531      0.400000           1.0      0.866806     0.300412
+
+Resumo final por variante:
+      Variant  N_Models  N_Folds_Total  Macro_F1_Selection_Score  Macro_F1_Model_Std  Macro_F1_Worst_Model  Macro_F1_Best_Model  ACC_Selection_Mean  Bal_Acc_Selection_Mean  ROC_AUC_Selection_Mean
+detrended_rms         2             24                  0.911975            0.038056              0.885066             0.938885            0.921219                0.921528                0.884055
+
+==========================================================================================
+SELEÇÃO DA VARIANTE
+==========================================================================================
+Critério: maior Macro F1 médio entre os modelos, após média dos folds LOCO.
+Melhor variante: detrended_rms
+Macro F1 Selection Score: 0.9120
+
+==========================================================================================
+ARQUIVOS
+==========================================================================================
+Diretório: /home/vfrocha/VibNet-1D/results/tl_balance_strategies/run_20261012_150540
+Detalhado: /home/vfrocha/VibNet-1D/results/tl_balance_strategies/run_20261012_150540/results.csv
+Log     : /home/vfrocha/VibNet-1D/results/tl_balance_strategies/run_20261012_150540/experiment.log
+[   INFO   ] MusicExtractorSVM: no classifier models were configured by default
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+==========================================================================================
+EXPERIMENTO: TL + DIAGNOSIS + BALANCEAMENTO
+==========================================================================================
+
+Sources: CWRU_12k, MFPT
+Target: CWRU_48k
+Modelos: mlp, tabnet
+Variantes: detrended_rms
+Epochs=15 | Batch size=512 | Seed=42
+
+Métrica primária: Macro F1
+Avaliação target: LOCO por condição
+Pré-processamento temporal adicional neste script: nenhum
+
+==========================================================================================
+FASE 1: CARGA E EXTRAÇÃO DE FEATURES
+==========================================================================================
+
+[CWRU_12k] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+  Janelas : 2520
+  Features: 141
+  fs      : 12000 Hz
+
+[MFPT] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 78 amostras...
+         [Debug] Shape VibNet: (78, 16)
+         [Debug] Shape SignAI: (78, 125)
+      -> [Fusion] Shape final combinado: (78, 141)
+  Janelas : 78
+  Features: 141
+  fs      : 48828 Hz
+
+[CWRU_48k] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 602 amostras...
+         [Debug] Shape VibNet: (602, 16)
+         [Debug] Shape SignAI: (602, 125)
+      -> [Fusion] Shape final combinado: (602, 141)
+  Janelas : 602
+  Features: 141
+  fs      : 48000 Hz
+
+Dimensão final das features: 141
+
+==========================================================================================
+FASE 2: TRANSFER LEARNING SOURCE → TARGET
+==========================================================================================
+Condições LOCO no target: 12
+Condições: Load_0HP_Sev_0.007, Load_0HP_Sev_0.014, Load_0HP_Sev_0.021, Load_1HP_Sev_0.007, Load_1HP_Sev_0.014, Load_1HP_Sev_0.021, Load_2HP_Sev_0.007, Load_2HP_Sev_0.014, Load_2HP_Sev_0.021, Load_3HP_Sev_0.007, Load_3HP_Sev_0.014, Load_3HP_Sev_0.021
+
+==========================================================================================
+VARIANTE: detrended_rms
+==========================================================================================
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_0HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=hybrid | before={0: 184, 1: 194, 2: 194} | after={0: 194, 1: 194, 2: 194}
+  ACC      = 0.6667
+  Bal Acc  = 0.6667
+  Macro F1 = 0.5556
+  ROC-AUC  = 0.8867
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+Stop training because you reached max_epochs = 25 with best_epoch = 23 and best_val_0_unsup_loss_numpy = 0.5727699995040894
+
+Early stopping occurred at epoch 96 with best_epoch = 76 and best_train_balanced_accuracy = 1.0
+  ACC      = 0.5000
+  Bal Acc  = 0.5000
+  Macro F1 = 0.4000
+  ROC-AUC  = 0.5567
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_0HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=hybrid | before={0: 194, 1: 194, 2: 194} | after={0: 194, 1: 194, 2: 194}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 0.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 66 with best_epoch = 46 and best_train_balanced_accuracy = 0.99828
+  ACC      = 0.9000
+  Bal Acc  = 0.9000
+  Macro F1 = 0.8990
+  ROC-AUC  = 0.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_0HP_Sev_0.021
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=hybrid | before={0: 184, 1: 200, 2: 200} | after={0: 200, 1: 200, 2: 200}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 92 with best_epoch = 72 and best_train_balanced_accuracy = 1.0
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_1HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=hybrid | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 61 with best_epoch = 41 and best_train_balanced_accuracy = 0.99638
+  ACC      = 0.9833
+  Bal Acc  = 0.9833
+  Macro F1 = 0.9833
+  ROC-AUC  = 0.9812
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_1HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=hybrid | before={0: 180, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 0.9815
+  Bal Acc  = 0.9833
+  Macro F1 = 0.9833
+  ROC-AUC  = 0.9961
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 68 with best_epoch = 48 and best_train_balanced_accuracy = 0.99819
+  ACC      = 0.9444
+  Bal Acc  = 0.9500
+  Macro F1 = 0.9497
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_1HP_Sev_0.021
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=hybrid | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 87 with best_epoch = 67 and best_train_balanced_accuracy = 0.99457
+  ACC      = 0.9833
+  Bal Acc  = 0.9833
+  Macro F1 = 0.9833
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_2HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=hybrid | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 94 with best_epoch = 74 and best_train_balanced_accuracy = 1.0
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_2HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=hybrid | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 0.8833
+  Bal Acc  = 0.8833
+  Macro F1 = 0.8815
+  ROC-AUC  = 0.9829
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+Stop training because you reached max_epochs = 100 with best_epoch = 85 and best_train_balanced_accuracy = 1.0
+  ACC      = 0.8833
+  Bal Acc  = 0.8833
+  Macro F1 = 0.8840
+  ROC-AUC  = 0.9633
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_2HP_Sev_0.021
+------------------------------------------------------------------------------------------
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:248: UserWarning: Loading weights from unsupervised pretraining
+  warnings.warn("Loading weights from unsupervised pretraining")
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/callbacks.py:172: UserWarning: Best weights from best epoch are automatically used!
+  warnings.warn(wrn_msg)
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=hybrid | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 80 with best_epoch = 60 and best_train_balanced_accuracy = 1.0
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_3HP_Sev_0.007
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=hybrid | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 0.8833
+  Bal Acc  = 0.8833
+  Macro F1 = 0.8796
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 69 with best_epoch = 49 and best_train_balanced_accuracy = 0.97283
+  ACC      = 0.9167
+  Bal Acc  = 0.9167
+  Macro F1 = 0.9153
+  ROC-AUC  = 0.9996
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_3HP_Sev_0.014
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=hybrid | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 0.9667
+  Bal Acc  = 0.9667
+  Macro F1 = 0.9666
+  ROC-AUC  = 0.9500
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 91 with best_epoch = 71 and best_train_balanced_accuracy = 0.99638
+  ACC      = 0.8167
+  Bal Acc  = 0.8167
+  Macro F1 = 0.8116
+  ROC-AUC  = 0.9154
+
+------------------------------------------------------------------------------------------
+LOCO | Target=CWRU_48k | Test condition=Load_3HP_Sev_0.021
+------------------------------------------------------------------------------------------
+
+[TRAIN] Variant=detrended_rms | Model=MLP
+[BALANCE] strategy=hybrid | before={0: 174, 1: 184, 2: 184} | after={0: 184, 1: 184, 2: 184}
+  ACC      = 1.0000
+  Bal Acc  = 1.0000
+  Macro F1 = 1.0000
+  ROC-AUC  = 1.0000
+
+[TRAIN] Variant=detrended_rms | Model=TABNET
+
+Early stopping occurred at epoch 76 with best_epoch = 56 and best_train_balanced_accuracy = 0.99638
+  ACC      = 0.8000
+  Bal Acc  = 0.8000
+  Macro F1 = 0.7944
+  ROC-AUC  = 0.9854
+
+==========================================================================================
+FASE 3: RESUMOS
+==========================================================================================
+
+Resumo por variante/modelo:
+      Variant  Model  N_Folds  N_Test_Samples  ACC_Mean  ACC_Std  Bal_Acc_Mean  Bal_Acc_Std  Macro_F1_Mean  Macro_F1_Std  Macro_F1_Median  Macro_F1_Min  Macro_F1_Max  ROC_AUC_Mean  ROC_AUC_Std
+detrended_rms    MLP       12             602  0.948457 0.099044      0.948611     0.099102       0.938885      0.128851         1.000000      0.555556           1.0      0.901305     0.285842
+detrended_rms TABNET       12             602  0.893981 0.142360      0.894444     0.142548       0.885066      0.168719         0.932531      0.400000           1.0      0.866806     0.300412
+
+Resumo final por variante:
+      Variant  N_Models  N_Folds_Total  Macro_F1_Selection_Score  Macro_F1_Model_Std  Macro_F1_Worst_Model  Macro_F1_Best_Model  ACC_Selection_Mean  Bal_Acc_Selection_Mean  ROC_AUC_Selection_Mean
+detrended_rms         2             24                  0.911975            0.038056              0.885066             0.938885            0.921219                0.921528                0.884055
+
+==========================================================================================
+SELEÇÃO DA VARIANTE
+==========================================================================================
+Critério: maior Macro F1 médio entre os modelos, após média dos folds LOCO.
+Melhor variante: detrended_rms
+Macro F1 Selection Score: 0.9120
+
+==========================================================================================
+ARQUIVOS
+==========================================================================================
+Diretório: /home/vfrocha/VibNet-1D/results/tl_balance_strategies/run_20261012_150855
+Detalhado: /home/vfrocha/VibNet-1D/results/tl_balance_strategies/run_20261012_150855/results.csv
+Log     : /home/vfrocha/VibNet-1D/results/tl_balance_strategies/run_20261012_150855/experiment.log
