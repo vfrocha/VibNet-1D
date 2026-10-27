@@ -43,6 +43,45 @@ class _Tee:
         self.log.flush()
 
 
+def build_experiment_summaries(df: pd.DataFrame):
+    """Build per-seed and across-seed summaries from fold-level results."""
+    if df.empty:
+        return None, None
+    successful = df[df.Status == "OK"]
+    if successful.empty:
+        return None, None
+
+    summary = successful.groupby(
+        ["Mode", "Encoder Profile", "Head Shape", "Balance Strategy", "Seed"], dropna=False
+    ).agg(
+        N_Folds=("Test Condition", "count"),
+        N_ROC_AUC_Folds=("ROC-AUC OvR Macro", "count"),
+        Macro_F1_Mean=("Macro F1", "mean"),
+        Macro_F1_Std=("Macro F1", "std"),
+        ACC_Mean=("ACC", "mean"),
+        Bal_Acc_Mean=("Bal Acc", "mean"),
+        ROC_AUC_Mean=("ROC-AUC OvR Macro", "mean"),
+    ).reset_index()
+
+    summary_across_seeds = summary.groupby(
+        ["Mode", "Encoder Profile", "Head Shape", "Balance Strategy"], dropna=False
+    ).agg(
+        N_Seeds=("Seed", "nunique"),
+        N_Folds_Total=("N_Folds", "sum"),
+        N_ROC_AUC_Folds_Total=("N_ROC_AUC_Folds", "sum"),
+        Macro_F1_Mean=("Macro_F1_Mean", "mean"),
+        Macro_F1_Seed_Std=("Macro_F1_Mean", "std"),
+        ACC_Mean=("ACC_Mean", "mean"),
+        ACC_Seed_Std=("ACC_Mean", "std"),
+        Bal_Acc_Mean=("Bal_Acc_Mean", "mean"),
+        Bal_Acc_Seed_Std=("Bal_Acc_Mean", "std"),
+        ROC_AUC_Mean=("ROC_AUC_Mean", "mean"),
+        ROC_AUC_Seed_Std=("ROC_AUC_Mean", "std"),
+    ).reset_index()
+
+    return summary, summary_across_seeds
+
+
 def run_experiment(args):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     output_dir = os.path.join(RESULTS_ROOT, f"run_{timestamp}")
@@ -159,18 +198,11 @@ def run_experiment(args):
                     pd.DataFrame(results).to_csv(results_path, index=False)
 
     df = pd.DataFrame(results)
-    if not df.empty:
-        successful = df[df.Status == "OK"]
-        if not successful.empty:
-            summary = successful.groupby(
-                ["Mode", "Encoder Profile", "Head Shape", "Balance Strategy", "Seed"], dropna=False
-            ).agg(
-                N_Folds=("Test Condition", "count"),
-                Macro_F1_Mean=("Macro F1", "mean"), Macro_F1_Std=("Macro F1", "std"),
-                ACC_Mean=("ACC", "mean"), Bal_Acc_Mean=("Bal Acc", "mean"),
-                ROC_AUC_Mean=("ROC-AUC OvR Macro", "mean"),
-            ).reset_index()
-            summary.to_csv(os.path.join(output_dir, "summary.csv"), index=False)
+    summary, summary_across_seeds = build_experiment_summaries(df)
+    if summary is not None:
+        summary.to_csv(os.path.join(output_dir, "summary.csv"), index=False)
+    if summary_across_seeds is not None:
+        summary_across_seeds.to_csv(os.path.join(output_dir, "summary_across_seeds.csv"), index=False)
     print(f"Results: {results_path}")
     print(f"Config: {config_path}")
     return output_dir

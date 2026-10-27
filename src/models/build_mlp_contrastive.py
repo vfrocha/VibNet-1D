@@ -65,8 +65,11 @@ class MLPClassifier(nn.Module):
             domain_head.append(nn.Linear(previous, count))
             self.classifiers[domain] = nn.Sequential(*domain_head)
 
+    def encode(self, x: torch.Tensor) -> torch.Tensor:
+        return self.encoder(x)
+
     def forward(self, x: torch.Tensor, domain: str, return_embedding: bool = False):
-        embedding = self.encoder(x)
+        embedding = self.encode(x)
         logits = self.classifiers[domain](embedding)
         if return_embedding:
             return logits, embedding
@@ -88,7 +91,7 @@ def supervised_contrastive_loss(
     embeddings: torch.Tensor,
     labels: torch.Tensor,
     temperature: float = 0.1,
-) -> torch.Tensor:
+ ) -> torch.Tensor:
     """SupCon loss; labels passed here must belong to exactly one domain."""
     if temperature <= 0:
         raise ValueError("temperature must be positive")
@@ -169,7 +172,7 @@ def _step_ce(model, projection, optimizer, batch, domain, mode, weight, temperat
         return None
     logits, latent = model(X, domain=domain, return_embedding=True)
     loss = nn.functional.cross_entropy(logits, y)
-    if mode == "joint" and weight:
+    if mode == "joint" and weight and projection is not None:
         loss = loss + weight * supervised_contrastive_loss(projection(latent), y, temperature)
     loss.backward()
     optimizer.step()
@@ -213,15 +216,16 @@ def train_and_evaluate(
     model = MLPClassifier(
         domains[target_name][0].shape[1], class_counts, encoder_profile, head_shape
     ).to(device)
-    projection = ProjectionHead(64).to(device)
-    model_optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=1e-5)
-    projection_optimizer = torch.optim.Adam(
-        list(model.parameters()) + list(projection.parameters()), lr=learning_rate, weight_decay=1e-5
-    )
     loaders = {name: _loader(X, y, batch_size, True) for name, (X, y) in domains.items()}
 
     if mode == "pretrain":
-        projection_optimizer.zero_grad(set_to_none=True)
+        seed_everything(seed + 1)
+        pretrain_projection = ProjectionHead(64).to(device)
+        pretrain_optimizer = torch.optim.Adam(
+            list(model.encoder.parameters()) + list(pretrain_projection.parameters()),
+            lr=learning_rate,
+            weight_decay=1e-5,
+        )
         source_batches = {name: iter(loader) for name, loader in loaders.items() if name != target_name}
         steps = max((len(loader) for name, loader in loaders.items() if name != target_name), default=0)
         for _ in range(epochs):
@@ -235,26 +239,57 @@ def train_and_evaluate(
                     if len(y) < 2:
                         continue
                     X, y = X.to(device), y.to(device)
-                    projection_optimizer.zero_grad(set_to_none=True)
-                    _, latent = model(X, domain=name, return_embedding=True)
-                    loss = supervised_contrastive_loss(projection(latent), y, temperature)
+                    pretrain_optimizer.zero_grad(set_to_none=True)
+                    latent = model.encode(X)
+                    loss = supervised_contrastive_loss(pretrain_projection(latent), y, temperature)
                     loss.backward()
-                    projection_optimizer.step()
+                    pretrain_optimizer.step()
+        # Discard contrastive projection head and pretraining optimizer; preserve encoder only.
+        del pretrain_projection, pretrain_optimizer
 
     # Supervised source+target training. SupCon is evaluated independently per domain.
+    if mode == "joint":
+        seed_everything(seed + 1)
+        projection = ProjectionHead(64).to(device)
+        supervised_optimizer = torch.optim.Adam(
+            list(model.encoder.parameters())
+            + list(model.classifiers.parameters())
+            + list(projection.parameters()),
+            lr=learning_rate,
+            weight_decay=1e-5,
+        )
+    else:
+        projection = None
+        supervised_optimizer = torch.optim.Adam(
+            list(model.encoder.parameters()) + list(model.classifiers.parameters()),
+            lr=learning_rate,
+            weight_decay=1e-5,
+        )
+
+    seed_everything(seed + 2)
     for _ in range(epochs):
         for name, loader in loaders.items():
             for batch in loader:
                 _step_ce(
-                    model, projection, projection_optimizer, batch, name,
+                    model, projection, supervised_optimizer, batch, name,
                     mode, contrastive_weight, temperature, device,
                 )
 
+    # Discard joint projection head and supervised optimizer before target-only fine-tuning.
+    projection = None
+    del supervised_optimizer
+
     # Fixed-epoch target-only fine-tuning; no test-fold checkpoint selection.
+    finetune_optimizer = torch.optim.Adam(
+        list(model.encoder.parameters()) + list(model.classifiers[target_name].parameters()),
+        lr=learning_rate,
+        weight_decay=1e-5,
+    )
+    seed_everything(seed + 3)
     target_loader = loaders[target_name]
     for _ in range(finetune_epochs):
         for batch in target_loader:
-            _step_ce(model, projection, model_optimizer, batch, target_name, "baseline", 0.0, temperature, device)
+            _step_ce(model, None, finetune_optimizer, batch, target_name, "baseline", 0.0, temperature, device)
 
     model.eval()
     with torch.no_grad():
@@ -266,10 +301,30 @@ def train_and_evaluate(
     y_test = np.asarray(y_test, dtype=np.int64)
     present = np.unique(y_test)
     auc = float("nan")
-    if len(present) >= 2:
+    if len(present) == 2:
         try:
             present_probabilities = probabilities[:, present]
-            present_probabilities = present_probabilities / present_probabilities.sum(axis=1, keepdims=True)
+            row_sums = present_probabilities.sum(axis=1, keepdims=True)
+            present_probabilities = np.divide(
+                present_probabilities,
+                row_sums,
+                out=np.full_like(present_probabilities, 0.5),
+                where=row_sums > 0,
+            )
+            y_binary = (y_test == present[1]).astype(np.int64)
+            auc = float(roc_auc_score(y_binary, present_probabilities[:, 1]))
+        except ValueError:
+            pass
+    elif len(present) > 2:
+        try:
+            present_probabilities = probabilities[:, present]
+            row_sums = present_probabilities.sum(axis=1, keepdims=True)
+            present_probabilities = np.divide(
+                present_probabilities,
+                row_sums,
+                out=np.full_like(present_probabilities, 1.0 / len(present)),
+                where=row_sums > 0,
+            )
             auc = float(roc_auc_score(y_test, present_probabilities, labels=present, multi_class="ovr", average="macro"))
         except ValueError:
             pass
