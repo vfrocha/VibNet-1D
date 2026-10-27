@@ -11,6 +11,7 @@ Modos: `baseline` supervisionado sem SupCon; `joint` combina cross-entropy e Sup
 ## Execução
 
 Execute da raiz `VibNet-1D/`. Comece com uma configuração e uma seed; o runner exige os dados locais e extrai features reais.
+O padrão esperado é `data/processed_tl/detrended_rms/<dataset>/<condição>/<classe>/*.npy`; a raiz do projeto é localizada a partir do script, inclusive quando o runner compartilhado está em `scripts/` ou `scripts/tl/`.
 
 Testes sintéticos do módulo (não carregam os datasets):
 

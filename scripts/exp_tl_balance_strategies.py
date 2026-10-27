@@ -52,16 +52,28 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
 # -----------------------------------------------------------------------------
-# Projeto
+# Projeto: localizar a raiz pelo conteúdo, pois este runner existe em
+# scripts/ (e versões anteriores também foram colocadas em scripts/tl/).
 # -----------------------------------------------------------------------------
-sys.path.append(
-    os.path.abspath(
-        os.path.join(
-            os.path.dirname(__file__),
-            "../..",
-        )
+def _find_project_root():
+    current = os.path.dirname(os.path.abspath(__file__))
+    candidates = []
+    for _ in range(4):
+        candidates.append(current)
+        current = os.path.dirname(current)
+    for candidate in candidates:
+        candidate = os.path.abspath(candidate)
+        if os.path.isdir(os.path.join(candidate, "src")) and os.path.isfile(
+            os.path.join(candidate, "requirements.txt")
+        ):
+            return candidate
+    raise RuntimeError(
+        f"Não foi possível localizar a raiz do projeto a partir de {__file__}"
     )
-)
+
+
+PROJECT_ROOT = _find_project_root()
+sys.path.insert(0, PROJECT_ROOT)
 
 from src.features.extractors_v2 import extract_advanced_features
 from src.features.signalai_wrapper import extract_fusion_features
@@ -73,13 +85,6 @@ from src.models.build_tabnet_resnet_balance import (
 # =============================================================================
 # CONFIGURAÇÃO
 # =============================================================================
-
-PROJECT_ROOT = os.path.abspath(
-    os.path.join(
-        os.path.dirname(__file__),
-        "../..",
-    )
-)
 
 DATA_ROOT = os.path.join(
     PROJECT_ROOT,
