@@ -1,0 +1,59 @@
+Output: /home/vfrocha/VibNet-1D/results/tl_contrastive_mlp/run_20261026_212435
+Loading features with the existing detrended_rms pipeline...
+
+==========================================================================================
+FASE 1: CARGA E EXTRAÇÃO DE FEATURES
+==========================================================================================
+
+[CWRU_12k] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+  Janelas : 2520
+  Features: 141
+  fs      : 12000 Hz
+
+[MFPT] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 78 amostras...
+         [Debug] Shape VibNet: (78, 16)
+         [Debug] Shape SignAI: (78, 125)
+      -> [Fusion] Shape final combinado: (78, 141)
+  Janelas : 78
+  Features: 141
+  fs      : 48828 Hz
+
+[CWRU_48k] Variante=detrended_rms
+      -> [Fusion] Iniciando extração DUPLA para 602 amostras...
+         [Debug] Shape VibNet: (602, 16)
+         [Debug] Shape SignAI: (602, 125)
+      -> [Fusion] Shape final combinado: (602, 141)
+  Janelas : 602
+  Features: 141
+  fs      : 48000 Hz
+
+Dimensão final das features: 141
+[RUN] mode=baseline encoder=baseline head=asymmetric balance=none seed=42 condition=Load_0HP_Sev_0.007
+  Macro-F1=0.4935 ACC=0.6000 BalAcc=0.6000 AUC=0.725
+[RUN] mode=baseline encoder=baseline head=asymmetric balance=none seed=42 condition=Load_0HP_Sev_0.014
+  Macro-F1=0.3333 ACC=0.5000 BalAcc=0.5000 AUC=nan
+[RUN] mode=baseline encoder=baseline head=asymmetric balance=none seed=42 condition=Load_0HP_Sev_0.021
+  Macro-F1=1.0000 ACC=1.0000 BalAcc=1.0000 AUC=1.0
+[RUN] mode=baseline encoder=baseline head=asymmetric balance=none seed=42 condition=Load_1HP_Sev_0.007
+  Macro-F1=0.9333 ACC=0.9333 BalAcc=0.9333 AUC=0.9304166666666666
+[RUN] mode=baseline encoder=baseline head=asymmetric balance=none seed=42 condition=Load_1HP_Sev_0.014
+  Macro-F1=0.5688 ACC=0.5926 BalAcc=0.5833 AUC=0.7713935574229692
+[RUN] mode=baseline encoder=baseline head=asymmetric balance=none seed=42 condition=Load_1HP_Sev_0.021
+  Macro-F1=0.5861 ACC=0.5667 BalAcc=0.5667 AUC=0.8258333333333333
+[RUN] mode=baseline encoder=baseline head=asymmetric balance=none seed=42 condition=Load_2HP_Sev_0.007
+  Macro-F1=0.7750 ACC=0.7833 BalAcc=0.7833 AUC=0.9233333333333333
+[RUN] mode=baseline encoder=baseline head=asymmetric balance=none seed=42 condition=Load_2HP_Sev_0.014
+  Macro-F1=0.4080 ACC=0.4500 BalAcc=0.4500 AUC=0.64
+[RUN] mode=baseline encoder=baseline head=asymmetric balance=none seed=42 condition=Load_2HP_Sev_0.021
+  Macro-F1=0.7750 ACC=0.7833 BalAcc=0.7833 AUC=0.9595833333333333
+[RUN] mode=baseline encoder=baseline head=asymmetric balance=none seed=42 condition=Load_3HP_Sev_0.007
+  Macro-F1=0.7854 ACC=0.8000 BalAcc=0.8000 AUC=0.8783333333333333
+[RUN] mode=baseline encoder=baseline head=asymmetric balance=none seed=42 condition=Load_3HP_Sev_0.014
+  Macro-F1=0.3759 ACC=0.4000 BalAcc=0.4000 AUC=0.5995833333333334
+[RUN] mode=baseline encoder=baseline head=asymmetric balance=none seed=42 condition=Load_3HP_Sev_0.021
+  Macro-F1=0.6843 ACC=0.7000 BalAcc=0.7000 AUC=0.9333333333333335

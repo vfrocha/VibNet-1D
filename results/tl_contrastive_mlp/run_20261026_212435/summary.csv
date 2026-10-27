@@ -1,0 +1,2 @@
+Mode,Encoder Profile,Head Shape,Balance Strategy,Seed,N_Folds,Macro_F1_Mean,Macro_F1_Std,ACC_Mean,Bal_Acc_Mean,ROC_AUC_Mean
+baseline,baseline,asymmetric,none,42,12,0.6432250979411408,0.2178585950986979,0.6757716049382716,0.6749999999999999,0.8351645658263305
