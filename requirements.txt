@@ -1,2 +1,4 @@
 pytorch-tabnet
 xgboost
+pandas
+imbalanced-learn
