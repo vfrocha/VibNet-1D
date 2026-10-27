@@ -1,0 +1,32 @@
+{
+  "modes": [
+    "joint"
+  ],
+  "encoder_profiles": [
+    "baseline",
+    "expanded"
+  ],
+  "head_shapes": [
+    "asymmetric"
+  ],
+  "balance_strategy": "none",
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "epochs": 20,
+  "finetune_epochs": 10,
+  "batch_size": 256,
+  "learning_rate": 0.001,
+  "contrastive_weight": 0.1,
+  "temperature": 0.1,
+  "source_datasets": [
+    "CWRU_12k",
+    "MFPT"
+  ],
+  "target_dataset": "CWRU_48k",
+  "primary_metric": "Macro F1",
+  "output_dir": "/home/vfrocha/VibNet-1D/results/tl_contrastive_mlp/run_20261027_113203",
+  "selection_note": "Fixed epochs; LOCO test folds are evaluation only, never checkpoint or hyperparameter selection."
+}
