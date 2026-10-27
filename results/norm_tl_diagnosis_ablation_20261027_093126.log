@@ -1,0 +1,1086 @@
+====================================================================================================
+EXPERIMENTO: ABLATION TL + DIAGNOSIS + DETREND/RMS
+====================================================================================================
+Targets: UOEMD
+Modelos: mlp, tabnet
+Tarefa: diagnosis
+Epochs: 15 | Batch size: 512
+
+MATRIZ EXPERIMENTAL:
+  E0_RMS_Detrend: RMS + detrend em pretrain, fine-tune e teste
+       pretrain=rms_detrend | finetune=rms_detrend | test=rms_detrend | extras=False
+  E1_RMS_Sem_Detrend: RMS sem detrend em pretrain, fine-tune e teste
+       pretrain=rms_raw | finetune=rms_raw | test=rms_raw | extras=False
+  E2_RMS_Detrend_Treino_Raw_Teste: RMS + detrend no treino; raw sem detrend no teste
+       pretrain=rms_detrend | finetune=rms_detrend | test=raw | extras=False
+  E3_RMS_Detrend_Com_Parametros: RMS + detrend com RMS, b1 e b2 como features
+       pretrain=rms_detrend | finetune=rms_detrend | test=rms_detrend | extras=True
+  E4_RMS_Detrend_Treino_Raw_Teste_Com_Parametros: RMS + detrend no treino; raw sem detrend no teste; com RMS, b1 e b2
+       pretrain=rms_detrend | finetune=rms_detrend | test=raw | extras=True
+
+====================================================================================================
+FASE 1: CARGA, PARÂMETROS E EXTRAÇÃO DAS FEATURES
+====================================================================================================
+Parâmetros adicionais: [RMS_original, b1, b2]
+  -> CWRU_12k: 2520 janelas | fs=12000 Hz
+     extraindo: raw ...
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+     extraindo: rms_detrend ...
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+     extraindo: rms_raw ...
+      -> [Fusion] Iniciando extração DUPLA para 2520 amostras...
+         [Debug] Shape VibNet: (2520, 16)
+         [Debug] Shape SignAI: (2520, 125)
+      -> [Fusion] Shape final combinado: (2520, 141)
+     Features temporais: 141
+     Features extras: 3 [RMS, b1, b2]
+  -> CWRU_48k: 602 janelas | fs=48000 Hz
+     extraindo: raw ...
+      -> [Fusion] Iniciando extração DUPLA para 602 amostras...
+         [Debug] Shape VibNet: (602, 16)
+         [Debug] Shape SignAI: (602, 125)
+      -> [Fusion] Shape final combinado: (602, 141)
+     extraindo: rms_detrend ...
+      -> [Fusion] Iniciando extração DUPLA para 602 amostras...
+         [Debug] Shape VibNet: (602, 16)
+         [Debug] Shape SignAI: (602, 125)
+      -> [Fusion] Shape final combinado: (602, 141)
+     extraindo: rms_raw ...
+      -> [Fusion] Iniciando extração DUPLA para 602 amostras...
+         [Debug] Shape VibNet: (602, 16)
+         [Debug] Shape SignAI: (602, 125)
+      -> [Fusion] Shape final combinado: (602, 141)
+     Features temporais: 141
+     Features extras: 3 [RMS, b1, b2]
+  -> UOEMD: 1280 janelas | fs=42000 Hz
+     extraindo: raw ...
+      -> [Fusion] Iniciando extração DUPLA para 1280 amostras...
+         [Debug] Shape VibNet: (1280, 16)
+         [Debug] Shape SignAI: (1280, 125)
+      -> [Fusion] Shape final combinado: (1280, 141)
+     extraindo: rms_detrend ...
+      -> [Fusion] Iniciando extração DUPLA para 1280 amostras...
+         [Debug] Shape VibNet: (1280, 16)
+         [Debug] Shape SignAI: (1280, 125)
+      -> [Fusion] Shape final combinado: (1280, 141)
+     extraindo: rms_raw ...
+      -> [Fusion] Iniciando extração DUPLA para 1280 amostras...
+         [Debug] Shape VibNet: (1280, 16)
+         [Debug] Shape SignAI: (1280, 125)
+      -> [Fusion] Shape final combinado: (1280, 141)
+     Features temporais: 141
+     Features extras: 3 [RMS, b1, b2]
+  -> HUST_Gearbox: 900 janelas | fs=25600 Hz
+     extraindo: raw ...
+      -> [Fusion] Iniciando extração DUPLA para 900 amostras...
+         [Debug] Shape VibNet: (900, 16)
+         [Debug] Shape SignAI: (900, 125)
+      -> [Fusion] Shape final combinado: (900, 141)
+     extraindo: rms_detrend ...
+      -> [Fusion] Iniciando extração DUPLA para 900 amostras...
+         [Debug] Shape VibNet: (900, 16)
+         [Debug] Shape SignAI: (900, 125)
+      -> [Fusion] Shape final combinado: (900, 141)
+     extraindo: rms_raw ...
+      -> [Fusion] Iniciando extração DUPLA para 900 amostras...
+         [Debug] Shape VibNet: (900, 16)
+         [Debug] Shape SignAI: (900, 125)
+      -> [Fusion] Shape final combinado: (900, 141)
+     Features temporais: 141
+     Features extras: 3 [RMS, b1, b2]
+  -> HUST: 1101 janelas | fs=51200 Hz
+     extraindo: raw ...
+      -> [Fusion] Iniciando extração DUPLA para 1101 amostras...
+         [Debug] Shape VibNet: (1101, 16)
+         [Debug] Shape SignAI: (1101, 125)
+      -> [Fusion] Shape final combinado: (1101, 141)
+     extraindo: rms_detrend ...
+      -> [Fusion] Iniciando extração DUPLA para 1101 amostras...
+         [Debug] Shape VibNet: (1101, 16)
+         [Debug] Shape SignAI: (1101, 125)
+      -> [Fusion] Shape final combinado: (1101, 141)
+     extraindo: rms_raw ...
+      -> [Fusion] Iniciando extração DUPLA para 1101 amostras...
+         [Debug] Shape VibNet: (1101, 16)
+         [Debug] Shape SignAI: (1101, 125)
+      -> [Fusion] Shape final combinado: (1101, 141)
+     Features temporais: 141
+     Features extras: 3 [RMS, b1, b2]
+  -> PU: 6476 janelas | fs=64000 Hz
+     extraindo: raw ...
+      -> [Fusion] Iniciando extração DUPLA para 6476 amostras...
+         [Debug] Shape VibNet: (6476, 16)
+         [Debug] Shape SignAI: (6476, 125)
+      -> [Fusion] Shape final combinado: (6476, 141)
+     extraindo: rms_detrend ...
+      -> [Fusion] Iniciando extração DUPLA para 6476 amostras...
+         [Debug] Shape VibNet: (6476, 16)
+         [Debug] Shape SignAI: (6476, 125)
+      -> [Fusion] Shape final combinado: (6476, 141)
+     extraindo: rms_raw ...
+      -> [Fusion] Iniciando extração DUPLA para 6476 amostras...
+         [Debug] Shape VibNet: (6476, 16)
+         [Debug] Shape SignAI: (6476, 125)
+      -> [Fusion] Shape final combinado: (6476, 141)
+     Features temporais: 141
+     Features extras: 3 [RMS, b1, b2]
+  -> UORED: 370 janelas | fs=42000 Hz
+     extraindo: raw ...
+      -> [Fusion] Iniciando extração DUPLA para 370 amostras...
+         [Debug] Shape VibNet: (370, 16)
+         [Debug] Shape SignAI: (370, 125)
+      -> [Fusion] Shape final combinado: (370, 141)
+     extraindo: rms_detrend ...
+      -> [Fusion] Iniciando extração DUPLA para 370 amostras...
+         [Debug] Shape VibNet: (370, 16)
+         [Debug] Shape SignAI: (370, 125)
+      -> [Fusion] Shape final combinado: (370, 141)
+     extraindo: rms_raw ...
+      -> [Fusion] Iniciando extração DUPLA para 370 amostras...
+         [Debug] Shape VibNet: (370, 16)
+         [Debug] Shape SignAI: (370, 125)
+      -> [Fusion] Shape final combinado: (370, 141)
+     Features temporais: 141
+     Features extras: 3 [RMS, b1, b2]
+  -> Mechanical_Gear: 180 janelas | fs=5000 Hz
+     extraindo: raw ...
+      -> [Fusion] Iniciando extração DUPLA para 180 amostras...
+         [Debug] Shape VibNet: (180, 16)
+         [Debug] Shape SignAI: (180, 125)
+      -> [Fusion] Shape final combinado: (180, 141)
+     extraindo: rms_detrend ...
+      -> [Fusion] Iniciando extração DUPLA para 180 amostras...
+         [Debug] Shape VibNet: (180, 16)
+         [Debug] Shape SignAI: (180, 125)
+      -> [Fusion] Shape final combinado: (180, 141)
+     extraindo: rms_raw ...
+      -> [Fusion] Iniciando extração DUPLA para 180 amostras...
+         [Debug] Shape VibNet: (180, 16)
+         [Debug] Shape SignAI: (180, 125)
+      -> [Fusion] Shape final combinado: (180, 141)
+     Features temporais: 141
+     Features extras: 3 [RMS, b1, b2]
+  -> Electric_Motor: 66 janelas | fs=50000 Hz
+     extraindo: raw ...
+      -> [Fusion] Iniciando extração DUPLA para 66 amostras...
+         [Debug] Shape VibNet: (66, 16)
+         [Debug] Shape SignAI: (66, 125)
+      -> [Fusion] Shape final combinado: (66, 141)
+     extraindo: rms_detrend ...
+      -> [Fusion] Iniciando extração DUPLA para 66 amostras...
+         [Debug] Shape VibNet: (66, 16)
+         [Debug] Shape SignAI: (66, 125)
+      -> [Fusion] Shape final combinado: (66, 141)
+     extraindo: rms_raw ...
+      -> [Fusion] Iniciando extração DUPLA para 66 amostras...
+         [Debug] Shape VibNet: (66, 16)
+         [Debug] Shape SignAI: (66, 125)
+      -> [Fusion] Shape final combinado: (66, 141)
+     Features temporais: 141
+     Features extras: 3 [RMS, b1, b2]
+
+Datasets disponíveis: 9
+Features temporais: 141
+Features com extras: 144
+Datasets: CWRU_12k, CWRU_48k, Electric_Motor, HUST, HUST_Gearbox, Mechanical_Gear, PU, UOEMD, UORED
+
+====================================================================================================
+FASE 2: MULTI-TARGET LOCO
+====================================================================================================
+
+====================================================================================================
+TARGET DATASET: UOEMD
+====================================================================================================
+Sources (8): CWRU_12k, CWRU_48k, Electric_Motor, HUST, HUST_Gearbox, Mechanical_Gear, PU, UORED
+Condições LOCO: 16
+
+----------------------------------------------------------------------------------------------------
+E0_RMS_Detrend: RMS + detrend em pretrain, fine-tune e teste
+----------------------------------------------------------------------------------------------------
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_15Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6250 | Bal Acc=0.6250 | Macro F1=0.5779 | ROC-AUC=0.8507
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 25 with best_epoch = 23 and best_val_0_unsup_loss_numpy = 0.4300900101661682
+Stop training because you reached max_epochs = 100 with best_epoch = 99 and best_train_balanced_accuracy = 0.99167
+     [TABNET (TL)] ACC=0.5625 | Bal Acc=0.5625 | Macro F1=0.5131 | ROC-AUC=0.8700
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_30Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8875 | Bal Acc=0.8875 | Macro F1=0.8589 | ROC-AUC=0.9989
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 81 and best_train_balanced_accuracy = 0.9775
+     [TABNET (TL)] ACC=0.8250 | Bal Acc=0.8250 | Macro F1=0.8132 | ROC-AUC=0.9991
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_45Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7625 | Bal Acc=0.7625 | Macro F1=0.6923 | ROC-AUC=0.9754
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 98 and best_train_balanced_accuracy = 0.99167
+     [TABNET (TL)] ACC=0.6375 | Bal Acc=0.6375 | Macro F1=0.5995 | ROC-AUC=0.9346
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_60Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6375 | Bal Acc=0.6375 | Macro F1=0.5737 | ROC-AUC=0.9304
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 81 and best_train_balanced_accuracy = 0.98417
+     [TABNET (TL)] ACC=0.4875 | Bal Acc=0.4875 | Macro F1=0.4008 | ROC-AUC=0.9027
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Dec_45_to_15Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7750 | Bal Acc=0.7750 | Macro F1=0.7769 | ROC-AUC=0.9789
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 86 and best_train_balanced_accuracy = 0.99333
+     [TABNET (TL)] ACC=0.6875 | Bal Acc=0.6875 | Macro F1=0.6878 | ROC-AUC=0.8802
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Dec_60_to_30Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8625 | Bal Acc=0.8625 | Macro F1=0.8602 | ROC-AUC=0.9909
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 88 and best_train_balanced_accuracy = 0.98583
+     [TABNET (TL)] ACC=0.8000 | Bal Acc=0.8000 | Macro F1=0.7970 | ROC-AUC=0.9641
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Inc_15_to_45Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8625 | Bal Acc=0.8625 | Macro F1=0.8621 | ROC-AUC=0.9870
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 96 and best_train_balanced_accuracy = 0.98583
+     [TABNET (TL)] ACC=0.7500 | Bal Acc=0.7500 | Macro F1=0.7515 | ROC-AUC=0.9350
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Inc_30_to_60Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8375 | Bal Acc=0.8375 | Macro F1=0.8390 | ROC-AUC=0.9852
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 97 and best_train_balanced_accuracy = 0.99167
+     [TABNET (TL)] ACC=0.8250 | Bal Acc=0.8250 | Macro F1=0.8266 | ROC-AUC=0.9623
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_15Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6500 | Bal Acc=0.6500 | Macro F1=0.6334 | ROC-AUC=0.9814
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 95 and best_train_balanced_accuracy = 0.98583
+     [TABNET (TL)] ACC=0.6125 | Bal Acc=0.6125 | Macro F1=0.5688 | ROC-AUC=0.8380
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_30Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7375 | Bal Acc=0.7375 | Macro F1=0.6798 | ROC-AUC=0.9580
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 98 and best_train_balanced_accuracy = 0.99333
+     [TABNET (TL)] ACC=0.5875 | Bal Acc=0.5875 | Macro F1=0.5679 | ROC-AUC=0.9318
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_45Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7500 | Bal Acc=0.7500 | Macro F1=0.7380 | ROC-AUC=0.9745
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 98 and best_train_balanced_accuracy = 0.99333
+     [TABNET (TL)] ACC=0.6750 | Bal Acc=0.6750 | Macro F1=0.6223 | ROC-AUC=0.9639
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_60Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7625 | Bal Acc=0.7625 | Macro F1=0.7178 | ROC-AUC=0.9811
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 96 and best_train_balanced_accuracy = 0.9975
+     [TABNET (TL)] ACC=0.7625 | Bal Acc=0.7625 | Macro F1=0.7253 | ROC-AUC=0.9623
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Dec_45_to_15Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8375 | Bal Acc=0.8375 | Macro F1=0.8363 | ROC-AUC=0.9748
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 79 with best_epoch = 59 and best_train_balanced_accuracy = 0.97833
+     [TABNET (TL)] ACC=0.7875 | Bal Acc=0.7875 | Macro F1=0.7857 | ROC-AUC=0.9623
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Dec_60_to_30Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9125 | Bal Acc=0.9125 | Macro F1=0.9109 | ROC-AUC=0.9929
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 98 and best_train_balanced_accuracy = 0.99583
+     [TABNET (TL)] ACC=0.8625 | Bal Acc=0.8625 | Macro F1=0.8553 | ROC-AUC=0.9829
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Inc_15_to_45Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9000 | Bal Acc=0.9000 | Macro F1=0.8987 | ROC-AUC=0.9941
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 88 and best_train_balanced_accuracy = 0.98583
+     [TABNET (TL)] ACC=0.8625 | Bal Acc=0.8625 | Macro F1=0.8647 | ROC-AUC=0.9843
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Inc_30_to_60Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9125 | Bal Acc=0.9125 | Macro F1=0.9083 | ROC-AUC=0.9864
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 92 and best_train_balanced_accuracy = 0.99083
+     [TABNET (TL)] ACC=0.8250 | Bal Acc=0.8250 | Macro F1=0.8168 | ROC-AUC=0.9718
+
+----------------------------------------------------------------------------------------------------
+E1_RMS_Sem_Detrend: RMS sem detrend em pretrain, fine-tune e teste
+----------------------------------------------------------------------------------------------------
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_15Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6125 | Bal Acc=0.6125 | Macro F1=0.5607 | ROC-AUC=0.8812
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 25 with best_epoch = 24 and best_val_0_unsup_loss_numpy = 0.44304001331329346
+Stop training because you reached max_epochs = 100 with best_epoch = 93 and best_train_balanced_accuracy = 0.9975
+     [TABNET (TL)] ACC=0.5125 | Bal Acc=0.5125 | Macro F1=0.4970 | ROC-AUC=0.8038
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_30Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9625 | Bal Acc=0.9625 | Macro F1=0.9606 | ROC-AUC=0.9991
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 90 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.4500 | Bal Acc=0.4500 | Macro F1=0.4197 | ROC-AUC=0.8964
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_45Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7750 | Bal Acc=0.7750 | Macro F1=0.7143 | ROC-AUC=0.9800
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 95 and best_train_balanced_accuracy = 0.98833
+     [TABNET (TL)] ACC=0.6750 | Bal Acc=0.6750 | Macro F1=0.6678 | ROC-AUC=0.9386
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_60Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.5750 | Bal Acc=0.5750 | Macro F1=0.5311 | ROC-AUC=0.8825
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 99 and best_train_balanced_accuracy = 0.99833
+     [TABNET (TL)] ACC=0.6125 | Bal Acc=0.6125 | Macro F1=0.5605 | ROC-AUC=0.9120
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Dec_45_to_15Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8250 | Bal Acc=0.8250 | Macro F1=0.8281 | ROC-AUC=0.9811
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 88 and best_train_balanced_accuracy = 0.99583
+     [TABNET (TL)] ACC=0.7250 | Bal Acc=0.7250 | Macro F1=0.7230 | ROC-AUC=0.9498
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Dec_60_to_30Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8750 | Bal Acc=0.8750 | Macro F1=0.8731 | ROC-AUC=0.9927
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 93 and best_train_balanced_accuracy = 0.99583
+     [TABNET (TL)] ACC=0.8625 | Bal Acc=0.8625 | Macro F1=0.8570 | ROC-AUC=0.9911
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Inc_15_to_45Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8125 | Bal Acc=0.8125 | Macro F1=0.8095 | ROC-AUC=0.9859
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 89 and best_train_balanced_accuracy = 0.9975
+     [TABNET (TL)] ACC=0.8625 | Bal Acc=0.8625 | Macro F1=0.8603 | ROC-AUC=0.9693
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Inc_30_to_60Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8250 | Bal Acc=0.8250 | Macro F1=0.8188 | ROC-AUC=0.9795
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 93 and best_train_balanced_accuracy = 0.99833
+     [TABNET (TL)] ACC=0.8500 | Bal Acc=0.8500 | Macro F1=0.8472 | ROC-AUC=0.9804
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_15Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7500 | Bal Acc=0.7500 | Macro F1=0.7101 | ROC-AUC=0.9780
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 90 and best_train_balanced_accuracy = 0.99667
+     [TABNET (TL)] ACC=0.5250 | Bal Acc=0.5250 | Macro F1=0.4655 | ROC-AUC=0.8834
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_30Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6625 | Bal Acc=0.6625 | Macro F1=0.6188 | ROC-AUC=0.9234
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 99 and best_train_balanced_accuracy = 0.99667
+     [TABNET (TL)] ACC=0.6500 | Bal Acc=0.6500 | Macro F1=0.6223 | ROC-AUC=0.9230
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_45Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8500 | Bal Acc=0.8500 | Macro F1=0.8081 | ROC-AUC=0.9984
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 95 and best_train_balanced_accuracy = 0.99917
+     [TABNET (TL)] ACC=0.7250 | Bal Acc=0.7250 | Macro F1=0.6476 | ROC-AUC=0.9566
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_60Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8250 | Bal Acc=0.8250 | Macro F1=0.8102 | ROC-AUC=0.9868
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 96 with best_epoch = 76 and best_train_balanced_accuracy = 0.99
+     [TABNET (TL)] ACC=0.7375 | Bal Acc=0.7375 | Macro F1=0.6550 | ROC-AUC=0.8839
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Dec_45_to_15Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8125 | Bal Acc=0.8125 | Macro F1=0.8129 | ROC-AUC=0.9773
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 97 and best_train_balanced_accuracy = 0.99667
+     [TABNET (TL)] ACC=0.8375 | Bal Acc=0.8375 | Macro F1=0.8384 | ROC-AUC=0.9754
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Dec_60_to_30Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9250 | Bal Acc=0.9250 | Macro F1=0.9255 | ROC-AUC=0.9927
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 94 and best_train_balanced_accuracy = 0.99583
+     [TABNET (TL)] ACC=0.8875 | Bal Acc=0.8875 | Macro F1=0.8849 | ROC-AUC=0.9796
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Inc_15_to_45Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8875 | Bal Acc=0.8875 | Macro F1=0.8822 | ROC-AUC=0.9857
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 96 and best_train_balanced_accuracy = 0.99333
+     [TABNET (TL)] ACC=0.8375 | Bal Acc=0.8375 | Macro F1=0.8411 | ROC-AUC=0.9802
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Inc_30_to_60Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9250 | Bal Acc=0.9250 | Macro F1=0.9226 | ROC-AUC=0.9870
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 99 and best_train_balanced_accuracy = 0.99333
+     [TABNET (TL)] ACC=0.8875 | Bal Acc=0.8875 | Macro F1=0.8838 | ROC-AUC=0.9782
+
+----------------------------------------------------------------------------------------------------
+E2_RMS_Detrend_Treino_Raw_Teste: RMS + detrend no treino; raw sem detrend no teste
+----------------------------------------------------------------------------------------------------
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_15Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1375 | Bal Acc=0.1375 | Macro F1=0.0552 | ROC-AUC=0.5071
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 99 and best_train_balanced_accuracy = 0.99167
+     [TABNET (TL)] ACC=0.1875 | Bal Acc=0.1875 | Macro F1=0.1396 | ROC-AUC=0.5016
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_30Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0496 | ROC-AUC=0.5000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 81 and best_train_balanced_accuracy = 0.9775
+     [TABNET (TL)] ACC=0.1500 | Bal Acc=0.1500 | Macro F1=0.0718 | ROC-AUC=0.4962
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_45Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1125 | Bal Acc=0.1125 | Macro F1=0.0437 | ROC-AUC=0.4929
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 98 and best_train_balanced_accuracy = 0.99167
+     [TABNET (TL)] ACC=0.0500 | Bal Acc=0.0500 | Macro F1=0.0167 | ROC-AUC=0.4596
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_60Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1125 | Bal Acc=0.1125 | Macro F1=0.0449 | ROC-AUC=0.4929
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 81 and best_train_balanced_accuracy = 0.98417
+     [TABNET (TL)] ACC=0.1125 | Bal Acc=0.1125 | Macro F1=0.0710 | ROC-AUC=0.5011
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Dec_45_to_15Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1125 | Bal Acc=0.1125 | Macro F1=0.0449 | ROC-AUC=0.4929
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 86 and best_train_balanced_accuracy = 0.99333
+     [TABNET (TL)] ACC=0.1750 | Bal Acc=0.1750 | Macro F1=0.1283 | ROC-AUC=0.5207
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Dec_60_to_30Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1000 | Bal Acc=0.1000 | Macro F1=0.0395 | ROC-AUC=0.4857
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 88 and best_train_balanced_accuracy = 0.98583
+     [TABNET (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0781 | ROC-AUC=0.4862
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Inc_15_to_45Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0278 | ROC-AUC=0.5000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 96 and best_train_balanced_accuracy = 0.98583
+     [TABNET (TL)] ACC=0.0875 | Bal Acc=0.0875 | Macro F1=0.0479 | ROC-AUC=0.4761
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Inc_30_to_60Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0278 | ROC-AUC=0.5000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 97 and best_train_balanced_accuracy = 0.99167
+     [TABNET (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0896 | ROC-AUC=0.4874
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_15Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0278 | ROC-AUC=0.5000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 95 and best_train_balanced_accuracy = 0.98583
+     [TABNET (TL)] ACC=0.2000 | Bal Acc=0.2000 | Macro F1=0.1263 | ROC-AUC=0.5698
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_30Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0495 | ROC-AUC=0.5000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 98 and best_train_balanced_accuracy = 0.99333
+     [TABNET (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0527 | ROC-AUC=0.5583
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_45Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0496 | ROC-AUC=0.5000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 98 and best_train_balanced_accuracy = 0.99333
+     [TABNET (TL)] ACC=0.1000 | Bal Acc=0.1000 | Macro F1=0.0294 | ROC-AUC=0.4902
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_60Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1375 | Bal Acc=0.1375 | Macro F1=0.0549 | ROC-AUC=0.5071
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 96 and best_train_balanced_accuracy = 0.9975
+     [TABNET (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0278 | ROC-AUC=0.4821
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Dec_45_to_15Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1375 | Bal Acc=0.1375 | Macro F1=0.0554 | ROC-AUC=0.5071
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 79 with best_epoch = 59 and best_train_balanced_accuracy = 0.97833
+     [TABNET (TL)] ACC=0.1500 | Bal Acc=0.1500 | Macro F1=0.0596 | ROC-AUC=0.5517
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Dec_60_to_30Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1000 | Bal Acc=0.1000 | Macro F1=0.0400 | ROC-AUC=0.4857
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 98 and best_train_balanced_accuracy = 0.99583
+     [TABNET (TL)] ACC=0.1875 | Bal Acc=0.1875 | Macro F1=0.1119 | ROC-AUC=0.5137
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Inc_15_to_45Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0278 | ROC-AUC=0.5000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 88 and best_train_balanced_accuracy = 0.98583
+     [TABNET (TL)] ACC=0.1875 | Bal Acc=0.1875 | Macro F1=0.1364 | ROC-AUC=0.5580
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Inc_30_to_60Hz
+  Features usadas: 141
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1375 | Bal Acc=0.1375 | Macro F1=0.0551 | ROC-AUC=0.5071
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 92 and best_train_balanced_accuracy = 0.99083
+     [TABNET (TL)] ACC=0.1500 | Bal Acc=0.1500 | Macro F1=0.1014 | ROC-AUC=0.5155
+
+----------------------------------------------------------------------------------------------------
+E3_RMS_Detrend_Com_Parametros: RMS + detrend com RMS, b1 e b2 como features
+----------------------------------------------------------------------------------------------------
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_15Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6375 | Bal Acc=0.6375 | Macro F1=0.5917 | ROC-AUC=0.8732
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 25 with best_epoch = 24 and best_val_0_unsup_loss_numpy = 0.41662999987602234
+Stop training because you reached max_epochs = 100 with best_epoch = 90 and best_train_balanced_accuracy = 0.9975
+     [TABNET (TL)] ACC=0.6250 | Bal Acc=0.6250 | Macro F1=0.5500 | ROC-AUC=0.9163
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_30Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8750 | Bal Acc=0.8750 | Macro F1=0.8333 | ROC-AUC=0.9861
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 90 and best_train_balanced_accuracy = 0.9975
+     [TABNET (TL)] ACC=0.6500 | Bal Acc=0.6500 | Macro F1=0.6136 | ROC-AUC=0.9418
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_45Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8500 | Bal Acc=0.8500 | Macro F1=0.8081 | ROC-AUC=0.9800
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 88 and best_train_balanced_accuracy = 0.995
+     [TABNET (TL)] ACC=0.7375 | Bal Acc=0.7375 | Macro F1=0.7150 | ROC-AUC=0.9564
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_60Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.6375 | Bal Acc=0.6375 | Macro F1=0.6031 | ROC-AUC=0.9268
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 94 with best_epoch = 74 and best_train_balanced_accuracy = 0.9925
+     [TABNET (TL)] ACC=0.6125 | Bal Acc=0.6125 | Macro F1=0.5546 | ROC-AUC=0.7271
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Dec_45_to_15Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7625 | Bal Acc=0.7625 | Macro F1=0.7611 | ROC-AUC=0.9734
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 91 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.8125 | Bal Acc=0.8125 | Macro F1=0.8152 | ROC-AUC=0.9714
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Dec_60_to_30Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8625 | Bal Acc=0.8625 | Macro F1=0.8633 | ROC-AUC=0.9914
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 99 and best_train_balanced_accuracy = 0.99667
+     [TABNET (TL)] ACC=0.8000 | Bal Acc=0.8000 | Macro F1=0.7818 | ROC-AUC=0.9784
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Inc_15_to_45Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8875 | Bal Acc=0.8875 | Macro F1=0.8864 | ROC-AUC=0.9909
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 97 and best_train_balanced_accuracy = 0.99917
+     [TABNET (TL)] ACC=0.8625 | Bal Acc=0.8625 | Macro F1=0.8604 | ROC-AUC=0.9775
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Inc_30_to_60Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8500 | Bal Acc=0.8500 | Macro F1=0.8466 | ROC-AUC=0.9820
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 95 and best_train_balanced_accuracy = 0.99667
+     [TABNET (TL)] ACC=0.8375 | Bal Acc=0.8375 | Macro F1=0.8354 | ROC-AUC=0.9652
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_15Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8625 | Bal Acc=0.8625 | Macro F1=0.8260 | ROC-AUC=0.9989
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 97 and best_train_balanced_accuracy = 0.99667
+     [TABNET (TL)] ACC=0.6625 | Bal Acc=0.6625 | Macro F1=0.6380 | ROC-AUC=0.9396
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_30Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7500 | Bal Acc=0.7500 | Macro F1=0.7255 | ROC-AUC=0.9482
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 97 and best_train_balanced_accuracy = 0.99667
+     [TABNET (TL)] ACC=0.8875 | Bal Acc=0.8875 | Macro F1=0.8800 | ROC-AUC=0.9986
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_45Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8250 | Bal Acc=0.8250 | Macro F1=0.7857 | ROC-AUC=0.9961
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 94 and best_train_balanced_accuracy = 0.99667
+     [TABNET (TL)] ACC=0.8375 | Bal Acc=0.8375 | Macro F1=0.8002 | ROC-AUC=0.9875
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_60Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9875 | Bal Acc=0.9875 | Macro F1=0.9875 | ROC-AUC=1.0000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 87 and best_train_balanced_accuracy = 0.99833
+     [TABNET (TL)] ACC=0.6875 | Bal Acc=0.6875 | Macro F1=0.6213 | ROC-AUC=0.9534
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Dec_45_to_15Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.7750 | Bal Acc=0.7750 | Macro F1=0.7709 | ROC-AUC=0.9657
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 96 and best_train_balanced_accuracy = 0.99917
+     [TABNET (TL)] ACC=0.8375 | Bal Acc=0.8375 | Macro F1=0.8370 | ROC-AUC=0.9739
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Dec_60_to_30Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9375 | Bal Acc=0.9375 | Macro F1=0.9351 | ROC-AUC=0.9975
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 89 and best_train_balanced_accuracy = 0.99083
+     [TABNET (TL)] ACC=0.8250 | Bal Acc=0.8250 | Macro F1=0.8181 | ROC-AUC=0.9823
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Inc_15_to_45Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.9250 | Bal Acc=0.9250 | Macro F1=0.9209 | ROC-AUC=0.9934
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 86 and best_train_balanced_accuracy = 0.99917
+     [TABNET (TL)] ACC=0.8500 | Bal Acc=0.8500 | Macro F1=0.8479 | ROC-AUC=0.9907
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Inc_30_to_60Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.8375 | Bal Acc=0.8375 | Macro F1=0.8341 | ROC-AUC=0.9873
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 93 and best_train_balanced_accuracy = 0.99667
+     [TABNET (TL)] ACC=0.8875 | Bal Acc=0.8875 | Macro F1=0.8846 | ROC-AUC=0.9893
+
+----------------------------------------------------------------------------------------------------
+E4_RMS_Detrend_Treino_Raw_Teste_Com_Parametros: RMS + detrend no treino; raw sem detrend no teste; com RMS, b1 e b2
+----------------------------------------------------------------------------------------------------
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_15Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1375 | Bal Acc=0.1375 | Macro F1=0.0552 | ROC-AUC=0.5071
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 90 and best_train_balanced_accuracy = 0.9975
+     [TABNET (TL)] ACC=0.1000 | Bal Acc=0.1000 | Macro F1=0.0513 | ROC-AUC=0.4822
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_30Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0496 | ROC-AUC=0.5000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 90 and best_train_balanced_accuracy = 0.9975
+     [TABNET (TL)] ACC=0.1375 | Bal Acc=0.1375 | Macro F1=0.0849 | ROC-AUC=0.5199
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_45Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0480 | ROC-AUC=0.5000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 88 and best_train_balanced_accuracy = 0.995
+     [TABNET (TL)] ACC=0.0375 | Bal Acc=0.0375 | Macro F1=0.0156 | ROC-AUC=0.4954
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_60Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1125 | Bal Acc=0.1125 | Macro F1=0.0449 | ROC-AUC=0.4929
+  -> Treinando TABNET (TL)...
+
+Early stopping occurred at epoch 94 with best_epoch = 74 and best_train_balanced_accuracy = 0.9925
+     [TABNET (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0316 | ROC-AUC=0.4902
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Dec_45_to_15Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0278 | ROC-AUC=0.5000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 91 and best_train_balanced_accuracy = 1.0
+     [TABNET (TL)] ACC=0.1750 | Bal Acc=0.1750 | Macro F1=0.1400 | ROC-AUC=0.5111
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Dec_60_to_30Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1000 | Bal Acc=0.1000 | Macro F1=0.0395 | ROC-AUC=0.4857
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 99 and best_train_balanced_accuracy = 0.99667
+     [TABNET (TL)] ACC=0.1625 | Bal Acc=0.1625 | Macro F1=0.1209 | ROC-AUC=0.5214
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Inc_15_to_45Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0278 | ROC-AUC=0.5000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 97 and best_train_balanced_accuracy = 0.99917
+     [TABNET (TL)] ACC=0.1125 | Bal Acc=0.1125 | Macro F1=0.0527 | ROC-AUC=0.5109
+
+[LOCO] Target=UOEMD | Test condition=Load_Loaded_Speed_Inc_30_to_60Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0278 | ROC-AUC=0.5000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 95 and best_train_balanced_accuracy = 0.99667
+     [TABNET (TL)] ACC=0.1125 | Bal Acc=0.1125 | Macro F1=0.0650 | ROC-AUC=0.4841
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_15Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1375 | Bal Acc=0.1375 | Macro F1=0.0551 | ROC-AUC=0.5071
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 97 and best_train_balanced_accuracy = 0.99667
+     [TABNET (TL)] ACC=0.1625 | Bal Acc=0.1625 | Macro F1=0.0753 | ROC-AUC=0.5286
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_30Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0495 | ROC-AUC=0.5000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 97 and best_train_balanced_accuracy = 0.99667
+     [TABNET (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.1063 | ROC-AUC=0.5353
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_45Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0496 | ROC-AUC=0.5000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 94 and best_train_balanced_accuracy = 0.99667
+     [TABNET (TL)] ACC=0.1000 | Bal Acc=0.1000 | Macro F1=0.0377 | ROC-AUC=0.4909
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_60Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1375 | Bal Acc=0.1375 | Macro F1=0.0549 | ROC-AUC=0.5071
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 87 and best_train_balanced_accuracy = 0.99833
+     [TABNET (TL)] ACC=0.1750 | Bal Acc=0.1750 | Macro F1=0.0992 | ROC-AUC=0.5071
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Dec_45_to_15Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1250 | Bal Acc=0.1250 | Macro F1=0.0278 | ROC-AUC=0.5000
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 96 and best_train_balanced_accuracy = 0.99917
+     [TABNET (TL)] ACC=0.1375 | Bal Acc=0.1375 | Macro F1=0.1249 | ROC-AUC=0.5011
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Dec_60_to_30Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1125 | Bal Acc=0.1125 | Macro F1=0.0449 | ROC-AUC=0.4929
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 89 and best_train_balanced_accuracy = 0.99083
+     [TABNET (TL)] ACC=0.2125 | Bal Acc=0.2125 | Macro F1=0.1565 | ROC-AUC=0.5619
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Inc_15_to_45Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1375 | Bal Acc=0.1375 | Macro F1=0.0552 | ROC-AUC=0.5071
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 86 and best_train_balanced_accuracy = 0.99917
+     [TABNET (TL)] ACC=0.1375 | Bal Acc=0.1375 | Macro F1=0.0979 | ROC-AUC=0.5088
+
+[LOCO] Target=UOEMD | Test condition=Load_No_Load_Speed_Inc_30_to_60Hz
+  Features usadas: 144
+  Target train: 1200
+  Teste: 80
+  -> Treinando MLP (TL)...
+     [MLP (TL)] ACC=0.1375 | Bal Acc=0.1375 | Macro F1=0.0551 | ROC-AUC=0.5071
+  -> Treinando TABNET (TL)...
+Stop training because you reached max_epochs = 100 with best_epoch = 93 and best_train_balanced_accuracy = 0.99667
+     [TABNET (TL)] ACC=0.1125 | Bal Acc=0.1125 | Macro F1=0.0803 | ROC-AUC=0.4829
+
+====================================================================================================
+RESUMO POR TARGET / MODELO / ESTRATÉGIA
+====================================================================================================
+Target Dataset                                  Experiment ID Pretrain Strategy Finetune Strategy Test Strategy  Additional Parameters       Model  N_Folds  ACC_Mean  ACC_Std  Bal_Acc_Mean  Bal_Acc_Std  Macro_F1_Mean  Macro_F1_Std  Macro_F1_Median  Macro_F1_Min  Macro_F1_Max  ROC_AUC_Mean  ROC_AUC_Std
+         UOEMD                                 E0_RMS_Detrend       rms_detrend       rms_detrend   rms_detrend                  False    MLP (TL)       16  0.794531 0.097465      0.794531     0.097465       0.772763      0.115804         0.806612      0.573748      0.910948      0.971283     0.036044
+         UOEMD                                 E0_RMS_Detrend       rms_detrend       rms_detrend   rms_detrend                  False TABNET (TL)       16  0.721875 0.116949      0.721875     0.116949       0.699761      0.138849         0.738401      0.400804      0.864727      0.940335     0.045708
+         UOEMD                             E1_RMS_Sem_Detrend           rms_raw           rms_raw       rms_raw                  False    MLP (TL)       16  0.806250 0.110397      0.806250     0.110397       0.786673      0.127867         0.811519      0.531127      0.960625      0.969453     0.038194
+         UOEMD                             E1_RMS_Sem_Detrend           rms_raw           rms_raw       rms_raw                  False TABNET (TL)       16  0.727344 0.144498      0.727344     0.144498       0.704440      0.160278         0.695426      0.419673      0.884867      0.937600     0.051093
+         UOEMD                E2_RMS_Detrend_Treino_Raw_Teste       rms_detrend       rms_detrend           raw                  False    MLP (TL)       16  0.122656 0.012263      0.122656     0.012263       0.043328      0.010557         0.044880      0.027778      0.055386      0.498661     0.007008
+         UOEMD                E2_RMS_Detrend_Treino_Raw_Teste       rms_detrend       rms_detrend           raw                  False TABNET (TL)       16  0.139844 0.041638      0.139844     0.041638       0.080515      0.040337         0.074924      0.016667      0.139583      0.510525     0.033050
+         UOEMD                  E3_RMS_Detrend_Com_Parametros       rms_detrend       rms_detrend   rms_detrend                   True    MLP (TL)       16  0.828906 0.097224      0.828906     0.097224       0.811206      0.107376         0.829684      0.591667      0.987469      0.974431     0.033509
+         UOEMD                  E3_RMS_Detrend_Com_Parametros       rms_detrend       rms_detrend   rms_detrend                   True TABNET (TL)       16  0.775781 0.096982      0.775781     0.096982       0.753332      0.118607         0.807704      0.550000      0.884626      0.953092     0.064143
+         UOEMD E4_RMS_Detrend_Treino_Raw_Teste_Com_Parametros       rms_detrend       rms_detrend           raw                   True    MLP (TL)       16  0.125781 0.010674      0.125781     0.010674       0.044527      0.010933         0.048771      0.027778      0.055195      0.500446     0.006099
+         UOEMD E4_RMS_Detrend_Treino_Raw_Teste_Com_Parametros       rms_detrend       rms_detrend           raw                   True TABNET (TL)       16  0.132812 0.040279      0.132812     0.040279       0.083760      0.040329         0.082645      0.015625      0.156491      0.508225     0.021749
+
+====================================================================================================
+RESUMO POR ESTRATÉGIA E MODELO
+====================================================================================================
+                                 Experiment ID Pretrain Strategy Finetune Strategy Test Strategy  Additional Parameters       Model  N_Targets  Macro_F1_Mean_Targets  Macro_F1_Std_Targets  Macro_F1_Min_Target  Macro_F1_Max_Target  ACC_Mean_Targets  Bal_Acc_Mean_Targets  ROC_AUC_Mean_Targets
+                                E0_RMS_Detrend       rms_detrend       rms_detrend   rms_detrend                  False    MLP (TL)          1               0.772763                   NaN             0.772763             0.772763          0.794531              0.794531              0.971283
+                                E0_RMS_Detrend       rms_detrend       rms_detrend   rms_detrend                  False TABNET (TL)          1               0.699761                   NaN             0.699761             0.699761          0.721875              0.721875              0.940335
+                            E1_RMS_Sem_Detrend           rms_raw           rms_raw       rms_raw                  False    MLP (TL)          1               0.786673                   NaN             0.786673             0.786673          0.806250              0.806250              0.969453
+                            E1_RMS_Sem_Detrend           rms_raw           rms_raw       rms_raw                  False TABNET (TL)          1               0.704440                   NaN             0.704440             0.704440          0.727344              0.727344              0.937600
+               E2_RMS_Detrend_Treino_Raw_Teste       rms_detrend       rms_detrend           raw                  False    MLP (TL)          1               0.043328                   NaN             0.043328             0.043328          0.122656              0.122656              0.498661
+               E2_RMS_Detrend_Treino_Raw_Teste       rms_detrend       rms_detrend           raw                  False TABNET (TL)          1               0.080515                   NaN             0.080515             0.080515          0.139844              0.139844              0.510525
+                 E3_RMS_Detrend_Com_Parametros       rms_detrend       rms_detrend   rms_detrend                   True    MLP (TL)          1               0.811206                   NaN             0.811206             0.811206          0.828906              0.828906              0.974431
+                 E3_RMS_Detrend_Com_Parametros       rms_detrend       rms_detrend   rms_detrend                   True TABNET (TL)          1               0.753332                   NaN             0.753332             0.753332          0.775781              0.775781              0.953092
+E4_RMS_Detrend_Treino_Raw_Teste_Com_Parametros       rms_detrend       rms_detrend           raw                   True    MLP (TL)          1               0.044527                   NaN             0.044527             0.044527          0.125781              0.125781              0.500446
+E4_RMS_Detrend_Treino_Raw_Teste_Com_Parametros       rms_detrend       rms_detrend           raw                   True TABNET (TL)          1               0.083760                   NaN             0.083760             0.083760          0.132812              0.132812              0.508225
+
+====================================================================================================
+COMPARAÇÃO FINAL E0-E4
+====================================================================================================
+                                 Experiment ID Pretrain Strategy Finetune Strategy Test Strategy  Additional Parameters  N_Models  Macro_F1_Selection_Score  Macro_F1_Model_Std  Macro_F1_Worst_Target  Macro_F1_Best_Target  ACC_Selection_Mean  Bal_Acc_Selection_Mean  ROC_AUC_Selection_Mean
+                 E3_RMS_Detrend_Com_Parametros       rms_detrend       rms_detrend   rms_detrend                   True         2                  0.782269            0.040923               0.753332              0.811206            0.802344                0.802344                0.963761
+                            E1_RMS_Sem_Detrend           rms_raw           rms_raw       rms_raw                  False         2                  0.745557            0.058148               0.704440              0.786673            0.766797                0.766797                0.953527
+                                E0_RMS_Detrend       rms_detrend       rms_detrend   rms_detrend                  False         2                  0.736262            0.051620               0.699761              0.772763            0.758203                0.758203                0.955809
+E4_RMS_Detrend_Treino_Raw_Teste_Com_Parametros       rms_detrend       rms_detrend           raw                   True         2                  0.064143            0.027742               0.044527              0.083760            0.129297                0.129297                0.504336
+               E2_RMS_Detrend_Treino_Raw_Teste       rms_detrend       rms_detrend           raw                  False         2                  0.061921            0.026295               0.043328              0.080515            0.131250                0.131250                0.504593
+
+====================================================================================================
+CRITÉRIO PRIMÁRIO DE SELEÇÃO
+====================================================================================================
+Macro F1 médio entre targets, dando peso igual aos targets e aos modelos.
+Melhor experimento: E3_RMS_Detrend_Com_Parametros | Macro F1=0.7823
+
+IMPORTANTE: a escolha final deve considerar também a consistência entre targets/modelos e a variabilidade das dobras LOCO.
+
+====================================================================================================
+ARQUIVOS GERADOS
+====================================================================================================
+Detalhado : /home/vfrocha/VibNet-1D/results/norm_tl_diagnosis_ablation_20261027_093126_results.csv
+Por target: /home/vfrocha/VibNet-1D/results/norm_tl_diagnosis_ablation_20261027_093126_summary_by_target_model.csv
+Por modelo: /home/vfrocha/VibNet-1D/results/norm_tl_diagnosis_ablation_20261027_093126_summary_by_strategy_model.csv
+Geral     : /home/vfrocha/VibNet-1D/results/norm_tl_diagnosis_ablation_20261027_093126_summary.csv
+Log       : /home/vfrocha/VibNet-1D/results/norm_tl_diagnosis_ablation_20261027_093126.log
