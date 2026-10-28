@@ -461,7 +461,7 @@ def audit_and_extract_dataset(
         )
         return None, audit_row
 
-    X_list: List[np.ndarray] = []
+    X_windows: List[np.ndarray] = []
     y_list: List[str] = []
     cond_list: List[str] = []
 
@@ -474,25 +474,31 @@ def audit_and_extract_dataset(
             npy_files = sorted(class_dir.glob("*.npy"))
             for f in npy_files:
                 sig = np.load(f, allow_pickle=False)
-                # Sinais em detrended_rms já estão detrended e normalizados por RMS_ref.
-                # Não aplicamos detrend nem normalização RMS novamente.
-                f_fusion = extract_fusion_features(sig, fs=fs)
-                f_adv = extract_advanced_features(sig, fs=fs)
-                features = np.concatenate([f_fusion, f_adv])
-                X_list.append(features)
+                sig_1d = np.asarray(sig, dtype=np.float64).reshape(-1)
+                X_windows.append(sig_1d)
                 y_list.append(label)
                 cond_list.append(cond_name)
 
-    if not X_list:
+    if not X_windows:
         audit_row["status_reason"] = f"Nenhum arquivo .npy encontrado em {ds_dir}."
         return None, audit_row
 
+    # Sinais em detrended_rms já estão detrended e normalizados por RMS_ref.
+    # Não aplicamos detrend nem normalização RMS novamente.
+    X_array = np.asarray(X_windows, dtype=np.float64)
+    X_fusion = extract_fusion_features(
+        X_array,
+        fs,
+        extract_advanced_features,
+    )
     X = np.nan_to_num(
-        np.array(X_list, dtype=np.float32),
+        np.asarray(X_fusion, dtype=np.float32),
         nan=0.0,
         posinf=0.0,
         neginf=0.0,
     )
+    if X.ndim == 1:
+        X = X.reshape(len(X_windows), -1)
     y = np.array(y_list)
     conds = np.array(cond_list)
 
