@@ -46,11 +46,13 @@ def check_syntax_compilation() -> None:
         PROJECT_ROOT / "scripts" / "validate_dataset_tl.py",
         PROJECT_ROOT / "scripts" / "exp_tl_cross_dataset_mlp_tabnet.py",
         PROJECT_ROOT / "src" / "models" / "build_tabnet_resnet_balance.py",
+        PROJECT_ROOT / "src" / "features" / "extractors_v2.py",
+        PROJECT_ROOT / "src" / "features" / "signalai_wrapper.py",
     ]
     for fp in files_to_compile:
         assert fp.exists(), f"Arquivo ausente: {fp}"
         py_compile.compile(str(fp), doraise=True)
-    print("  [OK] 1. Compilação sintática (py_compile) aprovada para todos os 5 módulos.")
+    print("  [OK] 1. Compilação sintática (py_compile) aprovada para todos os 7 módulos.")
 
 
 def check_dataset_registries_and_ast() -> None:

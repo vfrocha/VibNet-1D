@@ -416,10 +416,8 @@ def audit_and_extract_dataset(
       (data_tuple_or_None, audit_row_dict)
     onde `data_tuple` = (X_features, y_labels_str, conds_str).
     """
-    from src.features.extract_features import (
-        extract_advanced_features,
-        extract_fusion_features,
-    )
+    from src.features.extractors_v2 import extract_advanced_features
+    from src.features.signalai_wrapper import extract_fusion_features
 
     ds_dir = variant_root / dataset_name
     fs = DATASETS_CONFIG.get(dataset_name, 12000)
