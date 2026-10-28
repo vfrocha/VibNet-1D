@@ -214,6 +214,7 @@ def check_runtime_synthetic_if_available() -> None:
         build_source_combinations,
         compute_fold_metrics,
         generate_summaries,
+        train_eval_mlp_fold,
     )
 
     # 4a. Testa build_source_combinations diretamente do módulo importado
@@ -340,7 +341,25 @@ def check_runtime_synthetic_if_available() -> None:
         assert len(paired_df) == 1
         assert paired_df.loc[0, "Winner_Macro_F1"] == "MLP"
 
-    print("  [OK] 4. Testes sintéticos funcionais (SMOTE, ROC-AUC e resumos pareados) aprovados.")
+    # 4f. Testa train_eval_mlp_fold com dados sintéticos
+    X_src = rng.normal(size=(16, 10)).astype(np.float32)
+    y_src = np.array([0] * 8 + [1] * 8)
+    X_te = rng.normal(size=(6, 10)).astype(np.float32)
+    preds_mlp, probs_mlp = train_eval_mlp_fold(
+        source_tensors={"UORED": (X_src, y_src)},
+        X_target_train_bal=X_bal,
+        y_target_train_bal=y_bal,
+        X_target_test_scaled=X_te,
+        num_classes_dict={"UORED": 2, "CWRU_12k": 3},
+        target_name="CWRU_12k",
+        epochs=2,
+        batch_size=8,
+        seed=42,
+    )
+    assert preds_mlp.shape == (6,)
+    assert probs_mlp.shape == (6, 3)
+
+    print("  [OK] 4. Testes sintéticos funcionais (SMOTE, MLP, ROC-AUC e resumos pareados) aprovados.")
 
 
 def main() -> int:

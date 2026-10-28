@@ -849,13 +849,12 @@ def train_eval_mlp_fold(
     input_dim = int(X_target_train_bal.shape[1])
 
     model = HybridDLModel(
-        model_type="MLP",
-        input_dim=input_dim,
-        num_classes_dict=num_classes_dict,
+        num_features=input_dim,
+        dataset_classes_dict=num_classes_dict,
+        encoder_type="mlp",
     ).to(device)
 
-    optimizer = optim.AdamW(model.parameters(), lr=1e-3, weight_decay=1e-4)
-    scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.5)
+    optimizer = optim.Adam(model.parameters(), lr=0.002, weight_decay=1e-5)
     criterion = nn.CrossEntropyLoss()
 
     gen = torch.Generator()
@@ -875,52 +874,36 @@ def train_eval_mlp_fold(
             generator=gen,
         )
 
+    target_bs = min(128, batch_size)
     target_ds = TensorDataset(
         torch.tensor(X_target_train_bal, dtype=torch.float32),
         torch.tensor(y_target_train_bal, dtype=torch.long),
     )
     loaders[target_name] = DataLoader(
         target_ds,
-        batch_size=batch_size,
+        batch_size=target_bs,
         shuffle=True,
         drop_last=False,
         generator=gen,
     )
 
-    # Etapa 1: Treinamento multi-domínio (fontes + target treino balanceado)
+    # Etapa 1: Pré-treinamento multi-domínio (fontes + target treino balanceado)
     model.train()
     for _ in range(epochs):
-        iterators = {name: iter(ldr) for name, ldr in loaders.items()}
-        max_batches = max(len(ldr) for ldr in loaders.values())
-
-        for _ in range(max_batches):
-            optimizer.zero_grad()
-            total_loss = torch.tensor(0.0, device=device)
-
-            for d_name, it in iterators.items():
-                try:
-                    bx, by = next(it)
-                except StopIteration:
-                    iterators[d_name] = iter(loaders[d_name])
-                    bx, by = next(iterators[d_name])
-
+        for d_name, loader in loaders.items():
+            for bx, by in loader:
                 if bx.size(0) < 2:
                     continue
-
                 bx, by = bx.to(device), by.to(device)
-                out = model(bx, d_name)
-                loss = criterion(out, by)
-                total_loss = total_loss + loss
-
-            if total_loss.requires_grad:
-                total_loss.backward()
+                optimizer.zero_grad()
+                logits, _ = model(bx, dataset_name=d_name)
+                loss = criterion(logits, by)
+                loss.backward()
                 optimizer.step()
 
-        scheduler.step()
-
-    # Etapa 2: Fine-tuning focado no target
-    ft_epochs = max(1, epochs // 2)
-    optimizer_ft = optim.AdamW(model.parameters(), lr=5e-4, weight_decay=1e-4)
+    # Etapa 2: Fine-tuning exclusivo no target
+    ft_epochs = max(1, epochs)
+    optimizer_ft = optim.Adam(model.parameters(), lr=0.0005, weight_decay=1e-5)
     target_loader = loaders[target_name]
 
     for _ in range(ft_epochs):
@@ -929,8 +912,8 @@ def train_eval_mlp_fold(
                 continue
             optimizer_ft.zero_grad()
             bx, by = bx.to(device), by.to(device)
-            out = model(bx, target_name)
-            loss = criterion(out, by)
+            logits, _ = model(bx, dataset_name=target_name)
+            loss = criterion(logits, by)
             loss.backward()
             optimizer_ft.step()
 
@@ -938,7 +921,7 @@ def train_eval_mlp_fold(
     model.eval()
     X_test_tensor = torch.tensor(X_target_test_scaled, dtype=torch.float32).to(device)
     with torch.no_grad():
-        logits = model(X_test_tensor, target_name)
+        logits, _ = model(X_test_tensor, dataset_name=target_name)
         probs = torch.softmax(logits, dim=1).cpu().numpy()
         preds = np.argmax(probs, axis=1)
 
@@ -960,9 +943,11 @@ def build_or_get_tabnet_pretrainer(
     reutilizar o `TabNetPretrainer` entre os folds LOCO de diferentes targets
     preserva o isolamento total do fold de teste e evita retrabalho redundante.
     """
+    import copy
+
     cache_key = (source_combo_key, int(pretrain_epochs), int(batch_size), int(seed))
     if cache_key in cache:
-        return cache[cache_key]
+        return copy.deepcopy(cache[cache_key])
 
     import torch
     from pytorch_tabnet.pretraining import TabNetPretrainer
@@ -973,9 +958,15 @@ def build_or_get_tabnet_pretrainer(
     unsupervised_model = TabNetPretrainer(
         n_d=16,
         n_a=16,
-        n_steps=4,
+        n_steps=5,
+        gamma=1.5,
+        n_independent=2,
+        n_shared=2,
+        lambda_sparse=1e-4,
         optimizer_fn=torch.optim.Adam,
-        optimizer_params=dict(lr=2e-2),
+        optimizer_params=dict(lr=2e-2, weight_decay=1e-5),
+        scheduler_fn=torch.optim.lr_scheduler.StepLR,
+        scheduler_params=dict(step_size=10, gamma=0.9),
         mask_type="entmax",
         device_name=device_name,
         verbose=0,
@@ -984,17 +975,18 @@ def build_or_get_tabnet_pretrainer(
 
     unsupervised_model.fit(
         X_train=X_pretrain,
+        eval_set=[X_pretrain[: min(2048, len(X_pretrain))]],
         max_epochs=pretrain_epochs,
         patience=10,
         batch_size=batch_size,
-        virtual_batch_size=min(32, batch_size),
+        virtual_batch_size=min(128, batch_size),
         num_workers=0,
         drop_last=False,
         pretraining_ratio=0.8,
     )
 
-    cache[cache_key] = unsupervised_model
-    return unsupervised_model
+    cache[cache_key] = copy.deepcopy(unsupervised_model)
+    return copy.deepcopy(unsupervised_model)
 
 
 def train_eval_tabnet_fold(
@@ -1015,6 +1007,7 @@ def train_eval_tabnet_fold(
     Alinha o vetor de probabilidades para `n_target_classes` colunas caso alguma classe
     do target esteja ausente do fold de treino.
     """
+    import copy
     import torch
     from pytorch_tabnet.tab_model import TabNetClassifier
 
@@ -1024,12 +1017,16 @@ def train_eval_tabnet_fold(
     clf = TabNetClassifier(
         n_d=16,
         n_a=16,
-        n_steps=4,
+        n_steps=5,
+        gamma=1.5,
+        n_independent=2,
+        n_shared=2,
+        lambda_sparse=1e-4,
         optimizer_fn=torch.optim.Adam,
-        optimizer_params=dict(lr=2e-2),
-        scheduler_params={"step_size": 10, "gamma": 0.9},
+        optimizer_params=dict(lr=1e-2, weight_decay=1e-5),
+        scheduler_params={"step_size": 20, "gamma": 0.9},
         scheduler_fn=torch.optim.lr_scheduler.StepLR,
-        mask_type="sparsemax",
+        mask_type="entmax",
         device_name=device_name,
         verbose=0,
         seed=seed,
@@ -1038,13 +1035,16 @@ def train_eval_tabnet_fold(
     clf.fit(
         X_train=X_target_train_bal,
         y_train=y_target_train_bal,
+        eval_set=[(X_target_train_bal, y_target_train_bal)],
+        eval_name=["train"],
+        eval_metric=["balanced_accuracy"],
         max_epochs=finetune_epochs,
-        patience=15,
-        batch_size=batch_size,
-        virtual_batch_size=min(32, batch_size),
+        patience=20,
+        batch_size=min(256, len(X_target_train_bal), batch_size),
+        virtual_batch_size=min(128, len(X_target_train_bal), batch_size),
         num_workers=0,
         drop_last=False,
-        from_unsupervised=unsupervised_model,
+        from_unsupervised=copy.deepcopy(unsupervised_model),
     )
 
     raw_probs = clf.predict_proba(X_target_test_scaled)
