@@ -71,7 +71,16 @@ def check_dataset_registries_and_ast() -> None:
         assert f'"{ds}"' in val_src, f"{ds} ausente em validate_dataset_tl.py"
         assert f'"{ds}"' in exp_src, f"{ds} ausente em exp_tl_cross_dataset_mlp_tabnet.py"
 
-    # Verifica classes de referência no normalize_dataset_tl.py
+    # Verifica mapeamento de referências em normalize_dataset_tl.py e validate_dataset_tl.py
+    assert "def build_reference_map()" in norm_src, (
+        "build_reference_map() ausente em normalize_dataset_tl.py"
+    )
+    for ds in expected_targets + expected_sources:
+        expected_ref_ds = "CWRU_12k" if ds == "CWRU_48k" else ds
+        assert f'"reference_dataset": "{expected_ref_ds}"' in norm_src, (
+            f"reference_dataset para {ds} ausente em normalize_dataset_tl.py"
+        )
+
     expected_refs = {
         "CWRU_12k": "Class_0",
         "PU": "Normal",
@@ -83,9 +92,6 @@ def check_dataset_registries_and_ast() -> None:
         "Electric_Motor": "Normal",
     }
     for ds, ref_cls in expected_refs.items():
-        assert f'"{ds}": "{ref_cls}"' in norm_src, (
-            f"Referência {ds} -> {ref_cls} ausente em normalize_dataset_tl.py"
-        )
         assert f'"{ds}": "{ref_cls}"' in val_src, (
             f"Referência {ds} -> {ref_cls} ausente em validate_dataset_tl.py"
         )

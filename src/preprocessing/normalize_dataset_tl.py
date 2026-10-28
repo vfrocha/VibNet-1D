@@ -470,15 +470,15 @@ def build_reference_map():
         },
         "UOEMD": {
             "reference_dataset": "UOEMD",
-            "reference_class_aliases": ("Class_Normal", "Class_H", "Class_Healthy", "Normal", "Healthy"),
+            "reference_class_aliases": ("Class_Normal", "H_1", "Class_H", "Class_Healthy", "Normal", "Healthy"),
         },
         "UORED": {
             "reference_dataset": "UORED",
-            "reference_class_aliases": ("Class_Normal", "Class_Healthy", "Normal", "Healthy"),
+            "reference_class_aliases": ("Class_Normal", "H", "Class_Healthy", "Normal", "Healthy"),
         },
         "HUST": {
             "reference_dataset": "HUST",
-            "reference_class_aliases": ("Class_Normal", "Class_40", "Normal", "Healthy"),
+            "reference_class_aliases": ("Class_Normal", "N", "Class_40", "Normal", "Healthy"),
         },
         "Mechanical_Gear": {
             "reference_dataset": "Mechanical_Gear",
