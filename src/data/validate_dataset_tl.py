@@ -23,12 +23,15 @@ Saídas:
     data/processed_tl/validation/
         dataset_validation.csv
         file_comparison.csv
+        reference_validation.csv
+        rms_statistics.csv
 
 Uso:
     python src/data/validate_dataset_tl.py
 
 Opcional:
     python src/data/validate_dataset_tl.py --datasets CWRU_12k MFPT CWRU_48k
+    python src/data/validate_dataset_tl.py --datasets cross_dataset --variants detrended --use-processed-fallback
     python src/data/validate_dataset_tl.py --sample-size 100
 """
 
@@ -44,8 +47,17 @@ from tqdm import tqdm
 # CONFIGURAÇÃO
 # ============================================================
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+def _resolve_project_root() -> Path:
+    here = Path(__file__).resolve()
+    for parent in here.parents:
+        if (parent / "src").is_dir():
+            return parent
+    return here.parents[2]
+
+
+PROJECT_ROOT = _resolve_project_root()
 ROOT = PROJECT_ROOT / "data" / "processed_tl"
+PROCESSED_FALLBACK_ROOT = PROJECT_ROOT / "data" / "processed"
 VALIDATION_ROOT = ROOT / "validation"
 
 VARIANTS = {
@@ -61,10 +73,45 @@ DATASETS = [
     "CWRU_48k",
 ]
 
+CROSS_DATASET_TARGETS = [
+    "CWRU_12k",
+    "CWRU_48k",
+    "PU",
+    "HUST_Gearbox",
+    "UOEMD",
+]
+
+CROSS_DATASET_SOURCES = [
+    "UORED",
+    "HUST",
+    "Mechanical_Gear",
+    "Electric_Motor",
+]
+
+ALL_SUPPORTED_DATASETS = [
+    "CWRU_12k",
+    "MFPT",
+    "CWRU_48k",
+    "PU",
+    "HUST_Gearbox",
+    "UOEMD",
+    "UORED",
+    "HUST",
+    "Mechanical_Gear",
+    "Electric_Motor",
+]
+
 # Referências oficiais utilizadas pelo normalize_dataset_tl.py
 REFERENCE_CLASSES = {
     "CWRU_12k": "Class_0",
     "MFPT": "Class_23",
+    "PU": "Normal",
+    "HUST_Gearbox": "Normal",
+    "UOEMD": "H_1",
+    "UORED": "H",
+    "HUST": "N",
+    "Mechanical_Gear": "Normal",
+    "Electric_Motor": "Normal",
 }
 
 CWRU_REFERENCE_DATASET = "CWRU_12k"
@@ -78,6 +125,27 @@ ABS_TOL = 1e-12
 # ============================================================
 # FUNÇÕES AUXILIARES
 # ============================================================
+
+def resolve_variant_dataset_dir(
+    variant: str,
+    dataset: str,
+    use_processed_fallback: bool = False,
+) -> Path:
+    """
+    Resolve o diretório de um dataset em uma variante.
+    Quando use_processed_fallback=True e variant == 'detrended',
+    permite usar data/processed/<dataset> caso data/processed_tl/detrended/<dataset>
+    não exista.
+    """
+    primary = VARIANTS[variant] / dataset
+    if primary.exists():
+        return primary
+    if use_processed_fallback and variant == "detrended":
+        fallback = PROCESSED_FALLBACK_ROOT / dataset
+        if fallback.exists():
+            return fallback
+    return primary
+
 
 def find_npy_files(root: Path):
     """Lista recursivamente os .npy."""
@@ -177,34 +245,44 @@ def load_manifest_rms(variant: str):
     return refs
 
 
-def grouped_summary(files_root: Path):
+def grouped_summary(
+    dataset_root: Path,
+    dataset_name: str = None,
+):
     """
     Calcula estatísticas por:
         dataset
         condition
         class
     """
-    files = find_npy_files(files_root)
+    files = find_npy_files(dataset_root)
 
     groups = {}
+    resolved_dataset_name = dataset_name or dataset_root.name
 
     for file_path in tqdm(
         files,
-        desc=f"Estatísticas {files_root.name}",
+        desc=f"Estatísticas {resolved_dataset_name}",
         leave=False,
     ):
-        rel = file_path.relative_to(files_root)
+        rel = file_path.relative_to(dataset_root)
 
-        # rel esperado:
-        # dataset/condition/class/file.npy
+        # rel esperado dentro de dataset_root:
+        # condition/class/file.npy (3 partes)
+        # ou, se chamado na raiz da variante:
+        # dataset/condition/class/file.npy (4 partes)
         parts = rel.parts
 
-        if len(parts) < 4:
+        if len(parts) == 3:
+            dataset = resolved_dataset_name
+            condition = parts[0]
+            class_name = parts[1]
+        elif len(parts) >= 4:
+            dataset = parts[0]
+            condition = parts[1]
+            class_name = parts[2]
+        else:
             continue
-
-        dataset = parts[0]
-        condition = parts[1]
-        class_name = parts[2]
 
         signal = np.load(
             file_path,
@@ -255,6 +333,7 @@ def compare_pair(
     original_variant,
     normalized_variant,
     sample_size=None,
+    use_processed_fallback=False,
 ):
     """
     Compara arquivos equivalentes entre:
@@ -264,14 +343,16 @@ def compare_pair(
     Verifica:
         RMS_norm ≈ RMS_original / RMS_ref
     """
-    original_root = (
-        VARIANTS[original_variant] /
-        dataset
+    original_root = resolve_variant_dataset_dir(
+        original_variant,
+        dataset,
+        use_processed_fallback=use_processed_fallback,
     )
 
-    normalized_root = (
-        VARIANTS[normalized_variant] /
-        dataset
+    normalized_root = resolve_variant_dataset_dir(
+        normalized_variant,
+        dataset,
+        use_processed_fallback=False,
     )
 
     original_files = find_npy_files(
@@ -450,27 +531,34 @@ def compare_pair(
 def validate_reference_class(
     dataset,
     variant,
+    use_processed_fallback=False,
 ):
     """
     Verifica o RMS médio da classe de referência.
     """
-    if dataset == "CWRU_48k":
-        reference_dataset = CWRU_REFERENCE_DATASET
-    else:
-        reference_dataset = dataset
-
-    reference_class = (
-        REFERENCE_CLASSES.get(
-            reference_dataset
-        )
+    refs = load_manifest_rms(
+        variant
     )
+
+    if dataset in refs:
+        reference_dataset = refs[dataset]["reference_dataset"]
+        reference_class = refs[dataset]["reference_class"]
+        reference_rms = refs[dataset]["reference_rms"]
+    else:
+        if dataset == "CWRU_48k":
+            reference_dataset = CWRU_REFERENCE_DATASET
+        else:
+            reference_dataset = dataset
+        reference_class = REFERENCE_CLASSES.get(reference_dataset)
+        reference_rms = np.nan
 
     if reference_class is None:
         return None
 
-    root = (
-        VARIANTS[variant] /
-        reference_dataset
+    root = resolve_variant_dataset_dir(
+        variant,
+        reference_dataset,
+        use_processed_fallback=use_processed_fallback,
     )
 
     files = [
@@ -506,24 +594,18 @@ def validate_reference_class(
         np.mean(values)
     )
 
-    refs = load_manifest_rms(
-        variant
-    )
-
-    reference_rms = refs[dataset][
-        "reference_rms"
-    ]
-
     difference = (
         mean_rms -
         reference_rms
     )
 
-    passed = np.isclose(
-        mean_rms,
-        reference_rms,
-        rtol=REL_TOL,
-        atol=ABS_TOL,
+    passed = bool(
+        np.isclose(
+            mean_rms,
+            reference_rms,
+            rtol=REL_TOL,
+            atol=ABS_TOL,
+        )
     )
 
     return {
@@ -567,6 +649,24 @@ def write_csv(
         writer.writerows(rows)
 
 
+def expand_dataset_selection(selected):
+    """Expande atalhos 'cross_dataset' e 'all' preservando ordem sem duplicatas."""
+    expanded = []
+    for item in selected:
+        if item == "cross_dataset":
+            for ds in CROSS_DATASET_TARGETS + CROSS_DATASET_SOURCES:
+                if ds not in expanded:
+                    expanded.append(ds)
+        elif item == "all":
+            for ds in ALL_SUPPORTED_DATASETS:
+                if ds not in expanded:
+                    expanded.append(ds)
+        else:
+            if item not in expanded:
+                expanded.append(item)
+    return expanded
+
+
 # ============================================================
 # MAIN
 # ============================================================
@@ -583,7 +683,28 @@ def main():
         "--datasets",
         nargs="+",
         default=DATASETS,
-        choices=DATASETS,
+        choices=ALL_SUPPORTED_DATASETS + ["cross_dataset", "all"],
+        help=(
+            "Datasets a validar. Aceita nomes individuais, "
+            "'cross_dataset' (5 targets + 4 sources) ou 'all'."
+        ),
+    )
+
+    parser.add_argument(
+        "--variants",
+        nargs="+",
+        default=["raw", "detrended"],
+        choices=["raw", "detrended"],
+        help="Variantes base a validar contra suas versões _rms (default: raw detrended).",
+    )
+
+    parser.add_argument(
+        "--use-processed-fallback",
+        action="store_true",
+        help=(
+            "Para a variante 'detrended', aceita data/processed/<dataset> "
+            "como origem quando data/processed_tl/detrended/<dataset> não existir."
+        ),
     )
 
     parser.add_argument(
@@ -597,12 +718,23 @@ def main():
     )
 
     args = parser.parse_args()
+    selected_datasets = expand_dataset_selection(args.datasets)
+
+    active_pairs = [
+        (v, f"{v}_rms")
+        for v in args.variants
+    ]
+    active_variants = []
+    for orig_v, norm_v in active_pairs:
+        active_variants.extend([orig_v, norm_v])
 
     print("=" * 72)
     print("VALIDAÇÃO DOS DATASETS EXPERIMENTAIS TL")
     print("=" * 72)
     print(f"Projeto: {PROJECT_ROOT}")
     print(f"Raiz   : {ROOT}")
+    print(f"Datasets: {selected_datasets}")
+    print(f"Variantes: {args.variants}")
     print()
 
     # --------------------------------------------------------
@@ -610,11 +742,12 @@ def main():
     # --------------------------------------------------------
     missing_dirs = []
 
-    for variant_name, variant_root in VARIANTS.items():
-        for dataset in args.datasets:
-            directory = (
-                variant_root /
-                dataset
+    for variant_name in active_variants:
+        for dataset in selected_datasets:
+            directory = resolve_variant_dataset_dir(
+                variant_name,
+                dataset,
+                use_processed_fallback=args.use_processed_fallback,
             )
 
             if not directory.exists():
@@ -638,19 +771,15 @@ def main():
     summary_rows = []
     comparison_rows = []
 
-    pairs = [
-        ("raw", "raw_rms"),
-        ("detrended", "detrended_rms"),
-    ]
-
-    for dataset in args.datasets:
-        for original_variant, normalized_variant in pairs:
+    for dataset in selected_datasets:
+        for original_variant, normalized_variant in active_pairs:
 
             result, comparisons = compare_pair(
                 dataset=dataset,
                 original_variant=original_variant,
                 normalized_variant=normalized_variant,
                 sample_size=args.sample_size,
+                use_processed_fallback=args.use_processed_fallback,
             )
 
             summary_rows.append(
@@ -720,12 +849,13 @@ def main():
 
     reference_rows = []
 
-    for dataset in args.datasets:
-        for variant in ("raw", "detrended"):
+    for dataset in selected_datasets:
+        for variant in args.variants:
 
             row = validate_reference_class(
                 dataset=dataset,
                 variant=variant,
+                use_processed_fallback=args.use_processed_fallback,
             )
 
             if row is None:
@@ -754,15 +884,17 @@ def main():
     print("ESTATÍSTICAS DE RMS POR CLASSE")
     print("=" * 72)
 
-    for variant in VARIANTS:
-        for dataset in args.datasets:
-            root = (
-                VARIANTS[variant] /
-                dataset
+    for variant in active_variants:
+        for dataset in selected_datasets:
+            root = resolve_variant_dataset_dir(
+                variant,
+                dataset,
+                use_processed_fallback=args.use_processed_fallback,
             )
 
             rows = grouped_summary(
-                root
+                root,
+                dataset_name=dataset,
             )
 
             stats_rows.extend(

@@ -2,12 +2,16 @@
 """
 normalize_dataset_tl.py
 
-Geração das variantes normalizadas por RMS de referência para o
-experimento de Transfer Learning.
+Geração das variantes normalizadas por RMS de referência para os
+experimentos de Transfer Learning.
 
-Entrada:
+Entrada primária:
     data/processed_tl/raw/
     data/processed_tl/detrended/
+
+Fallback opcional (somente-leitura para a variante detrended, gerada por
+src/data/make_dataset.py com Detrend + SimpleSplit):
+    data/processed/
 
 Saída:
     data/processed_tl/raw_rms/
@@ -17,30 +21,28 @@ Regra:
     RMS_ref = média dos RMS das janelas da classe normal
     x_normalized = x / RMS_ref
 
-Referências:
+Referências por dataset:
     CWRU_12k:
-        classe normal = label 0.
-        O script aceita tanto Class_0 quanto Class_Normal,
-        para ser compatível com diferentes gerações dos dados.
-
+        classe normal = Class_0 ou Class_Normal.
     CWRU_48k:
-        referência = CWRU_12k / classe normal.
-        O mesmo escalar RMS_ref é aplicado ao alvo.
-
+        referência cruzada = CWRU_12k / classe normal (pois CWRU_48k não
+        possui classe normal própria).
     MFPT:
-        label 23 = Normal (Class_23), conforme vibdata/resources/labels.csv.
-        label 24 = Inner Race.
-        label 25 = Outer Race.
-
-Importante:
-    A referência é calculada na mesma variante que será normalizada:
-        raw       -> referência calculada em raw
-        detrended -> referência calculada em detrended
-
-    O script não altera:
-        data/processed/
-        data/processed_tl/raw/
-        data/processed_tl/detrended/
+        classe normal = Class_23 ou Class_Normal.
+    PU:
+        classe normal = Class_Normal ou Class_26.
+    HUST_Gearbox:
+        classe normal = Class_Normal ou Class_Healthy.
+    UOEMD:
+        classe normal = Class_Normal ou Class_H (Healthy).
+    UORED:
+        classe normal = Class_Normal ou Class_Healthy.
+    HUST:
+        classe normal = Class_Normal ou Class_40.
+    Mechanical_Gear:
+        classe normal = Class_Normal ou Class_Healthy.
+    Electric_Motor:
+        classe normal = Class_Normal ou Class_Healthy.
 """
 
 import argparse
@@ -57,6 +59,7 @@ from tqdm import tqdm
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 INPUT_ROOT = PROJECT_ROOT / "data" / "processed_tl"
+PROCESSED_FALLBACK_ROOT = PROJECT_ROOT / "data" / "processed"
 
 VARIANTS = {
     "raw": {
@@ -69,22 +72,56 @@ VARIANTS = {
     },
 }
 
-DATASETS = [
+DEFAULT_DATASETS = [
     "CWRU_12k",
     "MFPT",
     "CWRU_48k",
 ]
 
-# O make_dataset_tl.py original que criamos usa Class_<label>.
-# Portanto, label 0 do CWRU normalmente aparece como Class_0.
-# Class_Normal é aceito para manter compatibilidade com outros
-# datasets/processamentos.
+CROSS_DATASET_TL_DATASETS = [
+    "CWRU_12k",
+    "CWRU_48k",
+    "PU",
+    "HUST_Gearbox",
+    "UOEMD",
+    "UORED",
+    "HUST",
+    "Mechanical_Gear",
+    "Electric_Motor",
+]
+
+ALL_SUPPORTED_DATASETS = [
+    "CWRU_12k",
+    "MFPT",
+    "CWRU_48k",
+    "PU",
+    "HUST_Gearbox",
+    "UOEMD",
+    "UORED",
+    "HUST",
+    "Mechanical_Gear",
+    "Electric_Motor",
+]
+
 CWRU_NORMAL_CLASS_ALIASES = (
     "Class_0",
     "Class_Normal",
+    "Normal",
 )
 
-MFPT_NORMAL_CLASS = "Class_23"
+MFPT_NORMAL_CLASS_ALIASES = (
+    "Class_23",
+    "Class_Normal",
+    "Normal",
+)
+
+COMMON_NORMAL_ALIASES = (
+    "Class_Normal",
+    "Class_Healthy",
+    "Normal",
+    "Healthy",
+    "Class_0",
+)
 
 
 # ============================================================
@@ -93,6 +130,8 @@ MFPT_NORMAL_CLASS = "Class_23"
 
 def find_npy_files(root: Path):
     """Retorna todos os .npy de forma recursiva."""
+    if not root.exists():
+        return []
     return sorted(root.rglob("*.npy"))
 
 
@@ -113,7 +152,7 @@ def discover_normal_class(dataset_root: Path, aliases):
     Procura a classe normal entre os aliases informados.
 
     Retorna:
-        nome da pasta encontrada
+        (nome_da_pasta_encontrada, lista_de_classes_disponiveis)
     """
     files = find_npy_files(dataset_root)
 
@@ -127,6 +166,12 @@ def discover_normal_class(dataset_root: Path, aliases):
     for alias in aliases:
         if alias in available_classes:
             return alias, available_classes
+
+    # Busca case-insensitive por substring "normal" ou "healthy"
+    for cls_name in available_classes:
+        lower = cls_name.lower()
+        if "normal" in lower or "healthy" in lower:
+            return cls_name, available_classes
 
     return None, available_classes
 
@@ -231,16 +276,16 @@ def calculate_reference_rms(
 
 def normalize_file(
     input_file: Path,
-    input_root: Path,
-    output_root: Path,
+    dataset_input_root: Path,
+    dataset_output_root: Path,
     reference_rms: float,
 ):
-    """Normaliza uma janela e preserva a estrutura relativa."""
+    """Normaliza uma janela e preserva a estrutura relativa dentro do dataset."""
     relative_path = input_file.relative_to(
-        input_root
+        dataset_input_root
     )
 
-    output_file = output_root / relative_path
+    output_file = dataset_output_root / relative_path
 
     output_file.parent.mkdir(
         parents=True,
@@ -265,17 +310,34 @@ def normalize_file(
     )
 
 
+def resolve_dataset_input_dir(
+    dataset_name: str,
+    variant_name: str,
+    primary_input_root: Path,
+    fallback_processed_root: Path | None = None,
+) -> Path:
+    """Localiza o diretório de entrada do dataset sem modificar a origem."""
+    primary = primary_input_root / dataset_name
+    if primary.exists() and find_npy_files(primary):
+        return primary
+
+    if variant_name == "detrended" and fallback_processed_root is not None:
+        fallback = fallback_processed_root / dataset_name
+        if fallback.exists() and find_npy_files(fallback):
+            return fallback
+
+    return primary
+
+
 def normalize_dataset(
     dataset_name: str,
-    input_root: Path,
+    dataset_input: Path,
     output_root: Path,
     reference_rms: float,
 ):
     """
     Aplica um único RMS_ref ao dataset inteiro.
     """
-    dataset_input = input_root / dataset_name
-
     files = find_npy_files(
         dataset_input
     )
@@ -285,6 +347,7 @@ def normalize_dataset(
             f"Nenhum .npy encontrado em {dataset_input}"
         )
 
+    dataset_output = output_root / dataset_name
     errors = 0
 
     for input_file in tqdm(
@@ -294,8 +357,8 @@ def normalize_dataset(
         try:
             normalize_file(
                 input_file=input_file,
-                input_root=input_root,
-                output_root=output_root,
+                dataset_input_root=dataset_input,
+                dataset_output_root=dataset_output,
                 reference_rms=reference_rms,
             )
         except Exception as exc:
@@ -310,8 +373,9 @@ def normalize_dataset(
 def write_manifest(
     rows,
     output_root: Path,
+    merge_existing: bool = True,
 ):
-    """Registra a referência e os resultados do processamento."""
+    """Registra a referência e os resultados do processamento, preservando entradas existentes."""
     output_root.mkdir(
         parents=True,
         exist_ok=True,
@@ -335,6 +399,20 @@ def write_manifest(
         "formula",
     ]
 
+    merged = {}
+    if merge_existing and manifest_file.exists():
+        with manifest_file.open("r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            for existing_row in reader:
+                key = (existing_row.get("dataset"), existing_row.get("output_variant"))
+                merged[key] = {k: existing_row.get(k, "") for k in fieldnames}
+
+    for row in rows:
+        key = (row["dataset"], row["output_variant"])
+        merged[key] = {k: row.get(k, "") for k in fieldnames}
+
+    final_rows = list(merged.values())
+
     with manifest_file.open(
         "w",
         newline="",
@@ -345,7 +423,7 @@ def write_manifest(
             fieldnames=fieldnames,
         )
         writer.writeheader()
-        writer.writerows(rows)
+        writer.writerows(final_rows)
 
     return manifest_file
 
@@ -358,14 +436,16 @@ def build_reference_map():
     """
     Define a referência oficial para cada dataset.
 
-    CWRU:
-        label 0 -> normal.
-
-    MFPT:
-        label 23 -> normal.
-
-    CWRU_48k:
-        usa CWRU_12k como domínio de referência.
+    - CWRU_12k: label 0 / Normal.
+    - CWRU_48k: usa CWRU_12k como domínio de referência (pois CWRU_48k não tem classe normal).
+    - MFPT: Class_23 / Class_Normal.
+    - PU: Class_Normal / Class_26.
+    - HUST_Gearbox: Class_Normal / Class_Healthy.
+    - UOEMD: Class_Normal / Class_H.
+    - UORED: Class_Normal / Class_Healthy.
+    - HUST: Class_Normal / Class_40.
+    - Mechanical_Gear: Class_Healthy / Class_Normal.
+    - Electric_Motor: Class_Healthy / Class_Normal.
     """
     return {
         "CWRU_12k": {
@@ -374,13 +454,39 @@ def build_reference_map():
         },
         "MFPT": {
             "reference_dataset": "MFPT",
-            "reference_class_aliases": (
-                MFPT_NORMAL_CLASS,
-            ),
+            "reference_class_aliases": MFPT_NORMAL_CLASS_ALIASES,
         },
         "CWRU_48k": {
             "reference_dataset": "CWRU_12k",
             "reference_class_aliases": CWRU_NORMAL_CLASS_ALIASES,
+        },
+        "PU": {
+            "reference_dataset": "PU",
+            "reference_class_aliases": ("Class_Normal", "Class_26", "Normal", "Healthy"),
+        },
+        "HUST_Gearbox": {
+            "reference_dataset": "HUST_Gearbox",
+            "reference_class_aliases": ("Class_Normal", "Class_Healthy", "Normal", "Healthy"),
+        },
+        "UOEMD": {
+            "reference_dataset": "UOEMD",
+            "reference_class_aliases": ("Class_Normal", "Class_H", "Class_Healthy", "Normal", "Healthy"),
+        },
+        "UORED": {
+            "reference_dataset": "UORED",
+            "reference_class_aliases": ("Class_Normal", "Class_Healthy", "Normal", "Healthy"),
+        },
+        "HUST": {
+            "reference_dataset": "HUST",
+            "reference_class_aliases": ("Class_Normal", "Class_40", "Normal", "Healthy"),
+        },
+        "Mechanical_Gear": {
+            "reference_dataset": "Mechanical_Gear",
+            "reference_class_aliases": COMMON_NORMAL_ALIASES,
+        },
+        "Electric_Motor": {
+            "reference_dataset": "Electric_Motor",
+            "reference_class_aliases": COMMON_NORMAL_ALIASES,
         },
     }
 
@@ -394,6 +500,7 @@ def process_variant(
     dataset_name: str,
     references: dict,
     manifest_rows: list,
+    fallback_processed_root: Path | None = None,
 ):
     """Processa uma variante raw ou detrended."""
     variant = VARIANTS[variant_name]
@@ -401,7 +508,12 @@ def process_variant(
     input_root = variant["input_dir"]
     output_root = variant["output_dir"]
 
-    dataset_input = input_root / dataset_name
+    dataset_input = resolve_dataset_input_dir(
+        dataset_name=dataset_name,
+        variant_name=variant_name,
+        primary_input_root=input_root,
+        fallback_processed_root=fallback_processed_root,
+    )
 
     if not dataset_input.exists():
         raise FileNotFoundError(
@@ -415,9 +527,11 @@ def process_variant(
         info["reference_dataset"]
     )
 
-    reference_root = (
-        input_root /
-        reference_dataset
+    reference_root = resolve_dataset_input_dir(
+        dataset_name=reference_dataset,
+        variant_name=variant_name,
+        primary_input_root=input_root,
+        fallback_processed_root=fallback_processed_root,
     )
 
     if not reference_root.exists():
@@ -453,7 +567,10 @@ def process_variant(
         f"Variante: {variant_name}"
     )
     print(
-        f"Referência: {reference_dataset}"
+        f"Entrada: {dataset_input}"
+    )
+    print(
+        f"Referência: {reference_dataset} ({reference_root})"
     )
     print(
         f"Classe normal usada: {normal_class}"
@@ -477,7 +594,7 @@ def process_variant(
 
     input_windows, errors = normalize_dataset(
         dataset_name=dataset_name,
-        input_root=input_root,
+        dataset_input=dataset_input,
         output_root=output_root,
         reference_rms=reference_rms,
     )
@@ -523,9 +640,12 @@ def main():
     parser.add_argument(
         "--datasets",
         nargs="+",
-        default=DATASETS,
-        choices=DATASETS,
-        help="Datasets que serão processados.",
+        default=DEFAULT_DATASETS,
+        choices=ALL_SUPPORTED_DATASETS + ["all", "cross_dataset"],
+        help=(
+            "Datasets que serão processados. Use 'cross_dataset' para os 9 "
+            "datasets (5 targets + 4 sources) ou 'all' para todos os 10."
+        ),
     )
 
     parser.add_argument(
@@ -542,9 +662,31 @@ def main():
         help="Variantes que serão normalizadas.",
     )
 
+    parser.add_argument(
+        "--use-processed-fallback",
+        action="store_true",
+        help=(
+            "Para a variante 'detrended', caso o dataset não esteja em "
+            "data/processed_tl/detrended/<ds>, lê de data/processed/<ds> "
+            "(que já contém janelas após Detrend + SimpleSplit)."
+        ),
+    )
+
     args = parser.parse_args()
 
-    # Cria os diretórios de saída logo no início.
+    selected_datasets = []
+    for ds in args.datasets:
+        if ds == "all":
+            selected_datasets.extend(ALL_SUPPORTED_DATASETS)
+        elif ds == "cross_dataset":
+            selected_datasets.extend(CROSS_DATASET_TL_DATASETS)
+        else:
+            selected_datasets.append(ds)
+    # Remove duplicatas preservando a ordem
+    selected_datasets = list(dict.fromkeys(selected_datasets))
+
+    fallback_root = PROCESSED_FALLBACK_ROOT if args.use_processed_fallback else None
+
     for variant_name in args.variants:
         VARIANTS[variant_name]["output_dir"].mkdir(
             parents=True,
@@ -558,20 +700,17 @@ def main():
     )
     print("=" * 72)
     print(
-        f"Projeto : {PROJECT_ROOT}"
+        f"Projeto  : {PROJECT_ROOT}"
     )
     print(
-        f"Entrada : {INPUT_ROOT}"
+        f"Entrada  : {INPUT_ROOT}"
     )
+    if fallback_root is not None:
+        print(
+            f"Fallback : {fallback_root} (somente-leitura para detrended)"
+        )
     print(
-        "CWRU normal: label 0 "
-        "(Class_0 ou Class_Normal)"
-    )
-    print(
-        "MFPT normal: label 23 (Class_23)"
-    )
-    print(
-        "CWRU_48k: referência cruzada = CWRU_12k"
+        f"Datasets : {', '.join(selected_datasets)}"
     )
 
     references = build_reference_map()
@@ -579,7 +718,7 @@ def main():
     manifest_rows = []
 
     for variant_name in args.variants:
-        for dataset_name in args.datasets:
+        for dataset_name in selected_datasets:
 
             try:
                 process_variant(
@@ -587,6 +726,7 @@ def main():
                     dataset_name=dataset_name,
                     references=references,
                     manifest_rows=manifest_rows,
+                    fallback_processed_root=fallback_root,
                 )
 
             except Exception as exc:
@@ -601,42 +741,41 @@ def main():
                     "será ignorado e os demais continuarão."
                 )
 
-    # Um manifesto em cada pasta de saída.
-    manifest_raw = write_manifest(
-        [
-            row for row in manifest_rows
-            if row["output_variant"] == "raw_rms"
-        ],
-        VARIANTS["raw"]["output_dir"],
-    )
+    raw_rows = [
+        row for row in manifest_rows
+        if row["output_variant"] == "raw_rms"
+    ]
+    detrended_rows = [
+        row for row in manifest_rows
+        if row["output_variant"] == "detrended_rms"
+    ]
 
-    manifest_detrended = write_manifest(
-        [
-            row for row in manifest_rows
-            if row["output_variant"] == "detrended_rms"
-        ],
-        VARIANTS["detrended"]["output_dir"],
-    )
+    if raw_rows or "raw" in args.variants:
+        manifest_raw = write_manifest(
+            raw_rows,
+            VARIANTS["raw"]["output_dir"],
+        )
+        print(f"Manifest RAW       : {manifest_raw}")
+
+    if detrended_rows or "detrended" in args.variants:
+        manifest_detrended = write_manifest(
+            detrended_rows,
+            VARIANTS["detrended"]["output_dir"],
+        )
+        print(f"Manifest DETRENDED : {manifest_detrended}")
 
     print()
     print("=" * 72)
     print("CONCLUÍDO")
     print("=" * 72)
-    print(
-        f"Manifest RAW       : {manifest_raw}"
-    )
-    print(
-        f"Manifest DETRENDED : {manifest_detrended}"
-    )
 
-    print()
     if manifest_rows:
         print("Resumo:")
         for row in manifest_rows:
             print(
-                f"{row['dataset']:12s} | "
-                f"{row['output_variant']:20s} | "
-                f"ref={row['reference_dataset']:12s} | "
+                f"{row['dataset']:16s} | "
+                f"{row['output_variant']:16s} | "
+                f"ref={row['reference_dataset']:16s} | "
                 f"classe={row['reference_classes']:14s} | "
                 f"RMS_ref={float(row['reference_rms']):.8g} | "
                 f"janelas={row['input_windows']} | "
