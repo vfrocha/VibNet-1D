@@ -1,0 +1,282 @@
+{
+  "timestamp": "20261028_173310",
+  "preprocessing_variant": "detrended_rms",
+  "data_root": "/home/vfrocha/VibNet-1D/data/processed_tl/detrended_rms",
+  "output_dir": "/home/vfrocha/VibNet-1D/results/tl_cross_dataset_mlp_tabnet/run_20261028_173310",
+  "requested_targets": [
+    "CWRU_12k",
+    "CWRU_48k",
+    "PU",
+    "HUST_Gearbox",
+    "UOEMD"
+  ],
+  "requested_sources": [
+    "UORED",
+    "HUST",
+    "Mechanical_Gear",
+    "Electric_Motor"
+  ],
+  "eligible_targets": [
+    "CWRU_12k",
+    "CWRU_48k",
+    "PU",
+    "HUST_Gearbox",
+    "UOEMD"
+  ],
+  "eligible_sources": [
+    "UORED",
+    "HUST",
+    "Mechanical_Gear",
+    "Electric_Motor"
+  ],
+  "source_modes": [
+    "all",
+    "single",
+    "combinations"
+  ],
+  "models": [
+    "MLP",
+    "TabNet"
+  ],
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "epochs": 30,
+  "batch_size": 64,
+  "balance_strategy": "smote",
+  "smote_insufficient_policy": "fail_fold",
+  "max_folds": null,
+  "label_encoding_policy": "Codificação local por domínio (LabelEncoder próprio por dataset). Para o MLP, cada domínio possui cabeça linear independente (HybridDLModel.heads[domain]). Para o TabNet, as fontes são usadas em pré-treinamento não supervisionado (TabNetPretrainer) e o TabNetClassifier é ajustado exclusivamente no vocabulário de classes do target.",
+  "hyperparameters": {
+    "MLP": {
+      "architecture": "MLPEncoder(141->256->128->64) + Bottleneck(64->128->64) + DomainHead(64->C_d)",
+      "optimizer_joint": "AdamW(lr=1e-3, weight_decay=1e-4)",
+      "scheduler_joint": "StepLR(step_size=10, gamma=0.5)",
+      "epochs_joint": 30,
+      "optimizer_finetune": "AdamW(lr=5e-4, weight_decay=1e-4)",
+      "epochs_finetune": 15,
+      "batch_size": 64
+    },
+    "TabNet": {
+      "pretrainer": "TabNetPretrainer(n_d=16, n_a=16, n_steps=4, lr=2e-2, mask_type='entmax', pretraining_ratio=0.8)",
+      "classifier": "TabNetClassifier(n_d=16, n_a=16, n_steps=4, lr=2e-2, mask_type='sparsemax', StepLR(10, 0.9))",
+      "epochs_pretrain": 30,
+      "epochs_finetune": 30,
+      "batch_size": 64,
+      "virtual_batch_size": 32
+    }
+  },
+  "dataset_class_semantics": {
+    "CWRU_12k": {
+      "role_default": "target",
+      "component": "bearing",
+      "fs_hz": 12000,
+      "normal_class": "Class_0",
+      "expected_classes": [
+        "Class_0",
+        "Class_1",
+        "Class_2",
+        "Class_3"
+      ],
+      "class_descriptions": {
+        "Class_0": "Normal (Healthy Bearing)",
+        "Class_1": "Inner Race Fault (IR)",
+        "Class_2": "Ball / Rolling Element Fault (B)",
+        "Class_3": "Outer Race Fault (OR)"
+      },
+      "loco_axis": "Load_{0,1,2,3}HP x Sev_{0.007,0.014,0.021,0.028} (Normal replicated across conditions)"
+    },
+    "CWRU_48k": {
+      "role_default": "target",
+      "component": "bearing",
+      "fs_hz": 48000,
+      "normal_class": "Class_0",
+      "expected_classes": [
+        "Class_0",
+        "Class_1",
+        "Class_2",
+        "Class_3"
+      ],
+      "class_descriptions": {
+        "Class_0": "Normal (Healthy Bearing - shared reference from CWRU_12k)",
+        "Class_1": "Inner Race Fault (IR)",
+        "Class_2": "Ball / Rolling Element Fault (B)",
+        "Class_3": "Outer Race Fault (OR)"
+      },
+      "loco_axis": "Load_{0,1,2,3}HP x Sev_{0.007,0.014,0.021}"
+    },
+    "PU": {
+      "role_default": "target",
+      "component": "bearing",
+      "fs_hz": 64000,
+      "normal_class": "Normal",
+      "expected_classes": [
+        "Normal",
+        "IR_EDM",
+        "IR_Fatigue",
+        "IR_Indent",
+        "OR_EDM",
+        "OR_Electric",
+        "OR_Fatigue",
+        "Combo_Fatigue",
+        "Combo_Plastic"
+      ],
+      "class_descriptions": {
+        "Normal": "Healthy Bearing",
+        "IR_EDM": "Inner Race Fault (EDM artificial)",
+        "IR_Fatigue": "Inner Race Fault (Fatigue pitting)",
+        "IR_Indent": "Inner Race Fault (Plastic indentation)",
+        "OR_EDM": "Outer Race Fault (EDM artificial)",
+        "OR_Electric": "Outer Race Fault (Electric engraver)",
+        "OR_Fatigue": "Outer Race Fault (Fatigue pitting)",
+        "Combo_Fatigue": "Compound Fault IR+OR (Fatigue)",
+        "Combo_Plastic": "Compound Fault IR+OR (Plastic deformation)"
+      },
+      "loco_axis": "N09_M07_F10, N15_M01_F10, N15_M07_F04, N15_M07_F10"
+    },
+    "HUST_Gearbox": {
+      "role_default": "target",
+      "component": "gearbox",
+      "fs_hz": 25600,
+      "normal_class": "Normal",
+      "expected_classes": [
+        "Normal",
+        "Broken",
+        "Missing"
+      ],
+      "class_descriptions": {
+        "Normal": "Healthy Gear",
+        "Broken": "Broken Tooth Gear Fault",
+        "Missing": "Missing Tooth Gear Fault"
+      },
+      "loco_axis": "Cond_{20,25,30,35,40}Hz x {1..6}"
+    },
+    "UOEMD": {
+      "role_default": "target",
+      "component": "motor_bearing",
+      "fs_hz": 42000,
+      "normal_class": "H_1",
+      "expected_classes": [
+        "H_1",
+        "B_1",
+        "C_1",
+        "I_1",
+        "O_1",
+        "R_1",
+        "S_1",
+        "U_1",
+        "V_1",
+        "W_1"
+      ],
+      "class_descriptions": {
+        "H_1": "Healthy Motor/Bearing",
+        "B_1": "Bowed Rotor / Ball Fault",
+        "C_1": "Broken Rotor Bars / Cage Fault",
+        "I_1": "Inner Race Bearing Fault",
+        "O_1": "Outer Race Bearing Fault",
+        "R_1": "Rotor Unbalance",
+        "S_1": "Stator Winding Fault",
+        "U_1": "Voltage Unbalance",
+        "V_1": "Misalignment",
+        "W_1": "Fault Condition W_1"
+      },
+      "loco_axis": "Load_{0,1,2,3}"
+    },
+    "UORED": {
+      "role_default": "source",
+      "component": "bearing",
+      "fs_hz": 42000,
+      "normal_class": "H",
+      "expected_classes": [
+        "H",
+        "B",
+        "C",
+        "I",
+        "O"
+      ],
+      "class_descriptions": {
+        "H": "Healthy Bearing",
+        "B": "Ball Fault",
+        "C": "Cage Fault",
+        "I": "Inner Race Fault",
+        "O": "Outer Race Fault"
+      },
+      "loco_axis": "Cond_1_1 .. Cond_5_4"
+    },
+    "HUST": {
+      "role_default": "source",
+      "component": "bearing",
+      "fs_hz": 51200,
+      "normal_class": "N",
+      "expected_classes": [
+        "N",
+        "B",
+        "I",
+        "O",
+        "IB",
+        "IO",
+        "OB"
+      ],
+      "class_descriptions": {
+        "N": "Normal Bearing",
+        "B": "Ball Fault",
+        "I": "Inner Race Fault",
+        "O": "Outer Race Fault",
+        "IB": "Compound Inner + Ball Fault",
+        "IO": "Compound Inner + Outer Fault",
+        "OB": "Compound Outer + Ball Fault"
+      },
+      "loco_axis": "Load_{0,200,400}W"
+    },
+    "Mechanical_Gear": {
+      "role_default": "source",
+      "component": "gearbox",
+      "fs_hz": 10000,
+      "normal_class": "Normal",
+      "expected_classes": [
+        "Normal",
+        "Chip5a",
+        "Miss",
+        "Root",
+        "Surface"
+      ],
+      "class_descriptions": {
+        "Normal": "Healthy Gear",
+        "Chip5a": "Chipped Tooth Gear Fault",
+        "Miss": "Missing Tooth Gear Fault",
+        "Root": "Gear Root Crack Fault",
+        "Surface": "Gear Surface Wear Fault"
+      },
+      "loco_axis": "Speed_{10,15,20,25}_Load_{0,1,2}"
+    },
+    "Electric_Motor": {
+      "role_default": "source",
+      "component": "motor_bearing",
+      "fs_hz": 42000,
+      "normal_class": "Normal",
+      "expected_classes": [
+        "Normal",
+        "Inner",
+        "Outer"
+      ],
+      "class_descriptions": {
+        "Normal": "Healthy Motor Bearing",
+        "Inner": "Inner Race Fault",
+        "Outer": "Outer Race Fault"
+      },
+      "loco_axis": "Load_{1,2,3}"
+    }
+  },
+  "code_identification": {
+    "git_commit": "ae5cb8c1c1fc4e9d85a8335082e8172ffa7f9bfd",
+    "git_dirty": true,
+    "file_sha256": {
+      "scripts/exp_tl_cross_dataset_mlp_tabnet.py": "e89ec181034999561263cdd4170f3d420ff301c6e883eb37062d3935ebd127c2",
+      "src/models/build_tabnet_resnet_balance.py": "b7500731135cba9f84a468464686fed3824bfd39a841cd1947f0a31aa61b17b3",
+      "src/preprocessing/normalize_dataset_tl.py": "630c221c1f82fa82159794d34acaa8959b3506a67d699de707c108a66bd4237d",
+      "src/data/validate_dataset_tl.py": "0bbf0d070aeb471d6db18b28b06a7a8909154f8f7b7f9fd3fa7d1ab2760ca101"
+    }
+  }
+}
