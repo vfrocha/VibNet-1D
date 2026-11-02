@@ -1,0 +1,174 @@
+relative_path,family,type,size_bytes,rows,columns,status,notes,dataset_column,model_column
+anomaly_results_20260812_084311.csv,root,.csv,18629,250.0,6.0,ok,,Dataset,Model
+baseline/baseline_loco_results_20260829_084039.csv,baseline,.csv,23765,310.0,7.0,ok,,Dataset,Model
+baseline_loco_results_20260928_142515.csv,root,.csv,51153,250.0,8.0,ok,,Dataset,Model
+baseline_loco_results_20261003_052352.csv,root,.csv,50951,250.0,8.0,ok,,Dataset,Model
+cwru12k_severity_loco_results_20260921_091642.csv,root,.csv,1179,16.0,7.0,ok,,Dataset,Model
+cwru12k_severity_loco_results_20260921_102011.csv,root,.csv,1351,12.0,7.0,ok,,Dataset,Model
+cwru12k_severity_loco_results_20260922_151745.csv,root,.csv,925,12.0,7.0,ok,,Dataset,Model
+cwru48k_mert_comparison_20261012_062814.csv,root,.csv,825,8.0,8.0,ok,,Dataset,Model
+cwru_unified_severity_loco_20260922_173221.csv,root,.csv,1910,24.0,8.0,ok,,Dataset,Model
+cwru_unified_severity_loco_20260929_103433.csv,root,.csv,1910,24.0,8.0,ok,,Dataset,Model
+cwru_unified_severity_loco_20260929_143834.csv,root,.csv,1517,12.0,8.0,ok,,Dataset,Model
+cwru_unified_severity_loco_20260929_144600.csv,root,.csv,3024,24.0,8.0,ok,,Dataset,Model
+log_baseline_scratch_20260916_113010.txt,root,.txt,3900,,,inventory_only,,,
+log_baseline_scratch_20260917_101613.txt,root,.txt,3900,,,inventory_only,,,
+log_norm_tl_diagnosis_multitarget_20261001_160735.txt,root,.txt,121799,,,inventory_only,,,
+log_norm_tl_dl_20260905_080429.txt,root,.txt,176033,,,inventory_only,,,
+log_tl_isolated_full_20260901_083517.txt,root,.txt,55140,,,inventory_only,,,
+log_tl_subset_search_20260915_202128.txt,root,.txt,995674,,,inventory_only,,,
+logs/log_anomaly_20260812_083150.txt,logs,.txt,493,,,inventory_only,,,
+logs/log_anomaly_20260812_083743.txt,logs,.txt,300,,,inventory_only,,,
+logs/log_anomaly_20260812_084114.txt,logs,.txt,1283,,,inventory_only,,,
+logs/log_anomaly_20260812_084311.txt,logs,.txt,58494,,,inventory_only,,,
+logs/log_tl_multihead_20260819_103518.txt,logs,.txt,40946,,,inventory_only,,,
+logs/log_tl_multihead_20260824_073501.txt,logs,.txt,61282,,,inventory_only,,,
+negativetransfer/baseline_scratch_results_20260916_113010.csv,negativetransfer,.csv,2159,16.0,8.0,ok,,Target Dataset,Model
+negativetransfer/baseline_scratch_results_20260917_101613.csv,negativetransfer,.csv,2167,16.0,8.0,ok,,Target Dataset,Model
+negativetransfer/log_tl_subset_search_20260917_102219.txt,negativetransfer,.txt,659802,,,inventory_only,,,
+negativetransfer/tl_subset_search_results_20260915_202128.csv,negativetransfer,.csv,636861,4080.0,8.0,ok,,Target Dataset,Model
+negativetransfer/tl_subset_search_results_20260917_102219.csv,negativetransfer,.csv,635896,4080.0,8.0,ok,,Target Dataset,Model
+norm_tl_diagnosis_ablation_20261005_152759_results.csv,root,.csv,155728,500.0,22.0,ok,,Target Dataset,Model
+norm_tl_diagnosis_ablation_20261005_152759_summary.csv,root,.csv,1252,5.0,13.0,ok,No recognized metric columns; inventory only.,,
+norm_tl_diagnosis_ablation_20261005_152759_summary_by_strategy_model.csv,root,.csv,2361,10.0,14.0,ok,No recognized metric columns; inventory only.,,Model
+norm_tl_diagnosis_ablation_20261005_152759_summary_by_target_model.csv,root,.csv,11886,40.0,19.0,ok,No recognized metric columns; inventory only.,Target Dataset,Model
+norm_tl_diagnosis_ablation_20261027_093126_results.csv,root,.csv,52221,160.0,22.0,ok,,Target Dataset,Model
+norm_tl_diagnosis_ablation_20261027_093126_summary.csv,root,.csv,1199,5.0,13.0,ok,No recognized metric columns; inventory only.,,
+norm_tl_diagnosis_ablation_20261027_093126_summary_by_strategy_model.csv,root,.csv,2016,10.0,14.0,ok,No recognized metric columns; inventory only.,,Model
+norm_tl_diagnosis_ablation_20261027_093126_summary_by_target_model.csv,root,.csv,3062,10.0,19.0,ok,No recognized metric columns; inventory only.,Target Dataset,Model
+norm_tl_diagnosis_multitarget_results_20261001_160735.csv,root,.csv,101694,500.0,17.0,ok,,Target Dataset,Model
+norm_tl_diagnosis_multitarget_summary_20261001_101853.csv,root,.csv,926,5.0,10.0,ok,No recognized metric columns; inventory only.,,
+norm_tl_diagnosis_multitarget_summary_20261001_160735.csv,root,.csv,925,5.0,10.0,ok,No recognized metric columns; inventory only.,,
+norm_tl_diagnosis_multitarget_summary_20261001_160735_by_strategy_model.csv,root,.csv,1959,10.0,12.0,ok,No recognized metric columns; inventory only.,,Model
+norm_tl_diagnosis_multitarget_summary_20261001_160735_by_target_model.csv,root,.csv,9753,40.0,16.0,ok,No recognized metric columns; inventory only.,Target Dataset,Model
+normalization/norm_tl_dl_results_20260905_080429.csv,normalization,.csv,65422,620.0,8.0,ok,,Dataset,Model
+normalization/normalization_abc_results_20260904_181157.csv,normalization,.csv,7366,80.0,6.0,ok,,Target,Model
+old_results/baseline_loco_results_20260727_082114.csv,old_results,.csv,14857,176.0,7.0,ok,,Dataset,Model
+old_results/baseline_loco_results_20260727_110015.csv,old_results,.csv,14871,176.0,7.0,ok,,Dataset,Model
+old_results/baseline_loco_results_20260728_095219.csv,old_results,.csv,28657,416.0,7.0,ok,,Dataset,Model
+old_results/baseline_loco_results_20260728_192137.csv,old_results,.csv,30734,448.0,7.0,ok,,Dataset,Model
+old_results/comparativo_signai_cwru12k_48k_results_20260804_092429.csv,old_results,.csv,1916,24.0,8.0,ok,,Dataset,Model
+old_results/comparativo_signai_cwru12k_48k_results_20260804_092910.csv,old_results,.csv,2036,24.0,8.0,ok,,Dataset,Model
+old_results/comparativo_signai_cwru12k_48k_results_20260804_110139.csv,old_results,.csv,2750,24.0,8.0,ok,,Dataset,Model
+old_results/cwru48k_severity_loco_results_20260808_080012.csv,old_results,.csv,1264,12.0,7.0,ok,,Dataset,Model
+old_results/cwru48k_severity_loco_results_20260824_061803.csv,old_results,.csv,1264,12.0,7.0,ok,,Dataset,Model
+old_results/log_exp01_CWRU_12k_20260517_155348.txt,old_results,.txt,5045,,,inventory_only,,,
+old_results/log_exp01_CWRU_12k_20260520_172847.txt,old_results,.txt,5045,,,inventory_only,,,
+old_results/log_exp02_keras_CWRU_12k_20260517_161008.txt,old_results,.txt,14641,,,inventory_only,,,
+old_results/log_exp03_freq_CWRU_12k_20260520_173711.txt,old_results,.txt,5484,,,inventory_only,,,
+old_results/log_exp04_fusion_CWRU_12k_20260520_180015.txt,old_results,.txt,6613,,,inventory_only,,,
+old_results/log_exp05_tabnet_CWRU_12k_20260603_183806.txt,old_results,.txt,1037,,,inventory_only,,,
+old_results/log_exp05_tabnet_CWRU_12k_20260603_192446.txt,old_results,.txt,8280,,,inventory_only,,,
+old_results/log_exp05_tabnet_CWRU_12k_20260604_062253.txt,old_results,.txt,8454,,,inventory_only,,,
+old_results/log_master_V2_20260622_100058.txt,old_results,.txt,8871,,,inventory_only,,,
+old_results/log_master_V2_20260622_101336.txt,old_results,.txt,8947,,,inventory_only,,,
+old_results/log_master_V2_20260622_102913.txt,old_results,.txt,649,,,inventory_only,,,
+old_results/log_master_V2_20260622_103246.txt,old_results,.txt,9210,,,inventory_only,,,
+old_results/log_master_V2_20260622_104234.txt,old_results,.txt,649,,,inventory_only,,,
+old_results/log_master_V2_20260622_104758.txt,old_results,.txt,9210,,,inventory_only,,,
+old_results/log_master_V2_20260622_110738.txt,old_results,.txt,2167,,,inventory_only,,,
+old_results/log_master_V2_20260622_112113.txt,old_results,.txt,2167,,,inventory_only,,,
+old_results/log_master_V2_20260622_112808.txt,old_results,.txt,2167,,,inventory_only,,,
+old_results/log_master_V2_20260622_113743.txt,old_results,.txt,35859,,,inventory_only,,,
+old_results/log_master_V2_20260622_122004.txt,old_results,.txt,35853,,,inventory_only,,,
+old_results/log_master_V2_20260623_093605.txt,old_results,.txt,2167,,,inventory_only,,,
+old_results/log_master_V2_20260626_093619.txt,old_results,.txt,35912,,,inventory_only,,,
+old_results/log_master_V2_20260626_103610.txt,old_results,.txt,36086,,,inventory_only,,,
+old_results/log_master_V2_20260626_113159.txt,old_results,.txt,7779,,,inventory_only,,,
+old_results/log_master_V2_20260626_120739.txt,old_results,.txt,61532,,,inventory_only,,,
+old_results/log_master_V2_20260629_174206.txt,old_results,.txt,36912,,,inventory_only,,,
+old_results/log_master_strategy1_20260606_084459.txt,old_results,.txt,34612,,,inventory_only,,,
+old_results/log_master_strategy1_20260610_103731.txt,old_results,.txt,35860,,,inventory_only,,,
+old_results/log_tabnet_HUST_20260604_065044.txt,old_results,.txt,6381,,,inventory_only,,,
+old_results/log_tabnet_HUST_Dataset_20260604_064102.txt,old_results,.txt,401,,,inventory_only,,,
+old_results/log_tabnet_HUST_Dataset_20260604_064816.txt,old_results,.txt,401,,,inventory_only,,,
+old_results/log_tabnet_PU_20260604_070437.txt,old_results,.txt,833,,,inventory_only,,,
+old_results/log_tabnet_PU_20260604_071602.txt,old_results,.txt,8259,,,inventory_only,,,
+old_results/log_tabnet_UORED_20260606_065956.txt,old_results,.txt,10472,,,inventory_only,,,
+old_results/log_tl_completo_20260810_151031.txt,old_results,.txt,72732,,,inventory_only,,,
+old_results/log_tl_loco_20260810_141107.txt,old_results,.txt,34958,,,inventory_only,,,
+old_results/log_transfer_learning_20260803_071723.txt,old_results,.txt,8439,,,inventory_only,,,
+old_results/log_uoemd_tabular_20260708_090602.txt,old_results,.txt,37604,,,inventory_only,,,
+old_results/resultados_exp01_CWRU_12k_20260517_155348.csv,old_results,.csv,1149,8.0,5.0,ok,,,Model
+old_results/resultados_exp01_CWRU_12k_20260520_172847.csv,old_results,.csv,1149,8.0,5.0,ok,,,Model
+old_results/resultados_exp02_keras_CWRU_12k_20260517_161008.csv,old_results,.csv,304,4.0,4.0,ok,,,Model
+old_results/resultados_exp03_freq_CWRU_12k_20260520_173711.csv,old_results,.csv,1227,8.0,5.0,ok,,,Model
+old_results/resultados_exp04_fusion_CWRU_12k_20260520_180015.csv,old_results,.csv,1237,8.0,5.0,ok,,,Model
+old_results/resultados_exp05_tabnet_CWRU_12k_20260603_192446.csv,old_results,.csv,611,8.0,6.0,ok,,,Model
+old_results/resultados_exp05_tabnet_CWRU_12k_20260604_062253.csv,old_results,.csv,611,8.0,6.0,ok,,,Model
+old_results/resultados_master_V2_20260626_120739.csv,old_results,.csv,11086,160.0,7.0,ok,,Dataset,Model
+old_results/resultados_master_V2_20260629_174206.csv,old_results,.csv,14306,160.0,7.0,ok,,Dataset,Model
+old_results/resultados_master_strategy1_20260606_084459.csv,old_results,.csv,7828,96.0,7.0,ok,,Dataset,Model
+old_results/resultados_master_strategy1_20260610_103731.csv,old_results,.csv,10606,128.0,7.0,ok,,Dataset,Model
+old_results/resultados_tabnet_HUST_20260604_065044.csv,old_results,.csv,408,6.0,6.0,ok,,Dataset,
+old_results/resultados_tabnet_PU_20260604_071602.csv,old_results,.csv,797,8.0,6.0,ok,,Dataset,
+old_results/resultados_tabnet_UORED_20260606_065956.csv,old_results,.csv,692,10.0,6.0,ok,,Dataset,
+old_results/resultados_uoemd_tabular_20260708_090602.csv,old_results,.csv,13639,160.0,7.0,ok,,Dataset,Model
+old_results/tl_loco_results_20260810_141107.csv,old_results,.csv,14102,200.0,7.0,ok,,Dataset,Model
+old_results/tl_multihead_results_20260819_103518.csv,old_results,.csv,21618,248.0,7.0,ok,,Dataset,Model
+old_results/tl_results_20260803_071723.csv,old_results,.csv,1600,16.0,7.0,ok,,,Model
+tl/tl_completo_results_20260810_151031.csv,tl,.csv,34394,448.0,7.0,ok,,Dataset,Model
+tl/tl_isolated_full_results_20260901_083517.csv,tl,.csv,21531,248.0,7.0,ok,,Dataset,Model
+tl/tl_multihead_results_20260824_073501.csv,tl,.csv,23633,248.0,7.0,ok,,Dataset,Model
+tl_aux_features/run_20261012_093659/config.json,tl_aux_features,.json,1556,,,inventory_only,,,
+tl_aux_features/run_20261012_093659/results.csv,tl_aux_features,.csv,29080,192.0,17.0,ok,,Target Dataset,Model
+tl_aux_features/run_20261012_093659/summary_by_experiment.csv,tl_aux_features,.csv,1583,8.0,12.0,ok,No recognized metric columns; inventory only.,,
+tl_aux_features/run_20261012_093659/summary_by_experiment_model.csv,tl_aux_features,.csv,4056,16.0,17.0,ok,No recognized metric columns; inventory only.,,Model
+tl_balance_strategies/run_20261012_145854/config.json,tl_balance_strategies,.json,445,,,inventory_only,,,
+tl_balance_strategies/run_20261012_145854/results.csv,tl_balance_strategies,.csv,3217,24.0,16.0,ok,,Target Dataset,Model
+tl_balance_strategies/run_20261012_145854/summary.csv,tl_balance_strategies,.csv,335,1.0,10.0,ok,No recognized metric columns; inventory only.,,
+tl_balance_strategies/run_20261012_145854/summary_by_variant_model.csv,tl_balance_strategies,.csv,603,2.0,15.0,ok,No recognized metric columns; inventory only.,,Model
+tl_balance_strategies/run_20261012_150217/config.json,tl_balance_strategies,.json,452,,,inventory_only,,,
+tl_balance_strategies/run_20261012_150217/results.csv,tl_balance_strategies,.csv,3722,24.0,16.0,ok,,Target Dataset,Model
+tl_balance_strategies/run_20261012_150217/summary.csv,tl_balance_strategies,.csv,334,1.0,10.0,ok,No recognized metric columns; inventory only.,,
+tl_balance_strategies/run_20261012_150217/summary_by_variant_model.csv,tl_balance_strategies,.csv,603,2.0,15.0,ok,No recognized metric columns; inventory only.,,Model
+tl_balance_strategies/run_20261012_150540/config.json,tl_balance_strategies,.json,446,,,inventory_only,,,
+tl_balance_strategies/run_20261012_150540/results.csv,tl_balance_strategies,.csv,3295,24.0,16.0,ok,,Target Dataset,Model
+tl_balance_strategies/run_20261012_150540/summary.csv,tl_balance_strategies,.csv,335,1.0,10.0,ok,No recognized metric columns; inventory only.,,
+tl_balance_strategies/run_20261012_150540/summary_by_variant_model.csv,tl_balance_strategies,.csv,605,2.0,15.0,ok,No recognized metric columns; inventory only.,,Model
+tl_balance_strategies/run_20261012_150855/config.json,tl_balance_strategies,.json,447,,,inventory_only,,,
+tl_balance_strategies/run_20261012_150855/results.csv,tl_balance_strategies,.csv,3319,24.0,16.0,ok,,Target Dataset,Model
+tl_balance_strategies/run_20261012_150855/summary.csv,tl_balance_strategies,.csv,335,1.0,10.0,ok,No recognized metric columns; inventory only.,,
+tl_balance_strategies/run_20261012_150855/summary_by_variant_model.csv,tl_balance_strategies,.csv,605,2.0,15.0,ok,No recognized metric columns; inventory only.,,Model
+tl_contrastive_mlp/run_20261026_212435/config.json,tl_contrastive_mlp,.json,640,,,inventory_only,,,
+tl_contrastive_mlp/run_20261026_212435/results.csv,tl_contrastive_mlp,.csv,3143,12.0,20.0,ok,,Target Dataset,
+tl_contrastive_mlp/run_20261026_212435/summary.csv,tl_contrastive_mlp,.csv,259,1.0,11.0,ok,No recognized metric columns; inventory only.,,
+tl_contrastive_mlp/run_20261026_212739/config.json,tl_contrastive_mlp,.json,672,,,inventory_only,,,
+tl_contrastive_mlp/run_20261026_212739/results.csv,tl_contrastive_mlp,.csv,8641,36.0,20.0,ok,,Target Dataset,
+tl_contrastive_mlp/run_20261026_212739/summary.csv,tl_contrastive_mlp,.csv,527,3.0,11.0,ok,No recognized metric columns; inventory only.,,
+tl_contrastive_mlp/run_20261026_212945/config.json,tl_contrastive_mlp,.json,656,,,inventory_only,,,
+tl_contrastive_mlp/run_20261026_212945/results.csv,tl_contrastive_mlp,.csv,5769,24.0,20.0,ok,,Target Dataset,
+tl_contrastive_mlp/run_20261026_212945/summary.csv,tl_contrastive_mlp,.csv,389,2.0,11.0,ok,No recognized metric columns; inventory only.,,
+tl_contrastive_mlp/run_20261026_213141/config.json,tl_contrastive_mlp,.json,657,,,inventory_only,,,
+tl_contrastive_mlp/run_20261026_213141/results.csv,tl_contrastive_mlp,.csv,5713,24.0,20.0,ok,,Target Dataset,
+tl_contrastive_mlp/run_20261026_213141/summary.csv,tl_contrastive_mlp,.csv,385,2.0,11.0,ok,No recognized metric columns; inventory only.,,
+tl_contrastive_mlp/run_20261027_112749/config.json,tl_contrastive_mlp,.json,691,,,inventory_only,,,
+tl_contrastive_mlp/run_20261027_112749/results.csv,tl_contrastive_mlp,.csv,25633,108.0,20.0,ok,,Target Dataset,
+tl_contrastive_mlp/run_20261027_112749/summary.csv,tl_contrastive_mlp,.csv,1386,9.0,12.0,ok,No recognized metric columns; inventory only.,,
+tl_contrastive_mlp/run_20261027_112749/summary_across_seeds.csv,tl_contrastive_mlp,.csv,810,3.0,15.0,ok,No recognized metric columns; inventory only.,,
+tl_contrastive_mlp/run_20261027_113203/config.json,tl_contrastive_mlp,.json,675,,,inventory_only,,,
+tl_contrastive_mlp/run_20261027_113203/results.csv,tl_contrastive_mlp,.csv,16911,72.0,20.0,ok,,Target Dataset,
+tl_contrastive_mlp/run_20261027_113203/summary.csv,tl_contrastive_mlp,.csv,961,6.0,12.0,ok,No recognized metric columns; inventory only.,,
+tl_contrastive_mlp/run_20261027_113203/summary_across_seeds.csv,tl_contrastive_mlp,.csv,603,2.0,15.0,ok,No recognized metric columns; inventory only.,,
+tl_contrastive_mlp/run_20261027_113503/config.json,tl_contrastive_mlp,.json,676,,,inventory_only,,,
+tl_contrastive_mlp/run_20261027_113503/results.csv,tl_contrastive_mlp,.csv,17064,72.0,20.0,ok,,Target Dataset,
+tl_contrastive_mlp/run_20261027_113503/summary.csv,tl_contrastive_mlp,.csv,954,6.0,12.0,ok,No recognized metric columns; inventory only.,,
+tl_contrastive_mlp/run_20261027_113503/summary_across_seeds.csv,tl_contrastive_mlp,.csv,602,2.0,15.0,ok,No recognized metric columns; inventory only.,,
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/config.json,tl_cross_dataset_mlp_tabnet,.json,8215,,,inventory_only,,,
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/dataset_audit.csv,tl_cross_dataset_mlp_tabnet,.csv,3662,9.0,19.0,ok,No recognized metric columns; inventory only.,dataset,
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,tl_cross_dataset_mlp_tabnet,.csv,1167975,1980.0,25.0,ok,,Target,Model
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/summary_by_target_source_model.csv,tl_cross_dataset_mlp_tabnet,.csv,11212,50.0,19.0,ok,No recognized metric columns; inventory only.,Target,Model
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/summary_by_target_source_model_seed.csv,tl_cross_dataset_mlp_tabnet,.csv,32736,150.0,19.0,ok,No recognized metric columns; inventory only.,Target,Model
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/summary_paired_mlp_vs_tabnet.csv,tl_cross_dataset_mlp_tabnet,.csv,11557,25.0,26.0,ok,No recognized metric columns; inventory only.,Target,
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/summary_source_ranking_by_target.csv,tl_cross_dataset_mlp_tabnet,.csv,11337,50.0,20.0,ok,No recognized metric columns; inventory only.,Target,Model
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/config.json,tl_cross_dataset_mlp_tabnet,.json,8235,,,inventory_only,,,
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/dataset_audit.csv,tl_cross_dataset_mlp_tabnet,.csv,3662,9.0,19.0,ok,No recognized metric columns; inventory only.,dataset,
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,tl_cross_dataset_mlp_tabnet,.csv,3534858,5940.0,25.0,ok,,Target,Model
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/summary_by_target_source_model.csv,tl_cross_dataset_mlp_tabnet,.csv,33999,150.0,19.0,ok,No recognized metric columns; inventory only.,Target,Model
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/summary_by_target_source_model_seed.csv,tl_cross_dataset_mlp_tabnet,.csv,100228,450.0,19.0,ok,No recognized metric columns; inventory only.,Target,Model
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/summary_paired_mlp_vs_tabnet.csv,tl_cross_dataset_mlp_tabnet,.csv,34140,75.0,26.0,ok,No recognized metric columns; inventory only.,Target,
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/summary_source_ranking_by_target.csv,tl_cross_dataset_mlp_tabnet,.csv,34384,150.0,20.0,ok,No recognized metric columns; inventory only.,Target,Model
+tl_four_variants/run_20261005_163159/config.json,tl_four_variants,.json,458,,,inventory_only,,,
+tl_four_variants/run_20261005_163159/results.csv,tl_four_variants,.csv,11887,96.0,15.0,ok,,Target Dataset,Model
+tl_four_variants/run_20261005_163159/summary.csv,tl_four_variants,.csv,774,4.0,10.0,ok,No recognized metric columns; inventory only.,,
+tl_four_variants/run_20261005_163159/summary_by_variant_model.csv,tl_four_variants,.csv,1898,8.0,15.0,ok,No recognized metric columns; inventory only.,,Model
