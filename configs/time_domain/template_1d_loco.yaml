@@ -1,0 +1,36 @@
+# Template de configuração para a futura etapa de classificação diretamente no domínio do tempo (VibNet-1D)
+# Nota: Este arquivo prepara o contrato experimental sem iniciar a implementação de novos modelos 1D.
+experiment_family: time_domain
+experiment_name: time_domain_loco_template
+protocol: LOCO
+primary_metric: macro_f1
+secondary_metrics:
+  - accuracy
+  - balanced_accuracy
+  - roc_auc
+
+data:
+  processed_dir: data/processed_tl
+  variant: detrended_rms
+  window_duration_sec: 1.0
+  preserve_native_domain_vocabularies: true
+  targets:
+    - CWRU_12k
+    - CWRU_48k
+    - HUST_Gearbox
+    - PU
+    - UOEMD
+  sources:
+    - UORED
+    - HUST
+    - Mechanical_Gear
+    - Electric_Motor
+
+protocol_constraints:
+  isolate_loco_test_condition: true
+  balance_target_train_only: true
+  drop_last_single_sample_batch: true
+  require_provenance_metadata: true
+
+output:
+  results_dir: results/time_domain

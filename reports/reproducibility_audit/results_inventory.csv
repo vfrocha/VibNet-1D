@@ -1,174 +1,221 @@
-relative_path,family,type,size_bytes,rows,columns,status,notes,dataset_column,model_column
-anomaly_results_20260812_084311.csv,root,.csv,18629,250.0,6.0,ok,,Dataset,Model
-baseline/baseline_loco_results_20260829_084039.csv,baseline,.csv,23765,310.0,7.0,ok,,Dataset,Model
-baseline_loco_results_20260928_142515.csv,root,.csv,51153,250.0,8.0,ok,,Dataset,Model
-baseline_loco_results_20261003_052352.csv,root,.csv,50951,250.0,8.0,ok,,Dataset,Model
-cwru12k_severity_loco_results_20260921_091642.csv,root,.csv,1179,16.0,7.0,ok,,Dataset,Model
-cwru12k_severity_loco_results_20260921_102011.csv,root,.csv,1351,12.0,7.0,ok,,Dataset,Model
-cwru12k_severity_loco_results_20260922_151745.csv,root,.csv,925,12.0,7.0,ok,,Dataset,Model
-cwru48k_mert_comparison_20261012_062814.csv,root,.csv,825,8.0,8.0,ok,,Dataset,Model
-cwru_unified_severity_loco_20260922_173221.csv,root,.csv,1910,24.0,8.0,ok,,Dataset,Model
-cwru_unified_severity_loco_20260929_103433.csv,root,.csv,1910,24.0,8.0,ok,,Dataset,Model
-cwru_unified_severity_loco_20260929_143834.csv,root,.csv,1517,12.0,8.0,ok,,Dataset,Model
-cwru_unified_severity_loco_20260929_144600.csv,root,.csv,3024,24.0,8.0,ok,,Dataset,Model
-log_baseline_scratch_20260916_113010.txt,root,.txt,3900,,,inventory_only,,,
-log_baseline_scratch_20260917_101613.txt,root,.txt,3900,,,inventory_only,,,
-log_norm_tl_diagnosis_multitarget_20261001_160735.txt,root,.txt,121799,,,inventory_only,,,
-log_norm_tl_dl_20260905_080429.txt,root,.txt,176033,,,inventory_only,,,
-log_tl_isolated_full_20260901_083517.txt,root,.txt,55140,,,inventory_only,,,
-log_tl_subset_search_20260915_202128.txt,root,.txt,995674,,,inventory_only,,,
-logs/log_anomaly_20260812_083150.txt,logs,.txt,493,,,inventory_only,,,
-logs/log_anomaly_20260812_083743.txt,logs,.txt,300,,,inventory_only,,,
-logs/log_anomaly_20260812_084114.txt,logs,.txt,1283,,,inventory_only,,,
-logs/log_anomaly_20260812_084311.txt,logs,.txt,58494,,,inventory_only,,,
-logs/log_tl_multihead_20260819_103518.txt,logs,.txt,40946,,,inventory_only,,,
-logs/log_tl_multihead_20260824_073501.txt,logs,.txt,61282,,,inventory_only,,,
-negativetransfer/baseline_scratch_results_20260916_113010.csv,negativetransfer,.csv,2159,16.0,8.0,ok,,Target Dataset,Model
-negativetransfer/baseline_scratch_results_20260917_101613.csv,negativetransfer,.csv,2167,16.0,8.0,ok,,Target Dataset,Model
-negativetransfer/log_tl_subset_search_20260917_102219.txt,negativetransfer,.txt,659802,,,inventory_only,,,
-negativetransfer/tl_subset_search_results_20260915_202128.csv,negativetransfer,.csv,636861,4080.0,8.0,ok,,Target Dataset,Model
-negativetransfer/tl_subset_search_results_20260917_102219.csv,negativetransfer,.csv,635896,4080.0,8.0,ok,,Target Dataset,Model
-norm_tl_diagnosis_ablation_20261005_152759_results.csv,root,.csv,155728,500.0,22.0,ok,,Target Dataset,Model
-norm_tl_diagnosis_ablation_20261005_152759_summary.csv,root,.csv,1252,5.0,13.0,ok,No recognized metric columns; inventory only.,,
-norm_tl_diagnosis_ablation_20261005_152759_summary_by_strategy_model.csv,root,.csv,2361,10.0,14.0,ok,No recognized metric columns; inventory only.,,Model
-norm_tl_diagnosis_ablation_20261005_152759_summary_by_target_model.csv,root,.csv,11886,40.0,19.0,ok,No recognized metric columns; inventory only.,Target Dataset,Model
-norm_tl_diagnosis_ablation_20261027_093126_results.csv,root,.csv,52221,160.0,22.0,ok,,Target Dataset,Model
-norm_tl_diagnosis_ablation_20261027_093126_summary.csv,root,.csv,1199,5.0,13.0,ok,No recognized metric columns; inventory only.,,
-norm_tl_diagnosis_ablation_20261027_093126_summary_by_strategy_model.csv,root,.csv,2016,10.0,14.0,ok,No recognized metric columns; inventory only.,,Model
-norm_tl_diagnosis_ablation_20261027_093126_summary_by_target_model.csv,root,.csv,3062,10.0,19.0,ok,No recognized metric columns; inventory only.,Target Dataset,Model
-norm_tl_diagnosis_multitarget_results_20261001_160735.csv,root,.csv,101694,500.0,17.0,ok,,Target Dataset,Model
-norm_tl_diagnosis_multitarget_summary_20261001_101853.csv,root,.csv,926,5.0,10.0,ok,No recognized metric columns; inventory only.,,
-norm_tl_diagnosis_multitarget_summary_20261001_160735.csv,root,.csv,925,5.0,10.0,ok,No recognized metric columns; inventory only.,,
-norm_tl_diagnosis_multitarget_summary_20261001_160735_by_strategy_model.csv,root,.csv,1959,10.0,12.0,ok,No recognized metric columns; inventory only.,,Model
-norm_tl_diagnosis_multitarget_summary_20261001_160735_by_target_model.csv,root,.csv,9753,40.0,16.0,ok,No recognized metric columns; inventory only.,Target Dataset,Model
-normalization/norm_tl_dl_results_20260905_080429.csv,normalization,.csv,65422,620.0,8.0,ok,,Dataset,Model
-normalization/normalization_abc_results_20260904_181157.csv,normalization,.csv,7366,80.0,6.0,ok,,Target,Model
-old_results/baseline_loco_results_20260727_082114.csv,old_results,.csv,14857,176.0,7.0,ok,,Dataset,Model
-old_results/baseline_loco_results_20260727_110015.csv,old_results,.csv,14871,176.0,7.0,ok,,Dataset,Model
-old_results/baseline_loco_results_20260728_095219.csv,old_results,.csv,28657,416.0,7.0,ok,,Dataset,Model
-old_results/baseline_loco_results_20260728_192137.csv,old_results,.csv,30734,448.0,7.0,ok,,Dataset,Model
-old_results/comparativo_signai_cwru12k_48k_results_20260804_092429.csv,old_results,.csv,1916,24.0,8.0,ok,,Dataset,Model
-old_results/comparativo_signai_cwru12k_48k_results_20260804_092910.csv,old_results,.csv,2036,24.0,8.0,ok,,Dataset,Model
-old_results/comparativo_signai_cwru12k_48k_results_20260804_110139.csv,old_results,.csv,2750,24.0,8.0,ok,,Dataset,Model
-old_results/cwru48k_severity_loco_results_20260808_080012.csv,old_results,.csv,1264,12.0,7.0,ok,,Dataset,Model
-old_results/cwru48k_severity_loco_results_20260824_061803.csv,old_results,.csv,1264,12.0,7.0,ok,,Dataset,Model
-old_results/log_exp01_CWRU_12k_20260517_155348.txt,old_results,.txt,5045,,,inventory_only,,,
-old_results/log_exp01_CWRU_12k_20260520_172847.txt,old_results,.txt,5045,,,inventory_only,,,
-old_results/log_exp02_keras_CWRU_12k_20260517_161008.txt,old_results,.txt,14641,,,inventory_only,,,
-old_results/log_exp03_freq_CWRU_12k_20260520_173711.txt,old_results,.txt,5484,,,inventory_only,,,
-old_results/log_exp04_fusion_CWRU_12k_20260520_180015.txt,old_results,.txt,6613,,,inventory_only,,,
-old_results/log_exp05_tabnet_CWRU_12k_20260603_183806.txt,old_results,.txt,1037,,,inventory_only,,,
-old_results/log_exp05_tabnet_CWRU_12k_20260603_192446.txt,old_results,.txt,8280,,,inventory_only,,,
-old_results/log_exp05_tabnet_CWRU_12k_20260604_062253.txt,old_results,.txt,8454,,,inventory_only,,,
-old_results/log_master_V2_20260622_100058.txt,old_results,.txt,8871,,,inventory_only,,,
-old_results/log_master_V2_20260622_101336.txt,old_results,.txt,8947,,,inventory_only,,,
-old_results/log_master_V2_20260622_102913.txt,old_results,.txt,649,,,inventory_only,,,
-old_results/log_master_V2_20260622_103246.txt,old_results,.txt,9210,,,inventory_only,,,
-old_results/log_master_V2_20260622_104234.txt,old_results,.txt,649,,,inventory_only,,,
-old_results/log_master_V2_20260622_104758.txt,old_results,.txt,9210,,,inventory_only,,,
-old_results/log_master_V2_20260622_110738.txt,old_results,.txt,2167,,,inventory_only,,,
-old_results/log_master_V2_20260622_112113.txt,old_results,.txt,2167,,,inventory_only,,,
-old_results/log_master_V2_20260622_112808.txt,old_results,.txt,2167,,,inventory_only,,,
-old_results/log_master_V2_20260622_113743.txt,old_results,.txt,35859,,,inventory_only,,,
-old_results/log_master_V2_20260622_122004.txt,old_results,.txt,35853,,,inventory_only,,,
-old_results/log_master_V2_20260623_093605.txt,old_results,.txt,2167,,,inventory_only,,,
-old_results/log_master_V2_20260626_093619.txt,old_results,.txt,35912,,,inventory_only,,,
-old_results/log_master_V2_20260626_103610.txt,old_results,.txt,36086,,,inventory_only,,,
-old_results/log_master_V2_20260626_113159.txt,old_results,.txt,7779,,,inventory_only,,,
-old_results/log_master_V2_20260626_120739.txt,old_results,.txt,61532,,,inventory_only,,,
-old_results/log_master_V2_20260629_174206.txt,old_results,.txt,36912,,,inventory_only,,,
-old_results/log_master_strategy1_20260606_084459.txt,old_results,.txt,34612,,,inventory_only,,,
-old_results/log_master_strategy1_20260610_103731.txt,old_results,.txt,35860,,,inventory_only,,,
-old_results/log_tabnet_HUST_20260604_065044.txt,old_results,.txt,6381,,,inventory_only,,,
-old_results/log_tabnet_HUST_Dataset_20260604_064102.txt,old_results,.txt,401,,,inventory_only,,,
-old_results/log_tabnet_HUST_Dataset_20260604_064816.txt,old_results,.txt,401,,,inventory_only,,,
-old_results/log_tabnet_PU_20260604_070437.txt,old_results,.txt,833,,,inventory_only,,,
-old_results/log_tabnet_PU_20260604_071602.txt,old_results,.txt,8259,,,inventory_only,,,
-old_results/log_tabnet_UORED_20260606_065956.txt,old_results,.txt,10472,,,inventory_only,,,
-old_results/log_tl_completo_20260810_151031.txt,old_results,.txt,72732,,,inventory_only,,,
-old_results/log_tl_loco_20260810_141107.txt,old_results,.txt,34958,,,inventory_only,,,
-old_results/log_transfer_learning_20260803_071723.txt,old_results,.txt,8439,,,inventory_only,,,
-old_results/log_uoemd_tabular_20260708_090602.txt,old_results,.txt,37604,,,inventory_only,,,
-old_results/resultados_exp01_CWRU_12k_20260517_155348.csv,old_results,.csv,1149,8.0,5.0,ok,,,Model
-old_results/resultados_exp01_CWRU_12k_20260520_172847.csv,old_results,.csv,1149,8.0,5.0,ok,,,Model
-old_results/resultados_exp02_keras_CWRU_12k_20260517_161008.csv,old_results,.csv,304,4.0,4.0,ok,,,Model
-old_results/resultados_exp03_freq_CWRU_12k_20260520_173711.csv,old_results,.csv,1227,8.0,5.0,ok,,,Model
-old_results/resultados_exp04_fusion_CWRU_12k_20260520_180015.csv,old_results,.csv,1237,8.0,5.0,ok,,,Model
-old_results/resultados_exp05_tabnet_CWRU_12k_20260603_192446.csv,old_results,.csv,611,8.0,6.0,ok,,,Model
-old_results/resultados_exp05_tabnet_CWRU_12k_20260604_062253.csv,old_results,.csv,611,8.0,6.0,ok,,,Model
-old_results/resultados_master_V2_20260626_120739.csv,old_results,.csv,11086,160.0,7.0,ok,,Dataset,Model
-old_results/resultados_master_V2_20260629_174206.csv,old_results,.csv,14306,160.0,7.0,ok,,Dataset,Model
-old_results/resultados_master_strategy1_20260606_084459.csv,old_results,.csv,7828,96.0,7.0,ok,,Dataset,Model
-old_results/resultados_master_strategy1_20260610_103731.csv,old_results,.csv,10606,128.0,7.0,ok,,Dataset,Model
-old_results/resultados_tabnet_HUST_20260604_065044.csv,old_results,.csv,408,6.0,6.0,ok,,Dataset,
-old_results/resultados_tabnet_PU_20260604_071602.csv,old_results,.csv,797,8.0,6.0,ok,,Dataset,
-old_results/resultados_tabnet_UORED_20260606_065956.csv,old_results,.csv,692,10.0,6.0,ok,,Dataset,
-old_results/resultados_uoemd_tabular_20260708_090602.csv,old_results,.csv,13639,160.0,7.0,ok,,Dataset,Model
-old_results/tl_loco_results_20260810_141107.csv,old_results,.csv,14102,200.0,7.0,ok,,Dataset,Model
-old_results/tl_multihead_results_20260819_103518.csv,old_results,.csv,21618,248.0,7.0,ok,,Dataset,Model
-old_results/tl_results_20260803_071723.csv,old_results,.csv,1600,16.0,7.0,ok,,,Model
-tl/tl_completo_results_20260810_151031.csv,tl,.csv,34394,448.0,7.0,ok,,Dataset,Model
-tl/tl_isolated_full_results_20260901_083517.csv,tl,.csv,21531,248.0,7.0,ok,,Dataset,Model
-tl/tl_multihead_results_20260824_073501.csv,tl,.csv,23633,248.0,7.0,ok,,Dataset,Model
-tl_aux_features/run_20261012_093659/config.json,tl_aux_features,.json,1556,,,inventory_only,,,
-tl_aux_features/run_20261012_093659/results.csv,tl_aux_features,.csv,29080,192.0,17.0,ok,,Target Dataset,Model
-tl_aux_features/run_20261012_093659/summary_by_experiment.csv,tl_aux_features,.csv,1583,8.0,12.0,ok,No recognized metric columns; inventory only.,,
-tl_aux_features/run_20261012_093659/summary_by_experiment_model.csv,tl_aux_features,.csv,4056,16.0,17.0,ok,No recognized metric columns; inventory only.,,Model
-tl_balance_strategies/run_20261012_145854/config.json,tl_balance_strategies,.json,445,,,inventory_only,,,
-tl_balance_strategies/run_20261012_145854/results.csv,tl_balance_strategies,.csv,3217,24.0,16.0,ok,,Target Dataset,Model
-tl_balance_strategies/run_20261012_145854/summary.csv,tl_balance_strategies,.csv,335,1.0,10.0,ok,No recognized metric columns; inventory only.,,
-tl_balance_strategies/run_20261012_145854/summary_by_variant_model.csv,tl_balance_strategies,.csv,603,2.0,15.0,ok,No recognized metric columns; inventory only.,,Model
-tl_balance_strategies/run_20261012_150217/config.json,tl_balance_strategies,.json,452,,,inventory_only,,,
-tl_balance_strategies/run_20261012_150217/results.csv,tl_balance_strategies,.csv,3722,24.0,16.0,ok,,Target Dataset,Model
-tl_balance_strategies/run_20261012_150217/summary.csv,tl_balance_strategies,.csv,334,1.0,10.0,ok,No recognized metric columns; inventory only.,,
-tl_balance_strategies/run_20261012_150217/summary_by_variant_model.csv,tl_balance_strategies,.csv,603,2.0,15.0,ok,No recognized metric columns; inventory only.,,Model
-tl_balance_strategies/run_20261012_150540/config.json,tl_balance_strategies,.json,446,,,inventory_only,,,
-tl_balance_strategies/run_20261012_150540/results.csv,tl_balance_strategies,.csv,3295,24.0,16.0,ok,,Target Dataset,Model
-tl_balance_strategies/run_20261012_150540/summary.csv,tl_balance_strategies,.csv,335,1.0,10.0,ok,No recognized metric columns; inventory only.,,
-tl_balance_strategies/run_20261012_150540/summary_by_variant_model.csv,tl_balance_strategies,.csv,605,2.0,15.0,ok,No recognized metric columns; inventory only.,,Model
-tl_balance_strategies/run_20261012_150855/config.json,tl_balance_strategies,.json,447,,,inventory_only,,,
-tl_balance_strategies/run_20261012_150855/results.csv,tl_balance_strategies,.csv,3319,24.0,16.0,ok,,Target Dataset,Model
-tl_balance_strategies/run_20261012_150855/summary.csv,tl_balance_strategies,.csv,335,1.0,10.0,ok,No recognized metric columns; inventory only.,,
-tl_balance_strategies/run_20261012_150855/summary_by_variant_model.csv,tl_balance_strategies,.csv,605,2.0,15.0,ok,No recognized metric columns; inventory only.,,Model
-tl_contrastive_mlp/run_20261026_212435/config.json,tl_contrastive_mlp,.json,640,,,inventory_only,,,
-tl_contrastive_mlp/run_20261026_212435/results.csv,tl_contrastive_mlp,.csv,3143,12.0,20.0,ok,,Target Dataset,
-tl_contrastive_mlp/run_20261026_212435/summary.csv,tl_contrastive_mlp,.csv,259,1.0,11.0,ok,No recognized metric columns; inventory only.,,
-tl_contrastive_mlp/run_20261026_212739/config.json,tl_contrastive_mlp,.json,672,,,inventory_only,,,
-tl_contrastive_mlp/run_20261026_212739/results.csv,tl_contrastive_mlp,.csv,8641,36.0,20.0,ok,,Target Dataset,
-tl_contrastive_mlp/run_20261026_212739/summary.csv,tl_contrastive_mlp,.csv,527,3.0,11.0,ok,No recognized metric columns; inventory only.,,
-tl_contrastive_mlp/run_20261026_212945/config.json,tl_contrastive_mlp,.json,656,,,inventory_only,,,
-tl_contrastive_mlp/run_20261026_212945/results.csv,tl_contrastive_mlp,.csv,5769,24.0,20.0,ok,,Target Dataset,
-tl_contrastive_mlp/run_20261026_212945/summary.csv,tl_contrastive_mlp,.csv,389,2.0,11.0,ok,No recognized metric columns; inventory only.,,
-tl_contrastive_mlp/run_20261026_213141/config.json,tl_contrastive_mlp,.json,657,,,inventory_only,,,
-tl_contrastive_mlp/run_20261026_213141/results.csv,tl_contrastive_mlp,.csv,5713,24.0,20.0,ok,,Target Dataset,
-tl_contrastive_mlp/run_20261026_213141/summary.csv,tl_contrastive_mlp,.csv,385,2.0,11.0,ok,No recognized metric columns; inventory only.,,
-tl_contrastive_mlp/run_20261027_112749/config.json,tl_contrastive_mlp,.json,691,,,inventory_only,,,
-tl_contrastive_mlp/run_20261027_112749/results.csv,tl_contrastive_mlp,.csv,25633,108.0,20.0,ok,,Target Dataset,
-tl_contrastive_mlp/run_20261027_112749/summary.csv,tl_contrastive_mlp,.csv,1386,9.0,12.0,ok,No recognized metric columns; inventory only.,,
-tl_contrastive_mlp/run_20261027_112749/summary_across_seeds.csv,tl_contrastive_mlp,.csv,810,3.0,15.0,ok,No recognized metric columns; inventory only.,,
-tl_contrastive_mlp/run_20261027_113203/config.json,tl_contrastive_mlp,.json,675,,,inventory_only,,,
-tl_contrastive_mlp/run_20261027_113203/results.csv,tl_contrastive_mlp,.csv,16911,72.0,20.0,ok,,Target Dataset,
-tl_contrastive_mlp/run_20261027_113203/summary.csv,tl_contrastive_mlp,.csv,961,6.0,12.0,ok,No recognized metric columns; inventory only.,,
-tl_contrastive_mlp/run_20261027_113203/summary_across_seeds.csv,tl_contrastive_mlp,.csv,603,2.0,15.0,ok,No recognized metric columns; inventory only.,,
-tl_contrastive_mlp/run_20261027_113503/config.json,tl_contrastive_mlp,.json,676,,,inventory_only,,,
-tl_contrastive_mlp/run_20261027_113503/results.csv,tl_contrastive_mlp,.csv,17064,72.0,20.0,ok,,Target Dataset,
-tl_contrastive_mlp/run_20261027_113503/summary.csv,tl_contrastive_mlp,.csv,954,6.0,12.0,ok,No recognized metric columns; inventory only.,,
-tl_contrastive_mlp/run_20261027_113503/summary_across_seeds.csv,tl_contrastive_mlp,.csv,602,2.0,15.0,ok,No recognized metric columns; inventory only.,,
-tl_cross_dataset_mlp_tabnet/run_20261028_105603/config.json,tl_cross_dataset_mlp_tabnet,.json,8215,,,inventory_only,,,
-tl_cross_dataset_mlp_tabnet/run_20261028_105603/dataset_audit.csv,tl_cross_dataset_mlp_tabnet,.csv,3662,9.0,19.0,ok,No recognized metric columns; inventory only.,dataset,
-tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,tl_cross_dataset_mlp_tabnet,.csv,1167975,1980.0,25.0,ok,,Target,Model
-tl_cross_dataset_mlp_tabnet/run_20261028_105603/summary_by_target_source_model.csv,tl_cross_dataset_mlp_tabnet,.csv,11212,50.0,19.0,ok,No recognized metric columns; inventory only.,Target,Model
-tl_cross_dataset_mlp_tabnet/run_20261028_105603/summary_by_target_source_model_seed.csv,tl_cross_dataset_mlp_tabnet,.csv,32736,150.0,19.0,ok,No recognized metric columns; inventory only.,Target,Model
-tl_cross_dataset_mlp_tabnet/run_20261028_105603/summary_paired_mlp_vs_tabnet.csv,tl_cross_dataset_mlp_tabnet,.csv,11557,25.0,26.0,ok,No recognized metric columns; inventory only.,Target,
-tl_cross_dataset_mlp_tabnet/run_20261028_105603/summary_source_ranking_by_target.csv,tl_cross_dataset_mlp_tabnet,.csv,11337,50.0,20.0,ok,No recognized metric columns; inventory only.,Target,Model
-tl_cross_dataset_mlp_tabnet/run_20261028_173310/config.json,tl_cross_dataset_mlp_tabnet,.json,8235,,,inventory_only,,,
-tl_cross_dataset_mlp_tabnet/run_20261028_173310/dataset_audit.csv,tl_cross_dataset_mlp_tabnet,.csv,3662,9.0,19.0,ok,No recognized metric columns; inventory only.,dataset,
-tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,tl_cross_dataset_mlp_tabnet,.csv,3534858,5940.0,25.0,ok,,Target,Model
-tl_cross_dataset_mlp_tabnet/run_20261028_173310/summary_by_target_source_model.csv,tl_cross_dataset_mlp_tabnet,.csv,33999,150.0,19.0,ok,No recognized metric columns; inventory only.,Target,Model
-tl_cross_dataset_mlp_tabnet/run_20261028_173310/summary_by_target_source_model_seed.csv,tl_cross_dataset_mlp_tabnet,.csv,100228,450.0,19.0,ok,No recognized metric columns; inventory only.,Target,Model
-tl_cross_dataset_mlp_tabnet/run_20261028_173310/summary_paired_mlp_vs_tabnet.csv,tl_cross_dataset_mlp_tabnet,.csv,34140,75.0,26.0,ok,No recognized metric columns; inventory only.,Target,
-tl_cross_dataset_mlp_tabnet/run_20261028_173310/summary_source_ranking_by_target.csv,tl_cross_dataset_mlp_tabnet,.csv,34384,150.0,20.0,ok,No recognized metric columns; inventory only.,Target,Model
-tl_four_variants/run_20261005_163159/config.json,tl_four_variants,.json,458,,,inventory_only,,,
-tl_four_variants/run_20261005_163159/results.csv,tl_four_variants,.csv,11887,96.0,15.0,ok,,Target Dataset,Model
-tl_four_variants/run_20261005_163159/summary.csv,tl_four_variants,.csv,774,4.0,10.0,ok,No recognized metric columns; inventory only.,,
-tl_four_variants/run_20261005_163159/summary_by_variant_model.csv,tl_four_variants,.csv,1898,8.0,15.0,ok,No recognized metric columns; inventory only.,,Model
+relative_path,family,type,granularity,size_bytes,rows,columns,status,dataset_column,model_column,seed_column,fold_column,recognized_metrics,unrecognized_columns,notes
+anomaly_results_20260812_084311.csv,anomaly_root,.csv,fold_level,18880,250,6,ok,Dataset,Model,,Test Condition,balanced_accuracy;f1_anomaly;roc_auc,,
+baseline/baseline_loco_results_20260829_084039.csv,baseline,.csv,fold_level,24076,310,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+baseline_loco_results_20260928_142515.csv,baseline_root,.csv,fold_level,52104,250,8,ok,Dataset,Model,,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+baseline_loco_results_20261003_052352.csv,baseline_root,.csv,fold_level,51902,250,8,ok,Dataset,Model,,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+cwru12k_severity_loco_results_20260921_091642.csv,cwru_severity_root,.csv,fold_level,1196,16,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+cwru12k_severity_loco_results_20260921_102011.csv,cwru_severity_root,.csv,fold_level,1364,12,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+cwru12k_severity_loco_results_20260922_151745.csv,cwru_severity_root,.csv,fold_level,938,12,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+cwru48k_mert_comparison_20261012_062814.csv,cwru_severity_root,.csv,fold_level,834,8,8,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+cwru_unified_severity_loco_20260922_173221.csv,cwru_severity_root,.csv,fold_level,1935,24,8,ok,Dataset,Model,,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+cwru_unified_severity_loco_20260929_103433.csv,cwru_severity_root,.csv,fold_level,1935,24,8,ok,Dataset,Model,,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+cwru_unified_severity_loco_20260929_143834.csv,cwru_severity_root,.csv,fold_level,1530,12,8,ok,Dataset,Model,,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+cwru_unified_severity_loco_20260929_144600.csv,cwru_severity_root,.csv,fold_level,3049,24,8,ok,Dataset,Model,,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+figures/xai_HUST_20260604_065044.png,figures,.png,artifact,217511,,,inventory_only,,,,,,,
+figures/xai_importance_exp05_CWRU_12k_20260604_062253.png,figures,.png,artifact,240916,,,inventory_only,,,,,,,
+figures/xai_PU_20260604_071602.png,figures,.png,artifact,216287,,,inventory_only,,,,,,,
+figures/xai_UORED_20260606_065956.png,figures,.png,artifact,220028,,,inventory_only,,,,,,,
+log_baseline_scratch_20260916_113010.txt,logs_root,.txt,artifact,3981,,,inventory_only,,,,,,,
+log_baseline_scratch_20260917_101613.txt,logs_root,.txt,artifact,3981,,,inventory_only,,,,,,,
+log_norm_tl_diagnosis_multitarget_20261001_160735.txt,logs_root,.txt,artifact,124171,,,inventory_only,,,,,,,
+log_norm_tl_dl_20260905_080429.txt,logs_root,.txt,artifact,178671,,,inventory_only,,,,,,,
+log_tl_isolated_full_20260901_083517.txt,logs_root,.txt,artifact,55958,,,inventory_only,,,,,,,
+log_tl_subset_search_20260915_202128.txt,logs_root,.txt,artifact,1005974,,,inventory_only,,,,,,,
+logs/baselines.log,logs,.log,artifact,608961,,,inventory_only,,,,,,,
+logs/c48k.log,logs,.log,artifact,16933,,,inventory_only,,,,,,,
+logs/c48sev.log,logs,.log,artifact,67897,,,inventory_only,,,,,,,
+logs/cwru_sev.log,logs,.log,artifact,27700,,,inventory_only,,,,,,,
+logs/cwru_sev_baseline.log,logs,.log,artifact,22209,,,inventory_only,,,,,,,
+logs/cwru_unified.log,logs,.log,artifact,28344,,,inventory_only,,,,,,,
+logs/diag.log,logs,.log,artifact,86013,,,inventory_only,,,,,,,
+logs/experimento.log,logs,.log,artifact,253138,,,inventory_only,,,,,,,
+logs/log_anomaly_20260812_083150.txt,logs,.txt,artifact,503,,,inventory_only,,,,,,,
+logs/log_anomaly_20260812_083743.txt,logs,.txt,artifact,304,,,inventory_only,,,,,,,
+logs/log_anomaly_20260812_084114.txt,logs,.txt,artifact,1308,,,inventory_only,,,,,,,
+logs/log_anomaly_20260812_084311.txt,logs,.txt,artifact,59662,,,inventory_only,,,,,,,
+logs/log_tl_multihead_20260819_103518.txt,logs,.txt,artifact,41705,,,inventory_only,,,,,,,
+logs/log_tl_multihead_20260824_073501.txt,logs,.txt,artifact,62165,,,inventory_only,,,,,,,
+logs/mlp.log,logs,.log,artifact,183478,,,inventory_only,,,,,,,
+logs/norm.log,logs,.log,artifact,18175,,,inventory_only,,,,,,,
+logs/norm_dl.log,logs,.log,artifact,180182,,,inventory_only,,,,,,,
+logs/t.log,logs,.log,artifact,15759,,,inventory_only,,,,,,,
+logs/tl.log,logs,.log,artifact,78899,,,inventory_only,,,,,,,
+logs/tl_exp.log,logs,.log,artifact,8701,,,inventory_only,,,,,,,
+logs/tl_isolated.log,logs,.log,artifact,61690,,,inventory_only,,,,,,,
+logs/tle.log,logs,.log,artifact,47236,,,inventory_only,,,,,,,
+logs/v_f_t.log,logs,.log,artifact,43556,,,inventory_only,,,,,,,
+logs/v_freq.log,logs,.log,artifact,15570,,,inventory_only,,,,,,,
+logs/v_time.log,logs,.log,artifact,15570,,,inventory_only,,,,,,,
+logs/zscore.log,logs,.log,artifact,3660,,,inventory_only,,,,,,,
+negativetransfer/baseline_scratch_results_20260916_113010.csv,negativetransfer,.csv,fold_level,2176,16,8,ok,Target Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+negativetransfer/baseline_scratch_results_20260917_101613.csv,negativetransfer,.csv,fold_level,2184,16,8,ok,Target Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+negativetransfer/log_tl_subset_search_20260917_102219.txt,negativetransfer,.txt,artifact,668054,,,inventory_only,,,,,,,
+negativetransfer/t_newtab.log,negativetransfer,.log,artifact,4085,,,inventory_only,,,,,,,
+negativetransfer/t_sub.log,negativetransfer,.log,artifact,1006078,,,inventory_only,,,,,,,
+negativetransfer/t_sub_2.log,negativetransfer,.log,artifact,4085,,,inventory_only,,,,,,,
+negativetransfer/t_subgrid.log,negativetransfer,.log,artifact,668158,,,inventory_only,,,,,,,
+negativetransfer/tl_subset_search_results_20260915_202128.csv,negativetransfer,.csv,fold_level,640942,4080,8,ok,Target Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+negativetransfer/tl_subset_search_results_20260917_102219.csv,negativetransfer,.csv,fold_level,639977,4080,8,ok,Target Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+norm_tl_diagnosis_ablation_20261005_152759.log,norm_tl_root,.log,artifact,147049,,,inventory_only,,,,,,,
+norm_tl_diagnosis_ablation_20261005_152759_results.csv,norm_tl_root,.csv,fold_level,156229,500,22,ok,Target Dataset,Model,Seed,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+norm_tl_diagnosis_ablation_20261005_152759_summary.csv,norm_tl_root,.csv,summary,1258,5,13,ok,,,,,macro_f1_selection_score,,
+norm_tl_diagnosis_ablation_20261005_152759_summary_by_strategy_model.csv,norm_tl_root,.csv,summary,2372,10,14,ok,,Model,,,accuracy_mean;balanced_accuracy_mean;macro_f1_mean;macro_f1_std;roc_auc_mean,,
+norm_tl_diagnosis_ablation_20261005_152759_summary_by_target_model.csv,norm_tl_root,.csv,summary,11927,40,19,ok,Target Dataset,Model,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,,
+norm_tl_diagnosis_ablation_20261027_093126.log,norm_tl_root,.log,artifact,58858,,,inventory_only,,,,,,,
+norm_tl_diagnosis_ablation_20261027_093126_results.csv,norm_tl_root,.csv,fold_level,52382,160,22,ok,Target Dataset,Model,Seed,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+norm_tl_diagnosis_ablation_20261027_093126_summary.csv,norm_tl_root,.csv,summary,1205,5,13,ok,,,,,macro_f1_selection_score,,
+norm_tl_diagnosis_ablation_20261027_093126_summary_by_strategy_model.csv,norm_tl_root,.csv,summary,2027,10,14,ok,,Model,,,accuracy_mean;balanced_accuracy_mean;macro_f1_mean;macro_f1_std;roc_auc_mean,,
+norm_tl_diagnosis_ablation_20261027_093126_summary_by_target_model.csv,norm_tl_root,.csv,summary,3073,10,19,ok,Target Dataset,Model,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,,
+norm_tl_diagnosis_multitarget_results_20261001_160735.csv,norm_tl_root,.csv,fold_level,102195,500,17,ok,Target Dataset,Model,Seed,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+norm_tl_diagnosis_multitarget_summary_20261001_101853.csv,norm_tl_root,.csv,summary,932,5,10,ok,,,,,macro_f1_selection_score,,
+norm_tl_diagnosis_multitarget_summary_20261001_160735.csv,norm_tl_root,.csv,summary,931,5,10,ok,,,,,macro_f1_selection_score,,
+norm_tl_diagnosis_multitarget_summary_20261001_160735_by_strategy_model.csv,norm_tl_root,.csv,summary,1970,10,12,ok,,Model,,,accuracy_mean;balanced_accuracy_mean;macro_f1_mean;macro_f1_std;roc_auc_mean,,
+norm_tl_diagnosis_multitarget_summary_20261001_160735_by_target_model.csv,norm_tl_root,.csv,summary,9794,40,16,ok,Target Dataset,Model,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,,
+normalization/norm_tl_dl_results_20260905_080429.csv,normalization,.csv,fold_level,66043,620,8,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+normalization/normalization_abc_results_20260904_181157.csv,normalization,.csv,fold_level,7447,80,6,ok,Target,Model,,Test Condition,balanced_accuracy;macro_f1,,
+old_results/baseline_loco_results_20260727_082114.csv,old_results,.csv,fold_level,15034,176,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+old_results/baseline_loco_results_20260727_110015.csv,old_results,.csv,fold_level,15048,176,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+old_results/baseline_loco_results_20260728_095219.csv,old_results,.csv,fold_level,29074,416,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+old_results/baseline_loco_results_20260728_192137.csv,old_results,.csv,fold_level,31183,448,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+old_results/comparativo_signai_cwru12k_48k_results_20260804_092429.csv,old_results,.csv,fold_level,1941,24,8,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+old_results/comparativo_signai_cwru12k_48k_results_20260804_092910.csv,old_results,.csv,fold_level,2061,24,8,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+old_results/comparativo_signai_cwru12k_48k_results_20260804_110139.csv,old_results,.csv,fold_level,2775,24,8,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+old_results/cwru48k_severity_loco_results_20260808_080012.csv,old_results,.csv,fold_level,1277,12,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+old_results/cwru48k_severity_loco_results_20260824_061803.csv,old_results,.csv,fold_level,1277,12,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+old_results/log_exp01_CWRU_12k_20260517_155348.txt,old_results,.txt,artifact,5138,,,inventory_only,,,,,,,
+old_results/log_exp01_CWRU_12k_20260520_172847.txt,old_results,.txt,artifact,5138,,,inventory_only,,,,,,,
+old_results/log_exp02_keras_CWRU_12k_20260517_161008.txt,old_results,.txt,artifact,14641,,,inventory_only,,,,,,,
+old_results/log_exp03_freq_CWRU_12k_20260520_173711.txt,old_results,.txt,artifact,5577,,,inventory_only,,,,,,,
+old_results/log_exp04_fusion_CWRU_12k_20260520_180015.txt,old_results,.txt,artifact,6726,,,inventory_only,,,,,,,
+old_results/log_exp05_tabnet_CWRU_12k_20260603_183806.txt,old_results,.txt,artifact,1060,,,inventory_only,,,,,,,
+old_results/log_exp05_tabnet_CWRU_12k_20260603_192446.txt,old_results,.txt,artifact,8431,,,inventory_only,,,,,,,
+old_results/log_exp05_tabnet_CWRU_12k_20260604_062253.txt,old_results,.txt,artifact,8608,,,inventory_only,,,,,,,
+old_results/log_master_strategy1_20260606_084459.txt,old_results,.txt,artifact,35289,,,inventory_only,,,,,,,
+old_results/log_master_strategy1_20260610_103731.txt,old_results,.txt,artifact,36569,,,inventory_only,,,,,,,
+old_results/log_master_V2_20260622_100058.txt,old_results,.txt,artifact,9052,,,inventory_only,,,,,,,
+old_results/log_master_V2_20260622_101336.txt,old_results,.txt,artifact,9130,,,inventory_only,,,,,,,
+old_results/log_master_V2_20260622_102913.txt,old_results,.txt,artifact,666,,,inventory_only,,,,,,,
+old_results/log_master_V2_20260622_103246.txt,old_results,.txt,artifact,9397,,,inventory_only,,,,,,,
+old_results/log_master_V2_20260622_104234.txt,old_results,.txt,artifact,666,,,inventory_only,,,,,,,
+old_results/log_master_V2_20260622_104758.txt,old_results,.txt,artifact,9397,,,inventory_only,,,,,,,
+old_results/log_master_V2_20260622_110738.txt,old_results,.txt,artifact,2209,,,inventory_only,,,,,,,
+old_results/log_master_V2_20260622_112113.txt,old_results,.txt,artifact,2209,,,inventory_only,,,,,,,
+old_results/log_master_V2_20260622_112808.txt,old_results,.txt,artifact,2209,,,inventory_only,,,,,,,
+old_results/log_master_V2_20260622_113743.txt,old_results,.txt,artifact,36531,,,inventory_only,,,,,,,
+old_results/log_master_V2_20260622_122004.txt,old_results,.txt,artifact,36525,,,inventory_only,,,,,,,
+old_results/log_master_V2_20260623_093605.txt,old_results,.txt,artifact,2209,,,inventory_only,,,,,,,
+old_results/log_master_V2_20260626_093619.txt,old_results,.txt,artifact,36584,,,inventory_only,,,,,,,
+old_results/log_master_V2_20260626_103610.txt,old_results,.txt,artifact,36758,,,inventory_only,,,,,,,
+old_results/log_master_V2_20260626_113159.txt,old_results,.txt,artifact,7922,,,inventory_only,,,,,,,
+old_results/log_master_V2_20260626_120739.txt,old_results,.txt,artifact,62578,,,inventory_only,,,,,,,
+old_results/log_master_V2_20260629_174206.txt,old_results,.txt,artifact,37626,,,inventory_only,,,,,,,
+old_results/log_tabnet_HUST_20260604_065044.txt,old_results,.txt,artifact,6506,,,inventory_only,,,,,,,
+old_results/log_tabnet_HUST_Dataset_20260604_064102.txt,old_results,.txt,artifact,414,,,inventory_only,,,,,,,
+old_results/log_tabnet_HUST_Dataset_20260604_064816.txt,old_results,.txt,artifact,414,,,inventory_only,,,,,,,
+old_results/log_tabnet_PU_20260604_070437.txt,old_results,.txt,artifact,853,,,inventory_only,,,,,,,
+old_results/log_tabnet_PU_20260604_071602.txt,old_results,.txt,artifact,8411,,,inventory_only,,,,,,,
+old_results/log_tabnet_UORED_20260606_065956.txt,old_results,.txt,artifact,10654,,,inventory_only,,,,,,,
+old_results/log_tl_completo_20260810_151031.txt,old_results,.txt,artifact,74172,,,inventory_only,,,,,,,
+old_results/log_tl_loco_20260810_141107.txt,old_results,.txt,artifact,35626,,,inventory_only,,,,,,,
+old_results/log_transfer_learning_20260803_071723.txt,old_results,.txt,artifact,8597,,,inventory_only,,,,,,,
+old_results/log_uoemd_tabular_20260708_090602.txt,old_results,.txt,artifact,38301,,,inventory_only,,,,,,,
+old_results/master_exp.log,old_results,.log,artifact,1340076,,,inventory_only,,,,,,,
+old_results/master_v2.log,old_results,.log,artifact,651977,,,inventory_only,,,,,,,
+old_results/resultados_exp01_CWRU_12k_20260517_155348.csv,old_results,.csv,fold_level,1158,8,5,ok,,Model,,Test Condition,balanced_accuracy;macro_f1,,
+old_results/resultados_exp01_CWRU_12k_20260520_172847.csv,old_results,.csv,fold_level,1158,8,5,ok,,Model,,Test Condition,balanced_accuracy;macro_f1,,
+old_results/resultados_exp02_keras_CWRU_12k_20260517_161008.csv,old_results,.csv,fold_level,309,4,4,ok,,Model,,Test Condition,balanced_accuracy;macro_f1,,
+old_results/resultados_exp03_freq_CWRU_12k_20260520_173711.csv,old_results,.csv,fold_level,1236,8,5,ok,,Model,,Test Condition,balanced_accuracy;macro_f1,,
+old_results/resultados_exp04_fusion_CWRU_12k_20260520_180015.csv,old_results,.csv,fold_level,1246,8,5,ok,,Model,,Test Condition,balanced_accuracy;macro_f1,,
+old_results/resultados_exp05_tabnet_CWRU_12k_20260603_192446.csv,old_results,.csv,fold_level,620,8,6,ok,,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+old_results/resultados_exp05_tabnet_CWRU_12k_20260604_062253.csv,old_results,.csv,fold_level,620,8,6,ok,,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+old_results/resultados_master_strategy1_20260606_084459.csv,old_results,.csv,fold_level,7925,96,7,ok,Dataset,Model,,Fold,balanced_accuracy;macro_f1;roc_auc,,
+old_results/resultados_master_strategy1_20260610_103731.csv,old_results,.csv,fold_level,10735,128,7,ok,Dataset,Model,,Fold,balanced_accuracy;macro_f1;roc_auc,,
+old_results/resultados_master_V2_20260626_120739.csv,old_results,.csv,fold_level,11247,160,7,ok,Dataset,Model,,Fold,balanced_accuracy;macro_f1;roc_auc,,
+old_results/resultados_master_V2_20260629_174206.csv,old_results,.csv,fold_level,14467,160,7,ok,Dataset,Model,,Fold,balanced_accuracy;macro_f1;roc_auc,,
+old_results/resultados_tabnet_HUST_20260604_065044.csv,old_results,.csv,fold_level,415,6,6,ok,Dataset,,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+old_results/resultados_tabnet_PU_20260604_071602.csv,old_results,.csv,fold_level,806,8,6,ok,Dataset,,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+old_results/resultados_tabnet_UORED_20260606_065956.csv,old_results,.csv,fold_level,703,10,6,ok,Dataset,,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+old_results/resultados_uoemd_tabular_20260708_090602.csv,old_results,.csv,fold_level,13800,160,7,ok,Dataset,Model,,Fold,balanced_accuracy;macro_f1;roc_auc,,
+old_results/tl_loco_results_20260810_141107.csv,old_results,.csv,fold_level,14303,200,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+old_results/tl_multihead_results_20260819_103518.csv,old_results,.csv,fold_level,21867,248,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+old_results/tl_results_20260803_071723.csv,old_results,.csv,fold_level,1617,16,7,ok,Target Domain,Model,,,balanced_accuracy;macro_f1;roc_auc,,
+tl/tl_completo_results_20260810_151031.csv,tl,.csv,fold_level,34843,448,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+tl/tl_isolated_full_results_20260901_083517.csv,tl,.csv,fold_level,21780,248,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+tl/tl_multihead_results_20260824_073501.csv,tl,.csv,fold_level,23882,248,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
+tl_aux_features/run_20261012_093659/config.json,tl_aux_features,.json,artifact,1629,,,inventory_only,,,,,,,
+tl_aux_features/run_20261012_093659/experiment.log,tl_aux_features,.log,artifact,81796,,,inventory_only,,,,,,,
+tl_aux_features/run_20261012_093659/results.csv,tl_aux_features,.csv,fold_level,29273,192,17,ok,Target Dataset,Model,Seed,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+tl_aux_features/run_20261012_093659/summary_by_experiment.csv,tl_aux_features,.csv,summary,1592,8,12,ok,,,,,macro_f1_selection_score,,
+tl_aux_features/run_20261012_093659/summary_by_experiment_model.csv,tl_aux_features,.csv,summary,4073,16,17,ok,,Model,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,,
+tl_balance_strategies/run_20261012_145854/config.json,tl_balance_strategies,.json,artifact,469,,,inventory_only,,,,,,,
+tl_balance_strategies/run_20261012_145854/experiment.log,tl_balance_strategies,.log,artifact,13041,,,inventory_only,,,,,,,
+tl_balance_strategies/run_20261012_145854/results.csv,tl_balance_strategies,.csv,fold_level,3242,24,16,ok,Target Dataset,Model,Seed,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+tl_balance_strategies/run_20261012_145854/summary.csv,tl_balance_strategies,.csv,summary,337,1,10,ok,,,,,macro_f1_selection_score,,
+tl_balance_strategies/run_20261012_145854/summary_by_variant_model.csv,tl_balance_strategies,.csv,summary,606,2,15,ok,,Model,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,,
+tl_balance_strategies/run_20261012_150217/config.json,tl_balance_strategies,.json,artifact,476,,,inventory_only,,,,,,,
+tl_balance_strategies/run_20261012_150217/experiment.log,tl_balance_strategies,.log,artifact,13110,,,inventory_only,,,,,,,
+tl_balance_strategies/run_20261012_150217/results.csv,tl_balance_strategies,.csv,fold_level,3747,24,16,ok,Target Dataset,Model,Seed,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+tl_balance_strategies/run_20261012_150217/summary.csv,tl_balance_strategies,.csv,summary,336,1,10,ok,,,,,macro_f1_selection_score,,
+tl_balance_strategies/run_20261012_150217/summary_by_variant_model.csv,tl_balance_strategies,.csv,summary,606,2,15,ok,,Model,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,,
+tl_balance_strategies/run_20261012_150540/config.json,tl_balance_strategies,.json,artifact,470,,,inventory_only,,,,,,,
+tl_balance_strategies/run_20261012_150540/experiment.log,tl_balance_strategies,.log,artifact,13004,,,inventory_only,,,,,,,
+tl_balance_strategies/run_20261012_150540/results.csv,tl_balance_strategies,.csv,fold_level,3320,24,16,ok,Target Dataset,Model,Seed,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+tl_balance_strategies/run_20261012_150540/summary.csv,tl_balance_strategies,.csv,summary,337,1,10,ok,,,,,macro_f1_selection_score,,
+tl_balance_strategies/run_20261012_150540/summary_by_variant_model.csv,tl_balance_strategies,.csv,summary,608,2,15,ok,,Model,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,,
+tl_balance_strategies/run_20261012_150855/config.json,tl_balance_strategies,.json,artifact,471,,,inventory_only,,,,,,,
+tl_balance_strategies/run_20261012_150855/experiment.log,tl_balance_strategies,.log,artifact,13016,,,inventory_only,,,,,,,
+tl_balance_strategies/run_20261012_150855/results.csv,tl_balance_strategies,.csv,fold_level,3344,24,16,ok,Target Dataset,Model,Seed,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+tl_balance_strategies/run_20261012_150855/summary.csv,tl_balance_strategies,.csv,summary,337,1,10,ok,,,,,macro_f1_selection_score,,
+tl_balance_strategies/run_20261012_150855/summary_by_variant_model.csv,tl_balance_strategies,.csv,summary,608,2,15,ok,,Model,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,,
+tl_contrastive_mlp/run_20261026_212435/config.json,tl_contrastive_mlp,.json,artifact,668,,,inventory_only,,,,,,,
+tl_contrastive_mlp/run_20261026_212435/experiment.log,tl_contrastive_mlp,.log,artifact,3290,,,inventory_only,,,,,,,
+tl_contrastive_mlp/run_20261026_212435/results.csv,tl_contrastive_mlp,.csv,fold_level,3156,12,20,ok,Target Dataset,,Seed,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+tl_contrastive_mlp/run_20261026_212435/summary.csv,tl_contrastive_mlp,.csv,summary,261,1,11,ok,,,Seed,,accuracy_mean;balanced_accuracy_mean;macro_f1_mean;macro_f1_std;roc_auc_mean,,
+tl_contrastive_mlp/run_20261026_212739/config.json,tl_contrastive_mlp,.json,artifact,702,,,inventory_only,,,,,,,
+tl_contrastive_mlp/run_20261026_212739/experiment.log,tl_contrastive_mlp,.log,artifact,7075,,,inventory_only,,,,,,,
+tl_contrastive_mlp/run_20261026_212739/results.csv,tl_contrastive_mlp,.csv,fold_level,8678,36,20,ok,Target Dataset,,Seed,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+tl_contrastive_mlp/run_20261026_212739/summary.csv,tl_contrastive_mlp,.csv,summary,531,3,11,ok,,,Seed,,accuracy_mean;balanced_accuracy_mean;macro_f1_mean;macro_f1_std;roc_auc_mean,,
+tl_contrastive_mlp/run_20261026_212945/config.json,tl_contrastive_mlp,.json,artifact,685,,,inventory_only,,,,,,,
+tl_contrastive_mlp/run_20261026_212945/experiment.log,tl_contrastive_mlp,.log,artifact,5094,,,inventory_only,,,,,,,
+tl_contrastive_mlp/run_20261026_212945/results.csv,tl_contrastive_mlp,.csv,fold_level,5794,24,20,ok,Target Dataset,,Seed,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+tl_contrastive_mlp/run_20261026_212945/summary.csv,tl_contrastive_mlp,.csv,summary,392,2,11,ok,,,Seed,,accuracy_mean;balanced_accuracy_mean;macro_f1_mean;macro_f1_std;roc_auc_mean,,
+tl_contrastive_mlp/run_20261026_213141/config.json,tl_contrastive_mlp,.json,artifact,686,,,inventory_only,,,,,,,
+tl_contrastive_mlp/run_20261026_213141/experiment.log,tl_contrastive_mlp,.log,artifact,5068,,,inventory_only,,,,,,,
+tl_contrastive_mlp/run_20261026_213141/results.csv,tl_contrastive_mlp,.csv,fold_level,5738,24,20,ok,Target Dataset,,Seed,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+tl_contrastive_mlp/run_20261026_213141/summary.csv,tl_contrastive_mlp,.csv,summary,388,2,11,ok,,,Seed,,accuracy_mean;balanced_accuracy_mean;macro_f1_mean;macro_f1_std;roc_auc_mean,,
+tl_contrastive_mlp/run_20261027_112749/config.json,tl_contrastive_mlp,.json,artifact,723,,,inventory_only,,,,,,,
+tl_contrastive_mlp/run_20261027_112749/experiment.log,tl_contrastive_mlp,.log,artifact,18827,,,inventory_only,,,,,,,
+tl_contrastive_mlp/run_20261027_112749/results.csv,tl_contrastive_mlp,.csv,fold_level,25742,108,20,ok,Target Dataset,,Seed,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+tl_contrastive_mlp/run_20261027_112749/summary.csv,tl_contrastive_mlp,.csv,summary,1396,9,12,ok,,,Seed,,accuracy_mean;balanced_accuracy_mean;macro_f1_mean;macro_f1_std;roc_auc_mean,,
+tl_contrastive_mlp/run_20261027_112749/summary_across_seeds.csv,tl_contrastive_mlp,.csv,summary,814,3,15,ok,,,,,accuracy_mean;balanced_accuracy_mean;macro_f1_mean;roc_auc_mean,,
+tl_contrastive_mlp/run_20261027_113203/config.json,tl_contrastive_mlp,.json,artifact,706,,,inventory_only,,,,,,,
+tl_contrastive_mlp/run_20261027_113203/experiment.log,tl_contrastive_mlp,.log,artifact,12898,,,inventory_only,,,,,,,
+tl_contrastive_mlp/run_20261027_113203/results.csv,tl_contrastive_mlp,.csv,fold_level,16984,72,20,ok,Target Dataset,,Seed,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+tl_contrastive_mlp/run_20261027_113203/summary.csv,tl_contrastive_mlp,.csv,summary,968,6,12,ok,,,Seed,,accuracy_mean;balanced_accuracy_mean;macro_f1_mean;macro_f1_std;roc_auc_mean,,
+tl_contrastive_mlp/run_20261027_113203/summary_across_seeds.csv,tl_contrastive_mlp,.csv,summary,606,2,15,ok,,,,,accuracy_mean;balanced_accuracy_mean;macro_f1_mean;roc_auc_mean,,
+tl_contrastive_mlp/run_20261027_113503/config.json,tl_contrastive_mlp,.json,artifact,707,,,inventory_only,,,,,,,
+tl_contrastive_mlp/run_20261027_113503/experiment.log,tl_contrastive_mlp,.log,artifact,12911,,,inventory_only,,,,,,,
+tl_contrastive_mlp/run_20261027_113503/results.csv,tl_contrastive_mlp,.csv,fold_level,17137,72,20,ok,Target Dataset,,Seed,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+tl_contrastive_mlp/run_20261027_113503/summary.csv,tl_contrastive_mlp,.csv,summary,961,6,12,ok,,,Seed,,accuracy_mean;balanced_accuracy_mean;macro_f1_mean;macro_f1_std;roc_auc_mean,,
+tl_contrastive_mlp/run_20261027_113503/summary_across_seeds.csv,tl_contrastive_mlp,.csv,summary,605,2,15,ok,,,,,accuracy_mean;balanced_accuracy_mean;macro_f1_mean;roc_auc_mean,,
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/config.json,tl_cross_dataset_mlp_tabnet,.json,artifact,8495,,,inventory_only,,,,,,,
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/dataset_audit.csv,tl_cross_dataset_mlp_tabnet,.csv,dataset_audit,3672,9,19,ok,dataset,,,,,,No recognized metric columns (dataset_audit); inventory only.
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/experiment.log,tl_cross_dataset_mlp_tabnet,.log,artifact,361294,,,inventory_only,,,,,,,
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,tl_cross_dataset_mlp_tabnet,.csv,fold_level,1169956,1980,25,ok,Target,Model,Seed,Fold,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/summary_by_target_source_model.csv,tl_cross_dataset_mlp_tabnet,.csv,summary,11263,50,19,ok,Target,Model,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,,
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/summary_by_target_source_model_seed.csv,tl_cross_dataset_mlp_tabnet,.csv,summary,32887,150,19,ok,Target,Model,Seed,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,,
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/summary_paired_mlp_vs_tabnet.csv,tl_cross_dataset_mlp_tabnet,.csv,summary,11583,25,26,ok,Target,,,,,Macro F1_MLP_mean;Macro F1_MLP_std;Macro F1_TabNet_mean;Macro F1_TabNet_std;Macro F1_Diff_MLP_minus_TabNet;ACC_MLP_mean;ACC_MLP_std;ACC_TabNet_mean;ACC_TabNet_std;ACC_Diff_MLP_minus_TabNet;Bal Acc_MLP_mean;Bal Acc_MLP_std;Bal Acc_TabNet_mean;Bal Acc_TabNet_std;Bal Acc_Diff_MLP_minus_TabNet;ROC-AUC_MLP_mean;ROC-AUC_MLP_std;ROC-AUC_TabNet_mean;ROC-AUC_TabNet_std;ROC-AUC_Diff_MLP_minus_TabNet,No recognized metric columns (summary); inventory only.
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/summary_source_ranking_by_target.csv,tl_cross_dataset_mlp_tabnet,.csv,summary,11388,50,20,ok,Target,Model,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,,
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/config.json,tl_cross_dataset_mlp_tabnet,.json,artifact,8516,,,inventory_only,,,,,,,
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/dataset_audit.csv,tl_cross_dataset_mlp_tabnet,.csv,dataset_audit,3672,9,19,ok,dataset,,,,,,No recognized metric columns (dataset_audit); inventory only.
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/experiment.log,tl_cross_dataset_mlp_tabnet,.log,artifact,1103385,,,inventory_only,,,,,,,
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,tl_cross_dataset_mlp_tabnet,.csv,fold_level,3540799,5940,25,ok,Target,Model,Seed,Fold,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/summary_by_target_source_model.csv,tl_cross_dataset_mlp_tabnet,.csv,summary,34150,150,19,ok,Target,Model,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,,
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/summary_by_target_source_model_seed.csv,tl_cross_dataset_mlp_tabnet,.csv,summary,100679,450,19,ok,Target,Model,Seed,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,,
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/summary_paired_mlp_vs_tabnet.csv,tl_cross_dataset_mlp_tabnet,.csv,summary,34216,75,26,ok,Target,,,,,Macro F1_MLP_mean;Macro F1_MLP_std;Macro F1_TabNet_mean;Macro F1_TabNet_std;Macro F1_Diff_MLP_minus_TabNet;ACC_MLP_mean;ACC_MLP_std;ACC_TabNet_mean;ACC_TabNet_std;ACC_Diff_MLP_minus_TabNet;Bal Acc_MLP_mean;Bal Acc_MLP_std;Bal Acc_TabNet_mean;Bal Acc_TabNet_std;Bal Acc_Diff_MLP_minus_TabNet;ROC-AUC_MLP_mean;ROC-AUC_MLP_std;ROC-AUC_TabNet_mean;ROC-AUC_TabNet_std;ROC-AUC_Diff_MLP_minus_TabNet,No recognized metric columns (summary); inventory only.
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/summary_source_ranking_by_target.csv,tl_cross_dataset_mlp_tabnet,.csv,summary,34535,150,20,ok,Target,Model,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,,
+tl_four_variants/run_20261005_163159/config.json,tl_four_variants,.json,artifact,484,,,inventory_only,,,,,,,
+tl_four_variants/run_20261005_163159/experiment.log,tl_four_variants,.log,artifact,38938,,,inventory_only,,,,,,,
+tl_four_variants/run_20261005_163159/results.csv,tl_four_variants,.csv,fold_level,11984,96,15,ok,Target Dataset,Model,Seed,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+tl_four_variants/run_20261005_163159/summary.csv,tl_four_variants,.csv,summary,779,4,10,ok,,,,,macro_f1_selection_score,,
+tl_four_variants/run_20261005_163159/summary_by_variant_model.csv,tl_four_variants,.csv,summary,1907,8,15,ok,,Model,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,,

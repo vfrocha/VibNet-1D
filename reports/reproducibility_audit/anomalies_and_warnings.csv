@@ -1,0 +1,1026 @@
+relative_path,row_index,dataset,model,seed,fold,anomaly_type,details
+baseline/baseline_loco_results_20260829_084039.csv,50,CWRU_48k,Random Forest,,Load_0HP_Sev_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+baseline/baseline_loco_results_20260829_084039.csv,51,CWRU_48k,SVM,,Load_0HP_Sev_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+baseline/baseline_loco_results_20260829_084039.csv,52,CWRU_48k,XGBoost,,Load_0HP_Sev_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+baseline/baseline_loco_results_20260829_084039.csv,53,CWRU_48k,MLP (Scratch),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7917 (missing test class in fold).
+baseline/baseline_loco_results_20260829_084039.csv,54,CWRU_48k,TabNet,,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+baseline_loco_results_20260928_142515.csv,4,CWRU_12k,MLP (Scratch),,Load_0HP,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,9,CWRU_12k,MLP (Scratch),,Load_1HP,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,14,CWRU_12k,MLP (Scratch),,Load_2HP,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,19,CWRU_12k,MLP (Scratch),,Load_3HP,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,24,CWRU_48k,MLP (Scratch),,Load_0HP_Sev_0.007,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,29,CWRU_48k,MLP (Scratch),,Load_0HP_Sev_0.021,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,34,CWRU_48k,MLP (Scratch),,Load_1HP_Sev_0.014,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,39,CWRU_48k,MLP (Scratch),,Load_2HP_Sev_0.007,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,44,CWRU_48k,MLP (Scratch),,Load_2HP_Sev_0.021,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,49,CWRU_48k,MLP (Scratch),,Load_3HP_Sev_0.014,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,50,CWRU_48k,Random Forest,,Load_0HP_Sev_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+baseline_loco_results_20260928_142515.csv,51,CWRU_48k,SVM,,Load_0HP_Sev_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+baseline_loco_results_20260928_142515.csv,52,CWRU_48k,XGBoost,,Load_0HP_Sev_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+baseline_loco_results_20260928_142515.csv,53,CWRU_48k,TabNet,,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+baseline_loco_results_20260928_142515.csv,54,CWRU_48k,MLP (Scratch),,Load_0HP_Sev_0.014,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,59,CWRU_48k,MLP (Scratch),,Load_1HP_Sev_0.007,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,64,CWRU_48k,MLP (Scratch),,Load_1HP_Sev_0.021,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,69,CWRU_48k,MLP (Scratch),,Load_2HP_Sev_0.014,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,74,CWRU_48k,MLP (Scratch),,Load_3HP_Sev_0.007,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,79,CWRU_48k,MLP (Scratch),,Load_3HP_Sev_0.021,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,84,PU,MLP (Scratch),,C1_1500rpm_0.7Nm_1000N,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,89,PU,MLP (Scratch),,C2_900rpm_0.7Nm_1000N,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,94,PU,MLP (Scratch),,C3_1500rpm_0.1Nm_1000N,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,99,PU,MLP (Scratch),,C4_1500rpm_0.7Nm_400N,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,104,HUST_Gearbox,MLP (Scratch),,Cond_20_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,109,HUST_Gearbox,MLP (Scratch),,Cond_20_1,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,114,HUST_Gearbox,MLP (Scratch),,Cond_20_2,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,119,HUST_Gearbox,MLP (Scratch),,Cond_20_3,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,124,HUST_Gearbox,MLP (Scratch),,Cond_20_4,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,129,HUST_Gearbox,MLP (Scratch),,Cond_25_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,134,HUST_Gearbox,MLP (Scratch),,Cond_25_1,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,139,HUST_Gearbox,MLP (Scratch),,Cond_25_2,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,144,HUST_Gearbox,MLP (Scratch),,Cond_25_3,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,149,HUST_Gearbox,MLP (Scratch),,Cond_25_4,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,154,HUST_Gearbox,MLP (Scratch),,Cond_30_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,159,HUST_Gearbox,MLP (Scratch),,Cond_30_1,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,164,HUST_Gearbox,MLP (Scratch),,Cond_30_2,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,169,HUST_Gearbox,MLP (Scratch),,Cond_30_3,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,174,HUST_Gearbox,MLP (Scratch),,Cond_30_4,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,179,HUST_Gearbox,MLP (Scratch),,Cond_35_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,184,HUST_Gearbox,MLP (Scratch),,Cond_35_1,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,189,HUST_Gearbox,MLP (Scratch),,Cond_35_2,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,194,HUST_Gearbox,MLP (Scratch),,Cond_35_3,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,199,HUST_Gearbox,MLP (Scratch),,Cond_35_4,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,204,HUST_Gearbox,MLP (Scratch),,Cond_40_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,209,HUST_Gearbox,MLP (Scratch),,Cond_40_1,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,214,HUST_Gearbox,MLP (Scratch),,Cond_40_2,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,219,HUST_Gearbox,MLP (Scratch),,Cond_40_3,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,224,HUST_Gearbox,MLP (Scratch),,Cond_40_4,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,229,HUST_Gearbox,MLP (Scratch),,Cond_L0_VS_0_40_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,234,HUST_Gearbox,MLP (Scratch),,Cond_L1_VS_0_40_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,239,HUST_Gearbox,MLP (Scratch),,Cond_L2_VS_0_40_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,244,HUST_Gearbox,MLP (Scratch),,Cond_L3_VS_0_40_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20260928_142515.csv,249,HUST_Gearbox,MLP (Scratch),,Cond_L4_VS_0_40_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,4,CWRU_12k,MLP (Scratch),,Load_0HP,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,9,CWRU_12k,MLP (Scratch),,Load_1HP,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,14,CWRU_12k,MLP (Scratch),,Load_2HP,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,19,CWRU_12k,MLP (Scratch),,Load_3HP,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,24,CWRU_48k,MLP (Scratch),,Load_0HP_Sev_0.007,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,29,CWRU_48k,MLP (Scratch),,Load_0HP_Sev_0.021,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,34,CWRU_48k,MLP (Scratch),,Load_1HP_Sev_0.014,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,39,CWRU_48k,MLP (Scratch),,Load_2HP_Sev_0.007,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,44,CWRU_48k,MLP (Scratch),,Load_2HP_Sev_0.021,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,49,CWRU_48k,MLP (Scratch),,Load_3HP_Sev_0.014,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,50,CWRU_48k,Random Forest,,Load_0HP_Sev_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+baseline_loco_results_20261003_052352.csv,51,CWRU_48k,SVM,,Load_0HP_Sev_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+baseline_loco_results_20261003_052352.csv,52,CWRU_48k,XGBoost,,Load_0HP_Sev_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+baseline_loco_results_20261003_052352.csv,53,CWRU_48k,TabNet,,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+baseline_loco_results_20261003_052352.csv,54,CWRU_48k,MLP (Scratch),,Load_0HP_Sev_0.014,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,59,CWRU_48k,MLP (Scratch),,Load_1HP_Sev_0.007,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,64,CWRU_48k,MLP (Scratch),,Load_1HP_Sev_0.021,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,69,CWRU_48k,MLP (Scratch),,Load_2HP_Sev_0.014,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,74,CWRU_48k,MLP (Scratch),,Load_3HP_Sev_0.007,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,79,CWRU_48k,MLP (Scratch),,Load_3HP_Sev_0.021,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,84,PU,MLP (Scratch),,C1_1500rpm_0.7Nm_1000N,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,89,PU,MLP (Scratch),,C2_900rpm_0.7Nm_1000N,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,94,PU,MLP (Scratch),,C3_1500rpm_0.1Nm_1000N,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,99,PU,MLP (Scratch),,C4_1500rpm_0.7Nm_400N,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,104,HUST_Gearbox,MLP (Scratch),,Cond_20_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,109,HUST_Gearbox,MLP (Scratch),,Cond_20_1,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,114,HUST_Gearbox,MLP (Scratch),,Cond_20_2,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,119,HUST_Gearbox,MLP (Scratch),,Cond_20_3,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,124,HUST_Gearbox,MLP (Scratch),,Cond_20_4,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,129,HUST_Gearbox,MLP (Scratch),,Cond_25_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,134,HUST_Gearbox,MLP (Scratch),,Cond_25_1,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,139,HUST_Gearbox,MLP (Scratch),,Cond_25_2,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,144,HUST_Gearbox,MLP (Scratch),,Cond_25_3,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,149,HUST_Gearbox,MLP (Scratch),,Cond_25_4,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,154,HUST_Gearbox,MLP (Scratch),,Cond_30_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,159,HUST_Gearbox,MLP (Scratch),,Cond_30_1,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,164,HUST_Gearbox,MLP (Scratch),,Cond_30_2,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,169,HUST_Gearbox,MLP (Scratch),,Cond_30_3,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,174,HUST_Gearbox,MLP (Scratch),,Cond_30_4,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,179,HUST_Gearbox,MLP (Scratch),,Cond_35_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,184,HUST_Gearbox,MLP (Scratch),,Cond_35_1,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,189,HUST_Gearbox,MLP (Scratch),,Cond_35_2,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,194,HUST_Gearbox,MLP (Scratch),,Cond_35_3,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,199,HUST_Gearbox,MLP (Scratch),,Cond_35_4,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,204,HUST_Gearbox,MLP (Scratch),,Cond_40_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,209,HUST_Gearbox,MLP (Scratch),,Cond_40_1,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,214,HUST_Gearbox,MLP (Scratch),,Cond_40_2,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,219,HUST_Gearbox,MLP (Scratch),,Cond_40_3,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,224,HUST_Gearbox,MLP (Scratch),,Cond_40_4,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,229,HUST_Gearbox,MLP (Scratch),,Cond_L0_VS_0_40_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,234,HUST_Gearbox,MLP (Scratch),,Cond_L1_VS_0_40_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,239,HUST_Gearbox,MLP (Scratch),,Cond_L2_VS_0_40_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,244,HUST_Gearbox,MLP (Scratch),,Cond_L3_VS_0_40_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+baseline_loco_results_20261003_052352.csv,249,HUST_Gearbox,MLP (Scratch),,Cond_L4_VS_0_40_0,SHIFTED_COLUMN_CORRUPTION,"4-tuple return unpacked into 5 columns: Accuracy holds Bal_Acc, Bal_Acc holds Macro_F1, Macro_F1 holds ROC-AUC, and ROC-AUC holds model repr."
+cwru12k_severity_loco_results_20260921_091642.csv,0,CWRU_12k_Severity,Random Forest,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260921_091642.csv,1,CWRU_12k_Severity,SVM,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260921_091642.csv,2,CWRU_12k_Severity,XGBoost,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260921_091642.csv,3,CWRU_12k_Severity,TabNet,,Severity_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6554 (missing test class in fold).
+cwru12k_severity_loco_results_20260921_091642.csv,4,CWRU_12k_Severity,Random Forest,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260921_091642.csv,5,CWRU_12k_Severity,SVM,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260921_091642.csv,6,CWRU_12k_Severity,XGBoost,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260921_091642.csv,7,CWRU_12k_Severity,TabNet,,Severity_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4845 (missing test class in fold).
+cwru12k_severity_loco_results_20260921_091642.csv,8,CWRU_12k_Severity,Random Forest,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260921_091642.csv,9,CWRU_12k_Severity,SVM,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260921_091642.csv,10,CWRU_12k_Severity,XGBoost,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260921_091642.csv,11,CWRU_12k_Severity,TabNet,,Severity_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5750 (missing test class in fold).
+cwru12k_severity_loco_results_20260921_091642.csv,12,CWRU_12k_Severity,Random Forest,,Severity_0.028,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260921_091642.csv,13,CWRU_12k_Severity,SVM,,Severity_0.028,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260921_091642.csv,14,CWRU_12k_Severity,XGBoost,,Severity_0.028,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260921_091642.csv,15,CWRU_12k_Severity,TabNet,,Severity_0.028,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4368 (missing test class in fold).
+cwru12k_severity_loco_results_20260922_151745.csv,0,CWRU_12k_Severity,Random Forest,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260922_151745.csv,1,CWRU_12k_Severity,SVM,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260922_151745.csv,2,CWRU_12k_Severity,XGBoost,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260922_151745.csv,4,CWRU_12k_Severity,Random Forest,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260922_151745.csv,5,CWRU_12k_Severity,SVM,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260922_151745.csv,6,CWRU_12k_Severity,XGBoost,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260922_151745.csv,8,CWRU_12k_Severity,Random Forest,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260922_151745.csv,9,CWRU_12k_Severity,SVM,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru12k_severity_loco_results_20260922_151745.csv,10,CWRU_12k_Severity,XGBoost,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru48k_mert_comparison_20261012_062814.csv,0,CWRU_48k_1024pts,Random Forest,,Domain_9 (Load_0HP_Sev_0.021),ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru48k_mert_comparison_20261012_062814.csv,1,CWRU_48k_1024pts,SVM,,Domain_9 (Load_0HP_Sev_0.021),ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru48k_mert_comparison_20261012_062814.csv,2,CWRU_48k_1024pts,XGBoost,,Domain_9 (Load_0HP_Sev_0.021),ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru48k_mert_comparison_20261012_062814.csv,4,CWRU_48k_1024pts,Random Forest,,Domain_9 (Load_0HP_Sev_0.021),ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru48k_mert_comparison_20261012_062814.csv,5,CWRU_48k_1024pts,SVM,,Domain_9 (Load_0HP_Sev_0.021),ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru48k_mert_comparison_20261012_062814.csv,6,CWRU_48k_1024pts,XGBoost,,Domain_9 (Load_0HP_Sev_0.021),ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,0,CWRU_48k,Random Forest,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,1,CWRU_48k,SVM,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,2,CWRU_48k,XGBoost,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,4,CWRU_48k,Random Forest,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,5,CWRU_48k,SVM,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,6,CWRU_48k,XGBoost,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,8,CWRU_48k,Random Forest,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,9,CWRU_48k,SVM,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,10,CWRU_48k,XGBoost,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,12,CWRU_12k_Severity,Random Forest,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,13,CWRU_12k_Severity,SVM,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,14,CWRU_12k_Severity,XGBoost,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,16,CWRU_12k_Severity,Random Forest,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,17,CWRU_12k_Severity,SVM,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,18,CWRU_12k_Severity,XGBoost,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,20,CWRU_12k_Severity,Random Forest,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,21,CWRU_12k_Severity,SVM,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260922_173221.csv,22,CWRU_12k_Severity,XGBoost,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,0,CWRU_48k,Random Forest,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,1,CWRU_48k,SVM,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,2,CWRU_48k,XGBoost,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,4,CWRU_48k,Random Forest,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,5,CWRU_48k,SVM,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,6,CWRU_48k,XGBoost,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,8,CWRU_48k,Random Forest,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,9,CWRU_48k,SVM,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,10,CWRU_48k,XGBoost,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,12,CWRU_12k_Severity,Random Forest,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,13,CWRU_12k_Severity,SVM,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,14,CWRU_12k_Severity,XGBoost,,Severity_0.007,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,16,CWRU_12k_Severity,Random Forest,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,17,CWRU_12k_Severity,SVM,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,18,CWRU_12k_Severity,XGBoost,,Severity_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,20,CWRU_12k_Severity,Random Forest,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,21,CWRU_12k_Severity,SVM,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+cwru_unified_severity_loco_20260929_103433.csv,22,CWRU_12k_Severity,XGBoost,,Severity_0.021,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+norm_tl_diagnosis_ablation_20261005_152759_results.csv,382,CWRU_48k,MLP (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+norm_tl_diagnosis_ablation_20261005_152759_results.csv,383,CWRU_48k,TABNET (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6703 (missing test class in fold).
+norm_tl_diagnosis_ablation_20261005_152759_results.csv,406,CWRU_48k,MLP (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8990 (missing test class in fold).
+norm_tl_diagnosis_ablation_20261005_152759_results.csv,407,CWRU_48k,TABNET (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6703 (missing test class in fold).
+norm_tl_diagnosis_ablation_20261005_152759_results.csv,430,CWRU_48k,MLP (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.1333 (missing test class in fold).
+norm_tl_diagnosis_ablation_20261005_152759_results.csv,431,CWRU_48k,TABNET (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6000 (missing test class in fold).
+norm_tl_diagnosis_ablation_20261005_152759_results.csv,454,CWRU_48k,MLP (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+norm_tl_diagnosis_ablation_20261005_152759_results.csv,455,CWRU_48k,TABNET (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+norm_tl_diagnosis_ablation_20261005_152759_results.csv,478,CWRU_48k,MLP (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3333 (missing test class in fold).
+norm_tl_diagnosis_ablation_20261005_152759_results.csv,479,CWRU_48k,TABNET (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4505 (missing test class in fold).
+norm_tl_diagnosis_multitarget_results_20261001_160735.csv,382,CWRU_48k,MLP (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5530 (missing test class in fold).
+norm_tl_diagnosis_multitarget_results_20261001_160735.csv,383,CWRU_48k,TABNET (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+norm_tl_diagnosis_multitarget_results_20261001_160735.csv,406,CWRU_48k,MLP (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+norm_tl_diagnosis_multitarget_results_20261001_160735.csv,407,CWRU_48k,TABNET (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6703 (missing test class in fold).
+norm_tl_diagnosis_multitarget_results_20261001_160735.csv,430,CWRU_48k,MLP (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+norm_tl_diagnosis_multitarget_results_20261001_160735.csv,431,CWRU_48k,TABNET (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6703 (missing test class in fold).
+norm_tl_diagnosis_multitarget_results_20261001_160735.csv,454,CWRU_48k,MLP (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6296 (missing test class in fold).
+norm_tl_diagnosis_multitarget_results_20261001_160735.csv,455,CWRU_48k,TABNET (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7917 (missing test class in fold).
+norm_tl_diagnosis_multitarget_results_20261001_160735.csv,478,CWRU_48k,MLP (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+norm_tl_diagnosis_multitarget_results_20261001_160735.csv,479,CWRU_48k,TABNET (TL),42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7917 (missing test class in fold).
+normalization/norm_tl_dl_results_20260905_080429.csv,102,CWRU_48k,MLP (TL),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2206 (missing test class in fold).
+normalization/norm_tl_dl_results_20260905_080429.csv,103,CWRU_48k,TABNET (TL),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.0606 (missing test class in fold).
+normalization/norm_tl_dl_results_20260905_080429.csv,226,CWRU_48k,MLP (TL),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.1347 (missing test class in fold).
+normalization/norm_tl_dl_results_20260905_080429.csv,227,CWRU_48k,TABNET (TL),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6296 (missing test class in fold).
+normalization/norm_tl_dl_results_20260905_080429.csv,350,CWRU_48k,MLP (TL),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2857 (missing test class in fold).
+normalization/norm_tl_dl_results_20260905_080429.csv,351,CWRU_48k,TABNET (TL),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3915 (missing test class in fold).
+normalization/norm_tl_dl_results_20260905_080429.csv,474,CWRU_48k,MLP (TL),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2381 (missing test class in fold).
+normalization/norm_tl_dl_results_20260905_080429.csv,475,CWRU_48k,TABNET (TL),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.1778 (missing test class in fold).
+normalization/norm_tl_dl_results_20260905_080429.csv,598,CWRU_48k,MLP (TL),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8990 (missing test class in fold).
+normalization/norm_tl_dl_results_20260905_080429.csv,599,CWRU_48k,TABNET (TL),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3333 (missing test class in fold).
+old_results/baseline_loco_results_20260728_192137.csv,40,CWRU_48k,Random Forest,,Load_0HP_Sev_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/baseline_loco_results_20260728_192137.csv,41,CWRU_48k,SVM,,Load_0HP_Sev_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/baseline_loco_results_20260728_192137.csv,42,CWRU_48k,XGBoost,,Load_0HP_Sev_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/baseline_loco_results_20260728_192137.csv,43,CWRU_48k,TabNet,,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/resultados_master_V2_20260626_120739.csv,25,UORED,Random Forest,,Group_A,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3248 (missing test class in fold).
+old_results/resultados_master_V2_20260626_120739.csv,26,UORED,SVM (RBF),,Group_A,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.1978 (missing test class in fold).
+old_results/resultados_master_V2_20260626_120739.csv,27,UORED,TabNet,,Group_A,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,28,UORED,FT-Transformer,,Group_A,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,29,UORED,TabNet-ResNet1D,,Group_A,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,32,UORED,TabNet,,Group_B,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,33,UORED,FT-Transformer,,Group_B,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,34,UORED,TabNet-ResNet1D,,Group_B,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,37,UORED,TabNet,,Group_C,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,38,UORED,FT-Transformer,,Group_C,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,39,UORED,TabNet-ResNet1D,,Group_C,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,42,UORED,TabNet,,Group_D,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,43,UORED,FT-Transformer,,Group_D,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,44,UORED,TabNet-ResNet1D,,Group_D,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,47,UORED,TabNet,,Group_E,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,48,UORED,FT-Transformer,,Group_E,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,49,UORED,TabNet-ResNet1D,,Group_E,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,52,CWRU_12k,TabNet,,Load_0HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,53,CWRU_12k,FT-Transformer,,Load_0HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,54,CWRU_12k,TabNet-ResNet1D,,Load_0HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,57,CWRU_12k,TabNet,,Load_1HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,58,CWRU_12k,FT-Transformer,,Load_1HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,59,CWRU_12k,TabNet-ResNet1D,,Load_1HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,62,CWRU_12k,TabNet,,Load_2HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,63,CWRU_12k,FT-Transformer,,Load_2HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,64,CWRU_12k,TabNet-ResNet1D,,Load_2HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,67,CWRU_12k,TabNet,,Load_3HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,68,CWRU_12k,FT-Transformer,,Load_3HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,69,CWRU_12k,TabNet-ResNet1D,,Load_3HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,72,CWRU_12k,TabNet,,Load_0HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,73,CWRU_12k,FT-Transformer,,Load_0HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,74,CWRU_12k,TabNet-ResNet1D,,Load_0HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,77,CWRU_12k,TabNet,,Load_1HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,78,CWRU_12k,FT-Transformer,,Load_1HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,79,CWRU_12k,TabNet-ResNet1D,,Load_1HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,82,CWRU_12k,TabNet,,Load_2HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,83,CWRU_12k,FT-Transformer,,Load_2HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,84,CWRU_12k,TabNet-ResNet1D,,Load_2HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,87,CWRU_12k,TabNet,,Load_3HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,88,CWRU_12k,FT-Transformer,,Load_3HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,89,CWRU_12k,TabNet-ResNet1D,,Load_3HP,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,92,HUST,TabNet,,Load_0W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,93,HUST,FT-Transformer,,Load_0W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,94,HUST,TabNet-ResNet1D,,Load_0W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,97,HUST,TabNet,,Load_200W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,98,HUST,FT-Transformer,,Load_200W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,99,HUST,TabNet-ResNet1D,,Load_200W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,102,HUST,TabNet,,Load_400W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,103,HUST,FT-Transformer,,Load_400W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,104,HUST,TabNet-ResNet1D,,Load_400W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,107,HUST,TabNet,,Load_0W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,108,HUST,FT-Transformer,,Load_0W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,109,HUST,TabNet-ResNet1D,,Load_0W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,112,HUST,TabNet,,Load_200W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,113,HUST,FT-Transformer,,Load_200W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,114,HUST,TabNet-ResNet1D,,Load_200W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,117,HUST,TabNet,,Load_400W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,118,HUST,FT-Transformer,,Load_400W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,119,HUST,TabNet-ResNet1D,,Load_400W,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,122,PU,TabNet,,C1_1500rpm_0.7Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,123,PU,FT-Transformer,,C1_1500rpm_0.7Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,124,PU,TabNet-ResNet1D,,C1_1500rpm_0.7Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,127,PU,TabNet,,C2_900rpm_0.7Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,128,PU,FT-Transformer,,C2_900rpm_0.7Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,129,PU,TabNet-ResNet1D,,C2_900rpm_0.7Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,132,PU,TabNet,,C3_1500rpm_0.1Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,133,PU,FT-Transformer,,C3_1500rpm_0.1Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,134,PU,TabNet-ResNet1D,,C3_1500rpm_0.1Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,137,PU,TabNet,,C4_1500rpm_0.7Nm_400N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,138,PU,FT-Transformer,,C4_1500rpm_0.7Nm_400N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,139,PU,TabNet-ResNet1D,,C4_1500rpm_0.7Nm_400N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,142,PU,TabNet,,C1_1500rpm_0.7Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,143,PU,FT-Transformer,,C1_1500rpm_0.7Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,144,PU,TabNet-ResNet1D,,C1_1500rpm_0.7Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,147,PU,TabNet,,C2_900rpm_0.7Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,148,PU,FT-Transformer,,C2_900rpm_0.7Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,149,PU,TabNet-ResNet1D,,C2_900rpm_0.7Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,152,PU,TabNet,,C3_1500rpm_0.1Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,153,PU,FT-Transformer,,C3_1500rpm_0.1Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,154,PU,TabNet-ResNet1D,,C3_1500rpm_0.1Nm_1000N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,157,PU,TabNet,,C4_1500rpm_0.7Nm_400N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,158,PU,FT-Transformer,,C4_1500rpm_0.7Nm_400N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/resultados_master_V2_20260626_120739.csv,159,PU,TabNet-ResNet1D,,C4_1500rpm_0.7Nm_400N,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/tl_multihead_results_20260819_103518.csv,0,CWRU_12k,Random Forest,,Load_0HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8618 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,1,CWRU_12k,SVM (RBF),,Load_0HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4447 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,4,CWRU_12k,Random Forest,,Load_1HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9274 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,5,CWRU_12k,SVM (RBF),,Load_1HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8916 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,8,CWRU_12k,Random Forest,,Load_2HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9933 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,9,CWRU_12k,SVM (RBF),,Load_2HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7022 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,12,CWRU_12k,Random Forest,,Load_3HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8984 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,13,CWRU_12k,SVM (RBF),,Load_3HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8687 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,16,UOEMD,Random Forest,,Load_Loaded_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6272 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,17,UOEMD,SVM (RBF),,Load_Loaded_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5434 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,20,UOEMD,Random Forest,,Load_Loaded_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,21,UOEMD,SVM (RBF),,Load_Loaded_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8029 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,24,UOEMD,Random Forest,,Load_Loaded_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9747 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,25,UOEMD,SVM (RBF),,Load_Loaded_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4650 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,28,UOEMD,Random Forest,,Load_Loaded_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5434 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,29,UOEMD,SVM (RBF),,Load_Loaded_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3685 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,32,UOEMD,Random Forest,,Load_Loaded_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9138 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,33,UOEMD,SVM (RBF),,Load_Loaded_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5637 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,36,UOEMD,Random Forest,,Load_Loaded_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9497 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,37,UOEMD,SVM (RBF),,Load_Loaded_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6151 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,40,UOEMD,Random Forest,,Load_Loaded_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9624 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,41,UOEMD,SVM (RBF),,Load_Loaded_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6278 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,44,UOEMD,Random Forest,,Load_Loaded_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8482 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,45,UOEMD,SVM (RBF),,Load_Loaded_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5317 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,48,UOEMD,Random Forest,,Load_No_Load_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5189 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,49,UOEMD,SVM (RBF),,Load_No_Load_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8208 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,52,UOEMD,Random Forest,,Load_No_Load_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7336 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,53,UOEMD,SVM (RBF),,Load_No_Load_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5643 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,56,UOEMD,Random Forest,,Load_No_Load_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,57,UOEMD,SVM (RBF),,Load_No_Load_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5300 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,60,UOEMD,Random Forest,,Load_No_Load_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9747 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,61,UOEMD,SVM (RBF),,Load_No_Load_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5137 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,64,UOEMD,Random Forest,,Load_No_Load_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9365 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,65,UOEMD,SVM (RBF),,Load_No_Load_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7350 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,68,UOEMD,Random Forest,,Load_No_Load_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9617 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,69,UOEMD,SVM (RBF),,Load_No_Load_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6881 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,72,UOEMD,Random Forest,,Load_No_Load_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9624 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,73,UOEMD,SVM (RBF),,Load_No_Load_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7950 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,76,UOEMD,Random Forest,,Load_No_Load_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9498 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,77,UOEMD,SVM (RBF),,Load_No_Load_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6151 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,80,HUST_Gearbox,Random Forest,,Cond_20_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,81,HUST_Gearbox,SVM (RBF),,Cond_20_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,84,HUST_Gearbox,Random Forest,,Cond_20_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,85,HUST_Gearbox,SVM (RBF),,Cond_20_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,88,HUST_Gearbox,Random Forest,,Cond_20_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,89,HUST_Gearbox,SVM (RBF),,Cond_20_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,92,HUST_Gearbox,Random Forest,,Cond_20_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,93,HUST_Gearbox,SVM (RBF),,Cond_20_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6633 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,96,HUST_Gearbox,Random Forest,,Cond_20_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,97,HUST_Gearbox,SVM (RBF),,Cond_20_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4203 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,100,HUST_Gearbox,Random Forest,,Cond_25_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,101,HUST_Gearbox,SVM (RBF),,Cond_25_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,104,HUST_Gearbox,Random Forest,,Cond_25_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8977 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,105,HUST_Gearbox,SVM (RBF),,Cond_25_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7368 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,108,HUST_Gearbox,Random Forest,,Cond_25_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,109,HUST_Gearbox,SVM (RBF),,Cond_25_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,112,HUST_Gearbox,Random Forest,,Cond_25_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8977 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,113,HUST_Gearbox,SVM (RBF),,Cond_25_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8222 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,116,HUST_Gearbox,Random Forest,,Cond_25_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,117,HUST_Gearbox,SVM (RBF),,Cond_25_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6825 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,120,HUST_Gearbox,Random Forest,,Cond_30_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,121,HUST_Gearbox,SVM (RBF),,Cond_30_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,124,HUST_Gearbox,Random Forest,,Cond_30_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,125,HUST_Gearbox,SVM (RBF),,Cond_30_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,128,HUST_Gearbox,Random Forest,,Cond_30_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,129,HUST_Gearbox,SVM (RBF),,Cond_30_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,132,HUST_Gearbox,Random Forest,,Cond_30_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,133,HUST_Gearbox,SVM (RBF),,Cond_30_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,136,HUST_Gearbox,Random Forest,,Cond_30_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,137,HUST_Gearbox,SVM (RBF),,Cond_30_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,140,HUST_Gearbox,Random Forest,,Cond_35_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,141,HUST_Gearbox,SVM (RBF),,Cond_35_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,144,HUST_Gearbox,Random Forest,,Cond_35_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,145,HUST_Gearbox,SVM (RBF),,Cond_35_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,148,HUST_Gearbox,Random Forest,,Cond_35_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,149,HUST_Gearbox,SVM (RBF),,Cond_35_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,152,HUST_Gearbox,Random Forest,,Cond_35_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,153,HUST_Gearbox,SVM (RBF),,Cond_35_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,156,HUST_Gearbox,Random Forest,,Cond_35_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,157,HUST_Gearbox,SVM (RBF),,Cond_35_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6875 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,160,HUST_Gearbox,Random Forest,,Cond_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,161,HUST_Gearbox,SVM (RBF),,Cond_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9327 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,164,HUST_Gearbox,Random Forest,,Cond_40_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,165,HUST_Gearbox,SVM (RBF),,Cond_40_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,168,HUST_Gearbox,Random Forest,,Cond_40_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,169,HUST_Gearbox,SVM (RBF),,Cond_40_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7222 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,172,HUST_Gearbox,Random Forest,,Cond_40_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,173,HUST_Gearbox,SVM (RBF),,Cond_40_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,176,HUST_Gearbox,Random Forest,,Cond_40_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,177,HUST_Gearbox,SVM (RBF),,Cond_40_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7222 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,180,HUST_Gearbox,Random Forest,,Cond_L0_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,181,HUST_Gearbox,SVM (RBF),,Cond_L0_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7222 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,184,HUST_Gearbox,Random Forest,,Cond_L1_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,185,HUST_Gearbox,SVM (RBF),,Cond_L1_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5333 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,188,HUST_Gearbox,Random Forest,,Cond_L2_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,189,HUST_Gearbox,SVM (RBF),,Cond_L2_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,192,HUST_Gearbox,Random Forest,,Cond_L3_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,193,HUST_Gearbox,SVM (RBF),,Cond_L3_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,196,HUST_Gearbox,Random Forest,,Cond_L4_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,197,HUST_Gearbox,SVM (RBF),,Cond_L4_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7103 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,200,CWRU_48k,Random Forest,,Load_0HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.1746 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,201,CWRU_48k,SVM (RBF),,Load_0HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2739 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,204,CWRU_48k,Random Forest,,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8465 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,205,CWRU_48k,SVM (RBF),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2051 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,206,CWRU_48k,Multi-Head DL (MLP),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3333 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,207,CWRU_48k,Multi-Head DL (TABNET),,Load_0HP_Sev_0.014,ZERO_METRIC_FAILURE,Macro F1 == 0.0 and Bal Acc == 0.0 (failed GridSearch/fit fallback).
+old_results/tl_multihead_results_20260819_103518.csv,208,CWRU_48k,Random Forest,,Load_0HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9365 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,209,CWRU_48k,SVM (RBF),,Load_0HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3905 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,212,CWRU_48k,Random Forest,,Load_1HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9833 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,213,CWRU_48k,SVM (RBF),,Load_1HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8017 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,216,CWRU_48k,Random Forest,,Load_1HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9497 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,217,CWRU_48k,SVM (RBF),,Load_1HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7212 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,220,CWRU_48k,Random Forest,,Load_1HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,221,CWRU_48k,SVM (RBF),,Load_1HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,224,CWRU_48k,Random Forest,,Load_2HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,225,CWRU_48k,SVM (RBF),,Load_2HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7734 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,228,CWRU_48k,Random Forest,,Load_2HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9496 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,229,CWRU_48k,SVM (RBF),,Load_2HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3860 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,232,CWRU_48k,Random Forest,,Load_2HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,233,CWRU_48k,SVM (RBF),,Load_2HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7372 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,236,CWRU_48k,Random Forest,,Load_3HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,237,CWRU_48k,SVM (RBF),,Load_3HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3813 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,240,CWRU_48k,Random Forest,,Load_3HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5996 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,241,CWRU_48k,SVM (RBF),,Load_3HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4771 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,244,CWRU_48k,Random Forest,,Load_3HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+old_results/tl_multihead_results_20260819_103518.csv,245,CWRU_48k,SVM (RBF),,Load_3HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7098 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,200,CWRU_12k,Random Forest,,Load_0HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8655 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,201,CWRU_12k,SVM (RBF),,Load_0HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5500 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,202,CWRU_12k,Hybrid DL (MLP),,Load_0HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6480 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,203,CWRU_12k,Hybrid DL (TABNET),,Load_0HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8290 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,204,CWRU_12k,Random Forest,,Load_1HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9359 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,205,CWRU_12k,SVM (RBF),,Load_1HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8031 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,206,CWRU_12k,Hybrid DL (MLP),,Load_1HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8147 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,207,CWRU_12k,Hybrid DL (TABNET),,Load_1HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8054 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,208,CWRU_12k,Random Forest,,Load_2HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9960 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,209,CWRU_12k,SVM (RBF),,Load_2HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8318 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,210,CWRU_12k,Hybrid DL (MLP),,Load_2HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8641 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,211,CWRU_12k,Hybrid DL (TABNET),,Load_2HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9071 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,212,CWRU_12k,Random Forest,,Load_3HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8585 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,213,CWRU_12k,SVM (RBF),,Load_3HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6211 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,214,CWRU_12k,Hybrid DL (MLP),,Load_3HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8206 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,215,CWRU_12k,Hybrid DL (TABNET),,Load_3HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6229 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,216,UOEMD,Random Forest,,Load_Loaded_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6002 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,217,UOEMD,SVM (RBF),,Load_Loaded_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3753 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,218,UOEMD,Hybrid DL (MLP),,Load_Loaded_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5218 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,219,UOEMD,Hybrid DL (TABNET),,Load_Loaded_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6487 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,220,UOEMD,Random Forest,,Load_Loaded_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9333 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,221,UOEMD,SVM (RBF),,Load_Loaded_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4448 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,222,UOEMD,Hybrid DL (MLP),,Load_Loaded_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4495 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,223,UOEMD,Hybrid DL (TABNET),,Load_Loaded_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,224,UOEMD,Random Forest,,Load_Loaded_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,225,UOEMD,SVM (RBF),,Load_Loaded_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4231 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,226,UOEMD,Hybrid DL (MLP),,Load_Loaded_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3125 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,227,UOEMD,Hybrid DL (TABNET),,Load_Loaded_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3974 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,228,UOEMD,Random Forest,,Load_Loaded_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5306 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,229,UOEMD,SVM (RBF),,Load_Loaded_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3199 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,230,UOEMD,Hybrid DL (MLP),,Load_Loaded_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3606 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,231,UOEMD,Hybrid DL (TABNET),,Load_Loaded_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4167 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,232,UOEMD,Random Forest,,Load_Loaded_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8884 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,233,UOEMD,SVM (RBF),,Load_Loaded_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4618 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,234,UOEMD,Hybrid DL (MLP),,Load_Loaded_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3251 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,235,UOEMD,Hybrid DL (TABNET),,Load_Loaded_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5204 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,236,UOEMD,Random Forest,,Load_Loaded_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9366 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,237,UOEMD,SVM (RBF),,Load_Loaded_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4504 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,238,UOEMD,Hybrid DL (MLP),,Load_Loaded_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3822 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,239,UOEMD,Hybrid DL (TABNET),,Load_Loaded_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4552 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,240,UOEMD,Random Forest,,Load_Loaded_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9373 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,241,UOEMD,SVM (RBF),,Load_Loaded_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5628 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,242,UOEMD,Hybrid DL (MLP),,Load_Loaded_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3193 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,243,UOEMD,Hybrid DL (TABNET),,Load_Loaded_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4147 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,244,UOEMD,Random Forest,,Load_Loaded_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8603 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,245,UOEMD,SVM (RBF),,Load_Loaded_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4140 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,246,UOEMD,Hybrid DL (MLP),,Load_Loaded_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3949 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,247,UOEMD,Hybrid DL (TABNET),,Load_Loaded_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5095 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,248,UOEMD,Random Forest,,Load_No_Load_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4611 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,249,UOEMD,SVM (RBF),,Load_No_Load_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3482 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,250,UOEMD,Hybrid DL (MLP),,Load_No_Load_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4018 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,251,UOEMD,Hybrid DL (TABNET),,Load_No_Load_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5395 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,252,UOEMD,Random Forest,,Load_No_Load_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6506 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,253,UOEMD,SVM (RBF),,Load_No_Load_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4174 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,254,UOEMD,Hybrid DL (MLP),,Load_No_Load_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4521 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,255,UOEMD,Hybrid DL (TABNET),,Load_No_Load_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6058 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,256,UOEMD,Random Forest,,Load_No_Load_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9747 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,257,UOEMD,SVM (RBF),,Load_No_Load_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3750 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,258,UOEMD,Hybrid DL (MLP),,Load_No_Load_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6183 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,259,UOEMD,Hybrid DL (TABNET),,Load_No_Load_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4468 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,260,UOEMD,Random Forest,,Load_No_Load_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,261,UOEMD,SVM (RBF),,Load_No_Load_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6794 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,262,UOEMD,Hybrid DL (MLP),,Load_No_Load_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4167 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,263,UOEMD,Hybrid DL (TABNET),,Load_No_Load_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5798 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,264,UOEMD,Random Forest,,Load_No_Load_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9220 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,265,UOEMD,SVM (RBF),,Load_No_Load_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4721 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,266,UOEMD,Hybrid DL (MLP),,Load_No_Load_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3893 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,267,UOEMD,Hybrid DL (TABNET),,Load_No_Load_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4511 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,268,UOEMD,Random Forest,,Load_No_Load_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9493 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,269,UOEMD,SVM (RBF),,Load_No_Load_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6425 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,270,UOEMD,Hybrid DL (MLP),,Load_No_Load_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5944 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,271,UOEMD,Hybrid DL (TABNET),,Load_No_Load_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5779 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,272,UOEMD,Random Forest,,Load_No_Load_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9222 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,273,UOEMD,SVM (RBF),,Load_No_Load_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5243 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,274,UOEMD,Hybrid DL (MLP),,Load_No_Load_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4716 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,275,UOEMD,Hybrid DL (TABNET),,Load_No_Load_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6037 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,276,UOEMD,Random Forest,,Load_No_Load_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9203 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,277,UOEMD,SVM (RBF),,Load_No_Load_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6410 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,278,UOEMD,Hybrid DL (MLP),,Load_No_Load_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4840 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,279,UOEMD,Hybrid DL (TABNET),,Load_No_Load_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5794 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,280,HUST_Gearbox,Random Forest,,Cond_20_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,281,HUST_Gearbox,SVM (RBF),,Cond_20_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6238 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,282,HUST_Gearbox,Hybrid DL (MLP),,Cond_20_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8977 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,283,HUST_Gearbox,Hybrid DL (TABNET),,Cond_20_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9327 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,284,HUST_Gearbox,Random Forest,,Cond_20_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,285,HUST_Gearbox,SVM (RBF),,Cond_20_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,286,HUST_Gearbox,Hybrid DL (MLP),,Cond_20_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9327 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,287,HUST_Gearbox,Hybrid DL (TABNET),,Cond_20_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7802 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,288,HUST_Gearbox,Random Forest,,Cond_20_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,289,HUST_Gearbox,SVM (RBF),,Cond_20_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4547 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,290,HUST_Gearbox,Hybrid DL (MLP),,Cond_20_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7802 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,291,HUST_Gearbox,Hybrid DL (TABNET),,Cond_20_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7802 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,292,HUST_Gearbox,Random Forest,,Cond_20_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,293,HUST_Gearbox,SVM (RBF),,Cond_20_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,294,HUST_Gearbox,Hybrid DL (MLP),,Cond_20_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,295,HUST_Gearbox,Hybrid DL (TABNET),,Cond_20_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,296,HUST_Gearbox,Random Forest,,Cond_20_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,297,HUST_Gearbox,SVM (RBF),,Cond_20_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5833 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,298,HUST_Gearbox,Hybrid DL (MLP),,Cond_20_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,299,HUST_Gearbox,Hybrid DL (TABNET),,Cond_20_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,300,HUST_Gearbox,Random Forest,,Cond_25_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,301,HUST_Gearbox,SVM (RBF),,Cond_25_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,302,HUST_Gearbox,Hybrid DL (MLP),,Cond_25_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,303,HUST_Gearbox,Hybrid DL (TABNET),,Cond_25_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9327 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,304,HUST_Gearbox,Random Forest,,Cond_25_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,305,HUST_Gearbox,SVM (RBF),,Cond_25_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4547 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,306,HUST_Gearbox,Hybrid DL (MLP),,Cond_25_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,307,HUST_Gearbox,Hybrid DL (TABNET),,Cond_25_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,308,HUST_Gearbox,Random Forest,,Cond_25_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,309,HUST_Gearbox,SVM (RBF),,Cond_25_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9327 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,310,HUST_Gearbox,Hybrid DL (MLP),,Cond_25_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9327 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,311,HUST_Gearbox,Hybrid DL (TABNET),,Cond_25_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,312,HUST_Gearbox,Random Forest,,Cond_25_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,313,HUST_Gearbox,SVM (RBF),,Cond_25_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7341 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,314,HUST_Gearbox,Hybrid DL (MLP),,Cond_25_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,315,HUST_Gearbox,Hybrid DL (TABNET),,Cond_25_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6238 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,316,HUST_Gearbox,Random Forest,,Cond_25_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,317,HUST_Gearbox,SVM (RBF),,Cond_25_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6238 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,318,HUST_Gearbox,Hybrid DL (MLP),,Cond_25_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6825 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,319,HUST_Gearbox,Hybrid DL (TABNET),,Cond_25_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,320,HUST_Gearbox,Random Forest,,Cond_30_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,321,HUST_Gearbox,SVM (RBF),,Cond_30_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,322,HUST_Gearbox,Hybrid DL (MLP),,Cond_30_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6238 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,323,HUST_Gearbox,Hybrid DL (TABNET),,Cond_30_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,324,HUST_Gearbox,Random Forest,,Cond_30_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,325,HUST_Gearbox,SVM (RBF),,Cond_30_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,326,HUST_Gearbox,Hybrid DL (MLP),,Cond_30_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,327,HUST_Gearbox,Hybrid DL (TABNET),,Cond_30_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,328,HUST_Gearbox,Random Forest,,Cond_30_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,329,HUST_Gearbox,SVM (RBF),,Cond_30_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8611 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,330,HUST_Gearbox,Hybrid DL (MLP),,Cond_30_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8611 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,331,HUST_Gearbox,Hybrid DL (TABNET),,Cond_30_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,332,HUST_Gearbox,Random Forest,,Cond_30_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,333,HUST_Gearbox,SVM (RBF),,Cond_30_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,334,HUST_Gearbox,Hybrid DL (MLP),,Cond_30_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,335,HUST_Gearbox,Hybrid DL (TABNET),,Cond_30_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,336,HUST_Gearbox,Random Forest,,Cond_30_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,337,HUST_Gearbox,SVM (RBF),,Cond_30_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,338,HUST_Gearbox,Hybrid DL (MLP),,Cond_30_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9327 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,339,HUST_Gearbox,Hybrid DL (TABNET),,Cond_30_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6825 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,340,HUST_Gearbox,Random Forest,,Cond_35_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,341,HUST_Gearbox,SVM (RBF),,Cond_35_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,342,HUST_Gearbox,Hybrid DL (MLP),,Cond_35_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,343,HUST_Gearbox,Hybrid DL (TABNET),,Cond_35_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,344,HUST_Gearbox,Random Forest,,Cond_35_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,345,HUST_Gearbox,SVM (RBF),,Cond_35_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,346,HUST_Gearbox,Hybrid DL (MLP),,Cond_35_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,347,HUST_Gearbox,Hybrid DL (TABNET),,Cond_35_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,348,HUST_Gearbox,Random Forest,,Cond_35_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,349,HUST_Gearbox,SVM (RBF),,Cond_35_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,350,HUST_Gearbox,Hybrid DL (MLP),,Cond_35_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,351,HUST_Gearbox,Hybrid DL (TABNET),,Cond_35_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,352,HUST_Gearbox,Random Forest,,Cond_35_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,353,HUST_Gearbox,SVM (RBF),,Cond_35_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,354,HUST_Gearbox,Hybrid DL (MLP),,Cond_35_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,355,HUST_Gearbox,Hybrid DL (TABNET),,Cond_35_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9327 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,356,HUST_Gearbox,Random Forest,,Cond_35_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9327 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,357,HUST_Gearbox,SVM (RBF),,Cond_35_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7368 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,358,HUST_Gearbox,Hybrid DL (MLP),,Cond_35_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7368 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,359,HUST_Gearbox,Hybrid DL (TABNET),,Cond_35_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5778 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,360,HUST_Gearbox,Random Forest,,Cond_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,361,HUST_Gearbox,SVM (RBF),,Cond_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7980 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,362,HUST_Gearbox,Hybrid DL (MLP),,Cond_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,363,HUST_Gearbox,Hybrid DL (TABNET),,Cond_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,364,HUST_Gearbox,Random Forest,,Cond_40_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,365,HUST_Gearbox,SVM (RBF),,Cond_40_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,366,HUST_Gearbox,Hybrid DL (MLP),,Cond_40_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,367,HUST_Gearbox,Hybrid DL (TABNET),,Cond_40_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,368,HUST_Gearbox,Random Forest,,Cond_40_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,369,HUST_Gearbox,SVM (RBF),,Cond_40_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4987 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,370,HUST_Gearbox,Hybrid DL (MLP),,Cond_40_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6825 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,371,HUST_Gearbox,Hybrid DL (TABNET),,Cond_40_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6825 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,372,HUST_Gearbox,Random Forest,,Cond_40_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,373,HUST_Gearbox,SVM (RBF),,Cond_40_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,374,HUST_Gearbox,Hybrid DL (MLP),,Cond_40_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,375,HUST_Gearbox,Hybrid DL (TABNET),,Cond_40_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,376,HUST_Gearbox,Random Forest,,Cond_40_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,377,HUST_Gearbox,SVM (RBF),,Cond_40_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,378,HUST_Gearbox,Hybrid DL (MLP),,Cond_40_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8222 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,379,HUST_Gearbox,Hybrid DL (TABNET),,Cond_40_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,380,HUST_Gearbox,Random Forest,,Cond_L0_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,381,HUST_Gearbox,SVM (RBF),,Cond_L0_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,382,HUST_Gearbox,Hybrid DL (MLP),,Cond_L0_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,383,HUST_Gearbox,Hybrid DL (TABNET),,Cond_L0_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9333 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,384,HUST_Gearbox,Random Forest,,Cond_L1_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,385,HUST_Gearbox,SVM (RBF),,Cond_L1_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6035 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,386,HUST_Gearbox,Hybrid DL (MLP),,Cond_L1_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8222 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,387,HUST_Gearbox,Hybrid DL (TABNET),,Cond_L1_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8977 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,388,HUST_Gearbox,Random Forest,,Cond_L2_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,389,HUST_Gearbox,SVM (RBF),,Cond_L2_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5667 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,390,HUST_Gearbox,Hybrid DL (MLP),,Cond_L2_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8997 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,391,HUST_Gearbox,Hybrid DL (TABNET),,Cond_L2_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,392,HUST_Gearbox,Random Forest,,Cond_L3_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,393,HUST_Gearbox,SVM (RBF),,Cond_L3_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4740 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,394,HUST_Gearbox,Hybrid DL (MLP),,Cond_L3_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8611 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,395,HUST_Gearbox,Hybrid DL (TABNET),,Cond_L3_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,396,HUST_Gearbox,Random Forest,,Cond_L4_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,397,HUST_Gearbox,SVM (RBF),,Cond_L4_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6617 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,398,HUST_Gearbox,Hybrid DL (MLP),,Cond_L4_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,399,HUST_Gearbox,Hybrid DL (TABNET),,Cond_L4_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9327 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,400,CWRU_48k,Random Forest,,Load_0HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7802 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,401,CWRU_48k,SVM (RBF),,Load_0HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7802 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,402,CWRU_48k,Hybrid DL (MLP),,Load_0HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7897 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,403,CWRU_48k,Hybrid DL (TABNET),,Load_0HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7264 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,404,CWRU_48k,Random Forest,,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5238 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,405,CWRU_48k,SVM (RBF),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3333 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,406,CWRU_48k,Hybrid DL (MLP),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8990 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,407,CWRU_48k,Hybrid DL (TABNET),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7494 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,408,CWRU_48k,Random Forest,,Load_0HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,409,CWRU_48k,SVM (RBF),,Load_0HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4167 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,410,CWRU_48k,Hybrid DL (MLP),,Load_0HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3704 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,411,CWRU_48k,Hybrid DL (TABNET),,Load_0HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8363 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,412,CWRU_48k,Random Forest,,Load_1HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,413,CWRU_48k,SVM (RBF),,Load_1HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5927 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,414,CWRU_48k,Hybrid DL (MLP),,Load_1HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5335 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,415,CWRU_48k,Hybrid DL (TABNET),,Load_1HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8195 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,416,CWRU_48k,Random Forest,,Load_1HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,417,CWRU_48k,SVM (RBF),,Load_1HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6712 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,418,CWRU_48k,Hybrid DL (MLP),,Load_1HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4212 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,419,CWRU_48k,Hybrid DL (TABNET),,Load_1HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5001 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,420,CWRU_48k,Random Forest,,Load_1HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,421,CWRU_48k,SVM (RBF),,Load_1HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9497 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,422,CWRU_48k,Hybrid DL (MLP),,Load_1HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9497 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,423,CWRU_48k,Hybrid DL (TABNET),,Load_1HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9833 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,424,CWRU_48k,Random Forest,,Load_2HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,425,CWRU_48k,SVM (RBF),,Load_2HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8127 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,426,CWRU_48k,Hybrid DL (MLP),,Load_2HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7930 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,427,CWRU_48k,Hybrid DL (TABNET),,Load_2HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8833 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,428,CWRU_48k,Random Forest,,Load_2HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9833 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,429,CWRU_48k,SVM (RBF),,Load_2HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4718 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,430,CWRU_48k,Hybrid DL (MLP),,Load_2HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8478 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,431,CWRU_48k,Hybrid DL (TABNET),,Load_2HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6732 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,432,CWRU_48k,Random Forest,,Load_2HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,433,CWRU_48k,SVM (RBF),,Load_2HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7902 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,434,CWRU_48k,Hybrid DL (MLP),,Load_2HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,435,CWRU_48k,Hybrid DL (TABNET),,Load_2HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8796 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,436,CWRU_48k,Random Forest,,Load_3HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,437,CWRU_48k,SVM (RBF),,Load_3HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6396 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,438,CWRU_48k,Hybrid DL (MLP),,Load_3HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,439,CWRU_48k,Hybrid DL (TABNET),,Load_3HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,440,CWRU_48k,Random Forest,,Load_3HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5881 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,441,CWRU_48k,SVM (RBF),,Load_3HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4156 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,442,CWRU_48k,Hybrid DL (MLP),,Load_3HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5331 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,443,CWRU_48k,Hybrid DL (TABNET),,Load_3HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,444,CWRU_48k,Random Forest,,Load_3HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9153 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,445,CWRU_48k,SVM (RBF),,Load_3HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7988 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,446,CWRU_48k,Hybrid DL (MLP),,Load_3HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8017 (missing test class in fold).
+tl/tl_completo_results_20260810_151031.csv,447,CWRU_48k,Hybrid DL (TABNET),,Load_3HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,0,CWRU_12k,Random Forest,,Load_0HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8618 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,1,CWRU_12k,SVM (RBF),,Load_0HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4447 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,4,CWRU_12k,Random Forest,,Load_1HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9274 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,5,CWRU_12k,SVM (RBF),,Load_1HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8916 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,8,CWRU_12k,Random Forest,,Load_2HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9933 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,9,CWRU_12k,SVM (RBF),,Load_2HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7022 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,12,CWRU_12k,Random Forest,,Load_3HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8984 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,13,CWRU_12k,SVM (RBF),,Load_3HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8687 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,16,UOEMD,Random Forest,,Load_Loaded_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6272 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,17,UOEMD,SVM (RBF),,Load_Loaded_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5434 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,20,UOEMD,Random Forest,,Load_Loaded_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,21,UOEMD,SVM (RBF),,Load_Loaded_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8029 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,24,UOEMD,Random Forest,,Load_Loaded_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9747 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,25,UOEMD,SVM (RBF),,Load_Loaded_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4650 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,28,UOEMD,Random Forest,,Load_Loaded_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5434 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,29,UOEMD,SVM (RBF),,Load_Loaded_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3685 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,32,UOEMD,Random Forest,,Load_Loaded_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9138 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,33,UOEMD,SVM (RBF),,Load_Loaded_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5637 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,36,UOEMD,Random Forest,,Load_Loaded_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9497 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,37,UOEMD,SVM (RBF),,Load_Loaded_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6151 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,40,UOEMD,Random Forest,,Load_Loaded_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9624 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,41,UOEMD,SVM (RBF),,Load_Loaded_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6278 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,44,UOEMD,Random Forest,,Load_Loaded_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8482 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,45,UOEMD,SVM (RBF),,Load_Loaded_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5317 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,48,UOEMD,Random Forest,,Load_No_Load_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5189 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,49,UOEMD,SVM (RBF),,Load_No_Load_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8208 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,52,UOEMD,Random Forest,,Load_No_Load_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7336 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,53,UOEMD,SVM (RBF),,Load_No_Load_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5643 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,56,UOEMD,Random Forest,,Load_No_Load_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,57,UOEMD,SVM (RBF),,Load_No_Load_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5300 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,60,UOEMD,Random Forest,,Load_No_Load_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9747 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,61,UOEMD,SVM (RBF),,Load_No_Load_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5137 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,64,UOEMD,Random Forest,,Load_No_Load_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9365 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,65,UOEMD,SVM (RBF),,Load_No_Load_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7350 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,68,UOEMD,Random Forest,,Load_No_Load_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9617 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,69,UOEMD,SVM (RBF),,Load_No_Load_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6881 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,72,UOEMD,Random Forest,,Load_No_Load_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9624 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,73,UOEMD,SVM (RBF),,Load_No_Load_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7950 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,76,UOEMD,Random Forest,,Load_No_Load_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9498 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,77,UOEMD,SVM (RBF),,Load_No_Load_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6151 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,80,HUST_Gearbox,Random Forest,,Cond_20_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,81,HUST_Gearbox,SVM (RBF),,Cond_20_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,84,HUST_Gearbox,Random Forest,,Cond_20_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,85,HUST_Gearbox,SVM (RBF),,Cond_20_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,88,HUST_Gearbox,Random Forest,,Cond_20_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,89,HUST_Gearbox,SVM (RBF),,Cond_20_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,92,HUST_Gearbox,Random Forest,,Cond_20_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,93,HUST_Gearbox,SVM (RBF),,Cond_20_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6633 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,96,HUST_Gearbox,Random Forest,,Cond_20_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,97,HUST_Gearbox,SVM (RBF),,Cond_20_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4203 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,100,HUST_Gearbox,Random Forest,,Cond_25_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,101,HUST_Gearbox,SVM (RBF),,Cond_25_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,104,HUST_Gearbox,Random Forest,,Cond_25_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8977 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,105,HUST_Gearbox,SVM (RBF),,Cond_25_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7368 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,108,HUST_Gearbox,Random Forest,,Cond_25_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,109,HUST_Gearbox,SVM (RBF),,Cond_25_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,112,HUST_Gearbox,Random Forest,,Cond_25_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8977 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,113,HUST_Gearbox,SVM (RBF),,Cond_25_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8222 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,116,HUST_Gearbox,Random Forest,,Cond_25_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,117,HUST_Gearbox,SVM (RBF),,Cond_25_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6825 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,120,HUST_Gearbox,Random Forest,,Cond_30_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,121,HUST_Gearbox,SVM (RBF),,Cond_30_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,124,HUST_Gearbox,Random Forest,,Cond_30_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,125,HUST_Gearbox,SVM (RBF),,Cond_30_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,128,HUST_Gearbox,Random Forest,,Cond_30_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,129,HUST_Gearbox,SVM (RBF),,Cond_30_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,132,HUST_Gearbox,Random Forest,,Cond_30_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,133,HUST_Gearbox,SVM (RBF),,Cond_30_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,136,HUST_Gearbox,Random Forest,,Cond_30_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,137,HUST_Gearbox,SVM (RBF),,Cond_30_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,140,HUST_Gearbox,Random Forest,,Cond_35_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,141,HUST_Gearbox,SVM (RBF),,Cond_35_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,144,HUST_Gearbox,Random Forest,,Cond_35_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,145,HUST_Gearbox,SVM (RBF),,Cond_35_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,148,HUST_Gearbox,Random Forest,,Cond_35_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,149,HUST_Gearbox,SVM (RBF),,Cond_35_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,152,HUST_Gearbox,Random Forest,,Cond_35_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,153,HUST_Gearbox,SVM (RBF),,Cond_35_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,156,HUST_Gearbox,Random Forest,,Cond_35_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,157,HUST_Gearbox,SVM (RBF),,Cond_35_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6875 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,160,HUST_Gearbox,Random Forest,,Cond_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,161,HUST_Gearbox,SVM (RBF),,Cond_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9327 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,164,HUST_Gearbox,Random Forest,,Cond_40_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,165,HUST_Gearbox,SVM (RBF),,Cond_40_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,168,HUST_Gearbox,Random Forest,,Cond_40_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,169,HUST_Gearbox,SVM (RBF),,Cond_40_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7222 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,172,HUST_Gearbox,Random Forest,,Cond_40_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,173,HUST_Gearbox,SVM (RBF),,Cond_40_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,176,HUST_Gearbox,Random Forest,,Cond_40_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,177,HUST_Gearbox,SVM (RBF),,Cond_40_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7222 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,180,HUST_Gearbox,Random Forest,,Cond_L0_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,181,HUST_Gearbox,SVM (RBF),,Cond_L0_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7222 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,184,HUST_Gearbox,Random Forest,,Cond_L1_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,185,HUST_Gearbox,SVM (RBF),,Cond_L1_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5333 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,188,HUST_Gearbox,Random Forest,,Cond_L2_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,189,HUST_Gearbox,SVM (RBF),,Cond_L2_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,192,HUST_Gearbox,Random Forest,,Cond_L3_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,193,HUST_Gearbox,SVM (RBF),,Cond_L3_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,196,HUST_Gearbox,Random Forest,,Cond_L4_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,197,HUST_Gearbox,SVM (RBF),,Cond_L4_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7103 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,200,CWRU_48k,Random Forest,,Load_0HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.1746 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,201,CWRU_48k,SVM (RBF),,Load_0HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2739 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,204,CWRU_48k,Random Forest,,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8465 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,205,CWRU_48k,SVM (RBF),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2051 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,206,CWRU_48k,Multi-Head DL (MLP),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3333 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,207,CWRU_48k,Multi-Head DL (TABNET),,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2500 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,208,CWRU_48k,Random Forest,,Load_0HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9365 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,209,CWRU_48k,SVM (RBF),,Load_0HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3905 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,212,CWRU_48k,Random Forest,,Load_1HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9833 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,213,CWRU_48k,SVM (RBF),,Load_1HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8017 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,216,CWRU_48k,Random Forest,,Load_1HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9497 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,217,CWRU_48k,SVM (RBF),,Load_1HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7212 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,220,CWRU_48k,Random Forest,,Load_1HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,221,CWRU_48k,SVM (RBF),,Load_1HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,224,CWRU_48k,Random Forest,,Load_2HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,225,CWRU_48k,SVM (RBF),,Load_2HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7734 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,228,CWRU_48k,Random Forest,,Load_2HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9496 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,229,CWRU_48k,SVM (RBF),,Load_2HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3860 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,232,CWRU_48k,Random Forest,,Load_2HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,233,CWRU_48k,SVM (RBF),,Load_2HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7372 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,236,CWRU_48k,Random Forest,,Load_3HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,237,CWRU_48k,SVM (RBF),,Load_3HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3813 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,240,CWRU_48k,Random Forest,,Load_3HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5996 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,241,CWRU_48k,SVM (RBF),,Load_3HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4771 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,244,CWRU_48k,Random Forest,,Load_3HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_isolated_full_results_20260901_083517.csv,245,CWRU_48k,SVM (RBF),,Load_3HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7098 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,0,CWRU_12k,Random Forest [SMOTE],,Load_0HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8618 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,1,CWRU_12k,SVM (RBF) [SMOTE],,Load_0HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4447 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,4,CWRU_12k,Random Forest [SMOTE],,Load_1HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9274 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,5,CWRU_12k,SVM (RBF) [SMOTE],,Load_1HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8916 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,8,CWRU_12k,Random Forest [SMOTE],,Load_2HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9933 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,9,CWRU_12k,SVM (RBF) [SMOTE],,Load_2HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7022 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,12,CWRU_12k,Random Forest [SMOTE],,Load_3HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8984 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,13,CWRU_12k,SVM (RBF) [SMOTE],,Load_3HP,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8687 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,16,UOEMD,Random Forest [SMOTE],,Load_Loaded_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6272 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,17,UOEMD,SVM (RBF) [SMOTE],,Load_Loaded_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5434 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,20,UOEMD,Random Forest [SMOTE],,Load_Loaded_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,21,UOEMD,SVM (RBF) [SMOTE],,Load_Loaded_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8029 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,24,UOEMD,Random Forest [SMOTE],,Load_Loaded_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9747 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,25,UOEMD,SVM (RBF) [SMOTE],,Load_Loaded_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4650 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,28,UOEMD,Random Forest [SMOTE],,Load_Loaded_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5434 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,29,UOEMD,SVM (RBF) [SMOTE],,Load_Loaded_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3685 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,32,UOEMD,Random Forest [SMOTE],,Load_Loaded_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9138 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,33,UOEMD,SVM (RBF) [SMOTE],,Load_Loaded_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5637 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,36,UOEMD,Random Forest [SMOTE],,Load_Loaded_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9497 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,37,UOEMD,SVM (RBF) [SMOTE],,Load_Loaded_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6151 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,40,UOEMD,Random Forest [SMOTE],,Load_Loaded_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9624 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,41,UOEMD,SVM (RBF) [SMOTE],,Load_Loaded_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6278 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,44,UOEMD,Random Forest [SMOTE],,Load_Loaded_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8482 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,45,UOEMD,SVM (RBF) [SMOTE],,Load_Loaded_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5317 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,48,UOEMD,Random Forest [SMOTE],,Load_No_Load_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5189 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,49,UOEMD,SVM (RBF) [SMOTE],,Load_No_Load_Speed_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8208 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,52,UOEMD,Random Forest [SMOTE],,Load_No_Load_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7336 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,53,UOEMD,SVM (RBF) [SMOTE],,Load_No_Load_Speed_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5643 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,56,UOEMD,Random Forest [SMOTE],,Load_No_Load_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,57,UOEMD,SVM (RBF) [SMOTE],,Load_No_Load_Speed_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5300 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,60,UOEMD,Random Forest [SMOTE],,Load_No_Load_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9747 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,61,UOEMD,SVM (RBF) [SMOTE],,Load_No_Load_Speed_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5137 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,64,UOEMD,Random Forest [SMOTE],,Load_No_Load_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9365 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,65,UOEMD,SVM (RBF) [SMOTE],,Load_No_Load_Speed_Dec_45_to_15Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7350 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,68,UOEMD,Random Forest [SMOTE],,Load_No_Load_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9617 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,69,UOEMD,SVM (RBF) [SMOTE],,Load_No_Load_Speed_Dec_60_to_30Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6881 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,72,UOEMD,Random Forest [SMOTE],,Load_No_Load_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9624 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,73,UOEMD,SVM (RBF) [SMOTE],,Load_No_Load_Speed_Inc_15_to_45Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7950 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,76,UOEMD,Random Forest [SMOTE],,Load_No_Load_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9498 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,77,UOEMD,SVM (RBF) [SMOTE],,Load_No_Load_Speed_Inc_30_to_60Hz,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6151 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,80,HUST_Gearbox,Random Forest [SMOTE],,Cond_20_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,81,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_20_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,84,HUST_Gearbox,Random Forest [SMOTE],,Cond_20_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,85,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_20_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,88,HUST_Gearbox,Random Forest [SMOTE],,Cond_20_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,89,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_20_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,92,HUST_Gearbox,Random Forest [SMOTE],,Cond_20_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,93,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_20_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6633 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,96,HUST_Gearbox,Random Forest [SMOTE],,Cond_20_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,97,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_20_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4203 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,100,HUST_Gearbox,Random Forest [SMOTE],,Cond_25_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,101,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_25_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,104,HUST_Gearbox,Random Forest [SMOTE],,Cond_25_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8977 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,105,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_25_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7368 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,108,HUST_Gearbox,Random Forest [SMOTE],,Cond_25_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,109,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_25_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,112,HUST_Gearbox,Random Forest [SMOTE],,Cond_25_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8977 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,113,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_25_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8222 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,116,HUST_Gearbox,Random Forest [SMOTE],,Cond_25_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5556 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,117,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_25_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6825 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,120,HUST_Gearbox,Random Forest [SMOTE],,Cond_30_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,121,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_30_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,124,HUST_Gearbox,Random Forest [SMOTE],,Cond_30_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,125,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_30_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,128,HUST_Gearbox,Random Forest [SMOTE],,Cond_30_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,129,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_30_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,132,HUST_Gearbox,Random Forest [SMOTE],,Cond_30_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,133,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_30_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,136,HUST_Gearbox,Random Forest [SMOTE],,Cond_30_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,137,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_30_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,140,HUST_Gearbox,Random Forest [SMOTE],,Cond_35_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,141,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_35_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,144,HUST_Gearbox,Random Forest [SMOTE],,Cond_35_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,145,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_35_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,148,HUST_Gearbox,Random Forest [SMOTE],,Cond_35_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,149,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_35_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,152,HUST_Gearbox,Random Forest [SMOTE],,Cond_35_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,153,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_35_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,156,HUST_Gearbox,Random Forest [SMOTE],,Cond_35_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,157,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_35_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.6875 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,160,HUST_Gearbox,Random Forest [SMOTE],,Cond_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,161,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9327 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,164,HUST_Gearbox,Random Forest [SMOTE],,Cond_40_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,165,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_40_1,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,168,HUST_Gearbox,Random Forest [SMOTE],,Cond_40_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,169,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_40_2,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7222 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,172,HUST_Gearbox,Random Forest [SMOTE],,Cond_40_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,173,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_40_3,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,176,HUST_Gearbox,Random Forest [SMOTE],,Cond_40_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,177,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_40_4,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7222 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,180,HUST_Gearbox,Random Forest [SMOTE],,Cond_L0_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,181,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_L0_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7222 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,184,HUST_Gearbox,Random Forest [SMOTE],,Cond_L1_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,185,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_L1_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5333 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,188,HUST_Gearbox,Random Forest [SMOTE],,Cond_L2_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,189,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_L2_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,192,HUST_Gearbox,Random Forest [SMOTE],,Cond_L3_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,193,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_L3_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9666 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,196,HUST_Gearbox,Random Forest [SMOTE],,Cond_L4_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,197,HUST_Gearbox,SVM (RBF) [SMOTE],,Cond_L4_VS_0_40_0,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7103 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,200,CWRU_48k,Random Forest [SMOTE],,Load_0HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.1746 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,201,CWRU_48k,SVM (RBF) [SMOTE],,Load_0HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2739 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,204,CWRU_48k,Random Forest [SMOTE],,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8465 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,205,CWRU_48k,SVM (RBF) [SMOTE],,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2051 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,206,CWRU_48k,Multi-Head DL (MLP) [SMOTE],,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5357 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,207,CWRU_48k,Multi-Head DL (TABNET) [SMOTE],,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2963 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,208,CWRU_48k,Random Forest [SMOTE],,Load_0HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9365 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,209,CWRU_48k,SVM (RBF) [SMOTE],,Load_0HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3905 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,212,CWRU_48k,Random Forest [SMOTE],,Load_1HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9833 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,213,CWRU_48k,SVM (RBF) [SMOTE],,Load_1HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8017 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,216,CWRU_48k,Random Forest [SMOTE],,Load_1HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9497 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,217,CWRU_48k,SVM (RBF) [SMOTE],,Load_1HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7212 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,220,CWRU_48k,Random Forest [SMOTE],,Load_1HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,221,CWRU_48k,SVM (RBF) [SMOTE],,Load_1HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,224,CWRU_48k,Random Forest [SMOTE],,Load_2HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,225,CWRU_48k,SVM (RBF) [SMOTE],,Load_2HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7734 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,228,CWRU_48k,Random Forest [SMOTE],,Load_2HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.9496 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,229,CWRU_48k,SVM (RBF) [SMOTE],,Load_2HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3860 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,232,CWRU_48k,Random Forest [SMOTE],,Load_2HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,233,CWRU_48k,SVM (RBF) [SMOTE],,Load_2HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7372 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,236,CWRU_48k,Random Forest [SMOTE],,Load_3HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,237,CWRU_48k,SVM (RBF) [SMOTE],,Load_3HP_Sev_0.007,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3813 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,240,CWRU_48k,Random Forest [SMOTE],,Load_3HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5996 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,241,CWRU_48k,SVM (RBF) [SMOTE],,Load_3HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.4771 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,244,CWRU_48k,Random Forest [SMOTE],,Load_3HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl/tl_multihead_results_20260824_073501.csv,245,CWRU_48k,SVM (RBF) [SMOTE],,Load_3HP_Sev_0.021,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7098 (missing test class in fold).
+tl_aux_features/run_20261012_093659/results.csv,2,CWRU_48k,MLP,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.1905 (missing test class in fold).
+tl_aux_features/run_20261012_093659/results.csv,3,CWRU_48k,TABNET,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2667 (missing test class in fold).
+tl_aux_features/run_20261012_093659/results.csv,26,CWRU_48k,MLP,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7917 (missing test class in fold).
+tl_aux_features/run_20261012_093659/results.csv,27,CWRU_48k,TABNET,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5630 (missing test class in fold).
+tl_aux_features/run_20261012_093659/results.csv,50,CWRU_48k,MLP,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3333 (missing test class in fold).
+tl_aux_features/run_20261012_093659/results.csv,51,CWRU_48k,TABNET,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2963 (missing test class in fold).
+tl_aux_features/run_20261012_093659/results.csv,74,CWRU_48k,MLP,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl_aux_features/run_20261012_093659/results.csv,75,CWRU_48k,TABNET,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8990 (missing test class in fold).
+tl_aux_features/run_20261012_093659/results.csv,98,CWRU_48k,MLP,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3333 (missing test class in fold).
+tl_aux_features/run_20261012_093659/results.csv,99,CWRU_48k,TABNET,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2500 (missing test class in fold).
+tl_aux_features/run_20261012_093659/results.csv,122,CWRU_48k,MLP,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3333 (missing test class in fold).
+tl_aux_features/run_20261012_093659/results.csv,123,CWRU_48k,TABNET,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.1905 (missing test class in fold).
+tl_aux_features/run_20261012_093659/results.csv,146,CWRU_48k,MLP,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3333 (missing test class in fold).
+tl_aux_features/run_20261012_093659/results.csv,147,CWRU_48k,TABNET,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2857 (missing test class in fold).
+tl_aux_features/run_20261012_093659/results.csv,170,CWRU_48k,MLP,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3333 (missing test class in fold).
+tl_aux_features/run_20261012_093659/results.csv,171,CWRU_48k,TABNET,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5463 (missing test class in fold).
+tl_balance_strategies/run_20261012_145854/results.csv,2,CWRU_48k,MLP,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl_balance_strategies/run_20261012_145854/results.csv,3,CWRU_48k,TABNET,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8990 (missing test class in fold).
+tl_balance_strategies/run_20261012_150217/results.csv,2,CWRU_48k,MLP,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5238 (missing test class in fold).
+tl_balance_strategies/run_20261012_150217/results.csv,3,CWRU_48k,TABNET,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl_balance_strategies/run_20261012_150540/results.csv,2,CWRU_48k,MLP,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl_balance_strategies/run_20261012_150540/results.csv,3,CWRU_48k,TABNET,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8990 (missing test class in fold).
+tl_balance_strategies/run_20261012_150855/results.csv,2,CWRU_48k,MLP,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl_balance_strategies/run_20261012_150855/results.csv,3,CWRU_48k,TABNET,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8990 (missing test class in fold).
+tl_contrastive_mlp/run_20261026_212435/results.csv,1,CWRU_48k,,42,Load_0HP_Sev_0.014,ROC_AUC_NAN_MISSING_CLASS,ROC-AUC is NaN while Macro F1 == 0.3333 (ROC_AUC_Valid=False).
+tl_contrastive_mlp/run_20261026_212739/results.csv,1,CWRU_48k,,42,Load_0HP_Sev_0.014,ROC_AUC_NAN_MISSING_CLASS,ROC-AUC is NaN while Macro F1 == 0.8990 (ROC_AUC_Valid=False).
+tl_contrastive_mlp/run_20261026_212739/results.csv,13,CWRU_48k,,42,Load_0HP_Sev_0.014,ROC_AUC_NAN_MISSING_CLASS,ROC-AUC is NaN while Macro F1 == 1.0000 (ROC_AUC_Valid=False).
+tl_contrastive_mlp/run_20261026_212739/results.csv,25,CWRU_48k,,42,Load_0HP_Sev_0.014,ROC_AUC_NAN_MISSING_CLASS,ROC-AUC is NaN while Macro F1 == 0.8990 (ROC_AUC_Valid=False).
+tl_contrastive_mlp/run_20261026_212945/results.csv,1,CWRU_48k,,42,Load_0HP_Sev_0.014,ROC_AUC_NAN_MISSING_CLASS,ROC-AUC is NaN while Macro F1 == 1.0000 (ROC_AUC_Valid=False).
+tl_contrastive_mlp/run_20261026_212945/results.csv,13,CWRU_48k,,42,Load_0HP_Sev_0.014,ROC_AUC_NAN_MISSING_CLASS,ROC-AUC is NaN while Macro F1 == 0.7333 (ROC_AUC_Valid=False).
+tl_contrastive_mlp/run_20261026_213141/results.csv,1,CWRU_48k,,42,Load_0HP_Sev_0.014,ROC_AUC_NAN_MISSING_CLASS,ROC-AUC is NaN while Macro F1 == 0.7333 (ROC_AUC_Valid=False).
+tl_contrastive_mlp/run_20261026_213141/results.csv,13,CWRU_48k,,42,Load_0HP_Sev_0.014,ROC_AUC_NAN_MISSING_CLASS,ROC-AUC is NaN while Macro F1 == 0.9444 (ROC_AUC_Valid=False).
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,387,CWRU_48k,TabNet,2026,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2857 (missing test class in fold).
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,487,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,495,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,503,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,511,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,519,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,527,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,535,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,543,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,551,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,559,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,567,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,575,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,583,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,591,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_105603/results.csv,599,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,627,CWRU_48k,TabNet,2026,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2857 (missing test class in fold).
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1447,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1455,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1463,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1471,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1479,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1487,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1495,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1503,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1511,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1519,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1527,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1535,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1543,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1551,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1559,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1567,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1575,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1583,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1591,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1599,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1607,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1615,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1623,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1631,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1639,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1647,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1655,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1663,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1671,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1679,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1687,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1695,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1703,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1711,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1719,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1727,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1735,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1743,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1751,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1759,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1767,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1775,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1783,PU,TabNet,42,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1791,PU,TabNet,123,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_cross_dataset_mlp_tabnet/run_20261028_173310/results.csv,1799,PU,TabNet,2026,C4_1500rpm_0.7Nm_400N,NON_OK_STATUS,Status=ERROR_MODEL_EXECUTION | 
+tl_four_variants/run_20261005_163159/results.csv,2,CWRU_48k,MLP,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.1905 (missing test class in fold).
+tl_four_variants/run_20261005_163159/results.csv,3,CWRU_48k,TABNET,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2667 (missing test class in fold).
+tl_four_variants/run_20261005_163159/results.csv,26,CWRU_48k,MLP,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.7917 (missing test class in fold).
+tl_four_variants/run_20261005_163159/results.csv,27,CWRU_48k,TABNET,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.5630 (missing test class in fold).
+tl_four_variants/run_20261005_163159/results.csv,50,CWRU_48k,MLP,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.3333 (missing test class in fold).
+tl_four_variants/run_20261005_163159/results.csv,51,CWRU_48k,TABNET,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.2963 (missing test class in fold).
+tl_four_variants/run_20261005_163159/results.csv,74,CWRU_48k,MLP,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 1.0000 (missing test class in fold).
+tl_four_variants/run_20261005_163159/results.csv,75,CWRU_48k,TABNET,42,Load_0HP_Sev_0.014,ROC_AUC_ZERO_FALLBACK,ROC-AUC == 0.0 while Macro F1 == 0.8990 (missing test class in fold).
