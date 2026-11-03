@@ -14,18 +14,16 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.insert(0, PROJECT_ROOT)
-
-from scripts.exp_tl_balance_strategies import (  # noqa: E402
+from src.config import PROJECT_ROOT as _CONFIG_PROJECT_ROOT, RESULTS_DIR
+from scripts.exp_tl_balance_strategies import (
     SOURCE_DATASETS,
     TARGET_DATASET,
     build_feature_cache,
 )
-from src.models.build_mlp_contrastive import train_and_evaluate  # noqa: E402
+from src.models.build_mlp_contrastive import train_and_evaluate
 
-
-RESULTS_ROOT = os.path.join(PROJECT_ROOT, "results", "tl_contrastive_mlp")
+PROJECT_ROOT = str(_CONFIG_PROJECT_ROOT)
+RESULTS_ROOT = os.path.join(str(RESULTS_DIR), "tl_contrastive_mlp")
 
 
 class _Tee:

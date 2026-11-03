@@ -6,6 +6,7 @@ from scipy.signal import detrend, resample_poly
 
 import vibdata.raw as raw_datasets
 from vibdata.deep.signal.transforms import Sequential, Transform
+from src.config import PROCESSED_TL_DIR, RAW_DATA_DIR
 
 
 # ============================================================
@@ -72,16 +73,8 @@ class Detrend(Transform):
 # CONFIGURAÇÃO DOS EXPERIMENTOS
 # ============================================================
 
-# Dataset bruto usado pelo vibdata.
-RAW_DATA_DIR = "/home/vfrocha/VibNet_Project/raw_data"
-
 # Saída experimental exclusiva para Transfer Learning.
-TL_OUTPUT_DIR = os.path.abspath(
-    os.path.join(
-        os.path.dirname(__file__),
-        "../../data/processed_tl"
-    )
-)
+TL_OUTPUT_DIR = str(PROCESSED_TL_DIR)
 
 # Os datasets efetivamente usados no experimento atual.
 SOURCE_DATASETS = ["CWRU", "MFPT"]
@@ -406,7 +399,7 @@ if __name__ == "__main__":
             )
 
             ds = raw_cls(
-                RAW_DATA_DIR,
+                str(RAW_DATA_DIR),
                 download=False
             )
 

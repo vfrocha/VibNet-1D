@@ -2,18 +2,21 @@ import os
 import numpy as np
 from tqdm import tqdm
 from sklearn.preprocessing import LabelEncoder
+from src.config import DATA_ROOT
 
-def load_vibration_data(data_root, dataset_name, test_condition, task):
+def load_vibration_data(data_root=DATA_ROOT, dataset_name=None, test_condition=None, task="diagnosis"):
     """
     Carrega e separa os dados de vibração em conjuntos de treino e teste,
     garantindo que as janelas correspondam estritamente a 1 segundo físico.
     Previne erros de CUDA (Index Out of Bounds) ao ajustar o LabelEncoder
     APENAS nas classes que sobreviveram ao filtro temporal.
     """
+    if data_root is None:
+        data_root = DATA_ROOT
     print(f"Carregando {dataset_name} | Condição: {test_condition} | Tarefa: {task.upper()}")
     
     # 1. Mapeamento de caminhos e descoberta de arquivos
-    dataset_path = os.path.join(data_root, dataset_name)
+    dataset_path = os.path.join(str(data_root), dataset_name)
     if not os.path.exists(dataset_path):
         raise FileNotFoundError(f"Caminho do dataset não encontrado: {dataset_path}")
         

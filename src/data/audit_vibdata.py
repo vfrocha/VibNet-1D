@@ -1,8 +1,7 @@
 import os
 import pandas as pd
 import vibdata.raw as raw_datasets
-
-RAW_DATA_DIR = "/home/vfrocha/VibNet_Project/raw_data"
+from src.config import RAW_DATA_DIR
 
 def audit_datasets_with_vibdata():
     print("="*70)
@@ -17,7 +16,7 @@ def audit_datasets_with_vibdata():
         try:
             # Invoca a classe nativa da biblioteca
             raw_cls = getattr(raw_datasets, f"{ds_name}_raw")
-            ds = raw_cls(RAW_DATA_DIR, download=False)
+            ds = raw_cls(str(RAW_DATA_DIR), download=False)
         except Exception as e: 
             print(f" -> Erro ao carregar dataset: {e}")
             continue

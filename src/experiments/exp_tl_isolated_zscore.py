@@ -5,14 +5,11 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.metrics import balanced_accuracy_score, f1_score
 
-# Adiciona a raiz do projeto ao path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-
+from src.config import DATA_ROOT, RAW_DATA_DIR, RESULTS_DIR
 from src.features.extractors_v2 import extract_advanced_features
 from src.features.signalai_wrapper import extract_fusion_features
 
 # --- CONFIGURAÇÃO GLOBAL (TODAS AS BASES RESTAURADAS) ---
-DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
 
 DATASETS_CONFIG = {
     "CWRU_12k": 12000,

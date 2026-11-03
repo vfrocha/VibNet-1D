@@ -4,9 +4,7 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 
-# Adiciona a raiz do projeto ao path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-
+from src.config import DATA_ROOT, RAW_DATA_DIR, RESULTS_DIR
 from src.data.dataloader import load_vibration_data
 from src.features.extractors_v2 import extract_advanced_features
 from src.features.signalai_wrapper import extract_fusion_features
@@ -28,9 +26,6 @@ ALL_CONDITIONS = [
 
 # As severidades que usaremos como dobras (folds) no Leave-One-Severity-Out
 TARGET_SEVERITIES = ["0.007", "0.014", "0.021"]
-
-DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
-RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../results'))
 
 # --- MÓDULO DE AVALIAÇÃO (Intacto) ---
 def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, test_cond):

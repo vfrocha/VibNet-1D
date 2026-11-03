@@ -5,6 +5,7 @@ from tqdm import tqdm
 import vibdata.raw as raw_datasets
 from vibdata.deep.signal.transforms import Sequential, Transform
 from scipy.signal import detrend
+from src.config import DATA_ROOT, RAW_DATA_DIR
 
 # --- CLASSES AUXILIARES (1D) ---
 class SimpleSplit(Transform):
@@ -147,8 +148,7 @@ def extract_signal(item):
     return None
 
 # --- CONFIGURAÇÃO DE DIRETÓRIOS ---
-RAW_DATA_DIR = "/home/vfrocha/VibNet_Project/raw_data"
-FINAL_1D_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
+FINAL_1D_DIR = str(DATA_ROOT)
 
 if __name__ == "__main__":
     datasets = ["CWRU"]
@@ -158,7 +158,7 @@ if __name__ == "__main__":
 
         try:
             raw_cls = getattr(raw_datasets, f"{ds_name}_raw")
-            ds = raw_cls(RAW_DATA_DIR, download=False)
+            ds = raw_cls(str(RAW_DATA_DIR), download=False)
         except Exception as e: 
             print(f"Erro ao carregar {ds_name}: {e}")
             continue

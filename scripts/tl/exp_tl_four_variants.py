@@ -54,15 +54,7 @@ from sklearn.preprocessing import LabelEncoder
 # -----------------------------------------------------------------------------
 # Projeto
 # -----------------------------------------------------------------------------
-sys.path.append(
-    os.path.abspath(
-        os.path.join(
-            os.path.dirname(__file__),
-            "../..",
-        )
-    )
-)
-
+from src.config import PROCESSED_TL_DIR, PROJECT_ROOT, RESULTS_DIR
 from src.features.extractors_v2 import extract_advanced_features
 from src.features.signalai_wrapper import extract_fusion_features
 from src.models.build_tabnet_resnet import (
@@ -74,22 +66,12 @@ from src.models.build_tabnet_resnet import (
 # CONFIGURAÇÃO
 # =============================================================================
 
-PROJECT_ROOT = os.path.abspath(
-    os.path.join(
-        os.path.dirname(__file__),
-        "../..",
-    )
-)
+PROJECT_ROOT = str(PROJECT_ROOT)
 
-DATA_ROOT = os.path.join(
-    PROJECT_ROOT,
-    "data",
-    "processed_tl",
-)
+DATA_ROOT = str(PROCESSED_TL_DIR)
 
 RESULTS_ROOT = os.path.join(
-    PROJECT_ROOT,
-    "results",
+    str(RESULTS_DIR),
     "tl_four_variants",
 )
 

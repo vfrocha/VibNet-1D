@@ -8,8 +8,7 @@ BASELINE_CSV = "baseline_loco_results_20260728_192137.csv"
 TL_CSV = "tl_results_20260803_071723.csv"
 OUTPUT_CSV = "comparacao_tl_vs_baseline.csv"
 
-# Diretório base onde os resultados costumam ficar salvos
-RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../results'))
+from src.config import RESULTS_DIR
 
 def format_variation(val):
     """Formata a variação com sinal de + ou - e um emoji de status."""

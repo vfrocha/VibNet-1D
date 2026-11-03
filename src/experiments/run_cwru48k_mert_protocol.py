@@ -4,9 +4,7 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 
-# Adiciona a raiz do projeto ao path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-
+from src.config import DATA_ROOT, RAW_DATA_DIR, RESULTS_DIR
 from src.data.dataloader import load_vibration_data
 from src.features.extractors_v2 import extract_advanced_features
 from src.features.signalai_wrapper import extract_fusion_features
@@ -33,9 +31,6 @@ ALL_021_DOMAINS = [
 ]
 
 ALL_CONDITIONS = TRAIN_DOMAINS_1_TO_8 + ALL_021_DOMAINS
-
-DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
-RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../results'))
 
 
 def slice_into_subwindows(X_raw, y_raw, subwindow_size=1024):

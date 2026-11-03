@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vibnet1d"
+version = "0.1.0"
+description = "Diagnóstico de falhas em máquinas rotativas com sinais de vibração 1D, aprendizado profundo e transferência de domínio."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "pandas",
+    "scipy",
+    "scikit-learn",
+    "imbalanced-learn",
+    "xgboost",
+    "torch",
+    "pytorch-tabnet",
+    "PyWavelets",
+    "gdown",
+    "tqdm",
+    "matplotlib",
+    "seaborn",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src", "src.*"]
+

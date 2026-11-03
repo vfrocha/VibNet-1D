@@ -1,12 +1,6 @@
 import os
-import sys
 import numpy as np
-
-# Adiciona a raiz do projeto ao path para localizar a pasta data corretamente
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-
-# --- CONFIGURAÇÃO GLOBAL ---
-DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
+from src.config import DATA_ROOT, RAW_DATA_DIR, RESULTS_DIR
 
 DATASETS_CONFIG = {
     "CWRU_12k": 12000,

@@ -8,16 +8,12 @@ from scipy.signal import detrend
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 
-# Adiciona a raiz do projeto ao path para importar seus módulos originais
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-
+from src.config import DATA_ROOT, RAW_DATA_DIR, RESULTS_DIR
 from src.features.extractors_v2 import extract_advanced_features
 from src.features.signalai_wrapper import extract_fusion_features
 from src.models.build_tabnet_resnet import train_and_evaluate_multihead
 
 # --- CONFIGURAÇÃO GLOBAL ---
-DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
-RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../results'))
 
 TARGET_DATASET = "UOEMD"
 # Frequência de amostragem hipotética baseada nas conversas (ex: HUST 25.6kHz, PU 64kHz)

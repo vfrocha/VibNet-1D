@@ -7,9 +7,7 @@ from datetime import datetime
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 
-# Adiciona a raiz do projeto ao path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-
+from src.config import DATA_ROOT, RAW_DATA_DIR, RESULTS_DIR
 from src.data.dataloader import load_vibration_data
 from src.features.extractors_v2 import extract_advanced_features
 from src.features.signalai_wrapper import extract_fusion_features
@@ -45,9 +43,6 @@ DATASETS_CONFIG = {
 
 # Severidades de teste cruzado (0.028 ignorado como alvo pois a 48k não possui essa severidade)
 TARGET_SEVERITIES = ["0.007", "0.014", "0.021"]
-
-DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
-RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../results'))
 
 def evaluate_all_models(X_train, y_train, X_test, y_test, dataset_name, task, test_cond):
     fold_results = []

@@ -5,9 +5,7 @@ import pandas as pd
 from datetime import datetime
 from sklearn.preprocessing import StandardScaler
 
-# Adiciona a raiz ao path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-
+from src.config import DATA_ROOT, RAW_DATA_DIR, RESULTS_DIR
 from src.features.extractors_v2 import extract_advanced_features
 from src.features.signalai_wrapper import extract_fusion_features
 from src.data.dataloader import load_vibration_data
@@ -16,8 +14,6 @@ from src.data.dataloader import load_vibration_data
 from src.models.build_anomaly import evaluate_classical_anomaly, evaluate_autoencoder_anomaly
 
 # --- CONFIGURAÇÃO GLOBAL ---
-DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data/processed'))
-RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../results'))
 
 BASELINE_CONFIGS = {
     "CWRU_12k": {

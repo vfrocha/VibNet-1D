@@ -72,9 +72,7 @@ def _find_project_root():
     )
 
 
-PROJECT_ROOT = _find_project_root()
-sys.path.insert(0, PROJECT_ROOT)
-
+from src.config import PROCESSED_TL_DIR, PROJECT_ROOT as _CONFIG_PROJECT_ROOT, RESULTS_DIR
 from src.features.extractors_v2 import extract_advanced_features
 from src.features.signalai_wrapper import extract_fusion_features
 from src.models.build_tabnet_resnet_balance import (
@@ -86,15 +84,12 @@ from src.models.build_tabnet_resnet_balance import (
 # CONFIGURAÇÃO
 # =============================================================================
 
-DATA_ROOT = os.path.join(
-    PROJECT_ROOT,
-    "data",
-    "processed_tl",
-)
+PROJECT_ROOT = str(_CONFIG_PROJECT_ROOT)
+
+DATA_ROOT = str(PROCESSED_TL_DIR)
 
 RESULTS_ROOT = os.path.join(
-    PROJECT_ROOT,
-    "results",
+    str(RESULTS_DIR),
     "tl_balance_strategies",
 )
 

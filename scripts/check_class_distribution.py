@@ -7,9 +7,13 @@ import pandas as pd
 # DATA_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data/processed'))
 # LABELS_CSV_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), 'labels.csv')) 
 
-# Se estiver rodando no Google Colab, descomente e use os caminhos abaixo:
-DATA_ROOT = "../data/processed"
-LABELS_CSV_PATH = "/home/vfrocha/vibdata/vibdata/resources/labels.csv"
+from src.config import DATA_ROOT, RAW_DATA_DIR
+
+DATA_ROOT = str(DATA_ROOT)
+LABELS_CSV_PATH = os.environ.get(
+    "VIBDATA_LABELS_CSV",
+    "/home/vfrocha/vibdata/vibdata/resources/labels.csv",
+)
 
 def load_labels_mapping(csv_path):
     """Lê o labels.csv e mapeia dinamicamente, ignorando problemas de case e espaços."""

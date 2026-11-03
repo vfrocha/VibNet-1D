@@ -1,4 +1,32 @@
-pytorch-tabnet
-xgboost
+# =============================================================================
+# VibNet-1D — Dependências Principais
+# =============================================================================
+
+# Computação científica e processamento de sinais
+numpy
 pandas
+scipy
+PyWavelets
+
+# Machine Learning clássico, balanceamento e Deep Learning
+scikit-learn
 imbalanced-learn
+xgboost
+torch
+pytorch-tabnet
+
+# Utilitários, download e visualização
+gdown
+tqdm
+matplotlib
+seaborn
+
+# =============================================================================
+# Bibliotecas do Ecossistema de Vibração (Repositórios Git)
+# =============================================================================
+# Fork customizado da vibdata (datasets brutos e transforms):
+git+https://github.com/vfrocha/vibdata.git
+
+# SignAI-Framework (extração de características em tempo/frequência/wavelet):
+# Caso utilize um repositório/fork específico, descomente ou instale via:
+# pip install git+https://github.com/vfrocha/SignAI-Framework.git
