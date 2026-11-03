@@ -1,0 +1,135 @@
+# Fonte única de verdade para os 10 datasets do VibNet-1D (TabVibNet e Domínio do Tempo)
+datasets:
+  CWRU_12k:
+    component: bearing
+    role: target_and_source
+    fs_hz: 12000
+    window_length: 12000
+    physical_unit: g
+    n_classes: 4
+    n_conditions: 4
+    normal_class: Class_0
+    reference_dataset: CWRU_12k
+    reference_class: Class_0
+    reference_rms_detrended: 0.067780
+
+  CWRU_48k:
+    component: bearing
+    role: target
+    fs_hz: 48000
+    window_length: 48000
+    physical_unit: g
+    n_classes: 3
+    n_conditions: 12
+    normal_class: null
+    reference_dataset: CWRU_12k
+    reference_class: Class_0
+    reference_rms_detrended: 0.067780
+
+  PU:
+    component: bearing
+    role: target
+    fs_hz: 64000
+    window_length: 64000
+    physical_unit: m/s^2
+    n_classes: 6
+    n_conditions: 4
+    normal_class: Normal
+    raw_normal_code: K00
+    reference_dataset: PU
+    reference_class: Normal
+    reference_rms_detrended: 0.272094
+
+  HUST_Gearbox:
+    component: gearbox
+    role: target
+    fs_hz: 25600
+    window_length: 25600
+    physical_unit: g
+    n_classes: 4
+    n_conditions: 30
+    normal_class: Normal
+    reference_dataset: HUST_Gearbox
+    reference_class: Normal
+    reference_rms_detrended: 0.635542
+
+  UOEMD:
+    component: bearing_and_motor
+    role: target
+    fs_hz: 42000
+    window_length: 42000
+    physical_unit: g
+    n_classes: 5
+    n_conditions: 16
+    normal_class: H_1
+    raw_normal_code: H
+    reference_dataset: UOEMD
+    reference_class: H_1
+    reference_rms_detrended: 0.019937
+
+  UORED:
+    component: bearing
+    role: source
+    fs_hz: 42000
+    window_length: 42000
+    physical_unit: m/s^2
+    n_classes: 5
+    n_conditions: 1
+    normal_class: H
+    reference_dataset: UORED
+    reference_class: H
+    reference_rms_detrended: 0.104741
+
+  HUST:
+    component: bearing
+    role: source
+    fs_hz: 51200
+    window_length: 51200
+    physical_unit: m/s^2
+    n_classes: 7
+    n_conditions: 1
+    normal_class: N
+    reference_dataset: HUST
+    reference_class: N
+    reference_rms_detrended: 2.173862
+
+  MFPT:
+    component: bearing
+    role: source
+    fs_hz: 48828
+    window_length: 48828
+    physical_unit: g
+    n_classes: 3
+    n_conditions: 1
+    normal_class: Normal
+    reference_dataset: MFPT
+    reference_class: Normal
+    reference_rms_detrended: 1.012798
+
+  Mechanical_Gear:
+    component: gear
+    role: source
+    fs_hz: 5000
+    window_length: 5000
+    physical_unit: m/s^2
+    n_classes: 4
+    n_conditions: 1
+    normal_class: Normal
+    raw_normal_code: normal
+    reference_dataset: Mechanical_Gear
+    reference_class: Normal
+    reference_rms_detrended: 0.873096
+
+  Electric_Motor:
+    component: motor_and_bearing
+    role: source
+    fs_hz: 50000
+    window_length: 50000
+    physical_unit: m/s^2
+    n_classes: 3
+    n_conditions: 1
+    normal_class: Normal
+    raw_normal_code: normal
+    reference_dataset: Electric_Motor
+    reference_class: Normal
+    reference_rms_detrended: 2.096993

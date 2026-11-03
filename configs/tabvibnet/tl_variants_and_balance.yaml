@@ -1,0 +1,38 @@
+# Configuração declarativa de ablação de variantes, features auxiliares e balanceamento — TabVibNet
+experiment_family: tabvibnet
+experiment_name: tl_variants_aux_and_balance
+protocol: LOCO
+primary_metric: macro_f1
+selection_criterion: Macro_F1_Selection_Score
+
+data:
+  processed_dir: data/processed_tl
+  variants:
+    - raw
+    - detrended
+    - raw_rms
+    - detrended_rms
+  target: CWRU_48k
+  sources:
+    - CWRU_12k
+    - MFPT
+  auxiliary_feature_modes:
+    - none
+    - rms_b1_b2
+
+training:
+  balance_strategies:
+    - none
+    - smote
+    - hybrid
+    - class_weights
+  models:
+    - MLP
+    - TABNET
+  epochs: 30
+  batch_size: 64
+  seeds:
+    - 42
+
+output:
+  results_dir: results/tl_balance_strategies

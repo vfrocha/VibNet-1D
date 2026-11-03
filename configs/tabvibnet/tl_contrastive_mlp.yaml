@@ -1,0 +1,45 @@
+# Configuração declarativa do experimento de Transferência Contrastiva Supervisionada (SupCon MLP) — TabVibNet
+experiment_family: tabvibnet
+experiment_name: tl_contrastive_mlp
+protocol: LOCO
+primary_metric: macro_f1
+secondary_metrics:
+  - accuracy
+  - balanced_accuracy
+  - roc_auc
+
+data:
+  processed_dir: data/processed_tl
+  variant: detrended_rms
+  feature_dim: 141
+  include_window_rms_feature: false
+  target: CWRU_48k
+  sources:
+    - CWRU_12k
+    - MFPT
+
+training:
+  modes:
+    - baseline
+    - joint
+    - pretrain
+  encoder_profiles:
+    - baseline
+    - expanded
+  head_shapes:
+    - asymmetric
+    - symmetric
+  balance_strategy: none
+  contrastive_weight: 0.5
+  temperature: 0.1
+  epochs: 30
+  finetune_epochs: 15
+  batch_size: 64
+  learning_rate: 0.001
+  seeds:
+    - 42
+    - 123
+    - 2026
+
+output:
+  results_dir: results/tl_contrastive_mlp

@@ -1,0 +1,48 @@
+# Configuração declarativa do estudo fatorial Cross-Dataset (MLP vs TabNet) — TabVibNet
+experiment_family: tabvibnet
+experiment_name: tl_cross_dataset_mlp_tabnet
+protocol: LOCO
+primary_metric: macro_f1
+secondary_metrics:
+  - accuracy
+  - balanced_accuracy
+  - roc_auc
+
+data:
+  processed_dir: data/processed_tl
+  variant: detrended_rms
+  feature_dim: 141
+  include_window_rms_feature: false
+  targets:
+    - CWRU_12k
+    - CWRU_48k
+    - HUST_Gearbox
+    - PU
+    - UOEMD
+  sources:
+    - UORED
+    - HUST
+    - Mechanical_Gear
+    - Electric_Motor
+  source_modes:
+    - all
+    - single
+    - combinations
+
+training:
+  balance_strategy: smote
+  smote_insufficient_policy: fail_fold
+  batchnorm_safe_drop_last: true
+  models:
+    - MLP
+    - TabNet
+  epochs: 30
+  batch_size: 64
+  learning_rate: 0.001
+  seeds:
+    - 42
+    - 123
+    - 2026
+
+output:
+  results_dir: results/tl_cross_dataset_mlp_tabnet
