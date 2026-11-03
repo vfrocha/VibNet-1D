@@ -20,7 +20,7 @@ NormStrategy1D = Literal["none", "window_zscore", "window_rms", "reference_rms"]
 
 def detrend_1d(signal: np.ndarray, *, axis: int = -1) -> np.ndarray:
     """Remove a tendência linear do sinal 1D (ou lote de janelas 2D)."""
-    arr = np.asarray(signal, dtype=np.float32)
+    arr = np.asarray(signal, dtype=np.float64)
     return detrend(arr, axis=axis, type="linear").astype(np.float32, copy=False)
 
 

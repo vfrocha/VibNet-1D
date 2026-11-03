@@ -1,11 +1,19 @@
 import numpy as np
 import pandas as pd
-import signalai.features.pipelines as pipe_module
+
+try:
+    import signalai.features.pipelines as pipe_module
+except ImportError:
+    pipe_module = None
 
 class SignalAIWrapper:
     def __init__(self, sample_rate, pipeline_name='all'):
         self.fs = sample_rate
         
+        if pipe_module is None:
+            raise ImportError(
+                "Pacote 'signalai' (SignAI-Framework) não está instalado no ambiente atual."
+            )
         if hasattr(pipe_module, 'get_pipeline'):
             self.pipeline = pipe_module.get_pipeline(pipeline_name)
         else:

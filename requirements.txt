@@ -24,8 +24,10 @@ seaborn
 # =============================================================================
 # Bibliotecas do Ecossistema de Vibração (Repositórios Git)
 # =============================================================================
-# Fork customizado da vibdata (datasets brutos e transforms):
-git+https://github.com/vfrocha/vibdata.git
+# Fork customizado da vibdata (requer Python >= 3.10; instale via comando abaixo
+# ou descomente a linha a seguir em ambientes Python 3.10+ / Google Colab):
+# git+https://github.com/vfrocha/vibdata.git
+# Comando direto: pip install git+https://github.com/vfrocha/vibdata.git
 
 # SignAI-Framework (extração de características em tempo/frequência/wavelet):
 # Caso utilize um repositório/fork específico, descomente ou instale via:
