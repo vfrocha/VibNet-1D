@@ -1,0 +1,249 @@
+Dataset,Task,Test Condition,Encoder,Mode,Freeze_Backbone,Model,Bal Acc,Macro F1,ROC-AUC
+CWRU_12k,Diagnosis,Load_0HP,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.8108187134502923,0.8045676504566869,0.9081236161202464
+CWRU_12k,Diagnosis,Load_0HP,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.7236842105263158,0.6618586919473973,0.9024062426773234
+CWRU_12k,Diagnosis,Load_0HP,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.8095760233918128,0.8093405182578557,0.8918156183989785
+CWRU_12k,Diagnosis,Load_0HP,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.5605263157894737,0.5465183095955454,0.7436801819929227
+CWRU_12k,Diagnosis,Load_1HP,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.9160818713450293,0.9142692033472175,0.9735522365696851
+CWRU_12k,Diagnosis,Load_1HP,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.7488304093567251,0.7358040946240704,0.9113684210526316
+CWRU_12k,Diagnosis,Load_1HP,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.899780701754386,0.8997061608734404,0.972695715738622
+CWRU_12k,Diagnosis,Load_1HP,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.6088633040935673,0.6020407513815221,0.768669957842977
+CWRU_12k,Diagnosis,Load_2HP,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.9866228070175438,0.9866228070175438,0.999552313755403
+CWRU_12k,Diagnosis,Load_2HP,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.7767543859649122,0.7697511256574361,0.9166236015764048
+CWRU_12k,Diagnosis,Load_2HP,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.9854532163742691,0.9851972879710358,0.9968201754385966
+CWRU_12k,Diagnosis,Load_2HP,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.6065058479532164,0.5914489648504994,0.7612820800302387
+CWRU_12k,Diagnosis,Load_3HP,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.910891812865497,0.9113381811905534,0.9764074815662344
+CWRU_12k,Diagnosis,Load_3HP,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.7340643274853801,0.717567155067155,0.9011753750317824
+CWRU_12k,Diagnosis,Load_3HP,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.9044590643274855,0.9066039502345489,0.9757371917111619
+CWRU_12k,Diagnosis,Load_3HP,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.605921052631579,0.5960047058450125,0.7711413996948894
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.6125,0.5702341137123745,0.8869642857142856
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.325,0.1780147577001202,0.6516071428571429
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.625,0.5486111111111112,0.9207142857142857
+UOEMD,Diagnosis,Load_Loaded_Speed_15Hz,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.125,0.027777777777777776,0.7132142857142857
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.95,0.9491055003236992,0.9991071428571429
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.6375,0.5704578305681247,0.9644642857142858
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.725,0.686341106832121,0.8839285714285714
+UOEMD,Diagnosis,Load_Loaded_Speed_30Hz,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.475,0.40566378066378067,0.9082142857142858
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.825,0.8132589015642554,0.98875
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.45,0.41640989729225025,0.8174999999999999
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.85,0.8414920992320373,0.9830357142857142
+UOEMD,Diagnosis,Load_Loaded_Speed_45Hz,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.2625,0.17701931518876207,0.7596428571428571
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.775,0.7324561403508771,0.9608928571428572
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.5625,0.4945981554677207,0.8712500000000001
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.625,0.55,0.8696428571428572
+UOEMD,Diagnosis,Load_Loaded_Speed_60Hz,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.2375,0.1906334841628959,0.5669642857142857
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.8125,0.8151092973074398,0.9719642857142858
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.4375,0.38230584833845704,0.7694642857142857
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.7875000000000001,0.7841630591630592,0.9675
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_45_to_15Hz,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.3125,0.26929660169915043,0.6528571428571428
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.9,0.8979770616380524,0.9907142857142857
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.42500000000000004,0.4187087218337219,0.8080357142857142
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.825,0.8212849832915623,0.9769642857142857
+UOEMD,Diagnosis,Load_Loaded_Speed_Dec_60_to_30Hz,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.36249999999999993,0.36872542232449357,0.7766071428571428
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.825,0.821171802054155,0.9785714285714286
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.4375,0.3892364975104855,0.7951785714285715
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.8375,0.8375052213868003,0.9391071428571429
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_15_to_45Hz,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.325,0.2847101728680676,0.73875
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.825,0.8213569518716578,0.9803571428571429
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.4125,0.38839319042286563,0.7882142857142858
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.7875000000000001,0.7827380952380952,0.9658928571428571
+UOEMD,Diagnosis,Load_Loaded_Speed_Inc_30_to_60Hz,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.375,0.34848901098901097,0.7492857142857143
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.9375,0.9356237060041408,0.9975
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.15,0.06696428571428571,0.7632142857142856
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.4875,0.42090502699055327,0.8839285714285714
+UOEMD,Diagnosis,Load_No_Load_Speed_15Hz,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.125,0.027777777777777776,0.6014285714285714
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.675,0.6373177261335157,0.94375
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.2625,0.24758454106280192,0.81
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.725,0.647716816195077,0.9508928571428572
+UOEMD,Diagnosis,Load_No_Load_Speed_30Hz,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.375,0.3125,0.8823214285714285
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.725,0.7139918148213342,0.9762500000000001
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.4375,0.41642665130568357,0.87
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.6625,0.6358173076923077,0.9376785714285714
+UOEMD,Diagnosis,Load_No_Load_Speed_45Hz,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.4375,0.3998114630467572,0.8639285714285714
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.7749999999999999,0.7440704032809295,0.9833928571428572
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.5125,0.43939393939393934,0.8655357142857143
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.925,0.9227234753550544,0.985
+UOEMD,Diagnosis,Load_No_Load_Speed_60Hz,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.3375,0.32260412001791317,0.7580357142857144
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.8875,0.8869636211741474,0.9807142857142858
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.475,0.4184819999700872,0.8326785714285714
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.8,0.7940613845219108,0.9753571428571428
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_45_to_15Hz,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.3375,0.27012774806892453,0.7221428571428572
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.9375,0.937569921179761,0.9960714285714286
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.48750000000000004,0.41809000108418715,0.8391071428571428
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.8125,0.8136611776671003,0.9741071428571428
+UOEMD,Diagnosis,Load_No_Load_Speed_Dec_60_to_30Hz,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.42500000000000004,0.37658830046129815,0.8053571428571429
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.925,0.9223191669012103,0.9939285714285714
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.475,0.4412010418202369,0.8285714285714286
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.8500000000000001,0.8467686086292224,0.98
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_15_to_45Hz,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.35,0.29424603174603176,0.7151785714285714
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.8625,0.8618659505269413,0.9907142857142857
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.5125000000000001,0.45320564256491036,0.8403571428571428
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.8625,0.8630477709425077,0.9683928571428572
+UOEMD,Diagnosis,Load_No_Load_Speed_Inc_30_to_60Hz,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.4125,0.40258688071188076,0.7951785714285714
+HUST_Gearbox,Diagnosis,Cond_20_0,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_0,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_0,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_0,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.7000000000000001,0.6238244514106583,1.0
+HUST_Gearbox,Diagnosis,Cond_20_1,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_1,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.6666666666666666,0.5555555555555555,1.0
+HUST_Gearbox,Diagnosis,Cond_20_1,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.8666666666666667,0.8611111111111112,1.0
+HUST_Gearbox,Diagnosis,Cond_20_1,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.7000000000000001,0.68,0.82
+HUST_Gearbox,Diagnosis,Cond_20_2,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_2,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.7333333333333334,0.6825396825396827,1.0
+HUST_Gearbox,Diagnosis,Cond_20_2,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.7666666666666666,0.7340930674264007,0.9899999999999999
+HUST_Gearbox,Diagnosis,Cond_20_2,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.9666666666666667,0.9665831244778613,1.0
+HUST_Gearbox,Diagnosis,Cond_20_3,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_20_3,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.6666666666666666,0.5555555555555555,0.7916666666666666
+HUST_Gearbox,Diagnosis,Cond_20_3,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.7999999999999999,0.797979797979798,0.9066666666666667
+HUST_Gearbox,Diagnosis,Cond_20_3,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.9333333333333332,0.9326599326599326,1.0
+HUST_Gearbox,Diagnosis,Cond_20_4,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.3666666666666667,0.3650793650793651,0.6666666666666666
+HUST_Gearbox,Diagnosis,Cond_20_4,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.5,0.4666666666666666,0.6666666666666666
+HUST_Gearbox,Diagnosis,Cond_20_4,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.3333333333333333,0.3333333333333333,0.52
+HUST_Gearbox,Diagnosis,Cond_20_4,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.39999999999999997,0.393939393939394,0.6666666666666666
+HUST_Gearbox,Diagnosis,Cond_25_0,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_0,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_0,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_0,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.8333333333333334,0.8329156223893066,0.9533333333333333
+HUST_Gearbox,Diagnosis,Cond_25_1,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_1,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_1,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.9666666666666667,0.9665831244778613,1.0
+HUST_Gearbox,Diagnosis,Cond_25_1,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.8333333333333334,0.8222222222222223,0.9933333333333333
+HUST_Gearbox,Diagnosis,Cond_25_2,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_2,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_2,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_2,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.9666666666666667,0.9665831244778612,1.0
+HUST_Gearbox,Diagnosis,Cond_25_3,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_3,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_3,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_3,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_25_4,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.6666666666666666,0.5555555555555555,1.0
+HUST_Gearbox,Diagnosis,Cond_25_4,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.7666666666666666,0.7340930674264007,1.0
+HUST_Gearbox,Diagnosis,Cond_25_4,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.6666666666666666,0.5555555555555555,1.0
+HUST_Gearbox,Diagnosis,Cond_25_4,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.8333333333333334,0.8222222222222223,0.9966666666666667
+HUST_Gearbox,Diagnosis,Cond_30_0,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_0,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_0,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_0,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.6333333333333333,0.5402298850574713,0.805
+HUST_Gearbox,Diagnosis,Cond_30_1,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_1,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_1,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_1,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.6666666666666666,0.5555555555555555,0.7333333333333334
+HUST_Gearbox,Diagnosis,Cond_30_2,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_2,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_2,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_2,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.9666666666666667,0.9665831244778612,1.0
+HUST_Gearbox,Diagnosis,Cond_30_3,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_3,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_3,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_3,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_4,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_4,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_4,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_30_4,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.8333333333333334,0.8294970161977835,0.8833333333333334
+HUST_Gearbox,Diagnosis,Cond_35_0,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_0,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_0,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.9333333333333332,0.9326599326599326,0.9983333333333334
+HUST_Gearbox,Diagnosis,Cond_35_0,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.6666666666666666,0.5555555555555555,0.7633333333333333
+HUST_Gearbox,Diagnosis,Cond_35_1,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_1,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_1,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_1,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.6666666666666666,0.5555555555555555,0.9349999999999999
+HUST_Gearbox,Diagnosis,Cond_35_2,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_2,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_2,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_2,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.8666666666666667,0.8611111111111112,1.0
+HUST_Gearbox,Diagnosis,Cond_35_3,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_3,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_3,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_3,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_35_4,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.8333333333333334,0.8174603174603173,0.8283333333333333
+HUST_Gearbox,Diagnosis,Cond_35_4,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.8666666666666667,0.8611111111111112,0.7999999999999999
+HUST_Gearbox,Diagnosis,Cond_35_4,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.8333333333333334,0.8151075977162933,0.8650000000000001
+HUST_Gearbox,Diagnosis,Cond_35_4,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.7666666666666666,0.7660818713450293,0.8983333333333334
+HUST_Gearbox,Diagnosis,Cond_40_0,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_0,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_0,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.7333333333333334,0.6825396825396827,0.9583333333333334
+HUST_Gearbox,Diagnosis,Cond_40_0,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.9666666666666667,0.9665831244778613,1.0
+HUST_Gearbox,Diagnosis,Cond_40_1,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_1,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_1,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_1,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.7666666666666666,0.7340930674264007,1.0
+HUST_Gearbox,Diagnosis,Cond_40_2,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_2,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_2,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_2,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.9333333333333332,0.9326599326599326,1.0
+HUST_Gearbox,Diagnosis,Cond_40_3,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_3,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_3,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_3,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_4,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_40_4,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.9666666666666667,0.9665831244778612,1.0
+HUST_Gearbox,Diagnosis,Cond_40_4,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.7333333333333334,0.6825396825396824,1.0
+HUST_Gearbox,Diagnosis,Cond_40_4,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.6666666666666666,0.5555555555555555,0.7116666666666666
+HUST_Gearbox,Diagnosis,Cond_L0_VS_0_40_0,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.9333333333333332,0.9326599326599326,1.0
+HUST_Gearbox,Diagnosis,Cond_L0_VS_0_40_0,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.7333333333333334,0.7193732193732193,0.9483333333333334
+HUST_Gearbox,Diagnosis,Cond_L0_VS_0_40_0,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L0_VS_0_40_0,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.6666666666666666,0.5555555555555555,0.6999999999999998
+HUST_Gearbox,Diagnosis,Cond_L1_VS_0_40_0,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L1_VS_0_40_0,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.8666666666666667,0.8622895622895622,0.9550000000000001
+HUST_Gearbox,Diagnosis,Cond_L1_VS_0_40_0,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L1_VS_0_40_0,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.7999999999999999,0.7916666666666666,0.86
+HUST_Gearbox,Diagnosis,Cond_L2_VS_0_40_0,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.9666666666666667,0.9665831244778613,1.0
+HUST_Gearbox,Diagnosis,Cond_L2_VS_0_40_0,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.7333333333333334,0.6705516705516706,0.9899999999999999
+HUST_Gearbox,Diagnosis,Cond_L2_VS_0_40_0,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L2_VS_0_40_0,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.6666666666666666,0.5555555555555555,0.8683333333333333
+HUST_Gearbox,Diagnosis,Cond_L3_VS_0_40_0,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L3_VS_0_40_0,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.6666666666666666,0.5783838383838383,0.9033333333333333
+HUST_Gearbox,Diagnosis,Cond_L3_VS_0_40_0,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L3_VS_0_40_0,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.6,0.5185185185185185,0.8116666666666666
+HUST_Gearbox,Diagnosis,Cond_L4_VS_0_40_0,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L4_VS_0_40_0,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.6666666666666666,0.5555555555555555,0.91
+HUST_Gearbox,Diagnosis,Cond_L4_VS_0_40_0,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+HUST_Gearbox,Diagnosis,Cond_L4_VS_0_40_0,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.6666666666666666,0.5555555555555555,0.8333333333333334
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.007,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.5333333333333333,0.43162393162393164,0.8550000000000001
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.007,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.3333333333333333,0.29012345679012347,0.355
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.007,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.5333333333333333,0.4937739463601532,0.7383333333333333
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.007,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.6333333333333333,0.621031746031746,0.7266666666666667
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.014,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.8,0.5530303030303031,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.014,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.1,0.06666666666666667,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.014,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.4,0.3333333333333333,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.014,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.1,0.06060606060606061,0.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.021,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.021,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.5,0.3625730994152046,0.7660714285714286
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.021,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_0HP_Sev_0.021,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.5833333333333334,0.6222222222222222,0.4892857142857143
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.007,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.007,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.5166666666666667,0.5230883681385833,0.75375
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.007,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.7999999999999999,0.7944219523166892,0.9545833333333333
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.007,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.6166666666666667,0.5367965367965368,0.7658333333333335
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.014,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.9833333333333334,0.9799587385794283,1.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.014,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.4071428571428571,0.3773109243697479,0.6311274509803921
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.014,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.7857142857142856,0.7839663643235072,0.9610294117647058
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.014,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.2380952380952381,0.2022022022022022,0.4253151260504202
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.021,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.021,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.7833333333333333,0.7598717647978731,0.9420833333333333
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.021,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_1HP_Sev_0.021,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.48333333333333334,0.5026553894571203,0.6725
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.007,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.007,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.6166666666666667,0.6271176837214573,0.7945833333333333
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.007,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.007,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.48333333333333334,0.5028315110737314,0.6925
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.014,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.9666666666666667,0.9666666666666667,0.9954166666666667
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.014,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.39999999999999997,0.4000000000000001,0.6625
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.014,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.9166666666666666,0.9162080466958517,0.9866666666666667
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.014,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.21666666666666667,0.16896141424443312,0.4320833333333334
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.021,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.021,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.7000000000000001,0.6904761904761906,0.9483333333333333
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.021,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.9,0.8976982097186701,0.9904166666666666
+CWRU_48k,Diagnosis,Load_2HP_Sev_0.021,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.5,0.513624618275781,0.5637500000000001
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.007,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.007,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.6166666666666667,0.6094276094276094,0.8158333333333333
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.007,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.8333333333333334,0.8222222222222223,0.9304166666666666
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.007,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.5166666666666666,0.5201432022084197,0.6979166666666666
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.014,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],0.9500000000000001,0.9506533178503802,0.9499999999999998
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.014,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.6333333333333333,0.6411862990810359,0.7320833333333333
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.014,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.9,0.8976982097186701,0.9187500000000001
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.014,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.18333333333333335,0.12797619047619047,0.33125
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.021,MLP,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [MLP],1.0,1.0,1.0
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.021,MLP,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [MLP],0.6833333333333332,0.6641390710819602,0.9162500000000001
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.021,TABNET,VibNet-Tab (Fine-Tuning),False,VibNet-Tab (Fine-Tuning) [TABNET],0.9500000000000001,0.9497171590194847,0.995
+CWRU_48k,Diagnosis,Load_3HP_Sev_0.021,TABNET,VibNet-Tab (Linear Probing),True,VibNet-Tab (Linear Probing) [TABNET],0.6166666666666667,0.6123618928496978,0.5933333333333334
