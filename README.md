@@ -27,6 +27,8 @@ VibNet-1D/
 │   ├── project_overview.md                 # Project evolution, architecture, and roadmap
 │   ├── datasets_and_protocols.md           # Dataset specifications, 141 features, and LOCO protocol
 │   ├── reproducibility.md                  # Provenance schema (run_metadata.json) & reproduction guide
+│   ├── experiments/
+│   │   └── baseline_loco_v2.md             # Leakage-free paired LOCO supervised baseline specification
 │   ├── results/
 │   │   └── tabvibnet_summary.md            # Consolidated & audited TabVibNet empirical results
 │   └── decisions/                          # Architecture Decision Records (ADRs)
@@ -70,9 +72,10 @@ VibNet-1D/
 │   ├── preprocessing/                      # Dataset-level RMS normalization implementation
 │   ├── features/                           # 141-feature extractors (Time, FFT/PSD, WPD db4, EMD)
 │   ├── models/                             # Multi-Head MLP, SupCon MLP, TabNet, baselines & 1D time models (build_1d_time.py)
-│   └── experiments/                        # Experiment runners
+│   └── experiments/                        # Experiment runners (including run_baseline_loco_v2.py)
 └── tests/                                  # Unit test suites (stdlib-compatible & ML tensor tests)
     ├── test_audit_experimental_results.py
+    ├── test_baseline_loco_v2.py
     ├── test_vibnet_modular_architecture.py
     └── test_mlp_contrastive.py
 ```
@@ -241,6 +244,9 @@ python experiments/tabvibnet/run_contrastive_tl.py
 
 # 3. Cross-Dataset Multi-Source Transfer Learning benchmark (MLP vs. TabNet)
 python experiments/tabvibnet/run_cross_dataset_tl.py
+
+# 4. Leakage-free paired LOCO supervised baseline benchmark (baseline_loco_v2)
+python -m src.experiments.run_baseline_loco_v2
 ```
 
 ---
@@ -249,6 +255,7 @@ python experiments/tabvibnet/run_cross_dataset_tl.py
 
 - **Project Overview & Evolution:** [`docs/project_overview.md`](docs/project_overview.md)
 - **Datasets, 141 Features & LOCO Protocol:** [`docs/datasets_and_protocols.md`](docs/datasets_and_protocols.md)
+- **Leakage-Free Paired LOCO Baseline (`baseline_loco_v2`):** [`docs/experiments/baseline_loco_v2.md`](docs/experiments/baseline_loco_v2.md)
 - **Reproducibility & Provenance Guide:** [`docs/reproducibility.md`](docs/reproducibility.md)
 - **Consolidated `TabVibNet` Results:** [`docs/results/tabvibnet_summary.md`](docs/results/tabvibnet_summary.md)
 - **Automated Audit Report:** [`reports/reproducibility_audit/EXPERIMENTAL_RESULTS_REPORT.md`](reports/reproducibility_audit/EXPERIMENTAL_RESULTS_REPORT.md)
