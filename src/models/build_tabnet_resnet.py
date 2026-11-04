@@ -26,11 +26,13 @@ def train_and_evaluate_tabnet_tl(
     pretrain_epochs=30,
     finetune_epochs=100,
     batch_size=512,
-    seed=42
+    seed=42,
+    freeze_backbone: bool = False
 ):
     """
     Transfer Learning Oficial com TabNetPretrainer (Auto-Supervisionado nas Sources)
-    seguido de Fine-Tuning Supervisionado com TabNetClassifier no Target.
+    seguido de Fine-Tuning Supervisionado com TabNetClassifier no Target (ou Linear Probing
+    quando freeze_backbone=True).
     """
     torch.manual_seed(seed)
     np.random.seed(seed)
@@ -104,45 +106,98 @@ def train_and_evaluate_tabnet_tl(
         )
         _PRETRAINER_CACHE[cache_signature] = copy.deepcopy(unsupervised_model)
 
-    # 4. Etapa 2: Fine-Tuning Supervisionado no Target (mesma arquitetura do Baseline Puro)
-    clf = TabNetClassifier(
-        n_d=16,
-        n_a=16,
-        n_steps=5,
-        gamma=1.5,
-        n_independent=2,
-        n_shared=2,
-        lambda_sparse=1e-4,
-        optimizer_fn=torch.optim.Adam,
-        optimizer_params=dict(lr=1e-2, weight_decay=1e-5), # LR levemente menor para preservar o pré-treino
-        scheduler_fn=torch.optim.lr_scheduler.StepLR,
-        scheduler_params=dict(step_size=20, gamma=0.9),
-        mask_type='entmax',
-        verbose=0,
-        seed=seed
-    )
+    # 4. Etapa 2: Adaptação Supervisionada no Target (Fine-Tuning vs Linear Probing)
+    if not freeze_backbone:
+        clf = TabNetClassifier(
+            n_d=16,
+            n_a=16,
+            n_steps=5,
+            gamma=1.5,
+            n_independent=2,
+            n_shared=2,
+            lambda_sparse=1e-4,
+            optimizer_fn=torch.optim.Adam,
+            optimizer_params=dict(lr=1e-2, weight_decay=1e-5), # LR levemente menor para preservar o pré-treino
+            scheduler_fn=torch.optim.lr_scheduler.StepLR,
+            scheduler_params=dict(step_size=20, gamma=0.9),
+            mask_type='entmax',
+            verbose=0,
+            seed=seed
+        )
 
-    # Nota: Usamos apenas o treino para monitorar ou sem early stopping no X_test 
-    # caso haja classes desbalanceadas, ou eval_set no X_test_s se todas as classes existirem
-    clf.fit(
-        X_train=X_target_tr_s,
-        y_train=y_target_tr,
-        eval_set=[(X_target_tr_s, y_target_tr)],
-        eval_name=['train'],
-        eval_metric=['balanced_accuracy'],
-        max_epochs=finetune_epochs,
-        patience=20,
-        batch_size=min(256, len(X_target_tr_s)),
-        virtual_batch_size=min(128, len(X_target_tr_s)),
-        num_workers=0,
-        drop_last=False,
-        from_unsupervised=unsupervised_model
-    )
+        # Nota: Usamos apenas o treino para monitorar ou sem early stopping no X_test 
+        # caso haja classes desbalanceadas, ou eval_set no X_test_s se todas as classes existirem
+        clf.fit(
+            X_train=X_target_tr_s,
+            y_train=y_target_tr,
+            eval_set=[(X_target_tr_s, y_target_tr)],
+            eval_name=['train'],
+            eval_metric=['balanced_accuracy'],
+            max_epochs=finetune_epochs,
+            patience=20,
+            batch_size=min(256, len(X_target_tr_s)),
+            virtual_batch_size=min(128, len(X_target_tr_s)),
+            num_workers=0,
+            drop_last=False,
+            from_unsupervised=unsupervised_model
+        )
 
-    # 5. Predição e Extração de Métricas
-    preds = clf.predict(X_test_s)
-    probs = clf.predict_proba(X_test_s)
-    mean_attention = clf.feature_importances_
+        # 5. Predição e Extração de Métricas
+        preds = clf.predict(X_test_s)
+        probs = clf.predict_proba(X_test_s)
+        mean_attention = clf.feature_importances_
+    else:
+        # Linear Probing: congela o encoder do TabNetPretrainer (eval + requires_grad=False)
+        # e treina apenas uma cabeça linear sobre a representação latente (n_d=16).
+        device = unsupervised_model.device
+        backbone_net = unsupervised_model.network
+        backbone_net.eval()
+        for param in backbone_net.parameters():
+            param.requires_grad = False
+
+        num_classes = 2 if task == 'detection' else int(len(np.unique(y_target_tr)))
+        linear_head = nn.Linear(16, num_classes).to(device)
+        linear_head.reset_parameters()
+        for param in linear_head.parameters():
+            param.requires_grad = True
+
+        ft_optimizer = optim.Adam(linear_head.parameters(), lr=0.001, weight_decay=1e-5)
+        criterion = nn.CrossEntropyLoss()
+
+        X_tr_t = torch.tensor(X_target_tr_s, dtype=torch.float32)
+        y_tr_t = torch.tensor(y_target_tr, dtype=torch.long)
+        target_loader = DataLoader(
+            TensorDataset(X_tr_t, y_tr_t),
+            batch_size=min(128, batch_size),
+            shuffle=True
+        )
+
+        for _ in range(finetune_epochs):
+            backbone_net.eval()
+            linear_head.train()
+            for bx, by in target_loader:
+                bx, by = bx.to(device), by.to(device)
+                ft_optimizer.zero_grad()
+                with torch.no_grad():
+                    embedded_x = backbone_net.embedder(bx)
+                    steps_out, _ = backbone_net.encoder(embedded_x)
+                    latent = torch.sum(torch.stack(steps_out, dim=0), dim=0)
+                logits = linear_head(latent)
+                loss = criterion(logits, by)
+                loss.backward()
+                ft_optimizer.step()
+
+        backbone_net.eval()
+        linear_head.eval()
+        with torch.no_grad():
+            X_te_t = torch.tensor(X_test_s, dtype=torch.float32).to(device)
+            embedded_te = backbone_net.embedder(X_te_t)
+            steps_te, _ = backbone_net.encoder(embedded_te)
+            latent_te = torch.sum(torch.stack(steps_te, dim=0), dim=0)
+            logits_te = linear_head(latent_te)
+            probs = torch.softmax(logits_te, dim=1).cpu().numpy()
+            preds = np.argmax(probs, axis=1)
+            mean_attention = np.ones(X_test_s.shape[1], dtype=np.float32) / X_test_s.shape[1]
 
     bal_acc = balanced_accuracy_score(y_test, preds)
     if task == 'detection':
@@ -276,7 +331,17 @@ class HybridDLModel(nn.Module):
 # ---------------------------------------------------------------------------
 # 4. FUNÇÃO DE TREINAMENTO (Otimizada para Multi-Head e Múltiplos Scalers)
 # ---------------------------------------------------------------------------
-def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y_test, task, epochs=15, batch_size=512, encoder_type='mlp'):
+def train_and_evaluate_multihead(
+    train_data_dict,
+    target_dataset_name,
+    X_test,
+    y_test,
+    task,
+    epochs=15,
+    batch_size=512,
+    encoder_type='mlp',
+    freeze_backbone: bool = False
+):
 
     if encoder_type == 'tabnet':
         return train_and_evaluate_tabnet_tl(
@@ -287,7 +352,8 @@ def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y
             task=task,
             pretrain_epochs=max(25, epochs),
             finetune_epochs=100,
-            batch_size=batch_size
+            batch_size=batch_size,
+            freeze_backbone=freeze_backbone
         )
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -329,12 +395,14 @@ def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y
     criterion = nn.CrossEntropyLoss()
     
     # -------------------------------------------------------------------------
-    # ETAPA 1: Pré-treinamento Multi-Domínio (Sources + Target)
+    # ETAPA 1: Pré-treinamento Multi-Domínio (Sources + Target, ou apenas Sources se freeze_backbone=True)
     # -------------------------------------------------------------------------
     optimizer = optim.Adam(model.parameters(), lr=0.002, weight_decay=1e-5)
     model.train()
     for epoch in range(epochs):
         for d_name, loader in train_loaders.items():
+            if freeze_backbone and d_name == target_dataset_name:
+                continue
             for bx, by in loader:
                 bx, by = bx.to(device), by.to(device)
                 optimizer.zero_grad()
@@ -344,14 +412,38 @@ def train_and_evaluate_multihead(train_data_dict, target_dataset_name, X_test, y
                 optimizer.step()
 
     # -------------------------------------------------------------------------
-    # ETAPA 2: Fine-Tuning Exclusivo no Target Dataset
+    # ETAPA 2: Adaptação Exclusiva no Target Dataset (Fine-Tuning vs Linear Probing)
     # -------------------------------------------------------------------------
     if target_dataset_name in train_loaders:
-        ft_optimizer = optim.Adam(model.parameters(), lr=0.0005, weight_decay=1e-5)
         target_loader = train_loaders[target_dataset_name]
         ft_epochs = max(20, epochs) # Garante convergência na máquina-alvo
+
+        if freeze_backbone:
+            for param in model.encoder.parameters():
+                param.requires_grad = False
+            for param in model.bottleneck.parameters():
+                param.requires_grad = False
+
+            model.encoder.eval()
+            model.bottleneck.eval()
+
+            model.heads[target_dataset_name].reset_parameters()
+            for param in model.heads[target_dataset_name].parameters():
+                param.requires_grad = True
+
+            ft_optimizer = optim.Adam(
+                model.heads[target_dataset_name].parameters(),
+                lr=0.001,
+                weight_decay=1e-5
+            )
+        else:
+            ft_optimizer = optim.Adam(model.parameters(), lr=0.0005, weight_decay=1e-5)
         
         for epoch in range(ft_epochs):
+            if freeze_backbone:
+                model.encoder.eval()
+                model.bottleneck.eval()
+                model.heads[target_dataset_name].train()
             for bx, by in target_loader:
                 bx, by = bx.to(device), by.to(device)
                 ft_optimizer.zero_grad()
