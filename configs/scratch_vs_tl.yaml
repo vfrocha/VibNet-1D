@@ -1,0 +1,73 @@
+# Declarative configuration for the Scratch vs. Transfer Learning benchmark
+# (`configs/scratch_vs_tl.yaml`).
+# Defines target datasets, target-specific disjoint source pools, architectures,
+# methods, preprocessing, balance strategies, seeds, and hyperparameters.
+
+experiment_id: "scratch_vs_tl"
+task: "diagnosis"
+preprocessing: "detrended_rms"
+feature_dimension: 141
+
+target_datasets:
+  - "CWRU_12k"
+  - "CWRU_48k"
+  - "HUST_Gearbox"
+  - "UOEMD"
+  - "PU"
+
+expected_loco_folds:
+  CWRU_12k: 4
+  CWRU_48k: 12
+  HUST_Gearbox: 30
+  UOEMD: 16
+  PU: 4
+
+# Dedicated 4-source pool completely disjoint from all 5 target datasets
+source_pools_by_target:
+  CWRU_12k: ["UORED", "HUST", "Mechanical_Gear", "Electric_Motor"]
+  CWRU_48k: ["UORED", "HUST", "Mechanical_Gear", "Electric_Motor"]
+  HUST_Gearbox: ["UORED", "HUST", "Mechanical_Gear", "Electric_Motor"]
+  UOEMD: ["UORED", "HUST", "Mechanical_Gear", "Electric_Motor"]
+  PU: ["UORED", "HUST", "Mechanical_Gear", "Electric_Motor"]
+
+architectures:
+  - "MLP"
+  - "TabNet"
+
+methods:
+  - "Scratch"
+  - "Fine-Tuning"
+  - "Linear Probing"
+
+balance_strategies:
+  - "none"
+  - "smote"
+
+seeds:
+  - 42
+  - 123
+  - 2026
+
+hyperparameters:
+  pretrain_epochs: 30
+  target_epochs: 30
+  batch_size: 64
+  tabnet_patience: 15
+  mlp_lr_pretrain: 0.001
+  mlp_lr_scratch: 0.001
+  mlp_lr_finetune_backbone: 0.0005
+  mlp_lr_finetune_head: 0.001
+  mlp_lr_linear_probing: 0.001
+  mlp_weight_decay: 0.0001
+  tabnet_n_d: 16
+  tabnet_n_a: 16
+  tabnet_n_steps: 4
+  tabnet_gamma: 1.3
+  tabnet_n_independent: 2
+  tabnet_n_shared: 2
+  tabnet_mask_type: "sparsemax"
+  tabnet_lr_pretrain: 0.02
+  tabnet_lr_scratch: 0.02
+  tabnet_lr_finetune: 0.01
+  tabnet_lr_linear_probing: 0.01
+
