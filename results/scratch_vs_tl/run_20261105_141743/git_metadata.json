@@ -1,0 +1,40 @@
+{
+  "timestamp_utc": "2026-11-05T17:17:43.351162+00:00",
+  "git_commit": "1e9e6202d4b2fcd39ff6f12f253b3b5526abf165",
+  "git_branch": "main",
+  "git_dirty": true,
+  "git_status_summary": "?? nohup.out\n?? results/scratch_vs_tl/run_20261105_141743/",
+  "file_hashes_sha256": {
+    "src/experiments/run_baseline_loco_v2.py": "83c59b95d092ac42b80a9c8e66c884969d5d146a7df2b1ef7fc94146e6061c47",
+    "src/experiments/run_baseline_experiments.py": "498f69f8cbe15d2e74714051aeef7a706ef043724ceaac03547a5891580e93fc",
+    "src/experiments/run_tabvibnet_linear_probing.py": "7a6242a06b0387bb694083c63241961b75d28cc92d622b8f1167707579548c34",
+    "scripts/exp_tl_cross_dataset_mlp_tabnet.py": "f8de393558ce514e32a43eafbe9df1ca69eaa6dc967a991367d3071cc0a39733",
+    "scripts/exp_tl_balance_strategies.py": "f374677aedca6cb5fc65ac07a69b08172606ed4b40a452f65a53836f99fb7cc3",
+    "scripts/exp_tl_contrastive_mlp.py": "db41c05540a198699822e19fa20d70944571832dd37fefaa3e691febe0f3190b",
+    "src/models/build_tabnet_resnet.py": "db9e53eccc168107a6fc6ca87a40da4fccf26077d053dbbbd1e6c3ad8899cb2c",
+    "src/models/build_tabnet_resnet_balance.py": "b7500731135cba9f84a468464686fed3824bfd39a841cd1947f0a31aa61b17b3",
+    "src/models/build_tabular.py": "5252b8d5317f0e758851fa17cf63626f2aceccea516d237ca9ddf23262169bd4",
+    "src/models/build_sklearn.py": "8889573a53fb8db2683150e9ed90b1b68daf11b44070ff4225b3d31bdeec37c7",
+    "src/models/build_pytorch_baselines.py": "6a79b355749ee3f239ccc80c920da36f86810988917a1869b13da07334f8484d",
+    "src/features/extractors_v2.py": "6b98a00c705bee0ae4adb8963e8c9fb3129b78ff5a25e210ca8f1253dd3442b2",
+    "src/features/signalai_wrapper.py": "a17832990a3f999cf3062f0e213acebf6bcad2de4ea66e93050b0c69a3e0a4be",
+    "src/preprocessing/normalize_dataset_tl.py": "630c221c1f82fa82159794d34acaa8959b3506a67d699de707c108a66bd4237d",
+    "src/vibnet/data/registry.py": "b78d492985abd40507e4cec123b4ac838fd1bb88ec600d1c12e7805f9f95c2eb",
+    "configs/datasets.yaml": "98e9a822f3f461abcbecae25105695d1652e09314999b0d892d3caf5508523c2"
+  },
+  "dependency_versions": {
+    "numpy": "1.26.4",
+    "scipy": "1.15.3",
+    "pandas": "1.5.3",
+    "scikit-learn": "1.6.1",
+    "imbalanced-learn": "0.13.0",
+    "torch": "2.12.1",
+    "pytorch-tabnet": "4.1.0",
+    "PyWavelets": "1.8.0",
+    "EMD-signal": null,
+    "matplotlib": "3.10.3",
+    "seaborn": "0.13.2",
+    "PyYAML": "5.4.1"
+  },
+  "config_sha256": "22a1fbff57cd1f7d9a1c981b0f32322c53c8eefd3fe725fc4b15d7218cc1ad6c"
+}

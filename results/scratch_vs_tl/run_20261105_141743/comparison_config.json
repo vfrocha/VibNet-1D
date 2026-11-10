@@ -1,0 +1,123 @@
+{
+  "experiment_id": "scratch_vs_tl",
+  "task": "diagnosis",
+  "timestamp": "20261105_141743",
+  "is_synthetic_smoke": false,
+  "data_root": "/home/vfrocha/VibNet-1D/data/processed_tl/detrended_rms",
+  "output_dir": "results/scratch_vs_tl/run_20261105_141743",
+  "target_datasets": [
+    "CWRU_12k",
+    "CWRU_48k",
+    "HUST_Gearbox",
+    "UOEMD",
+    "PU"
+  ],
+  "expected_loco_folds": {
+    "CWRU_12k": 4,
+    "CWRU_48k": 12,
+    "HUST_Gearbox": 30,
+    "UOEMD": 16,
+    "PU": 4
+  },
+  "source_pools_by_target": {
+    "CWRU_12k": [
+      "UORED",
+      "HUST",
+      "Mechanical_Gear",
+      "Electric_Motor"
+    ],
+    "CWRU_48k": [
+      "UORED",
+      "HUST",
+      "Mechanical_Gear",
+      "Electric_Motor"
+    ],
+    "HUST_Gearbox": [
+      "UORED",
+      "HUST",
+      "Mechanical_Gear",
+      "Electric_Motor"
+    ],
+    "UOEMD": [
+      "UORED",
+      "HUST",
+      "Mechanical_Gear",
+      "Electric_Motor"
+    ],
+    "PU": [
+      "UORED",
+      "HUST",
+      "Mechanical_Gear",
+      "Electric_Motor"
+    ]
+  },
+  "architectures": [
+    "MLP",
+    "TabNet"
+  ],
+  "methods": [
+    "Scratch",
+    "Fine-Tuning",
+    "Linear Probing"
+  ],
+  "preprocessing": {
+    "variant": "detrended_rms",
+    "feature_dimension": 141,
+    "scaler": "StandardScaler (fitted strictly on target training fold)"
+  },
+  "balance_strategies": [
+    "none",
+    "smote"
+  ],
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "max_folds": null,
+  "hyperparameters": {
+    "pretrain_epochs": 30,
+    "target_epochs": 30,
+    "batch_size": 64,
+    "tabnet_patience": 15,
+    "mlp_lr_pretrain": 0.001,
+    "mlp_lr_scratch": 0.001,
+    "mlp_lr_finetune_backbone": 0.0005,
+    "mlp_lr_finetune_head": 0.001,
+    "mlp_lr_linear_probing": 0.001,
+    "mlp_weight_decay": 0.0001,
+    "tabnet_n_d": 16,
+    "tabnet_n_a": 16,
+    "tabnet_n_steps": 4,
+    "tabnet_gamma": 1.3,
+    "tabnet_n_independent": 2,
+    "tabnet_n_shared": 2,
+    "tabnet_mask_type": "sparsemax",
+    "tabnet_lr_pretrain": 0.02,
+    "tabnet_lr_scratch": 0.02,
+    "tabnet_lr_finetune": 0.01,
+    "tabnet_lr_linear_probing": 0.01
+  },
+  "metric_definitions": {
+    "primary_metric": "macro_f1 (average='macro' over classes relevant to the fold)",
+    "secondary_metrics": [
+      "accuracy",
+      "balanced_accuracy",
+      "roc_auc (macro One-vs-Rest over present test classes when >= 2 classes present; NaN otherwise)"
+    ]
+  },
+  "software_versions": {
+    "numpy": "1.26.4",
+    "scipy": "1.15.3",
+    "pandas": "1.5.3",
+    "scikit-learn": "1.6.1",
+    "imbalanced-learn": "0.13.0",
+    "torch": "2.12.1",
+    "pytorch-tabnet": "4.1.0",
+    "PyWavelets": "1.8.0",
+    "EMD-signal": null,
+    "matplotlib": "3.10.3",
+    "seaborn": "0.13.2",
+    "PyYAML": "5.4.1"
+  }
+}
