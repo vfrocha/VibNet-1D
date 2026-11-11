@@ -46,6 +46,8 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import f1_score
+from sklearn.model_selection import ParameterGrid, StratifiedKFold
 from sklearn.preprocessing import LabelEncoder
 from sklearn.svm import SVC
 
@@ -413,8 +415,215 @@ def recover_and_verify_fold_from_manifest(
 
 
 # =============================================================================
-# 3. CLASSICAL MACHINE LEARNING MODELS (RF, SVM, XGBOOST)
+# 3. CLASSICAL MACHINE LEARNING MODELS (RF, SVM, XGBOOST) & INNER-FOLD TUNING
 # =============================================================================
+
+DEFAULT_PARAM_GRIDS: Dict[str, Dict[str, List[Any]]] = {
+    "RandomForest": {
+        "n_estimators": [200, 500],
+        "max_depth": [None, 15, 30],
+        "min_samples_leaf": [1, 2],
+        "max_features": ["sqrt"],
+    },
+    "SVM": {
+        "kernel": ["rbf"],
+        "C": [0.1, 1.0, 10.0],
+        "gamma": ["scale", "auto"],
+    },
+    "XGBoost": {
+        "n_estimators": [200, 400],
+        "max_depth": [4, 6],
+        "learning_rate": [0.03, 0.1],
+        "subsample": [0.8],
+        "colsample_bytree": [0.8],
+    },
+}
+
+
+def prepare_inner_cv_splits(
+    X_train_raw: np.ndarray,
+    y_train_raw: np.ndarray,
+    class_names: Sequence[str],
+    balance_strategy: str,
+    seed: int,
+    cv_folds: int = 3,
+) -> List[Dict[str, np.ndarray]]:
+    """
+    Construct inner StratifiedKFold splits exclusively from the outer fold's raw
+    training set `(X_train_raw, y_train_raw)` for leak-free hyperparameter tuning.
+
+    Inside each inner split `(inner_tr_idx, inner_val_idx)`:
+      1. `StandardScaler` is fitted strictly on `X_train_raw[inner_tr_idx]` and
+         applied to `X_train_raw[inner_val_idx]`.
+      2. When `balance_strategy == "smote"`, `SMOTE` (`random_state=seed`) is applied
+         exclusively to `X_inner_tr_scaled` (never to `X_inner_val_scaled`). If an
+         inner training split has fewer than 2 samples in a minority class, it falls
+         back cleanly to the unresampled inner training fold so inner CV remains valid.
+    """
+    _, counts = np.unique(y_train_raw, return_counts=True)
+    min_class_count = int(counts.min()) if len(counts) > 0 else 0
+    n_splits_eff = min(int(cv_folds), min_class_count)
+    if n_splits_eff < 2:
+        return []
+
+    skf = StratifiedKFold(n_splits=n_splits_eff, shuffle=True, random_state=int(seed))
+    inner_splits: List[Dict[str, np.ndarray]] = []
+
+    for tr_idx, val_idx in skf.split(X_train_raw, y_train_raw):
+        X_in_tr_raw = X_train_raw[tr_idx]
+        y_in_tr_raw = y_train_raw[tr_idx]
+        X_in_val_raw = X_train_raw[val_idx]
+        y_in_val = y_train_raw[val_idx]
+
+        X_in_tr_scaled, X_in_val_scaled, _ = scale_loco_fold_strict(
+            X_in_tr_raw, X_in_val_raw
+        )
+
+        if balance_strategy == "smote":
+            X_in_tr_bal, y_in_tr_bal, _ = apply_smote_with_audit(
+                X_train_scaled=X_in_tr_scaled,
+                y_train_encoded=y_in_tr_raw,
+                class_names=class_names,
+                strategy="smote",
+                seed=int(seed),
+            )
+            if X_in_tr_bal is None or y_in_tr_bal is None:
+                X_in_tr_bal = X_in_tr_scaled
+                y_in_tr_bal = y_in_tr_raw
+        else:
+            X_in_tr_bal = X_in_tr_scaled
+            y_in_tr_bal = y_in_tr_raw
+
+        inner_splits.append(
+            {
+                "X_train": X_in_tr_bal,
+                "y_train": y_in_tr_bal,
+                "X_val": X_in_val_scaled,
+                "y_val": y_in_val,
+            }
+        )
+
+    return inner_splits
+
+
+def _fit_predict_single_estimator(
+    architecture: str,
+    X_tr: np.ndarray,
+    y_tr: np.ndarray,
+    X_eval: np.ndarray,
+    n_total_classes: int,
+    seed: int,
+    hp: Mapping[str, Any],
+    need_proba: bool = True,
+) -> Tuple[np.ndarray, Optional[np.ndarray], Dict[str, Any]]:
+    """
+    Instantiate, fit on `(X_tr, y_tr)` with contiguous label mapping, and predict on
+    `X_eval` projected back to the global class vocabulary (`0 .. n_total_classes - 1`).
+    """
+    y_local, present_classes = _prepare_contiguous_labels(y_tr)
+    n_present = int(len(present_classes))
+    if n_present < 2:
+        raise ValueError(
+            f"Cannot train {architecture} with fewer than 2 classes in training fold "
+            f"(n_present={n_present})."
+        )
+
+    if architecture == "RandomForest":
+        effective_kwargs: Dict[str, Any] = {
+            "n_estimators": int(hp.get("n_estimators", 500)),
+            "max_depth": (
+                int(hp["max_depth"]) if hp.get("max_depth") is not None else None
+            ),
+            "min_samples_split": int(hp.get("min_samples_split", 2)),
+            "min_samples_leaf": int(hp.get("min_samples_leaf", 1)),
+            "max_features": hp.get("max_features", "sqrt"),
+            "class_weight": hp.get("class_weight", None),
+            "random_state": int(seed),
+            "n_jobs": int(hp.get("n_jobs", -1)),
+        }
+        clf = RandomForestClassifier(**effective_kwargs)
+        clf.fit(X_tr, y_local)
+        preds_local = np.asarray(clf.predict(X_eval), dtype=np.int64)
+        probs_local = (
+            np.asarray(clf.predict_proba(X_eval), dtype=np.float64)
+            if need_proba
+            else np.zeros((len(X_eval), n_present), dtype=np.float64)
+        )
+
+    elif architecture == "SVM":
+        prob_flag = bool(hp.get("probability", True)) if need_proba else False
+        effective_kwargs = {
+            "kernel": str(hp.get("kernel", "rbf")),
+            "C": float(hp.get("C", 1.0)),
+            "gamma": hp.get("gamma", "scale"),
+            "probability": prob_flag,
+            "class_weight": hp.get("class_weight", None),
+            "random_state": int(seed),
+        }
+        if need_proba and not effective_kwargs["probability"]:
+            raise ValueError(
+                "SVM baseline requires probability=True for ROC-AUC evaluation."
+            )
+        clf = SVC(**effective_kwargs)
+        clf.fit(X_tr, y_local)
+        preds_local = np.asarray(clf.predict(X_eval), dtype=np.int64)
+        probs_local = (
+            np.asarray(clf.predict_proba(X_eval), dtype=np.float64)
+            if need_proba
+            else np.zeros((len(X_eval), n_present), dtype=np.float64)
+        )
+
+    elif architecture == "XGBoost":
+        try:
+            from xgboost import XGBClassifier
+        except ImportError as exc:
+            raise RuntimeError(
+                "XGBoost ('xgboost') is not installed. Install with: "
+                "python -m pip install xgboost>=2.0.0"
+            ) from exc
+
+        effective_kwargs = {
+            "objective": str(hp.get("objective", "multi:softprob")),
+            "n_estimators": int(hp.get("n_estimators", 400)),
+            "max_depth": int(hp.get("max_depth", 6)),
+            "learning_rate": float(hp.get("learning_rate", 0.05)),
+            "subsample": float(hp.get("subsample", 0.8)),
+            "colsample_bytree": float(hp.get("colsample_bytree", 0.8)),
+            "reg_lambda": float(hp.get("reg_lambda", 1.0)),
+            "min_child_weight": float(hp.get("min_child_weight", 1)),
+            "eval_metric": str(hp.get("eval_metric", "mlogloss")),
+            "tree_method": str(hp.get("tree_method", "hist")),
+            "random_state": int(seed),
+            "n_jobs": int(hp.get("n_jobs", -1)),
+            "verbosity": int(hp.get("verbosity", 0)),
+        }
+        if effective_kwargs["objective"].startswith("multi:"):
+            effective_kwargs["num_class"] = int(n_present)
+
+        clf = XGBClassifier(**effective_kwargs)
+        clf.fit(X_tr, y_local)
+        if need_proba:
+            probs_local = np.asarray(clf.predict_proba(X_eval), dtype=np.float64)
+            if probs_local.ndim == 1:
+                probs_local = np.column_stack([1.0 - probs_local, probs_local])
+            preds_local = np.argmax(probs_local, axis=1).astype(np.int64)
+        else:
+            preds_local = np.asarray(clf.predict(X_eval), dtype=np.int64).ravel()
+            probs_local = np.zeros((len(X_eval), n_present), dtype=np.float64)
+    else:
+        raise ValueError(f"Unsupported architecture '{architecture}'.")
+
+    if need_proba:
+        preds, probs = project_predictions_to_full_vocabulary(
+            preds_local=preds_local,
+            probs_local=probs_local,
+            present_train_classes=present_classes,
+            n_total_classes=n_total_classes,
+        )
+        return preds, probs, effective_kwargs
+    else:
+        preds_global = present_classes[preds_local].astype(np.int64)
+        return preds_global, None, effective_kwargs
 
 
 def train_eval_classical_model(
@@ -425,11 +634,14 @@ def train_eval_classical_model(
     n_total_classes: int,
     seed: int,
     model_hyperparams: Optional[Mapping[str, Any]] = None,
+    inner_cv_splits: Optional[Sequence[Mapping[str, np.ndarray]]] = None,
+    param_grid: Optional[Mapping[str, Sequence[Any]]] = None,
+    enable_tuning: bool = True,
 ) -> Tuple[np.ndarray, np.ndarray, Dict[str, Any]]:
     """
-    Train and evaluate a classical ML baseline (`RandomForest`, `SVM`, or `XGBoost`)
-    exclusively on the target dataset's LOCO training fold `(X_train_bal, y_train_bal)`
-    and evaluate on `X_test_scaled`.
+    Optimize hyperparameters exclusively inside the target dataset's LOCO training fold
+    (when `enable_tuning=True` and `inner_cv_splits` are provided), refit the winning
+    configuration on `(X_train_bal, y_train_bal)`, and evaluate once on `X_test_scaled`.
 
     Maps predicted class indices and probability columns from `present_train_classes`
     onto the full canonical dataset vocabulary (`0 .. n_total_classes - 1`) via
@@ -442,90 +654,90 @@ def train_eval_classical_model(
         )
 
     set_global_seed(seed)
-    hp = dict(model_hyperparams or {})
-    y_local, present_classes = _prepare_contiguous_labels(y_train_bal)
-    n_present = int(len(present_classes))
-    if n_present < 2:
-        raise ValueError(
-            f"Cannot train {architecture} with fewer than 2 classes in training fold "
-            f"(n_present={n_present})."
-        )
+    base_hp: Dict[str, Any] = dict(model_hyperparams or {})
+    best_candidate: Dict[str, Any] = {}
+    best_cv_score: float = float("nan")
+    n_candidates_evaluated: int = 1
+    validation_mode: str = "none_fixed_hyperparams"
 
-    if architecture == "RandomForest":
-        rf_kwargs: Dict[str, Any] = {
-            "n_estimators": int(hp.get("n_estimators", 500)),
-            "max_depth": hp.get("max_depth", None),
-            "min_samples_split": int(hp.get("min_samples_split", 2)),
-            "min_samples_leaf": int(hp.get("min_samples_leaf", 1)),
-            "max_features": hp.get("max_features", "sqrt"),
-            "class_weight": hp.get("class_weight", None),
-            "random_state": int(seed),
-            "n_jobs": int(hp.get("n_jobs", -1)),
-        }
-        clf = RandomForestClassifier(**rf_kwargs)
-        clf.fit(X_train_bal, y_local)
-        preds_local = np.asarray(clf.predict(X_test_scaled), dtype=np.int64)
-        probs_local = np.asarray(clf.predict_proba(X_test_scaled), dtype=np.float64)
-
-    elif architecture == "SVM":
-        svm_kwargs: Dict[str, Any] = {
-            "kernel": str(hp.get("kernel", "rbf")),
-            "C": float(hp.get("C", 1.0)),
-            "gamma": hp.get("gamma", "scale"),
-            "probability": bool(hp.get("probability", True)),
-            "class_weight": hp.get("class_weight", None),
-            "random_state": int(seed),
-        }
-        if not svm_kwargs["probability"]:
-            raise ValueError("SVM baseline requires probability=True for ROC-AUC evaluation.")
-        clf = SVC(**svm_kwargs)
-        clf.fit(X_train_bal, y_local)
-        preds_local = np.asarray(clf.predict(X_test_scaled), dtype=np.int64)
-        probs_local = np.asarray(clf.predict_proba(X_test_scaled), dtype=np.float64)
-
-    elif architecture == "XGBoost":
-        try:
-            from xgboost import XGBClassifier
-        except ImportError as exc:
-            raise RuntimeError(
-                "XGBoost ('xgboost') is not installed. Install with: "
-                "python -m pip install xgboost>=2.0.0"
-            ) from exc
-
-        xgb_kwargs: Dict[str, Any] = {
-            "objective": str(hp.get("objective", "multi:softprob")),
-            "n_estimators": int(hp.get("n_estimators", 500)),
-            "max_depth": int(hp.get("max_depth", 6)),
-            "learning_rate": float(hp.get("learning_rate", 0.05)),
-            "subsample": float(hp.get("subsample", 0.8)),
-            "colsample_bytree": float(hp.get("colsample_bytree", 0.8)),
-            "eval_metric": str(hp.get("eval_metric", "mlogloss")),
-            "random_state": int(seed),
-            "n_jobs": int(hp.get("n_jobs", -1)),
-            "verbosity": int(hp.get("verbosity", 0)),
-        }
-        if xgb_kwargs["objective"].startswith("multi:"):
-            xgb_kwargs["num_class"] = int(n_present)
-
-        clf = XGBClassifier(**xgb_kwargs)
-        clf.fit(X_train_bal, y_local)
-        probs_local = np.asarray(clf.predict_proba(X_test_scaled), dtype=np.float64)
-        if probs_local.ndim == 1:
-            probs_local = np.column_stack([1.0 - probs_local, probs_local])
-        preds_local = np.argmax(probs_local, axis=1).astype(np.int64)
-
-    preds, probs = project_predictions_to_full_vocabulary(
-        preds_local=preds_local,
-        probs_local=probs_local,
-        present_train_classes=present_classes,
-        n_total_classes=n_total_classes,
+    resolved_grid = (
+        dict(param_grid)
+        if param_grid is not None
+        else dict(DEFAULT_PARAM_GRIDS.get(architecture, {}))
     )
+
+    if enable_tuning and inner_cv_splits and len(inner_cv_splits) >= 2 and resolved_grid:
+        candidates = list(ParameterGrid(resolved_grid))
+        n_candidates_evaluated = len(candidates)
+        if len(candidates) > 1:
+            validation_mode = (
+                f"inner_stratified_{len(inner_cv_splits)}fold_cv_macro_f1"
+            )
+            best_score_so_far = -1.0
+            best_candidate = dict(candidates[0])
+            for cand in candidates:
+                cand_hp = {**base_hp, **cand}
+                fold_scores: List[float] = []
+                for split in inner_cv_splits:
+                    set_global_seed(seed)
+                    preds_val, _, _ = _fit_predict_single_estimator(
+                        architecture=architecture,
+                        X_tr=split["X_train"],
+                        y_tr=split["y_train"],
+                        X_eval=split["X_val"],
+                        n_total_classes=n_total_classes,
+                        seed=seed,
+                        hp=cand_hp,
+                        need_proba=False,
+                    )
+                    y_val = split["y_val"]
+                    present_val = np.unique(y_val)
+                    score = float(
+                        f1_score(
+                            y_val,
+                            preds_val,
+                            labels=present_val,
+                            average="macro",
+                            zero_division=0,
+                        )
+                    )
+                    fold_scores.append(score)
+                mean_score = float(np.mean(fold_scores))
+                if mean_score > best_score_so_far:
+                    best_score_so_far = mean_score
+                    best_candidate = dict(cand)
+            best_cv_score = float(best_score_so_far)
+        elif len(candidates) == 1:
+            best_candidate = dict(candidates[0])
+
+    final_hp = {**base_hp, **best_candidate}
+    set_global_seed(seed)
+    preds, probs, effective_kwargs = _fit_predict_single_estimator(
+        architecture=architecture,
+        X_tr=X_train_bal,
+        y_tr=y_train_bal,
+        X_eval=X_test_scaled,
+        n_total_classes=n_total_classes,
+        seed=seed,
+        hp=final_hp,
+        need_proba=True,
+    )
+    assert probs is not None
+
+    serializable_hp = {
+        k: (int(v) if isinstance(v, np.integer) else float(v) if isinstance(v, np.floating) else v)
+        for k, v in effective_kwargs.items()
+        if k not in {"n_jobs", "verbosity"}
+    }
 
     return (
         preds,
         probs,
         {
-            "validation_split_mode": "none_fixed_hyperparams",
+            "validation_split_mode": validation_mode,
+            "selected_hyperparameters": json.dumps(serializable_hp, sort_keys=True),
+            "inner_cv_macro_f1": best_cv_score,
+            "inner_cv_candidates": int(n_candidates_evaluated),
             "selected_epochs": 0,
             "backbone_frozen": False,
             "backbone_param_max_abs_diff": float("nan"),
@@ -1001,7 +1213,14 @@ def generate_classical_report_md(
     arch_table = _df_to_table_str(df_sum_arch, "Nenhum resumo global por modelo gerado.")
     stats_table = _df_to_table_str(df_stats, "Nenhum teste estatístico pareado gerado.")
     ranks_table = _df_to_table_str(df_ranks, "Nenhum ranking gerado.")
-    hp_json = json.dumps(config.get("hyperparameters", {}), indent=2, ensure_ascii=False)
+    hp_json = json.dumps(
+        {
+            "hyperparameter_tuning": config.get("hyperparameter_tuning", {}),
+            "base_hyperparameters": config.get("hyperparameters", {}),
+        },
+        indent=2,
+        ensure_ascii=False,
+    )
 
     return f"""# Relatório Técnico — Baselines Clássicos de Machine Learning (`scratch_vs_tl_classical_baselines`)
 
@@ -1018,9 +1237,11 @@ def generate_classical_report_md(
 
 ---
 
-## 1. Configuração Experimental e Hiperparâmetros dos Modelos
+## 1. Configuração Experimental e Otimização Interna de Hiperparâmetros por Fold
 
-Os três classificadores clássicos (`RandomForest`, `SVM`, `XGBoost`) foram treinados exclusivamente nos dados de treinamento de cada fold LOCO do dataset de destino, reutilizando exatamente os mesmos splits (`train_sample_ids` e `test_sample_ids`), `StandardScaler` (`split_signature`) e balanceamento `SMOTE` (`preprocessing_signature`) registrados em `results/scratch_vs_tl/run_20261105_141743/fold_manifest.csv`.
+Os três classificadores clássicos (`RandomForest`, `SVM`, `XGBoost`) foram ajustados e treinados exclusivamente nos dados de treinamento de cada fold LOCO do dataset de destino:
+1. **Seleção de Hiperparâmetros Estritamente no Conjunto de Treino (`Inner StratifiedKFold`)**: em cada bloco `(target_dataset, fold_id, seed, balance_strategy)`, o conjunto de treinamento original (`X_train_raw`, `y_train_raw`) é particionado em subfolds estratificados (`StratifiedKFold(n_splits=3, shuffle=True, random_state=seed)`). Em cada subfold interno, `StandardScaler` e (quando `balance_strategy == "smote"`) `SMOTE` são aplicados **exclusivamente sobre a partição interna de treino**, avaliando a partição interna de validação sem `SMOTE` pela métrica primária `Macro-F1`.
+2. **Refit Canônico no Fold Externo**: a combinação vencedora de hiperparâmetros (`selected_hyperparameters`) é treinada sobre o conjunto de treino canônico do fold externo (`X_train_bal`, `y_train_bal`), reutilizando exatamente os mesmos splits (`train_sample_ids` e `test_sample_ids`), `StandardScaler` (`split_signature`) e balanceamento `SMOTE` (`preprocessing_signature`) registrados em `results/scratch_vs_tl/run_20261105_141743/fold_manifest.csv`, e avaliada uma única vez na condição de teste isolada (`X_test_scaled`).
 
 ```json
 {hp_json}
@@ -1124,6 +1345,10 @@ def run_classical_baselines_benchmark(
         else [int(s) for s in cfg.get("seeds", SEEDS)]
     )
     hp_all = dict(cfg.get("hyperparameters", {}))
+    tuning_cfg = dict(cfg.get("hyperparameter_tuning", {}))
+    tuning_enabled = bool(tuning_cfg.get("enabled", True))
+    tuning_cv_folds = int(tuning_cfg.get("cv_folds", 3))
+    param_grids_all = dict(tuning_cfg.get("param_grids", DEFAULT_PARAM_GRIDS))
 
     resolved_manifest_path = (
         Path(manifest_path)
@@ -1247,6 +1472,14 @@ def run_classical_baselines_benchmark(
         "balance_strategies": balance_strategies,
         "seeds": seeds,
         "max_folds": max_folds,
+        "hyperparameter_tuning": {
+            "enabled": tuning_enabled,
+            "strategy": str(tuning_cfg.get("strategy", "grid_search_stratified_kfold")),
+            "cv_folds": tuning_cv_folds,
+            "scoring": "macro_f1",
+            "inner_scaling_and_smote_strict": True,
+            "param_grids": param_grids_all,
+        },
         "hyperparameters": hp_all,
         "metric_definitions": {
             "primary_metric": "macro_f1 (average='macro' over classes relevant to the fold)",
@@ -1399,6 +1632,8 @@ def run_classical_baselines_benchmark(
                             "backbone_param_max_abs_diff": float("nan"),
                             "backbone_buffer_max_abs_diff": float("nan"),
                             "selected_epochs": 0,
+                            "selected_hyperparameters": "{}",
+                            "inner_cv_macro_f1": float("nan"),
                             "split_signature": str(m_row["split_signature"]),
                             "preprocessing_signature": str(m_row["preprocessing_signature"]),
                             "status": "ERROR_MANIFEST_MISMATCH",
@@ -1453,6 +1688,8 @@ def run_classical_baselines_benchmark(
                             "backbone_param_max_abs_diff": float("nan"),
                             "backbone_buffer_max_abs_diff": float("nan"),
                             "selected_epochs": 0,
+                            "selected_hyperparameters": "{}",
+                            "inner_cv_macro_f1": float("nan"),
                             "split_signature": split_sig,
                             "preprocessing_signature": preproc_sig,
                             "status": str(smote_audit["balance_status"]),
@@ -1462,6 +1699,19 @@ def run_classical_baselines_benchmark(
                     )
                 pd.DataFrame(results_rows).to_csv(results_csv_path, index=False)
                 continue
+
+            inner_cv_splits = (
+                prepare_inner_cv_splits(
+                    X_train_raw=recovered["X_train_raw"],
+                    y_train_raw=recovered["y_train_raw"],
+                    class_names=class_names,
+                    balance_strategy=balance_strategy,
+                    seed=seed,
+                    cv_folds=tuning_cv_folds,
+                )
+                if tuning_enabled
+                else []
+            )
 
             for arch in architectures:
                 eval_key = (ds_name, fold_id, seed, balance_strategy, arch, method_name)
@@ -1482,6 +1732,9 @@ def run_classical_baselines_benchmark(
                         n_total_classes=n_total_classes,
                         seed=seed,
                         model_hyperparams=hp_all.get(arch, {}),
+                        inner_cv_splits=inner_cv_splits,
+                        param_grid=param_grids_all.get(arch, DEFAULT_PARAM_GRIDS.get(arch, {})),
+                        enable_tuning=tuning_enabled,
                     )
                     runtime_sec = time.perf_counter() - t0
                     metrics = compute_fold_metrics(
@@ -1493,7 +1746,8 @@ def run_classical_baselines_benchmark(
                     logger.info(
                         f"  [{ds_name} | Fold {fold_id}:{test_cond} | Seed {seed} | "
                         f"Bal={balance_strategy} | {arch} - {method_name}] "
-                        f"F1={metrics['Macro_F1']:.4f} | BalAcc={metrics['Balanced_Accuracy']:.4f} | "
+                        f"InnerCV_F1={model_meta['inner_cv_macro_f1']:.4f} | "
+                        f"Test_F1={metrics['Macro_F1']:.4f} | BalAcc={metrics['Balanced_Accuracy']:.4f} | "
                         f"Acc={metrics['Accuracy']:.4f} ({runtime_sec:.2f}s)"
                     )
 
@@ -1527,6 +1781,8 @@ def run_classical_baselines_benchmark(
                             "backbone_param_max_abs_diff": float(model_meta["backbone_param_max_abs_diff"]),
                             "backbone_buffer_max_abs_diff": float(model_meta["backbone_buffer_max_abs_diff"]),
                             "selected_epochs": int(model_meta["selected_epochs"]),
+                            "selected_hyperparameters": str(model_meta["selected_hyperparameters"]),
+                            "inner_cv_macro_f1": float(model_meta["inner_cv_macro_f1"]),
                             "split_signature": split_sig,
                             "preprocessing_signature": preproc_sig,
                             "status": "OK",
@@ -1592,6 +1848,8 @@ def run_classical_baselines_benchmark(
                             "backbone_param_max_abs_diff": float("nan"),
                             "backbone_buffer_max_abs_diff": float("nan"),
                             "selected_epochs": 0,
+                            "selected_hyperparameters": "{}",
+                            "inner_cv_macro_f1": float("nan"),
                             "split_signature": split_sig,
                             "preprocessing_signature": preproc_sig,
                             "status": "ERROR_MODEL_EXECUTION",

@@ -420,6 +420,27 @@ def test_end_to_end_pilot_resume_and_consolidated_comparison(tmp_path: Path):
         "method": CLASSICAL_METHOD,
         "balance_strategies": ["none", "smote"],
         "seeds": [42, 123],
+        "hyperparameter_tuning": {
+            "enabled": True,
+            "strategy": "grid_search_stratified_kfold",
+            "cv_folds": 3,
+            "scoring": "macro_f1",
+            "inner_scaling_and_smote_strict": True,
+            "param_grids": {
+                "RandomForest": {
+                    "n_estimators": [10, 20],
+                    "max_depth": [None, 5],
+                },
+                "SVM": {
+                    "kernel": ["rbf"],
+                    "C": [0.5, 2.0],
+                },
+                "XGBoost": {
+                    "n_estimators": [10, 15],
+                    "max_depth": [2, 3],
+                },
+            },
+        },
         "hyperparameters": {
             "RandomForest": {
                 "n_estimators": 20,
@@ -474,6 +495,12 @@ def test_end_to_end_pilot_resume_and_consolidated_comparison(tmp_path: Path):
     assert set(results_df["architecture"].unique()) == set(CLASSICAL_ARCHITECTURES)
     assert set(results_df["method"].unique()) == {CLASSICAL_METHOD}
     assert (results_df["source_datasets"] == "None").all()
+    assert "selected_hyperparameters" in results_df.columns
+    assert "inner_cv_macro_f1" in results_df.columns
+    assert results_df["inner_cv_macro_f1"].notna().all()
+    for hp_str in results_df["selected_hyperparameters"]:
+        parsed_hp = json.loads(hp_str)
+        assert isinstance(parsed_hp, dict) and len(parsed_hp) > 0
 
     integrity = json.loads(
         (out_dir / "integrity_validation.json").read_text(encoding="utf-8")
