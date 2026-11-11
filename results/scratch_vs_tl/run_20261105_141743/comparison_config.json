@@ -1,7 +1,7 @@
 {
   "experiment_id": "scratch_vs_tl",
   "task": "diagnosis",
-  "timestamp": "20261105_141743",
+  "timestamp": "20261110_091118",
   "is_synthetic_smoke": false,
   "data_root": "/home/vfrocha/VibNet-1D/data/processed_tl/detrended_rms",
   "output_dir": "results/scratch_vs_tl/run_20261105_141743",

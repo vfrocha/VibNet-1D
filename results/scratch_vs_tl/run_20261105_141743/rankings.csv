@@ -1,0 +1,73 @@
+scope,target_dataset,architecture,method,balance_strategy,metric,metric_value,rank
+dataset_within_architecture,CWRU_12k,MLP,Scratch,none,macro_f1_mean,0.9039591489764632,2.0
+dataset_within_architecture,CWRU_12k,MLP,Fine-Tuning,none,macro_f1_mean,0.9078490710208195,1.0
+dataset_within_architecture,CWRU_12k,MLP,Linear Probing,none,macro_f1_mean,0.7299422050685442,3.0
+dataset_within_architecture,CWRU_12k,TabNet,Scratch,none,macro_f1_mean,0.7759486091163884,2.0
+dataset_within_architecture,CWRU_12k,TabNet,Fine-Tuning,none,macro_f1_mean,0.8326809983861873,1.0
+dataset_within_architecture,CWRU_12k,TabNet,Linear Probing,none,macro_f1_mean,0.5377236468833001,3.0
+dataset_within_architecture,CWRU_12k,MLP,Scratch,smote,macro_f1_mean,0.9034414388592258,2.0
+dataset_within_architecture,CWRU_12k,MLP,Fine-Tuning,smote,macro_f1_mean,0.9090348485554571,1.0
+dataset_within_architecture,CWRU_12k,MLP,Linear Probing,smote,macro_f1_mean,0.7280682018783838,3.0
+dataset_within_architecture,CWRU_12k,TabNet,Scratch,smote,macro_f1_mean,0.8063388879994168,1.0
+dataset_within_architecture,CWRU_12k,TabNet,Fine-Tuning,smote,macro_f1_mean,0.797989692009419,2.0
+dataset_within_architecture,CWRU_12k,TabNet,Linear Probing,smote,macro_f1_mean,0.5325357343705279,3.0
+dataset_within_architecture,CWRU_48k,MLP,Scratch,none,macro_f1_mean,0.898587096537137,1.0
+dataset_within_architecture,CWRU_48k,MLP,Fine-Tuning,none,macro_f1_mean,0.8946564754967693,2.0
+dataset_within_architecture,CWRU_48k,MLP,Linear Probing,none,macro_f1_mean,0.44153537195954895,3.0
+dataset_within_architecture,CWRU_48k,TabNet,Scratch,none,macro_f1_mean,0.6915729387035754,2.0
+dataset_within_architecture,CWRU_48k,TabNet,Fine-Tuning,none,macro_f1_mean,0.7471911735814185,1.0
+dataset_within_architecture,CWRU_48k,TabNet,Linear Probing,none,macro_f1_mean,0.4242524154966947,3.0
+dataset_within_architecture,CWRU_48k,MLP,Scratch,smote,macro_f1_mean,0.8931660669487553,1.0
+dataset_within_architecture,CWRU_48k,MLP,Fine-Tuning,smote,macro_f1_mean,0.8916862052423377,2.0
+dataset_within_architecture,CWRU_48k,MLP,Linear Probing,smote,macro_f1_mean,0.45028531770003055,3.0
+dataset_within_architecture,CWRU_48k,TabNet,Scratch,smote,macro_f1_mean,0.6897517868391908,2.0
+dataset_within_architecture,CWRU_48k,TabNet,Fine-Tuning,smote,macro_f1_mean,0.7063078302393722,1.0
+dataset_within_architecture,CWRU_48k,TabNet,Linear Probing,smote,macro_f1_mean,0.42259583980899046,3.0
+dataset_within_architecture,HUST_Gearbox,MLP,Scratch,none,macro_f1_mean,0.9548433776977142,2.0
+dataset_within_architecture,HUST_Gearbox,MLP,Fine-Tuning,none,macro_f1_mean,0.9571816336475855,1.0
+dataset_within_architecture,HUST_Gearbox,MLP,Linear Probing,none,macro_f1_mean,0.8566956331729867,3.0
+dataset_within_architecture,HUST_Gearbox,TabNet,Scratch,none,macro_f1_mean,0.9219140206709386,1.0
+dataset_within_architecture,HUST_Gearbox,TabNet,Fine-Tuning,none,macro_f1_mean,0.9140038042906998,2.0
+dataset_within_architecture,HUST_Gearbox,TabNet,Linear Probing,none,macro_f1_mean,0.7632022772156184,3.0
+dataset_within_architecture,HUST_Gearbox,MLP,Scratch,smote,macro_f1_mean,0.9548433776977142,2.0
+dataset_within_architecture,HUST_Gearbox,MLP,Fine-Tuning,smote,macro_f1_mean,0.9571816336475855,1.0
+dataset_within_architecture,HUST_Gearbox,MLP,Linear Probing,smote,macro_f1_mean,0.8566956331729867,3.0
+dataset_within_architecture,HUST_Gearbox,TabNet,Scratch,smote,macro_f1_mean,0.9219140206709386,1.0
+dataset_within_architecture,HUST_Gearbox,TabNet,Fine-Tuning,smote,macro_f1_mean,0.9140038042906998,2.0
+dataset_within_architecture,HUST_Gearbox,TabNet,Linear Probing,smote,macro_f1_mean,0.7632022772156184,3.0
+dataset_within_architecture,UOEMD,MLP,Scratch,none,macro_f1_mean,0.8152128863201611,1.0
+dataset_within_architecture,UOEMD,MLP,Fine-Tuning,none,macro_f1_mean,0.7957496641942803,2.0
+dataset_within_architecture,UOEMD,MLP,Linear Probing,none,macro_f1_mean,0.3662091196013826,3.0
+dataset_within_architecture,UOEMD,TabNet,Scratch,none,macro_f1_mean,0.5263991335417773,2.0
+dataset_within_architecture,UOEMD,TabNet,Fine-Tuning,none,macro_f1_mean,0.530970381483656,1.0
+dataset_within_architecture,UOEMD,TabNet,Linear Probing,none,macro_f1_mean,0.27443281055946006,3.0
+dataset_within_architecture,UOEMD,MLP,Scratch,smote,macro_f1_mean,0.8152128863201611,1.0
+dataset_within_architecture,UOEMD,MLP,Fine-Tuning,smote,macro_f1_mean,0.7957496641942803,2.0
+dataset_within_architecture,UOEMD,MLP,Linear Probing,smote,macro_f1_mean,0.3662091196013826,3.0
+dataset_within_architecture,UOEMD,TabNet,Scratch,smote,macro_f1_mean,0.5263991335417773,2.0
+dataset_within_architecture,UOEMD,TabNet,Fine-Tuning,smote,macro_f1_mean,0.530970381483656,1.0
+dataset_within_architecture,UOEMD,TabNet,Linear Probing,smote,macro_f1_mean,0.27443281055946006,3.0
+dataset_within_architecture,PU,MLP,Scratch,none,macro_f1_mean,0.8185590455112247,2.0
+dataset_within_architecture,PU,MLP,Fine-Tuning,none,macro_f1_mean,0.8387396071152149,1.0
+dataset_within_architecture,PU,MLP,Linear Probing,none,macro_f1_mean,0.7469298203930475,3.0
+dataset_within_architecture,PU,TabNet,Scratch,none,macro_f1_mean,0.8028598122884696,2.0
+dataset_within_architecture,PU,TabNet,Fine-Tuning,none,macro_f1_mean,0.8040832436013906,1.0
+dataset_within_architecture,PU,TabNet,Linear Probing,none,macro_f1_mean,0.642426281317004,3.0
+dataset_within_architecture,PU,MLP,Scratch,smote,macro_f1_mean,0.8247908444026558,2.0
+dataset_within_architecture,PU,MLP,Fine-Tuning,smote,macro_f1_mean,0.8341278799947759,1.0
+dataset_within_architecture,PU,MLP,Linear Probing,smote,macro_f1_mean,0.7588696807083622,3.0
+dataset_within_architecture,PU,TabNet,Scratch,smote,macro_f1_mean,0.7643750362620735,2.0
+dataset_within_architecture,PU,TabNet,Fine-Tuning,smote,macro_f1_mean,0.8045441678050126,1.0
+dataset_within_architecture,PU,TabNet,Linear Probing,smote,macro_f1_mean,0.6073862947160721,3.0
+mean_rank_across_datasets,ALL_TARGETS,MLP,Scratch,none,macro_f1_mean,0.87823231100854,1.6
+mean_rank_across_datasets,ALL_TARGETS,MLP,Fine-Tuning,none,macro_f1_mean,0.8788352902949338,1.4
+mean_rank_across_datasets,ALL_TARGETS,MLP,Linear Probing,none,macro_f1_mean,0.628262430039102,3.0
+mean_rank_across_datasets,ALL_TARGETS,TabNet,Scratch,none,macro_f1_mean,0.7437389028642298,1.8
+mean_rank_across_datasets,ALL_TARGETS,TabNet,Fine-Tuning,none,macro_f1_mean,0.7657859202686705,1.2
+mean_rank_across_datasets,ALL_TARGETS,TabNet,Linear Probing,none,macro_f1_mean,0.5284074862944154,3.0
+mean_rank_across_datasets,ALL_TARGETS,MLP,Scratch,smote,macro_f1_mean,0.8782909228457024,1.6
+mean_rank_across_datasets,ALL_TARGETS,MLP,Fine-Tuning,smote,macro_f1_mean,0.8775560463268872,1.4
+mean_rank_across_datasets,ALL_TARGETS,MLP,Linear Probing,smote,macro_f1_mean,0.6320255906122292,3.0
+mean_rank_across_datasets,ALL_TARGETS,TabNet,Scratch,smote,macro_f1_mean,0.7417557730626794,1.6
+mean_rank_across_datasets,ALL_TARGETS,TabNet,Fine-Tuning,smote,macro_f1_mean,0.750763175165632,1.4
+mean_rank_across_datasets,ALL_TARGETS,TabNet,Linear Probing,smote,macro_f1_mean,0.5200305913341338,3.0
