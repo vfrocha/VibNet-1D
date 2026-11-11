@@ -1,0 +1,76 @@
+# Declarative configuration for the Classical Machine Learning Baselines
+# complementary benchmark (`configs/scratch_vs_tl_classical_baselines.yaml`).
+#
+# Reuses the exact LOCO fold manifest from `results/scratch_vs_tl/run_20261105_141743/fold_manifest.csv`
+# (66 folds x 3 seeds x 2 balance strategies = 396 fold-seed-balance blocks x 3 models = 1,188 evaluations).
+
+experiment_id: "scratch_vs_tl_classical_baselines"
+task: "diagnosis"
+preprocessing: "detrended_rms"
+feature_dimension: 141
+
+reference_benchmark_dir: "results/scratch_vs_tl/run_20261105_141743"
+reference_manifest_path: "results/scratch_vs_tl/run_20261105_141743/fold_manifest.csv"
+output_root: "results/scratch_vs_tl/classical_baselines"
+
+target_datasets:
+  - "CWRU_12k"
+  - "CWRU_48k"
+  - "HUST_Gearbox"
+  - "UOEMD"
+  - "PU"
+
+expected_loco_folds:
+  CWRU_12k: 4
+  CWRU_48k: 12
+  HUST_Gearbox: 30
+  UOEMD: 16
+  PU: 4
+
+expected_manifest_entries: 396
+expected_total_evaluations: 1188
+
+architectures:
+  - "RandomForest"
+  - "SVM"
+  - "XGBoost"
+
+method: "ClassicalBaseline"
+
+balance_strategies:
+  - "none"
+  - "smote"
+
+seeds:
+  - 42
+  - 123
+  - 2026
+
+hyperparameters:
+  RandomForest:
+    n_estimators: 500
+    max_depth: null
+    min_samples_split: 2
+    min_samples_leaf: 1
+    max_features: "sqrt"
+    class_weight: null
+    n_jobs: -1
+
+  SVM:
+    kernel: "rbf"
+    C: 1.0
+    gamma: "scale"
+    probability: true
+    class_weight: null
+
+  XGBoost:
+    objective: "multi:softprob"
+    n_estimators: 500
+    max_depth: 6
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+    eval_metric: "mlogloss"
+    n_jobs: -1
+    verbosity: 0
+

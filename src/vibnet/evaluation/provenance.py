@@ -29,6 +29,7 @@ TRACKED_PACKAGES: Tuple[str, ...] = (
     "pandas",
     "scikit-learn",
     "imbalanced-learn",
+    "xgboost",
     "torch",
     "pytorch-tabnet",
     "PyWavelets",
