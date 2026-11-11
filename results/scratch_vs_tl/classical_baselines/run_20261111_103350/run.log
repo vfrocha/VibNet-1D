@@ -1,0 +1,9 @@
+2026-11-11 10:33:50,669 [INFO] [CWRU_12k] Loaded 2520 windows across 4 conditions (fs=12000 Hz). Extracting 141 features...
+2026-11-11 10:35:01,907 [INFO]   [CWRU_12k | Fold 0:Load_0HP | Seed 42 | Bal=none | RandomForest - ClassicalBaseline] InnerCV_F1=1.0000 | Test_F1=0.8565 | BalAcc=0.8562 | Acc=0.8217 (18.46s)
+2026-11-11 10:35:04,461 [INFO]   [CWRU_12k | Fold 0:Load_0HP | Seed 42 | Bal=none | SVM - ClassicalBaseline] InnerCV_F1=0.9776 | Test_F1=0.7900 | BalAcc=0.7970 | Acc=0.7467 (2.55s)
+2026-11-11 12:15:53,668 [INFO]   [CWRU_12k | Fold 0:Load_0HP | Seed 42 | Bal=none | XGBoost - ClassicalBaseline] InnerCV_F1=0.9993 | Test_F1=0.8500 | BalAcc=0.8487 | Acc=0.8117 (6049.20s)
+2026-11-11 12:16:11,918 [INFO]   [CWRU_12k | Fold 0:Load_0HP | Seed 42 | Bal=smote | RandomForest - ClassicalBaseline] InnerCV_F1=1.0000 | Test_F1=0.8577 | BalAcc=0.8578 | Acc=0.8233 (18.17s)
+2026-11-11 12:16:14,629 [INFO]   [CWRU_12k | Fold 0:Load_0HP | Seed 42 | Bal=smote | SVM - ClassicalBaseline] InnerCV_F1=0.9776 | Test_F1=0.7900 | BalAcc=0.7970 | Acc=0.7467 (2.70s)
+2026-11-11 14:04:30,622 [INFO]   [CWRU_12k | Fold 0:Load_0HP | Seed 42 | Bal=smote | XGBoost - ClassicalBaseline] InnerCV_F1=0.9993 | Test_F1=0.8485 | BalAcc=0.8473 | Acc=0.8100 (6495.98s)
+2026-11-11 14:04:48,560 [INFO]   [CWRU_12k | Fold 1:Load_1HP | Seed 42 | Bal=none | RandomForest - ClassicalBaseline] InnerCV_F1=0.9995 | Test_F1=0.9386 | BalAcc=0.9386 | Acc=0.9297 (17.90s)
+2026-11-11 14:04:51,348 [INFO]   [CWRU_12k | Fold 1:Load_1HP | Seed 42 | Bal=none | SVM - ClassicalBaseline] InnerCV_F1=0.9709 | Test_F1=0.9302 | BalAcc=0.9305 | Acc=0.9203 (2.78s)

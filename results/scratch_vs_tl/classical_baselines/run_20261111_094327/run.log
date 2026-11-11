@@ -1,0 +1,3 @@
+2026-11-11 09:43:44,563 [INFO] [CWRU_12k] Loaded 2520 windows across 4 conditions (fs=12000 Hz). Extracting 141 features...
+2026-11-11 09:44:51,384 [INFO]   [CWRU_12k | Fold 0:Load_0HP | Seed 42 | Bal=none | RandomForest - ClassicalBaseline] F1=0.8620 | BalAcc=0.8616 | Acc=0.8283 (8.10s)
+2026-11-11 09:44:52,179 [INFO]   [CWRU_12k | Fold 0:Load_0HP | Seed 42 | Bal=none | SVM - ClassicalBaseline] F1=0.7938 | BalAcc=0.7985 | Acc=0.7483 (0.79s)

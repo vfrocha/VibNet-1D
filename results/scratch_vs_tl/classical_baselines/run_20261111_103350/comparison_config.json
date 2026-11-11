@@ -1,0 +1,152 @@
+{
+  "experiment_id": "scratch_vs_tl_classical_baselines",
+  "task": "diagnosis",
+  "timestamp": "20261111_103350",
+  "is_synthetic_smoke": true,
+  "reference_manifest_path": "/home/vfrocha/VibNet-1D/results/scratch_vs_tl/run_20261105_141743/fold_manifest.csv",
+  "reference_manifest_sha256": "a5882659e9fcd053a543e14b5eb399488f173086184a69ed53a81b0a5c66febf",
+  "data_root": "/home/vfrocha/VibNet-1D/data/processed_tl/detrended_rms",
+  "output_dir": "/home/vfrocha/VibNet-1D/results/scratch_vs_tl/classical_baselines/run_20261111_103350",
+  "target_datasets": [
+    "CWRU_12k"
+  ],
+  "expected_loco_folds": {
+    "CWRU_12k": 4
+  },
+  "architectures": [
+    "RandomForest",
+    "SVM",
+    "XGBoost"
+  ],
+  "method": "ClassicalBaseline",
+  "source_datasets": "None (Target-only Classical Baselines)",
+  "preprocessing": {
+    "variant": "detrended_rms",
+    "feature_dimension": 141,
+    "scaler": "StandardScaler (fitted strictly on original target training fold before SMOTE)"
+  },
+  "balance_strategies": [
+    "none",
+    "smote"
+  ],
+  "seeds": [
+    42
+  ],
+  "max_folds": 2,
+  "hyperparameter_tuning": {
+    "enabled": true,
+    "strategy": "grid_search_stratified_kfold",
+    "cv_folds": 3,
+    "scoring": "macro_f1",
+    "inner_scaling_and_smote_strict": true,
+    "param_grids": {
+      "RandomForest": {
+        "n_estimators": [
+          200,
+          500
+        ],
+        "max_depth": [
+          null,
+          15,
+          30
+        ],
+        "min_samples_leaf": [
+          1,
+          2
+        ],
+        "max_features": [
+          "sqrt"
+        ]
+      },
+      "SVM": {
+        "kernel": [
+          "rbf"
+        ],
+        "C": [
+          0.1,
+          1.0,
+          10.0
+        ],
+        "gamma": [
+          "scale",
+          "auto"
+        ]
+      },
+      "XGBoost": {
+        "n_estimators": [
+          200,
+          400
+        ],
+        "max_depth": [
+          4,
+          6
+        ],
+        "learning_rate": [
+          0.03,
+          0.1
+        ],
+        "subsample": [
+          0.8
+        ],
+        "colsample_bytree": [
+          0.8
+        ]
+      }
+    }
+  },
+  "hyperparameters": {
+    "RandomForest": {
+      "n_estimators": 500,
+      "max_depth": null,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "max_features": "sqrt",
+      "class_weight": null,
+      "n_jobs": -1
+    },
+    "SVM": {
+      "kernel": "rbf",
+      "C": 1.0,
+      "gamma": "scale",
+      "probability": true,
+      "class_weight": null
+    },
+    "XGBoost": {
+      "objective": "multi:softprob",
+      "n_estimators": 400,
+      "max_depth": 6,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "reg_lambda": 1.0,
+      "min_child_weight": 1,
+      "eval_metric": "mlogloss",
+      "tree_method": "hist",
+      "n_jobs": -1,
+      "verbosity": 0
+    }
+  },
+  "metric_definitions": {
+    "primary_metric": "macro_f1 (average='macro' over classes relevant to the fold)",
+    "secondary_metrics": [
+      "accuracy",
+      "balanced_accuracy",
+      "roc_auc (macro One-vs-Rest over present test classes when >= 2 classes present; NaN otherwise)"
+    ]
+  },
+  "software_versions": {
+    "numpy": "1.26.4",
+    "scipy": "1.15.3",
+    "pandas": "1.5.3",
+    "scikit-learn": "1.6.1",
+    "imbalanced-learn": "0.13.0",
+    "xgboost": "3.2.0",
+    "torch": "2.12.1",
+    "pytorch-tabnet": "4.1.0",
+    "PyWavelets": "1.8.0",
+    "EMD-signal": null,
+    "matplotlib": "3.10.3",
+    "seaborn": "0.13.2",
+    "PyYAML": "5.4.1"
+  }
+}
