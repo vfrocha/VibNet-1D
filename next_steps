@@ -1,0 +1,42 @@
+Passo A — Executar a suíte de testes e um teste piloto rápido em subconjunto real (ex.: CWRU_12k, 2 folds, 1 seed = 12 avaliações)
+bash
+pytest tests/test_scratch_vs_tl_classical_baselines.py -v
+python -m src.experiments.run_scratch_vs_tl_classical_baselines \
+  --targets CWRU_12k \
+  --seeds 42 \
+  --max-folds 2
+Passo B — Iniciar o experimento complementar completo (1.188 avaliações = 396 entradas do manifesto × 3 modelos)
+bash
+python -m src.experiments.run_scratch_vs_tl_classical_baselines \
+  --config configs/scratch_vs_tl_classical_baselines.yaml
+
+(Os resultados serão salvos em results/scratch_vs_tl/classical_baselines/run_<timestamp>/ com salvamento incremental a cada bloco de fold).
+
+Passo C — Retomar uma execução interrompida a partir do último checkpoint (--resume-dir)
+bash
+python -m src.experiments.run_scratch_vs_tl_classical_baselines \
+  --config configs/scratch_vs_tl_classical_baselines.yaml \
+  --resume-dir results/scratch_vs_tl/classical_baselines/run_<timestamp>
+Passo D — Gerar a comparação estatística consolidada (MLP + TabNet vs. RandomForest + SVM + XGBoost, 3.564 avaliações pareadas)
+bash
+python -m src.experiments.analyze_scratch_tl_classical_comparison \
+  --neural-run-dir results/scratch_vs_tl/run_20261105_141743 \
+  --classical-run-dir results/scratch_vs_tl/classical_baselines/run_<timestamp>
+
+(Se --classical-run-dir for omitido, o script seleciona automaticamente o run_<timestamp> concluído mais recente em results/scratch_vs_tl/classical_baselines/ e grava os relatórios consolidados em results/scratch_vs_tl/consolidated_comparison/run_<timestamp>/).
+
+
+### Experimentos Dominio do Tempo:
+
+Execução padrão completa:
+
+bash
+python -m src.experiments.run_time_scratch_ablation
+
+Ou customizando parâmetros via CLI:
+
+bash
+python -m src.experiments.run_time_scratch_ablation \
+  --k_factors 2 4 6 8 \
+  --resample_modes uniform fft poly linear \
+  --norm_mode window_zscore
