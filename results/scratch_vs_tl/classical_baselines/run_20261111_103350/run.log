@@ -7,3 +7,10 @@
 2026-11-11 14:04:30,622 [INFO]   [CWRU_12k | Fold 0:Load_0HP | Seed 42 | Bal=smote | XGBoost - ClassicalBaseline] InnerCV_F1=0.9993 | Test_F1=0.8485 | BalAcc=0.8473 | Acc=0.8100 (6495.98s)
 2026-11-11 14:04:48,560 [INFO]   [CWRU_12k | Fold 1:Load_1HP | Seed 42 | Bal=none | RandomForest - ClassicalBaseline] InnerCV_F1=0.9995 | Test_F1=0.9386 | BalAcc=0.9386 | Acc=0.9297 (17.90s)
 2026-11-11 14:04:51,348 [INFO]   [CWRU_12k | Fold 1:Load_1HP | Seed 42 | Bal=none | SVM - ClassicalBaseline] InnerCV_F1=0.9709 | Test_F1=0.9302 | BalAcc=0.9305 | Acc=0.9203 (2.78s)
+2026-11-11 15:54:36,790 [INFO]   [CWRU_12k | Fold 1:Load_1HP | Seed 42 | Bal=none | XGBoost - ClassicalBaseline] InnerCV_F1=0.9987 | Test_F1=0.9428 | BalAcc=0.9426 | Acc=0.9344 (6585.43s)
+2026-11-11 15:54:55,454 [INFO]   [CWRU_12k | Fold 1:Load_1HP | Seed 42 | Bal=smote | RandomForest - ClassicalBaseline] InnerCV_F1=0.9995 | Test_F1=0.9317 | BalAcc=0.9319 | Acc=0.9219 (18.60s)
+2026-11-11 15:54:58,445 [INFO]   [CWRU_12k | Fold 1:Load_1HP | Seed 42 | Bal=smote | SVM - ClassicalBaseline] InnerCV_F1=0.9727 | Test_F1=0.9264 | BalAcc=0.9266 | Acc=0.9156 (2.98s)
+2026-11-11 17:45:42,803 [INFO]   [CWRU_12k | Fold 1:Load_1HP | Seed 42 | Bal=smote | XGBoost - ClassicalBaseline] InnerCV_F1=0.9978 | Test_F1=0.9306 | BalAcc=0.9315 | Acc=0.9219 (6644.35s)
+2026-11-11 17:45:43,331 [INFO] ================================================================================
+2026-11-11 17:45:43,331 [INFO] CLASSICAL BASELINES BENCHMARK COMPLETED: /home/vfrocha/VibNet-1D/results/scratch_vs_tl/classical_baselines/run_20261111_103350
+2026-11-11 17:45:43,331 [INFO] ================================================================================

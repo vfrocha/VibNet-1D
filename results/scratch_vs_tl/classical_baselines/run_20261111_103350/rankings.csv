@@ -1,0 +1,13 @@
+scope,target_dataset,architecture,method,balance_strategy,metric,metric_value,rank
+dataset_classical_models,CWRU_12k,RandomForest,ClassicalBaseline,none,macro_f1_mean,0.8975243189821167,1.0
+dataset_classical_models,CWRU_12k,SVM,ClassicalBaseline,none,macro_f1_mean,0.8600941527791144,3.0
+dataset_classical_models,CWRU_12k,XGBoost,ClassicalBaseline,none,macro_f1_mean,0.8963715428921015,2.0
+dataset_classical_models,CWRU_12k,RandomForest,ClassicalBaseline,smote,macro_f1_mean,0.8947223126660657,1.0
+dataset_classical_models,CWRU_12k,SVM,ClassicalBaseline,smote,macro_f1_mean,0.8581928114528548,3.0
+dataset_classical_models,CWRU_12k,XGBoost,ClassicalBaseline,smote,macro_f1_mean,0.8895408082706239,2.0
+mean_rank_across_datasets,ALL_TARGETS,RandomForest,ClassicalBaseline,none,macro_f1_mean,0.8975243189821167,1.0
+mean_rank_across_datasets,ALL_TARGETS,SVM,ClassicalBaseline,none,macro_f1_mean,0.8600941527791144,3.0
+mean_rank_across_datasets,ALL_TARGETS,XGBoost,ClassicalBaseline,none,macro_f1_mean,0.8963715428921015,2.0
+mean_rank_across_datasets,ALL_TARGETS,RandomForest,ClassicalBaseline,smote,macro_f1_mean,0.8947223126660657,1.0
+mean_rank_across_datasets,ALL_TARGETS,SVM,ClassicalBaseline,smote,macro_f1_mean,0.8581928114528548,3.0
+mean_rank_across_datasets,ALL_TARGETS,XGBoost,ClassicalBaseline,smote,macro_f1_mean,0.8895408082706239,2.0

@@ -1,0 +1,12 @@
+{
+  "valid": true,
+  "is_full_run": false,
+  "expected_evaluations": 12,
+  "actual_evaluations": 12,
+  "ok_evaluations": 12,
+  "failed_evaluations": 0,
+  "prediction_rows_checked": 7440,
+  "duplicate_evaluation_keys": 0,
+  "duplicate_prediction_keys": 0,
+  "manifest_signatures_verified": true
+}
