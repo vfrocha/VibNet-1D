@@ -4,7 +4,7 @@ import pandas as pd
 from tqdm import tqdm
 import vibdata.raw as raw_datasets
 from vibdata.deep.signal.transforms import Sequential, Transform
-from scipy.signal import detrend
+from scipy.signal import detrend, resample_poly
 from src.config import DATA_ROOT, RAW_DATA_DIR
 
 # --- CLASSES AUXILIARES (1D) ---
@@ -147,11 +147,42 @@ def extract_signal(item):
     if isinstance(raw, np.ndarray): return raw
     return None
 
+
+def harmonize_mfpt_sample_rate(signal, meta):
+    """Harmoniza o MFPT para 48.828 Hz (reduz sinais de 97.656 Hz por fator 2)."""
+    try:
+        sample_rate = float(meta.get('sample_rate'))
+    except (TypeError, ValueError):
+        return signal
+
+    target_rate = 48828.0
+    if np.isclose(sample_rate, target_rate):
+        return signal
+    if np.isclose(sample_rate, 2 * target_rate):
+        signal = np.asarray(signal).reshape(-1)
+        return resample_poly(signal, up=1, down=2)
+    return signal
+
+
 # --- CONFIGURAÇÃO DE DIRETÓRIOS ---
 FINAL_1D_DIR = str(DATA_ROOT)
 
+DEFAULT_RAW_DATASETS = [
+    "CWRU",
+    "HUST",
+    "IMS",
+    "MFPT",
+    "UOC",
+    "UORED",
+    "Electric_Motor",
+    "HUST_Gearbox",
+    "Mechanical_Gear",
+    "PU",
+    "UOEMD",
+]
+
 if __name__ == "__main__":
-    datasets = ["CWRU"]
+    datasets = DEFAULT_RAW_DATASETS
     
     for ds_name in datasets:
         print(f"\n=== Processando {ds_name} (1D) ===")
@@ -175,6 +206,9 @@ if __name__ == "__main__":
 
                 meta = item['metainfo']
                 if isinstance(meta, pd.DataFrame): meta = meta.iloc[0]
+
+                if ds_name == "MFPT":
+                    sig_array = harmonize_mfpt_sample_rate(sig_array, meta)
 
                 # ROTEAMENTO INTELIGENTE (Salva 12k duas vezes em pastas diferentes)
                 if ds_name == "CWRU":
