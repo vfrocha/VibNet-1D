@@ -57,7 +57,7 @@ from src.vibnet.data.registry import CANONICAL_DATASETS, list_all_datasets, load
 
 REQUIRED_PACKAGES_BY_GROUP: Dict[str, List[str]] = {
     "scientific_base": ["numpy", "scipy", "pandas", "scikit-learn"],
-    "signal_processing": ["PyWavelets"],
+    "signal_processing": ["PyWavelets", "librosa"],
     "deep_learning": ["torch", "pytorch-tabnet"],
     "classical_ml": ["xgboost", "imbalanced-learn"],
     "download_and_utils": ["gdown", "tqdm", "PyYAML", "rarfile"],

@@ -12,6 +12,7 @@ dependencies = [
     "numpy",
     "pandas",
     "scipy",
+    "librosa",
     "scikit-learn",
     "imbalanced-learn",
     "xgboost",

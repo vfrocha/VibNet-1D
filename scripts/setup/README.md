@@ -39,7 +39,7 @@ bash scripts/setup/install_linux.sh
 O comando acima executa de forma **idempotente**:
 1. Verifica `python3 >= 3.9` e cria o ambiente virtual `.venv`.
 2. Detecta automaticamente se há GPU NVIDIA (`nvidia-smi`) e instala a build compatível do PyTorch (`cu124`, `cu121`, `cu118` ou `cpu`).
-3. Instala todas as dependências científicas (`numpy`, `scipy`, `pandas`, `scikit-learn`, `PyWavelets`, `xgboost`, `imbalanced-learn`, `pytorch-tabnet`, `vibdata`) e registra o projeto em modo editável (`pip install -e .`).
+3. Instala todas as dependências científicas (`numpy`, `scipy`, `pandas`, `scikit-learn`, `PyWavelets`, `librosa`, `xgboost`, `imbalanced-learn`, `pytorch-tabnet`, `vibdata`) e registra o projeto em modo editável (`pip install -e .`).
 4. Baixa os datasets brutos disponíveis, gera as variantes de janelas de 1 segundo (`processed_1d`, `raw`, `detrended`, `raw_rms`, `detrended_rms`) e valida os invariantes físicos de RMS.
 5. Emite os relatórios diagnósticos em `results/setup/installation_report.json` e `results/setup/installation_report.md`.
 
