@@ -1,0 +1,5 @@
+2026-11-17 16:25:56,550 INFO Run directory: /home/vfrocha/VibNet-1D/results/experiment_planning/hust_gearbox/run_20261117_162556
+2026-11-17 16:25:56,550 INFO Loading 1780 windows; extracting canonical 141 features.
+2026-11-17 16:26:19,835 INFO 20Hz seed=42 RandomForest: F1=0.7591 AUC=0.9270
+2026-11-17 16:26:19,908 INFO 20Hz seed=42 SVM_RBF: F1=0.7233 AUC=0.8611
+2026-11-17 16:26:19,948 INFO Completed; outputs: /home/vfrocha/VibNet-1D/results/experiment_planning/hust_gearbox/run_20261117_162556
