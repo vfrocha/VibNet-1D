@@ -39,6 +39,7 @@ from src.experiments.run_baseline_loco_v2 import default_141_feature_extractor
 PREPROCESSING = "detrended_rms"
 DATASET = "HUST_Gearbox"
 EXPECTED_CLASSES = {"Class_Broken", "Class_Missing", "Class_Normal"}
+CLASS_ALIASES = {"Class_Healthy": "Class_Normal"}
 SPEED_GROUPS = ["20Hz", "25Hz", "30Hz", "35Hz", "40Hz", "VS_0_40Hz"]
 LOAD_GROUPS = [f"Load_{i}" for i in range(5)]
 EXPECTED_CONDITIONS = {
@@ -112,7 +113,8 @@ def load_windows(data_dir: Path) -> tuple[np.ndarray, np.ndarray, np.ndarray, np
     recording_metadata: dict[str, tuple[str, str]] = {}
     for path in paths:
         condition = path.parent.parent.name
-        label = path.parent.name
+        source_label = path.parent.name
+        label = CLASS_ALIASES.get(source_label, source_label)
         source_recording_id = derive_recording_id(path.name)
         # The current preprocessing output can reuse the same sNNNNN prefix in
         # different condition folders, so use its full provenance path as key.
@@ -233,6 +235,7 @@ def main() -> int:
         "feature_extractor": "default_141_feature_extractor",
         "feature_count": int(X.shape[1]),
         "models": model_configs,
+        "class_label_aliases": CLASS_ALIASES,
         "hyperparameter_search": False,
         "versions": {"python": platform.python_version(), "numpy": np.__version__, "pandas": pd.__version__, "scikit_learn": sklearn_version},
         "git_commit": git_version(),

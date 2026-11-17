@@ -27,8 +27,14 @@ Foram consultados `audit_summary.md`, `hust_gearbox_preliminary.md`,
 - Há inconsistência entre a auditoria específica (3 classes/900 janelas) e
   `src/vibnet/data/registry.py` (vocabulário/contagem diferentes). A implementação
   obedece à auditoria HUST Gearbox solicitada e falha explicitamente se os dados
-  carregados não apresentarem exatamente as três classes auditadas e as 30
-  condições esperadas. Nenhum rótulo é renomeado ou sintetizado.
+  carregados não apresentarem exatamente as três classes canônicas auditadas e
+  as 30 condições esperadas. O alias saudável descrito abaixo é a única
+  harmonização permitida.
+- O dataset pode conter `Class_Healthy` e `Class_Normal` em pastas distintas. O
+  repositório já documenta essa equivalência em `scripts/rename_normal.sh` e em
+  `normalize_dataset_tl.py`. O runner mapeia `Class_Healthy` para `Class_Normal`
+  somente durante a leitura para representar o mesmo rótulo saudável; não muda
+  os diretórios. Os caminhos originais ficam registrados nos IDs de amostra.
 
 Para executar, é necessário disponibilizar as janelas processadas no caminho
 acima, preservando os nomes `sNNNNN_wNN.npy` e as pastas por condição e classe.
