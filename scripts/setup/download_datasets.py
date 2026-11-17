@@ -501,6 +501,24 @@ def download_single_raw_source(
     }
 
 
+def _ensure_writable_dir(path: Path, label: str = "VIBNET_RAW_DIR") -> Path:
+    """Garante que o diretório existe e possui permissão de escrita, emitindo erro claro em caso de PermissionError."""
+    resolved = Path(path).expanduser().resolve()
+    try:
+        resolved.mkdir(parents=True, exist_ok=True)
+    except PermissionError as exc:
+        home_suggestion = Path.home() / "datasets" / "vibnet"
+        raise PermissionError(
+            f"Sem permissão para criar o diretório {label}='{resolved}' ({exc}).\n"
+            f"Dica: Verifique se o caminho pertence ao seu usuário atual ('{Path.home()}').\n"
+            f"Por exemplo, use '$HOME' nos caminhos ou limpe as variáveis antigas do terminal:\n"
+            f"  unset VIBNET_RAW_DIR VIBNET_PROCESSED_DIR VIBNET_PROCESSED_TL_DIR VIBNET_RESULTS_DIR\n"
+            f"ou aponte para a sua pasta pessoal:\n"
+            f"  --raw-dir {home_suggestion}/raw"
+        ) from exc
+    return resolved
+
+
 def download_datasets(
     datasets: Optional[Sequence[str]] = None,
     raw_dir: Optional[Path] = None,
@@ -509,8 +527,7 @@ def download_datasets(
     custom_downloader: Optional[Callable[[str, Path, Mapping[str, Any]], Dict[str, Any]]] = None,
 ) -> Dict[str, Any]:
     """Orquestra a estimativa de espaço, download e atualização de `download_manifest.json`."""
-    resolved_raw_dir = Path(raw_dir or RAW_DATA_DIR).expanduser().resolve()
-    resolved_raw_dir.mkdir(parents=True, exist_ok=True)
+    resolved_raw_dir = _ensure_writable_dir(Path(raw_dir or RAW_DATA_DIR), "VIBNET_RAW_DIR")
 
     setup_cfg = load_setup_config()
     selected = resolve_selected_datasets(datasets)
@@ -667,6 +684,12 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return 2
 
     target_raw_dir = Path(args.raw_dir or RAW_DATA_DIR).expanduser().resolve()
+    try:
+        target_raw_dir = _ensure_writable_dir(target_raw_dir, "VIBNET_RAW_DIR")
+    except PermissionError as exc:
+        print(f"\n[ERRO DE PERMISSÃO] {exc}", file=sys.stderr)
+        return 4
+
     est = estimate_disk_requirements(selected, target_raw_dir, setup_cfg=setup_cfg)
 
     print("=" * 72)

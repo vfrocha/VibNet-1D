@@ -30,6 +30,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.setup.download_datasets import (
+    _ensure_writable_dir,
     get_dataset_to_raw_source_map,
     load_setup_config,
     resolve_selected_datasets,
@@ -370,11 +371,12 @@ def prepare_datasets(
 ) -> Dict[str, Any]:
     """Orquestra a preparação incremental e validação dos datasets e variantes solicitados."""
     resolved_raw_dir = Path(raw_dir or RAW_DATA_DIR).expanduser().resolve()
-    resolved_proc_dir = Path(processed_dir or PROCESSED_DATA_DIR).expanduser().resolve()
-    resolved_proc_tl_dir = Path(processed_tl_dir or PROCESSED_TL_DIR).expanduser().resolve()
-
-    resolved_proc_dir.mkdir(parents=True, exist_ok=True)
-    resolved_proc_tl_dir.mkdir(parents=True, exist_ok=True)
+    resolved_proc_dir = _ensure_writable_dir(
+        Path(processed_dir or PROCESSED_DATA_DIR), "VIBNET_PROCESSED_DIR"
+    )
+    resolved_proc_tl_dir = _ensure_writable_dir(
+        Path(processed_tl_dir or PROCESSED_TL_DIR), "VIBNET_PROCESSED_TL_DIR"
+    )
 
     selected_datasets = resolve_selected_datasets(datasets)
     req_variants = list(variants) if variants else list(SUPPORTED_VARIANTS)

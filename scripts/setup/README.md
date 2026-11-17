@@ -80,10 +80,10 @@ Para evitar armazenar gigabytes de sinais brutos e processados dentro da árvore
 
 ### Via variáveis de ambiente (recomendado adicionar ao `~/.bashrc` ou `.env`)
 ```bash
-export VIBNET_RAW_DIR="/home/lab/datasets/vibnet/raw"
-export VIBNET_PROCESSED_DIR="/home/lab/datasets/vibnet/processed"
-export VIBNET_PROCESSED_TL_DIR="/home/lab/datasets/vibnet/processed_tl"
-export VIBNET_RESULTS_DIR="/home/lab/experiments/vibnet/results"
+export VIBNET_RAW_DIR="$HOME/datasets/vibnet/raw"
+export VIBNET_PROCESSED_DIR="$HOME/datasets/vibnet/processed"
+export VIBNET_PROCESSED_TL_DIR="$HOME/datasets/vibnet/processed_tl"
+export VIBNET_RESULTS_DIR="$HOME/experiments/vibnet/results"
 
 bash scripts/setup/install_linux.sh
 ```
@@ -91,10 +91,10 @@ bash scripts/setup/install_linux.sh
 ### Ou via argumentos de linha de comando
 ```bash
 bash scripts/setup/install_linux.sh \
-  --raw-dir /home/lab/datasets/vibnet/raw \
-  --processed-dir /home/lab/datasets/vibnet/processed \
-  --processed-tl-dir /home/lab/datasets/vibnet/processed_tl \
-  --results-dir /home/lab/experiments/vibnet/results
+  --raw-dir "$HOME/datasets/vibnet/raw" \
+  --processed-dir "$HOME/datasets/vibnet/processed" \
+  --processed-tl-dir "$HOME/datasets/vibnet/processed_tl" \
+  --results-dir "$HOME/experiments/vibnet/results"
 ```
 
 ---
@@ -205,16 +205,16 @@ Para replicar exatamente o ambiente e aproveitar os datasets já baixados/proces
    ```
 2. **Copiar ou montar via NFS/rsync os diretórios de dados já baixados/processados** da máquina de origem:
    ```bash
-   rsync -avh --progress usuario@maquina-origem:/caminho/raw/ /home/lab/datasets/vibnet/raw/
-   rsync -avh --progress usuario@maquina-origem:/caminho/processed/ /home/lab/datasets/vibnet/processed/
-   rsync -avh --progress usuario@maquina-origem:/caminho/processed_tl/ /home/lab/datasets/vibnet/processed_tl/
+   rsync -avh --progress usuario@maquina-origem:/caminho/raw/ "$HOME/datasets/vibnet/raw/"
+   rsync -avh --progress usuario@maquina-origem:/caminho/processed/ "$HOME/datasets/vibnet/processed/"
+   rsync -avh --progress usuario@maquina-origem:/caminho/processed_tl/ "$HOME/datasets/vibnet/processed_tl/"
    ```
 3. **Executar o instalador apontando para os diretórios transferidos**:
    ```bash
    bash scripts/setup/install_linux.sh \
-     --raw-dir /home/lab/datasets/vibnet/raw \
-     --processed-dir /home/lab/datasets/vibnet/processed \
-     --processed-tl-dir /home/lab/datasets/vibnet/processed_tl
+     --raw-dir "$HOME/datasets/vibnet/raw" \
+     --processed-dir "$HOME/datasets/vibnet/processed" \
+     --processed-tl-dir "$HOME/datasets/vibnet/processed_tl"
    ```
    O instalador detectará automaticamente que os arquivos brutos e as variantes processadas já existem e estão íntegros (`ALREADY_PRESENT` / `REUSED_VALID`), instalando apenas o `.venv` adequado à GPU/CPU da nova máquina e validando a integridade final em `results/setup/installation_report.md`.
 
