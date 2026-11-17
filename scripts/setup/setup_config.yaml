@@ -1,0 +1,156 @@
+# Configuração declarativa do instalador reproduzível do VibNet-1D (`scripts/setup/setup_config.yaml`).
+#
+# IMPORTANTE: A lista canônica de datasets, taxas de amostragem (`fs_hz`) e classes
+# normais de referência NÃO é duplicada aqui; ela é lida dinamicamente de
+# `src.vibnet.data.registry.CANONICAL_DATASETS` e `configs/datasets.yaml`.
+
+installer_version: "1.0.0"
+canonical_registry_module: "src.vibnet.data.registry"
+canonical_datasets_yaml: "configs/datasets.yaml"
+
+python:
+  min_version: "3.9"
+  recommended_version: "3.11"
+  default_venv_dir: ".venv"
+
+vibdata:
+  custom_fork_git: "git+https://github.com/vfrocha/vibdata.git"
+  pypi_fallback_package: "vibdata"
+
+default_variants:
+  - "processed_1d"
+  - "raw"
+  - "detrended"
+  - "raw_rms"
+  - "detrended_rms"
+
+# Metadados das fontes brutas de download (mapeadas pelos datasets canônicos).
+# Nota: CWRU_12k e CWRU_48k compartilham a mesma fonte bruta "CWRU".
+raw_sources:
+  CWRU:
+    provides_datasets:
+      - "CWRU_12k"
+      - "CWRU_48k"
+    vibdata_class: "CWRU_raw"
+    archive_name: "CWRU.zip"
+    expected_md5: "d7d3042161080fc82e99d78464fa2914"
+    gdrive_file_id: "1G2vfms1QDlkdzqL_LAQdMIQAoludxBNj"
+    direct_url: null
+    auto_downloadable: true
+    requires_custom_vibdata_fork: false
+    estimated_raw_mb: 255
+    estimated_processed_mb: 580
+    license_and_notes: "Case Western Reserve University Bearing Data Center (público via espelho Google Drive da vibdata)."
+
+  MFPT:
+    provides_datasets:
+      - "MFPT"
+    vibdata_class: "MFPT_raw"
+    archive_name: "MFPT.zip"
+    expected_md5: "4631f552c6a0769996ee1d09e5feb209"
+    gdrive_file_id: "1VxGlOMCEED7jy2qAoE9nKYAK8h5i6TIb"
+    direct_url: null
+    auto_downloadable: true
+    requires_custom_vibdata_fork: false
+    estimated_raw_mb: 45
+    estimated_processed_mb: 95
+    license_and_notes: "Machinery Failure Prevention Technology (MFPT) Society Bearing Dataset (público via vibdata)."
+
+  PU:
+    provides_datasets:
+      - "PU"
+    vibdata_class: "PU_raw"
+    archive_name: "PU.zip"
+    expected_md5: "1beb53c6fb79436895787e094a22302f"
+    gdrive_file_id: "1PZLt3h1x_rjY6EfWV3yNl3FSDWH4o-Ii"
+    direct_url: null
+    auto_downloadable: true
+    requires_custom_vibdata_fork: false
+    estimated_raw_mb: 4200
+    estimated_processed_mb: 6500
+    license_and_notes: "Paderborn University Bearing DataCenter (CC BY-NC 4.0, espelho Google Drive na vibdata)."
+
+  HUST:
+    provides_datasets:
+      - "HUST"
+    vibdata_class: "HUST_raw"
+    archive_name: "HUST.zip"
+    expected_md5: "47441ac9bf782c592d63a6174d3d7d7e"
+    gdrive_file_id: null
+    direct_url: "https://prod-dcd-datasets-cache-zipfiles.s3.eu-west-1.amazonaws.com/cbv7jyx4p9-2.zip"
+    auto_downloadable: true
+    requires_custom_vibdata_fork: false
+    estimated_raw_mb: 380
+    estimated_processed_mb: 820
+    license_and_notes: "HUST Bearing Dataset (Mendeley Data S3 direto; vibdata 1.1.1 possui URL em HUST_raw.source)."
+
+  UORED:
+    provides_datasets:
+      - "UORED"
+    vibdata_class: "UORED_raw"
+    archive_name: "UORED.zip"
+    expected_md5: "9c6e86e4dc2f741a4c3f016fd5ec93d0"
+    gdrive_file_id: null
+    direct_url: "https://prod-dcd-datasets-cache-zipfiles.s3.eu-west-1.amazonaws.com/y2px5tg92h-4.zip"
+    auto_downloadable: true
+    requires_custom_vibdata_fork: false
+    estimated_raw_mb: 210
+    estimated_processed_mb: 350
+    license_and_notes: "University of Ottawa Rolling-Element Dataset (Mendeley Data S3 direto; UORED_raw.source)."
+
+  UOEMD:
+    provides_datasets:
+      - "UOEMD"
+    vibdata_class: "UOEMD_raw"
+    archive_name: "UOEMD.zip"
+    expected_md5: null
+    gdrive_file_id: null
+    direct_url: null
+    auto_downloadable: true
+    requires_custom_vibdata_fork: true
+    estimated_raw_mb: 650
+    estimated_processed_mb: 1100
+    license_and_notes: "University of Ottawa Electric Motor Dataset; requer fork git+https://github.com/vfrocha/vibdata.git ou cópia local em VIBNET_RAW_DIR."
+
+  HUST_Gearbox:
+    provides_datasets:
+      - "HUST_Gearbox"
+    vibdata_class: "HUST_Gearbox_raw"
+    archive_name: "HUST_Gearbox.zip"
+    expected_md5: null
+    gdrive_file_id: null
+    direct_url: null
+    auto_downloadable: true
+    requires_custom_vibdata_fork: true
+    estimated_raw_mb: 320
+    estimated_processed_mb: 580
+    license_and_notes: "HUST Gearbox Dataset; requer fork git+https://github.com/vfrocha/vibdata.git ou cópia local em VIBNET_RAW_DIR."
+
+  Mechanical_Gear:
+    provides_datasets:
+      - "Mechanical_Gear"
+    vibdata_class: "Mechanical_Gear_raw"
+    archive_name: "Mechanical_Gear.zip"
+    expected_md5: null
+    gdrive_file_id: null
+    direct_url: null
+    auto_downloadable: true
+    requires_custom_vibdata_fork: true
+    estimated_raw_mb: 350
+    estimated_processed_mb: 640
+    license_and_notes: "Mechanical Gear Dataset (5.000 Hz); requer fork git+https://github.com/vfrocha/vibdata.git (ou credenciais/arquivo manual se indisponível no espelho)."
+
+  Electric_Motor:
+    provides_datasets:
+      - "Electric_Motor"
+    vibdata_class: "Electric_Motor_raw"
+    archive_name: "Electric_Motor.zip"
+    expected_md5: null
+    gdrive_file_id: null
+    direct_url: null
+    auto_downloadable: true
+    requires_custom_vibdata_fork: true
+    estimated_raw_mb: 4800
+    estimated_processed_mb: 13500
+    license_and_notes: "Electric Motor Dataset (50.000 Hz, Zenodo); requer fork git+https://github.com/vfrocha/vibdata.git ou download manual para VIBNET_RAW_DIR."
+

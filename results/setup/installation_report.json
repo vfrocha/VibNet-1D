@@ -1,0 +1,703 @@
+{
+  "timestamp_utc": "2026-11-17T12:49:10.203681+00:00",
+  "overall_environment_ok": false,
+  "system_info": {
+    "os": {
+      "system": "Linux",
+      "release": "6.6.114.1-microsoft-standard-WSL2",
+      "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+      "machine": "x86_64",
+      "distro_id": "ubuntu",
+      "distro_name": "Ubuntu 24.04.1 LTS",
+      "distro_version": "24.04"
+    },
+    "python": {
+      "version": "3.12.3",
+      "executable": "/home/vfrocha/vibnet-experiments/venv/bin/python",
+      "in_virtualenv": true,
+      "virtual_env_path": "/home/vfrocha/vibnet-experiments/venv"
+    },
+    "hardware": {
+      "cpu_model": "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz",
+      "logical_cores": 12,
+      "total_ram_gb": 7.46,
+      "available_ram_gb": 6.49
+    },
+    "gpu_driver": {
+      "nvidia_smi_found": true,
+      "nvidia_smi_path": "/usr/lib/wsl/lib/nvidia-smi",
+      "driver_version": "560.94",
+      "driver_cuda_version": "12.6",
+      "gpus": [
+        {
+          "index": 0,
+          "name": "NVIDIA GeForce GTX 1050",
+          "driver_version": "560.94",
+          "vram_mb": 2048.0
+        }
+      ]
+    },
+    "pytorch_recommendation": {
+      "compute_target": "cu124",
+      "index_url": "https://download.pytorch.org/whl/cu124",
+      "reason": "GPU NVIDIA detectada com suporte de driver até CUDA 12.6 (>= 12.4)."
+    },
+    "pytorch_runtime": {
+      "torch_installed": true,
+      "torch_version": "2.6.0+cu124",
+      "torch_cuda_compiled_version": "12.4",
+      "cuda_available": true,
+      "device_count": 1,
+      "device_name": "NVIDIA GeForce GTX 1050",
+      "cpu_matmul_ok": true,
+      "cuda_matmul_ok": true,
+      "cuda_matmul_shape": [
+        100,
+        100
+      ],
+      "diagnostic": "CUDA ativo e verificado com multiplicação matricial 100x100 em NVIDIA GeForce GTX 1050."
+    },
+    "disks": {
+      "project_root": {
+        "configured_path": "/mnt/c/Users/victor.rocha/Documents/VibNet-1D",
+        "existing_mount_probe": "/mnt/c/Users/victor.rocha/Documents/VibNet-1D",
+        "total_gb": 930.6,
+        "used_gb": 197.76,
+        "free_gb": 732.84
+      },
+      "raw_data_dir": {
+        "configured_path": "/mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/raw",
+        "existing_mount_probe": "/mnt/c/Users/victor.rocha/Documents/VibNet-1D",
+        "total_gb": 930.6,
+        "used_gb": 197.76,
+        "free_gb": 732.84
+      },
+      "processed_data_dir": {
+        "configured_path": "/mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed",
+        "existing_mount_probe": "/mnt/c/Users/victor.rocha/Documents/VibNet-1D",
+        "total_gb": 930.6,
+        "used_gb": 197.76,
+        "free_gb": 732.84
+      },
+      "processed_tl_dir": {
+        "configured_path": "/mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl",
+        "existing_mount_probe": "/mnt/c/Users/victor.rocha/Documents/VibNet-1D",
+        "total_gb": 930.6,
+        "used_gb": 197.76,
+        "free_gb": 732.84
+      },
+      "results_dir": {
+        "configured_path": "/mnt/c/Users/victor.rocha/Documents/VibNet-1D/results",
+        "existing_mount_probe": "/mnt/c/Users/victor.rocha/Documents/VibNet-1D/results",
+        "total_gb": 930.6,
+        "used_gb": 197.76,
+        "free_gb": 732.84
+      }
+    },
+    "warnings": []
+  },
+  "dependencies": {
+    "all_mandatory_installed": false,
+    "missing_mandatory": [
+      "PyWavelets",
+      "pytorch-tabnet",
+      "xgboost",
+      "imbalanced-learn"
+    ],
+    "missing_optional": [],
+    "by_group": {
+      "scientific_base": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "pandas": "3.0.3",
+        "scikit-learn": "1.8.0"
+      },
+      "signal_processing": {
+        "PyWavelets": null
+      },
+      "deep_learning": {
+        "torch": "2.6.0+cu124",
+        "pytorch-tabnet": null
+      },
+      "classical_ml": {
+        "xgboost": null,
+        "imbalanced-learn": null
+      },
+      "download_and_utils": {
+        "gdown": "6.1.0",
+        "tqdm": "4.67.3",
+        "PyYAML": "6.0.3",
+        "rarfile": "4.2"
+      },
+      "visualization": {
+        "matplotlib": "3.10.9",
+        "seaborn": "0.13.2"
+      },
+      "vibration_ecosystem": {
+        "vibdata": "1.1.1"
+      }
+    },
+    "flat_versions": {
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "pandas": "3.0.3",
+      "scikit-learn": "1.8.0",
+      "PyWavelets": null,
+      "torch": "2.6.0+cu124",
+      "pytorch-tabnet": null,
+      "xgboost": null,
+      "imbalanced-learn": null,
+      "gdown": "6.1.0",
+      "tqdm": "4.67.3",
+      "PyYAML": "6.0.3",
+      "rarfile": "4.2",
+      "matplotlib": "3.10.9",
+      "seaborn": "0.13.2",
+      "vibdata": "1.1.1"
+    }
+  },
+  "core_modules": {
+    "all_core_imported": true,
+    "failed_modules": [],
+    "modules": {
+      "src.config": {
+        "imported": true,
+        "error": null
+      },
+      "src.vibnet.data.registry": {
+        "imported": true,
+        "error": null
+      },
+      "src.vibnet.evaluation.provenance": {
+        "imported": true,
+        "error": null
+      },
+      "src.data.make_dataset": {
+        "imported": true,
+        "error": null
+      },
+      "src.data.make_dataset_tl": {
+        "imported": true,
+        "error": null
+      },
+      "src.data.validate_dataset_tl": {
+        "imported": true,
+        "error": null
+      },
+      "src.data.transforms_1d": {
+        "imported": true,
+        "error": null
+      },
+      "src.data.time_resampler": {
+        "imported": true,
+        "error": null
+      },
+      "src.preprocessing.normalize_dataset_tl": {
+        "imported": true,
+        "error": null
+      },
+      "src.models.resnet1d_time": {
+        "imported": true,
+        "error": null
+      },
+      "src.models.build_1d_time": {
+        "imported": true,
+        "error": null
+      }
+    }
+  },
+  "directories": {
+    "all_accessible": true,
+    "directories": {
+      "VIBNET_RAW_DIR": {
+        "path": "/mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/raw",
+        "exists": true,
+        "writable": true,
+        "error": null
+      },
+      "VIBNET_PROCESSED_DIR": {
+        "path": "/mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed",
+        "exists": true,
+        "writable": true,
+        "error": null
+      },
+      "VIBNET_PROCESSED_TL_DIR": {
+        "path": "/mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl",
+        "exists": true,
+        "writable": true,
+        "error": null
+      },
+      "VIBNET_RESULTS_DIR": {
+        "path": "/mnt/c/Users/victor.rocha/Documents/VibNet-1D/results",
+        "exists": true,
+        "writable": true,
+        "error": null
+      }
+    }
+  },
+  "datasets_inventory": {
+    "canonical_datasets": [
+      "CWRU_12k",
+      "CWRU_48k",
+      "MFPT",
+      "PU",
+      "UORED",
+      "UOEMD",
+      "HUST",
+      "HUST_Gearbox",
+      "Mechanical_Gear",
+      "Electric_Motor"
+    ],
+    "raw_inventory": {
+      "CWRU_12k": {
+        "raw_source": "CWRU",
+        "present": false,
+        "status": "MISSING",
+        "detail": "Dados brutos ainda não baixados."
+      },
+      "CWRU_48k": {
+        "raw_source": "CWRU",
+        "present": false,
+        "status": "MISSING",
+        "detail": "Dados brutos ainda não baixados."
+      },
+      "MFPT": {
+        "raw_source": "MFPT",
+        "present": false,
+        "status": "MISSING",
+        "detail": "Dados brutos ainda não baixados."
+      },
+      "PU": {
+        "raw_source": "PU",
+        "present": false,
+        "status": "MISSING",
+        "detail": "Dados brutos ainda não baixados."
+      },
+      "UORED": {
+        "raw_source": "UORED",
+        "present": false,
+        "status": "MISSING",
+        "detail": "Dados brutos ainda não baixados."
+      },
+      "UOEMD": {
+        "raw_source": "UOEMD",
+        "present": false,
+        "status": "MISSING",
+        "detail": "Dados brutos ainda não baixados."
+      },
+      "HUST": {
+        "raw_source": "HUST",
+        "present": false,
+        "status": "MISSING",
+        "detail": "Dados brutos ainda não baixados."
+      },
+      "HUST_Gearbox": {
+        "raw_source": "HUST_Gearbox",
+        "present": false,
+        "status": "MISSING",
+        "detail": "Dados brutos ainda não baixados."
+      },
+      "Mechanical_Gear": {
+        "raw_source": "Mechanical_Gear",
+        "present": false,
+        "status": "MISSING",
+        "detail": "Dados brutos ainda não baixados."
+      },
+      "Electric_Motor": {
+        "raw_source": "Electric_Motor",
+        "present": false,
+        "status": "MISSING",
+        "detail": "Dados brutos ainda não baixados."
+      }
+    },
+    "processed_inventory": {
+      "CWRU_12k": {
+        "processed_1d": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed/CWRU_12k"
+        },
+        "raw": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw/CWRU_12k"
+        },
+        "detrended": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended/CWRU_12k"
+        },
+        "raw_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw_rms/CWRU_12k"
+        },
+        "detrended_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended_rms/CWRU_12k"
+        }
+      },
+      "CWRU_48k": {
+        "processed_1d": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed/CWRU_48k"
+        },
+        "raw": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw/CWRU_48k"
+        },
+        "detrended": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended/CWRU_48k"
+        },
+        "raw_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw_rms/CWRU_48k"
+        },
+        "detrended_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended_rms/CWRU_48k"
+        }
+      },
+      "MFPT": {
+        "processed_1d": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed/MFPT"
+        },
+        "raw": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw/MFPT"
+        },
+        "detrended": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended/MFPT"
+        },
+        "raw_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw_rms/MFPT"
+        },
+        "detrended_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended_rms/MFPT"
+        }
+      },
+      "PU": {
+        "processed_1d": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed/PU"
+        },
+        "raw": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw/PU"
+        },
+        "detrended": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended/PU"
+        },
+        "raw_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw_rms/PU"
+        },
+        "detrended_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended_rms/PU"
+        }
+      },
+      "UORED": {
+        "processed_1d": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed/UORED"
+        },
+        "raw": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw/UORED"
+        },
+        "detrended": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended/UORED"
+        },
+        "raw_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw_rms/UORED"
+        },
+        "detrended_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended_rms/UORED"
+        }
+      },
+      "UOEMD": {
+        "processed_1d": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed/UOEMD"
+        },
+        "raw": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw/UOEMD"
+        },
+        "detrended": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended/UOEMD"
+        },
+        "raw_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw_rms/UOEMD"
+        },
+        "detrended_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended_rms/UOEMD"
+        }
+      },
+      "HUST": {
+        "processed_1d": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed/HUST"
+        },
+        "raw": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw/HUST"
+        },
+        "detrended": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended/HUST"
+        },
+        "raw_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw_rms/HUST"
+        },
+        "detrended_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended_rms/HUST"
+        }
+      },
+      "HUST_Gearbox": {
+        "processed_1d": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed/HUST_Gearbox"
+        },
+        "raw": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw/HUST_Gearbox"
+        },
+        "detrended": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended/HUST_Gearbox"
+        },
+        "raw_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw_rms/HUST_Gearbox"
+        },
+        "detrended_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended_rms/HUST_Gearbox"
+        }
+      },
+      "Mechanical_Gear": {
+        "processed_1d": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed/Mechanical_Gear"
+        },
+        "raw": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw/Mechanical_Gear"
+        },
+        "detrended": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended/Mechanical_Gear"
+        },
+        "raw_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw_rms/Mechanical_Gear"
+        },
+        "detrended_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended_rms/Mechanical_Gear"
+        }
+      },
+      "Electric_Motor": {
+        "processed_1d": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed/Electric_Motor"
+        },
+        "raw": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw/Electric_Motor"
+        },
+        "detrended": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended/Electric_Motor"
+        },
+        "raw_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/raw_rms/Electric_Motor"
+        },
+        "detrended_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /mnt/c/Users/victor.rocha/Documents/VibNet-1D/data/processed_tl/detrended_rms/Electric_Motor"
+        }
+      }
+    },
+    "available_variants_summary": {
+      "processed_1d": [],
+      "raw": [],
+      "detrended": [],
+      "raw_rms": [],
+      "detrended_rms": []
+    },
+    "downloaded_datasets": [],
+    "processed_datasets_any_variant": []
+  },
+  "experiment_scripts": {
+    "all_scripts_valid": true,
+    "scripts": {
+      "src/experiments/run_baseline_loco_v2.py": {
+        "valid": true,
+        "error": null
+      },
+      "src/experiments/run_scratch_vs_tl_benchmark.py": {
+        "valid": true,
+        "error": null
+      },
+      "src/experiments/run_scratch_vs_tl_classical_baselines.py": {
+        "valid": true,
+        "error": null
+      },
+      "src/experiments/analyze_scratch_tl_classical_comparison.py": {
+        "valid": true,
+        "error": null
+      },
+      "src/experiments/run_tabvibnet_linear_probing.py": {
+        "valid": true,
+        "error": null
+      },
+      "src/experiments/run_time_scratch_ablation.py": {
+        "valid": true,
+        "error": null
+      },
+      "scripts/exp_tl_cross_dataset_mlp_tabnet.py": {
+        "valid": true,
+        "error": null
+      },
+      "scripts/exp_tl_contrastive_mlp.py": {
+        "valid": true,
+        "error": null
+      },
+      "scripts/exp_tl_balance_strategies.py": {
+        "valid": true,
+        "error": null
+      },
+      "scripts/validate_dataset_tl.py": {
+        "valid": true,
+        "error": null
+      }
+    }
+  },
+  "unit_tests": {
+    "executed": false,
+    "passed": true,
+    "detail": "Execução de testes unitários desativada (--skip-tests)."
+  },
+  "warnings": [],
+  "failures": [
+    "Dependências obrigatórias ausentes: ['PyWavelets', 'pytorch-tabnet', 'xgboost', 'imbalanced-learn']"
+  ],
+  "report_paths": {
+    "json": "/mnt/c/Users/victor.rocha/Documents/VibNet-1D/results/setup/installation_report.json",
+    "markdown": "/mnt/c/Users/victor.rocha/Documents/VibNet-1D/results/setup/installation_report.md"
+  }
+}
