@@ -1,0 +1,21 @@
+file_index,file_name,raw_label_id,raw_label_name,global_class,load_lbs,rotation_hz,sample_rate_hz,duration_sec_approx,windows_undecimated_buggy,windows_harmonized_48828hz,requires_decimation_by_2
+0,baseline_1.mat,23,Normal,Normal,270,25,97656,6.0,12,6,True
+1,baseline_2.mat,23,Normal,Normal,270,25,97656,6.0,12,6,True
+2,baseline_3.mat,23,Normal,Normal,270,25,97656,6.0,12,6,True
+3,InnerRaceFault_vload_1.mat,24,Inner Race,Inner,0,25,48828,3.0,3,3,False
+4,InnerRaceFault_vload_2.mat,24,Inner Race,Inner,50,25,48828,3.0,3,3,False
+5,InnerRaceFault_vload_3.mat,24,Inner Race,Inner,100,25,48828,3.0,3,3,False
+6,InnerRaceFault_vload_4.mat,24,Inner Race,Inner,150,25,48828,3.0,3,3,False
+7,InnerRaceFault_vload_5.mat,24,Inner Race,Inner,200,25,48828,3.0,3,3,False
+8,InnerRaceFault_vload_6.mat,24,Inner Race,Inner,250,25,48828,3.0,3,3,False
+9,InnerRaceFault_vload_7.mat,24,Inner Race,Inner,300,25,48828,3.0,3,3,False
+10,OuterRaceFault_1.mat,25,Outer Race,Outer,270,25,97656,6.0,12,6,True
+11,OuterRaceFault_2.mat,25,Outer Race,Outer,270,25,97656,6.0,12,6,True
+12,OuterRaceFault_3.mat,25,Outer Race,Outer,270,25,97656,6.0,12,6,True
+13,OuterRaceFault_vload_1.mat,25,Outer Race,Outer,25,25,48828,3.0,3,3,False
+14,OuterRaceFault_vload_2.mat,25,Outer Race,Outer,50,25,48828,3.0,3,3,False
+15,OuterRaceFault_vload_3.mat,25,Outer Race,Outer,100,25,48828,3.0,3,3,False
+16,OuterRaceFault_vload_4.mat,25,Outer Race,Outer,150,25,48828,3.0,3,3,False
+17,OuterRaceFault_vload_5.mat,25,Outer Race,Outer,200,25,48828,3.0,3,3,False
+18,OuterRaceFault_vload_6.mat,25,Outer Race,Outer,250,25,48828,3.0,3,3,False
+19,OuterRaceFault_vload_7.mat,25,Outer Race,Outer,300,25,48828,3.0,3,3,False
