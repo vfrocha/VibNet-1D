@@ -12,8 +12,11 @@ Foram consultados `audit_summary.md`, `hust_gearbox_preliminary.md`,
   `src/experiments/run_scratch_vs_tl_classical_baselines.py`.
 - O formato preparado esperado é
   `data/processed_tl/detrended_rms/HUST_Gearbox/<condição>/<classe>/sNNNNN_wNN.npy`.
-  O prefixo `sNNNNN` identifica a gravação bruta e `wNN` sua janela; todas as
-  janelas com o mesmo prefixo são mantidas juntas no fold.
+  `wNN` identifica a janela. A execução do pesquisador mostrou que `sNNNNN`
+  pode se repetir em condições diferentes; por isso, o runner identifica a
+  gravação pelo trio condição/classe/prefixo e também registra o prefixo de
+  origem separadamente. Todas as janelas com a mesma identidade composta ficam
+  juntas no fold; o manifesto preserva também os caminhos de cada janela.
 - A auditoria específica documenta 30 condições, 900 janelas, 90 gravações,
   três classes (`Class_Normal`, `Class_Broken`, `Class_Missing`), 10 janelas por
   gravação e 25,6 kHz. Os nomes de condição são `Cond_<20|25|30|35|40>_<0..4>`

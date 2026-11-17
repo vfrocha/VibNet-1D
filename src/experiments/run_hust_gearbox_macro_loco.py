@@ -105,6 +105,7 @@ def load_windows(data_dir: Path) -> tuple[np.ndarray, np.ndarray, np.ndarray, np
     conditions: list[str] = []
     labels: list[str] = []
     recording_ids: list[str] = []
+    source_recording_ids: list[str] = []
     sample_ids: list[str] = []
     speed: list[str] = []
     load: list[str] = []
@@ -112,7 +113,10 @@ def load_windows(data_dir: Path) -> tuple[np.ndarray, np.ndarray, np.ndarray, np
     for path in paths:
         condition = path.parent.parent.name
         label = path.parent.name
-        recording_id = derive_recording_id(path.name)
+        source_recording_id = derive_recording_id(path.name)
+        # The current preprocessing output can reuse the same sNNNNN prefix in
+        # different condition folders, so use its full provenance path as key.
+        recording_id = f"{condition}/{label}/{source_recording_id}"
         speed_group, load_group = condition_groups(condition)
         previous = recording_metadata.setdefault(recording_id, (condition, label))
         if previous != (condition, label):
@@ -127,6 +131,7 @@ def load_windows(data_dir: Path) -> tuple[np.ndarray, np.ndarray, np.ndarray, np
         conditions.append(condition)
         labels.append(label)
         recording_ids.append(recording_id)
+        source_recording_ids.append(source_recording_id)
         sample_ids.append(path.relative_to(data_dir.parent).as_posix())
         speed.append(speed_group)
         load.append(load_group)
@@ -147,8 +152,8 @@ def load_windows(data_dir: Path) -> tuple[np.ndarray, np.ndarray, np.ndarray, np
         )
     return (
         np.stack(windows), np.asarray(labels, dtype=str), np.asarray(conditions, dtype=str),
-        np.asarray(recording_ids, dtype=str), np.asarray(sample_ids, dtype=str),
-        np.asarray(speed, dtype=str),
+        np.asarray(recording_ids, dtype=str), np.asarray(source_recording_ids, dtype=str),
+        np.asarray(sample_ids, dtype=str), np.asarray(speed, dtype=str),
     )
 
 
@@ -190,7 +195,7 @@ def main() -> int:
     selected_folds = [args.fold] if args.fold else fold_names
 
     data_dir = args.data_root / DATASET
-    X_windows, y_text, conditions, recording_ids, sample_ids, speed_groups = load_windows(data_dir)
+    X_windows, y_text, conditions, recording_ids, source_recording_ids, sample_ids, speed_groups = load_windows(data_dir)
     load_groups = np.asarray([condition_groups(c)[1] for c in conditions], dtype=str)
     if len(set(map(len, X_windows))) != 1:
         raise ValueError("Comprimentos de janela divergentes no conjunto HUST_Gearbox.")
@@ -245,6 +250,8 @@ def main() -> int:
         )
         train_recordings = sorted(set(recording_ids[train_mask]))
         test_recordings = sorted(set(recording_ids[test_mask]))
+        train_source_recordings = sorted(set(source_recording_ids[train_mask]))
+        test_source_recordings = sorted(set(source_recording_ids[test_mask]))
         if set(train_recordings) & set(test_recordings):
             raise AssertionError("Vazamento de gravação entre treino e teste.")
         train_ids = sample_ids[train_mask].tolist()
@@ -287,6 +294,8 @@ def main() -> int:
             "held_out_conditions": json.dumps(condition_groups_in_test),
             "train_recording_ids": json.dumps(train_recordings),
             "test_recording_ids": json.dumps(test_recordings),
+            "train_source_recording_prefixes": json.dumps(train_source_recordings),
+            "test_source_recording_prefixes": json.dumps(test_source_recordings),
             "train_sample_ids": json.dumps(train_ids), "test_sample_ids": json.dumps(test_ids),
             "train_condition_groups": json.dumps(sorted(set(group_values[train_mask]))),
             "test_condition_groups": json.dumps(sorted(set(group_values[test_mask]))),
