@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETED",
+  "protocol": "TL",
+  "source_config": "S3",
+  "target": "HUST_Gearbox",
+  "seed": 42,
+  "n_loco_folds_executed": 2,
+  "elapsed_seconds": 121.734,
+  "models_macro_f1": {
+    "TabNet_TL_Scratch": 0.8599602159704463,
+    "TabNet_TL_FineTuning": 0.9832915622389307,
+    "TabNet_TL_LinearProbing": 0.71890078732184,
+    "RandomForest_TL_LOCO": 1.0,
+    "SVM_TL_LOCO": 1.0
+  },
+  "timestamp_utc": "2026-11-18T21:29:58.341863+00:00"
+}

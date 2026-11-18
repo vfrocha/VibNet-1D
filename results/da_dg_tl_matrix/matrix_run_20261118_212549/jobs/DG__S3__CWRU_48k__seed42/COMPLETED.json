@@ -1,0 +1,15 @@
+{
+  "status": "COMPLETED",
+  "protocol": "DG",
+  "source_config": "S3",
+  "target": "CWRU_48k",
+  "seed": 42,
+  "elapsed_seconds": 43.282,
+  "tabnet_macro_f1": 0.341893920051658,
+  "models_macro_f1": {
+    "TabNet_DG": 0.341893920051658,
+    "RandomForest_DG_SourceOnly": 0.16708229426433915,
+    "SVM_DG_SourceOnly": 0.1624790619765494
+  },
+  "timestamp_utc": "2026-11-18T21:26:32.803620+00:00"
+}

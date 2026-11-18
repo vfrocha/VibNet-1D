@@ -1,0 +1,20 @@
+[
+  {
+    "fold_index": 0,
+    "test_condition": "Cond_20_0",
+    "n_train_conditions": 29,
+    "n_train_windows": 870,
+    "n_test_windows": 30,
+    "rms_ref": 0.09478907663199806,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 1,
+    "test_condition": "Cond_20_1",
+    "n_train_conditions": 29,
+    "n_train_windows": 870,
+    "n_test_windows": 30,
+    "rms_ref": 0.09463844374814112,
+    "rms_mode": "target_loco_train_conditions_normal"
+  }
+]

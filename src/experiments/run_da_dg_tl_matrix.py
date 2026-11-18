@@ -54,6 +54,14 @@ from src.vibnet.evaluation.da_dg_tl_protocol import (
     get_source_config_classes,
     load_dataset_window_records,
 )
+from src.vibnet.evaluation.da_dg_tl_runner import (
+    MatrixExecutionContext,
+    atomic_write_json,
+    execute_da_job,
+    execute_dg_job,
+    execute_tl_job,
+    is_job_completed,
+)
 from src.vibnet.evaluation.provenance import collect_run_provenance, write_run_metadata
 
 DEFAULT_CONFIG_PATH = PROJECT_ROOT / "configs" / "da_dg_tl_matrix.yaml"
@@ -333,6 +341,186 @@ def build_execution_plan(
             "scale_sensitive_indices": list(get_scale_sensitive_15_indices()),
         },
         "jobs_preview": jobs[:15],
+        "jobs": jobs,
+    }
+
+
+def _make_job_id(protocol: str, source_config: str, target: str, seed: int) -> str:
+    return f"{protocol}__{source_config}__{target}__seed{int(seed)}"
+
+
+def consolidate_matrix_summary(run_dir: Path) -> Dict[str, Any]:
+    """
+    Rebuild `matrix_summary.json` and `matrix_summary.csv` atomically from all
+    `jobs/*/COMPLETED.json` files inside `run_dir`. Never modifies individual job dirs.
+    """
+    jobs_root = run_dir / "jobs"
+    rows: List[Dict[str, Any]] = []
+    completed_count = 0
+    blocked_count = 0
+
+    if jobs_root.is_dir():
+        for job_dir in sorted(jobs_root.iterdir()):
+            sentinel = job_dir / "COMPLETED.json"
+            if not sentinel.is_file():
+                continue
+            try:
+                data = json.loads(sentinel.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            status = str(data.get("status", "UNKNOWN"))
+            if status == "COMPLETED":
+                completed_count += 1
+                models_f1 = data.get("models_macro_f1", {})
+                for model_name, macro_f1 in sorted(models_f1.items()):
+                    rows.append(
+                        {
+                            "job_id": job_dir.name,
+                            "status": status,
+                            "protocol": data.get("protocol", ""),
+                            "source_config": data.get("source_config", ""),
+                            "target": data.get("target", ""),
+                            "seed": data.get("seed", ""),
+                            "model": model_name,
+                            "macro_f1": macro_f1,
+                            "elapsed_seconds": data.get("elapsed_seconds", ""),
+                            "timestamp_utc": data.get("timestamp_utc", ""),
+                        }
+                    )
+            elif status == "BLOCKED_INCOMPATIBLE_UNIT":
+                blocked_count += 1
+                rows.append(
+                    {
+                        "job_id": job_dir.name,
+                        "status": status,
+                        "protocol": data.get("protocol", ""),
+                        "source_config": data.get("source_config", ""),
+                        "target": data.get("target", ""),
+                        "seed": data.get("seed", ""),
+                        "model": "BLOCKED",
+                        "macro_f1": "",
+                        "elapsed_seconds": 0.0,
+                        "timestamp_utc": data.get("timestamp_utc", ""),
+                    }
+                )
+
+    summary = {
+        "run_dir": str(run_dir),
+        "completed_jobs": completed_count,
+        "blocked_jobs": blocked_count,
+        "total_summary_rows": len(rows),
+        "rows": rows,
+    }
+    atomic_write_json(run_dir / "matrix_summary.json", summary)
+
+    csv_path = run_dir / "matrix_summary.csv"
+    tmp_csv = csv_path.with_suffix(".csv.tmp")
+    fieldnames = [
+        "job_id",
+        "status",
+        "protocol",
+        "source_config",
+        "target",
+        "seed",
+        "model",
+        "macro_f1",
+        "elapsed_seconds",
+        "timestamp_utc",
+    ]
+    with tmp_csv.open("w", newline="", encoding="utf-8") as fp:
+        writer = csv.DictWriter(fp, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+    tmp_csv.replace(csv_path)
+    return summary
+
+
+def execute_matrix_plan(
+    config: Dict[str, Any],
+    plan: Dict[str, Any],
+    run_dir: Path,
+    include_classical: bool = True,
+    max_loco_folds: Optional[int] = None,
+) -> Dict[str, Any]:
+    """
+    Execute all jobs in `plan["jobs"]` with safe atomic resume:
+      - Jobs whose `jobs/<job_id>/COMPLETED.json` already exists are skipped without overwriting.
+      - DG jobs targeting `PU` (Volts) under 141 features are recorded as `BLOCKED_INCOMPATIBLE_UNIT`.
+      - After every job, consolidates `matrix_summary.csv` and `matrix_summary.json`.
+    """
+    ctx = MatrixExecutionContext(run_dir=run_dir, config=config, project_root=PROJECT_ROOT)
+    jobs_root = run_dir / "jobs"
+    jobs_root.mkdir(parents=True, exist_ok=True)
+
+    jobs: List[Dict[str, Any]] = list(plan.get("jobs", []))
+    executed_now = 0
+    skipped_resume = 0
+    blocked_now = 0
+
+    for idx, job in enumerate(jobs, start=1):
+        proto = str(job["protocol"])
+        sc = str(job["source_config"])
+        tgt = str(job["target"])
+        seed = int(job["seed"])
+        job_id = _make_job_id(proto, sc, tgt, seed)
+        job_dir = jobs_root / job_id
+
+        if is_job_completed(job_dir):
+            skipped_resume += 1
+            print(f"[{idx}/{len(jobs)}] [SKIP-RESUME] {job_id} already completed.")
+            continue
+
+        print("=" * 78)
+        print(f"[{idx}/{len(jobs)}] [RUN] {job_id}")
+        print("=" * 78)
+        if proto == "DG":
+            res = execute_dg_job(
+                ctx=ctx,
+                source_config_id=sc,
+                target_dataset=tgt,
+                seed=seed,
+                job_dir=job_dir,
+                include_classical=include_classical,
+            )
+        elif proto == "DA":
+            res = execute_da_job(
+                ctx=ctx,
+                source_config_id=sc,
+                target_dataset=tgt,
+                seed=seed,
+                job_dir=job_dir,
+                include_classical=include_classical,
+            )
+        elif proto == "TL":
+            res = execute_tl_job(
+                ctx=ctx,
+                source_config_id=sc,
+                target_dataset=tgt,
+                seed=seed,
+                job_dir=job_dir,
+                include_classical=include_classical,
+                max_loco_folds=max_loco_folds,
+            )
+        else:
+            raise ValueError(f"Unsupported protocol '{proto}'.")
+
+        if res.get("status") == "BLOCKED_INCOMPATIBLE_UNIT":
+            blocked_now += 1
+            print(f"[{idx}/{len(jobs)}] [BLOCKED] {job_id}: {res.get('reason')}")
+        else:
+            executed_now += 1
+            print(f"[{idx}/{len(jobs)}] [DONE] {job_id} ({res.get('elapsed_seconds')}s)")
+
+        consolidate_matrix_summary(run_dir)
+
+    summary = consolidate_matrix_summary(run_dir)
+    return {
+        "run_dir": str(run_dir),
+        "total_planned_jobs": len(jobs),
+        "executed_now": executed_now,
+        "skipped_resume": skipped_resume,
+        "blocked_now": blocked_now,
+        "summary": summary,
     }
 
 
@@ -377,7 +565,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         "--data-root",
         type=Path,
         default=DEFAULT_DATA_ROOT,
-        help="Raiz dos datasets normalizados (default: data/processed_tl/detrended_rms).",
+        help="Raiz dos datasets normalizados para exportação de manifestos (default: data/processed_tl/detrended_rms).",
     )
     parser.add_argument(
         "--export-partition-manifests",
@@ -390,6 +578,23 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         type=Path,
         default=RESULTS_DIR / "da_dg_tl_matrix",
         help="Diretório raiz para salvar artefatos sem sobrescrever execuções anteriores.",
+    )
+    parser.add_argument(
+        "--resume-dir",
+        type=Path,
+        default=None,
+        help="Diretório de uma execução anterior para retomada segura (pula jobs com COMPLETED.json sem sobrescrever).",
+    )
+    parser.add_argument(
+        "--max-loco-folds",
+        type=int,
+        default=None,
+        help="Limite opcional de folds LOCO no TL (default: None = todos os folds).",
+    )
+    parser.add_argument(
+        "--skip-classical-baselines",
+        action="store_true",
+        help="Se definido, pula baselines clássicos (RF/SVM). Por padrão RF e SVM são executados.",
     )
     parser.add_argument(
         "--dry-run",
@@ -420,26 +625,47 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         }
 
     if args.dry_run:
-        print(json.dumps(plan, indent=2, ensure_ascii=False))
+        plan_print = {k: v for k, v in plan.items() if k != "jobs"}
+        print(json.dumps(plan_print, indent=2, ensure_ascii=False))
         return 0
 
-    run_dir = allocate_non_overwriting_run_dir(args.output_root, experiment_prefix="run")
-    provenance = collect_run_provenance(
-        project_root=PROJECT_ROOT,
-        script_paths=[
-            __file__,
-            "src/vibnet/evaluation/da_dg_tl_protocol.py",
-            "configs/da_dg_tl_matrix.yaml",
-        ],
-        seeds=args.seeds,
-        extra_config=plan,
+    if args.resume_dir is not None:
+        run_dir = args.resume_dir.expanduser().resolve()
+        if not run_dir.is_dir():
+            raise FileNotFoundError(f"Resume directory does not exist: {run_dir}")
+        print(f"[RESUME] Retomando execução segura em: {run_dir}")
+    else:
+        run_dir = allocate_non_overwriting_run_dir(args.output_root, experiment_prefix="matrix_run")
+        provenance = collect_run_provenance(
+            project_root=PROJECT_ROOT,
+            script_paths=[
+                __file__,
+                "src/vibnet/evaluation/da_dg_tl_protocol.py",
+                "src/vibnet/evaluation/da_dg_tl_runner.py",
+                "configs/da_dg_tl_matrix.yaml",
+            ],
+            seeds=args.seeds,
+            extra_config={k: v for k, v in plan.items() if k != "jobs"},
+        )
+        write_run_metadata(run_dir, provenance)
+        atomic_write_json(run_dir / "execution_plan.json", plan)
+        print(f"[NEW RUN] Diretório de execução criado: {run_dir}")
+
+    exec_report = execute_matrix_plan(
+        config=cfg,
+        plan=plan,
+        run_dir=run_dir,
+        include_classical=not bool(args.skip_classical_baselines),
+        max_loco_folds=args.max_loco_folds,
     )
-    write_run_metadata(run_dir, provenance)
-    (run_dir / "execution_plan.json").write_text(
-        json.dumps(plan, indent=2, ensure_ascii=False),
-        encoding="utf-8",
+    print("=" * 78)
+    print(
+        f"[MATRIX SUMMARY] run_dir={exec_report['run_dir']} | "
+        f"executed_now={exec_report['executed_now']} | "
+        f"skipped_resume={exec_report['skipped_resume']} | "
+        f"blocked_now={exec_report['blocked_now']}"
     )
-    print(f"[OK] Plano e metadados de proveniência registrados em: {run_dir}")
+    print("=" * 78)
     return 0
 
 
