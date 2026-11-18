@@ -49,6 +49,7 @@ import argparse
 import csv
 import os
 from pathlib import Path
+import sys
 
 import numpy as np
 from tqdm import tqdm
@@ -59,6 +60,20 @@ from tqdm import tqdm
 # ============================================================
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from src.vibnet.data.transactional_io import (
+    DatasetCommitReceipt,
+    ManifestCommitReceipt,
+    assert_no_symlinks_in_tree,
+    assert_safe_dataset_target_path,
+    cleanup_staging_dir,
+    commit_staged_dataset_dir,
+    create_staging_dataset_dir,
+    transactional_write_csv_manifest,
+    validate_staged_dataset_dir,
+)
 INPUT_ROOT = (
     Path(os.environ["VIBNET_PROCESSED_TL_DIR"]).expanduser().resolve()
     if os.environ.get("VIBNET_PROCESSED_TL_DIR")
@@ -343,97 +358,143 @@ def normalize_dataset(
     dataset_input: Path,
     output_root: Path,
     reference_rms: float,
+    backup_root: Path | None = None,
+    keep_backup: bool = True,
+    return_receipt: bool = False,
 ):
     """
-    Aplica um único RMS_ref ao dataset inteiro.
+    Aplica um único RMS_ref ao dataset inteiro de forma transacional:
+      1. Verifica ausência de links simbólicos e contenção de caminho;
+      2. Grava janelas normalizadas em diretório temporário de staging no mesmo filesystem;
+      3. Valida contagem, caminhos relativos exatos (1-para-1 com a entrada), profundidade 3 e RMS;
+      4. Realiza backup da versão anterior e promove o staging atomicamente (com rollback em falha).
     """
-    files = find_npy_files(
-        dataset_input
-    )
+    assert_no_symlinks_in_tree(dataset_input)
+    files = find_npy_files(dataset_input)
 
     if not files:
         raise RuntimeError(
             f"Nenhum .npy encontrado em {dataset_input}"
         )
 
-    dataset_output = output_root / dataset_name
+    resolved_backup_root = Path(
+        backup_root if backup_root is not None else (INPUT_ROOT / ".backups")
+    ).expanduser().resolve()
+
+    dataset_output = assert_safe_dataset_target_path(
+        target_dir=output_root / dataset_name,
+        allowed_variant_root=output_root,
+        dataset_name=dataset_name,
+        allowed_datasets=ALL_SUPPORTED_DATASETS,
+    )
+
+    staging_dir = create_staging_dataset_dir(
+        allowed_variant_root=output_root,
+        dataset_name=dataset_name,
+        backup_root=resolved_backup_root,
+        allowed_datasets=ALL_SUPPORTED_DATASETS,
+    )
+
     errors = 0
+    last_error_msg = None
 
-    for input_file in tqdm(
-        files,
-        desc=f"Normalizando {dataset_name}",
-    ):
-        try:
-            normalize_file(
-                input_file=input_file,
-                dataset_input_root=dataset_input,
-                dataset_output_root=dataset_output,
-                reference_rms=reference_rms,
-            )
-        except Exception as exc:
-            errors += 1
-            print(
-                f"\n[AVISO] Erro em {input_file}: {exc}"
+    try:
+        for input_file in tqdm(
+            files,
+            desc=f"Normalizando {dataset_name}",
+        ):
+            try:
+                normalize_file(
+                    input_file=input_file,
+                    dataset_input_root=dataset_input,
+                    dataset_output_root=staging_dir,
+                    reference_rms=reference_rms,
+                )
+            except Exception as exc:
+                errors += 1
+                last_error_msg = f"{input_file}: {exc}"
+                print(
+                    f"\n[AVISO] Erro em {input_file}: {exc}"
+                )
+
+        if errors > 0:
+            raise RuntimeError(
+                f"Falha ao normalizar {errors} janela(s) em {dataset_name} "
+                f"(último erro: {last_error_msg}). Staging descartado; destino preservado."
             )
 
+        val_check = validate_staged_dataset_dir(
+            staging_dir=staging_dir,
+            expected_window_count=len(files),
+            reference_rms=reference_rms,
+            source_dir=dataset_input,
+        )
+        if not val_check["valid"]:
+            raise RuntimeError(
+                f"Validação do diretório de staging falhou para {dataset_name}: "
+                f"{val_check['reason']}"
+            )
+
+        receipt = commit_staged_dataset_dir(
+            staging_dir=staging_dir,
+            target_dir=dataset_output,
+            allowed_variant_root=output_root,
+            backup_root=resolved_backup_root,
+            dataset_name=dataset_name,
+            variant_name=output_root.name,
+            allowed_datasets=ALL_SUPPORTED_DATASETS,
+            keep_backup=keep_backup,
+        )
+    except Exception:
+        cleanup_staging_dir(staging_dir)
+        raise
+
+    if return_receipt:
+        return len(files), errors, receipt
     return len(files), errors
+
+
+MANIFEST_FIELDNAMES = [
+    "dataset",
+    "output_variant",
+    "reference_dataset",
+    "reference_variant",
+    "reference_classes",
+    "reference_rms",
+    "reference_windows",
+    "input_windows",
+    "errors",
+    "formula",
+]
 
 
 def write_manifest(
     rows,
     output_root: Path,
     merge_existing: bool = True,
+    backup_root: Path | None = None,
+    keep_backup: bool = True,
+    return_receipt: bool = False,
 ):
-    """Registra a referência e os resultados do processamento, preservando entradas existentes."""
-    output_root.mkdir(
-        parents=True,
-        exist_ok=True,
+    """Registra transacionalmente a referência e os resultados do processamento, com backup e rollback."""
+    resolved_backup_root = Path(
+        backup_root if backup_root is not None else (INPUT_ROOT / ".backups")
+    ).expanduser().resolve()
+
+    manifest_file = output_root / "normalization_manifest.csv"
+
+    receipt = transactional_write_csv_manifest(
+        manifest_path=manifest_file,
+        fieldnames=MANIFEST_FIELDNAMES,
+        rows=rows,
+        backup_root=resolved_backup_root,
+        key_columns=("dataset", "output_variant"),
+        merge_existing=merge_existing,
+        keep_backup=keep_backup,
     )
 
-    manifest_file = (
-        output_root /
-        "normalization_manifest.csv"
-    )
-
-    fieldnames = [
-        "dataset",
-        "output_variant",
-        "reference_dataset",
-        "reference_variant",
-        "reference_classes",
-        "reference_rms",
-        "reference_windows",
-        "input_windows",
-        "errors",
-        "formula",
-    ]
-
-    merged = {}
-    if merge_existing and manifest_file.exists():
-        with manifest_file.open("r", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
-            for existing_row in reader:
-                key = (existing_row.get("dataset"), existing_row.get("output_variant"))
-                merged[key] = {k: existing_row.get(k, "") for k in fieldnames}
-
-    for row in rows:
-        key = (row["dataset"], row["output_variant"])
-        merged[key] = {k: row.get(k, "") for k in fieldnames}
-
-    final_rows = list(merged.values())
-
-    with manifest_file.open(
-        "w",
-        newline="",
-        encoding="utf-8",
-    ) as f:
-        writer = csv.DictWriter(
-            f,
-            fieldnames=fieldnames,
-        )
-        writer.writeheader()
-        writer.writerows(final_rows)
-
+    if return_receipt:
+        return manifest_file, receipt
     return manifest_file
 
 
@@ -510,8 +571,11 @@ def process_variant(
     references: dict,
     manifest_rows: list,
     fallback_processed_root: Path | None = None,
+    backup_root: Path | None = None,
+    keep_backup: bool = True,
+    commit_receipts: list[DatasetCommitReceipt] | None = None,
 ):
-    """Processa uma variante raw ou detrended."""
+    """Processa uma variante raw ou detrended de forma transacional."""
     variant = VARIANTS[variant_name]
 
     input_root = variant["input_dir"]
@@ -601,12 +665,17 @@ def process_variant(
         f"{reference_windows}"
     )
 
-    input_windows, errors = normalize_dataset(
+    input_windows, errors, receipt = normalize_dataset(
         dataset_name=dataset_name,
         dataset_input=dataset_input,
         output_root=output_root,
         reference_rms=reference_rms,
+        backup_root=backup_root,
+        keep_backup=keep_backup,
+        return_receipt=True,
     )
+    if commit_receipts is not None:
+        commit_receipts.append(receipt)
 
     output_variant = (
         f"{variant_name}_rms"
@@ -632,6 +701,7 @@ def process_variant(
         f"{input_windows} janelas, "
         f"{errors} erros"
     )
+    return receipt
 
 
 # ============================================================
@@ -681,6 +751,19 @@ def main():
         ),
     )
 
+    parser.add_argument(
+        "--backup-dir",
+        type=Path,
+        default=None,
+        help="Diretório de backup para versões substituídas e manifests (default: <INPUT_ROOT>/.backups).",
+    )
+
+    parser.add_argument(
+        "--no-backup",
+        action="store_true",
+        help="Remove os backups anteriores após confirmação bem-sucedida do commit transacional.",
+    )
+
     args = parser.parse_args()
 
     selected_datasets = []
@@ -695,6 +778,8 @@ def main():
     selected_datasets = list(dict.fromkeys(selected_datasets))
 
     fallback_root = PROCESSED_FALLBACK_ROOT if args.use_processed_fallback else None
+    backup_root = Path(args.backup_dir or (INPUT_ROOT / ".backups")).expanduser().resolve()
+    keep_backup = not args.no_backup
 
     for variant_name in args.variants:
         VARIANTS[variant_name]["output_dir"].mkdir(
@@ -725,6 +810,10 @@ def main():
     references = build_reference_map()
 
     manifest_rows = []
+    receipts_by_variant: dict[str, list[DatasetCommitReceipt]] = {
+        "raw": [],
+        "detrended": [],
+    }
 
     for variant_name in args.variants:
         for dataset_name in selected_datasets:
@@ -736,6 +825,9 @@ def main():
                     references=references,
                     manifest_rows=manifest_rows,
                     fallback_processed_root=fallback_root,
+                    backup_root=backup_root,
+                    keep_backup=keep_backup,
+                    commit_receipts=receipts_by_variant[variant_name],
                 )
 
             except Exception as exc:
@@ -760,18 +852,32 @@ def main():
     ]
 
     if raw_rows or "raw" in args.variants:
-        manifest_raw = write_manifest(
-            raw_rows,
-            VARIANTS["raw"]["output_dir"],
-        )
-        print(f"Manifest RAW       : {manifest_raw}")
+        try:
+            manifest_raw = write_manifest(
+                raw_rows,
+                VARIANTS["raw"]["output_dir"],
+                backup_root=backup_root,
+                keep_backup=keep_backup,
+            )
+            print(f"Manifest RAW       : {manifest_raw}")
+        except Exception:
+            for r in reversed(receipts_by_variant["raw"]):
+                r.rollback()
+            raise
 
     if detrended_rows or "detrended" in args.variants:
-        manifest_detrended = write_manifest(
-            detrended_rows,
-            VARIANTS["detrended"]["output_dir"],
-        )
-        print(f"Manifest DETRENDED : {manifest_detrended}")
+        try:
+            manifest_detrended = write_manifest(
+                detrended_rows,
+                VARIANTS["detrended"]["output_dir"],
+                backup_root=backup_root,
+                keep_backup=keep_backup,
+            )
+            print(f"Manifest DETRENDED : {manifest_detrended}")
+        except Exception:
+            for r in reversed(receipts_by_variant["detrended"]):
+                r.rollback()
+            raise
 
     print()
     print("=" * 72)

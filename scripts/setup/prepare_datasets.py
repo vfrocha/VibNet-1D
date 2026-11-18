@@ -40,16 +40,126 @@ from src.config import (
     PROCESSED_TL_DIR,
     RAW_DATA_DIR,
 )
-from src.data.make_dataset import (
-    Detrend,
-    SimpleSplit,
-    extract_signal,
-    get_names as get_make_dataset_names,
-    harmonize_mfpt_sample_rate,
-)
+try:
+    from src.data.make_dataset import (
+        Detrend,
+        SimpleSplit,
+        extract_signal,
+        get_names as get_make_dataset_names,
+        harmonize_mfpt_sample_rate,
+    )
+    from vibdata.deep.signal.transforms import Sequential
+except ImportError:
+    from scipy.signal import detrend as _scipy_detrend, resample_poly as _scipy_resample_poly
+
+    class _Transform:
+        def __call__(self, data: Dict[str, Any]) -> Dict[str, Any]:
+            return self.transform(data)
+
+        def transform(self, data: Dict[str, Any]) -> Dict[str, Any]:
+            return data
+
+    class Sequential(_Transform):  # type: ignore[no-redef]
+        def __init__(self, transforms: Sequence[Any]) -> None:
+            self.transforms = list(transforms)
+
+        def transform(self, data: Dict[str, Any]) -> Dict[str, Any]:
+            out = data
+            for t in self.transforms:
+                out = t(out)
+            return out
+
+    class SimpleSplit(_Transform):  # type: ignore[no-redef]
+        def __init__(self, window_size: int = 2048, overlap: int = 0) -> None:
+            self.window_size = window_size
+            self.step = window_size - overlap
+
+        def transform(self, data: Dict[str, Any]) -> Dict[str, Any]:
+            data = data.copy()
+            sig = data["signal"]
+            if isinstance(sig, list):
+                sig = sig[0]
+            if isinstance(sig, np.ndarray):
+                sig = sig.flatten()
+            windows = []
+            if len(sig) >= self.window_size:
+                for idx in range(0, len(sig) - self.window_size + 1, self.step):
+                    windows.append(sig[idx : idx + self.window_size])
+            data["signal"] = windows
+            return data
+
+    class Detrend(_Transform):  # type: ignore[no-redef]
+        def transform(self, data: Dict[str, Any]) -> Dict[str, Any]:
+            data = data.copy()
+            sig = data["signal"]
+            if isinstance(sig, np.ndarray):
+                data["signal"] = _scipy_detrend(sig.flatten(), type="linear")
+            elif isinstance(sig, list):
+                data["signal"] = [
+                    _scipy_detrend(s.flatten(), type="linear")
+                    if isinstance(s, np.ndarray)
+                    else s
+                    for s in sig
+                ]
+            return data
+
+    def extract_signal(item: Dict[str, Any]) -> Optional[np.ndarray]:
+        raw = item.get("signal")
+        if isinstance(raw, np.ndarray) and raw.dtype == "O" and raw.size > 0:
+            return raw[0]
+        if isinstance(raw, np.ndarray):
+            return raw
+        return None
+
+    def harmonize_mfpt_sample_rate(signal: Any, meta: Any) -> Any:
+        try:
+            sample_rate = float(meta.get("sample_rate"))
+        except (TypeError, ValueError):
+            return signal
+        target_rate = 48828.0
+        if np.isclose(sample_rate, target_rate):
+            return signal
+        if np.isclose(sample_rate, 2 * target_rate):
+            return _scipy_resample_poly(np.asarray(signal).reshape(-1), up=1, down=2)
+        return signal
+
+    def get_make_dataset_names(ds_name: str, meta: Any) -> Tuple[str, str]:
+        if ds_name == "CWRU_12k":
+            try:
+                load = int(meta.get("load", 0))
+            except Exception:
+                load = 0
+            cond = f"Load_{load}HP"
+        elif ds_name in ("CWRU_12k_Severity", "CWRU_48k"):
+            try:
+                load = int(meta.get("load", 0))
+            except Exception:
+                load = 0
+            sev = meta.get("fault_size", meta.get("severity", "0.000"))
+            if isinstance(sev, (float, int)):
+                sev = f"{sev:.3f}"
+            cond = f"Load_{load}HP_Sev_{sev}"
+        elif ds_name == "MFPT":
+            cond = f"Load_{meta.get('load', 'Unknown')}"
+        else:
+            cond = f"Cond_{meta.get('condition', meta.get('load', 'Unknown'))}"
+        orig_label = meta.get("label")
+        if isinstance(orig_label, pd.Series):
+            orig_label = orig_label.item()
+        return cond, f"Class_{orig_label}"
+
 from src.preprocessing import normalize_dataset_tl as norm_tl
 from src.vibnet.data.registry import CANONICAL_DATASETS, load_yaml_config
-from vibdata.deep.signal.transforms import Sequential
+from src.vibnet.data.transactional_io import (
+    DatasetCommitReceipt,
+    assert_no_symlinks_in_tree,
+    assert_safe_dataset_target_path,
+    cleanup_staging_dir,
+    commit_staged_dataset_dir,
+    create_staging_dataset_dir,
+    transactional_write_json_manifest,
+    validate_staged_dataset_dir,
+)
 
 SUPPORTED_VARIANTS = (
     "processed_1d",
@@ -98,6 +208,19 @@ def compute_variant_config_signature(
     return hashlib.sha256(raw_bytes).hexdigest()[:16]
 
 
+def resolve_variant_root(
+    variant: str,
+    processed_dir: Path,
+    processed_tl_dir: Path,
+) -> Path:
+    """Resolve o diretório-pai autorizado de uma variante."""
+    if variant == "processed_1d":
+        return processed_dir
+    if variant in ("raw", "detrended", "raw_rms", "detrended_rms"):
+        return processed_tl_dir / variant
+    raise ValueError(f"Variante desconhecida: '{variant}'. Esperado uma de {SUPPORTED_VARIANTS}.")
+
+
 def resolve_variant_dir(
     dataset_name: str,
     variant: str,
@@ -105,11 +228,7 @@ def resolve_variant_dir(
     processed_tl_dir: Path,
 ) -> Path:
     """Resolve o diretório de saída de uma variante para um dataset."""
-    if variant == "processed_1d":
-        return processed_dir / dataset_name
-    if variant in ("raw", "detrended", "raw_rms", "detrended_rms"):
-        return processed_tl_dir / variant / dataset_name
-    raise ValueError(f"Variante desconhecida: '{variant}'. Esperado uma de {SUPPORTED_VARIANTS}.")
+    return resolve_variant_root(variant, processed_dir, processed_tl_dir) / dataset_name
 
 
 def inspect_existing_processed_variant(
@@ -118,7 +237,7 @@ def inspect_existing_processed_variant(
     variant_dir: Path,
     expected_window_len: int,
 ) -> Dict[str, Any]:
-    """Verifica se uma variante já processada existe, possui janelas `.npy` íntegras e shape 1s correto."""
+    """Verifica se uma variante já processada existe, não contém symlinks/subpastas aninhadas e possui shape 1s correto."""
     if not variant_dir.exists():
         return {
             "exists": False,
@@ -126,6 +245,16 @@ def inspect_existing_processed_variant(
             "window_count": 0,
             "reason": f"Diretório ausente: {variant_dir}",
         }
+    try:
+        assert_no_symlinks_in_tree(variant_dir)
+    except Exception as exc:
+        return {
+            "exists": True,
+            "valid": False,
+            "window_count": 0,
+            "reason": f"Link simbólico não permitido em {variant_dir}: {exc}",
+        }
+
     npy_files = sorted(variant_dir.rglob("*.npy"))
     if not npy_files:
         return {
@@ -133,6 +262,23 @@ def inspect_existing_processed_variant(
             "valid": False,
             "window_count": 0,
             "reason": f"Nenhum arquivo .npy encontrado em {variant_dir}",
+        }
+
+    anomalous_depth = [
+        p.relative_to(variant_dir).as_posix()
+        for p in npy_files
+        if len(p.relative_to(variant_dir).parts) != 3
+    ]
+    if anomalous_depth:
+        return {
+            "exists": True,
+            "valid": False,
+            "window_count": len(npy_files),
+            "reason": (
+                f"Profundidade hierárquica inválida em {variant_dir} "
+                f"({len(anomalous_depth)} arquivos fora de <condição>/<classe>/<janela.npy>): "
+                f"{anomalous_depth[:3]}"
+            ),
         }
 
     # Inspeciona amostra de arquivos (início, meio e fim) para verificar shape 1s e finitude
@@ -219,85 +365,164 @@ def generate_base_windows_for_raw_source(
     raw_dir: Path,
     processed_dir: Path,
     processed_tl_dir: Path,
+    variants_by_dataset: Optional[Mapping[str, Sequence[str]]] = None,
+    backup_root: Optional[Path] = None,
+    keep_backup: bool = True,
+    commit_receipts: Optional[List[DatasetCommitReceipt]] = None,
 ) -> Dict[Tuple[str, str], int]:
-    """Gera as janelas de 1 segundo (`processed_1d`, `raw`, `detrended`) para `target_datasets`."""
+    """
+    Gera transacionalmente as janelas de 1 segundo (`processed_1d`, `raw`, `detrended`)
+    em diretórios temporários de staging, valida cada par `(dataset, variant)` e só então
+    substitui os diretórios ativos com backup e rollback automático.
+    """
     ds_iterable = _load_raw_iterable_for_source(raw_source, raw_dir)
     datasets_yaml = load_yaml_config(PROJECT_ROOT / "configs" / "datasets.yaml").get("datasets", {})
+    resolved_backup_root = Path(
+        backup_root if backup_root is not None else (processed_tl_dir / ".backups")
+    ).expanduser().resolve()
 
-    counts: Dict[Tuple[str, str], int] = {
-        (ds, var): 0 for ds in target_datasets for var in base_variants
-    }
+    active_pairs: List[Tuple[str, str]] = []
+    for ds in target_datasets:
+        ds_vars = variants_by_dataset.get(ds, base_variants) if variants_by_dataset is not None else base_variants
+        for var in ds_vars:
+            if (ds, var) not in active_pairs:
+                active_pairs.append((ds, var))
 
-    n_items = len(ds_iterable) if hasattr(ds_iterable, "__len__") else None
-    iterator = range(n_items) if n_items is not None else enumerate(ds_iterable)
+    counts: Dict[Tuple[str, str], int] = {pair: 0 for pair in active_pairs}
+    expected_rel_paths: Dict[Tuple[str, str], List[str]] = {pair: [] for pair in active_pairs}
+    staging_dirs: Dict[Tuple[str, str], Path] = {}
+    local_receipts: List[DatasetCommitReceipt] = []
 
-    for idx_entry in iterator:
-        if n_items is not None:
-            i = int(idx_entry)
-            item = ds_iterable[i]  # type: ignore[index]
-        else:
-            i, item = idx_entry  # type: ignore[misc]
+    try:
+        for ds_name, var in active_pairs:
+            v_root = resolve_variant_root(var, processed_dir, processed_tl_dir)
+            staging_dirs[(ds_name, var)] = create_staging_dataset_dir(
+                allowed_variant_root=v_root,
+                dataset_name=ds_name,
+                backup_root=resolved_backup_root,
+                allowed_datasets=list(CANONICAL_DATASETS.keys()),
+            )
 
-        if not isinstance(item, dict):
-            continue
-        sig_array = extract_signal(item)
-        if sig_array is None:
-            continue
+        n_items = len(ds_iterable) if hasattr(ds_iterable, "__len__") else None
+        iterator = range(n_items) if n_items is not None else enumerate(ds_iterable)
 
-        meta = item["metainfo"]
-        if isinstance(meta, pd.DataFrame):
-            meta = meta.iloc[0]
+        for idx_entry in iterator:
+            if n_items is not None:
+                i = int(idx_entry)
+                item = ds_iterable[i]  # type: ignore[index]
+            else:
+                i, item = idx_entry  # type: ignore[misc]
 
-        if raw_source == "MFPT":
-            sig_array = harmonize_mfpt_sample_rate(sig_array, meta)
+            if not isinstance(item, dict):
+                continue
+            sig_array = extract_signal(item)
+            if sig_array is None:
+                continue
 
-        if raw_source == "CWRU":
-            sr = meta.get("sample_rate", 12000)
-            try:
-                sr_val = float(sr)
-            except (TypeError, ValueError):
-                sr_val = 12000.0
-            routed_ds = "CWRU_48k" if sr_val > 20000.0 else "CWRU_12k"
-            applicable_targets = [d for d in target_datasets if d == routed_ds]
-        else:
-            applicable_targets = [d for d in target_datasets if d == raw_source]
+            meta = item["metainfo"]
+            if isinstance(meta, pd.DataFrame):
+                meta = meta.iloc[0]
 
-        for ds_name in applicable_targets:
+            if raw_source == "MFPT":
+                sig_array = harmonize_mfpt_sample_rate(sig_array, meta)
+
+            if raw_source == "CWRU":
+                sr = meta.get("sample_rate", 12000)
+                try:
+                    sr_val = float(sr)
+                except (TypeError, ValueError):
+                    sr_val = 12000.0
+                routed_ds = "CWRU_48k" if sr_val > 20000.0 else "CWRU_12k"
+                applicable_targets = [d for d in target_datasets if d == routed_ds]
+            else:
+                applicable_targets = [d for d in target_datasets if d == raw_source]
+
+            for ds_name in applicable_targets:
+                fs_hz = int(
+                    datasets_yaml.get(ds_name, {}).get(
+                        "window_length", CANONICAL_DATASETS[ds_name].sampling_rate_hz
+                    )
+                )
+                cond, lbl = get_make_dataset_names(ds_name, meta)
+                if lbl.startswith("Class_") and lbl.endswith(".0") and lbl[6:-2].isdigit():
+                    lbl = f"Class_{lbl[6:-2]}"
+                if cond.startswith("Load_") and cond.endswith(".0"):
+                    cond = cond[:-2]
+
+                ds_vars = (
+                    variants_by_dataset.get(ds_name, base_variants)
+                    if variants_by_dataset is not None
+                    else base_variants
+                )
+                for var in ds_vars:
+                    pair = (ds_name, var)
+                    if pair not in staging_dirs:
+                        continue
+                    if var == "raw":
+                        pipeline = Sequential([SimpleSplit(window_size=fs_hz)])
+                    else:
+                        # tanto 'detrended' quanto 'processed_1d' usam Detrend() + SimpleSplit(window_size=fs_hz)
+                        pipeline = Sequential([Detrend(), SimpleSplit(window_size=fs_hz)])
+
+                    sample = {"signal": sig_array, "metainfo": pd.DataFrame([meta])}
+                    processed = pipeline(sample)
+                    windows = processed["signal"]
+                    if not isinstance(windows, list) or not windows:
+                        continue
+
+                    out_dir = staging_dirs[pair] / cond / lbl
+                    out_dir.mkdir(parents=True, exist_ok=True)
+                    for w_idx, window in enumerate(windows):
+                        if isinstance(window, np.ndarray):
+                            fname = f"s{i:05d}_w{w_idx:02d}.npy"
+                            np.save(out_dir / fname, window)
+                            counts[pair] += 1
+                            expected_rel_paths[pair].append(f"{cond}/{lbl}/{fname}")
+
+        # Valida todos os diretórios de staging antes de qualquer substituição
+        for ds_name, var in active_pairs:
+            pair = (ds_name, var)
             fs_hz = int(
                 datasets_yaml.get(ds_name, {}).get(
                     "window_length", CANONICAL_DATASETS[ds_name].sampling_rate_hz
                 )
             )
-            cond, lbl = get_make_dataset_names(ds_name, meta)
-            if lbl.startswith("Class_") and lbl.endswith(".0") and lbl[6:-2].isdigit():
-                lbl = f"Class_{lbl[6:-2]}"
-            if cond.startswith("Load_") and cond.endswith(".0"):
-                cond = cond[:-2]
-
-            for var in base_variants:
-                if var == "raw":
-                    pipeline = Sequential([SimpleSplit(window_size=fs_hz)])
-                else:
-                    # tanto 'detrended' quanto 'processed_1d' usam Detrend() + SimpleSplit(window_size=fs_hz)
-                    pipeline = Sequential([Detrend(), SimpleSplit(window_size=fs_hz)])
-
-                sample = {"signal": sig_array, "metainfo": pd.DataFrame([meta])}
-                processed = pipeline(sample)
-                windows = processed["signal"]
-                if not isinstance(windows, list) or not windows:
-                    continue
-
-                out_dir = (
-                    resolve_variant_dir(ds_name, var, processed_dir, processed_tl_dir)
-                    / cond
-                    / lbl
+            val_res = validate_staged_dataset_dir(
+                staging_dir=staging_dirs[pair],
+                expected_window_count=counts[pair],
+                expected_window_len=fs_hz,
+                expected_relative_paths=expected_rel_paths[pair],
+            )
+            if not val_res["valid"]:
+                raise RuntimeError(
+                    f"Validação de staging falhou para {ds_name}::{var}: {val_res['reason']}"
                 )
-                out_dir.mkdir(parents=True, exist_ok=True)
-                for w_idx, window in enumerate(windows):
-                    if isinstance(window, np.ndarray):
-                        fname = f"s{i:05d}_w{w_idx:02d}.npy"
-                        np.save(out_dir / fname, window)
-                        counts[(ds_name, var)] += 1
+
+        # Promove transacionalmente cada staging para o destino com backup da versão anterior
+        for ds_name, var in active_pairs:
+            pair = (ds_name, var)
+            v_root = resolve_variant_root(var, processed_dir, processed_tl_dir)
+            target_dir = resolve_variant_dir(ds_name, var, processed_dir, processed_tl_dir)
+            receipt = commit_staged_dataset_dir(
+                staging_dir=staging_dirs[pair],
+                target_dir=target_dir,
+                allowed_variant_root=v_root,
+                backup_root=resolved_backup_root,
+                dataset_name=ds_name,
+                variant_name=var,
+                allowed_datasets=list(CANONICAL_DATASETS.keys()),
+                keep_backup=keep_backup,
+            )
+            local_receipts.append(receipt)
+            if commit_receipts is not None:
+                commit_receipts.append(receipt)
+
+    except Exception:
+        for st_dir in staging_dirs.values():
+            cleanup_staging_dir(st_dir)
+        for receipt in reversed(local_receipts):
+            receipt.rollback()
+        raise
 
     return counts
 
@@ -307,8 +532,11 @@ def run_rms_normalization_for_datasets(
     rms_variants: Sequence[str],
     processed_dir: Path,
     processed_tl_dir: Path,
+    backup_root: Optional[Path] = None,
+    keep_backup: bool = True,
+    commit_receipts: Optional[List[DatasetCommitReceipt]] = None,
 ) -> List[Dict[str, Any]]:
-    """Executa a normalização oficial por RMS saudável (`raw_rms` e/ou `detrended_rms`) via `normalize_dataset_tl`."""
+    """Executa transacionalmente a normalização oficial por RMS saudável (`raw_rms` e/ou `detrended_rms`)."""
     # Configura os diretórios no módulo oficial normalize_dataset_tl
     norm_tl.INPUT_ROOT = processed_tl_dir
     norm_tl.PROCESSED_FALLBACK_ROOT = processed_dir
@@ -322,6 +550,9 @@ def run_rms_normalization_for_datasets(
             "output_dir": processed_tl_dir / "detrended_rms",
         },
     }
+    resolved_backup_root = Path(
+        backup_root if backup_root is not None else (processed_tl_dir / ".backups")
+    ).expanduser().resolve()
 
     references = norm_tl.build_reference_map()
     manifest_rows: List[Dict[str, Any]] = []
@@ -331,32 +562,37 @@ def run_rms_normalization_for_datasets(
         out_root = norm_tl.VARIANTS[base_var]["output_dir"]
         out_root.mkdir(parents=True, exist_ok=True)
 
-        # Carrega linhas prévias do normalization_manifest.csv para não perder outros datasets já processados
-        existing_rows_by_ds: Dict[str, Dict[str, Any]] = {}
-        manifest_csv = out_root / "normalization_manifest.csv"
-        if manifest_csv.is_file():
-            try:
-                df_prev = pd.read_csv(manifest_csv)
-                for r in df_prev.to_dict("records"):
-                    existing_rows_by_ds[str(r["dataset"])] = r
-            except Exception:
-                pass
+        variant_receipts: List[DatasetCommitReceipt] = []
+        variant_rows: List[Dict[str, Any]] = []
 
-        for ds_name in datasets_to_normalize:
-            norm_tl.process_variant(
-                variant_name=base_var,
-                dataset_name=ds_name,
-                references=references,
-                manifest_rows=manifest_rows,
-                fallback_processed_root=processed_dir,
-            )
+        try:
+            for ds_name in datasets_to_normalize:
+                receipt = norm_tl.process_variant(
+                    variant_name=base_var,
+                    dataset_name=ds_name,
+                    references=references,
+                    manifest_rows=variant_rows,
+                    fallback_processed_root=processed_dir,
+                    backup_root=resolved_backup_root,
+                    keep_backup=keep_backup,
+                    commit_receipts=variant_receipts,
+                )
+                if commit_receipts is not None and receipt is not None:
+                    commit_receipts.append(receipt)
 
-        for r in manifest_rows:
-            if r["output_variant"] == rms_var:
-                existing_rows_by_ds[str(r["dataset"])] = r
-
-        if existing_rows_by_ds:
-            norm_tl.write_manifest(list(existing_rows_by_ds.values()), out_root)
+            if variant_rows:
+                norm_tl.write_manifest(
+                    variant_rows,
+                    out_root,
+                    merge_existing=True,
+                    backup_root=resolved_backup_root,
+                    keep_backup=keep_backup,
+                )
+            manifest_rows.extend(variant_rows)
+        except Exception:
+            for r in reversed(variant_receipts):
+                r.rollback()
+            raise
 
     return manifest_rows
 
@@ -368,8 +604,10 @@ def prepare_datasets(
     processed_dir: Optional[Path] = None,
     processed_tl_dir: Optional[Path] = None,
     force: bool = False,
+    backup_dir: Optional[Path] = None,
+    keep_backup: bool = True,
 ) -> Dict[str, Any]:
-    """Orquestra a preparação incremental e validação dos datasets e variantes solicitados."""
+    """Orquestra a preparação incremental, transacional e validada dos datasets e variantes solicitados."""
     resolved_raw_dir = Path(raw_dir or RAW_DATA_DIR).expanduser().resolve()
     resolved_proc_dir = _ensure_writable_dir(
         Path(processed_dir or PROCESSED_DATA_DIR), "VIBNET_PROCESSED_DIR"
@@ -377,6 +615,9 @@ def prepare_datasets(
     resolved_proc_tl_dir = _ensure_writable_dir(
         Path(processed_tl_dir or PROCESSED_TL_DIR), "VIBNET_PROCESSED_TL_DIR"
     )
+    resolved_backup_root = Path(
+        backup_dir if backup_dir is not None else (resolved_proc_tl_dir / ".backups")
+    ).expanduser().resolve()
 
     selected_datasets = resolve_selected_datasets(datasets)
     req_variants = list(variants) if variants else list(SUPPORTED_VARIANTS)
@@ -412,6 +653,7 @@ def prepare_datasets(
     rms_variants_needed_by_ds: Dict[str, List[str]] = {ds: [] for ds in selected_datasets}
 
     reused_entries: List[str] = []
+    all_commit_receipts: List[DatasetCommitReceipt] = []
 
     for ds_name in effective_datasets:
         fs_hz = int(
@@ -436,8 +678,13 @@ def prepare_datasets(
             v_dir = resolve_variant_dir(ds_name, b_var, resolved_proc_dir, resolved_proc_tl_dir)
             check = inspect_existing_processed_variant(ds_name, b_var, v_dir, fs_hz)
             prev_sig = prev_entries.get(entry_key, {}).get("config_signature")
+            explicitly_requested_base = (ds_name in selected_datasets) and (b_var in req_variants)
+            force_this_base = force and explicitly_requested_base
 
-            if check["valid"] and not force and (prev_sig in (None, cfg_sig)):
+            if (
+                (check["valid"] and not force_this_base and (prev_sig in (None, cfg_sig)))
+                or (not explicitly_requested_base and v_dir.is_dir() and any(v_dir.rglob("*.npy")))
+            ):
                 reused_entries.append(entry_key)
                 prev_entries[entry_key] = {
                     "dataset": ds_name,
@@ -478,6 +725,10 @@ def prepare_datasets(
                 raw_dir=resolved_raw_dir,
                 processed_dir=resolved_proc_dir,
                 processed_tl_dir=resolved_proc_tl_dir,
+                variants_by_dataset={d: base_variants_needed_by_ds[d] for d in t_datasets},
+                backup_root=resolved_backup_root,
+                keep_backup=keep_backup,
+                commit_receipts=all_commit_receipts,
             )
             for d in t_datasets:
                 fs_hz = int(
@@ -565,6 +816,9 @@ def prepare_datasets(
                 rms_variants=[rms_var],
                 processed_dir=resolved_proc_dir,
                 processed_tl_dir=resolved_proc_tl_dir,
+                backup_root=resolved_backup_root,
+                keep_backup=keep_backup,
+                commit_receipts=all_commit_receipts,
             )
             norm_by_ds = {str(r["dataset"]): r for r in norm_rows if r["output_variant"] == rms_var}
             for d in ds_list_for_rms:
@@ -616,9 +870,18 @@ def prepare_datasets(
         "reused_entries": reused_entries,
         "entries": prev_entries,
     }
-    manifest_path.write_text(
-        json.dumps(manifest_out, indent=2, ensure_ascii=False), encoding="utf-8"
-    )
+    try:
+        transactional_write_json_manifest(
+            manifest_path=manifest_path,
+            payload=manifest_out,
+            backup_root=resolved_backup_root,
+            required_keys=("entries", "code_hash"),
+            keep_backup=keep_backup,
+        )
+    except Exception:
+        for r in reversed(all_commit_receipts):
+            r.rollback()
+        raise
     return manifest_out
 
 
@@ -658,6 +921,17 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         help="Diretório de saída para variantes TL (default: VIBNET_PROCESSED_TL_DIR).",
     )
     parser.add_argument(
+        "--backup-dir",
+        type=Path,
+        default=None,
+        help="Diretório de backup transacional (default: <VIBNET_PROCESSED_TL_DIR>/.backups).",
+    )
+    parser.add_argument(
+        "--no-backup",
+        action="store_true",
+        help="Descarta backups transacionais após commit validado com sucesso.",
+    )
+    parser.add_argument(
         "--force",
         action="store_true",
         help="Força o reprocessamento mesmo quando os dados processados já existem e são válidos.",
@@ -677,6 +951,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         processed_dir=args.processed_dir,
         processed_tl_dir=args.processed_tl_dir,
         force=args.force,
+        backup_dir=args.backup_dir,
+        keep_backup=not args.no_backup,
     )
 
     print("=" * 72)

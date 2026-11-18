@@ -52,6 +52,18 @@ from scripts.setup.system_info import (
 )
 from scripts.setup.validate_installation import validate_installation
 from src.vibnet.data.registry import list_all_datasets
+from src.vibnet.data.transactional_io import (
+    assert_no_symlink_components,
+    assert_no_symlinks_in_tree,
+    assert_safe_dataset_target_path,
+    assert_same_filesystem,
+    commit_staged_dataset_dir,
+    create_staging_dataset_dir,
+    transactional_update_manifest,
+    transactional_write_csv_manifest,
+    transactional_write_json_manifest,
+    validate_staged_dataset_dir,
+)
 
 
 def _create_synthetic_raw_fixture(raw_dir: Path, fs_cwru12k: int = 12000, fs_mfpt: int = 48828) -> None:
@@ -340,6 +352,255 @@ class TestSetupInstaller(unittest.TestCase):
             self.assertIn("CWRU_12k", report["datasets_inventory"]["downloaded_datasets"])
             self.assertIn("MFPT", report["datasets_inventory"]["processed_datasets_any_variant"])
             self.assertTrue(report["experiment_scripts"]["all_scripts_valid"])
+
+    def test_05_repeated_execution_does_not_accumulate_residual_files(self) -> None:
+        """Verifica que reprocessar um dataset substitui via staging+backup sem acumular arquivos residuais."""
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            ext_raw = base / "raw"
+            ext_proc = base / "processed"
+            ext_proc_tl = base / "processed_tl"
+            _create_synthetic_raw_fixture(ext_raw)
+
+            prepare_datasets(
+                datasets=["MFPT"],
+                variants=["processed_1d", "detrended", "detrended_rms"],
+                raw_dir=ext_raw,
+                processed_dir=ext_proc,
+                processed_tl_dir=ext_proc_tl,
+                force=False,
+            )
+            det_rms_dir = ext_proc_tl / "detrended_rms" / "MFPT"
+            initial_files = sorted(
+                p.relative_to(det_rms_dir).as_posix() for p in det_rms_dir.rglob("*.npy")
+            )
+            self.assertEqual(len(initial_files), 2)
+
+            # Injeta 3 tipos reais de resíduos identificados na auditoria:
+            # 1) Prefixo antigo s99999_w00.npy
+            # 2) Pasta de classe renomeada Class_Normal/s00000_w00.npy
+            # 3) Subpasta aninhada de nível 4 Class_23/Class_40/s00000_w00.npy
+            residual_1 = det_rms_dir / "Load_25" / "Class_23" / "s99999_w00.npy"
+            residual_2 = det_rms_dir / "Load_25" / "Class_Normal" / "s00000_w00.npy"
+            residual_3 = det_rms_dir / "Load_25" / "Class_23" / "Class_40" / "s00000_w00.npy"
+            for r_fp in (residual_1, residual_2, residual_3):
+                r_fp.parent.mkdir(parents=True, exist_ok=True)
+                np.save(r_fp, np.ones(48828, dtype=np.float64))
+
+            self.assertEqual(len(list(det_rms_dir.rglob("*.npy"))), 5)
+
+            # A inspeção estrutural deve reprovar a pasta contaminada devido à profundidade 4
+            chk = inspect_existing_processed_variant("MFPT", "detrended_rms", det_rms_dir, 48828)
+            self.assertFalse(chk["valid"])
+            self.assertIn("Profundidade hierárquica inválida", chk["reason"])
+
+            # Reprocessa MFPT::detrended_rms transacionalmente
+            prepare_datasets(
+                datasets=["MFPT"],
+                variants=["detrended_rms"],
+                raw_dir=ext_raw,
+                processed_dir=ext_proc,
+                processed_tl_dir=ext_proc_tl,
+                force=True,
+            )
+
+            final_files = sorted(
+                p.relative_to(det_rms_dir).as_posix() for p in det_rms_dir.rglob("*.npy")
+            )
+            self.assertEqual(final_files, initial_files)
+            self.assertFalse(residual_1.exists())
+            self.assertFalse(residual_2.exists())
+            self.assertFalse(residual_3.exists())
+
+            # Confirma que a versão anterior contaminada foi movida para .backups/
+            backups = list((ext_proc_tl / ".backups").rglob("s99999_w00.npy"))
+            self.assertEqual(len(backups), 1)
+
+    def test_06_failed_staging_and_rollback_preserves_previous_data_and_manifests(self) -> None:
+        """Verifica rollback automático de diretórios e manifests em caso de falha na validação ou commit."""
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            ext_raw = base / "raw"
+            ext_proc = base / "processed"
+            ext_proc_tl = base / "processed_tl"
+            _create_synthetic_raw_fixture(ext_raw)
+
+            prepare_datasets(
+                datasets=["MFPT"],
+                variants=["detrended", "detrended_rms"],
+                raw_dir=ext_raw,
+                processed_dir=ext_proc,
+                processed_tl_dir=ext_proc_tl,
+            )
+            det_rms_dir = ext_proc_tl / "detrended_rms" / "MFPT"
+            norm_manifest = ext_proc_tl / "detrended_rms" / "normalization_manifest.csv"
+
+            before_hashes = {
+                p.relative_to(det_rms_dir).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                for p in det_rms_dir.rglob("*.npy")
+            }
+            manifest_before_sha = hashlib.sha256(norm_manifest.read_bytes()).hexdigest()
+
+            # Caso A: Corrompe um arquivo na entrada detrended com NaN para forçar falha no staging
+            corrupt_input = next((ext_proc_tl / "detrended" / "MFPT").rglob("*.npy"))
+            valid_input_bytes = corrupt_input.read_bytes()
+            np.save(corrupt_input, np.full(48828, np.nan, dtype=np.float64))
+
+            res_failed = prepare_datasets(
+                datasets=["MFPT"],
+                variants=["detrended_rms"],
+                raw_dir=ext_raw,
+                processed_dir=ext_proc,
+                processed_tl_dir=ext_proc_tl,
+                force=True,
+            )
+            self.assertEqual(res_failed["entries"]["MFPT::detrended_rms"]["status"], "NORMALIZATION_FAILED")
+
+            # O diretório detrended_rms/MFPT e o normalization_manifest.csv devem permanecer 100% intactos
+            after_hashes = {
+                p.relative_to(det_rms_dir).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                for p in det_rms_dir.rglob("*.npy")
+            }
+            self.assertEqual(before_hashes, after_hashes)
+            self.assertEqual(
+                hashlib.sha256(norm_manifest.read_bytes()).hexdigest(),
+                manifest_before_sha,
+            )
+            # Nenhum diretório .staging_* deve ter sobrado
+            leftover_staging = list((ext_proc_tl / "detrended_rms").glob(".staging_*"))
+            self.assertEqual(len(leftover_staging), 0)
+
+            # Restaura o arquivo de entrada e testa Caso B: rollback explícito de DatasetCommitReceipt e ManifestCommitReceipt
+            corrupt_input.write_bytes(valid_input_bytes)
+            v_root = ext_proc_tl / "detrended_rms"
+            b_root = ext_proc_tl / ".backups"
+            st_dir = create_staging_dataset_dir(v_root, "MFPT", backup_root=b_root)
+            for rel_p in before_hashes:
+                out_f = st_dir / rel_p
+                out_f.parent.mkdir(parents=True, exist_ok=True)
+                np.save(out_f, np.full(48828, 7.0, dtype=np.float64))
+
+            ds_receipt = commit_staged_dataset_dir(
+                staging_dir=st_dir,
+                target_dir=det_rms_dir,
+                allowed_variant_root=v_root,
+                backup_root=b_root,
+                dataset_name="MFPT",
+                variant_name="detrended_rms",
+            )
+            # Confirma que os arquivos mudaram após o commit
+            committed_hashes = {
+                p.relative_to(det_rms_dir).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                for p in det_rms_dir.rglob("*.npy")
+            }
+            self.assertNotEqual(before_hashes, committed_hashes)
+
+            # Executa rollback do receipt e verifica restauração bit-a-bit do estado original
+            ds_receipt.rollback()
+            restored_hashes = {
+                p.relative_to(det_rms_dir).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                for p in det_rms_dir.rglob("*.npy")
+            }
+            self.assertEqual(before_hashes, restored_hashes)
+
+    def test_07_exact_relative_paths_symlinks_same_fs_and_transactional_manifests(self) -> None:
+        """Verifica os 4 ajustes técnicos obrigatórios: caminhos relativos 1:1, anti-symlink, mesmo FS e manifests transacionais."""
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            src_dir = base / "source_ds"
+            v_root = base / "detrended_rms"
+            b_root = base / ".backups"
+            v_root.mkdir(parents=True, exist_ok=True)
+
+            # 1. Ajuste 1: mesma contagem (2 arquivos), mas caminho relativo divergente -> deve falhar
+            f1 = src_dir / "Load_0" / "Class_0" / "s00000_w00.npy"
+            f2 = src_dir / "Load_0" / "Class_1" / "s00001_w00.npy"
+            for f in (f1, f2):
+                f.parent.mkdir(parents=True, exist_ok=True)
+                np.save(f, np.ones(128, dtype=np.float64))
+
+            st_dir = create_staging_dataset_dir(v_root, "CWRU_12k", backup_root=b_root)
+            s1 = st_dir / "Load_0" / "Class_0" / "s00000_w00.npy"
+            # Caminho relativo trocado (s00099_w00.npy em vez de s00001_w00.npy)
+            s2_wrong = st_dir / "Load_0" / "Class_1" / "s00099_w00.npy"
+            for s in (s1, s2_wrong):
+                s.parent.mkdir(parents=True, exist_ok=True)
+                np.save(s, np.ones(128, dtype=np.float64))
+
+            val_mismatch = validate_staged_dataset_dir(
+                staging_dir=st_dir,
+                expected_window_count=2,
+                expected_window_len=128,
+                reference_rms=1.0,
+                source_dir=src_dir,
+            )
+            self.assertFalse(val_mismatch["valid"])
+            self.assertIn("Caminhos relativos divergentes", val_mismatch["reason"])
+            self.assertEqual(val_mismatch["missing_relative_paths"], ["Load_0/Class_1/s00001_w00.npy"])
+            self.assertEqual(val_mismatch["extra_relative_paths"], ["Load_0/Class_1/s00099_w00.npy"])
+
+            # Corrige o caminho relativo -> deve aprovar
+            s2_wrong.replace(st_dir / "Load_0" / "Class_1" / "s00001_w00.npy")
+            val_ok = validate_staged_dataset_dir(
+                staging_dir=st_dir,
+                expected_window_count=2,
+                expected_window_len=128,
+                reference_rms=1.0,
+                source_dir=src_dir,
+            )
+            self.assertTrue(val_ok["valid"])
+
+            # 2. Ajuste 3a: Proteção contra links simbólicos
+            sym_file = st_dir / "Load_0" / "Class_0" / "sym_w01.npy"
+            sym_file.symlink_to(f1)
+            val_sym = validate_staged_dataset_dir(staging_dir=st_dir)
+            self.assertFalse(val_sym["valid"])
+            self.assertIn("links simbólicos", val_sym["reason"])
+            with self.assertRaises(PermissionError):
+                assert_no_symlinks_in_tree(st_dir)
+            sym_file.unlink()
+
+            # Proteção contra path traversal / dataset fora da lista
+            with self.assertRaises(ValueError):
+                assert_safe_dataset_target_path(v_root / "../escape", v_root, "../escape")
+
+            # 3. Ajuste 3b: Mesmo filesystem (st_dev)
+            dev_id = assert_same_filesystem(st_dir, v_root, b_root)
+            self.assertIsInstance(dev_id, int)
+
+            # 4. Ajuste 4: Manifesto transacional com backup e rollback em falha de validação
+            csv_manifest = v_root / "normalization_manifest.csv"
+            fields = ["dataset", "output_variant", "input_windows"]
+            m_rec1 = transactional_write_csv_manifest(
+                manifest_path=csv_manifest,
+                fieldnames=fields,
+                rows=[{"dataset": "HUST", "output_variant": "detrended_rms", "input_windows": 951}],
+                backup_root=b_root,
+            )
+            self.assertTrue(csv_manifest.is_file())
+            content_v1 = csv_manifest.read_text(encoding="utf-8")
+            self.assertIn("951", content_v1)
+
+            # Falha proposital na validação de uma atualização subsequente -> deve preservar content_v1
+            with self.assertRaises(RuntimeError):
+                transactional_update_manifest(
+                    manifest_path=csv_manifest,
+                    backup_root=b_root,
+                    write_fn=lambda p: p.write_text("corrupted_content", encoding="utf-8"),
+                    validate_fn=lambda p: (_ for _ in ()).throw(ValueError("Cabeçalho inválido")),
+                )
+            self.assertEqual(csv_manifest.read_text(encoding="utf-8"), content_v1)
+
+            # Atualização válida seguida de rollback explícito do receipt
+            m_rec2 = transactional_write_csv_manifest(
+                manifest_path=csv_manifest,
+                fieldnames=fields,
+                rows=[{"dataset": "HUST", "output_variant": "detrended_rms", "input_windows": 999}],
+                backup_root=b_root,
+            )
+            self.assertIn("999", csv_manifest.read_text(encoding="utf-8"))
+            m_rec2.rollback()
+            self.assertEqual(csv_manifest.read_text(encoding="utf-8"), content_v1)
 
 
 if __name__ == "__main__":
