@@ -1,0 +1,123 @@
+# Declarative configuration for the VibNet-1D Domain Adaptation (DA),
+# Domain Generalization (DG), and Transfer Learning (TL) experimental matrix
+# (`configs/da_dg_tl_matrix.yaml`).
+
+experiment_id: "da_dg_tl_matrix"
+preprocessing_variant: "detrended_rms"
+feature_dimension: 141
+seeds:
+  - 42
+  - 123
+  - 2026
+
+# 1. Source configurations (UOC is explicitly excluded from this matrix)
+source_configurations:
+  S1:
+    sources: ["UORED"]
+    description: "UORED individually (Normal, Ball)"
+  S2:
+    sources: ["HUST"]
+    description: "HUST Bearing individually (Normal, Ball, Inner, Outer, Inner & Outer)"
+  S3:
+    sources: ["MFPT"]
+    description: "MFPT individually (Inner, Outer; Class_23 Normal used for RMS_ref)"
+  S4:
+    sources: ["UORED", "HUST", "MFPT"]
+    description: "UORED + HUST Bearing + MFPT combined (all 5 classes covered)"
+
+# 2. Target datasets by protocol
+targets:
+  DA:
+    - "CWRU_12k"
+    - "CWRU_48k"
+    - "PU"
+  DG:
+    - "CWRU_12k"
+    - "CWRU_48k"
+    - "PU"
+  TL:
+    - "CWRU_12k"
+    - "CWRU_48k"
+    - "PU"
+    - "HUST_Gearbox"
+    - "UOEMD"
+
+# 3. Fixed 5-class harmonized bearing vocabulary for DA and DG
+harmonized_vocabulary:
+  num_classes: 5
+  classes:
+    0: "Normal"
+    1: "Ball"
+    2: "Inner"
+    3: "Outer"
+    4: "Inner & Outer"
+  keep_compound_inner_outer_independent: true
+  mask_unobserved_source_classes_in_dg: true
+  count_absent_target_class_predictions_as_error: true
+
+# 4. Recording-level split & normalization policies
+protocols:
+  DA:
+    split_unit: "recording_key"
+    adaptation_fraction_per_class: 0.20
+    test_fraction_per_class: 0.80
+    adaptation_val_fraction_within_adaptation: 0.20
+    rms_reference_scope: "adaptation_normal_only"
+    encoder_frozen: true
+    head_initialization: "copy_from_source_head"
+    early_stopping_scope: "adaptation_val_only"
+
+  DG:
+    split_unit: "recording_key"
+    source_val_fraction: 0.20
+    target_test_fraction: 1.00
+    rms_reference_scope: "sources_only"
+    dg_rms_aggregation_mode: "strict_check_arithmetic"
+    encoder_frozen: true
+    head_initialization: "trained_on_sources_only"
+    early_stopping_scope: "source_val_only"
+    zero_target_statistics_enforced: true
+
+  TL:
+    split_unit: "operating_condition_loco"
+    encoder_initialization: "TabNetPretrainer_unsupervised_on_source_config"
+    modes:
+      - "Scratch"
+      - "Fine-Tuning"
+      - "Linear Probing"
+    target_head_vocabulary: "native_target_classes"
+    rms_reference_scope: "target_training_conditions_only"
+
+# 5. Hierarchical source balancing
+source_balancing:
+  default_mode: "hierarchical_weights"
+  equalize_dataset_contribution: true
+  equalize_class_within_dataset: true
+  apply_to_validation_or_test: false
+  forbid_cross_domain_smote: true
+
+# 6. Models and hyperparameters
+models:
+  primary_transfer_model: "TabNet"
+  classical_baselines:
+    - "RandomForest"
+    - "SVM"
+  tabnet_hyperparameters:
+    n_d: 16
+    n_a: 16
+    n_steps: 4
+    gamma: 1.3
+    n_independent: 2
+    n_shared: 2
+    mask_type: "sparsemax"
+    pretrain_epochs: 30
+    head_max_epochs: 40
+    head_patience: 10
+    batch_size: 64
+    lr_pretrain: 0.02
+    lr_head_source: 0.01
+    lr_head_da: 0.005
+    lr_tl_finetune: 0.01
+
+output_root: "results/da_dg_tl_matrix"
+
