@@ -711,7 +711,7 @@ def process_variant(
 # MAIN
 # ============================================================
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(
         description=(
             "Gera datasets normalizados pelo RMS médio "
@@ -767,7 +767,7 @@ def main():
         help="Remove os backups anteriores após confirmação bem-sucedida do commit transacional.",
     )
 
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     selected_datasets = []
     for ds in args.datasets:
@@ -813,50 +813,46 @@ def main():
     references = build_reference_map()
 
     manifest_rows = []
-    receipts_by_variant: dict[str, list[TransactionReceipt]] = {
-        "raw": [],
-        "detrended": [],
-    }
     all_committed_receipts: list[TransactionReceipt] = []
 
-    for variant_name in args.variants:
-        for dataset_name in selected_datasets:
+    try:
+        for variant_name in args.variants:
+            for dataset_name in selected_datasets:
 
-            try:
-                process_variant(
-                    variant_name=variant_name,
-                    dataset_name=dataset_name,
-                    references=references,
-                    manifest_rows=manifest_rows,
-                    fallback_processed_root=fallback_root,
-                    backup_root=backup_root,
-                    keep_backup=keep_backup,
-                    commit_receipts=receipts_by_variant[variant_name],
-                )
+                try:
+                    process_variant(
+                        variant_name=variant_name,
+                        dataset_name=dataset_name,
+                        references=references,
+                        manifest_rows=manifest_rows,
+                        fallback_processed_root=fallback_root,
+                        backup_root=backup_root,
+                        keep_backup=keep_backup,
+                        commit_receipts=all_committed_receipts,
+                    )
 
-            except Exception as exc:
-                print()
-                print(
-                    f"[ERRO] {dataset_name} / "
-                    f"{variant_name}:"
-                )
-                print(exc)
-                print(
-                    "O processamento desse dataset/variante "
-                    "será ignorado e os demais continuarão."
-                )
+                except Exception as exc:
+                    print()
+                    print(
+                        f"[ERRO] {dataset_name} / "
+                        f"{variant_name}:"
+                    )
+                    print(exc)
+                    print(
+                        "O processamento desse dataset/variante "
+                        "será ignorado e os demais continuarão."
+                    )
 
-    raw_rows = [
-        row for row in manifest_rows
-        if row["output_variant"] == "raw_rms"
-    ]
-    detrended_rows = [
-        row for row in manifest_rows
-        if row["output_variant"] == "detrended_rms"
-    ]
+        raw_rows = [
+            row for row in manifest_rows
+            if row["output_variant"] == "raw_rms"
+        ]
+        detrended_rows = [
+            row for row in manifest_rows
+            if row["output_variant"] == "detrended_rms"
+        ]
 
-    if raw_rows or "raw" in args.variants:
-        try:
+        if raw_rows or "raw" in args.variants:
             manifest_raw, raw_manifest_receipt = write_manifest(
                 raw_rows,
                 VARIANTS["raw"]["output_dir"],
@@ -864,15 +860,10 @@ def main():
                 keep_backup=keep_backup,
                 return_receipt=True,
             )
-            receipts_by_variant["raw"].append(raw_manifest_receipt)
-            all_committed_receipts.extend(receipts_by_variant["raw"])
+            all_committed_receipts.append(raw_manifest_receipt)
             print(f"Manifest RAW       : {manifest_raw}")
-        except Exception:
-            rollback_transaction_receipts(receipts_by_variant["raw"])
-            raise
 
-    if detrended_rows or "detrended" in args.variants:
-        try:
+        if detrended_rows or "detrended" in args.variants:
             manifest_detrended, det_manifest_receipt = write_manifest(
                 detrended_rows,
                 VARIANTS["detrended"]["output_dir"],
@@ -880,17 +871,16 @@ def main():
                 keep_backup=keep_backup,
                 return_receipt=True,
             )
-            receipts_by_variant["detrended"].append(det_manifest_receipt)
-            all_committed_receipts.extend(receipts_by_variant["detrended"])
+            all_committed_receipts.append(det_manifest_receipt)
             print(f"Manifest DETRENDED : {manifest_detrended}")
-        except Exception:
-            rollback_transaction_receipts(receipts_by_variant["detrended"])
-            raise
 
-    finalize_transaction_receipts(
-        all_committed_receipts,
-        keep_backup=keep_backup,
-    )
+        finalize_transaction_receipts(
+            all_committed_receipts,
+            keep_backup=keep_backup,
+        )
+    except Exception:
+        rollback_transaction_receipts(all_committed_receipts)
+        raise
 
     print()
     print("=" * 72)

@@ -296,14 +296,70 @@ roots_by_variant = {
     "processed": Path("/home/vfrocha/VibNet-1D/data/processed/HUST").resolve(),
     "detrended_rms": Path("/home/vfrocha/VibNet-1D/data/processed_tl/detrended_rms/HUST").resolve(),
 }
+backup_roots_by_variant = {
+    "processed": (backup_root / "processed_HUST_Class_40_backup").resolve(),
+    "detrended_rms": (backup_root / "detrended_rms_HUST_backup").resolve(),
+}
 counts_by_variant = {"processed": 0, "detrended_rms": 0}
 counts_by_var_load = {}
+seen_dup_keys = set()
+seen_can_keys = set()
+seen_bkp_keys = set()
 
 for idx, row in enumerate(rows, start=1):
     var = row.get("variant", "")
     load = row.get("load", "")
     assert var in roots_by_variant, f"Linha {idx}: variante inválida '{var}'."
     assert load in ("Load_0W", "Load_200W", "Load_400W"), f"Linha {idx}: load inválido '{load}'."
+
+    dup_rel = row.get("duplicate_rel_path", "")
+    can_rel = row.get("canonical_rel_path", "")
+    bkp_rel = row.get("backup_rel_path", "")
+
+    # Exige unicidade estrita de (variant, duplicate_rel_path), (variant, canonical_rel_path) e backup_rel_path
+    dup_key = (var, dup_rel)
+    can_key = (var, can_rel)
+    assert dup_key not in seen_dup_keys, (
+        f"Linha {idx}: duplicidade detectada para (variant, duplicate_rel_path) = {dup_key}"
+    )
+    assert can_key not in seen_can_keys, (
+        f"Linha {idx}: duplicidade detectada para (variant, canonical_rel_path) = {can_key}"
+    )
+    assert bkp_rel not in seen_bkp_keys, (
+        f"Linha {idx}: duplicidade detectada para backup_rel_path = {bkp_rel}"
+    )
+    seen_dup_keys.add(dup_key)
+    seen_can_keys.add(can_key)
+    seen_bkp_keys.add(bkp_rel)
+
+    # Confirma que cada caminho relativo pertence estritamente à carga (load) e estrutura da linha
+    dup_parts = Path(dup_rel).parts
+    can_parts = Path(can_rel).parts
+    bkp_parts = Path(bkp_rel).parts
+    expected_bkp_dir_name = (
+        "processed_HUST_Class_40_backup" if var == "processed" else "detrended_rms_HUST_backup"
+    )
+    assert (
+        len(dup_parts) == 4
+        and dup_parts[0] == load
+        and dup_parts[1] == "Class_Normal"
+        and dup_parts[2] == "Class_40"
+        and dup_parts[3].endswith(".npy")
+    ), f"Linha {idx}: duplicate_rel_path inconsistente com load={load}: '{dup_rel}'"
+    assert (
+        len(can_parts) == 3
+        and can_parts[0] == load
+        and can_parts[1] == "Class_Normal"
+        and can_parts[2] == dup_parts[3]
+    ), f"Linha {idx}: canonical_rel_path inconsistente com load={load} ou arquivo '{dup_parts[3]}': '{can_rel}'"
+    assert (
+        len(bkp_parts) == 5
+        and bkp_parts[0] == expected_bkp_dir_name
+        and bkp_parts[1] == load
+        and bkp_parts[2] == "Class_Normal"
+        and bkp_parts[3] == "Class_40"
+        and bkp_parts[4] == dup_parts[3]
+    ), f"Linha {idx}: backup_rel_path inconsistente com variant={var} e load={load}: '{bkp_rel}'"
 
     h_dup = row.get("sha256", "")
     h_can = row.get("canonical_sha256", "")
@@ -316,9 +372,21 @@ for idx, row in enumerate(rows, start=1):
     assert match_flag == "True", f"Linha {idx}: sha256_match != True ({match_flag})."
 
     v_root = roots_by_variant[var]
-    dup_file = (v_root / row["duplicate_rel_path"]).resolve()
-    can_file = (v_root / row["canonical_rel_path"]).resolve()
-    bkp_file = (backup_root / row["backup_rel_path"]).resolve()
+    v_bkp_root = backup_roots_by_variant[var]
+    dup_file = (v_root / dup_rel).resolve()
+    can_file = (v_root / can_rel).resolve()
+    bkp_file = (backup_root / bkp_rel).resolve()
+
+    # Confirma contenção física dos caminhos resolvidos dentro da variante e carga indicadas
+    assert dup_file.is_relative_to(v_root / load / "Class_Normal" / "Class_40"), (
+        f"Linha {idx}: caminho resolvido fora da variante/carga esperada: {dup_file}"
+    )
+    assert can_file.is_relative_to(v_root / load / "Class_Normal"), (
+        f"Linha {idx}: caminho canônico resolvido fora da variante/carga esperada: {can_file}"
+    )
+    assert bkp_file.is_relative_to(v_bkp_root / load / "Class_Normal" / "Class_40"), (
+        f"Linha {idx}: caminho de backup resolvido fora da variante/carga esperada: {bkp_file}"
+    )
 
     assert dup_file.is_file(), f"Linha {idx}: arquivo duplicado alvo não encontrado: {dup_file}"
     assert can_file.is_file(), f"Linha {idx}: arquivo canônico em Class_Normal ausente: {can_file}"
@@ -331,6 +399,16 @@ for idx, row in enumerate(rows, start=1):
 
     counts_by_variant[var] += 1
     counts_by_var_load[(var, load)] = counts_by_var_load.get((var, load), 0) + 1
+
+assert len(seen_dup_keys) == 300, (
+    f"Trava acionada: esperado 300 pares únicos (variant, duplicate_rel_path), obtido {len(seen_dup_keys)}."
+)
+assert len(seen_can_keys) == 300, (
+    f"Trava acionada: esperado 300 pares únicos (variant, canonical_rel_path), obtido {len(seen_can_keys)}."
+)
+assert len(seen_bkp_keys) == 300, (
+    f"Trava acionada: esperado 300 caminhos únicos de backup, obtido {len(seen_bkp_keys)}."
+)
 
 assert counts_by_variant["processed"] == 150, (
     f"Trava acionada: esperado 150 registros para 'processed', obtido {counts_by_variant['processed']}."
@@ -736,5 +814,5 @@ A execução da correção na máquina **Andromeda** só será considerada aprov
 | **5** | **Aprovação em `dataset_validation.csv` e `reference_validation.csv`** | Para `HUST`: `n_original=951`, `n_normalized=951`, `n_common=951`, `n_checked=951`, `missing_normalized=0`, `extra_normalized=0`, `shape_mismatches=0`, `dtype_mismatches=0`, `mathematical_failures=0`, `math_pass=True`, e `reference_validation.csv` com `n=150`, `difference_from_manifest=0.0`, `pass=True`. |
 | **6** | **Eliminação das linhas anômalas em `rms_statistics.csv` e `file_comparison.csv`** | **0 linhas** com `dataset` igual a `Load_0W`, `Load_200W` ou `Load_400W` em `rms_statistics.csv` (reduzindo de 798 para **792 linhas** no consolidado `cross_dataset`), e **0 linhas** com `condition == "Class_Normal"` ou `class == "Class_40"` em `file_comparison.csv` (reduzindo de 13.495 para **13.345 linhas** no consolidado `cross_dataset`). |
 | **7** | **Preservação integral dos demais datasets** | Nenhuma alteração de contagem, `mtime` ou hash SHA-256 em nenhum dos outros diretórios de `data/processed/` ou `data/processed_tl/detrended_rms/`. |
-| **8** | **Suíte de testes automatizados de não-regressão** | `python3 -m unittest tests/test_setup_installer.py` passando integralmente (8 métodos de teste), incluindo `test_05_repeated_execution_does_not_accumulate_residual_files`, `test_06_failed_staging_and_rollback_preserves_previous_data_and_manifests`, `test_07_exact_relative_paths_symlinks_same_fs_and_transactional_manifests` e `test_08_coordinated_rollback_across_dirs_normalization_and_processing_manifests`. |
+| **8** | **Suíte de testes automatizados de não-regressão** | `python3 -m unittest tests/test_setup_installer.py` passando integralmente (9 métodos de teste), incluindo `test_05_repeated_execution_does_not_accumulate_residual_files`, `test_06_failed_staging_and_rollback_preserves_previous_data_and_manifests`, `test_07_exact_relative_paths_symlinks_same_fs_and_transactional_manifests`, `test_08_coordinated_rollback_across_dirs_normalization_and_processing_manifests` e `test_09_normalize_dataset_tl_cross_variant_rollback_raw_and_detrended`. |
 

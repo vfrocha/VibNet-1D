@@ -52,6 +52,7 @@ from scripts.setup.system_info import (
     verify_pytorch_runtime,
 )
 from scripts.setup.validate_installation import validate_installation
+from src.preprocessing import normalize_dataset_tl as norm_tl
 from src.vibnet.data.registry import list_all_datasets
 from src.vibnet.data.transactional_io import (
     assert_no_symlink_components,
@@ -776,6 +777,169 @@ class TestSetupInstaller(unittest.TestCase):
                 [],
                 f"Backups não foram limpos após finalização com keep_backup=False: {remaining_backup_files}",
             )
+
+    def test_09_normalize_dataset_tl_cross_variant_rollback_raw_and_detrended(self) -> None:
+        """
+        Verifica que em normalize_dataset_tl.main(), uma falha na gravação do manifesto
+        da segunda variante (detrended) reverte todos os recibos já confirmados na execução:
+          - Diretórios da variante raw (raw_rms/MFPT);
+          - Manifesto raw (raw_rms/normalization_manifest.csv);
+          - Diretórios da variante detrended (detrended_rms/MFPT);
+          - Manifesto detrended (detrended_rms/normalization_manifest.csv),
+        tanto com keep_backup=True quanto com keep_backup=False (--no-backup).
+        """
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            ext_raw = base / "raw"
+            ext_proc = base / "processed"
+            ext_proc_tl = base / "processed_tl"
+            _create_synthetic_raw_fixture(ext_raw)
+
+            # 1. Estado inicial V1: prepara variantes raw, detrended, raw_rms e detrended_rms para MFPT
+            prepare_datasets(
+                datasets=["MFPT"],
+                variants=["raw", "detrended", "raw_rms", "detrended_rms"],
+                raw_dir=ext_raw,
+                processed_dir=ext_proc,
+                processed_tl_dir=ext_proc_tl,
+                force=False,
+                keep_backup=True,
+            )
+
+            raw_in_dir = ext_proc_tl / "raw" / "MFPT"
+            det_in_dir = ext_proc_tl / "detrended" / "MFPT"
+            raw_rms_dir = ext_proc_tl / "raw_rms" / "MFPT"
+            det_rms_dir = ext_proc_tl / "detrended_rms" / "MFPT"
+            raw_manifest_path = ext_proc_tl / "raw_rms" / "normalization_manifest.csv"
+            det_manifest_path = ext_proc_tl / "detrended_rms" / "normalization_manifest.csv"
+
+            def _snapshot_tree_hashes(root: Path) -> dict[str, str]:
+                return {
+                    p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                    for p in sorted(root.rglob("*.npy"))
+                }
+
+            v1_raw_rms_hashes = _snapshot_tree_hashes(raw_rms_dir)
+            v1_det_rms_hashes = _snapshot_tree_hashes(det_rms_dir)
+            v1_raw_manifest_bytes = raw_manifest_path.read_bytes()
+            v1_raw_manifest_sha = hashlib.sha256(v1_raw_manifest_bytes).hexdigest()
+            v1_det_manifest_bytes = det_manifest_path.read_bytes()
+            v1_det_manifest_sha = hashlib.sha256(v1_det_manifest_bytes).hexdigest()
+
+            # 2. Altera as janelas de entrada em raw/MFPT e detrended/MFPT (Estado V2)
+            #    para que a nova execução de normalize_dataset_tl gere arquivos e manifests diferentes.
+            for in_root in (raw_in_dir, det_in_dir):
+                for npy_f in sorted(in_root.rglob("*.npy")):
+                    arr = np.load(npy_f, allow_pickle=False)
+                    # Escala e adiciona leve curvatura não-linear para mudar tanto o RMS_ref quanto o sinal normalizado
+                    np.save(npy_f, arr * 2.75 + 0.05 * np.square(arr))
+
+            orig_input_root = norm_tl.INPUT_ROOT
+            orig_fallback_root = norm_tl.PROCESSED_FALLBACK_ROOT
+            orig_variants = dict(norm_tl.VARIANTS)
+
+            try:
+                norm_tl.INPUT_ROOT = ext_proc_tl
+                norm_tl.PROCESSED_FALLBACK_ROOT = ext_proc
+                norm_tl.VARIANTS = {
+                    "raw": {
+                        "input_dir": ext_proc_tl / "raw",
+                        "output_dir": ext_proc_tl / "raw_rms",
+                    },
+                    "detrended": {
+                        "input_dir": ext_proc_tl / "detrended",
+                        "output_dir": ext_proc_tl / "detrended_rms",
+                    },
+                }
+
+                real_write_manifest = norm_tl.write_manifest
+
+                for keep_bkp in (True, False):
+                    mid_state: dict[str, bool] = {}
+
+                    def _write_manifest_fail_on_detrended(
+                        rows,
+                        output_root,
+                        merge_existing=True,
+                        backup_root=None,
+                        keep_backup=True,
+                        return_receipt=False,
+                    ):
+                        # Permite que o manifesto raw seja gravado e confirmado normalmente
+                        if Path(output_root).name == "raw_rms":
+                            return real_write_manifest(
+                                rows,
+                                output_root,
+                                merge_existing=merge_existing,
+                                backup_root=backup_root,
+                                keep_backup=keep_backup,
+                                return_receipt=return_receipt,
+                            )
+                        # No momento de gravar o manifesto detrended, verifica que raw_rms/MFPT,
+                        # raw_rms/normalization_manifest.csv e detrended_rms/MFPT já foram promovidos para V2!
+                        mid_state["raw_rms_changed"] = _snapshot_tree_hashes(raw_rms_dir) != v1_raw_rms_hashes
+                        mid_state["raw_manifest_changed"] = (
+                            hashlib.sha256(raw_manifest_path.read_bytes()).hexdigest() != v1_raw_manifest_sha
+                        )
+                        mid_state["det_rms_changed"] = _snapshot_tree_hashes(det_rms_dir) != v1_det_rms_hashes
+                        raise RuntimeError(
+                            f"Falha simulada ao gravar normalization_manifest.csv de detrended_rms (keep_backup={keep_bkp})"
+                        )
+
+                    cli_args = [
+                        "--datasets",
+                        "MFPT",
+                        "--variants",
+                        "raw",
+                        "detrended",
+                        "--backup-dir",
+                        str(ext_proc_tl / ".backups"),
+                    ]
+                    if not keep_bkp:
+                        cli_args.append("--no-backup")
+
+                    with patch.object(norm_tl, "write_manifest", side_effect=_write_manifest_fail_on_detrended):
+                        with self.assertRaises(RuntimeError):
+                            norm_tl.main(cli_args)
+
+                    # Confirma que os commits de raw_rms, manifesto raw e detrended_rms ocorreram antes da falha
+                    self.assertTrue(mid_state.get("raw_rms_changed"))
+                    self.assertTrue(mid_state.get("raw_manifest_changed"))
+                    self.assertTrue(mid_state.get("det_rms_changed"))
+
+                    # 4 e 5. Verifica restauração bit a bit de raw_rms/MFPT, manifesto raw,
+                    # detrended_rms/MFPT e manifesto detrended
+                    self.assertEqual(
+                        _snapshot_tree_hashes(raw_rms_dir),
+                        v1_raw_rms_hashes,
+                        f"raw_rms/MFPT não foi restaurado bit-a-bit (keep_backup={keep_bkp})",
+                    )
+                    self.assertEqual(
+                        hashlib.sha256(raw_manifest_path.read_bytes()).hexdigest(),
+                        v1_raw_manifest_sha,
+                        f"Manifesto raw não foi restaurado bit-a-bit (keep_backup={keep_bkp})",
+                    )
+                    self.assertEqual(raw_manifest_path.read_bytes(), v1_raw_manifest_bytes)
+
+                    self.assertEqual(
+                        _snapshot_tree_hashes(det_rms_dir),
+                        v1_det_rms_hashes,
+                        f"detrended_rms/MFPT não foi restaurado bit-a-bit (keep_backup={keep_bkp})",
+                    )
+                    self.assertEqual(
+                        hashlib.sha256(det_manifest_path.read_bytes()).hexdigest(),
+                        v1_det_manifest_sha,
+                        f"Manifesto detrended não foi restaurado bit-a-bit (keep_backup={keep_bkp})",
+                    )
+                    self.assertEqual(det_manifest_path.read_bytes(), v1_det_manifest_bytes)
+
+                    # Confirma ausência de resíduos .staging_*
+                    staging_residuals = list(ext_proc_tl.rglob(".staging_*"))
+                    self.assertEqual(staging_residuals, [])
+            finally:
+                norm_tl.INPUT_ROOT = orig_input_root
+                norm_tl.PROCESSED_FALLBACK_ROOT = orig_fallback_root
+                norm_tl.VARIANTS = orig_variants
 
 
 if __name__ == "__main__":

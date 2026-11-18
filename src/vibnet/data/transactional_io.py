@@ -647,9 +647,19 @@ TransactionReceipt = Union[DatasetCommitReceipt, ManifestCommitReceipt]
 
 
 def rollback_transaction_receipts(receipts: Sequence[TransactionReceipt]) -> None:
-    """Roll back all committed directory and manifest receipts in strict reverse chronological order."""
+    """
+    Roll back all committed directory and manifest receipts in strict reverse
+    chronological order, deduplicating by object identity (`id(receipt)`).
+    """
     errors: List[str] = []
+    seen_ids: set[int] = set()
+    unique_reversed: List[TransactionReceipt] = []
     for receipt in reversed(list(receipts)):
+        rid = id(receipt)
+        if rid not in seen_ids:
+            seen_ids.add(rid)
+            unique_reversed.append(receipt)
+    for receipt in unique_reversed:
         try:
             receipt.rollback()
         except Exception as exc:
