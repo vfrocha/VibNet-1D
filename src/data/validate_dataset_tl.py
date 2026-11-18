@@ -37,6 +37,7 @@ Opcional:
 
 import argparse
 import csv
+import os
 from pathlib import Path
 
 import numpy as np
@@ -56,8 +57,16 @@ def _resolve_project_root() -> Path:
 
 
 PROJECT_ROOT = _resolve_project_root()
-ROOT = PROJECT_ROOT / "data" / "processed_tl"
-PROCESSED_FALLBACK_ROOT = PROJECT_ROOT / "data" / "processed"
+ROOT = (
+    Path(os.environ["VIBNET_PROCESSED_TL_DIR"]).expanduser().resolve()
+    if os.environ.get("VIBNET_PROCESSED_TL_DIR")
+    else PROJECT_ROOT / "data" / "processed_tl"
+)
+PROCESSED_FALLBACK_ROOT = (
+    Path(os.environ["VIBNET_PROCESSED_DIR"]).expanduser().resolve()
+    if os.environ.get("VIBNET_PROCESSED_DIR")
+    else PROJECT_ROOT / "data" / "processed"
+)
 VALIDATION_ROOT = ROOT / "validation"
 
 VARIANTS = {

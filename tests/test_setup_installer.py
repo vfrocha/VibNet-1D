@@ -1,0 +1,346 @@
+"""Suíte de testes automatizados para o instalador reproduzível do VibNet-1D (`tests/test_setup_installer.py`).
+
+Verifica todos os 12 critérios de aceitação da Seção 12 usando fixtures e datasets
+sintéticos (sem baixar os 10 datasets reais da internet):
+  1. Seleção de todos os datasets canônicos.
+  2. Seleção de subconjuntos e atalhos ('cross_dataset', 'all').
+  3. Rejeição de nomes inválidos com mensagem clara listando os válidos.
+  4. Detecção e reutilização de download já existente (MD5 e ZIP íntegros).
+  5. Retomada de download interrompido (.part) e detecção de arquivo corrompido.
+  6. Processamento de dataset e reutilização quando já preparado (`REUSED_VALID`).
+  7. Reprocessamento automático quando a assinatura de configuração muda ou `--force`.
+  8. Detecção de arquivos/janelas ausentes ou com comprimento incorreto.
+  9. Configuração de diretórios externos (`VIBNET_RAW_DIR`, `VIBNET_PROCESSED_DIR`, `VIBNET_PROCESSED_TL_DIR`, `VIBNET_RESULTS_DIR`).
+  10. Recomendação de instalação em modo CPU (`--cpu-only` ou sem GPU).
+  11. Detecção de GPU NVIDIA e recomendação de índice CUDA quando disponível.
+  12. Geração e validação do relatório final (`installation_report.json` e `installation_report.md`).
+"""
+
+from __future__ import annotations
+
+import hashlib
+import io
+import json
+from pathlib import Path
+import sys
+import tempfile
+import unittest
+import zipfile
+
+import numpy as np
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from scripts.setup.download_datasets import (
+    compute_md5,
+    download_datasets,
+    download_url_with_resume,
+    estimate_disk_requirements,
+    resolve_selected_datasets,
+    verify_existing_raw_source,
+)
+from scripts.setup.prepare_datasets import (
+    inspect_existing_processed_variant,
+    prepare_datasets,
+)
+from scripts.setup.system_info import (
+    collect_system_info,
+    recommend_pytorch_index_url,
+    verify_pytorch_runtime,
+)
+from scripts.setup.validate_installation import validate_installation
+from src.vibnet.data.registry import list_all_datasets
+
+
+def _create_synthetic_raw_fixture(raw_dir: Path, fs_cwru12k: int = 12000, fs_mfpt: int = 48828) -> None:
+    """Cria fixtures sintéticas de 2 segundos para CWRU e MFPT em `raw_dir`."""
+    rng = np.random.default_rng(42)
+
+    # 1. CWRU_raw fixture (gera CWRU_12k com Class_0 e Class_1, e CWRU_48k com Class_1)
+    cwru_dir = raw_dir / "CWRU_raw"
+    cwru_dir.mkdir(parents=True, exist_ok=True)
+    t_12k = np.linspace(0.0, 2.0, 2 * fs_cwru12k, endpoint=False)
+    sig_norm = (0.08 * np.sin(2.0 * np.pi * 30.0 * t_12k) + rng.normal(0, 0.01, t_12k.shape)).astype(np.float64)
+    sig_fault = (0.35 * np.sin(2.0 * np.pi * 120.0 * t_12k) + rng.normal(0, 0.02, t_12k.shape)).astype(np.float64)
+    np.save(cwru_dir / "cwru12k_norm.npy", sig_norm)
+    np.save(cwru_dir / "cwru12k_fault.npy", sig_fault)
+
+    t_48k = np.linspace(0.0, 1.0, 48000, endpoint=False)
+    sig_48k = (0.40 * np.sin(2.0 * np.pi * 150.0 * t_48k) + rng.normal(0, 0.02, t_48k.shape)).astype(np.float64)
+    np.save(cwru_dir / "cwru48k_fault.npy", sig_48k)
+
+    cwru_records = [
+        {
+            "signal_file": "cwru12k_norm.npy",
+            "metainfo": {"sample_rate": 12000, "load": 0, "label": 0, "fault_size": 0.0},
+        },
+        {
+            "signal_file": "cwru12k_fault.npy",
+            "metainfo": {"sample_rate": 12000, "load": 1, "label": 1, "fault_size": 0.007},
+        },
+        {
+            "signal_file": "cwru48k_fault.npy",
+            "metainfo": {"sample_rate": 48000, "load": 0, "label": 1, "fault_size": 0.007},
+        },
+    ]
+    (cwru_dir / "fixture_records.json").write_text(
+        json.dumps(cwru_records, indent=2), encoding="utf-8"
+    )
+
+    # 2. MFPT_raw fixture (inclui sinal em 97656 Hz para testar harmonização para 48828 Hz)
+    mfpt_dir = raw_dir / "MFPT_raw"
+    mfpt_dir.mkdir(parents=True, exist_ok=True)
+    sig_mfpt_norm_97k = (0.9 * np.sin(np.linspace(0, 50, 2 * fs_mfpt))).astype(np.float64)
+    sig_mfpt_fault_48k = (2.1 * np.sin(np.linspace(0, 50, fs_mfpt))).astype(np.float64)
+    np.save(mfpt_dir / "mfpt_norm.npy", sig_mfpt_norm_97k)
+    np.save(mfpt_dir / "mfpt_fault.npy", sig_mfpt_fault_48k)
+
+    mfpt_records = [
+        {
+            "signal_file": "mfpt_norm.npy",
+            "metainfo": {"sample_rate": 97656, "load": 25, "label": 23},
+        },
+        {
+            "signal_file": "mfpt_fault.npy",
+            "metainfo": {"sample_rate": 48828, "load": 50, "label": 24},
+        },
+    ]
+    (mfpt_dir / "fixture_records.json").write_text(
+        json.dumps(mfpt_records, indent=2), encoding="utf-8"
+    )
+
+
+class TestSetupInstaller(unittest.TestCase):
+    """Testes automatizados para os módulos de `scripts/setup/`."""
+
+    def test_01_dataset_selection_all_and_subsets(self) -> None:
+        """Critérios 1, 2 e 3: seleção de todos, subconjuntos e rejeição de nomes inválidos."""
+        all_ds = resolve_selected_datasets(None)
+        self.assertEqual(all_ds, list_all_datasets())
+        self.assertEqual(len(all_ds), 10)
+
+        subset = resolve_selected_datasets(["CWRU_12k", "MFPT", "CWRU_48k"])
+        self.assertEqual(subset, ["CWRU_12k", "MFPT", "CWRU_48k"])
+
+        cross_ds = resolve_selected_datasets(["cross_dataset"])
+        self.assertEqual(len(cross_ds), 9)
+        self.assertIn("CWRU_12k", cross_ds)
+        self.assertIn("Electric_Motor", cross_ds)
+
+        with self.assertRaises(ValueError) as ctx:
+            resolve_selected_datasets(["CWRU_12k", "DATASET_INEXISTENTE"])
+        self.assertIn("DATASET_INEXISTENTE", str(ctx.exception))
+        self.assertIn("CWRU_12k", str(ctx.exception))
+
+    def test_02_download_existing_interrupted_and_corrupted(self) -> None:
+        """Critérios 4, 5 e 8: download existente, retomada de .part e detecção de arquivo corrompido."""
+        with tempfile.TemporaryDirectory() as tmp:
+            raw_dir = Path(tmp) / "raw"
+            raw_dir.mkdir(parents=True, exist_ok=True)
+
+            # Cria um ZIP válido para simular MFPT.zip
+            zip_bytes_io = io.BytesIO()
+            with zipfile.ZipFile(zip_bytes_io, "w") as zf:
+                zf.writestr("dummy.mat", b"1234567890" * 100)
+            full_payload = zip_bytes_io.getvalue()
+            expected_md5 = hashlib.md5(full_payload).hexdigest()
+
+            meta = {
+                "provides_datasets": ["MFPT"],
+                "archive_name": "MFPT.zip",
+                "expected_md5": expected_md5,
+            }
+
+            # 1) Estado ausente
+            chk_missing = verify_existing_raw_source("MFPT", raw_dir, meta)
+            self.assertFalse(chk_missing["valid"])
+            self.assertEqual(chk_missing["status"], "MISSING")
+
+            # 2) Simula download interrompido (.part com a primeira metade dos bytes)
+            dest_zip = raw_dir / "MFPT.zip"
+            part_file = raw_dir / "MFPT.zip.part"
+            half = len(full_payload) // 2
+            part_file.write_bytes(full_payload[:half])
+
+            chk_part = verify_existing_raw_source("MFPT", raw_dir, meta)
+            self.assertFalse(chk_part["valid"])
+            self.assertEqual(chk_part["status"], "PARTIAL_DOWNLOAD_DETECTED")
+
+            # Simula retomada HTTP 206 enviando apenas a segunda metade dos bytes
+            class _FakeResponse:
+                status = 206
+
+                def __init__(self, data: bytes) -> None:
+                    self._io = io.BytesIO(data)
+
+                def read(self, n: int = -1) -> bytes:
+                    return self._io.read(n)
+
+                def __enter__(self) -> "_FakeResponse":
+                    return self
+
+                def __exit__(self, *args: object) -> None:
+                    pass
+
+            res_dl = download_url_with_resume(
+                url="https://example.org/MFPT.zip",
+                dest_path=dest_zip,
+                expected_md5=expected_md5,
+                opener=lambda req, timeout=60: _FakeResponse(full_payload[half:]),
+            )
+            self.assertEqual(res_dl["resumed_from_bytes"], half)
+            self.assertEqual(res_dl["md5"], expected_md5)
+            self.assertTrue(dest_zip.exists())
+            self.assertFalse(part_file.exists())
+
+            # 3) Verifica detecção de arquivo já existente e íntegro
+            chk_ok = verify_existing_raw_source("MFPT", raw_dir, meta)
+            self.assertTrue(chk_ok["valid"])
+            self.assertEqual(chk_ok["status"], "ALREADY_PRESENT")
+
+            # 4) Verifica detecção de checksum incorreto
+            bad_meta = {**meta, "expected_md5": "00000000000000000000000000000000"}
+            chk_bad = verify_existing_raw_source("MFPT", raw_dir, bad_meta)
+            self.assertFalse(chk_bad["valid"])
+            self.assertEqual(chk_bad["status"], "CHECKSUM_MISMATCH")
+
+    def test_03_prepare_datasets_reuse_and_reprocess_on_change(self) -> None:
+        """Critérios 6, 7, 8 e 9: processamento, reuso, reprocessamento e diretórios externos."""
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            ext_raw = base / "ext_raw"
+            ext_proc = base / "ext_processed"
+            ext_proc_tl = base / "ext_processed_tl"
+
+            _create_synthetic_raw_fixture(ext_raw)
+
+            # Primeira execução: processa CWRU_12k, CWRU_48k e MFPT em todas as variantes
+            manifest_1 = prepare_datasets(
+                datasets=["CWRU_12k", "CWRU_48k", "MFPT"],
+                variants=["all"],
+                raw_dir=ext_raw,
+                processed_dir=ext_proc,
+                processed_tl_dir=ext_proc_tl,
+                force=False,
+            )
+            self.assertEqual(len(manifest_1["reused_entries"]), 0)
+            for ds in ("CWRU_12k", "CWRU_48k", "MFPT"):
+                for var in ("processed_1d", "raw", "detrended", "raw_rms", "detrended_rms"):
+                    key = f"{ds}::{var}"
+                    self.assertIn(key, manifest_1["entries"])
+                    self.assertEqual(
+                        manifest_1["entries"][key]["status"],
+                        "PROCESSED_OK",
+                        msg=f"Falha em {key}: {manifest_1['entries'][key]}",
+                    )
+                    self.assertGreater(manifest_1["entries"][key]["window_count"], 0)
+
+            # Segunda execução idêntica: deve reutilizar todas as 15 combinações (REUSED_VALID)
+            manifest_2 = prepare_datasets(
+                datasets=["CWRU_12k", "CWRU_48k", "MFPT"],
+                variants=["all"],
+                raw_dir=ext_raw,
+                processed_dir=ext_proc,
+                processed_tl_dir=ext_proc_tl,
+                force=False,
+            )
+            self.assertEqual(len(manifest_2["reused_entries"]), 15)
+
+            # Simula mudança na assinatura de configuração de MFPT::detrended no manifesto salvo
+            manifest_file = ext_proc_tl / "processing_manifest.json"
+            m_data = json.loads(manifest_file.read_text(encoding="utf-8"))
+            m_data["entries"]["MFPT::detrended"]["config_signature"] = "outdated_sig_000"
+            manifest_file.write_text(json.dumps(m_data), encoding="utf-8")
+
+            manifest_3 = prepare_datasets(
+                datasets=["MFPT"],
+                variants=["detrended", "detrended_rms"],
+                raw_dir=ext_raw,
+                processed_dir=ext_proc,
+                processed_tl_dir=ext_proc_tl,
+                force=False,
+            )
+            self.assertNotIn("MFPT::detrended", manifest_3["reused_entries"])
+            self.assertEqual(manifest_3["entries"]["MFPT::detrended"]["status"], "PROCESSED_OK")
+            self.assertEqual(manifest_3["entries"]["MFPT::detrended_rms"]["status"], "PROCESSED_OK")
+
+            # Verifica detecção de janela com comprimento incorreto
+            bad_dir = ext_proc / "MFPT" / "Load_25" / "Class_23"
+            bad_npy = next(bad_dir.glob("*.npy"))
+            np.save(bad_npy, np.zeros(123, dtype=np.float32))
+            chk_corrupt = inspect_existing_processed_variant(
+                "MFPT", "processed_1d", ext_proc / "MFPT", expected_window_len=48828
+            )
+            self.assertFalse(chk_corrupt["valid"])
+            self.assertIn("Comprimento de janela divergente", chk_corrupt["reason"])
+
+    def test_04_cpu_gpu_detection_and_final_validation_report(self) -> None:
+        """Critérios 10, 11 e 12: recomendação CPU/GPU e geração do relatório de validação final."""
+        # Modo sem GPU ou --cpu-only
+        rec_cpu = recommend_pytorch_index_url(
+            {"nvidia_smi_found": False, "gpus": []}, force_cpu=False
+        )
+        self.assertEqual(rec_cpu["compute_target"], "cpu")
+        self.assertIn("/cpu", rec_cpu["index_url"])
+
+        # Modo GPU NVIDIA com driver suportando CUDA 12.4
+        rec_gpu = recommend_pytorch_index_url(
+            {
+                "nvidia_smi_found": True,
+                "driver_cuda_version": "12.4",
+                "gpus": [{"index": 0, "name": "NVIDIA RTX 4090", "driver_version": "550.54", "vram_mb": 24564}],
+            },
+            force_cpu=False,
+        )
+        self.assertEqual(rec_gpu["compute_target"], "cu124")
+        self.assertIn("cu124", rec_gpu["index_url"])
+
+        # Forçando --cpu-only mesmo quando há GPU
+        rec_forced_cpu = recommend_pytorch_index_url(
+            {
+                "nvidia_smi_found": True,
+                "driver_cuda_version": "12.4",
+                "gpus": [{"index": 0, "name": "NVIDIA RTX 4090"}],
+            },
+            force_cpu=True,
+        )
+        self.assertEqual(rec_forced_cpu["compute_target"], "cpu")
+
+        # Gera relatório final em diretório temporário isolado
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            raw_d = base / "raw"
+            proc_d = base / "processed"
+            proc_tl_d = base / "processed_tl"
+            res_d = base / "results"
+            rep_d = res_d / "setup"
+
+            _create_synthetic_raw_fixture(raw_d)
+            download_datasets(datasets=["CWRU_12k", "MFPT"], raw_dir=raw_d, dry_run=False)
+            prepare_datasets(
+                datasets=["CWRU_12k", "MFPT"],
+                variants=["processed_1d", "detrended", "detrended_rms"],
+                raw_dir=raw_d,
+                processed_dir=proc_d,
+                processed_tl_dir=proc_tl_d,
+            )
+
+            report = validate_installation(
+                raw_dir=raw_d,
+                processed_dir=proc_d,
+                processed_tl_dir=proc_tl_d,
+                results_dir=res_d,
+                report_dir=rep_d,
+                run_tests=False,
+            )
+            self.assertTrue((rep_d / "installation_report.json").is_file())
+            self.assertTrue((rep_d / "installation_report.md").is_file())
+            self.assertIn("CWRU_12k", report["datasets_inventory"]["downloaded_datasets"])
+            self.assertIn("MFPT", report["datasets_inventory"]["processed_datasets_any_variant"])
+            self.assertTrue(report["experiment_scripts"]["all_scripts_valid"])
+
+
+if __name__ == "__main__":
+    unittest.main()

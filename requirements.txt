@@ -6,6 +6,7 @@
 numpy
 pandas
 scipy
+librosa
 PyWavelets
 
 # Machine Learning clássico, balanceamento e Deep Learning

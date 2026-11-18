@@ -1,0 +1,50 @@
+{
+  "experiment": "hust_gearbox_macro_loco_exploratory",
+  "protocol": "load",
+  "folds": [
+    "Load_0",
+    "Load_1",
+    "Load_2",
+    "Load_3",
+    "Load_4"
+  ],
+  "seeds": [
+    42,
+    100,
+    2024,
+    7,
+    999
+  ],
+  "data_root": "/home/vfrocha/VibNet-1D/data/processed_tl/detrended_rms/HUST_Gearbox",
+  "preprocessing": "detrended_rms",
+  "sampling_rate_hz": 25600,
+  "feature_extractor": "default_141_feature_extractor",
+  "feature_count": 141,
+  "models": {
+    "RandomForest": {
+      "n_estimators": 100,
+      "max_features": "sqrt",
+      "class_weight": "balanced",
+      "n_jobs": 1
+    },
+    "SVM_RBF": {
+      "C": 1.0,
+      "kernel": "rbf",
+      "probability": true,
+      "class_weight": "balanced"
+    }
+  },
+  "class_label_aliases": {
+    "Class_Healthy": "Class_Normal"
+  },
+  "hyperparameter_search": false,
+  "versions": {
+    "python": "3.12.3",
+    "numpy": "2.5.5",
+    "pandas": "2.3.3",
+    "scikit_learn": "1.9.1"
+  },
+  "git_commit": "1c512c34bb3f29cbe87f3791c18746c42aa31db5",
+  "script_sha256": "ba3dc59dbf22f24858daf85422ccf9b98604d174f0aae55799319d689372f80f",
+  "created_at": "2026-11-17T16:38:11.715828-03:00"
+}

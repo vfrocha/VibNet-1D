@@ -47,6 +47,7 @@ Referências por dataset:
 
 import argparse
 import csv
+import os
 from pathlib import Path
 
 import numpy as np
@@ -58,8 +59,16 @@ from tqdm import tqdm
 # ============================================================
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-INPUT_ROOT = PROJECT_ROOT / "data" / "processed_tl"
-PROCESSED_FALLBACK_ROOT = PROJECT_ROOT / "data" / "processed"
+INPUT_ROOT = (
+    Path(os.environ["VIBNET_PROCESSED_TL_DIR"]).expanduser().resolve()
+    if os.environ.get("VIBNET_PROCESSED_TL_DIR")
+    else PROJECT_ROOT / "data" / "processed_tl"
+)
+PROCESSED_FALLBACK_ROOT = (
+    Path(os.environ["VIBNET_PROCESSED_DIR"]).expanduser().resolve()
+    if os.environ.get("VIBNET_PROCESSED_DIR")
+    else PROJECT_ROOT / "data" / "processed"
+)
 
 VARIANTS = {
     "raw": {

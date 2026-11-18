@@ -1,0 +1,27 @@
+dataset,role,local_class_folder,vibdata_label_id,raw_fault_description,global_class,windows_on_disk,windows_in_raw,in_5class_ontology,handling_in_da_dg
+UORED,Source,Class_Normal,47,Healthy / Normal,Normal,180,200,True,Map to Global Class 0 (Normal)
+UORED,Source,Class_Ball,50,Ball Fault,Ball,100,100,True,Map to Global Class 1 (Ball)
+UORED,Source,Class_Inner (Missing on disk),48,Inner Race Fault,Inner,0,100,True,Recover from raw .mat or rely on HUST+MFPT for Inner
+UORED,Source,Class_Outer (Missing on disk),49,Outer Race Fault,Outer,0,100,True,Recover from raw .mat or rely on HUST+MFPT for Outer
+UORED,Source,Class_Cage,51,Cage Fault,OUT_OF_ONTOLOGY (Cage),90,100,False,Include in unsupervised TabNet pretraining; exclude from 5-class supervised DA/DG head
+HUST,Source,Class_Normal,40,Normal,Normal,150,150,True,Map to Global Class 0 (Normal)
+HUST,Source,Class_41,41,Inner Race,Inner,150,150,True,Map to Global Class 2 (Inner)
+HUST,Source,Class_42,42,Outer Race,Outer,150,150,True,Map to Global Class 3 (Outer)
+HUST,Source,Class_43,43,Ball,Ball,100,100,True,Map to Global Class 1 (Ball)
+HUST,Source,Class_45,45,Inner Race and Outer Race,Inner & Outer,150,150,True,Map to Global Class 4 (Inner & Outer)
+HUST,Source,Class_44,44,Inner Race and Ball,OUT_OF_ONTOLOGY (Inner & Ball),120,120,False,Include in unsupervised TabNet pretraining; exclude from 5-class supervised DA/DG head
+HUST,Source,Class_46,46,Outer Race and Ball,OUT_OF_ONTOLOGY (Outer & Ball),131,131,False,Include in unsupervised TabNet pretraining; exclude from 5-class supervised DA/DG head
+MFPT,Source (Candidate),Normal / Class_23,23,Normal Baseline,Normal,18,18,True,Map to Global Class 0 (Normal) after decimation 97656->48828 Hz
+MFPT,Source (Candidate),Inner / Class_24,24,Inner Race Fault,Inner,63,21,True,Map to Global Class 2 (Inner)
+MFPT,Source (Candidate),Outer / Class_25,25,Outer Race Fault,Outer,45,39,True,Map to Global Class 3 (Outer) after decimation of 3 files 97656->48828 Hz
+CWRU_12k,Target (TL/DA/DG),Class_0,0,Normal,Normal,280,280,True,Map to Global Class 0 (Normal)
+CWRU_12k,Target (TL/DA/DG),Class_1,1,Inner Race,Inner,760,760,True,Map to Global Class 2 (Inner)
+CWRU_12k,Target (TL/DA/DG),Class_2,2,Outer Race,Outer,720,720,True,Map to Global Class 3 (Outer)
+CWRU_12k,Target (TL/DA/DG),Class_3,3,Ball,Ball,760,760,True,Map to Global Class 1 (Ball)
+CWRU_48k,Target (TL/DA/DG),Class_1,1,Inner Race,Inner,194,194,True,Map to Global Class 2 (Inner)
+CWRU_48k,Target (TL/DA/DG),Class_2,2,Outer Race,Outer,204,204,True,Map to Global Class 3 (Outer)
+CWRU_48k,Target (TL/DA/DG),Class_3,3,Ball,Ball,204,204,True,Map to Global Class 1 (Ball)
+PU,Target (TL/DA/DG),Class_Normal,26,Normal (K001..K006),Normal,1918,1920,True,Map to Global Class 0 (Normal)
+PU,Target (TL/DA/DG),Class_27,27,Outer Ring Fault (KA01..KA30),Outer,3811,3836,True,Map to Global Class 3 (Outer)
+PU,Target (TL/DA/DG),Class_28 (Missing on disk),28,Inner Ring Fault (KI01..KI21),Inner,0,3520,True,Map to Global Class 2 (Inner) if re-extracted; currently 0 on disk
+PU,Target (TL/DA/DG),Class_29,29,Outer And Inner Ring Fault (KB23 KB24 KB27),Inner & Outer,747,960,True,Map to Global Class 4 (Inner & Outer); penalty-if-unrepresented when HUST is not in source

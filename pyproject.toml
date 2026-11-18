@@ -12,6 +12,7 @@ dependencies = [
     "numpy",
     "pandas",
     "scipy",
+    "librosa",
     "scikit-learn",
     "imbalanced-learn",
     "xgboost",
@@ -22,6 +23,40 @@ dependencies = [
     "tqdm",
     "matplotlib",
     "seaborn",
+    "PyYAML",
+    "rarfile",
+]
+
+[project.optional-dependencies]
+scientific = [
+    "numpy",
+    "scipy",
+    "pandas",
+    "scikit-learn",
+]
+signal = [
+    "PyWavelets",
+]
+dl = [
+    "torch",
+    "pytorch-tabnet",
+]
+classical = [
+    "xgboost",
+    "imbalanced-learn",
+]
+download = [
+    "gdown",
+    "tqdm",
+    "rarfile",
+    "PyYAML",
+]
+viz = [
+    "matplotlib",
+    "seaborn",
+]
+dev = [
+    "pytest",
 ]
 
 [tool.setuptools.packages.find]

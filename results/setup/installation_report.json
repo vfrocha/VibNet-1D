@@ -1,0 +1,1814 @@
+{
+  "timestamp_utc": "2026-11-17T13:32:08.291510+00:00",
+  "overall_environment_ok": true,
+  "system_info": {
+    "os": {
+      "system": "Linux",
+      "release": "7.0.0-42-generic",
+      "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+      "machine": "x86_64",
+      "distro_id": "ubuntu",
+      "distro_name": "Ubuntu 24.04.5 LTS",
+      "distro_version": "24.04"
+    },
+    "python": {
+      "version": "3.12.3",
+      "executable": "/home/vfrocha/VibNet-1D/.venv/bin/python",
+      "in_virtualenv": true,
+      "virtual_env_path": "/home/vfrocha/VibNet-1D/.venv"
+    },
+    "hardware": {
+      "cpu_model": "Intel(R) Core(TM) i9-14900K",
+      "logical_cores": 32,
+      "total_ram_gb": 62.56,
+      "available_ram_gb": 58.62
+    },
+    "gpu_driver": {
+      "nvidia_smi_found": true,
+      "nvidia_smi_path": "/usr/bin/nvidia-smi",
+      "driver_version": "580.178.04",
+      "driver_cuda_version": "13.0",
+      "gpus": [
+        {
+          "index": 0,
+          "name": "NVIDIA RTX A6000",
+          "driver_version": "580.178.04",
+          "vram_mb": 49140.0
+        }
+      ]
+    },
+    "pytorch_recommendation": {
+      "compute_target": "cu124",
+      "index_url": "https://download.pytorch.org/whl/cu124",
+      "reason": "GPU NVIDIA detectada com suporte de driver até CUDA 13.0 (>= 12.4)."
+    },
+    "pytorch_runtime": {
+      "torch_installed": true,
+      "torch_version": "2.6.0+cu124",
+      "torch_cuda_compiled_version": "12.4",
+      "cuda_available": true,
+      "device_count": 1,
+      "device_name": "NVIDIA RTX A6000",
+      "cpu_matmul_ok": true,
+      "cuda_matmul_ok": true,
+      "cuda_matmul_shape": [
+        100,
+        100
+      ],
+      "diagnostic": "CUDA ativo e verificado com multiplicação matricial 100x100 em NVIDIA RTX A6000."
+    },
+    "disks": {
+      "project_root": {
+        "configured_path": "/home/vfrocha/VibNet-1D",
+        "existing_mount_probe": "/home/vfrocha/VibNet-1D",
+        "total_gb": 1521.83,
+        "used_gb": 1436.91,
+        "free_gb": 7.55
+      },
+      "raw_data_dir": {
+        "configured_path": "/home/vfrocha/VibNet-1D/data/raw",
+        "existing_mount_probe": "/home/vfrocha/VibNet-1D/data/raw",
+        "total_gb": 1521.83,
+        "used_gb": 1436.91,
+        "free_gb": 7.55
+      },
+      "processed_data_dir": {
+        "configured_path": "/home/vfrocha/VibNet-1D/data/processed",
+        "existing_mount_probe": "/home/vfrocha/VibNet-1D/data/processed",
+        "total_gb": 1521.83,
+        "used_gb": 1436.91,
+        "free_gb": 7.55
+      },
+      "processed_tl_dir": {
+        "configured_path": "/home/vfrocha/VibNet-1D/data/processed_tl",
+        "existing_mount_probe": "/home/vfrocha/VibNet-1D/data/processed_tl",
+        "total_gb": 1521.83,
+        "used_gb": 1436.91,
+        "free_gb": 7.55
+      },
+      "results_dir": {
+        "configured_path": "/home/vfrocha/VibNet-1D/results",
+        "existing_mount_probe": "/home/vfrocha/VibNet-1D/results",
+        "total_gb": 1521.83,
+        "used_gb": 1436.91,
+        "free_gb": 7.55
+      }
+    },
+    "warnings": []
+  },
+  "dependencies": {
+    "all_mandatory_installed": true,
+    "missing_mandatory": [],
+    "missing_optional": [],
+    "by_group": {
+      "scientific_base": {
+        "numpy": "2.5.5",
+        "scipy": "1.18.1",
+        "pandas": "2.3.3",
+        "scikit-learn": "1.9.1"
+      },
+      "signal_processing": {
+        "PyWavelets": "1.10.0"
+      },
+      "deep_learning": {
+        "torch": "2.6.0+cu124",
+        "pytorch-tabnet": "4.1.0"
+      },
+      "classical_ml": {
+        "xgboost": "3.4.1",
+        "imbalanced-learn": "0.14.2"
+      },
+      "download_and_utils": {
+        "gdown": "4.7.3",
+        "tqdm": "4.70.1",
+        "PyYAML": "6.0.3",
+        "rarfile": "4.5"
+      },
+      "visualization": {
+        "matplotlib": "3.11.2",
+        "seaborn": "0.13.2"
+      },
+      "vibration_ecosystem": {
+        "vibdata": "1.0.0"
+      }
+    },
+    "flat_versions": {
+      "numpy": "2.5.5",
+      "scipy": "1.18.1",
+      "pandas": "2.3.3",
+      "scikit-learn": "1.9.1",
+      "PyWavelets": "1.10.0",
+      "torch": "2.6.0+cu124",
+      "pytorch-tabnet": "4.1.0",
+      "xgboost": "3.4.1",
+      "imbalanced-learn": "0.14.2",
+      "gdown": "4.7.3",
+      "tqdm": "4.70.1",
+      "PyYAML": "6.0.3",
+      "rarfile": "4.5",
+      "matplotlib": "3.11.2",
+      "seaborn": "0.13.2",
+      "vibdata": "1.0.0"
+    }
+  },
+  "core_modules": {
+    "all_core_imported": true,
+    "failed_modules": [],
+    "modules": {
+      "src.config": {
+        "imported": true,
+        "error": null
+      },
+      "src.vibnet.data.registry": {
+        "imported": true,
+        "error": null
+      },
+      "src.vibnet.evaluation.provenance": {
+        "imported": true,
+        "error": null
+      },
+      "src.data.make_dataset": {
+        "imported": true,
+        "error": null
+      },
+      "src.data.make_dataset_tl": {
+        "imported": true,
+        "error": null
+      },
+      "src.data.validate_dataset_tl": {
+        "imported": true,
+        "error": null
+      },
+      "src.data.transforms_1d": {
+        "imported": true,
+        "error": null
+      },
+      "src.data.time_resampler": {
+        "imported": true,
+        "error": null
+      },
+      "src.preprocessing.normalize_dataset_tl": {
+        "imported": true,
+        "error": null
+      },
+      "src.models.resnet1d_time": {
+        "imported": true,
+        "error": null
+      },
+      "src.models.build_1d_time": {
+        "imported": true,
+        "error": null
+      }
+    }
+  },
+  "directories": {
+    "all_accessible": true,
+    "directories": {
+      "VIBNET_RAW_DIR": {
+        "path": "/home/vfrocha/VibNet-1D/data/raw",
+        "exists": true,
+        "writable": true,
+        "error": null
+      },
+      "VIBNET_PROCESSED_DIR": {
+        "path": "/home/vfrocha/VibNet-1D/data/processed",
+        "exists": true,
+        "writable": true,
+        "error": null
+      },
+      "VIBNET_PROCESSED_TL_DIR": {
+        "path": "/home/vfrocha/VibNet-1D/data/processed_tl",
+        "exists": true,
+        "writable": true,
+        "error": null
+      },
+      "VIBNET_RESULTS_DIR": {
+        "path": "/home/vfrocha/VibNet-1D/results",
+        "exists": true,
+        "writable": true,
+        "error": null
+      }
+    }
+  },
+  "datasets_inventory": {
+    "canonical_datasets": [
+      "CWRU_12k",
+      "CWRU_48k",
+      "MFPT",
+      "PU",
+      "UORED",
+      "UOEMD",
+      "HUST",
+      "HUST_Gearbox",
+      "Mechanical_Gear",
+      "Electric_Motor"
+    ],
+    "raw_inventory": {
+      "CWRU_12k": {
+        "raw_source": "CWRU",
+        "present": true,
+        "status": "ALREADY_PRESENT_EXTRACTED",
+        "detail": "Diretório bruto extraído encontrado em '/home/vfrocha/VibNet-1D/data/raw/CWRU_raw' (161 arquivos)."
+      },
+      "CWRU_48k": {
+        "raw_source": "CWRU",
+        "present": true,
+        "status": "ALREADY_PRESENT_EXTRACTED",
+        "detail": "Diretório bruto extraído encontrado em '/home/vfrocha/VibNet-1D/data/raw/CWRU_raw' (161 arquivos)."
+      },
+      "MFPT": {
+        "raw_source": "MFPT",
+        "present": true,
+        "status": "ALREADY_PRESENT_EXTRACTED",
+        "detail": "Diretório bruto extraído encontrado em '/home/vfrocha/VibNet-1D/data/raw/MFPT_raw' (40 arquivos)."
+      },
+      "PU": {
+        "raw_source": "PU",
+        "present": true,
+        "status": "ALREADY_PRESENT_EXTRACTED",
+        "detail": "Diretório bruto extraído encontrado em '/home/vfrocha/VibNet-1D/data/raw/PU_raw' (2624 arquivos)."
+      },
+      "UORED": {
+        "raw_source": "UORED",
+        "present": true,
+        "status": "ALREADY_PRESENT_EXTRACTED",
+        "detail": "Diretório bruto extraído encontrado em '/home/vfrocha/VibNet-1D/data/raw/UORED_raw' (182 arquivos)."
+      },
+      "UOEMD": {
+        "raw_source": "UOEMD",
+        "present": true,
+        "status": "ALREADY_PRESENT_EXTRACTED",
+        "detail": "Diretório bruto extraído encontrado em '/home/vfrocha/VibNet-1D/data/raw/UOEMD_raw' (257 arquivos)."
+      },
+      "HUST": {
+        "raw_source": "HUST",
+        "present": false,
+        "status": "CORRUPTED_INVALID_ZIP",
+        "detail": "Arquivo 'HUST.zip' não é um arquivo ZIP válido (possível download truncado)."
+      },
+      "HUST_Gearbox": {
+        "raw_source": "HUST_Gearbox",
+        "present": true,
+        "status": "ALREADY_PRESENT_EXTRACTED",
+        "detail": "Diretório bruto extraído encontrado em '/home/vfrocha/VibNet-1D/data/raw/HUST_Gearbox_raw' (105 arquivos)."
+      },
+      "Mechanical_Gear": {
+        "raw_source": "Mechanical_Gear",
+        "present": true,
+        "status": "ALREADY_PRESENT_EXTRACTED",
+        "detail": "Diretório bruto extraído encontrado em '/home/vfrocha/VibNet-1D/data/raw/Mechanical_Gear_raw' (6 arquivos)."
+      },
+      "Electric_Motor": {
+        "raw_source": "Electric_Motor",
+        "present": true,
+        "status": "ALREADY_PRESENT_EXTRACTED",
+        "detail": "Diretório bruto extraído encontrado em '/home/vfrocha/VibNet-1D/data/raw/Electric_Motor_raw' (31 arquivos)."
+      }
+    },
+    "processed_inventory": {
+      "CWRU_12k": {
+        "processed_1d": {
+          "exists": true,
+          "valid": true,
+          "window_count": 2520,
+          "conditions": [
+            "Load_0HP",
+            "Load_1HP",
+            "Load_2HP",
+            "Load_3HP"
+          ],
+          "classes": [
+            "Class_0",
+            "Class_1",
+            "Class_2",
+            "Class_3"
+          ],
+          "reason": "2520 janelas de 12000 amostras verificadas."
+        },
+        "raw": {
+          "exists": true,
+          "valid": true,
+          "window_count": 2520,
+          "conditions": [
+            "Load_0HP",
+            "Load_1HP",
+            "Load_2HP",
+            "Load_3HP"
+          ],
+          "classes": [
+            "Class_0",
+            "Class_1",
+            "Class_2",
+            "Class_3"
+          ],
+          "reason": "2520 janelas de 12000 amostras verificadas."
+        },
+        "detrended": {
+          "exists": true,
+          "valid": true,
+          "window_count": 2520,
+          "conditions": [
+            "Load_0HP",
+            "Load_1HP",
+            "Load_2HP",
+            "Load_3HP"
+          ],
+          "classes": [
+            "Class_0",
+            "Class_1",
+            "Class_2",
+            "Class_3"
+          ],
+          "reason": "2520 janelas de 12000 amostras verificadas."
+        },
+        "raw_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 2520,
+          "conditions": [
+            "Load_0HP",
+            "Load_1HP",
+            "Load_2HP",
+            "Load_3HP"
+          ],
+          "classes": [
+            "Class_0",
+            "Class_1",
+            "Class_2",
+            "Class_3"
+          ],
+          "reason": "2520 janelas de 12000 amostras verificadas."
+        },
+        "detrended_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 2520,
+          "conditions": [
+            "Load_0HP",
+            "Load_1HP",
+            "Load_2HP",
+            "Load_3HP"
+          ],
+          "classes": [
+            "Class_0",
+            "Class_1",
+            "Class_2",
+            "Class_3"
+          ],
+          "reason": "2520 janelas de 12000 amostras verificadas."
+        }
+      },
+      "CWRU_48k": {
+        "processed_1d": {
+          "exists": true,
+          "valid": true,
+          "window_count": 602,
+          "conditions": [
+            "Load_0HP_Sev_0.007",
+            "Load_0HP_Sev_0.014",
+            "Load_0HP_Sev_0.021",
+            "Load_1HP_Sev_0.007",
+            "Load_1HP_Sev_0.014",
+            "Load_1HP_Sev_0.021",
+            "Load_2HP_Sev_0.007",
+            "Load_2HP_Sev_0.014",
+            "Load_2HP_Sev_0.021",
+            "Load_3HP_Sev_0.007",
+            "Load_3HP_Sev_0.014",
+            "Load_3HP_Sev_0.021"
+          ],
+          "classes": [
+            "Class_1",
+            "Class_2",
+            "Class_3"
+          ],
+          "reason": "602 janelas de 48000 amostras verificadas."
+        },
+        "raw": {
+          "exists": true,
+          "valid": true,
+          "window_count": 602,
+          "conditions": [
+            "Load_0HP_Sev_0.007",
+            "Load_0HP_Sev_0.014",
+            "Load_0HP_Sev_0.021",
+            "Load_1HP_Sev_0.007",
+            "Load_1HP_Sev_0.014",
+            "Load_1HP_Sev_0.021",
+            "Load_2HP_Sev_0.007",
+            "Load_2HP_Sev_0.014",
+            "Load_2HP_Sev_0.021",
+            "Load_3HP_Sev_0.007",
+            "Load_3HP_Sev_0.014",
+            "Load_3HP_Sev_0.021"
+          ],
+          "classes": [
+            "Class_1",
+            "Class_2",
+            "Class_3"
+          ],
+          "reason": "602 janelas de 48000 amostras verificadas."
+        },
+        "detrended": {
+          "exists": true,
+          "valid": true,
+          "window_count": 602,
+          "conditions": [
+            "Load_0HP_Sev_0.007",
+            "Load_0HP_Sev_0.014",
+            "Load_0HP_Sev_0.021",
+            "Load_1HP_Sev_0.007",
+            "Load_1HP_Sev_0.014",
+            "Load_1HP_Sev_0.021",
+            "Load_2HP_Sev_0.007",
+            "Load_2HP_Sev_0.014",
+            "Load_2HP_Sev_0.021",
+            "Load_3HP_Sev_0.007",
+            "Load_3HP_Sev_0.014",
+            "Load_3HP_Sev_0.021"
+          ],
+          "classes": [
+            "Class_1",
+            "Class_2",
+            "Class_3"
+          ],
+          "reason": "602 janelas de 48000 amostras verificadas."
+        },
+        "raw_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 602,
+          "conditions": [
+            "Load_0HP_Sev_0.007",
+            "Load_0HP_Sev_0.014",
+            "Load_0HP_Sev_0.021",
+            "Load_1HP_Sev_0.007",
+            "Load_1HP_Sev_0.014",
+            "Load_1HP_Sev_0.021",
+            "Load_2HP_Sev_0.007",
+            "Load_2HP_Sev_0.014",
+            "Load_2HP_Sev_0.021",
+            "Load_3HP_Sev_0.007",
+            "Load_3HP_Sev_0.014",
+            "Load_3HP_Sev_0.021"
+          ],
+          "classes": [
+            "Class_1",
+            "Class_2",
+            "Class_3"
+          ],
+          "reason": "602 janelas de 48000 amostras verificadas."
+        },
+        "detrended_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 602,
+          "conditions": [
+            "Load_0HP_Sev_0.007",
+            "Load_0HP_Sev_0.014",
+            "Load_0HP_Sev_0.021",
+            "Load_1HP_Sev_0.007",
+            "Load_1HP_Sev_0.014",
+            "Load_1HP_Sev_0.021",
+            "Load_2HP_Sev_0.007",
+            "Load_2HP_Sev_0.014",
+            "Load_2HP_Sev_0.021",
+            "Load_3HP_Sev_0.007",
+            "Load_3HP_Sev_0.014",
+            "Load_3HP_Sev_0.021"
+          ],
+          "classes": [
+            "Class_1",
+            "Class_2",
+            "Class_3"
+          ],
+          "reason": "602 janelas de 48000 amostras verificadas."
+        }
+      },
+      "MFPT": {
+        "processed_1d": {
+          "exists": true,
+          "valid": true,
+          "window_count": 114,
+          "conditions": [
+            "Load_0",
+            "Load_100",
+            "Load_150",
+            "Load_200",
+            "Load_25",
+            "Load_250",
+            "Load_270",
+            "Load_300",
+            "Load_50"
+          ],
+          "classes": [
+            "Class_23",
+            "Class_24",
+            "Class_25"
+          ],
+          "reason": "114 janelas de 48828 amostras verificadas."
+        },
+        "raw": {
+          "exists": true,
+          "valid": true,
+          "window_count": 78,
+          "conditions": [
+            "Load_0",
+            "Load_100",
+            "Load_150",
+            "Load_200",
+            "Load_25",
+            "Load_250",
+            "Load_270",
+            "Load_300",
+            "Load_50"
+          ],
+          "classes": [
+            "Class_23",
+            "Class_24",
+            "Class_25"
+          ],
+          "reason": "78 janelas de 48828 amostras verificadas."
+        },
+        "detrended": {
+          "exists": true,
+          "valid": true,
+          "window_count": 78,
+          "conditions": [
+            "Load_0",
+            "Load_100",
+            "Load_150",
+            "Load_200",
+            "Load_25",
+            "Load_250",
+            "Load_270",
+            "Load_300",
+            "Load_50"
+          ],
+          "classes": [
+            "Class_23",
+            "Class_24",
+            "Class_25"
+          ],
+          "reason": "78 janelas de 48828 amostras verificadas."
+        },
+        "raw_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 78,
+          "conditions": [
+            "Load_0",
+            "Load_100",
+            "Load_150",
+            "Load_200",
+            "Load_25",
+            "Load_250",
+            "Load_270",
+            "Load_300",
+            "Load_50"
+          ],
+          "classes": [
+            "Class_23",
+            "Class_24",
+            "Class_25"
+          ],
+          "reason": "78 janelas de 48828 amostras verificadas."
+        },
+        "detrended_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 78,
+          "conditions": [
+            "Load_0",
+            "Load_100",
+            "Load_150",
+            "Load_200",
+            "Load_25",
+            "Load_250",
+            "Load_270",
+            "Load_300",
+            "Load_50"
+          ],
+          "classes": [
+            "Class_23",
+            "Class_24",
+            "Class_25"
+          ],
+          "reason": "78 janelas de 48828 amostras verificadas."
+        }
+      },
+      "PU": {
+        "processed_1d": {
+          "exists": true,
+          "valid": true,
+          "window_count": 6476,
+          "conditions": [
+            "C1_1500rpm_0.7Nm_1000N",
+            "C2_900rpm_0.7Nm_1000N",
+            "C3_1500rpm_0.1Nm_1000N",
+            "C4_1500rpm_0.7Nm_400N"
+          ],
+          "classes": [
+            "Class_27",
+            "Class_29",
+            "Class_Normal"
+          ],
+          "reason": "6476 janelas de 64000 amostras verificadas."
+        },
+        "raw": {
+          "exists": true,
+          "valid": true,
+          "window_count": 10181,
+          "conditions": [
+            "C1_1500rpm_0.7Nm_1000N",
+            "C2_900rpm_0.7Nm_1000N",
+            "C3_1500rpm_0.1Nm_1000N",
+            "C4_1500rpm_0.7Nm_400N"
+          ],
+          "classes": [
+            "Class_26",
+            "Class_27",
+            "Class_28",
+            "Class_29"
+          ],
+          "reason": "10181 janelas de 64000 amostras verificadas."
+        },
+        "detrended": {
+          "exists": true,
+          "valid": true,
+          "window_count": 10181,
+          "conditions": [
+            "C1_1500rpm_0.7Nm_1000N",
+            "C2_900rpm_0.7Nm_1000N",
+            "C3_1500rpm_0.1Nm_1000N",
+            "C4_1500rpm_0.7Nm_400N"
+          ],
+          "classes": [
+            "Class_26",
+            "Class_27",
+            "Class_28",
+            "Class_29"
+          ],
+          "reason": "10181 janelas de 64000 amostras verificadas."
+        },
+        "raw_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 10181,
+          "conditions": [
+            "C1_1500rpm_0.7Nm_1000N",
+            "C2_900rpm_0.7Nm_1000N",
+            "C3_1500rpm_0.1Nm_1000N",
+            "C4_1500rpm_0.7Nm_400N"
+          ],
+          "classes": [
+            "Class_26",
+            "Class_27",
+            "Class_28",
+            "Class_29"
+          ],
+          "reason": "10181 janelas de 64000 amostras verificadas."
+        },
+        "detrended_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 12099,
+          "conditions": [
+            "C1_1500rpm_0.7Nm_1000N",
+            "C2_900rpm_0.7Nm_1000N",
+            "C3_1500rpm_0.1Nm_1000N",
+            "C4_1500rpm_0.7Nm_400N"
+          ],
+          "classes": [
+            "Class_26",
+            "Class_27",
+            "Class_28",
+            "Class_29",
+            "Class_Normal"
+          ],
+          "reason": "12099 janelas de 64000 amostras verificadas."
+        }
+      },
+      "UORED": {
+        "processed_1d": {
+          "exists": true,
+          "valid": true,
+          "window_count": 370,
+          "conditions": [
+            "Bearing_1",
+            "Bearing_11",
+            "Bearing_12",
+            "Bearing_13",
+            "Bearing_14",
+            "Bearing_15",
+            "Bearing_16",
+            "Bearing_17",
+            "Bearing_18",
+            "Bearing_19",
+            "Bearing_2",
+            "Bearing_20",
+            "Bearing_3",
+            "Bearing_4",
+            "Bearing_6",
+            "Bearing_7",
+            "Bearing_8",
+            "Bearing_9"
+          ],
+          "classes": [
+            "Class_Ball",
+            "Class_Cage",
+            "Class_Normal"
+          ],
+          "reason": "370 janelas de 42000 amostras verificadas."
+        },
+        "raw": {
+          "exists": true,
+          "valid": true,
+          "window_count": 230,
+          "conditions": [
+            "Bearing_1",
+            "Bearing_10",
+            "Bearing_2",
+            "Bearing_20",
+            "Bearing_3",
+            "Bearing_4",
+            "Bearing_5",
+            "Bearing_6",
+            "Bearing_7",
+            "Bearing_8",
+            "Bearing_9"
+          ],
+          "classes": [
+            "Class_Cage",
+            "Class_Inner Race",
+            "Class_Normal",
+            "Class_Outer Race"
+          ],
+          "reason": "230 janelas de 42000 amostras verificadas."
+        },
+        "detrended": {
+          "exists": true,
+          "valid": true,
+          "window_count": 230,
+          "conditions": [
+            "Bearing_1",
+            "Bearing_10",
+            "Bearing_2",
+            "Bearing_20",
+            "Bearing_3",
+            "Bearing_4",
+            "Bearing_5",
+            "Bearing_6",
+            "Bearing_7",
+            "Bearing_8",
+            "Bearing_9"
+          ],
+          "classes": [
+            "Class_Cage",
+            "Class_Inner Race",
+            "Class_Normal",
+            "Class_Outer Race"
+          ],
+          "reason": "230 janelas de 42000 amostras verificadas."
+        },
+        "raw_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 230,
+          "conditions": [
+            "Bearing_1",
+            "Bearing_10",
+            "Bearing_2",
+            "Bearing_20",
+            "Bearing_3",
+            "Bearing_4",
+            "Bearing_5",
+            "Bearing_6",
+            "Bearing_7",
+            "Bearing_8",
+            "Bearing_9"
+          ],
+          "classes": [
+            "Class_Cage",
+            "Class_Inner Race",
+            "Class_Normal",
+            "Class_Outer Race"
+          ],
+          "reason": "230 janelas de 42000 amostras verificadas."
+        },
+        "detrended_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 600,
+          "conditions": [
+            "Bearing_1",
+            "Bearing_10",
+            "Bearing_11",
+            "Bearing_12",
+            "Bearing_13",
+            "Bearing_14",
+            "Bearing_15",
+            "Bearing_16",
+            "Bearing_17",
+            "Bearing_18",
+            "Bearing_19",
+            "Bearing_2",
+            "Bearing_20",
+            "Bearing_3",
+            "Bearing_4",
+            "Bearing_5",
+            "Bearing_6",
+            "Bearing_7",
+            "Bearing_8",
+            "Bearing_9"
+          ],
+          "classes": [
+            "Class_Ball",
+            "Class_Cage",
+            "Class_Inner Race",
+            "Class_Normal",
+            "Class_Outer Race"
+          ],
+          "reason": "600 janelas de 42000 amostras verificadas."
+        }
+      },
+      "UOEMD": {
+        "processed_1d": {
+          "exists": true,
+          "valid": true,
+          "window_count": 1280,
+          "conditions": [
+            "Load_Loaded_Speed_15Hz",
+            "Load_Loaded_Speed_30Hz",
+            "Load_Loaded_Speed_45Hz",
+            "Load_Loaded_Speed_60Hz",
+            "Load_Loaded_Speed_Dec_45_to_15Hz",
+            "Load_Loaded_Speed_Dec_60_to_30Hz",
+            "Load_Loaded_Speed_Inc_15_to_45Hz",
+            "Load_Loaded_Speed_Inc_30_to_60Hz",
+            "Load_No_Load_Speed_15Hz",
+            "Load_No_Load_Speed_30Hz",
+            "Load_No_Load_Speed_45Hz",
+            "Load_No_Load_Speed_60Hz",
+            "Load_No_Load_Speed_Dec_45_to_15Hz",
+            "Load_No_Load_Speed_Dec_60_to_30Hz",
+            "Load_No_Load_Speed_Inc_15_to_45Hz",
+            "Load_No_Load_Speed_Inc_30_to_60Hz"
+          ],
+          "classes": [
+            "Class_Bowed Rotor",
+            "Class_Broken Rotor Bar",
+            "Class_Faulty Bearing",
+            "Class_Misalignment",
+            "Class_Normal",
+            "Class_Stator Winding",
+            "Class_Unbalance",
+            "Class_Voltage Imbalance"
+          ],
+          "reason": "1280 janelas de 42000 amostras verificadas."
+        },
+        "raw": {
+          "exists": true,
+          "valid": true,
+          "window_count": 1280,
+          "conditions": [
+            "Load_Loaded_Speed_15Hz",
+            "Load_Loaded_Speed_30Hz",
+            "Load_Loaded_Speed_45Hz",
+            "Load_Loaded_Speed_60Hz",
+            "Load_Loaded_Speed_Dec_45_to_15Hz",
+            "Load_Loaded_Speed_Dec_60_to_30Hz",
+            "Load_Loaded_Speed_Inc_15_to_45Hz",
+            "Load_Loaded_Speed_Inc_30_to_60Hz",
+            "Load_No_Load_Speed_15Hz",
+            "Load_No_Load_Speed_30Hz",
+            "Load_No_Load_Speed_45Hz",
+            "Load_No_Load_Speed_60Hz",
+            "Load_No_Load_Speed_Dec_45_to_15Hz",
+            "Load_No_Load_Speed_Dec_60_to_30Hz",
+            "Load_No_Load_Speed_Inc_15_to_45Hz",
+            "Load_No_Load_Speed_Inc_30_to_60Hz"
+          ],
+          "classes": [
+            "Class_Bowed Rotor",
+            "Class_Broken Rotor Bar",
+            "Class_Faulty Bearing",
+            "Class_Misalignment",
+            "Class_Normal",
+            "Class_Stator Winding",
+            "Class_Unbalance",
+            "Class_Voltage Imbalance"
+          ],
+          "reason": "1280 janelas de 42000 amostras verificadas."
+        },
+        "detrended": {
+          "exists": true,
+          "valid": true,
+          "window_count": 1280,
+          "conditions": [
+            "Load_Loaded_Speed_15Hz",
+            "Load_Loaded_Speed_30Hz",
+            "Load_Loaded_Speed_45Hz",
+            "Load_Loaded_Speed_60Hz",
+            "Load_Loaded_Speed_Dec_45_to_15Hz",
+            "Load_Loaded_Speed_Dec_60_to_30Hz",
+            "Load_Loaded_Speed_Inc_15_to_45Hz",
+            "Load_Loaded_Speed_Inc_30_to_60Hz",
+            "Load_No_Load_Speed_15Hz",
+            "Load_No_Load_Speed_30Hz",
+            "Load_No_Load_Speed_45Hz",
+            "Load_No_Load_Speed_60Hz",
+            "Load_No_Load_Speed_Dec_45_to_15Hz",
+            "Load_No_Load_Speed_Dec_60_to_30Hz",
+            "Load_No_Load_Speed_Inc_15_to_45Hz",
+            "Load_No_Load_Speed_Inc_30_to_60Hz"
+          ],
+          "classes": [
+            "Class_Bowed Rotor",
+            "Class_Broken Rotor Bar",
+            "Class_Faulty Bearing",
+            "Class_Misalignment",
+            "Class_Normal",
+            "Class_Stator Winding",
+            "Class_Unbalance",
+            "Class_Voltage Imbalance"
+          ],
+          "reason": "1280 janelas de 42000 amostras verificadas."
+        },
+        "raw_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 1280,
+          "conditions": [
+            "Load_Loaded_Speed_15Hz",
+            "Load_Loaded_Speed_30Hz",
+            "Load_Loaded_Speed_45Hz",
+            "Load_Loaded_Speed_60Hz",
+            "Load_Loaded_Speed_Dec_45_to_15Hz",
+            "Load_Loaded_Speed_Dec_60_to_30Hz",
+            "Load_Loaded_Speed_Inc_15_to_45Hz",
+            "Load_Loaded_Speed_Inc_30_to_60Hz",
+            "Load_No_Load_Speed_15Hz",
+            "Load_No_Load_Speed_30Hz",
+            "Load_No_Load_Speed_45Hz",
+            "Load_No_Load_Speed_60Hz",
+            "Load_No_Load_Speed_Dec_45_to_15Hz",
+            "Load_No_Load_Speed_Dec_60_to_30Hz",
+            "Load_No_Load_Speed_Inc_15_to_45Hz",
+            "Load_No_Load_Speed_Inc_30_to_60Hz"
+          ],
+          "classes": [
+            "Class_Bowed Rotor",
+            "Class_Broken Rotor Bar",
+            "Class_Faulty Bearing",
+            "Class_Misalignment",
+            "Class_Normal",
+            "Class_Stator Winding",
+            "Class_Unbalance",
+            "Class_Voltage Imbalance"
+          ],
+          "reason": "1280 janelas de 42000 amostras verificadas."
+        },
+        "detrended_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 2560,
+          "conditions": [
+            "Load_Loaded_Speed_15Hz",
+            "Load_Loaded_Speed_30Hz",
+            "Load_Loaded_Speed_45Hz",
+            "Load_Loaded_Speed_60Hz",
+            "Load_Loaded_Speed_Dec_45_to_15Hz",
+            "Load_Loaded_Speed_Dec_60_to_30Hz",
+            "Load_Loaded_Speed_Inc_15_to_45Hz",
+            "Load_Loaded_Speed_Inc_30_to_60Hz",
+            "Load_No_Load_Speed_15Hz",
+            "Load_No_Load_Speed_30Hz",
+            "Load_No_Load_Speed_45Hz",
+            "Load_No_Load_Speed_60Hz",
+            "Load_No_Load_Speed_Dec_45_to_15Hz",
+            "Load_No_Load_Speed_Dec_60_to_30Hz",
+            "Load_No_Load_Speed_Inc_15_to_45Hz",
+            "Load_No_Load_Speed_Inc_30_to_60Hz"
+          ],
+          "classes": [
+            "Class_Bowed Rotor",
+            "Class_Broken Rotor Bar",
+            "Class_Faulty Bearing",
+            "Class_Misalignment",
+            "Class_Normal",
+            "Class_Stator Winding",
+            "Class_Unbalance",
+            "Class_Voltage Imbalance"
+          ],
+          "reason": "2560 janelas de 42000 amostras verificadas."
+        }
+      },
+      "HUST": {
+        "processed_1d": {
+          "exists": true,
+          "valid": true,
+          "window_count": 1101,
+          "conditions": [
+            "Class_Normal",
+            "Load_0W",
+            "Load_200W",
+            "Load_400W"
+          ],
+          "classes": [
+            "Class_40",
+            "Class_41",
+            "Class_42",
+            "Class_43",
+            "Class_44",
+            "Class_45",
+            "Class_46",
+            "Class_Normal"
+          ],
+          "reason": "1101 janelas de 51200 amostras verificadas."
+        },
+        "raw": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /home/vfrocha/VibNet-1D/data/processed_tl/raw/HUST"
+        },
+        "detrended": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /home/vfrocha/VibNet-1D/data/processed_tl/detrended/HUST"
+        },
+        "raw_rms": {
+          "exists": false,
+          "valid": false,
+          "window_count": 0,
+          "reason": "Diretório ausente: /home/vfrocha/VibNet-1D/data/processed_tl/raw_rms/HUST"
+        },
+        "detrended_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 1101,
+          "conditions": [
+            "Class_Normal",
+            "Load_0W",
+            "Load_200W",
+            "Load_400W"
+          ],
+          "classes": [
+            "Class_40",
+            "Class_41",
+            "Class_42",
+            "Class_43",
+            "Class_44",
+            "Class_45",
+            "Class_46",
+            "Class_Normal"
+          ],
+          "reason": "1101 janelas de 51200 amostras verificadas."
+        }
+      },
+      "HUST_Gearbox": {
+        "processed_1d": {
+          "exists": true,
+          "valid": true,
+          "window_count": 900,
+          "conditions": [
+            "Cond_20_0",
+            "Cond_20_1",
+            "Cond_20_2",
+            "Cond_20_3",
+            "Cond_20_4",
+            "Cond_25_0",
+            "Cond_25_1",
+            "Cond_25_2",
+            "Cond_25_3",
+            "Cond_25_4",
+            "Cond_30_0",
+            "Cond_30_1",
+            "Cond_30_2",
+            "Cond_30_3",
+            "Cond_30_4",
+            "Cond_35_0",
+            "Cond_35_1",
+            "Cond_35_2",
+            "Cond_35_3",
+            "Cond_35_4",
+            "Cond_40_0",
+            "Cond_40_1",
+            "Cond_40_2",
+            "Cond_40_3",
+            "Cond_40_4",
+            "Cond_L0_VS_0_40_0",
+            "Cond_L1_VS_0_40_0",
+            "Cond_L2_VS_0_40_0",
+            "Cond_L3_VS_0_40_0",
+            "Cond_L4_VS_0_40_0"
+          ],
+          "classes": [
+            "Class_Broken",
+            "Class_Missing",
+            "Class_Normal"
+          ],
+          "reason": "900 janelas de 25600 amostras verificadas."
+        },
+        "raw": {
+          "exists": true,
+          "valid": true,
+          "window_count": 900,
+          "conditions": [
+            "Cond_20_0",
+            "Cond_20_1",
+            "Cond_20_2",
+            "Cond_20_3",
+            "Cond_20_4",
+            "Cond_25_0",
+            "Cond_25_1",
+            "Cond_25_2",
+            "Cond_25_3",
+            "Cond_25_4",
+            "Cond_30_0",
+            "Cond_30_1",
+            "Cond_30_2",
+            "Cond_30_3",
+            "Cond_30_4",
+            "Cond_35_0",
+            "Cond_35_1",
+            "Cond_35_2",
+            "Cond_35_3",
+            "Cond_35_4",
+            "Cond_40_0",
+            "Cond_40_1",
+            "Cond_40_2",
+            "Cond_40_3",
+            "Cond_40_4",
+            "Cond_L0_VS_0_40_0",
+            "Cond_L1_VS_0_40_0",
+            "Cond_L2_VS_0_40_0",
+            "Cond_L3_VS_0_40_0",
+            "Cond_L4_VS_0_40_0"
+          ],
+          "classes": [
+            "Class_Broken",
+            "Class_Healthy",
+            "Class_Missing"
+          ],
+          "reason": "900 janelas de 25600 amostras verificadas."
+        },
+        "detrended": {
+          "exists": true,
+          "valid": true,
+          "window_count": 900,
+          "conditions": [
+            "Cond_20_0",
+            "Cond_20_1",
+            "Cond_20_2",
+            "Cond_20_3",
+            "Cond_20_4",
+            "Cond_25_0",
+            "Cond_25_1",
+            "Cond_25_2",
+            "Cond_25_3",
+            "Cond_25_4",
+            "Cond_30_0",
+            "Cond_30_1",
+            "Cond_30_2",
+            "Cond_30_3",
+            "Cond_30_4",
+            "Cond_35_0",
+            "Cond_35_1",
+            "Cond_35_2",
+            "Cond_35_3",
+            "Cond_35_4",
+            "Cond_40_0",
+            "Cond_40_1",
+            "Cond_40_2",
+            "Cond_40_3",
+            "Cond_40_4",
+            "Cond_L0_VS_0_40_0",
+            "Cond_L1_VS_0_40_0",
+            "Cond_L2_VS_0_40_0",
+            "Cond_L3_VS_0_40_0",
+            "Cond_L4_VS_0_40_0"
+          ],
+          "classes": [
+            "Class_Broken",
+            "Class_Healthy",
+            "Class_Missing"
+          ],
+          "reason": "900 janelas de 25600 amostras verificadas."
+        },
+        "raw_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 900,
+          "conditions": [
+            "Cond_20_0",
+            "Cond_20_1",
+            "Cond_20_2",
+            "Cond_20_3",
+            "Cond_20_4",
+            "Cond_25_0",
+            "Cond_25_1",
+            "Cond_25_2",
+            "Cond_25_3",
+            "Cond_25_4",
+            "Cond_30_0",
+            "Cond_30_1",
+            "Cond_30_2",
+            "Cond_30_3",
+            "Cond_30_4",
+            "Cond_35_0",
+            "Cond_35_1",
+            "Cond_35_2",
+            "Cond_35_3",
+            "Cond_35_4",
+            "Cond_40_0",
+            "Cond_40_1",
+            "Cond_40_2",
+            "Cond_40_3",
+            "Cond_40_4",
+            "Cond_L0_VS_0_40_0",
+            "Cond_L1_VS_0_40_0",
+            "Cond_L2_VS_0_40_0",
+            "Cond_L3_VS_0_40_0",
+            "Cond_L4_VS_0_40_0"
+          ],
+          "classes": [
+            "Class_Broken",
+            "Class_Healthy",
+            "Class_Missing"
+          ],
+          "reason": "900 janelas de 25600 amostras verificadas."
+        },
+        "detrended_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 1780,
+          "conditions": [
+            "Cond_20_0",
+            "Cond_20_1",
+            "Cond_20_2",
+            "Cond_20_3",
+            "Cond_20_4",
+            "Cond_25_0",
+            "Cond_25_1",
+            "Cond_25_2",
+            "Cond_25_3",
+            "Cond_25_4",
+            "Cond_30_0",
+            "Cond_30_1",
+            "Cond_30_2",
+            "Cond_30_3",
+            "Cond_30_4",
+            "Cond_35_0",
+            "Cond_35_1",
+            "Cond_35_2",
+            "Cond_35_3",
+            "Cond_35_4",
+            "Cond_40_0",
+            "Cond_40_1",
+            "Cond_40_2",
+            "Cond_40_3",
+            "Cond_40_4",
+            "Cond_L0_VS_0_40_0",
+            "Cond_L1_VS_0_40_0",
+            "Cond_L2_VS_0_40_0",
+            "Cond_L3_VS_0_40_0",
+            "Cond_L4_VS_0_40_0"
+          ],
+          "classes": [
+            "Class_Broken",
+            "Class_Healthy",
+            "Class_Missing",
+            "Class_Normal"
+          ],
+          "reason": "1780 janelas de 25600 amostras verificadas."
+        }
+      },
+      "Mechanical_Gear": {
+        "processed_1d": {
+          "exists": true,
+          "valid": true,
+          "window_count": 180,
+          "conditions": [
+            "Cond_25.0Hz_0.0Nm",
+            "Cond_25.0Hz_80.0Nm",
+            "Cond_40.0Hz_0.0Nm",
+            "Cond_40.0Hz_80.0Nm",
+            "Cond_8.33203125Hz_0.0Nm",
+            "Cond_8.33203125Hz_80.0Nm"
+          ],
+          "classes": [
+            "Class_Eccentricity",
+            "Class_Healthy",
+            "Class_Missing Tooth",
+            "Class_Root Crack",
+            "Class_Surface Fault",
+            "Class_Tooth Chipped Fault"
+          ],
+          "reason": "180 janelas de 5000 amostras verificadas."
+        },
+        "raw": {
+          "exists": true,
+          "valid": true,
+          "window_count": 180,
+          "conditions": [
+            "Cond_25.0Hz_0.0Nm",
+            "Cond_25.0Hz_80.0Nm",
+            "Cond_40.0Hz_0.0Nm",
+            "Cond_40.0Hz_80.0Nm",
+            "Cond_8.33203125Hz_0.0Nm",
+            "Cond_8.33203125Hz_80.0Nm"
+          ],
+          "classes": [
+            "Class_Eccentricity",
+            "Class_Healthy",
+            "Class_Missing Tooth",
+            "Class_Root Crack",
+            "Class_Surface Fault",
+            "Class_Tooth Chipped Fault"
+          ],
+          "reason": "180 janelas de 5000 amostras verificadas."
+        },
+        "detrended": {
+          "exists": true,
+          "valid": true,
+          "window_count": 180,
+          "conditions": [
+            "Cond_25.0Hz_0.0Nm",
+            "Cond_25.0Hz_80.0Nm",
+            "Cond_40.0Hz_0.0Nm",
+            "Cond_40.0Hz_80.0Nm",
+            "Cond_8.33203125Hz_0.0Nm",
+            "Cond_8.33203125Hz_80.0Nm"
+          ],
+          "classes": [
+            "Class_Eccentricity",
+            "Class_Healthy",
+            "Class_Missing Tooth",
+            "Class_Root Crack",
+            "Class_Surface Fault",
+            "Class_Tooth Chipped Fault"
+          ],
+          "reason": "180 janelas de 5000 amostras verificadas."
+        },
+        "raw_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 180,
+          "conditions": [
+            "Cond_25.0Hz_0.0Nm",
+            "Cond_25.0Hz_80.0Nm",
+            "Cond_40.0Hz_0.0Nm",
+            "Cond_40.0Hz_80.0Nm",
+            "Cond_8.33203125Hz_0.0Nm",
+            "Cond_8.33203125Hz_80.0Nm"
+          ],
+          "classes": [
+            "Class_Eccentricity",
+            "Class_Healthy",
+            "Class_Missing Tooth",
+            "Class_Root Crack",
+            "Class_Surface Fault",
+            "Class_Tooth Chipped Fault"
+          ],
+          "reason": "180 janelas de 5000 amostras verificadas."
+        },
+        "detrended_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 360,
+          "conditions": [
+            "Cond_25.0Hz_0.0Nm",
+            "Cond_25.0Hz_80.0Nm",
+            "Cond_40.0Hz_0.0Nm",
+            "Cond_40.0Hz_80.0Nm",
+            "Cond_8.33203125Hz_0.0Nm",
+            "Cond_8.33203125Hz_80.0Nm"
+          ],
+          "classes": [
+            "Class_Eccentricity",
+            "Class_Healthy",
+            "Class_Missing Tooth",
+            "Class_Root Crack",
+            "Class_Surface Fault",
+            "Class_Tooth Chipped Fault"
+          ],
+          "reason": "360 janelas de 5000 amostras verificadas."
+        }
+      },
+      "Electric_Motor": {
+        "processed_1d": {
+          "exists": true,
+          "valid": true,
+          "window_count": 66,
+          "conditions": [
+            "Cond_01___m1_half_shaft_speed_no_mechanical_load",
+            "Cond_02___m1_load_0.5Nm_half_speed",
+            "Cond_03___m1_mechanically_imbalanced_half_speed",
+            "Cond_04___m1_mechanically_imbalanced_half_speed",
+            "Cond_05___m1_mechanically_imbalanced_load_0.5Nm_half_speed",
+            "Cond_06___m1_electrically_50_ohm_fault_half_speed",
+            "Cond_07___m1_electrically_100_ohm_fault_half_speed",
+            "Cond_08___m1_electrically_150_ohm_fault_half_speed",
+            "Cond_09___m1_electrically_50_ohm_fault_load_0.5Nm_half_speed",
+            "Cond_10___m1_electrically_100_ohm_fault_load_0.5Nm_half_speed",
+            "Cond_11___m1_mechanically_imbalanced_electrically_50_ohm_fault_half_speed",
+            "Cond_12___m1_mechanically_imbalanced_electrically_100_ohm_fault_half_speed",
+            "Cond_13___m1_mechanically_imbalanced_electrically_150_ohm_fault_half_speed",
+            "Cond_14___m1_mechanically_imbalanced_electrically_50_ohm_fault_load_0.5Nm_half_speed",
+            "Cond_15___m1_with_m2_mechanicaly_umbalanced_on_background_half_speed",
+            "Cond_16___m1_mechanically_imbalanced_with_m2_normal_on_background_half_speed",
+            "Cond_17___m1_mechanically_imbalanced_with_m2_mechanicaly_imbalanced_on_background_half_speed",
+            "Cond_18___m1_load_0.5Nm_m2_mechanically_imbalanced_on_background_half_speed",
+            "Cond_19___m1_mechanically_imbalanced_load_0.5Nm_m2_mechanically_imbalanced_on_background_half_speed",
+            "Cond_20___m1_electrically_50_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_21___m1_electrically_50_ohm_fault_load_0.5Nm_m2_mechanically_imbalanced_half_speed",
+            "Cond_22___m1_electrically_100_ohm_fault_m2_mechanically_imbalanced_half_speed",
+            "Cond_23___m1_electrically_100_ohm_fault_load_0.5Nm_m2_mechanically_imbalanced_half_speed",
+            "Cond_24___m1_electrically_150_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_25___m1_mechanically_imbalanced_electrically_50_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_26___m1_mechanically_umbalanced_electrically_50_ohm_fault_load_0.5Nm_m2_umbalanced_on_background_half_speed",
+            "Cond_27___m1_mechanically_imbalanced_electrically_100_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_28___m1_mechanically_imbalanced_electrically_100_ohm_fault_load_0.5Nm_m2_imbalanced_on_background_half_speed",
+            "Cond_29___m1_mechanically_imbalanced_electrically_150_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_30___m1_mechanically_imbalanced_electrically_150_ohm_fault_m2_imbalanced_on_background_rotated_half_speed"
+          ],
+          "classes": [
+            "Class_Combined_Fault",
+            "Class_Electrical_Fault",
+            "Class_Healthy",
+            "Class_Mechanical_Fault"
+          ],
+          "reason": "66 janelas de 50000 amostras verificadas."
+        },
+        "raw": {
+          "exists": true,
+          "valid": true,
+          "window_count": 66,
+          "conditions": [
+            "Cond_01___m1_half_shaft_speed_no_mechanical_load",
+            "Cond_02___m1_load_0.5Nm_half_speed",
+            "Cond_03___m1_mechanically_imbalanced_half_speed",
+            "Cond_04___m1_mechanically_imbalanced_half_speed",
+            "Cond_05___m1_mechanically_imbalanced_load_0.5Nm_half_speed",
+            "Cond_06___m1_electrically_50_ohm_fault_half_speed",
+            "Cond_07___m1_electrically_100_ohm_fault_half_speed",
+            "Cond_08___m1_electrically_150_ohm_fault_half_speed",
+            "Cond_09___m1_electrically_50_ohm_fault_load_0.5Nm_half_speed",
+            "Cond_10___m1_electrically_100_ohm_fault_load_0.5Nm_half_speed",
+            "Cond_11___m1_mechanically_imbalanced_electrically_50_ohm_fault_half_speed",
+            "Cond_12___m1_mechanically_imbalanced_electrically_100_ohm_fault_half_speed",
+            "Cond_13___m1_mechanically_imbalanced_electrically_150_ohm_fault_half_speed",
+            "Cond_14___m1_mechanically_imbalanced_electrically_50_ohm_fault_load_0.5Nm_half_speed",
+            "Cond_15___m1_with_m2_mechanicaly_umbalanced_on_background_half_speed",
+            "Cond_16___m1_mechanically_imbalanced_with_m2_normal_on_background_half_speed",
+            "Cond_17___m1_mechanically_imbalanced_with_m2_mechanicaly_imbalanced_on_background_half_speed",
+            "Cond_18___m1_load_0.5Nm_m2_mechanically_imbalanced_on_background_half_speed",
+            "Cond_19___m1_mechanically_imbalanced_load_0.5Nm_m2_mechanically_imbalanced_on_background_half_speed",
+            "Cond_20___m1_electrically_50_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_21___m1_electrically_50_ohm_fault_load_0.5Nm_m2_mechanically_imbalanced_half_speed",
+            "Cond_22___m1_electrically_100_ohm_fault_m2_mechanically_imbalanced_half_speed",
+            "Cond_23___m1_electrically_100_ohm_fault_load_0.5Nm_m2_mechanically_imbalanced_half_speed",
+            "Cond_24___m1_electrically_150_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_25___m1_mechanically_imbalanced_electrically_50_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_26___m1_mechanically_umbalanced_electrically_50_ohm_fault_load_0.5Nm_m2_umbalanced_on_background_half_speed",
+            "Cond_27___m1_mechanically_imbalanced_electrically_100_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_28___m1_mechanically_imbalanced_electrically_100_ohm_fault_load_0.5Nm_m2_imbalanced_on_background_half_speed",
+            "Cond_29___m1_mechanically_imbalanced_electrically_150_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_30___m1_mechanically_imbalanced_electrically_150_ohm_fault_m2_imbalanced_on_background_rotated_half_speed"
+          ],
+          "classes": [
+            "Class_Combined_Fault",
+            "Class_Electrical_Fault",
+            "Class_Healthy",
+            "Class_Mechanical_Fault"
+          ],
+          "reason": "66 janelas de 50000 amostras verificadas."
+        },
+        "detrended": {
+          "exists": true,
+          "valid": true,
+          "window_count": 66,
+          "conditions": [
+            "Cond_01___m1_half_shaft_speed_no_mechanical_load",
+            "Cond_02___m1_load_0.5Nm_half_speed",
+            "Cond_03___m1_mechanically_imbalanced_half_speed",
+            "Cond_04___m1_mechanically_imbalanced_half_speed",
+            "Cond_05___m1_mechanically_imbalanced_load_0.5Nm_half_speed",
+            "Cond_06___m1_electrically_50_ohm_fault_half_speed",
+            "Cond_07___m1_electrically_100_ohm_fault_half_speed",
+            "Cond_08___m1_electrically_150_ohm_fault_half_speed",
+            "Cond_09___m1_electrically_50_ohm_fault_load_0.5Nm_half_speed",
+            "Cond_10___m1_electrically_100_ohm_fault_load_0.5Nm_half_speed",
+            "Cond_11___m1_mechanically_imbalanced_electrically_50_ohm_fault_half_speed",
+            "Cond_12___m1_mechanically_imbalanced_electrically_100_ohm_fault_half_speed",
+            "Cond_13___m1_mechanically_imbalanced_electrically_150_ohm_fault_half_speed",
+            "Cond_14___m1_mechanically_imbalanced_electrically_50_ohm_fault_load_0.5Nm_half_speed",
+            "Cond_15___m1_with_m2_mechanicaly_umbalanced_on_background_half_speed",
+            "Cond_16___m1_mechanically_imbalanced_with_m2_normal_on_background_half_speed",
+            "Cond_17___m1_mechanically_imbalanced_with_m2_mechanicaly_imbalanced_on_background_half_speed",
+            "Cond_18___m1_load_0.5Nm_m2_mechanically_imbalanced_on_background_half_speed",
+            "Cond_19___m1_mechanically_imbalanced_load_0.5Nm_m2_mechanically_imbalanced_on_background_half_speed",
+            "Cond_20___m1_electrically_50_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_21___m1_electrically_50_ohm_fault_load_0.5Nm_m2_mechanically_imbalanced_half_speed",
+            "Cond_22___m1_electrically_100_ohm_fault_m2_mechanically_imbalanced_half_speed",
+            "Cond_23___m1_electrically_100_ohm_fault_load_0.5Nm_m2_mechanically_imbalanced_half_speed",
+            "Cond_24___m1_electrically_150_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_25___m1_mechanically_imbalanced_electrically_50_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_26___m1_mechanically_umbalanced_electrically_50_ohm_fault_load_0.5Nm_m2_umbalanced_on_background_half_speed",
+            "Cond_27___m1_mechanically_imbalanced_electrically_100_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_28___m1_mechanically_imbalanced_electrically_100_ohm_fault_load_0.5Nm_m2_imbalanced_on_background_half_speed",
+            "Cond_29___m1_mechanically_imbalanced_electrically_150_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_30___m1_mechanically_imbalanced_electrically_150_ohm_fault_m2_imbalanced_on_background_rotated_half_speed"
+          ],
+          "classes": [
+            "Class_Combined_Fault",
+            "Class_Electrical_Fault",
+            "Class_Healthy",
+            "Class_Mechanical_Fault"
+          ],
+          "reason": "66 janelas de 50000 amostras verificadas."
+        },
+        "raw_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 66,
+          "conditions": [
+            "Cond_01___m1_half_shaft_speed_no_mechanical_load",
+            "Cond_02___m1_load_0.5Nm_half_speed",
+            "Cond_03___m1_mechanically_imbalanced_half_speed",
+            "Cond_04___m1_mechanically_imbalanced_half_speed",
+            "Cond_05___m1_mechanically_imbalanced_load_0.5Nm_half_speed",
+            "Cond_06___m1_electrically_50_ohm_fault_half_speed",
+            "Cond_07___m1_electrically_100_ohm_fault_half_speed",
+            "Cond_08___m1_electrically_150_ohm_fault_half_speed",
+            "Cond_09___m1_electrically_50_ohm_fault_load_0.5Nm_half_speed",
+            "Cond_10___m1_electrically_100_ohm_fault_load_0.5Nm_half_speed",
+            "Cond_11___m1_mechanically_imbalanced_electrically_50_ohm_fault_half_speed",
+            "Cond_12___m1_mechanically_imbalanced_electrically_100_ohm_fault_half_speed",
+            "Cond_13___m1_mechanically_imbalanced_electrically_150_ohm_fault_half_speed",
+            "Cond_14___m1_mechanically_imbalanced_electrically_50_ohm_fault_load_0.5Nm_half_speed",
+            "Cond_15___m1_with_m2_mechanicaly_umbalanced_on_background_half_speed",
+            "Cond_16___m1_mechanically_imbalanced_with_m2_normal_on_background_half_speed",
+            "Cond_17___m1_mechanically_imbalanced_with_m2_mechanicaly_imbalanced_on_background_half_speed",
+            "Cond_18___m1_load_0.5Nm_m2_mechanically_imbalanced_on_background_half_speed",
+            "Cond_19___m1_mechanically_imbalanced_load_0.5Nm_m2_mechanically_imbalanced_on_background_half_speed",
+            "Cond_20___m1_electrically_50_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_21___m1_electrically_50_ohm_fault_load_0.5Nm_m2_mechanically_imbalanced_half_speed",
+            "Cond_22___m1_electrically_100_ohm_fault_m2_mechanically_imbalanced_half_speed",
+            "Cond_23___m1_electrically_100_ohm_fault_load_0.5Nm_m2_mechanically_imbalanced_half_speed",
+            "Cond_24___m1_electrically_150_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_25___m1_mechanically_imbalanced_electrically_50_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_26___m1_mechanically_umbalanced_electrically_50_ohm_fault_load_0.5Nm_m2_umbalanced_on_background_half_speed",
+            "Cond_27___m1_mechanically_imbalanced_electrically_100_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_28___m1_mechanically_imbalanced_electrically_100_ohm_fault_load_0.5Nm_m2_imbalanced_on_background_half_speed",
+            "Cond_29___m1_mechanically_imbalanced_electrically_150_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_30___m1_mechanically_imbalanced_electrically_150_ohm_fault_m2_imbalanced_on_background_rotated_half_speed"
+          ],
+          "classes": [
+            "Class_Combined_Fault",
+            "Class_Electrical_Fault",
+            "Class_Healthy",
+            "Class_Mechanical_Fault"
+          ],
+          "reason": "66 janelas de 50000 amostras verificadas."
+        },
+        "detrended_rms": {
+          "exists": true,
+          "valid": true,
+          "window_count": 130,
+          "conditions": [
+            "Cond_01___m1_half_shaft_speed_no_mechanical_load",
+            "Cond_02___m1_load_0.5Nm_half_speed",
+            "Cond_03___m1_mechanically_imbalanced_half_speed",
+            "Cond_04___m1_mechanically_imbalanced_half_speed",
+            "Cond_05___m1_mechanically_imbalanced_load_0.5Nm_half_speed",
+            "Cond_06___m1_electrically_50_ohm_fault_half_speed",
+            "Cond_07___m1_electrically_100_ohm_fault_half_speed",
+            "Cond_08___m1_electrically_150_ohm_fault_half_speed",
+            "Cond_09___m1_electrically_50_ohm_fault_load_0.5Nm_half_speed",
+            "Cond_10___m1_electrically_100_ohm_fault_load_0.5Nm_half_speed",
+            "Cond_11___m1_mechanically_imbalanced_electrically_50_ohm_fault_half_speed",
+            "Cond_12___m1_mechanically_imbalanced_electrically_100_ohm_fault_half_speed",
+            "Cond_13___m1_mechanically_imbalanced_electrically_150_ohm_fault_half_speed",
+            "Cond_14___m1_mechanically_imbalanced_electrically_50_ohm_fault_load_0.5Nm_half_speed",
+            "Cond_15___m1_with_m2_mechanicaly_umbalanced_on_background_half_speed",
+            "Cond_16___m1_mechanically_imbalanced_with_m2_normal_on_background_half_speed",
+            "Cond_17___m1_mechanically_imbalanced_with_m2_mechanicaly_imbalanced_on_background_half_speed",
+            "Cond_18___m1_load_0.5Nm_m2_mechanically_imbalanced_on_background_half_speed",
+            "Cond_19___m1_mechanically_imbalanced_load_0.5Nm_m2_mechanically_imbalanced_on_background_half_speed",
+            "Cond_20___m1_electrically_50_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_21___m1_electrically_50_ohm_fault_load_0.5Nm_m2_mechanically_imbalanced_half_speed",
+            "Cond_22___m1_electrically_100_ohm_fault_m2_mechanically_imbalanced_half_speed",
+            "Cond_23___m1_electrically_100_ohm_fault_load_0.5Nm_m2_mechanically_imbalanced_half_speed",
+            "Cond_24___m1_electrically_150_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_25___m1_mechanically_imbalanced_electrically_50_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_26___m1_mechanically_umbalanced_electrically_50_ohm_fault_load_0.5Nm_m2_umbalanced_on_background_half_speed",
+            "Cond_27___m1_mechanically_imbalanced_electrically_100_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_28___m1_mechanically_imbalanced_electrically_100_ohm_fault_load_0.5Nm_m2_imbalanced_on_background_half_speed",
+            "Cond_29___m1_mechanically_imbalanced_electrically_150_ohm_fault_m2_imbalanced_on_background_half_speed",
+            "Cond_30___m1_mechanically_imbalanced_electrically_150_ohm_fault_m2_imbalanced_on_background_rotated_half_speed"
+          ],
+          "classes": [
+            "Class_Combined_Fault",
+            "Class_Electrical_Fault",
+            "Class_Healthy",
+            "Class_Mechanical_Fault"
+          ],
+          "reason": "130 janelas de 50000 amostras verificadas."
+        }
+      }
+    },
+    "available_variants_summary": {
+      "processed_1d": [
+        "CWRU_12k",
+        "CWRU_48k",
+        "MFPT",
+        "PU",
+        "UORED",
+        "UOEMD",
+        "HUST",
+        "HUST_Gearbox",
+        "Mechanical_Gear",
+        "Electric_Motor"
+      ],
+      "raw": [
+        "CWRU_12k",
+        "CWRU_48k",
+        "MFPT",
+        "PU",
+        "UORED",
+        "UOEMD",
+        "HUST_Gearbox",
+        "Mechanical_Gear",
+        "Electric_Motor"
+      ],
+      "detrended": [
+        "CWRU_12k",
+        "CWRU_48k",
+        "MFPT",
+        "PU",
+        "UORED",
+        "UOEMD",
+        "HUST_Gearbox",
+        "Mechanical_Gear",
+        "Electric_Motor"
+      ],
+      "raw_rms": [
+        "CWRU_12k",
+        "CWRU_48k",
+        "MFPT",
+        "PU",
+        "UORED",
+        "UOEMD",
+        "HUST_Gearbox",
+        "Mechanical_Gear",
+        "Electric_Motor"
+      ],
+      "detrended_rms": [
+        "CWRU_12k",
+        "CWRU_48k",
+        "MFPT",
+        "PU",
+        "UORED",
+        "UOEMD",
+        "HUST",
+        "HUST_Gearbox",
+        "Mechanical_Gear",
+        "Electric_Motor"
+      ]
+    },
+    "downloaded_datasets": [
+      "CWRU_12k",
+      "CWRU_48k",
+      "MFPT",
+      "PU",
+      "UORED",
+      "UOEMD",
+      "HUST_Gearbox",
+      "Mechanical_Gear",
+      "Electric_Motor"
+    ],
+    "processed_datasets_any_variant": [
+      "CWRU_12k",
+      "CWRU_48k",
+      "MFPT",
+      "PU",
+      "UORED",
+      "UOEMD",
+      "HUST",
+      "HUST_Gearbox",
+      "Mechanical_Gear",
+      "Electric_Motor"
+    ]
+  },
+  "experiment_scripts": {
+    "all_scripts_valid": true,
+    "scripts": {
+      "src/experiments/run_baseline_loco_v2.py": {
+        "valid": true,
+        "error": null
+      },
+      "src/experiments/run_scratch_vs_tl_benchmark.py": {
+        "valid": true,
+        "error": null
+      },
+      "src/experiments/run_scratch_vs_tl_classical_baselines.py": {
+        "valid": true,
+        "error": null
+      },
+      "src/experiments/analyze_scratch_tl_classical_comparison.py": {
+        "valid": true,
+        "error": null
+      },
+      "src/experiments/run_tabvibnet_linear_probing.py": {
+        "valid": true,
+        "error": null
+      },
+      "src/experiments/run_time_scratch_ablation.py": {
+        "valid": true,
+        "error": null
+      },
+      "scripts/exp_tl_cross_dataset_mlp_tabnet.py": {
+        "valid": true,
+        "error": null
+      },
+      "scripts/exp_tl_contrastive_mlp.py": {
+        "valid": true,
+        "error": null
+      },
+      "scripts/exp_tl_balance_strategies.py": {
+        "valid": true,
+        "error": null
+      },
+      "scripts/validate_dataset_tl.py": {
+        "valid": true,
+        "error": null
+      }
+    }
+  },
+  "unit_tests": {
+    "executed": true,
+    "passed": true,
+    "suites": {
+      "tests/test_setup_installer.py": {
+        "passed": true,
+        "returncode": 0,
+        "output_tail": "     | 0/2 [00:00<?, ?it/s]\nRMS ref. CWRU_12k detrended: 100%|██████████| 2/2 [00:00<00:00, 16878.49it/s]\n\nNormalizando CWRU_12k:   0%|          | 0/4 [00:00<?, ?it/s]\nNormalizando CWRU_12k: 100%|██████████| 4/4 [00:00<00:00, 7339.11it/s]\n\nRMS ref. MFPT detrended:   0%|          | 0/1 [00:00<?, ?it/s]\nRMS ref. MFPT detrended: 100%|██████████| 1/1 [00:00<00:00, 10512.04it/s]\n\nNormalizando MFPT:   0%|          | 0/2 [00:00<?, ?it/s]\nNormalizando MFPT: 100%|██████████| 2/2 [00:00<00:00, 4348.68it/s]\n.\n----------------------------------------------------------------------\nRan 4 tests in 0.915s\n\nOK"
+      },
+      "tests/test_vibnet_modular_architecture.py": {
+        "passed": true,
+        "returncode": 0,
+        "output_tail": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.051s\n\nOK"
+      }
+    }
+  },
+  "warnings": [],
+  "failures": [],
+  "report_paths": {
+    "json": "/home/vfrocha/VibNet-1D/results/setup/installation_report.json",
+    "markdown": "/home/vfrocha/VibNet-1D/results/setup/installation_report.md"
+  }
+}
