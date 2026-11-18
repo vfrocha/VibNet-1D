@@ -152,11 +152,15 @@ from src.preprocessing import normalize_dataset_tl as norm_tl
 from src.vibnet.data.registry import CANONICAL_DATASETS, load_yaml_config
 from src.vibnet.data.transactional_io import (
     DatasetCommitReceipt,
+    ManifestCommitReceipt,
+    TransactionReceipt,
     assert_no_symlinks_in_tree,
     assert_safe_dataset_target_path,
     cleanup_staging_dir,
     commit_staged_dataset_dir,
     create_staging_dataset_dir,
+    finalize_transaction_receipts,
+    rollback_transaction_receipts,
     transactional_write_json_manifest,
     validate_staged_dataset_dir,
 )
@@ -368,7 +372,7 @@ def generate_base_windows_for_raw_source(
     variants_by_dataset: Optional[Mapping[str, Sequence[str]]] = None,
     backup_root: Optional[Path] = None,
     keep_backup: bool = True,
-    commit_receipts: Optional[List[DatasetCommitReceipt]] = None,
+    commit_receipts: Optional[List[TransactionReceipt]] = None,
 ) -> Dict[Tuple[str, str], int]:
     """
     Gera transacionalmente as janelas de 1 segundo (`processed_1d`, `raw`, `detrended`)
@@ -514,14 +518,14 @@ def generate_base_windows_for_raw_source(
                 keep_backup=keep_backup,
             )
             local_receipts.append(receipt)
-            if commit_receipts is not None:
-                commit_receipts.append(receipt)
+
+        if commit_receipts is not None:
+            commit_receipts.extend(local_receipts)
 
     except Exception:
         for st_dir in staging_dirs.values():
             cleanup_staging_dir(st_dir)
-        for receipt in reversed(local_receipts):
-            receipt.rollback()
+        rollback_transaction_receipts(local_receipts)
         raise
 
     return counts
@@ -534,7 +538,7 @@ def run_rms_normalization_for_datasets(
     processed_tl_dir: Path,
     backup_root: Optional[Path] = None,
     keep_backup: bool = True,
-    commit_receipts: Optional[List[DatasetCommitReceipt]] = None,
+    commit_receipts: Optional[List[TransactionReceipt]] = None,
 ) -> List[Dict[str, Any]]:
     """Executa transacionalmente a normalização oficial por RMS saudável (`raw_rms` e/ou `detrended_rms`)."""
     # Configura os diretórios no módulo oficial normalize_dataset_tl
@@ -562,12 +566,12 @@ def run_rms_normalization_for_datasets(
         out_root = norm_tl.VARIANTS[base_var]["output_dir"]
         out_root.mkdir(parents=True, exist_ok=True)
 
-        variant_receipts: List[DatasetCommitReceipt] = []
+        variant_receipts: List[TransactionReceipt] = []
         variant_rows: List[Dict[str, Any]] = []
 
         try:
             for ds_name in datasets_to_normalize:
-                receipt = norm_tl.process_variant(
+                norm_tl.process_variant(
                     variant_name=base_var,
                     dataset_name=ds_name,
                     references=references,
@@ -577,21 +581,23 @@ def run_rms_normalization_for_datasets(
                     keep_backup=keep_backup,
                     commit_receipts=variant_receipts,
                 )
-                if commit_receipts is not None and receipt is not None:
-                    commit_receipts.append(receipt)
 
             if variant_rows:
-                norm_tl.write_manifest(
+                _, norm_manifest_receipt = norm_tl.write_manifest(
                     variant_rows,
                     out_root,
                     merge_existing=True,
                     backup_root=resolved_backup_root,
                     keep_backup=keep_backup,
+                    return_receipt=True,
                 )
+                variant_receipts.append(norm_manifest_receipt)
+
+            if commit_receipts is not None:
+                commit_receipts.extend(variant_receipts)
             manifest_rows.extend(variant_rows)
         except Exception:
-            for r in reversed(variant_receipts):
-                r.rollback()
+            rollback_transaction_receipts(variant_receipts)
             raise
 
     return manifest_rows
@@ -653,7 +659,7 @@ def prepare_datasets(
     rms_variants_needed_by_ds: Dict[str, List[str]] = {ds: [] for ds in selected_datasets}
 
     reused_entries: List[str] = []
-    all_commit_receipts: List[DatasetCommitReceipt] = []
+    all_commit_receipts: List[TransactionReceipt] = []
 
     for ds_name in effective_datasets:
         fs_hz = int(
@@ -871,17 +877,22 @@ def prepare_datasets(
         "entries": prev_entries,
     }
     try:
-        transactional_write_json_manifest(
+        proc_manifest_receipt = transactional_write_json_manifest(
             manifest_path=manifest_path,
             payload=manifest_out,
             backup_root=resolved_backup_root,
             required_keys=("entries", "code_hash"),
             keep_backup=keep_backup,
         )
+        all_commit_receipts.append(proc_manifest_receipt)
     except Exception:
-        for r in reversed(all_commit_receipts):
-            r.rollback()
+        rollback_transaction_receipts(all_commit_receipts)
         raise
+
+    finalize_transaction_receipts(
+        all_commit_receipts,
+        keep_backup=keep_backup,
+    )
     return manifest_out
 
 

@@ -16,7 +16,7 @@ import json
 import os
 from pathlib import Path
 import shutil
-from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Set
+from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Set, Union
 
 import numpy as np
 
@@ -455,16 +455,41 @@ def validate_staged_dataset_dir(
     }
 
 
+def _prune_empty_backup_parents(start_dir: Optional[Path], stop_at: Optional[Path]) -> None:
+    """Remove empty timestamp/variant directories inside `backup_root` up to `stop_at`."""
+    if start_dir is None:
+        return
+    stop_resolved = Path(stop_at).expanduser().resolve() if stop_at is not None else None
+    current = Path(start_dir).expanduser().resolve()
+    while current.exists() and current.is_dir():
+        if stop_resolved is not None and current == stop_resolved:
+            break
+        if stop_resolved is not None and not current.is_relative_to(stop_resolved):
+            break
+        try:
+            next(current.iterdir())
+            break
+        except StopIteration:
+            parent = current.parent
+            current.rmdir()
+            if parent == current:
+                break
+            current = parent
+
+
 @dataclass
 class DatasetCommitReceipt:
-    """Receipt for a committed dataset directory swap, supporting atomic rollback."""
+    """Receipt for a committed dataset directory swap, supporting atomic rollback and deferred backup cleanup."""
 
     dataset_name: str
     variant_name: str
     target_dir: Path
     backup_path: Optional[Path]
     had_previous_target: bool
+    keep_backup: bool = True
+    backup_root: Optional[Path] = None
     committed: bool = True
+    finalized: bool = False
 
     def rollback(self) -> None:
         """Restore `target_dir` to its exact pre-commit state using `backup_path`."""
@@ -473,10 +498,33 @@ class DatasetCommitReceipt:
         if self.target_dir.exists():
             assert_no_symlinks_in_tree(self.target_dir)
             shutil.rmtree(self.target_dir)
-        if self.had_previous_target and self.backup_path is not None and self.backup_path.exists():
+        if self.had_previous_target:
+            if self.backup_path is None or not self.backup_path.exists():
+                raise RuntimeError(
+                    f"Rollback impossível para '{self.target_dir}': backup '{self.backup_path}' não encontrado."
+                )
             assert_no_symlinks_in_tree(self.backup_path)
+            backup_parent = self.backup_path.parent
             self.backup_path.replace(self.target_dir)
+            _prune_empty_backup_parents(backup_parent, self.backup_root)
         self.committed = False
+
+    def finalize(self, keep_backup: Optional[bool] = None) -> None:
+        """
+        Finalize the commit after the entire logical transaction succeeds.
+        Only discards `backup_path` here when `keep_backup` is False.
+        """
+        if not self.committed or self.finalized:
+            return
+        effective_keep = self.keep_backup if keep_backup is None else bool(keep_backup)
+        if not effective_keep and self.backup_path is not None:
+            backup_parent = self.backup_path.parent
+            if self.backup_path.exists():
+                assert_no_symlinks_in_tree(self.backup_path)
+                shutil.rmtree(self.backup_path)
+            _prune_empty_backup_parents(backup_parent, self.backup_root)
+            self.backup_path = None
+        self.finalized = True
 
 
 def commit_staged_dataset_dir(
@@ -492,6 +540,11 @@ def commit_staged_dataset_dir(
     """
     Atomically replace `target_dir` with `staging_dir` after moving any existing
     `target_dir` to `backup_root`. Automatically rolls back if the swap fails.
+
+    Note: The backup at `backup_path` is always preserved while the transaction
+    is in flight (even if `keep_backup=False`) and is only discarded when
+    `receipt.finalize()` / `finalize_transaction_receipts()` is called after
+    all directories and manifests have been committed.
     """
     resolved_target = assert_safe_dataset_target_path(
         target_dir=target_dir,
@@ -526,39 +579,95 @@ def commit_staged_dataset_dir(
             f"Falha ao promover staging para '{resolved_target}'; versão anterior restaurada. Erro: {exc}"
         ) from exc
 
-    if backup_path is not None and not keep_backup:
-        shutil.rmtree(backup_path, ignore_errors=True)
-        backup_path = None
-
     return DatasetCommitReceipt(
         dataset_name=dataset_name,
         variant_name=variant_name,
         target_dir=resolved_target,
         backup_path=backup_path,
         had_previous_target=had_previous,
+        keep_backup=keep_backup,
+        backup_root=resolved_backup_root,
         committed=True,
+        finalized=False,
     )
 
 
 @dataclass
 class ManifestCommitReceipt:
-    """Receipt for a transactional manifest update, supporting atomic rollback."""
+    """Receipt for a transactional manifest update, supporting atomic rollback and deferred backup cleanup."""
 
     manifest_path: Path
     backup_path: Optional[Path]
     had_previous_manifest: bool
+    keep_backup: bool = True
+    backup_root: Optional[Path] = None
     committed: bool = True
+    finalized: bool = False
 
     def rollback(self) -> None:
         """Restore `manifest_path` from `backup_path` (or remove if newly created)."""
         if not self.committed:
             return
-        if self.had_previous_manifest and self.backup_path is not None and self.backup_path.is_file():
+        if self.had_previous_manifest:
+            if self.backup_path is None or not self.backup_path.is_file():
+                raise RuntimeError(
+                    f"Rollback impossível para manifesto '{self.manifest_path}': "
+                    f"backup '{self.backup_path}' não encontrado."
+                )
             assert_no_symlink_components(self.backup_path)
             shutil.copy2(self.backup_path, self.manifest_path)
-        elif not self.had_previous_manifest and self.manifest_path.exists():
+            if not self.keep_backup:
+                backup_parent = self.backup_path.parent
+                self.backup_path.unlink(missing_ok=True)
+                _prune_empty_backup_parents(backup_parent, self.backup_root)
+                self.backup_path = None
+        elif self.manifest_path.exists():
             self.manifest_path.unlink()
         self.committed = False
+
+    def finalize(self, keep_backup: Optional[bool] = None) -> None:
+        """
+        Finalize the manifest commit after the entire logical transaction succeeds.
+        Only discards `backup_path` here when `keep_backup` is False.
+        """
+        if not self.committed or self.finalized:
+            return
+        effective_keep = self.keep_backup if keep_backup is None else bool(keep_backup)
+        if not effective_keep and self.backup_path is not None:
+            backup_parent = self.backup_path.parent
+            if self.backup_path.exists():
+                assert_no_symlink_components(self.backup_path)
+                self.backup_path.unlink(missing_ok=True)
+            _prune_empty_backup_parents(backup_parent, self.backup_root)
+            self.backup_path = None
+        self.finalized = True
+
+
+TransactionReceipt = Union[DatasetCommitReceipt, ManifestCommitReceipt]
+
+
+def rollback_transaction_receipts(receipts: Sequence[TransactionReceipt]) -> None:
+    """Roll back all committed directory and manifest receipts in strict reverse chronological order."""
+    errors: List[str] = []
+    for receipt in reversed(list(receipts)):
+        try:
+            receipt.rollback()
+        except Exception as exc:
+            errors.append(f"{type(receipt).__name__}: {exc}")
+    if errors:
+        raise RuntimeError(f"Erros durante rollback transacional: {'; '.join(errors)}")
+
+
+def finalize_transaction_receipts(
+    receipts: Sequence[TransactionReceipt],
+    keep_backup: Optional[bool] = None,
+) -> None:
+    """
+    Finalize all receipts after the complete logical transaction has succeeded.
+    Backups are only pruned here when `keep_backup=False`.
+    """
+    for receipt in receipts:
+        receipt.finalize(keep_backup=keep_backup)
 
 
 def transactional_update_manifest(
@@ -575,7 +684,8 @@ def transactional_update_manifest(
       3. Validate the staged manifest via `validate_fn`.
       4. If `manifest_path` exists, create a SHA-256 verified backup in `backup_root`.
       5. Atomically replace `manifest_path` via `Path.replace()`.
-      6. On any failure, remove staging and restore the previous manifest from backup.
+      6. Preserve backup until `finalize()` is called so multi-step transactions can roll back.
+      7. On any failure, remove staging and restore the previous manifest from backup.
     """
     assert_no_symlink_components(manifest_path)
     assert_no_symlink_components(backup_root)
@@ -622,19 +732,22 @@ def transactional_update_manifest(
             staging_manifest.unlink(missing_ok=True)
         if had_previous and backup_path is not None and backup_path.is_file():
             shutil.copy2(backup_path, resolved_manifest)
+            if not keep_backup:
+                backup_parent = backup_path.parent
+                backup_path.unlink(missing_ok=True)
+                _prune_empty_backup_parents(backup_parent, resolved_backup_root)
         raise RuntimeError(
             f"Falha ao atualizar transacionalmente o manifesto '{resolved_manifest}': {exc}"
         ) from exc
-
-    if backup_path is not None and not keep_backup:
-        backup_path.unlink(missing_ok=True)
-        backup_path = None
 
     return ManifestCommitReceipt(
         manifest_path=resolved_manifest,
         backup_path=backup_path,
         had_previous_manifest=had_previous,
+        keep_backup=keep_backup,
+        backup_root=resolved_backup_root,
         committed=True,
+        finalized=False,
     )
 
 
@@ -743,6 +856,7 @@ def transactional_write_json_manifest(
 __all__ = [
     "DatasetCommitReceipt",
     "ManifestCommitReceipt",
+    "TransactionReceipt",
     "assert_no_symlink_components",
     "assert_no_symlinks_in_tree",
     "assert_safe_dataset_target_path",
@@ -750,7 +864,9 @@ __all__ = [
     "cleanup_staging_dir",
     "commit_staged_dataset_dir",
     "create_staging_dataset_dir",
+    "finalize_transaction_receipts",
     "get_device_id",
+    "rollback_transaction_receipts",
     "transactional_update_manifest",
     "transactional_write_csv_manifest",
     "transactional_write_json_manifest",

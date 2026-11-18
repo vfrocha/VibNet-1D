@@ -25,6 +25,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 import zipfile
 
 import numpy as np
@@ -601,6 +602,180 @@ class TestSetupInstaller(unittest.TestCase):
             self.assertIn("999", csv_manifest.read_text(encoding="utf-8"))
             m_rec2.rollback()
             self.assertEqual(csv_manifest.read_text(encoding="utf-8"), content_v1)
+
+    def test_08_coordinated_rollback_across_dirs_normalization_and_processing_manifests(self) -> None:
+        """
+        Verifica a transação lógica única (diretórios processados + normalization_manifest.csv +
+        processing_manifest.json) com restauração bit-a-bit em falha de processing_manifest.json,
+        tanto com keep_backup=True quanto com keep_backup=False, e limpeza diferida de backups.
+        """
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            ext_raw = base / "raw"
+            ext_proc = base / "processed"
+            ext_proc_tl = base / "processed_tl"
+            _create_synthetic_raw_fixture(ext_raw)
+
+            # 1. Execução inicial válida: cria detrended/MFPT, detrended_rms/MFPT,
+            #    normalization_manifest.csv e processing_manifest.json (Estado V1).
+            prepare_datasets(
+                datasets=["MFPT"],
+                variants=["detrended", "detrended_rms"],
+                raw_dir=ext_raw,
+                processed_dir=ext_proc,
+                processed_tl_dir=ext_proc_tl,
+                force=False,
+                keep_backup=True,
+            )
+
+            det_dir = ext_proc_tl / "detrended" / "MFPT"
+            det_rms_dir = ext_proc_tl / "detrended_rms" / "MFPT"
+            norm_manifest_path = ext_proc_tl / "detrended_rms" / "normalization_manifest.csv"
+            proc_manifest_path = ext_proc_tl / "processing_manifest.json"
+
+            self.assertTrue(det_dir.is_dir())
+            self.assertTrue(det_rms_dir.is_dir())
+            self.assertTrue(norm_manifest_path.is_file())
+            self.assertTrue(proc_manifest_path.is_file())
+
+            def _snapshot_tree_hashes(root: Path) -> dict[str, str]:
+                return {
+                    p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                    for p in sorted(root.rglob("*.npy"))
+                }
+
+            v1_det_hashes = _snapshot_tree_hashes(det_dir)
+            v1_det_rms_hashes = _snapshot_tree_hashes(det_rms_dir)
+            v1_norm_manifest_bytes = norm_manifest_path.read_bytes()
+            v1_norm_manifest_sha = hashlib.sha256(v1_norm_manifest_bytes).hexdigest()
+            v1_proc_manifest_bytes = proc_manifest_path.read_bytes()
+            v1_proc_manifest_sha = hashlib.sha256(v1_proc_manifest_bytes).hexdigest()
+
+            # 2. Altera o sinal bruto sintético do MFPT para que o próximo processamento (V2)
+            #    gere janelas .npy distintas e um novo RMS_ref em normalization_manifest.csv.
+            mfpt_raw_dir = ext_raw / "MFPT_raw"
+            for raw_npy in mfpt_raw_dir.glob("*.npy"):
+                arr = np.load(raw_npy, allow_pickle=False)
+                np.save(raw_npy, arr * 3.5 + 0.125)
+
+            # 3. Simula falha na atualização final de processing_manifest.json DEPOIS que
+            #    detrended/MFPT, detrended_rms/MFPT e normalization_manifest.csv já foram
+            #    promovidos para o disco, primeiro com keep_backup=True e depois com keep_backup=False.
+            observed_mid_transaction: list[dict[str, bool]] = []
+
+            for keep_bkp in (True, False):
+                def _failing_write_json_manifest(*args, **kwargs):
+                    # No exato momento em que processing_manifest.json vai ser escrito,
+                    # os diretórios e o normalization_manifest.csv já foram atualizados para V2!
+                    current_det_hashes = _snapshot_tree_hashes(det_dir)
+                    current_det_rms_hashes = _snapshot_tree_hashes(det_rms_dir)
+                    current_norm_sha = hashlib.sha256(norm_manifest_path.read_bytes()).hexdigest()
+                    observed_mid_transaction.append(
+                        {
+                            "keep_backup": keep_bkp,
+                            "det_changed_before_fail": current_det_hashes != v1_det_hashes,
+                            "det_rms_changed_before_fail": current_det_rms_hashes != v1_det_rms_hashes,
+                            "norm_manifest_changed_before_fail": current_norm_sha != v1_norm_manifest_sha,
+                        }
+                    )
+                    raise RuntimeError(
+                        f"Falha simulada ao gravar processing_manifest.json (keep_backup={keep_bkp})"
+                    )
+
+                with patch(
+                    "scripts.setup.prepare_datasets.transactional_write_json_manifest",
+                    side_effect=_failing_write_json_manifest,
+                ):
+                    with self.assertRaises(RuntimeError):
+                        prepare_datasets(
+                            datasets=["MFPT"],
+                            variants=["detrended", "detrended_rms"],
+                            raw_dir=ext_raw,
+                            processed_dir=ext_proc,
+                            processed_tl_dir=ext_proc_tl,
+                            force=True,
+                            keep_backup=keep_bkp,
+                        )
+
+                # Confirma que os diretórios e normalization_manifest.csv realmente chegaram a mudar
+                # para V2 antes da falha simulada em processing_manifest.json
+                self.assertTrue(observed_mid_transaction[-1]["det_changed_before_fail"])
+                self.assertTrue(observed_mid_transaction[-1]["det_rms_changed_before_fail"])
+                self.assertTrue(observed_mid_transaction[-1]["norm_manifest_changed_before_fail"])
+
+                # 3, 4 e 5. Verifica restauração bit-a-bit dos diretórios originais,
+                # de normalization_manifest.csv e de processing_manifest.json
+                self.assertEqual(
+                    _snapshot_tree_hashes(det_dir),
+                    v1_det_hashes,
+                    f"detrended/MFPT não foi restaurado bit-a-bit (keep_backup={keep_bkp})",
+                )
+                self.assertEqual(
+                    _snapshot_tree_hashes(det_rms_dir),
+                    v1_det_rms_hashes,
+                    f"detrended_rms/MFPT não foi restaurado bit-a-bit (keep_backup={keep_bkp})",
+                )
+                self.assertEqual(
+                    hashlib.sha256(norm_manifest_path.read_bytes()).hexdigest(),
+                    v1_norm_manifest_sha,
+                    f"normalization_manifest.csv não foi restaurado bit-a-bit (keep_backup={keep_bkp})",
+                )
+                self.assertEqual(
+                    norm_manifest_path.read_bytes(),
+                    v1_norm_manifest_bytes,
+                )
+                self.assertEqual(
+                    hashlib.sha256(proc_manifest_path.read_bytes()).hexdigest(),
+                    v1_proc_manifest_sha,
+                    f"processing_manifest.json não foi restaurado bit-a-bit (keep_backup={keep_bkp})",
+                )
+                self.assertEqual(
+                    proc_manifest_path.read_bytes(),
+                    v1_proc_manifest_bytes,
+                )
+
+                # 7. Verifica ausência total de diretórios/arquivos de staging residuais
+                staging_residuals = [
+                    p
+                    for root_d in (ext_proc, ext_proc_tl)
+                    if root_d.exists()
+                    for p in root_d.rglob(".staging_*")
+                ]
+                self.assertEqual(
+                    staging_residuals,
+                    [],
+                    f"Resíduos de staging encontrados (keep_backup={keep_bkp}): {staging_residuals}",
+                )
+
+            # 6b. Agora executa uma transação completa de sucesso com keep_backup=False em um backup_dir limpo
+            #     e verifica que V2 é confirmado e que os backups descartáveis são removidos somente no final.
+            clean_bkp_dir = base / "clean_backups_no_keep"
+            prepare_datasets(
+                datasets=["MFPT"],
+                variants=["detrended", "detrended_rms"],
+                raw_dir=ext_raw,
+                processed_dir=ext_proc,
+                processed_tl_dir=ext_proc_tl,
+                force=True,
+                backup_dir=clean_bkp_dir,
+                keep_backup=False,
+            )
+            self.assertNotEqual(_snapshot_tree_hashes(det_dir), v1_det_hashes)
+            self.assertNotEqual(_snapshot_tree_hashes(det_rms_dir), v1_det_rms_hashes)
+            self.assertNotEqual(
+                hashlib.sha256(norm_manifest_path.read_bytes()).hexdigest(),
+                v1_norm_manifest_sha,
+            )
+            remaining_backup_files = (
+                [p for p in clean_bkp_dir.rglob("*") if p.is_file()]
+                if clean_bkp_dir.exists()
+                else []
+            )
+            self.assertEqual(
+                remaining_backup_files,
+                [],
+                f"Backups não foram limpos após finalização com keep_backup=False: {remaining_backup_files}",
+            )
 
 
 if __name__ == "__main__":

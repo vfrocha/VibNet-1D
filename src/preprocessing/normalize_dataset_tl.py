@@ -66,11 +66,14 @@ if str(PROJECT_ROOT) not in sys.path:
 from src.vibnet.data.transactional_io import (
     DatasetCommitReceipt,
     ManifestCommitReceipt,
+    TransactionReceipt,
     assert_no_symlinks_in_tree,
     assert_safe_dataset_target_path,
     cleanup_staging_dir,
     commit_staged_dataset_dir,
     create_staging_dataset_dir,
+    finalize_transaction_receipts,
+    rollback_transaction_receipts,
     transactional_write_csv_manifest,
     validate_staged_dataset_dir,
 )
@@ -810,10 +813,11 @@ def main():
     references = build_reference_map()
 
     manifest_rows = []
-    receipts_by_variant: dict[str, list[DatasetCommitReceipt]] = {
+    receipts_by_variant: dict[str, list[TransactionReceipt]] = {
         "raw": [],
         "detrended": [],
     }
+    all_committed_receipts: list[TransactionReceipt] = []
 
     for variant_name in args.variants:
         for dataset_name in selected_datasets:
@@ -853,31 +857,40 @@ def main():
 
     if raw_rows or "raw" in args.variants:
         try:
-            manifest_raw = write_manifest(
+            manifest_raw, raw_manifest_receipt = write_manifest(
                 raw_rows,
                 VARIANTS["raw"]["output_dir"],
                 backup_root=backup_root,
                 keep_backup=keep_backup,
+                return_receipt=True,
             )
+            receipts_by_variant["raw"].append(raw_manifest_receipt)
+            all_committed_receipts.extend(receipts_by_variant["raw"])
             print(f"Manifest RAW       : {manifest_raw}")
         except Exception:
-            for r in reversed(receipts_by_variant["raw"]):
-                r.rollback()
+            rollback_transaction_receipts(receipts_by_variant["raw"])
             raise
 
     if detrended_rows or "detrended" in args.variants:
         try:
-            manifest_detrended = write_manifest(
+            manifest_detrended, det_manifest_receipt = write_manifest(
                 detrended_rows,
                 VARIANTS["detrended"]["output_dir"],
                 backup_root=backup_root,
                 keep_backup=keep_backup,
+                return_receipt=True,
             )
+            receipts_by_variant["detrended"].append(det_manifest_receipt)
+            all_committed_receipts.extend(receipts_by_variant["detrended"])
             print(f"Manifest DETRENDED : {manifest_detrended}")
         except Exception:
-            for r in reversed(receipts_by_variant["detrended"]):
-                r.rollback()
+            rollback_transaction_receipts(receipts_by_variant["detrended"])
             raise
+
+    finalize_transaction_receipts(
+        all_committed_receipts,
+        keep_backup=keep_backup,
+    )
 
     print()
     print("=" * 72)

@@ -86,11 +86,17 @@ Nenhum arquivo legítimo de nível 3 (`Load_{0W,200W,400W}/Class_{Normal,41..46}
 ## 3. Procedimento Passo a Passo e Comandos de Execução na Ordem Correta
 
 > [!IMPORTANT]
-> Os comandos abaixo compõem o protocolo de execução aprovado e **só devem ser executados quando autorizados**. Eles incluem travas (`assert`) em Python que abortam imediatamente a operação caso qualquer contagem (150 arquivos por variante) ou qualquer par de hash SHA-256 (`150/150`) não coincida exatamente com o arquivo correspondente em `Class_Normal/`.
+> Os comandos abaixo compõem o protocolo de execução aprovado e **só devem ser executados quando autorizados**. Todos os blocos shell utilizam `set -euo pipefail` e incluem travas rígidas (`assert`) que:
+> 1. Verificam a integridade física e a paridade de hashes SHA-256 de todas as cópias de backup antes de qualquer operação destrutiva;
+> 2. Exigem exatamente 300 registros no manifesto `removed_files_manifest_sha256.csv` (150 da variante `processed` e 150 da variante `detrended_rms`);
+> 3. Confirmam que 100% dos hashes SHA-256 correspondem tanto ao par canônico em `Class_Normal/` quanto à cópia salva no backup (não permitindo que a mera existência do arquivo CSV autorize a remoção);
+> 4. Interrompem imediatamente a execução caso qualquer verificação falhe.
 
-### Etapa 3.1 — Verificação Prévia, Registro de SHA-256 e Backup Completo (Somente Leitura + Cópia para Backup)
+### Etapa 3.1 — Verificação Prévia, Registro de SHA-256 e Backup Completo com Verificação de Integridade
 
 ```bash
+set -euo pipefail
+
 # 1. Definir timestamp único do lote de saneamento
 export REMEDIATION_TS="$(date -u +%Y%m%d_%H%M%S)"
 export BACKUP_ROOT="/home/vfrocha/VibNet-1D/data/backups/remediation_hust_${REMEDIATION_TS}"
@@ -115,7 +121,8 @@ for load in Load_0W Load_200W Load_400W; do
         "${BACKUP_ROOT}/processed_HUST_Class_40_backup/${load}/Class_Normal/"
 done
 
-# 4. Conferir os 150 arquivos em cada variante, validar 100% dos pares SHA-256 e gerar o registro CSV
+# 4. Conferir os 150 arquivos em cada variante, validar 100% dos pares SHA-256,
+#    verificar a integridade bit-a-bit das cópias de backup e gerar o registro CSV
 python3 - << 'EOF'
 import csv
 import hashlib
@@ -125,77 +132,225 @@ from pathlib import Path
 backup_root = Path(os.environ["BACKUP_ROOT"])
 manifest_out = backup_root / "removed_files_manifest_sha256.csv"
 
-variants = [
-    ("processed", Path("/home/vfrocha/VibNet-1D/data/processed/HUST")),
-    ("detrended_rms", Path("/home/vfrocha/VibNet-1D/data/processed_tl/detrended_rms/HUST")),
-]
-loads = ["Load_0W", "Load_200W", "Load_400W"]
-
 def sha256(p: Path) -> str:
     return hashlib.sha256(p.read_bytes()).hexdigest()
 
+# A. Verificar integridade das cópias de backup dos 5 CSVs de manifesto/validação
+expected_manifests = [
+    (
+        Path("/home/vfrocha/VibNet-1D/data/processed_tl/detrended_rms/normalization_manifest.csv"),
+        backup_root / "manifests_before" / "normalization_manifest.csv",
+    ),
+    (
+        Path("/home/vfrocha/VibNet-1D/data/processed_tl/validation/dataset_validation.csv"),
+        backup_root / "manifests_before" / "dataset_validation.csv",
+    ),
+    (
+        Path("/home/vfrocha/VibNet-1D/data/processed_tl/validation/file_comparison.csv"),
+        backup_root / "manifests_before" / "file_comparison.csv",
+    ),
+    (
+        Path("/home/vfrocha/VibNet-1D/data/processed_tl/validation/reference_validation.csv"),
+        backup_root / "manifests_before" / "reference_validation.csv",
+    ),
+    (
+        Path("/home/vfrocha/VibNet-1D/data/processed_tl/validation/rms_statistics.csv"),
+        backup_root / "manifests_before" / "rms_statistics.csv",
+    ),
+]
+for src_csv, bkp_csv in expected_manifests:
+    assert src_csv.is_file(), f"CSV original ausente: {src_csv}"
+    assert bkp_csv.is_file(), f"Backup do CSV ausente: {bkp_csv}"
+    assert sha256(src_csv) == sha256(bkp_csv), f"Divergência SHA-256 no backup do CSV: {bkp_csv}"
+
+# B. Verificar integridade bit-a-bit do backup completo de detrended_rms/HUST (1.101 arquivos .npy)
+det_rms_root = Path("/home/vfrocha/VibNet-1D/data/processed_tl/detrended_rms/HUST")
+det_rms_bkp_root = backup_root / "detrended_rms_HUST_backup"
+src_det_files = sorted(det_rms_root.rglob("*.npy"))
+bkp_det_files = sorted(det_rms_bkp_root.rglob("*.npy"))
+assert len(src_det_files) == 1101, f"Contagem inesperada em detrended_rms/HUST: {len(src_det_files)} != 1101"
+assert len(bkp_det_files) == 1101, f"Backup incompleto em detrended_rms_HUST_backup: {len(bkp_det_files)} != 1101"
+for src_f in src_det_files:
+    rel = src_f.relative_to(det_rms_root)
+    bkp_f = det_rms_bkp_root / rel
+    assert bkp_f.is_file(), f"Arquivo ausente no backup detrended_rms_HUST_backup: {rel}"
+    assert sha256(src_f) == sha256(bkp_f), f"Hash divergente no backup detrended_rms_HUST_backup: {rel}"
+
+# C. Verificar os 150 arquivos Class_40 em cada variante, paridade com Class_Normal e paridade com o backup
+variants = [
+    (
+        "processed",
+        Path("/home/vfrocha/VibNet-1D/data/processed/HUST"),
+        backup_root / "processed_HUST_Class_40_backup",
+    ),
+    (
+        "detrended_rms",
+        Path("/home/vfrocha/VibNet-1D/data/processed_tl/detrended_rms/HUST"),
+        backup_root / "detrended_rms_HUST_backup",
+    ),
+]
+loads = ["Load_0W", "Load_200W", "Load_400W"]
+
 rows = []
-for var_name, root in variants:
+for var_name, root, var_bkp_root in variants:
     var_files = []
     for load in loads:
         c40_dir = root / load / "Class_Normal" / "Class_40"
         norm_dir = root / load / "Class_Normal"
+        bkp_c40_dir = var_bkp_root / load / "Class_Normal" / "Class_40"
         assert c40_dir.is_dir(), f"Diretório esperado ausente: {c40_dir}"
+        assert bkp_c40_dir.is_dir(), f"Diretório de backup ausente: {bkp_c40_dir}"
         files = sorted(c40_dir.glob("*.npy"))
+        bkp_files = sorted(bkp_c40_dir.glob("*.npy"))
         assert len(files) == 50, f"Contagem inesperada em {c40_dir}: {len(files)} != 50"
+        assert len(bkp_files) == 50, f"Contagem inesperada no backup {bkp_c40_dir}: {len(bkp_files)} != 50"
         for f in files:
             counterpart = norm_dir / f.name
+            bkp_copy = bkp_c40_dir / f.name
             assert counterpart.is_file(), f"Arquivo par ausente em Class_Normal: {counterpart}"
+            assert bkp_copy.is_file(), f"Cópia de backup ausente: {bkp_copy}"
             h_dup = sha256(f)
             h_orig = sha256(counterpart)
-            assert h_dup == h_orig, f"Divergência SHA-256 em {f}: {h_dup} != {h_orig}"
+            h_bkp = sha256(bkp_copy)
+            assert h_dup == h_orig, f"Divergência SHA-256 com Class_Normal em {f}: {h_dup} != {h_orig}"
+            assert h_dup == h_bkp, f"Divergência SHA-256 com cópia de backup em {bkp_copy}: {h_dup} != {h_bkp}"
             var_files.append(f)
             rows.append({
                 "variant": var_name,
                 "load": load,
-                "duplicate_rel_path": str(f.relative_to(root)),
-                "canonical_rel_path": str(counterpart.relative_to(root)),
+                "duplicate_rel_path": f.relative_to(root).as_posix(),
+                "canonical_rel_path": counterpart.relative_to(root).as_posix(),
+                "backup_rel_path": bkp_copy.relative_to(backup_root).as_posix(),
                 "size_bytes": f.stat().st_size,
                 "mtime_epoch": f.stat().st_mtime,
                 "sha256": h_dup,
                 "canonical_sha256": h_orig,
+                "backup_sha256": h_bkp,
                 "sha256_match": True,
             })
     assert len(var_files) == 150, f"Total inesperado para {var_name}: {len(var_files)} != 150"
+
+assert len(rows) == 300, f"Total de registros no manifesto deve ser 300, obtido {len(rows)}"
 
 with manifest_out.open("w", newline="", encoding="utf-8") as fp:
     writer = csv.DictWriter(fp, fieldnames=list(rows[0].keys()))
     writer.writeheader()
     writer.writerows(rows)
 
+print(f"[OK] Backups verificados bit-a-bit (5 CSVs + 1.101 detrended_rms + 150 processed Class_40).")
 print(f"[OK] Verificados {len(rows)} arquivos (150 processed + 150 detrended_rms) com 100% de match SHA-256.")
 print(f"[OK] Manifesto de remoção salvo em: {manifest_out}")
 EOF
 ```
 
-### Etapa 3.2 — Remoção Exclusiva de `Load_{0W,200W,400W}/Class_Normal/Class_40/`
+### Etapa 3.2 — Remoção Exclusiva de `Load_{0W,200W,400W}/Class_Normal/Class_40/` (Condicionada à Validação Integral do Manifesto e dos Backups)
 
 ```bash
-# Executa a remoção restrita somente após a validação e backup da Etapa 3.1
+set -euo pipefail
+
+# Executa a remoção restrita SOMENTE após revalidar o conteúdo integral do CSV (300 linhas,
+# 150 por variante, 100% de correspondência SHA-256) e a completude física e criptográfica dos backups.
+# A mera existência do arquivo CSV NÃO autoriza a remoção.
 python3 - << 'EOF'
+import csv
+import hashlib
 import os
 import shutil
 from pathlib import Path
 
-backup_root = Path(os.environ["BACKUP_ROOT"])
-assert (backup_root / "removed_files_manifest_sha256.csv").is_file(), "Manifesto de backup ausente!"
+backup_root = Path(os.environ["BACKUP_ROOT"]).resolve()
+manifest_csv = backup_root / "removed_files_manifest_sha256.csv"
+assert manifest_csv.is_file(), f"Manifesto de remoção ausente: {manifest_csv}"
 
-targets = [
-    Path("/home/vfrocha/VibNet-1D/data/processed/HUST"),
-    Path("/home/vfrocha/VibNet-1D/data/processed_tl/detrended_rms/HUST"),
+def sha256(p: Path) -> str:
+    return hashlib.sha256(p.read_bytes()).hexdigest()
+
+# 1. Trava de verificação dos backups de manifestos (5 CSVs) e de diretórios (1.101 + 150 arquivos .npy)
+required_manifest_backups = [
+    "normalization_manifest.csv",
+    "dataset_validation.csv",
+    "file_comparison.csv",
+    "reference_validation.csv",
+    "rms_statistics.csv",
 ]
-loads = ["Load_0W", "Load_200W", "Load_400W"]
+for m_name in required_manifest_backups:
+    m_bkp = backup_root / "manifests_before" / m_name
+    assert m_bkp.is_file() and m_bkp.stat().st_size > 0, f"Backup de manifesto ausente ou vazio: {m_bkp}"
 
-for root in targets:
+bkp_det_rms_files = list((backup_root / "detrended_rms_HUST_backup").rglob("*.npy"))
+bkp_proc_c40_files = list((backup_root / "processed_HUST_Class_40_backup").rglob("*.npy"))
+assert len(bkp_det_rms_files) == 1101, (
+    f"Trava acionada: backup detrended_rms_HUST_backup incompleto ({len(bkp_det_rms_files)} != 1101)."
+)
+assert len(bkp_proc_c40_files) == 150, (
+    f"Trava acionada: backup processed_HUST_Class_40_backup incompleto ({len(bkp_proc_c40_files)} != 150)."
+)
+
+# 2. Trava de verificação profunda do conteúdo de removed_files_manifest_sha256.csv
+with manifest_csv.open("r", newline="", encoding="utf-8") as fp:
+    rows = list(csv.DictReader(fp))
+
+assert len(rows) == 300, f"Trava acionada: esperado exatamente 300 registros no CSV, encontrado {len(rows)}."
+
+roots_by_variant = {
+    "processed": Path("/home/vfrocha/VibNet-1D/data/processed/HUST").resolve(),
+    "detrended_rms": Path("/home/vfrocha/VibNet-1D/data/processed_tl/detrended_rms/HUST").resolve(),
+}
+counts_by_variant = {"processed": 0, "detrended_rms": 0}
+counts_by_var_load = {}
+
+for idx, row in enumerate(rows, start=1):
+    var = row.get("variant", "")
+    load = row.get("load", "")
+    assert var in roots_by_variant, f"Linha {idx}: variante inválida '{var}'."
+    assert load in ("Load_0W", "Load_200W", "Load_400W"), f"Linha {idx}: load inválido '{load}'."
+
+    h_dup = row.get("sha256", "")
+    h_can = row.get("canonical_sha256", "")
+    h_bkp = row.get("backup_sha256", "")
+    match_flag = row.get("sha256_match", "")
+
+    assert len(h_dup) == 64 and h_dup == h_can == h_bkp, (
+        f"Linha {idx}: hashes SHA-256 inválidos ou divergentes ({h_dup} vs {h_can} vs {h_bkp})."
+    )
+    assert match_flag == "True", f"Linha {idx}: sha256_match != True ({match_flag})."
+
+    v_root = roots_by_variant[var]
+    dup_file = (v_root / row["duplicate_rel_path"]).resolve()
+    can_file = (v_root / row["canonical_rel_path"]).resolve()
+    bkp_file = (backup_root / row["backup_rel_path"]).resolve()
+
+    assert dup_file.is_file(), f"Linha {idx}: arquivo duplicado alvo não encontrado: {dup_file}"
+    assert can_file.is_file(), f"Linha {idx}: arquivo canônico em Class_Normal ausente: {can_file}"
+    assert bkp_file.is_file(), f"Linha {idx}: arquivo no diretório de backup ausente: {bkp_file}"
+
+    # Recalcula hashes antes de autorizar exclusão
+    assert sha256(dup_file) == h_dup, f"Linha {idx}: hash do arquivo alvo diverge do manifesto: {dup_file}"
+    assert sha256(can_file) == h_can, f"Linha {idx}: hash do arquivo canônico diverge do manifesto: {can_file}"
+    assert sha256(bkp_file) == h_bkp, f"Linha {idx}: hash do arquivo de backup diverge do manifesto: {bkp_file}"
+
+    counts_by_variant[var] += 1
+    counts_by_var_load[(var, load)] = counts_by_var_load.get((var, load), 0) + 1
+
+assert counts_by_variant["processed"] == 150, (
+    f"Trava acionada: esperado 150 registros para 'processed', obtido {counts_by_variant['processed']}."
+)
+assert counts_by_variant["detrended_rms"] == 150, (
+    f"Trava acionada: esperado 150 registros para 'detrended_rms', obtido {counts_by_variant['detrended_rms']}."
+)
+for var in ("processed", "detrended_rms"):
+    for load in ("Load_0W", "Load_200W", "Load_400W"):
+        c = counts_by_var_load.get((var, load), 0)
+        assert c == 50, f"Trava acionada: esperado 50 registros para ({var}, {load}), obtido {c}."
+
+print("[OK] Todas as travas pré-remoção aprovadas (300/300 registros, 150/variante, backups e SHA-256 íntegros).")
+
+# 3. Remoção exclusiva dos 6 subdiretórios Class_Normal/Class_40
+loads = ["Load_0W", "Load_200W", "Load_400W"]
+for var_name, root in roots_by_variant.items():
     for load in loads:
         c40_dir = (root / load / "Class_Normal" / "Class_40").resolve()
-        # Trava de contenção de caminho
-        assert c40_dir.is_relative_to(root.resolve()), f"Caminho fora da raiz autorizada: {c40_dir}"
+        assert c40_dir.is_relative_to(root), f"Caminho fora da raiz autorizada: {c40_dir}"
         assert c40_dir.name == "Class_40" and c40_dir.parent.name == "Class_Normal"
         shutil.rmtree(c40_dir)
         print(f"[REMOVIDO] {c40_dir}")
@@ -211,6 +366,8 @@ EOF
 ### Etapa 3.3 — Regeneração Controlada da Normalização (`normalize_dataset_tl.py`)
 
 ```bash
+set -euo pipefail
+
 # Regenera data/processed_tl/detrended_rms/HUST a partir de data/processed/HUST (951 janelas)
 # e atualiza a linha de HUST em data/processed_tl/detrended_rms/normalization_manifest.csv
 python3 src/preprocessing/normalize_dataset_tl.py \
@@ -223,12 +380,14 @@ python3 src/preprocessing/normalize_dataset_tl.py \
 - **Origem resolvida (`resolve_dataset_input_dir`):** Como `data/processed_tl/detrended/HUST` não existe e `--use-processed-fallback` está ativo, a origem resolvida é `/home/vfrocha/VibNet-1D/data/processed/HUST`.
 - **Saída resolvida:** `/home/vfrocha/VibNet-1D/data/processed_tl/detrended_rms/HUST`.
 - **Cálculo de $\text{RMS}_{\text{ref}}$:** `discover_normal_class` encontra `Class_Normal` (150 janelas: 50 em `Load_0W`, 50 em `Load_200W`, 50 em `Load_400W`) e calcula `reference_rms = 0.18114055825864453`.
-- **Normalização:** Processa exatamente as `input_windows = 951` janelas (`0` erros).
-- **Atualização do Manifesto:** `write_manifest(..., merge_existing=True)` atualiza a linha `HUST,detrended_rms` em `data/processed_tl/detrended_rms/normalization_manifest.csv` com `reference_windows = 150` e `input_windows = 951`, preservando as outras 8 linhas do manifesto.
+- **Normalização:** Processa em diretório de staging exatamente as `input_windows = 951` janelas (`0` erros), valida a correspondência 1-para-1 dos 951 caminhos relativos e promove atomicamente após backup.
+- **Atualização do Manifesto:** `write_manifest(..., merge_existing=True)` atualiza transacionalmente a linha `HUST,detrended_rms` em `data/processed_tl/detrended_rms/normalization_manifest.csv` com `reference_windows = 150` e `input_windows = 951`, preservando as outras 8 linhas do manifesto.
 
 ### Etapa 3.4 — Revalidação (`validate_dataset_tl.py`)
 
 ```bash
+set -euo pipefail
+
 # 1. Executa a validação específica do HUST solicitada no plano
 python3 scripts/validate_dataset_tl.py \
   --datasets HUST \
@@ -263,9 +422,10 @@ Para eliminar definitivamente o risco de acumular arquivos residuais em reproces
 3. **Proteção contra Links Simbólicos e Garantia de Mesmo Filesystem (`st_dev`):**
    - `assert_no_symlink_components()` e `assert_no_symlinks_in_tree()` bloqueiam qualquer link simbólico em diretórios ancestrais, diretórios de saída, subpastas de condição/classe ou arquivos `.npy`.
    - `assert_same_filesystem()` verifica via `os.stat(..., follow_symlinks=False).st_dev` que `staging`, `backup`, `target` e `manifest` residem exatamente na mesma partição/filesystem antes de iniciar a operação, garantindo que `Path.replace()` seja atômico no nível do kernel POSIX.
-4. **Atualização Transacional dos Manifests com Backup e Rollback:**
-   - `transactional_write_csv_manifest()` (para `normalization_manifest.csv`) e `transactional_write_json_manifest()` (para `processing_manifest.json`) gravam o manifesto atualizado em arquivo temporário irmão (`.staging_<manifest>_<ts>_<pid>.tmp`), forçam `os.fsync()`, validam a estrutura e cabeçalhos/chaves do arquivo em staging, criam backup verificado por SHA-256 em `<backup_root>/<ts>/manifests/` e promovem o arquivo via `Path.replace()`.
-   - Caso a atualização do manifesto falhe após o commit dos diretórios de dados, todos os `DatasetCommitReceipt` do lote executam `.rollback()`, restaurando os diretórios de dados ao estado anterior.
+4. **Atualização Transacional dos Manifests com Backup, Rollback Coordenado e Finalização Diferida (`keep_backup=False`):**
+   - `transactional_write_csv_manifest()` (para `normalization_manifest.csv`) e `transactional_write_json_manifest()` (para `processing_manifest.json`) gravam o manifesto atualizado em arquivo temporário irmão (`.staging_<manifest>_<ts>_<pid>.tmp`), forçam `os.fsync()`, validam a estrutura e cabeçalhos/chaves do arquivo em staging, criam backup verificado por SHA-256 em `<backup_root>/<ts>/manifests/` e promovem o arquivo via `Path.replace()`, retornando um `ManifestCommitReceipt`.
+   - **Transação lógica única:** Em `prepare_datasets()` ([`scripts/setup/prepare_datasets.py`](file:///home/vfrocha/VibNet-1D/scripts/setup/prepare_datasets.py)), todos os recibos de diretórios (`DatasetCommitReceipt`) e de manifestos (`ManifestCommitReceipt`, incluindo o `normalization_manifest.csv` retornado por `norm_tl.write_manifest(..., return_receipt=True)`) são registrados em uma única fila ordenada (`all_commit_receipts: List[TransactionReceipt]`). Caso qualquer etapa posterior falhe (inclusive a gravação final de `processing_manifest.json`), `rollback_transaction_receipts(all_commit_receipts)` percorre todos os recibos na **ordem estritamente inversa**, restaurando bit a bit tanto `normalization_manifest.csv` quanto todos os diretórios de datasets processados.
+   - **Limpeza diferida de backups (`keep_backup=False`):** Nem `commit_staged_dataset_dir()` nem `transactional_update_manifest()` excluem o backup anterior durante o commit individual. Os backups permanecem íntegros em disco até o término de toda a transação lógica, sendo descartados somente quando `finalize_transaction_receipts(all_commit_receipts, keep_backup=keep_backup)` é chamado após o commit final bem-sucedido de todos os diretórios e manifestos.
 
 ```mermaid
 flowchart TD
@@ -576,5 +736,5 @@ A execução da correção na máquina **Andromeda** só será considerada aprov
 | **5** | **Aprovação em `dataset_validation.csv` e `reference_validation.csv`** | Para `HUST`: `n_original=951`, `n_normalized=951`, `n_common=951`, `n_checked=951`, `missing_normalized=0`, `extra_normalized=0`, `shape_mismatches=0`, `dtype_mismatches=0`, `mathematical_failures=0`, `math_pass=True`, e `reference_validation.csv` com `n=150`, `difference_from_manifest=0.0`, `pass=True`. |
 | **6** | **Eliminação das linhas anômalas em `rms_statistics.csv` e `file_comparison.csv`** | **0 linhas** com `dataset` igual a `Load_0W`, `Load_200W` ou `Load_400W` em `rms_statistics.csv` (reduzindo de 798 para **792 linhas** no consolidado `cross_dataset`), e **0 linhas** com `condition == "Class_Normal"` ou `class == "Class_40"` em `file_comparison.csv` (reduzindo de 13.495 para **13.345 linhas** no consolidado `cross_dataset`). |
 | **7** | **Preservação integral dos demais datasets** | Nenhuma alteração de contagem, `mtime` ou hash SHA-256 em nenhum dos outros diretórios de `data/processed/` ou `data/processed_tl/detrended_rms/`. |
-| **8** | **Suíte de testes automatizados de não-regressão** | `python3 -m unittest tests/test_setup_installer.py` passando integralmente, incluindo os novos testes `test_05_repeated_execution_does_not_accumulate_residual_files` e `test_06_failed_staging_preserves_previous_valid_dataset`. |
+| **8** | **Suíte de testes automatizados de não-regressão** | `python3 -m unittest tests/test_setup_installer.py` passando integralmente (8 métodos de teste), incluindo `test_05_repeated_execution_does_not_accumulate_residual_files`, `test_06_failed_staging_and_rollback_preserves_previous_data_and_manifests`, `test_07_exact_relative_paths_symlinks_same_fs_and_transactional_manifests` e `test_08_coordinated_rollback_across_dirs_normalization_and_processing_manifests`. |
 
