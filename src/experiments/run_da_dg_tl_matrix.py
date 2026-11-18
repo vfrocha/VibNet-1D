@@ -35,6 +35,7 @@ from src.vibnet.data.registry import load_yaml_config
 from src.vibnet.evaluation.da_dg_tl_protocol import (
     CANONICAL_SEEDS,
     DA_DG_TARGETS,
+    DATASET_PHYSICAL_UNITS,
     HARMONIZED_CLASSES,
     SOURCE_CONFIGS,
     TL_TARGETS,
@@ -266,14 +267,34 @@ def build_execution_plan(
                 if proto == "DG":
                     head_classes: Any = list(src_classes)
                     head_dim: Any = len(src_classes)
+                    tgt_unit = DATASET_PHYSICAL_UNITS.get(tgt, "unknown")
+                    if tgt_unit == "V":
+                        exec_status = "BLOCKED_141_DG_INCOMPATIBLE_UNIT_VOLTS_VS_MS2"
+                        unit_note = (
+                            "PU signals are in Volts (V) without calibrated sensor sensitivity "
+                            "(V -> m/s^2); 141-feature DG is blocked until unit conversion is "
+                            "resolved or evaluated under 126-feature scale-invariant ablation."
+                        )
+                    else:
+                        exec_status = "READY_PHYSICAL_UNIT_COMPATIBLE_MS2"
+                        unit_note = (
+                            f"Target unit '{tgt_unit}' convertible to m/s^2 (1 g = 9.80665 m/s^2)."
+                        )
                 elif proto == "DA":
                     tgt_classes = target_present_classes_map.get(tgt, HARMONIZED_CLASSES)
                     expanded = canonicalize_class_sequence(list(src_classes) + list(tgt_classes))
                     head_classes = list(expanded)
                     head_dim = len(expanded)
+                    exec_status = "READY_INTERNAL_OR_RELATED_ADAPT_NORMAL_RMS"
+                    unit_note = (
+                        "DA uses target's own adaptation Normal RMS_ref (or CWRU_12k adaptation "
+                        "Normal for CWRU_48k); self-consistent within target domain."
+                    )
                 else:
                     head_classes = "native_target_vocabulary"
                     head_dim = "native_target_num_classes"
+                    exec_status = "READY_TARGET_LOCO_TRAIN_NORMAL_RMS"
+                    unit_note = "TL uses target LOCO training conditions Normal RMS_ref."
 
                 for seed in seeds:
                     jobs.append(
@@ -282,11 +303,14 @@ def build_execution_plan(
                             "source_config": sc,
                             "sources": list(SOURCE_CONFIGS[sc]),
                             "target": tgt,
+                            "target_physical_unit": DATASET_PHYSICAL_UNITS.get(tgt, "unknown"),
                             "seed": int(seed),
                             "initial_source_head_classes": list(src_classes),
                             "initial_source_head_dim": len(src_classes),
                             "evaluation_head_classes": head_classes,
                             "evaluation_head_dim": head_dim,
+                            "execution_status_141_features": exec_status,
+                            "physical_unit_note": unit_note,
                         }
                     )
 

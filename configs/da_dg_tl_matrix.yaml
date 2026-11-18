@@ -103,6 +103,27 @@ protocols:
     head_initialization: "trained_on_sources_only_no_expansion"
     early_stopping_scope: "source_val_only"
     zero_target_statistics_enforced: true
+    compatible_targets_141_features:
+      - "CWRU_12k"
+      - "CWRU_48k"
+    blocked_targets_141_features_due_to_unit_mismatch:
+      PU:
+        physical_unit: "V"
+        source_reference_unit: "m/s^2"
+        status: "BLOCKED_INCOMPATIBLE_UNIT_VOLTS_VS_MS2"
+        resolution_paths:
+          - "126-feature scale-invariant ablation with dedicated 126-input TabNetPretrainer"
+          - "Verified accelerometer sensitivity calibration factor (V -> m/s^2)"
+    self_supervised_pretraining_scope:
+      partition: "pretrain_train (source_train + pretrain_only_train)"
+      include_additional_unsupervised_source_classes:
+        UORED: ["Class_Cage"]
+        HUST: ["Class_44", "Class_46"]
+        MFPT: ["Class_23"]
+      forbid_validation_recordings: true
+      forbid_test_recordings: true
+      forbid_target_data: true
+      forbid_labels_in_pretrainer: true
 
   TL:
     split_unit: "operating_condition_loco"

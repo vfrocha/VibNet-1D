@@ -103,6 +103,17 @@ DA_DG_TARGETS: Tuple[str, ...] = ("CWRU_12k", "CWRU_48k", "PU")
 TL_TARGETS: Tuple[str, ...] = ("CWRU_12k", "CWRU_48k", "PU", "HUST_Gearbox", "UOEMD")
 CANONICAL_SEEDS: Tuple[int, ...] = (42, 123, 2026)
 
+DATASET_PHYSICAL_UNITS: Dict[str, str] = {
+    "UORED": "m/s^2",
+    "HUST": "m/s^2",
+    "MFPT": "g",
+    "CWRU_12k": "g",
+    "CWRU_48k": "g",
+    "PU": "V",
+    "HUST_Gearbox": "m/s^2",
+    "UOEMD": "m/s^2",
+}
+
 HARMONIZED_CLASSES: Tuple[str, ...] = (
     "Normal",
     "Ball",
@@ -236,6 +247,7 @@ class WindowRecord:
     recording_prefix: str
     recording_key: str
     window_index: int
+    recording_sha256: str = ""
 
 
 def parse_window_filename(filename: str) -> Tuple[str, int]:
@@ -408,19 +420,33 @@ def load_dataset_window_records(
     data_root: str | Path,
     load_waveforms: bool = False,
     allow_mfpt_normal: bool = False,
+    deduplicate_identical_recordings_by_sha256: bool = True,
 ) -> Tuple[List[WindowRecord], Optional[List[np.ndarray]]]:
     """
     Scan `<data_root>/<dataset_name>/<condition>/<raw_class>/sNNNNN_wNN.npy` in
     deterministic sorted order and construct `WindowRecord` items (and optional
     1D waveforms). Ignores any nested depth != 3 anomalies if present, raising
     an explicit error if a file violates the `<condition>/<class>/<file.npy>` contract.
+
+    When `deduplicate_identical_recordings_by_sha256=True` (default):
+      - Computes the SHA-256 digest of every original recording (across its ordered
+        window `.npy` byte payloads).
+      - If two or more recordings in `(dataset, condition, raw_class)` have identical
+        SHA-256 digests (e.g., in `PU` `Class_27`: `C2: s00194 == s00198`,
+        `C4: s00180 == s00204 == s00224`, `C4: s00196 == s00220`), all members of
+        the duplicate group receive the same canonical `recording_key`
+        (`f"{dataset}::{condition}::{raw_class}::sha256grp_{ '_'.join(sorted_prefixes) }"`)
+        so that the entire group is treated as a single independent partitioning unit
+        and never split across adaptation/training and validation/test, while
+        preserving every individual `recording_prefix` (`sNNNNN`) and every `.npy` file on disk.
     """
     ds_dir = Path(data_root) / dataset_name
     if not ds_dir.is_dir():
         raise FileNotFoundError(f"Dataset directory not found: {ds_dir}")
 
-    records: List[WindowRecord] = []
+    raw_items: List[Tuple[Path, str, str, str, str, int, Optional[str], Optional[int], str]] = []
     waveforms: Optional[List[np.ndarray]] = [] if load_waveforms else None
+    files_by_recording: Dict[Tuple[str, str, str], List[Tuple[int, Path]]] = defaultdict(list)
 
     for fpath in sorted(ds_dir.rglob("*.npy")):
         rel_parts = fpath.relative_to(ds_dir).parts
@@ -430,11 +456,58 @@ def load_dataset_window_records(
             )
         cond_name, raw_cls, fname = rel_parts
         rec_prefix, w_idx = parse_window_filename(fname)
-        rec_key = build_recording_key(dataset_name, cond_name, raw_cls, rec_prefix)
         harm_name, harm_id = map_to_harmonized_class(
             dataset_name, raw_cls, allow_mfpt_normal=allow_mfpt_normal
         )
         sample_id = f"{dataset_name}/{cond_name}/{raw_cls}/{fname}"
+        raw_items.append(
+            (fpath, cond_name, raw_cls, fname, rec_prefix, w_idx, harm_name, harm_id, sample_id)
+        )
+        files_by_recording[(cond_name, raw_cls, rec_prefix)].append((w_idx, fpath))
+        if waveforms is not None:
+            arr = np.load(fpath, allow_pickle=False)
+            waveforms.append(np.asarray(arr, dtype=np.float64).reshape(-1))
+
+    if not raw_items:
+        raise ValueError(f"No .npy files found under {ds_dir}")
+
+    recording_sha_map: Dict[Tuple[str, str, str], str] = {}
+    sha_to_prefixes: Dict[Tuple[str, str, str], List[str]] = defaultdict(list)
+
+    if deduplicate_identical_recordings_by_sha256:
+        for (cond_name, raw_cls, rec_prefix), w_files in sorted(files_by_recording.items()):
+            hasher = hashlib.sha256()
+            for w_idx, fp in sorted(w_files, key=lambda x: x[0]):
+                hasher.update(f"w{w_idx:04d}:".encode("utf-8"))
+                hasher.update(fp.read_bytes())
+            digest = hasher.hexdigest()
+            recording_sha_map[(cond_name, raw_cls, rec_prefix)] = digest
+            sha_to_prefixes[(cond_name, raw_cls, digest)].append(rec_prefix)
+
+    records: List[WindowRecord] = []
+    for (
+        _fpath,
+        cond_name,
+        raw_cls,
+        _fname,
+        rec_prefix,
+        w_idx,
+        harm_name,
+        harm_id,
+        sample_id,
+    ) in raw_items:
+        rec_sha = recording_sha_map.get((cond_name, raw_cls, rec_prefix), "")
+        dup_prefixes = (
+            sorted(set(sha_to_prefixes.get((cond_name, raw_cls, rec_sha), [rec_prefix])))
+            if rec_sha
+            else [rec_prefix]
+        )
+        if len(dup_prefixes) > 1:
+            grp_suffix = "sha256grp_" + "_".join(dup_prefixes)
+            rec_key = build_recording_key(dataset_name, cond_name, raw_cls, grp_suffix)
+        else:
+            rec_key = build_recording_key(dataset_name, cond_name, raw_cls, rec_prefix)
+
         records.append(
             WindowRecord(
                 sample_id=sample_id,
@@ -446,14 +519,9 @@ def load_dataset_window_records(
                 recording_prefix=rec_prefix,
                 recording_key=rec_key,
                 window_index=w_idx,
+                recording_sha256=rec_sha,
             )
         )
-        if waveforms is not None:
-            arr = np.load(fpath, allow_pickle=False)
-            waveforms.append(np.asarray(arr, dtype=np.float64).reshape(-1))
-
-    if not records:
-        raise ValueError(f"No .npy files found under {ds_dir}")
 
     return records, waveforms
 
@@ -543,6 +611,7 @@ def assert_zero_recording_overlap(
     are checked pairwise.
     """
     all_keys = set(partition_indices.keys())
+    composite_keys: set[str] = set()
     if "adapt" in all_keys and ("adapt_train" in all_keys or "adapt_val" in all_keys):
         # Verify that adapt is the exact disjoint union of adapt_train and adapt_val
         adapt_set = set(partition_indices["adapt"])
@@ -552,9 +621,24 @@ def assert_zero_recording_overlap(
             raise ValueError("Index overlap between adapt_train and adapt_val!")
         if adapt_set != (tr_set | val_set):
             raise ValueError("Partition 'adapt' must equal 'adapt_train' union 'adapt_val'!")
-        part_names = sorted(k for k in all_keys if k != "adapt")
-    else:
-        part_names = sorted(all_keys)
+        composite_keys.add("adapt")
+
+    if "pretrain_train" in all_keys and (
+        "source_train" in all_keys or "pretrain_only_train" in all_keys
+    ):
+        # Verify that pretrain_train is the exact disjoint union of source_train and pretrain_only_train
+        pre_set = set(partition_indices["pretrain_train"])
+        src_tr_set = set(partition_indices.get("source_train", ()))
+        un_tr_set = set(partition_indices.get("pretrain_only_train", ()))
+        if src_tr_set & un_tr_set:
+            raise ValueError("Index overlap between source_train and pretrain_only_train!")
+        if pre_set != (src_tr_set | un_tr_set):
+            raise ValueError(
+                "Partition 'pretrain_train' must equal 'source_train' union 'pretrain_only_train'!"
+            )
+        composite_keys.add("pretrain_train")
+
+    part_names = sorted(k for k in all_keys if k not in composite_keys)
 
     rec_sets: Dict[str, set[str]] = {}
     sample_sets: Dict[str, set[str]] = {}
@@ -737,11 +821,12 @@ def create_da_recording_split(
         for r_key in adapt_train_recs:
             w_idxs = rec_map[r_key]
             r0 = records[w_idxs[0]]
+            member_prefixes = sorted({records[i].recording_prefix for i in w_idxs})
             recording_entries.append(
                 RecordingEntryManifest(
                     dataset=r0.dataset,
                     recording_key=r_key,
-                    recording_prefix=r0.recording_prefix,
+                    recording_prefix="+".join(member_prefixes),
                     raw_class=r0.raw_class,
                     harmonized_class=cls_name,
                     condition=r0.condition,
@@ -753,11 +838,12 @@ def create_da_recording_split(
         for r_key in adapt_val_recs:
             w_idxs = rec_map[r_key]
             r0 = records[w_idxs[0]]
+            member_prefixes = sorted({records[i].recording_prefix for i in w_idxs})
             recording_entries.append(
                 RecordingEntryManifest(
                     dataset=r0.dataset,
                     recording_key=r_key,
-                    recording_prefix=r0.recording_prefix,
+                    recording_prefix="+".join(member_prefixes),
                     raw_class=r0.raw_class,
                     harmonized_class=cls_name,
                     condition=r0.condition,
@@ -769,11 +855,12 @@ def create_da_recording_split(
         for r_key in test_recs_sorted:
             w_idxs = rec_map[r_key]
             r0 = records[w_idxs[0]]
+            member_prefixes = sorted({records[i].recording_prefix for i in w_idxs})
             recording_entries.append(
                 RecordingEntryManifest(
                     dataset=r0.dataset,
                     recording_key=r_key,
-                    recording_prefix=r0.recording_prefix,
+                    recording_prefix="+".join(member_prefixes),
                     raw_class=r0.raw_class,
                     harmonized_class=cls_name,
                     condition=r0.condition,
@@ -872,11 +959,23 @@ def create_source_recording_split(
     seed: int,
     val_fraction: float = 0.20,
     source_config_id: str = "S4",
+    include_additional_unsupervised_for_pretraining: bool = True,
 ) -> Tuple[Dict[str, Tuple[int, ...]], RecordingSplitManifest]:
     """
-    Partition source domain records (`UORED`, `HUST`, `MFPT`) into `source_train` (80%)
-    and `source_val` (20%) strictly by original recording (`recording_key`), stratified
-    by `(dataset, harmonized_class)`.
+    Partition source domain records (`UORED`, `HUST`, `MFPT`) strictly by original
+    recording (`recording_key`) before any pretraining or head training:
+      1. Supervised head classes (`harmonized_class_id is not None`) are partitioned
+         stratified by `(dataset, harmonized_class)` into `source_train` (80%) and
+         `source_val` (20%).
+      2. Additional unsupervised-only classes present in the active sources
+         (`harmonized_class_id is None`, namely `UORED/Class_Cage`, `HUST/Class_44`,
+         `HUST/Class_46`, and `MFPT/Class_23`) are partitioned stratified by
+         `(dataset, raw_class)` into `pretrain_only_train` (80%) and `pretrain_only_val` (20%)
+         before self-supervised pretraining.
+      3. `pretrain_train = sorted(source_train + pretrain_only_train)` contains ALL
+         training windows of the active source recordings (both supervised head classes
+         and additional unsupervised-only classes) while excluding 100% of validation
+         recordings (`source_val` and `pretrain_only_val`), test recordings, and target data.
     """
     if not (0.0 < val_fraction < 1.0):
         raise ValueError("val_fraction must be in (0, 1).")
@@ -899,11 +998,28 @@ def create_source_recording_split(
 
     train_indices: List[int] = []
     val_indices: List[int] = []
+    pretrain_only_train_indices: List[int] = []
+    pretrain_only_val_indices: List[int] = []
+
     rec_counts_by_cls: Dict[str, Dict[str, int]] = defaultdict(
-        lambda: {"total": 0, "source_train": 0, "source_val": 0}
+        lambda: {
+            "total": 0,
+            "source_train": 0,
+            "source_val": 0,
+            "pretrain_only_train": 0,
+            "pretrain_only_val": 0,
+            "pretrain_train": 0,
+        }
     )
     win_counts_by_cls: Dict[str, Dict[str, int]] = defaultdict(
-        lambda: {"total": 0, "source_train": 0, "source_val": 0}
+        lambda: {
+            "total": 0,
+            "source_train": 0,
+            "source_val": 0,
+            "pretrain_only_train": 0,
+            "pretrain_only_val": 0,
+            "pretrain_train": 0,
+        }
     )
     recording_entries: List[RecordingEntryManifest] = []
 
@@ -939,11 +1055,12 @@ def create_source_recording_split(
         for r_key in tr_recs:
             w_idxs = rec_map[r_key]
             r0 = records[w_idxs[0]]
+            member_prefixes = sorted({records[i].recording_prefix for i in w_idxs})
             recording_entries.append(
                 RecordingEntryManifest(
                     dataset=r0.dataset,
                     recording_key=r_key,
-                    recording_prefix=r0.recording_prefix,
+                    recording_prefix="+".join(member_prefixes),
                     raw_class=r0.raw_class,
                     harmonized_class=cls_name,
                     condition=r0.condition,
@@ -955,11 +1072,12 @@ def create_source_recording_split(
         for r_key in val_recs:
             w_idxs = rec_map[r_key]
             r0 = records[w_idxs[0]]
+            member_prefixes = sorted({records[i].recording_prefix for i in w_idxs})
             recording_entries.append(
                 RecordingEntryManifest(
                     dataset=r0.dataset,
                     recording_key=r_key,
-                    recording_prefix=r0.recording_prefix,
+                    recording_prefix="+".join(member_prefixes),
                     raw_class=r0.raw_class,
                     harmonized_class=cls_name,
                     condition=r0.condition,
@@ -972,14 +1090,108 @@ def create_source_recording_split(
         rec_counts_by_cls[cls_name]["total"] += n_recs
         rec_counts_by_cls[cls_name]["source_train"] += len(tr_recs)
         rec_counts_by_cls[cls_name]["source_val"] += len(val_recs)
+        rec_counts_by_cls[cls_name]["pretrain_train"] += len(tr_recs)
 
         win_counts_by_cls[cls_name]["total"] += len(tr_wins) + len(val_wins)
         win_counts_by_cls[cls_name]["source_train"] += len(tr_wins)
         win_counts_by_cls[cls_name]["source_val"] += len(val_wins)
+        win_counts_by_cls[cls_name]["pretrain_train"] += len(tr_wins)
 
+    if include_additional_unsupervised_for_pretraining:
+        unsup_indices = [
+            idx for idx, r in enumerate(records) if r.harmonized_class_id is None
+        ]
+        unsup_group_to_rec_windows: Dict[Tuple[str, str], Dict[str, List[int]]] = defaultdict(
+            lambda: defaultdict(list)
+        )
+        for idx in unsup_indices:
+            rec = records[idx]
+            unsup_group_to_rec_windows[(rec.dataset, rec.raw_class)][
+                rec.recording_key
+            ].append(idx)
+
+        for (ds_name, raw_cls_name), rec_map in sorted(unsup_group_to_rec_windows.items()):
+            unique_recs = sorted(rec_map.keys())
+            n_recs = len(unique_recs)
+            if n_recs < 2:
+                raise InsufficientRecordingsError(
+                    f"Unsupervised pretraining class '{ds_name}/{raw_cls_name}' has only "
+                    f"{n_recs} recording(s); at least 2 are required for a recording-level split."
+                )
+            n_val = max(1, int(round(n_recs * val_fraction)))
+            if n_recs - n_val < 1:
+                n_val = n_recs - 1
+
+            seed_token = f"SRC_PRETRAIN::{source_config_id}::{ds_name}::{raw_cls_name}::{int(seed)}"
+            grp_seed = int(
+                hashlib.sha256(seed_token.encode("utf-8")).hexdigest()[:8], 16
+            )
+            rng = random.Random(grp_seed)
+            shuffled = list(unique_recs)
+            rng.shuffle(shuffled)
+
+            val_recs = sorted(shuffled[:n_val])
+            tr_recs = sorted(shuffled[n_val:])
+
+            tr_wins = [i for r_key in tr_recs for i in rec_map[r_key]]
+            val_wins = [i for r_key in val_recs for i in rec_map[r_key]]
+
+            pretrain_only_train_indices.extend(tr_wins)
+            pretrain_only_val_indices.extend(val_wins)
+
+            unsup_label = f"UNSUPERVISED_PRETRAIN_ONLY::{ds_name}::{raw_cls_name}"
+            for r_key in tr_recs:
+                w_idxs = rec_map[r_key]
+                r0 = records[w_idxs[0]]
+                member_prefixes = sorted({records[i].recording_prefix for i in w_idxs})
+                recording_entries.append(
+                    RecordingEntryManifest(
+                        dataset=r0.dataset,
+                        recording_key=r_key,
+                        recording_prefix="+".join(member_prefixes),
+                        raw_class=r0.raw_class,
+                        harmonized_class=unsup_label,
+                        condition=r0.condition,
+                        partition="pretrain_only_train",
+                        seed=int(seed),
+                        window_count=len(w_idxs),
+                    )
+                )
+            for r_key in val_recs:
+                w_idxs = rec_map[r_key]
+                r0 = records[w_idxs[0]]
+                member_prefixes = sorted({records[i].recording_prefix for i in w_idxs})
+                recording_entries.append(
+                    RecordingEntryManifest(
+                        dataset=r0.dataset,
+                        recording_key=r_key,
+                        recording_prefix="+".join(member_prefixes),
+                        raw_class=r0.raw_class,
+                        harmonized_class=unsup_label,
+                        condition=r0.condition,
+                        partition="pretrain_only_val",
+                        seed=int(seed),
+                        window_count=len(w_idxs),
+                    )
+                )
+
+            rec_counts_by_cls[unsup_label]["total"] += n_recs
+            rec_counts_by_cls[unsup_label]["pretrain_only_train"] += len(tr_recs)
+            rec_counts_by_cls[unsup_label]["pretrain_only_val"] += len(val_recs)
+            rec_counts_by_cls[unsup_label]["pretrain_train"] += len(tr_recs)
+
+            win_counts_by_cls[unsup_label]["total"] += len(tr_wins) + len(val_wins)
+            win_counts_by_cls[unsup_label]["pretrain_only_train"] += len(tr_wins)
+            win_counts_by_cls[unsup_label]["pretrain_only_val"] += len(val_wins)
+            win_counts_by_cls[unsup_label]["pretrain_train"] += len(tr_wins)
+
+    pretrain_train_all = sorted(train_indices + pretrain_only_train_indices)
     partitions: Dict[str, Tuple[int, ...]] = {
         "source_train": tuple(sorted(train_indices)),
         "source_val": tuple(sorted(val_indices)),
+        "pretrain_only_train": tuple(sorted(pretrain_only_train_indices)),
+        "pretrain_only_val": tuple(sorted(pretrain_only_val_indices)),
+        "pretrain_train": tuple(pretrain_train_all),
     }
     assert_zero_recording_overlap(records, partitions)
 
@@ -991,16 +1203,24 @@ def create_source_recording_split(
         k: tuple(records[i].sample_id for i in idxs)
         for k, idxs in partitions.items()
     }
-    total_recs = sum(len(v) for v in part_recs.values())
-    total_wins = sum(len(v) for v in part_samples.values())
+    total_sup_recs = len(part_recs["source_train"]) + len(part_recs["source_val"])
+    total_sup_wins = len(part_samples["source_train"]) + len(part_samples["source_val"])
+    total_all_recs = total_sup_recs + len(part_recs["pretrain_only_train"]) + len(part_recs["pretrain_only_val"])
+    total_all_wins = total_sup_wins + len(part_samples["pretrain_only_train"]) + len(part_samples["pretrain_only_val"])
 
     rec_props = {
-        k: (len(v) / float(total_recs) if total_recs > 0 else 0.0)
-        for k, v in part_recs.items()
+        "source_train": (len(part_recs["source_train"]) / float(total_sup_recs) if total_sup_recs > 0 else 0.0),
+        "source_val": (len(part_recs["source_val"]) / float(total_sup_recs) if total_sup_recs > 0 else 0.0),
+        "pretrain_train_of_all_source": (
+            len(part_recs["pretrain_train"]) / float(total_all_recs) if total_all_recs > 0 else 0.0
+        ),
     }
     win_props = {
-        k: (len(v) / float(total_wins) if total_wins > 0 else 0.0)
-        for k, v in part_samples.items()
+        "source_train": (len(part_samples["source_train"]) / float(total_sup_wins) if total_sup_wins > 0 else 0.0),
+        "source_val": (len(part_samples["source_val"]) / float(total_sup_wins) if total_sup_wins > 0 else 0.0),
+        "pretrain_train_of_all_source": (
+            len(part_samples["pretrain_train"]) / float(total_all_wins) if total_all_wins > 0 else 0.0
+        ),
     }
 
     sig_payload = json.dumps(
@@ -1296,12 +1516,49 @@ class DGRMSNormalizer:
         self,
         windows: Sequence[np.ndarray],
         target_dataset: Optional[str] = None,
+        target_unit: Optional[str] = None,
+        feature_mode: str = "full_141",
     ) -> List[np.ndarray]:
-        _ = target_dataset
+        """
+        Normalize target domain windows in DG using `self.global_target_rms_ref` (which is in
+        `m/s^2` when `aggregation_mode in ("geometric_mean_ms2", "strict_check_geometric_ms2")`):
+          - If `target_dataset` or `target_unit` has physical unit `"V"` (`PU`) and
+            `feature_mode == "full_141"`, raises `IncomparableSourceRMSReferenceError`
+            because applying an `m/s^2` reference to a signal in Volts without a calibrated
+            sensor sensitivity factor (`V -> m/s^2`) is physically invalid (Pending Item 1).
+          - If `target_dataset` or `target_unit` has physical unit `"g"` (`CWRU_12k`, `CWRU_48k`)
+            and `self.aggregation_mode` is in `m/s^2`, converts the target waveform from `g`
+            to `m/s^2` (`* 9.80665`) before dividing by `global_target_rms_ref` (`m/s^2`).
+        """
+        resolved_unit = (
+            str(target_unit).strip()
+            if target_unit is not None
+            else DATASET_PHYSICAL_UNITS.get(str(target_dataset or ""), "")
+        )
+        u_low = resolved_unit.lower()
+        is_ms2_ref = self.aggregation_mode in (
+            "geometric_mean_ms2",
+            "strict_check_geometric_ms2",
+        )
+        if is_ms2_ref and u_low in ("v", "volt", "volts", "voltage"):
+            if feature_mode == "full_141":
+                raise IncomparableSourceRMSReferenceError(
+                    f"DG 141-feature evaluation is blocked for target '{target_dataset or 'PU'}' "
+                    f"(physical unit '{resolved_unit}' = Volts) because source RMS_global "
+                    f"({self.global_target_rms_ref:.4f} m/s^2) is in m/s^2 and no verified "
+                    "sensor sensitivity factor (V -> m/s^2) is available. Use the 126-feature "
+                    "scale-invariant ablation or provide a verified physical calibration factor."
+                )
+
+        unit_multiplier = (
+            STANDARD_GRAVITY_MS2
+            if (is_ms2_ref and u_low in ("g", "g-force", "g_force"))
+            else 1.0
+        )
         denom = max(float(self.global_target_rms_ref), EPSILON_RMS)
         out: List[np.ndarray] = []
         for w in windows:
-            arr = np.asarray(w, dtype=np.float64).reshape(-1)
+            arr = np.asarray(w, dtype=np.float64).reshape(-1) * unit_multiplier
             if self.apply_detrend:
                 arr = np.asarray(detrend_linear_window(arr), dtype=np.float64)
             out.append((arr / denom).astype(np.float32))
@@ -2052,8 +2309,239 @@ def compute_hierarchical_source_balance(
 
 
 # =============================================================================
-# 7. VARIABLE-SPACE CLASSIFICATION HEADS, DA HEAD EXPANSION & METRIC ACCOUNTING
+# 7. SELF-SUPERVISED TABNET PRETRAINING (141 MAIN & 126 SCALE-INVARIANT ABLATION)
+#    AND VARIABLE-SPACE CLASSIFICATION HEADS / DA HEAD EXPANSION
 # =============================================================================
+
+
+@dataclass(frozen=True)
+class SelfSupervisedPretrainingInputs:
+    """
+    Leak-free self-supervised pretraining package for `TabNetPretrainer` (Pending Item 2):
+      - Built exclusively from `pretrain_train = sorted(source_train + pretrain_only_train)`
+        of the active source configuration (`S1`, `S2`, `S3`, or `S4`).
+      - Zero validation recordings (`source_val` and `pretrain_only_val`), zero test
+        recordings, zero target domain data, and zero class labels are exposed to
+        `TabNetPretrainer`.
+      - Supports both `"full_141"` (main configuration, `input_dim=141`) and
+        `"invariant_126"` (scale-invariant ablation, `input_dim=126`, with its own
+        dedicated `TabNetPretrainer`).
+    """
+
+    source_config_id: str
+    active_sources: Tuple[str, ...]
+    feature_mode: str
+    input_dim: int
+    X_pretrain_unlabeled: np.ndarray
+    pretrain_recording_keys: Tuple[str, ...]
+    pretrain_sample_ids: Tuple[str, ...]
+    supervised_train_recording_count: int
+    supervised_train_window_count: int
+    additional_unsupervised_recording_count: int
+    additional_unsupervised_window_count: int
+    additional_unsupervised_classes_by_source: Dict[str, List[str]]
+    additional_unsupervised_counts_by_class: Dict[str, Dict[str, int]]
+    excluded_validation_recording_keys: Tuple[str, ...]
+    labels_exposed_to_pretrainer: bool = False
+
+    def to_audit_dict(self) -> Dict[str, Any]:
+        return {
+            "source_config_id": self.source_config_id,
+            "active_sources": list(self.active_sources),
+            "feature_mode": self.feature_mode,
+            "input_dim": int(self.input_dim),
+            "n_pretrain_windows": int(self.X_pretrain_unlabeled.shape[0]),
+            "n_pretrain_recordings": len(self.pretrain_recording_keys),
+            "supervised_train_recording_count": int(self.supervised_train_recording_count),
+            "supervised_train_window_count": int(self.supervised_train_window_count),
+            "additional_unsupervised_recording_count": int(self.additional_unsupervised_recording_count),
+            "additional_unsupervised_window_count": int(self.additional_unsupervised_window_count),
+            "additional_unsupervised_classes_by_source": self.additional_unsupervised_classes_by_source,
+            "additional_unsupervised_counts_by_class": self.additional_unsupervised_counts_by_class,
+            "excluded_validation_recording_count": len(self.excluded_validation_recording_keys),
+            "labels_exposed_to_pretrainer": bool(self.labels_exposed_to_pretrainer),
+        }
+
+
+def prepare_self_supervised_pretraining_inputs(
+    records: Sequence[WindowRecord],
+    partitions: Mapping[str, Sequence[int]],
+    X_all_141: np.ndarray,
+    source_config_id: str,
+    feature_mode: str = "full_141",
+    scaler: Optional[StandardScaler] = None,
+) -> SelfSupervisedPretrainingInputs:
+    """
+    Construct the unlabeled feature matrix and provenance audit log for `TabNetPretrainer`
+    (Pending Item 2 & Pending Item 1):
+      1. Requires `records` and `partitions` produced by `create_source_recording_split(...)`
+         prior to pretraining.
+      2. Verifies that every record in `pretrain_train` belongs strictly to the active
+         sources of `source_config_id` (`SOURCE_CONFIGS[source_config_id]`) — never target
+         datasets or inactive sources.
+      3. Verifies zero recording and sample overlap between `pretrain_train` and
+         `source_val` / `pretrain_only_val`.
+      4. Projects features according to `feature_mode` (`"full_141"` -> 141 features;
+         `"invariant_126"` -> 126 scale-invariant features).
+      5. Never passes or stores labels for `TabNetPretrainer`.
+    """
+    if source_config_id not in SOURCE_CONFIGS:
+        raise KeyError(f"Unknown source_config_id '{source_config_id}'.")
+    active_sources = SOURCE_CONFIGS[source_config_id]
+    active_set = set(active_sources)
+
+    arr_141 = np.asarray(X_all_141, dtype=np.float32)
+    if arr_141.ndim != 2 or arr_141.shape[0] != len(records) or arr_141.shape[1] != 141:
+        raise ValueError(
+            f"X_all_141 shape {arr_141.shape} must match (len(records)={len(records)}, 141)."
+        )
+
+    pretrain_idxs = tuple(int(i) for i in partitions.get("pretrain_train", ()))
+    sup_train_idxs = set(int(i) for i in partitions.get("source_train", ()))
+    unsup_train_idxs = set(int(i) for i in partitions.get("pretrain_only_train", ()))
+    sup_val_idxs = set(int(i) for i in partitions.get("source_val", ()))
+    unsup_val_idxs = set(int(i) for i in partitions.get("pretrain_only_val", ()))
+    all_val_idxs = sup_val_idxs | unsup_val_idxs
+
+    if not pretrain_idxs:
+        raise ValueError("pretrain_train partition cannot be empty.")
+    if set(pretrain_idxs) != (sup_train_idxs | unsup_train_idxs):
+        raise ValueError(
+            "pretrain_train must equal the disjoint union of source_train and pretrain_only_train."
+        )
+    if set(pretrain_idxs) & all_val_idxs:
+        raise ValueError("Validation window leakage detected in pretrain_train!")
+
+    pretrain_recs = {records[i].recording_key for i in pretrain_idxs}
+    val_recs = {records[i].recording_key for i in all_val_idxs}
+    if pretrain_recs & val_recs:
+        raise ValueError(
+            f"Validation recording leakage detected in pretrain_train: {sorted(pretrain_recs & val_recs)}"
+        )
+
+    non_active_datasets = {
+        records[i].dataset for i in pretrain_idxs if records[i].dataset not in active_set
+    }
+    if non_active_datasets:
+        raise ValueError(
+            f"Non-active or target dataset(s) detected in pretrain_train for {source_config_id}: "
+            f"{sorted(non_active_datasets)}"
+        )
+
+    X_selected = select_feature_subset_for_ablation(arr_141, mode=feature_mode)
+    if scaler is not None:
+        X_pre = scaler.transform(X_selected[list(pretrain_idxs)]).astype(np.float32)
+    else:
+        X_pre = X_selected[list(pretrain_idxs)].astype(np.float32)
+
+    # Trim single remainder sample if len(X_pre) % batch_size == 1 is handled at fit time
+    add_classes_by_src: Dict[str, List[str]] = defaultdict(list)
+    add_counts_by_cls: Dict[str, Dict[str, int]] = {}
+    for s_name in active_sources:
+        raw_unsup_classes = sorted(
+            {
+                records[i].raw_class
+                for i in range(len(records))
+                if records[i].dataset == s_name and records[i].harmonized_class_id is None
+            }
+        )
+        add_classes_by_src[s_name] = raw_unsup_classes
+        for raw_c in raw_unsup_classes:
+            key = f"{s_name}::{raw_c}"
+            tr_w = [
+                i
+                for i in unsup_train_idxs
+                if records[i].dataset == s_name and records[i].raw_class == raw_c
+            ]
+            val_w = [
+                i
+                for i in unsup_val_idxs
+                if records[i].dataset == s_name and records[i].raw_class == raw_c
+            ]
+            add_counts_by_cls[key] = {
+                "pretrain_train_recordings": len({records[i].recording_key for i in tr_w}),
+                "pretrain_train_windows": len(tr_w),
+                "excluded_val_recordings": len({records[i].recording_key for i in val_w}),
+                "excluded_val_windows": len(val_w),
+            }
+
+    return SelfSupervisedPretrainingInputs(
+        source_config_id=source_config_id,
+        active_sources=tuple(active_sources),
+        feature_mode=feature_mode,
+        input_dim=int(X_pre.shape[1]),
+        X_pretrain_unlabeled=X_pre,
+        pretrain_recording_keys=tuple(sorted(pretrain_recs)),
+        pretrain_sample_ids=tuple(records[i].sample_id for i in pretrain_idxs),
+        supervised_train_recording_count=len({records[i].recording_key for i in sup_train_idxs}),
+        supervised_train_window_count=len(sup_train_idxs),
+        additional_unsupervised_recording_count=len({records[i].recording_key for i in unsup_train_idxs}),
+        additional_unsupervised_window_count=len(unsup_train_idxs),
+        additional_unsupervised_classes_by_source=dict(add_classes_by_src),
+        additional_unsupervised_counts_by_class=add_counts_by_cls,
+        excluded_validation_recording_keys=tuple(sorted(val_recs)),
+        labels_exposed_to_pretrainer=False,
+    )
+
+
+def fit_self_supervised_tabnet_pretrainer(
+    pretrain_inputs: SelfSupervisedPretrainingInputs,
+    seed: int = 42,
+    max_epochs: int = 30,
+    batch_size: int = 64,
+    pretraining_ratio: float = 0.5,
+    tabnet_params: Optional[Mapping[str, Any]] = None,
+) -> Tuple[Any, Dict[str, Any]]:
+    """
+    Instantiate and fit a dedicated `TabNetPretrainer` (`141` features for `"full_141"`
+    or `126` features for `"invariant_126"`, never sharing checkpoints across dimensions)
+    using ONLY `pretrain_inputs.X_pretrain_unlabeled` (zero labels, zero validation
+    recordings, zero target data).
+    """
+    from pytorch_tabnet.pretraining import TabNetPretrainer
+    import torch
+
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+
+    hp = dict(tabnet_params or {})
+    pretrainer = TabNetPretrainer(
+        n_d=int(hp.get("n_d", 16)),
+        n_a=int(hp.get("n_a", 16)),
+        n_steps=int(hp.get("n_steps", 4)),
+        gamma=float(hp.get("gamma", 1.3)),
+        n_independent=int(hp.get("n_independent", 2)),
+        n_shared=int(hp.get("n_shared", 2)),
+        mask_type=str(hp.get("mask_type", "sparsemax")),
+        seed=int(seed),
+        verbose=0,
+    )
+    X_fit, trim_meta = trim_single_remainder_sample(
+        pretrain_inputs.X_pretrain_unlabeled,
+        None,
+        batch_size=int(batch_size),
+    )
+    eff_bs = min(int(batch_size), max(2, len(X_fit)))
+    eff_vbs = min(eff_bs, max(2, len(X_fit) // 2))
+    pretrainer.fit(
+        X_train=np.asarray(X_fit, dtype=np.float32),
+        max_epochs=int(max_epochs),
+        batch_size=eff_bs,
+        virtual_batch_size=eff_vbs,
+        pretraining_ratio=float(pretraining_ratio),
+        drop_last=False,
+    )
+    audit = pretrain_inputs.to_audit_dict()
+    audit["input_dim_verified"] = int(pretrainer.network.input_dim)
+    audit["batch_trim_metadata"] = trim_meta
+    if int(pretrainer.network.input_dim) != int(pretrain_inputs.input_dim):
+        raise AssertionError(
+            f"TabNetPretrainer input_dim ({pretrainer.network.input_dim}) != "
+            f"expected ({pretrain_inputs.input_dim})"
+        )
+    return pretrainer, audit
+
 
 
 def extract_tabnet_latent_features(
