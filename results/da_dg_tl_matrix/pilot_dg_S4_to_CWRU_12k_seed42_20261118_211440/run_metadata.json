@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0.0",
+  "timestamp_utc": "2026-11-18T21:14:40.920258+00:00",
+  "git_commit": "95e13c3b47bd567206978100d183be92b233fc11",
+  "git_branch": "main",
+  "git_dirty": true,
+  "command_argv": [
+    "src/experiments/run_dg_pilot.py",
+    "--source-config",
+    "S4",
+    "--target",
+    "CWRU_12k",
+    "--seed",
+    "42"
+  ],
+  "command_str": "src/experiments/run_dg_pilot.py --source-config S4 --target CWRU_12k --seed 42",
+  "python_version": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "platform": "Linux-6.8.0-65-generic-x86_64-with-glibc2.35",
+  "seeds": [
+    42
+  ],
+  "dependency_versions": {
+    "numpy": "1.26.4",
+    "scipy": "1.15.3",
+    "pandas": "1.5.3",
+    "scikit-learn": "1.6.1",
+    "imbalanced-learn": "0.13.0",
+    "xgboost": "3.2.0",
+    "torch": "2.12.1",
+    "pytorch-tabnet": "4.1.0",
+    "PyWavelets": "1.8.0",
+    "EMD-signal": null,
+    "matplotlib": "3.10.3",
+    "seaborn": "0.13.2",
+    "PyYAML": "5.4.1"
+  },
+  "script_hashes_sha256": {
+    "src/experiments/run_dg_pilot.py": "c7e7009ba06323f072dc4a8777eea99a8742fa4767a094055c38af00751c5f21",
+    "src/vibnet/evaluation/da_dg_tl_protocol.py": "72da3021fe14718dfc03ccb7f4a9f1241582d47d5cce60484a2475345869da5c",
+    "configs/da_dg_tl_matrix.yaml": "52188ed7c4868da1a9cb62f4a5509eef0299fb7d49fa41870ee4e98db6b40b97"
+  },
+  "config": {
+    "protocol": "DG",
+    "source_config_id": "S4",
+    "active_sources": [
+      "UORED",
+      "HUST",
+      "MFPT"
+    ],
+    "target_dataset": "CWRU_12k",
+    "seed": 42,
+    "feature_dimension": 141,
+    "feature_mode": "full_141",
+    "source_roots_used": {
+      "UORED": "/home/vfrocha/VibNet-1D/data/processed/UORED",
+      "HUST": "/home/vfrocha/VibNet-1D/data/processed/HUST",
+      "MFPT": "/home/vfrocha/VibNet-1D/data/processed_tl/detrended/MFPT"
+    },
+    "target_root_used": "/home/vfrocha/VibNet-1D/data/processed/CWRU_12k",
+    "sampling_rates_hz": {
+      "UORED": 42000,
+      "HUST": 51200,
+      "MFPT": 48828,
+      "CWRU_12k": 12000
+    },
+    "physical_units": {
+      "UORED": "m/s^2",
+      "HUST": "m/s^2",
+      "MFPT": "g",
+      "CWRU_12k": "g"
+    },
+    "tabnet_hyperparameters": {
+      "n_d": 16,
+      "n_a": 16,
+      "n_steps": 4,
+      "gamma": 1.3,
+      "n_independent": 2,
+      "n_shared": 2,
+      "mask_type": "sparsemax",
+      "pretrain_epochs": 30,
+      "head_max_epochs": 40,
+      "head_patience": 10,
+      "batch_size": 64,
+      "lr_pretrain": 0.02,
+      "lr_head_source": 0.01,
+      "lr_head_da": 0.005,
+      "lr_tl_finetune": 0.01
+    },
+    "standard_scaler_scope": "source_pretrain_train_only",
+    "source_balancing_mode": "hierarchical_weights",
+    "encoder_frozen": true,
+    "target_statistics_used": false
+  },
+  "fold_accounting": {
+    "expected_folds": 0,
+    "valid_folds": 0,
+    "failed_folds": 0,
+    "error_breakdown": {}
+  }
+}

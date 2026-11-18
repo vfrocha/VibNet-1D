@@ -1500,13 +1500,52 @@ class DGRMSNormalizer:
         self,
         source_name: str,
         windows: Sequence[np.ndarray],
+        source_unit: Optional[str] = None,
+        feature_mode: str = "full_141",
     ) -> List[np.ndarray]:
+        """
+        Normalize source domain windows in DG using the EXACT same global geometric
+        RMS reference (`self.global_target_rms_ref`) used for the target domain:
+          - Preserves domain separation (`source_name` must belong to the active sources).
+          - When `aggregation_mode in ("geometric_mean_ms2", "strict_check_geometric_ms2")`,
+            converts source waveforms in `"g"` (e.g., `MFPT`) to `m/s^2` (`* 9.80665`)
+            before dividing by `self.global_target_rms_ref` (in `m/s^2`), ensuring
+            sources and target share an identical physical amplitude scale.
+          - Preserves linear `detrend` when `self.apply_detrend=True`.
+          - Never uses any target domain statistics.
+        """
         if source_name not in self.source_rms_refs:
             raise KeyError(f"Unknown source dataset '{source_name}'.")
-        denom = max(float(self.source_rms_refs[source_name]), EPSILON_RMS)
+        resolved_unit = (
+            str(source_unit).strip()
+            if source_unit is not None
+            else str(
+                self.source_units.get(
+                    source_name, DATASET_PHYSICAL_UNITS.get(source_name, "")
+                )
+            ).strip()
+        )
+        u_low = resolved_unit.lower()
+        is_ms2_ref = self.aggregation_mode in (
+            "geometric_mean_ms2",
+            "strict_check_geometric_ms2",
+        )
+        if is_ms2_ref and u_low in ("v", "volt", "volts", "voltage"):
+            if feature_mode == "full_141":
+                raise IncomparableSourceRMSReferenceError(
+                    f"DG 141-feature normalization is blocked for source '{source_name}' "
+                    f"(physical unit '{resolved_unit}' = Volts) under m/s^2 global reference."
+                )
+
+        unit_multiplier = (
+            STANDARD_GRAVITY_MS2
+            if (is_ms2_ref and u_low in ("g", "g-force", "g_force"))
+            else 1.0
+        )
+        denom = max(float(self.global_target_rms_ref), EPSILON_RMS)
         out: List[np.ndarray] = []
         for w in windows:
-            arr = np.asarray(w, dtype=np.float64).reshape(-1)
+            arr = np.asarray(w, dtype=np.float64).reshape(-1) * unit_multiplier
             if self.apply_detrend:
                 arr = np.asarray(detrend_linear_window(arr), dtype=np.float64)
             out.append((arr / denom).astype(np.float32))
@@ -2517,15 +2556,21 @@ def fit_self_supervised_tabnet_pretrainer(
         seed=int(seed),
         verbose=0,
     )
-    X_fit, trim_meta = trim_single_remainder_sample(
-        pretrain_inputs.X_pretrain_unlabeled,
-        None,
-        batch_size=int(batch_size),
-    )
+    X_fit = np.asarray(pretrain_inputs.X_pretrain_unlabeled, dtype=np.float32)
     eff_bs = min(int(batch_size), max(2, len(X_fit)))
+    trimmed = False
+    if len(X_fit) > 1 and (len(X_fit) % eff_bs) == 1:
+        X_fit = X_fit[:-1]
+        trimmed = True
+    trim_meta = {
+        "trimmed_single_remainder": trimmed,
+        "original_len": int(len(pretrain_inputs.X_pretrain_unlabeled)),
+        "effective_len": int(len(X_fit)),
+        "batch_size": int(eff_bs),
+    }
     eff_vbs = min(eff_bs, max(2, len(X_fit) // 2))
     pretrainer.fit(
-        X_train=np.asarray(X_fit, dtype=np.float32),
+        X_train=X_fit,
         max_epochs=int(max_epochs),
         batch_size=eff_bs,
         virtual_batch_size=eff_vbs,

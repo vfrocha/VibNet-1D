@@ -71,15 +71,18 @@ from src.vibnet.evaluation.da_dg_tl_protocol import (
     expand_head_for_da_target,
     fit_da_rms_normalizer,
     fit_dg_rms_normalizer,
+    fit_self_supervised_tabnet_pretrainer,
     fit_source_only_standard_scaler,
     get_141_feature_scale_invariance_catalog,
     get_scale_invariant_126_indices,
     get_scale_sensitive_15_indices,
     get_source_config_classes,
+    load_dataset_window_records,
     map_to_harmonized_class,
     parse_window_filename,
     predict_with_variable_class_head,
     prepare_isolated_mfpt_detrended_rms,
+    prepare_self_supervised_pretraining_inputs,
     select_feature_subset_for_ablation,
     train_eval_classical_da_dg_baseline,
     train_variable_class_head_with_frozen_tabnet_encoder,
@@ -820,27 +823,40 @@ class TestDADGTLProtocol(unittest.TestCase):
         det_mfpt_dir = PROJECT_ROOT / "data" / "processed_tl" / "detrended" / "MFPT"
         rms_mfpt_dir = PROJECT_ROOT / "data" / "processed_tl" / "detrended_rms" / "MFPT"
 
-        if orig_mfpt_dir.is_dir() and rms_mfpt_dir.is_dir():
-            orig_files = list(orig_mfpt_dir.rglob("*.npy"))
-            det_files = list(det_mfpt_dir.rglob("*.npy"))
-            rms_files = list(rms_mfpt_dir.rglob("*.npy"))
+        # Mandatory existence checks — never silently pass if expected MFPT data is missing
+        self.assertTrue(
+            orig_mfpt_dir.is_dir(),
+            f"Mandatory MFPT original directory missing: {orig_mfpt_dir}",
+        )
+        self.assertTrue(
+            det_mfpt_dir.is_dir(),
+            f"Mandatory harmonized detrended MFPT directory missing: {det_mfpt_dir}",
+        )
+        self.assertTrue(
+            rms_mfpt_dir.is_dir(),
+            f"Mandatory harmonized detrended_rms MFPT directory missing: {rms_mfpt_dir}",
+        )
 
-            self.assertEqual(len(orig_files), 114)
-            self.assertEqual(len(det_files), 78)
-            self.assertEqual(len(rms_files), 78)
+        orig_files = list(orig_mfpt_dir.rglob("*.npy"))
+        det_files = list(det_mfpt_dir.rglob("*.npy"))
+        rms_files = list(rms_mfpt_dir.rglob("*.npy"))
 
-            cls_counts = {"Class_23": 0, "Class_24": 0, "Class_25": 0}
-            normal_rms_vals = []
-            for fp in rms_files:
-                arr = np.load(fp, allow_pickle=False)
-                self.assertEqual(arr.shape, (48828,))
-                cls_name = fp.parent.name
-                cls_counts[cls_name] = cls_counts.get(cls_name, 0) + 1
-                if cls_name == "Class_23":
-                    normal_rms_vals.append(float(np.sqrt(np.mean(np.square(arr)))))
+        self.assertEqual(len(orig_files), 114)
+        self.assertEqual(len(det_files), 78)
+        self.assertEqual(len(rms_files), 78)
 
-            self.assertEqual(cls_counts, {"Class_23": 18, "Class_24": 21, "Class_25": 39})
-            self.assertAlmostEqual(float(np.mean(normal_rms_vals)), 1.0, places=6)
+        cls_counts = {"Class_23": 0, "Class_24": 0, "Class_25": 0}
+        normal_rms_vals = []
+        for fp in rms_files:
+            arr = np.load(fp, allow_pickle=False)
+            self.assertEqual(arr.shape, (48828,))
+            cls_name = fp.parent.name
+            cls_counts[cls_name] = cls_counts.get(cls_name, 0) + 1
+            if cls_name == "Class_23":
+                normal_rms_vals.append(float(np.sqrt(np.mean(np.square(arr)))))
+
+        self.assertEqual(cls_counts, {"Class_23": 18, "Class_24": 21, "Class_25": 39})
+        self.assertAlmostEqual(float(np.mean(normal_rms_vals)), 1.0, places=6)
 
     def test_17_non_overwriting_result_directories(self) -> None:
         """
@@ -863,6 +879,241 @@ class TestDADGTLProtocol(unittest.TestCase):
             self.assertEqual(
                 (dir_2 / "results.csv").read_text(encoding="utf-8"), "run2\n"
             )
+
+    def test_18_pu_sha256_duplicate_grouping_mandatory(self) -> None:
+        """
+        Test 18 (Mandatory on-disk check — never passes silently if PU is absent):
+          - Verify that the 3 SHA-256 identical recording groups in `PU` (`Class_27`):
+              * C2: s00194 and s00198
+              * C4: s00180, s00204, and s00224
+              * C4: s00196 and s00220
+            share the same canonical `recording_key` and `recording_sha256`.
+          - Verify that `PU` has 1,623 independent recording units across 1,627 physical
+            recordings (`955` independent units in `Outer / Class_27`) without deleting
+            any original `.npy` file (`6,508` windows preserved).
+          - Verify that for all canonical seeds (`42`, `123`, `2026`), zero SHA-256
+            duplicate groups are ever split between `adapt` and `test`.
+        """
+        rms_root = PROJECT_ROOT / "data" / "processed_tl" / "detrended_rms"
+        pu_dir = rms_root / "PU"
+        self.assertTrue(
+            pu_dir.is_dir(),
+            f"Mandatory PU directory missing: {pu_dir}",
+        )
+
+        pu_records, _ = load_dataset_window_records(
+            dataset_name="PU",
+            data_root=rms_root,
+            load_waveforms=False,
+            deduplicate_identical_recordings_by_sha256=True,
+        )
+        self.assertEqual(len(pu_records), 6476)
+
+        unique_physical_recs = {
+            (r.condition, r.raw_class, r.recording_prefix) for r in pu_records
+        }
+        unique_independent_keys = {r.recording_key for r in pu_records}
+        self.assertEqual(len(unique_physical_recs), 1627)
+        self.assertEqual(len(unique_independent_keys), 1623)
+
+        expected_dup_groups = [
+            ("C2_900rpm_0.7Nm_1000N", "Class_27", ("s00194", "s00198")),
+            ("C4_1500rpm_0.7Nm_400N", "Class_27", ("s00180", "s00204", "s00224")),
+            ("C4_1500rpm_0.7Nm_400N", "Class_27", ("s00196", "s00220")),
+        ]
+        for cond, raw_cls, prefixes in expected_dup_groups:
+            group_recs = [
+                r
+                for r in pu_records
+                if r.condition == cond
+                and r.raw_class == raw_cls
+                and r.recording_prefix in prefixes
+            ]
+            self.assertEqual(len(group_recs), 4 * len(prefixes))
+            self.assertEqual(len({r.recording_key for r in group_recs}), 1)
+            self.assertEqual(len({r.recording_sha256 for r in group_recs}), 1)
+            self.assertIn("sha256grp_", group_recs[0].recording_key)
+
+        for seed in (42, 123, 2026):
+            parts, man = create_da_recording_split(pu_records, seed=seed)
+            assert_zero_recording_overlap(pu_records, parts)
+            self.assertEqual(man.recording_counts_by_class["Outer"]["total"], 955)
+            adapt_shas = {pu_records[i].recording_sha256 for i in parts["adapt"]}
+            test_shas = {pu_records[i].recording_sha256 for i in parts["test"]}
+            self.assertEqual(
+                len(adapt_shas & test_shas),
+                0,
+                f"SHA-256 duplicate recording leaked between adapt and test for seed={seed}!",
+            )
+
+    def test_19_dg_rms_normalizer_unified_global_geometric_ref_and_pu_block(self) -> None:
+        """
+        Test 19:
+          - Verify that `DGRMSNormalizer` applies the EXACT same global geometric
+            RMS reference (`global_target_rms_ref` in m/s^2) to BOTH sources
+            (`transform_source_windows`) and targets (`transform_target_windows`),
+            converting `"g"` waveforms to `m/s^2` (`* 9.80665`) for both sources
+            (MFPT) and targets (CWRU_12k, CWRU_48k) while preserving linear `detrend`.
+          - Verify that `PU` (`unit="V"`) is explicitly blocked under 141-feature DG.
+        """
+        from src.vibnet.preprocessing.signal_norm import detrend_linear_window
+
+        t = np.linspace(0.0, 1.0, 512, endpoint=False)
+        base_wave = np.sqrt(2.0) * np.sin(2.0 * np.pi * 15.0 * t)
+        base_detrended_rms = float(
+            np.sqrt(np.mean(np.square(detrend_linear_window(base_wave))))
+        )
+        # Add linear trend to verify detrend is preserved
+        trend = 3.0 * t - 1.5
+        w_uored = 5.85 * base_wave + trend          # m/s^2
+        w_hust = 0.181 * base_wave + trend          # m/s^2
+        w_mfpt = 0.767595 * base_wave + trend       # g -> * 9.80665 m/s^2
+        w_cwru = 0.25 * base_wave + trend           # g -> * 9.80665 m/s^2
+
+        dg_norm = fit_dg_rms_normalizer(
+            source_normal_windows={
+                "UORED": [w_uored],
+                "HUST": [w_hust],
+                "MFPT": [w_mfpt],
+            },
+            source_units={"UORED": "m/s^2", "HUST": "m/s^2", "MFPT": "g"},
+            aggregation_mode="geometric_mean_ms2",
+            apply_detrend=True,
+        )
+        r_uored = 5.85 * base_detrended_rms
+        r_hust = 0.181 * base_detrended_rms
+        r_mfpt_ms2 = 0.767595 * base_detrended_rms * STANDARD_GRAVITY_MS2
+        r_cwru_ms2 = 0.25 * base_detrended_rms * STANDARD_GRAVITY_MS2
+        expected_global_ms2 = float(
+            np.exp(np.mean(np.log([r_uored, r_hust, r_mfpt_ms2])))
+        )
+        self.assertAlmostEqual(dg_norm.global_target_rms_ref, expected_global_ms2, places=6)
+
+        # Sources must be normalized by the SAME global_target_rms_ref (with g->m/s^2 for MFPT)
+        uored_out = dg_norm.transform_source_windows("UORED", [w_uored])[0]
+        hust_out = dg_norm.transform_source_windows("HUST", [w_hust])[0]
+        mfpt_out = dg_norm.transform_source_windows("MFPT", [w_mfpt])[0]
+        cwru_out = dg_norm.transform_target_windows([w_cwru], target_dataset="CWRU_12k")[0]
+
+        self.assertAlmostEqual(
+            float(np.sqrt(np.mean(np.square(uored_out)))),
+            r_uored / expected_global_ms2,
+            places=5,
+        )
+        self.assertAlmostEqual(
+            float(np.sqrt(np.mean(np.square(hust_out)))),
+            r_hust / expected_global_ms2,
+            places=5,
+        )
+        self.assertAlmostEqual(
+            float(np.sqrt(np.mean(np.square(mfpt_out)))),
+            r_mfpt_ms2 / expected_global_ms2,
+            places=5,
+        )
+        self.assertAlmostEqual(
+            float(np.sqrt(np.mean(np.square(cwru_out)))),
+            r_cwru_ms2 / expected_global_ms2,
+            places=5,
+        )
+
+        # PU (Volts) must be blocked in 141-feature DG
+        with self.assertRaises(IncomparableSourceRMSReferenceError):
+            dg_norm.transform_target_windows(
+                [w_cwru], target_dataset="PU", feature_mode="full_141"
+            )
+
+    def test_20_self_supervised_pretraining_partition_and_leak_free_inputs(self) -> None:
+        """
+        Test 20:
+          - Verify `create_source_recording_split` partitions additional unsupervised
+            source classes (`UORED/Class_Cage`, `HUST/Class_44`, `HUST/Class_46`,
+            `MFPT/Class_23`) into 80% `pretrain_only_train` and 20% `pretrain_only_val`
+            before self-supervised pretraining.
+          - Verify `prepare_self_supervised_pretraining_inputs` includes
+            `source_train ∪ pretrain_only_train`, excludes 100% of validation recordings,
+            never exposes labels, and supports both `full_141` and `invariant_126`.
+        """
+        uored_recs, _ = _make_synthetic_dataset_records(
+            dataset="UORED",
+            raw_classes_and_recordings=[
+                ("Class_Normal", 10, 4),
+                ("Class_Ball", 10, 4),
+                ("Class_Cage", 5, 4),
+            ],
+            seed=42,
+        )
+        hust_recs, _ = _make_synthetic_dataset_records(
+            dataset="HUST",
+            raw_classes_and_recordings=[
+                ("Class_Normal", 5, 4),
+                ("Class_43", 5, 4),
+                ("Class_41", 5, 4),
+                ("Class_42", 5, 4),
+                ("Class_45", 5, 4),
+                ("Class_44", 5, 4),
+                ("Class_46", 5, 4),
+            ],
+            seed=43,
+        )
+        mfpt_recs, _ = _make_synthetic_dataset_records(
+            dataset="MFPT",
+            raw_classes_and_recordings=[
+                ("Class_23", 3, 4),
+                ("Class_24", 5, 4),
+                ("Class_25", 5, 4),
+            ],
+            seed=44,
+        )
+        all_s4_recs = uored_recs + hust_recs + mfpt_recs
+        parts, man = create_source_recording_split(
+            records=all_s4_recs, seed=42, val_fraction=0.20, source_config_id="S4"
+        )
+        assert_zero_recording_overlap(all_s4_recs, parts)
+
+        rng = np.random.default_rng(42)
+        X_141 = rng.normal(0.0, 1.0, size=(len(all_s4_recs), 141)).astype(np.float32)
+
+        pre_141 = prepare_self_supervised_pretraining_inputs(
+            records=all_s4_recs,
+            partitions=parts,
+            X_all_141=X_141,
+            source_config_id="S4",
+            feature_mode="full_141",
+        )
+        self.assertEqual(pre_141.input_dim, 141)
+        self.assertFalse(pre_141.labels_exposed_to_pretrainer)
+        self.assertEqual(pre_141.additional_unsupervised_classes_by_source["UORED"], ["Class_Cage"])
+        self.assertEqual(
+            pre_141.additional_unsupervised_classes_by_source["HUST"],
+            ["Class_44", "Class_46"],
+        )
+        self.assertEqual(pre_141.additional_unsupervised_classes_by_source["MFPT"], ["Class_23"])
+        self.assertEqual(
+            len(set(pre_141.pretrain_recording_keys) & set(pre_141.excluded_validation_recording_keys)),
+            0,
+        )
+
+        # Verify 126-feature scale-invariant ablation input prep produces exact 126 dims
+        pre_126 = prepare_self_supervised_pretraining_inputs(
+            records=all_s4_recs,
+            partitions=parts,
+            X_all_141=X_141,
+            source_config_id="S4",
+            feature_mode="invariant_126",
+        )
+        self.assertEqual(pre_126.input_dim, 126)
+        self.assertEqual(pre_126.X_pretrain_unlabeled.shape[1], 126)
+
+        # Verify actual unsupervised TabNetPretrainer fit runs cleanly on 126 dims
+        pt_126, audit_126 = fit_self_supervised_tabnet_pretrainer(
+            pretrain_inputs=pre_126,
+            seed=42,
+            max_epochs=2,
+            batch_size=32,
+        )
+        self.assertEqual(audit_126["input_dim_verified"], 126)
+        self.assertFalse(audit_126["labels_exposed_to_pretrainer"])
+        self.assertEqual(int(pt_126.network.input_dim), 126)
 
 
 if __name__ == "__main__":
