@@ -5,6 +5,8 @@
 experiment_id: "da_dg_tl_matrix"
 preprocessing_variant: "detrended_rms"
 feature_dimension: 141
+scale_invariant_ablation_dimension: 126
+scale_sensitive_feature_dimension: 15
 seeds:
   - 42
   - 123
@@ -14,16 +16,24 @@ seeds:
 source_configurations:
   S1:
     sources: ["UORED"]
-    description: "UORED individually (Normal, Ball)"
+    available_classes: ["Normal", "Ball"]
+    head_output_dim: 2
+    description: "UORED individually (2-class head: Normal, Ball)"
   S2:
     sources: ["HUST"]
-    description: "HUST Bearing individually (Normal, Ball, Inner, Outer, Inner & Outer)"
+    available_classes: ["Normal", "Ball", "Inner", "Outer", "Inner & Outer"]
+    head_output_dim: 5
+    description: "HUST Bearing individually (5-class head: Normal, Ball, Inner, Outer, Inner & Outer)"
   S3:
     sources: ["MFPT"]
-    description: "MFPT individually (Inner, Outer; Class_23 Normal used for RMS_ref)"
+    available_classes: ["Inner", "Outer"]
+    head_output_dim: 2
+    description: "MFPT individually (2-class head: Inner, Outer; Class_23 Normal used for RMS_ref)"
   S4:
     sources: ["UORED", "HUST", "MFPT"]
-    description: "UORED + HUST Bearing + MFPT combined (all 5 classes covered)"
+    available_classes: ["Normal", "Ball", "Inner", "Outer", "Inner & Outer"]
+    head_output_dim: 5
+    description: "UORED + HUST Bearing + MFPT combined (5-class head: all 5 harmonized classes)"
 
 # 2. Target datasets by protocol
 targets:
@@ -42,17 +52,20 @@ targets:
     - "HUST_Gearbox"
     - "UOEMD"
 
-# 3. Fixed 5-class harmonized bearing vocabulary for DA and DG
+# 3. Harmonized bearing vocabulary & variable head output rules (Section 3)
 harmonized_vocabulary:
-  num_classes: 5
-  classes:
+  canonical_classes:
     0: "Normal"
     1: "Ball"
     2: "Inner"
     3: "Outer"
     4: "Inner & Outer"
   keep_compound_inner_outer_independent: true
-  mask_unobserved_source_classes_in_dg: true
+  group_fault_severities: true
+  impose_five_outputs_on_all_initial_heads: false
+  dg_head_policy: "keep_exact_source_class_space_without_expansion"
+  da_head_policy: "expand_for_target_classes_preserving_shared_weights_by_canonical_name"
+  count_unknown_target_classes_as_error_in_dg: true
   count_absent_target_class_predictions_as_error: true
 
 # 4. Recording-level split & normalization policies
@@ -61,20 +74,33 @@ protocols:
     split_unit: "recording_key"
     adaptation_fraction_per_class: 0.20
     test_fraction_per_class: 0.80
-    adaptation_val_fraction_within_adaptation: 0.20
+    adaptation_val_fraction_within_adaptation: 0.00
+    cwru_12k_normal_exception:
+      total_recordings: 8
+      adaptation_recordings: 2
+      test_recordings: 6
+      split_adaptation_into_train_val: false
+    cwru_48k_normal_exception:
+      calibration_mode: "external_related_domain_adaptation_normal"
+      reference_domain: "CWRU_12k"
+      reference_scope: "cwru_12k_adaptation_normal_recordings_only"
+      forbid_cwru_12k_val_or_test_recordings: true
     rms_reference_scope: "adaptation_normal_only"
     encoder_frozen: true
-    head_initialization: "copy_from_source_head"
-    early_stopping_scope: "adaptation_val_only"
+    head_initialization: "expand_from_source_head_by_canonical_name"
+    epoch_and_hyperparameter_selection_scope: "source_val_only"
 
   DG:
     split_unit: "recording_key"
     source_val_fraction: 0.20
     target_test_fraction: 1.00
     rms_reference_scope: "sources_only"
-    dg_rms_aggregation_mode: "strict_check_arithmetic"
+    unit_conversion_before_aggregation: "1 g = 9.80665 m/s^2"
+    dg_rms_aggregation_mode: "geometric_mean_ms2"
+    dg_rms_formula: "RMS_global = exp(mean(log(RMS_ref_i_ms2)))"
+    standard_scaler_scope: "source_train_only"
     encoder_frozen: true
-    head_initialization: "trained_on_sources_only"
+    head_initialization: "trained_on_sources_only_no_expansion"
     early_stopping_scope: "source_val_only"
     zero_target_statistics_enforced: true
 
@@ -96,12 +122,21 @@ source_balancing:
   apply_to_validation_or_test: false
   forbid_cross_domain_smote: true
 
-# 6. Models and hyperparameters
+# 6. Models, baselines and hyperparameters
 models:
   primary_transfer_model: "TabNet"
   classical_baselines:
-    - "RandomForest"
-    - "SVM"
+    DG:
+      - "RandomForest (Source-Only)"
+      - "SVM (Source-Only)"
+    DA:
+      - "RandomForest (Target-Only 20%)"
+      - "SVM (Target-Only 20%)"
+      - "RandomForest (Source + Target 20%)"
+      - "SVM (Source + Target 20%)"
+    TL:
+      - "RandomForest (Target LOCO Train)"
+      - "SVM (Target LOCO Train)"
   tabnet_hyperparameters:
     n_d: 16
     n_a: 16
@@ -120,4 +155,3 @@ models:
     lr_tl_finetune: 0.01
 
 output_root: "results/da_dg_tl_matrix"
-

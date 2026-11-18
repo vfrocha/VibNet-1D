@@ -1,121 +1,228 @@
-# Auditoria e Protocolo Experimental da Matriz DA, DG e TL — VibNet-1D
+# Revisão Metodológica e Protocolo Experimental da Matriz DA, DG e TL — VibNet-1D
 
 - **Data:** 18/11/2026
-- **Ambiente Auditado:** Máquina `andromeda` (`/home/vfrocha/VibNet-1D`, branch `main`, commit base `ed466ae`)
-- **Escopo:** Auditoria completa da infraestrutura, datasets, gravações originais, pré-treinamento TabNet, compatibilidade da cabeça de 5 classes, normalização sem vazamento, balanceamento hierárquico e preparação modular da matriz **Domain Adaptation (DA)**, **Domain Generalization (DG)** e **Transfer Learning (TL)**.
+- **Ambiente Auditado:** Máquina `andromeda` (`/home/vfrocha/VibNet-1D`, branch `main`)
+- **Escopo:** Atualização da especificação metodológica, implementação de cabeças de classificação com espaço de classes variável (`S1`: 2, `S2`: 5, `S3`: 2, `S4`: 5) e expansão por nome canônico no DA, auditoria de checkpoints e pré-treinamento TabNet, auditoria de unidades físicas e normalização geométrica em $\text{m/s}^2$ (`1 g = 9.80665 m/s²`), identificação matemática das 126 features invariantes a escala e 15 sensíveis, preparação e decimação isolada do `MFPT` (`97.656 Hz -> 48.828 Hz`, 78 janelas de $1{,}0\text{ s}$), diagnóstico de calibração externa `CWRU_12k -> CWRU_48k`, geração dos manifestos de partições por gravação, baselines clássicos (`RF` e `SVM`) e validação por 17 testes obrigatórios.
 
 ---
 
-## 1. Estrutura Atual do Projeto e Componentes Reutilizáveis
+## 1. Configurações de Origem, Destino e Espaço de Classes Variável das Cabeças (Seções 2 e 3)
 
-| Módulo / Script | Responsabilidade Atual | Reutilização na Nova Matriz (DA / DG / TL) |
-| :--- | :--- | :--- |
-| [`src/vibnet/data/transactional_io.py`](file:///home/vfrocha/VibNet-1D/src/vibnet/data/transactional_io.py) | Operações transacionais em staging com validação 1:1, backup e rollback coordenado. | Reutilizado integralmente para qualquer futura atualização de dados ou manifestos. |
-| [`src/preprocessing/normalize_dataset_tl.py`](file:///home/vfrocha/VibNet-1D/src/preprocessing/normalize_dataset_tl.py) | Normalização `detrended_rms` por dataset completo. | Reutilizado para as fontes (`UORED`, `HUST`, `MFPT`). **Não utilizado diretamente nos destinos de DA/DG/TL**, onde o cálculo de $\text{RMS}_{\text{ref}}$ agora é isolado por partição (`fit_da_rms_normalizer` / `fit_dg_rms_normalizer`). |
-| [`src/features/extractors_v2.py`](file:///home/vfrocha/VibNet-1D/src/features/extractors_v2.py) e [`src/features/signalai_wrapper.py`](file:///home/vfrocha/VibNet-1D/src/features/signalai_wrapper.py) | Extração canônica do vetor de **141 features** (`16` VibNet-1D + `125` SignAI = `141`). | Reutilizado integralmente via `default_141_feature_extractor`. |
-| [`src/experiments/run_baseline_loco_v2.py`](file:///home/vfrocha/VibNet-1D/src/experiments/run_baseline_loco_v2.py) | Split LOCO, `scale_loco_fold_strict`, `apply_smote_with_audit`, validação interna e métricas. | Reutilizado para o protocolo **TL** (LOCO nos 5 destinos). |
-| [`src/experiments/run_scratch_vs_tl_benchmark.py`](file:///home/vfrocha/VibNet-1D/src/experiments/run_scratch_vs_tl_benchmark.py) | `pretrain_tabnet_on_sources`, `train_eval_tabnet_variant` (`Scratch`, `Fine-Tuning`, `Linear Probing`) com verificação de congelamento (`_snapshot_module_tensors`). | Reutilizado e estendido em [`src/vibnet/evaluation/da_dg_tl_protocol.py`](file:///home/vfrocha/VibNet-1D/src/vibnet/evaluation/da_dg_tl_protocol.py) para a cabeça fixa de 5 classes em DA e DG. |
-| [`src/experiments/run_scratch_vs_tl_classical_baselines.py`](file:///home/vfrocha/VibNet-1D/src/experiments/run_scratch_vs_tl_classical_baselines.py) | Treinamento e tuning interno 3-fold CV de `RandomForest` e `SVM`. | Reutilizado para os baselines clássicos em TL e adaptável para DG/DA. |
-| [`src/vibnet/evaluation/provenance.py`](file:///home/vfrocha/VibNet-1D/src/vibnet/evaluation/provenance.py) | Coleta de hashes SHA-256, commit Git, versões de pacotes e gravação de `run_metadata.json`. | Reutilizado em todas as execuções da nova matriz. |
+### 1.1. Fontes e Destinos
+- **Fontes (`UOC` explicitamente excluído):** `UORED`, `HUST` (*HUST Bearing*, distinto de `HUST_Gearbox`), `MFPT`.
+- **Configurações de Origem:**
+  - **`S1`**: `UORED`
+  - **`S2`**: `HUST` (*HUST Bearing*)
+  - **`S3`**: `MFPT`
+  - **`S4`**: `UORED + HUST + MFPT`
+- **Destinos de DA e DG (3 destinos de rolamentos):** `CWRU_12k`, `CWRU_48k`, `PU`.
+- **Destinos de TL (5 destinos):** `CWRU_12k`, `CWRU_48k`, `PU`, `HUST_Gearbox`, `UOEMD`.
 
----
+### 1.2. Correção Fundamental do Espaço de Classes das Cabeças (`VariableClassHeadCheckpoint`)
+O vocabulário canônico harmonizado de falhas de rolamentos compreende 5 classes conceituais (agrupando severidades de uma mesma falha e mantendo `Inner & Outer` como classe composta independente):
+1. `Normal` (`id=0`)
+2. `Ball` (`id=1`)
+3. `Inner` (`id=2`)
+4. `Outer` (`id=3`)
+5. `Inner & Outer` (`id=4`)
 
-## 2. Inventário Real de Datasets, Classes, Gravações (`sNNNNN`) e Janelas em Disco (Andromeda)
+**Não são impostas 5 saídas a todas as cabeças iniciais.** Cada cabeça inicial possui exatamente a dimensão correspondente às classes disponíveis na sua configuração de origem:
 
-A inspeção direta de `data/processed/` e `data/processed_tl/detrended_rms/` na máquina **Andromeda** (após o saneamento do `HUST` para 951 janelas) confirmou que cada janela `.npy` segue o padrão `<dataset>/<condição>/<classe>/sNNNNN_wNN.npy`, onde `sNNNNN` identifica inequivocamente o índice da gravação original no adaptador `vibdata` (`0` gravações compartilhadas entre condições ou classes distintas):
+| Configuração | Fontes | Classes Supervisionadas Disponíveis na Cabeça Inicial | Dimensão da Cabeça Inicial (`out_features`) | Mapeamento Local `índice -> classe` |
+| :---: | :--- | :--- | :---: | :--- |
+| **`S1`** | `UORED` | `Normal`, `Ball` | **2** | `{0: "Normal", 1: "Ball"}` |
+| **`S2`** | `HUST` *(HUST Bearing)* | `Normal`, `Ball`, `Inner`, `Outer`, `Inner & Outer` | **5** | `{0: "Normal", 1: "Ball", 2: "Inner", 3: "Outer", 4: "Inner & Outer"}` |
+| **`S3`** | `MFPT` | `Inner`, `Outer` *(`Class_23 / Normal` usado para $\text{RMS}_{\text{ref}}$)* | **2** | `{0: "Inner", 1: "Outer"}` |
+| **`S4`** | `UORED + HUST + MFPT` | `Normal`, `Ball`, `Inner`, `Outer`, `Inner & Outer` | **5** | `{0: "Normal", 1: "Ball", 2: "Inner", 3: "Outer", 4: "Inner & Outer"}` |
 
-| Dataset | Papel na Matriz | $f_s$ (Hz) | Unidade Física | Condições | Gravações Únicas (`sNNNNN`) | Janelas em `processed/` | Janelas em `detrended_rms/` | Distribuição por Pasta de Classe (`Janelas` / `Gravações`) |
-| :--- | :--- | ---: | :---: | ---: | ---: | ---: | ---: | :--- |
-| **`UORED`** | Fonte (`S1`, `S4`) | 42.000 | $\text{m/s}^2$ | 18 | **37** | 370 | 370 | `Class_Normal`: 180 (18 grav.)<br>`Class_Ball`: 100 (10 grav.)<br>`Class_Cage`: 90 (9 grav., *fora das 5 classes*) |
-| **`HUST`** *(HUST Bearing)* | Fonte (`S2`, `S4`) | 51.200 | $\text{m/s}^2$ | 3 (`0W, 200W, 400W`) | **99** | **951** | **951** | `Class_Normal`: 150 (15 grav.)<br>`Class_43` (`Ball`): 100 (12 grav.)<br>`Class_41` (`Inner`): 150 (15 grav.)<br>`Class_42` (`Outer`): 150 (15 grav.)<br>`Class_45` (`Inner & Outer`): 150 (15 grav.)<br>`Class_44` (`IB`): 120 (12 grav., *fora*)<br>`Class_46` (`OB`): 131 (15 grav., *fora*) |
-| **`MFPT`** | Fonte (`S3`, `S4`) | 48.828 *(97.656 bruto em 270 lbs)* | $g$ | 9 (`Load_0..300`) | **20** | **114** *(pré-harmonização)* | **Ausente** *(0)* | `Class_23` (`Normal`): 36 jan. (3 grav.; *18 jan. após decimação 2x*)<br>`Class_24` (`Inner`): 21 jan. (7 grav.)<br>`Class_25` (`Outer`): 57 jan. (10 grav.; *39 jan. após decimação 2x*) |
-| **`CWRU_12k`** | Destino (`DA, DG, TL`) | 12.000 | $g$ | 4 (`Load_0..3HP`) | **232** | 2.520 | 2.520 | `Class_0` (`Normal`): 280 (**8 grav.**, 2/carga)<br>`Class_1` (`Inner`): 760 (76 grav.)<br>`Class_2` (`Outer`): 720 (72 grav.)<br>`Class_3` (`Ball`): 760 (76 grav.) |
-| **`CWRU_48k`** | Destino (`DA, DG, TL`) | 48.000 | $g$ | 12 (`Load x Sev`) | **70** | 602 | 602 | `Class_1` (`Inner`): 194 (22 grav.)<br>`Class_2` (`Outer`): 204 (24 grav.)<br>`Class_3` (`Ball`): 204 (24 grav.)<br>*(Sem `Class_0` / `Normal` nativo)* |
-| **`PU`** | Destino (`DA, DG, TL`) | 64.000 | $\text{m/s}^2$ | 4 (`C1..C4`) | **1.627** | 6.476 | 6.476 | `Class_Normal`: 1.918 (480 grav.)<br>`Class_27` (`Outer`): 3.811 (959 grav.)<br>`Class_29` (`Inner & Outer`): 747 (188 grav.)<br>*(`Class_28` / `Inner`: 0 em disco)* |
-| **`HUST_Gearbox`** | Destino (`TL`) | 25.600 | $g$ | 30 | **90** | 900 | 900 | `Class_Normal`: 300 (30 grav.)<br>`Class_Broken`: 300 (30 grav.)<br>`Class_Missing`: 300 (30 grav.) |
-| **`UOEMD`** | Destino (`TL`) | 42.000 | $g$ | 16 | **128** | 1.280 | 1.280 | 8 classes $\times$ 160 janelas (16 grav./classe) |
+### 1.3. Comportamento das Cabeças em DG vs. DA
 
----
+#### A. Domain Generalization (DG — Seção 3.1)
+- O encoder pré-treinado (`TabNetPretrainer.network.embedder` + `encoder`) permanece **100% congelado** (`requires_grad=False`, `.eval()`).
+- A cabeça de classificação é treinada exclusivamente nas fontes (`S1`: 2 saídas; `S2`: 5 saídas; `S3`: 2 saídas; `S4`: 5 saídas) e **não sofre expansão nem adaptação com dados do destino**.
+- Na avaliação nos destinos (`100%` de `CWRU_12k`, `CWRU_48k` e `PU`), **nenhuma amostra de classe desconhecida pela origem é removida do teste**. Se a classe verdadeira do destino não existir na cabeça da origem (ex.: `Inner` e `Outer` ao avaliar `S1` em `CWRU_12k`), a predição é necessariamente incorreta ($\text{TP}_c = 0 \implies \text{Recall}_c = 0{,}0$ e $\text{F1}_c = 0{,}0$), penalizando rigorosamente `Macro-F1`, `Balanced Accuracy`, `Accuracy` e a matriz de confusão.
 
-## 3. Auditoria Específica dos Checkpoints e do Pré-Treinamento TabNet (Seção 9)
+#### B. Domain Adaptation (DA — Seção 3.2)
+Implementado em [`expand_head_for_da_target()`](file:///home/vfrocha/VibNet-1D/src/vibnet/evaluation/da_dg_tl_protocol.py) e [`train_variable_class_head_with_frozen_tabnet_encoder()`](file:///home/vfrocha/VibNet-1D/src/vibnet/evaluation/da_dg_tl_protocol.py):
+1. Treina-se a cabeça inicial nas classes disponíveis na configuração de origem (`S1`: 2, `S2`: 5, `S3`: 2, `S4`: 5).
+2. Carregam-se o encoder pré-treinado (mantido **100% congelado**) e a cabeça inicial da fonte.
+3. Para cada destino, `expand_head_for_da_target()` constrói uma cabeça específica cujo espaço de saída é a união canônica $\mathcal{C}_{\text{exp}} = \mathcal{C}_{\text{source}} \cup \mathcal{C}_{\text{target\_adapt}}$:
+   - **Correspondência estrita por nome canônico** (nunca por posição presumida): por exemplo, ao expandir `S3` (`{0: "Inner", 1: "Outer"}`) para `CWRU_12k` (`Normal, Ball, Inner, Outer`), a nova cabeça de 4 saídas tem ordem canônica `{0: "Normal", 1: "Ball", 2: "Inner", 3: "Outer"}`; os pesos e *biases* de `"Inner"` (que estavam na linha `0` de `S3`) são copiados bit a bit para a linha `2`, e os de `"Outer"` (linha `1` de `S3`) são copiados bit a bit para a linha `3`.
+   - **Inicialização reproduzível das novas saídas:** Cada nova classe $c \in \mathcal{C}_{\text{target\_adapt}} \setminus \mathcal{C}_{\text{source}}$ recebe pesos e *bias* inicializados por um `torch.Generator` semeado deterministicamente com `SHA-256(f"DA_EXPAND::{seed}::{class_name}")`.
+4. Adapta-se **somente a cabeça expandida** utilizando os 20% rotulados do destino (`adapt`) pelo número de épocas selecionado na validação das fontes (`selected_epoch`), avaliando nos 80% restantes (`test`).
+5. O checkpoint registra separadamente:
+   - `transferred_from_source_classes`: classes transferidas da origem;
+   - `introduced_by_expansion_classes`: classes novas introduzidas pela expansão da cabeça;
+   - `learned_during_adaptation_classes`: classes efetivamente ajustadas com exemplos na partição de adaptação do destino.
 
-1. **Existência de Checkpoints em Disco:**
-   - A busca exaustiva no repositório (`*.pt`, `*.pth`, `*.zip`) confirmou que **não existem arquivos binários de checkpoint TabNet persistidos em disco**.
-   - Nos experimentos anteriores (`run_scratch_vs_tl_benchmark.py` e `build_tabnet_resnet_balance.py`), o `TabNetPretrainer` era treinado em memória RAM no início da execução (`_PRETRAINER_CACHE`) e repassado em memória para o `TabNetClassifier` (`from_unsupervised=unsupervised_model`) ou para o `Linear Probing` (`copy.deepcopy(pretrained_tabnet.network)`).
-2. **Procedimento e Hiperparâmetros do Pré-Treinamento Existente:**
-   - **Classe utilizada:** `pytorch_tabnet.pretraining.TabNetPretrainer` (**auto-supervisionado**, reconstrução de atributos mascarados com `pretraining_ratio = 0.8`, sem uso de rótulos).
-   - **Arquitetura em `run_scratch_vs_tl_benchmark.py` (`configs/scratch_vs_tl.yaml`):** `n_d=16`, `n_a=16`, `n_steps=4`, `gamma=1.3`, `n_independent=2`, `n_shared=2`, `mask_type="sparsemax"`, `lr=0.02`, `pretrain_epochs=30`, `batch_size=64`, dimensão latente $d_{\text{latent}} = n_d = 16$.
-   - *(Observação: o módulo legado `src/models/build_tabnet_resnet.py` utilizava `n_steps=5, gamma=1.5, mask_type='entmax'`. Na nova matriz padronizamos os hiperparâmetros auditados de `configs/scratch_vs_tl.yaml`: `n_d=16, n_a=16, n_steps=4, gamma=1.3, mask_type='sparsemax'`).*
-3. **Datasets que Participaram do Pré-Treinamento Anterior vs. Nova Matriz:**
-   - Nos experimentos anteriores (`configs/scratch_vs_tl.yaml`), o pool de pré-treinamento era `["UORED", "HUST", "Mechanical_Gear", "Electric_Motor"]`. **Nenhum dos 5 datasets de destino (`CWRU_12k`, `CWRU_48k`, `PU`, `HUST_Gearbox`, `UOEMD`) jamais participou do pré-treinamento** (risco zero de vazamento de destino).
-   - Na nova matriz (`configs/da_dg_tl_matrix.yaml`), o pré-treinamento auto-supervisionado do `TabNetPretrainer` será executado especificamente sobre cada configuração de origem solicitada (**`S1`: `UORED`**, **`S2`: `HUST`**, **`S3`: `MFPT`**, **`S4`: `UORED + HUST + MFPT`**) e salvo em disco (`checkpoints/tabnet_pretrainer_<S_k>_seed<SEED>.pt`) junto com seu manifesto de proveniência (`features`, ordem das 141 features, `StandardScaler` e hash SHA-256).
-4. **Ordem e Dimensão das 141 Features (`input_dim = 141`):**
-   - `indices 0..15` (`16` features): `src/features/extractors_v2.py::extract_advanced_features` (`7` Tempo + `6` PSD/Welch + `3` STFT).
-   - `indices 16..140` (`125` features): `src/features/signalai_wrapper.py::SignalAIWrapper(pipeline_name='all')` (`11` Tempo + `15` Frequência + `73` WPD `db4` + `26` EMD).
-
----
-
-## 4. Diagnóstico de Compatibilidade das Configurações `S1..S4` com a Cabeça de 5 Classes (Seção 3)
-
-### 4.1. Cobertura de Classes por Configuração de Origem
-
-| Config. | Fontes | `0: Normal` | `1: Ball` | `2: Inner` | `3: Outer` | `4: Inner & Outer` | Classes Ausentes na Fonte |
-| :---: | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| **`S1`** | `UORED` | **180 jan.** (18 grav.) | **100 jan.** (10 grav.) | **0** | **0** | **0** | `Inner`, `Outer`, `Inner & Outer` (3 ausentes) |
-| **`S2`** | `HUST` | **150 jan.** (15 grav.) | **100 jan.** (12 grav.) | **150 jan.** (15 grav.) | **150 jan.** (15 grav.) | **150 jan.** (15 grav.) | **Nenhuma (5/5 classes cobertas)** |
-| **`S3`** | `MFPT` | *0 sup.* *(36/18 p/ $\text{RMS}_{\text{ref}}$)* | **0** | **21 jan.** (7 grav.) | **57/39 jan.** (10 grav.) | **0** | `Normal`*, `Ball`, `Inner & Outer` (3 ausentes) |
-| **`S4`** | `UORED + HUST + MFPT` | **330 jan.** (33 grav.) | **200 jan.** (22 grav.) | **171 jan.** (22 grav.) | **207/189 jan.** (25 grav.) | **150 jan.** (15 grav.) | **Nenhuma (5/5 classes cobertas)** |
-
-### 4.2. Impacto no Treinamento e Transferência dos Pesos da Cabeça (`nn.Linear(16, 5)`) e Solução Metodológica Implementada
-
-Em `S1` (`UORED`, apenas classes `{0, 1}`) e `S3` (`MFPT`, apenas classes `{2, 3}`), uma camada linear `nn.Linear(16, 5)` treinada com `CrossEntropyLoss` nas fontes nunca recebe exemplos positivos das classes ausentes $\mathcal{C}_{\text{absent}}$:
-- Se os pesos e vieses das linhas $c \in \mathcal{C}_{\text{absent}}$ permanecerem com sua inicialização aleatória sem restrição, ou se sofrerem apenas gradiente negativo, o comportamento dessas saídas em **DG** seria arbitrário.
-- **Solução Metodológica Defensável Implementada em [`src/vibnet/evaluation/da_dg_tl_protocol.py`](file:///home/vfrocha/VibNet-1D/src/vibnet/evaluation/da_dg_tl_protocol.py):**
-  1. **Espaço de saída estritamente fixo em 5 classes (`head.out_features == 5`):** A cabeça sempre possui 5 neurônios de saída correspondentes a `(0: Normal, 1: Ball, 2: Inner, 3: Outer, 4: Inner & Outer)`.
-  2. **Rastreamento explícito de classes observadas (`observed_class_ids`) e Mascaramento Estrutural de Logits para Classes Não Aprendidas (`-1e9`):**
-     - O checkpoint da cabeça (`FiveClassHeadCheckpoint`) registra `observed_class_ids` (as classes com suporte real no treinamento).
-     - Em **DG** (onde não há adaptação ao destino), qualquer classe $c \notin \text{observed\_class\_ids}$ recebe máscara estrutural de logit $-\infty$ (`-1e9`), garantindo probabilidade $P(Y=c \mid x) = 0$. Assim, o modelo **jamais "adivinha" por ruído aleatório uma classe que nunca viu nas fontes**, e toda amostra real do destino pertencente a uma classe não aprendida pela fonte resulta deterministicamente em $\text{Recall}_c = 0$ e $\text{F1}_c = 0$.
-     - Em **DA** (onde a cabeça do destino é inicializada com cópia de `head.state_dict()` da fonte e adaptada nos 20% rotulados do destino), os pesos das classes já aprendidas na fonte (`observed_source`) são transferidos como *warm-start*, enquanto as classes novas presentes nos 20% de adaptação do destino passam a integrar `combined_observed = observed_source | observed_target_adapt` e têm seus pesos aprendidos durante a adaptação com o encoder congelado!
+| Origem | Destino DA | Classes na Cabeça Inicial | Classes no Destino | Cabeça Expandida (`dim`) | Classes Transferidas da Origem | Classes Introduzidas na Expansão |
+| :---: | :--- | :--- | :--- | :--- | :--- | :--- |
+| **`S1`** | `CWRU_12k` | `Normal, Ball` (2) | `Normal, Ball, Inner, Outer` (4) | `Normal, Ball, Inner, Outer` (**4**) | `Normal, Ball` | `Inner, Outer` |
+| **`S1`** | `CWRU_48k` | `Normal, Ball` (2) | `Ball, Inner, Outer` (3) | `Normal, Ball, Inner, Outer` (**4**) | `Normal, Ball` | `Inner, Outer` |
+| **`S1`** | `PU` | `Normal, Ball` (2) | `Normal, Outer, Inner & Outer` (3) | `Normal, Ball, Outer, Inner & Outer` (**4**) | `Normal, Ball` | `Outer, Inner & Outer` |
+| **`S3`** | `CWRU_12k` | `Inner, Outer` (2) | `Normal, Ball, Inner, Outer` (4) | `Normal, Ball, Inner, Outer` (**4**) | `Inner, Outer` | `Normal, Ball` |
+| **`S3`** | `CWRU_48k` | `Inner, Outer` (2) | `Ball, Inner, Outer` (3) | `Ball, Inner, Outer` (**3**) | `Inner, Outer` | `Ball` |
+| **`S3`** | `PU` | `Inner, Outer` (2) | `Normal, Outer, Inner & Outer` (3) | `Normal, Inner, Outer, Inner & Outer` (**4**) | `Inner, Outer` | `Normal, Inner & Outer` |
+| **`S2` / `S4`** | Todos (`CWRU_12k/48k`, `PU`) | Todas as 5 classes (5) | Subconjunto de 3 ou 4 classes | Todas as 5 classes (**5**) | Todas as 5 classes | Nenhuma (`0`) |
 
 ---
 
-## 5. Diagnóstico de Normalização (`DA` e `DG`) e Balanceamento Hierárquico
+## 2. Auditoria do Encoder TabNet e do Pré-Treinamento (Seção 4)
 
-### 5.1. Incompatibilidade Física da Média Simples de $\text{RMS}_{\text{ref}}$ em DG (Seção 4.2)
-A auditoria quantitativa dos sinais detrended em `data/processed/` na máquina Andromeda revelou:
-- **`UORED`**: unidade física $\text{m/s}^2$, $f_s = 42.000\text{ Hz}$, $\text{RMS}_{\text{ref}}(\text{Normal}) = \mathbf{5{,}850288}$ (amplitude máxima $1.072{,}49\text{ m/s}^2$);
-- **`HUST`**: unidade física $\text{m/s}^2$, $f_s = 51.200\text{ Hz}$, $\text{RMS}_{\text{ref}}(\text{Normal}) = \mathbf{0{,}181141}$ (amplitude máxima $51{,}49\text{ m/s}^2$);
-- **`MFPT`**: unidade física $g$ ($\approx 9{,}80665\text{ m/s}^2$), $f_s = 48.828\text{ Hz}$, $\text{RMS}_{\text{ref}}(\text{Normal}) = \mathbf{0{,}873542\text{ g}}$.
-
-**Problema verificado:**
-1. As unidades físicas **não são homogêneas** (`UORED` e `HUST` estão em $\text{m/s}^2$, enquanto `MFPT` e `CWRU` estão em $g$).
-2. A razão entre o maior e o menor $\text{RMS}_{\text{ref}}$ nas fontes é de **$32{,}30\times$** ($5{,}850288 / 0{,}181141$). A média aritmética simples ($\text{RMS}_{\text{ref}}^{\text{arith}} = 2{,}301657$) é dominada em $84{,}7\%$ pelo `UORED`.
-3. **Como implementamos em `fit_dg_rms_normalizer()`:** Conforme exigido pela Seção 4.2 (*"Caso as referências não sejam comparáveis, não implemente silenciosamente a média"*), o modo padrão `strict_check_arithmetic` executa `assess_source_rms_comparability()` e **bloqueia a média aritmética silenciosa** lançando `IncomparableSourceRMSReferenceError` com o relatório completo de unidades e razão de escala ($32{,}30\times$).
-4. **Alternativas Metodológicas Disponíveis para Sua Decisão (Seção 7 abaixo):**
-   - **Alternativa DG-1 (Média Geométrica das Fontes `explicit_geometric_mean` = $0{,}974586$):** Invariante à dominância de uma única ordem de grandeza; como **126 das 141 features ($89{,}4\%$)** são matematicamente invariantes a qualquer escalar positivo $c > 0$, 126 features permanecem exatas e 15 features de energia absoluta usam a referência geométrica das fontes (zero dados do destino).
-   - **Alternativa DG-2 (Subconjunto das 126 Features Invariantes a Escala em DG):** Utilizar exclusivamente as 126 features adimensionais/relativas (ou normalizar cada janela individual pelo seu próprio RMS apenas em DG), tornando o modelo 100% imune à diferença de ganho entre acelerômetros ($g$ vs. $\text{m/s}^2$) com zero estatísticas do destino.
-
-### 5.2. Gargalo de Gravações em `CWRU_12k` (`Class_0`) e `CWRU_48k` (Ausência de `Normal`) para DA (Seção 4.1 e 5.1)
-1. **`CWRU_12k` (`Class_0 / Normal` possui apenas 8 gravações no total — 2 por carga):**
-   - Se reservarmos $20\%$ das 8 gravações de `Class_0` para adaptação, $\text{round}(8 \times 0{,}20) = \mathbf{2\text{ gravações}}$ para adaptação (e $6$ para teste).
-   - Ao dividir essas 2 gravações de adaptação em treino e validação por gravação, a única divisão possível sem quebrar gravações é **1 gravação (12,5% = 20–40 janelas) para `adapt_train` e 1 gravação (12,5% = 20–40 janelas) para `adapt_val`** (enquanto `Class_1..3` têm 72–76 gravações = 15 gravações na adaptação -> 12 `adapt_train` e 3 `adapt_val`).
-   - Nossa função `create_da_recording_split()` suporta exatamente `min_adapt_train_recordings_per_class=1` e `min_adapt_val_recordings_per_class=1` (permitindo `1 train + 1 val + 6 test` em `Class_0` de `CWRU_12k` sem jamais dividir janelas da mesma gravação!) e interrompe com `InsufficientRecordingsError` se qualquer classe tiver menos de 2 gravações na adaptação.
-2. **`CWRU_48k` (0 gravações da classe `Normal`):**
-   - Como `CWRU_48k` possui apenas `Class_1` (`Inner`), `Class_2` (`Outer`) e `Class_3` (`Ball`), não há sinais normais próprios na partição de adaptação de 20% de `CWRU_48k`.
-   - Em `fit_da_rms_normalizer()`, exigimos que seja passado explicitamente `cross_reference_normal_windows` vindo **exclusivamente das gravações normais da partição de adaptação de 20% do dataset irmão `CWRU_12k`** (mesma bancada física CWRU), sem tocar nas gravações de teste.
+1. **Checkpoints em Disco:** A varredura completa do repositório confirmou que **não existem arquivos binários `.pt`, `.pth` ou `.zip` de modelos TabNet pré-treinados salvos anteriormente em disco**. Nos benchmarks anteriores ([`src/experiments/run_scratch_vs_tl_benchmark.py`](file:///home/vfrocha/VibNet-1D/src/experiments/run_scratch_vs_tl_benchmark.py)), o `TabNetPretrainer` era treinado em memória RAM no início de cada execução e mantido em `_PRETRAINER_CACHE`.
+2. **Natureza e Procedimento do Pré-Treinamento:**
+   - **Auto-supervisionado (*self-supervised masked feature reconstruction*):** `pytorch_tabnet.pretraining.TabNetPretrainer` com `pretraining_ratio = 0.8`, sem uso de rótulos de classe.
+   - **Arquitetura Canônica:** `n_d=16`, `n_a=16`, `n_steps=4`, `gamma=1.3`, `n_independent=2`, `n_shared=2`, `mask_type="sparsemax"`, `lr=0.02`, `weight_decay=1e-5`, `pretrain_epochs=30`, `batch_size=64`, dimensão latente $d_{\text{latent}} = n_d = 16$ (`latent = sum(steps_out)`).
+3. **Datasets Utilizados e Ausência Total de Exposição aos Destinos:**
+   - Nos experimentos anteriores (`configs/scratch_vs_tl.yaml`), o pool de pré-treinamento era `["UORED", "HUST", "Mechanical_Gear", "Electric_Motor"]`. **Nenhum dos 5 datasets de destino (`CWRU_12k`, `CWRU_48k`, `PU`, `HUST_Gearbox`, `UOEMD`) jamais participou do pré-treinamento**.
+   - Na matriz atual (`configs/da_dg_tl_matrix.yaml`), o `TabNetPretrainer` é ajustado exclusivamente sobre os dados de treinamento das fontes ativas de cada configuração (`S1`: `UORED`; `S2`: `HUST`; `S3`: `MFPT`; `S4`: `UORED + HUST + MFPT`).
+4. **Compatibilidade com a Cabeça Customizada:**
+   - O `TabNetPretrainer.network` expõe `embedder` (`EmbeddingGenerator`) e `encoder` (`TabNetEncoder`), cuja saída `steps_out, _ = encoder(embedder(x))` consiste em $n_{\text{steps}} = 4$ tensores de dimensão `(batch_size, n_d=16)`. A soma `latent = torch.sum(torch.stack(steps_out, dim=0), dim=0)` é idêntica à representação interna que o `TabNetClassifier` entrega à sua camada `final_mapping = nn.Linear(n_d, n_classes)`. Portanto, acoplar uma cabeça `nn.Linear(16, K)` sobre `latent` é **100% compatível arquiteturalmente** com o encoder do `TabNetPretrainer` sem qualquer alteração no backbone.
+5. **Preservação do Protocolo TL (Seção 11):**
+   - Em **TL**, o encoder **não** é assumido como sempre congelado: preservamos integralmente os três modos auditados de [`src/experiments/run_scratch_vs_tl_benchmark.py`](file:///home/vfrocha/VibNet-1D/src/experiments/run_scratch_vs_tl_benchmark.py) sobre os 66 folds LOCO dos 5 destinos (`CWRU_12k` [4], `CWRU_48k` [12], `PU` [4], `HUST_Gearbox` [30], `UOEMD` [16]):
+     - **`Scratch`**: `TabNetClassifier` inicializado do zero (`from_unsupervised=None`), encoder e cabeça livres;
+     - **`Fine-Tuning`**: `TabNetClassifier` inicializado com `from_unsupervised=pretrainer`, **encoder descongelado** e ajustado junto com a cabeça nativa do destino nas $K-1$ condições de treino;
+     - **`Linear Probing`**: encoder pré-treinado **congelado** (`backbone_param_max_abs_diff == 0.0`), treinando apenas a cabeça linear no vocabulário nativo do destino.
 
 ---
 
-## 6. Comandos para Executar Futuramente Cada Configuração
+## 3. Auditoria das Referências RMS, Conversão para $\text{m/s}^2$ e Normalização DG/DA (Seções 5 e 6)
 
-```bash
-# 1. Executar a suíte de testes unitários e sintéticos (11 requisitos da Seção 13)
-python3 -m unittest tests/test_da_dg_tl_protocol.py -v
+### 3.1. Conversão de Unidades Físicas ($1\,g = 9{,}80665\,\text{m/s}^2$) e Média Geométrica em DG
+As referências RMS das classes normais das fontes (tanto com o valor pré-decimação informado na seção 5 quanto com o valor harmonizado em disco após a decimação de `MFPT` para $48.828\text{ Hz}$) são convertidas para $\text{m/s}^2$ antes de qualquer agregação:
 
-# 2. Inspecionar o plano completo da matriz DA, DG e TL e diagnóstico de cobertura/RMS em modo dry-run
-python3 src/experiments/run_da_dg_tl_matrix.py --dry-run
+| Fonte | Unidade Original | $\text{RMS}_{\text{ref}}$ Informado (Pré-Decimação) | $\text{RMS}_{\text{ref}}$ em $\text{m/s}^2$ (Informado) | $\text{RMS}_{\text{ref}}$ Harmonizado em Disco ($1{,}0\text{ s}$) | $\text{RMS}_{\text{ref}}$ em $\text{m/s}^2$ (Harmonizado em Disco) |
+| :--- | :---: | ---: | ---: | ---: | ---: |
+| **`UORED`** (`Class_Normal`, 180 jan.) | $\text{m/s}^2$ | $5{,}85\text{ m/s}^2$ | **$5{,}850000\text{ m/s}^2$** | $5{,}850288\text{ m/s}^2$ | **$5{,}850288\text{ m/s}^2$** |
+| **`HUST`** (`Class_Normal`, 150 jan.) | $\text{m/s}^2$ | $0{,}181\text{ m/s}^2$ | **$0{,}181000\text{ m/s}^2$** | $0{,}181141\text{ m/s}^2$ | **$0{,}181141\text{ m/s}^2$** |
+| **`MFPT`** (`Class_23`, 18 jan. 48,8 kHz) | $g$ | $0{,}874\,g$ *(36 jan. 0,5 s)* | **$8{,}571012\text{ m/s}^2$** | $0{,}767595\,g$ *(18 jan. 1,0 s)* | **$7{,}527536\text{ m/s}^2$** |
 
-# 3. Inspecionar apenas um protocolo ou configuração específica (ex.: DG com S1..S4)
-python3 src/experiments/run_da_dg_tl_matrix.py --protocols DG --source-configs S1 S2 S3 S4 --dry-run
-```
+Aplicando a média geométrica $\text{RMS}_{\text{global}} = \exp\left(\frac{1}{|S|}\sum_{i \in S} \ln(\text{RMS}_{\text{ref}, i}^{(\text{m/s}^2)})\right)$ exclusivamente sobre as fontes ativas de cada configuração:
 
+| Configuração | Fontes Ativas | $\text{RMS}_{\text{global}}$ Geométrico em $\text{m/s}^2$ (Valores Informados) | $\text{RMS}_{\text{global}}$ Geométrico em $\text{m/s}^2$ (Harmonizado em Disco) | Razão $\max/\min$ em $\text{m/s}^2$ |
+| :---: | :--- | ---: | ---: | ---: |
+| **`S1`** | `UORED` | **$5{,}850000\text{ m/s}^2$** | **$5{,}850288\text{ m/s}^2$** | $1{,}00\times$ |
+| **`S2`** | `HUST` | **$0{,}181000\text{ m/s}^2$** | **$0{,}181141\text{ m/s}^2$** | $1{,}00\times$ |
+| **`S3`** | `MFPT` | **$8{,}571012\text{ m/s}^2$** | **$7{,}527536\text{ m/s}^2$** | $1{,}00\times$ |
+| **`S4`** | `UORED + HUST + MFPT` | **$2{,}085865\text{ m/s}^2$** | **$1{,}998071\text{ m/s}^2$** | $47{,}35\times$ *(informado)* / $41{,}56\times$ *(disco)* |
+
+> [!WARNING]
+> **Diagnóstico Físico de Comparabilidade de Escalas (Seção 5):**
+> Mesmo após converter `MFPT` de $g$ para $\text{m/s}^2$, a amplitude saudável do `HUST` ($0{,}1811\text{ m/s}^2$) é **$\approx 32{,}3\times$ menor** que a do `UORED` ($5{,}8503\text{ m/s}^2$) e **$\approx 41{,}6\times$ menor** que a do `MFPT` ($7{,}5275\text{ m/s}^2$), além de o destino `PU` estar documentado em `docs/dataset_mapping.md` como saída em Volts ($V$, $\text{RMS}_{\text{ref}} = 0{,}2764$).
+> - Como **126 das 141 features ($89{,}4\%$)** são matematicamente invariantes a qualquer fator escalar positivo $c > 0$, o valor de $\text{RMS}_{\text{global}}$ em DG afeta **exclusivamente as 15 features sensíveis a escala**.
+> - Em [`fit_dg_rms_normalizer()`](file:///home/vfrocha/VibNet-1D/src/vibnet/evaluation/da_dg_tl_protocol.py), implementamos tanto o modo `geometric_mean_ms2` (que converte $1\,g = 9{,}80665\text{ m/s}^2$ e calcula $\exp(\text{mean}(\log(\text{RMS}_{\text{ref}, i})))$) quanto o modo de trava `strict_check_geometric_ms2` (que exige aprovação explícita quando a razão em $\text{m/s}^2$ excede `max_allowed_ratio`).
+
+### 3.2. Diagnóstico da Calibração Externa `CWRU_12k -> CWRU_48k` em DA (Seção 6 e Entregável 8)
+A auditoria física e estatística ([`audit_cwru_12k_48k_calibration_compatibility()`](file:///home/vfrocha/VibNet-1D/src/vibnet/evaluation/da_dg_tl_protocol.py)) confirmou:
+1. **Mesma bancada, mesmo sensor, mesmo canal e mesma unidade física ($g$):** Tanto `CWRU_12k` quanto `CWRU_48k` foram adquiridos no acelerômetro do mancal *Drive End (DE)* do motor Reliance Electric de $2\text{ HP}$ da Case Western Reserve University (rolamento `6205-2RS JEM SKF`), sob as mesmas 4 cargas (`0, 1, 2, 3 HP`), diferenciando-se apenas pela taxa de amostragem do conversor A/D ($12.000\text{ Hz}$ vs. $48.000\text{ Hz}$).
+2. **Estabilidade do RMS Normal entre cargas em `CWRU_12k`:**
+   - `Load_0HP`: $0{,}075655 \pm 0{,}003277\,g$ (2 gravações: `s00000`, `s00001`)
+   - `Load_1HP`: $0{,}066215 \pm 0{,}001410\,g$ (2 gravações: `s00002`, `s00003`)
+   - `Load_2HP`: $0{,}064112 \pm 0{,}001181\,g$ (2 gravações: `s00004`, `s00005`)
+   - `Load_3HP`: $0{,}069971 \pm 0{,}005358\,g$ (2 gravações: `s00006`, `s00007`)
+   - Média global: $0{,}068036\,g$ (variação entre cargas $< 11\%$).
+3. **Compatibilidade de escala nas classes de falha (`Class_1..3`):** Em `CWRU_12k`, o RMS médio das falhas varia entre $0{,}195\,g$ e $0{,}271\,g$; em `CWRU_48k`, varia na mesma ordem de grandeza ($0{,}114\,g$ a $0{,}746\,g$).
+4. **Implementação em `fit_da_rms_normalizer()`:** Para `CWRU_48k`, utiliza-se **exclusivamente as 2 gravações normais da partição de adaptação de 20% de `CWRU_12k`** (da mesma seed ativa), bloqueando programaticamente qualquer gravação da partição de teste de `CWRU_12k` (`cross_reference_forbidden_recording_keys`) e registrando `calibration_mode = "external_related_domain_adaptation_normal"`.
+
+---
+
+## 4. Identificação Matemática das 126 Features Invariantes e 15 Sensíveis a Escala (Seção 5 e Entregável 6)
+
+O catálogo completo e auditável de 141 itens está implementado em [`get_141_feature_scale_invariance_catalog()`](file:///home/vfrocha/VibNet-1D/src/vibnet/evaluation/da_dg_tl_protocol.py). Sob qualquer transformação de escala positiva $\tilde{x} = c \cdot x$ ($c > 0$):
+
+### 4.1. As 15 Features Sensíveis a Escala (`get_scale_sensitive_15_indices()`)
+Total: **9 em `src/features/extractors_v2.py` (`0..15`) + 6 em `src/features/signalai_wrapper.py` (`16..140`) = 15 features**:
+
+| # | Índice Global (`0..140`) | Nome Canônico da Feature | Domínio / Módulo | Lei de Escala ($x \mapsto c \cdot x$) | Justificativa Matemática |
+| ---: | :---: | :--- | :--- | :---: | :--- |
+| 1 | **`0`** | `v2_time_abs_mean` | Tempo (`extractors_v2.py:L30`) | $c^1 \cdot f(x)$ | $\frac{1}{L}\sum |c x_t| = c \frac{1}{L}\sum |x_t|$ (homogênea de grau 1). |
+| 2 | **`2`** | `v2_time_hilbert_envelope_mean` | Tempo (`extractors_v2.py:L34-L36`) | $c^1 \cdot f(x)$ | A transformada de Hilbert $\mathcal{H}$ é linear $\implies |c x + j\mathcal{H}(c x)| = c A(t)$. |
+| 3 | **`3`** | `v2_time_hilbert_envelope_rms` | Tempo (`extractors_v2.py:L37`) | $c^1 \cdot f(x)$ | $\sqrt{\frac{1}{L}\sum (c A_t)^2} = c \cdot \text{RMS}(A)$. |
+| 4 | **`5`** | `v2_time_tkeo_mean` | Tempo (`extractors_v2.py:L41-L42`) | $c^2 \cdot f(x)$ | Operador Teager-Kaiser $\Psi[c x_n] = (c x_n)^2 - (c x_{n-1})(c x_{n+1}) = c^2 \Psi[x_n]$. |
+| 5 | **`6`** | `v2_time_tkeo_std` | Tempo (`extractors_v2.py:L43`) | $c^2 \cdot f(x)$ | Desvio-padrão de $\Psi[c x_n] = c^2 \Psi[x_n]$ escala com $c^2$. |
+| 6 | **`8`** | `v2_freq_welch_peak_mag` | Frequência (`extractors_v2.py:L57`) | $c^2 \cdot f(x)$ | O periodograma de Welch $P_{xx}(f)$ é quadrático na amplitude $\implies \max_f P_{c x}(f) = c^2 \max_f P_x(f)$. |
+| 7 | **`9`** | `v2_freq_welch_total_power` | Frequência (`extractors_v2.py:L59`) | $c^2 \cdot f(x)$ | $\sum_f P_{c x}(f) = c^2 \sum_f P_x(f)$. |
+| 8 | **`12`** | `v2_freq_welch_legacy_band_power` | Frequência (`extractors_v2.py:L70`) | $c^2 \cdot f(x)$ | Potência espectral acumulada na banda escala com $c^2$. |
+| 9 | **`13`** | `v2_tf_log_stft_power_mean` | Tempo-Freq. (`extractors_v2.py:L79-L83`) | $f(x) + 2\ln c$ | $\text{mean}(\ln(|c Z_{t,f}|^2)) = \text{mean}(\ln(|Z_{t,f}|^2)) + 2\ln c$ (deslocamento aditivo). |
+| 10 | **`16`** | `signai_time_rms` | Tempo (`signalai_wrapper.py:L37`) | $c^1 \cdot f(x)$ | $\text{RMS}(c x) = c \cdot \text{RMS}(x)$. |
+| 11 | **`17`** | `signai_time_peak` | Tempo (`signalai_wrapper.py:L37`) | $c^1 \cdot f(x)$ | $\max_t |c x_t| = c \max_t |x_t|$. |
+| 12 | **`18`** | `signai_time_peak_to_peak` | Tempo (`signalai_wrapper.py:L37`) | $c^1 \cdot f(x)$ | $\max(c x) - \min(c x) = c (\max x - \min x)$. |
+| 13 | **`19`** | `signai_time_variance` | Tempo (`signalai_wrapper.py:L37`) | $c^2 \cdot f(x)$ | $\text{Var}(c x) = c^2 \text{Var}(x)$. |
+| 14 | **`27`** | `signai_freq_mean_spectral_power` | Frequência (`signalai_wrapper.py:L37`) | $c^2 \cdot f(x)$ | Potência espectral média $\frac{1}{K}\sum_k P(f_k)$ escala com $c^2$. |
+| 15 | **`114`** | `signai_wpd_db4_total_energy` | WPD (`signalai_wrapper.py:L37`) | $c^2 \cdot f(x)$ | Energia total dos coeficientes WPD $\sum_{j=0}^{63} \|d_{6,j}\|_2^2$ escala com $c^2$. |
+
+### 4.2. As 126 Features Invariantes a Escala (`get_scale_invariant_126_indices()`)
+Total: **7 em `extractors_v2.py` + 119 em `SignalAIWrapper` = 126 features** onde $f(c \cdot x) = f(x)$ para todo $c > 0$:
+1. **Tempo (`extractors_v2.py`, 2 features — índices `1, 4`):** Entropia de Shannon do histograma normalizado (`1`) e Curtose do envelope de Hilbert (`4`, momento padronizado de 4ª ordem $\mathbb{E}[(A-\mu)^4]/\sigma^4$, grau 0).
+2. **Frequência e STFT (`extractors_v2.py`, 5 features — índices `7, 10, 11, 14, 15`):** Frequência de pico Welch (`7`, $\arg\max_f c^2 P_{xx}(f)$), razão de potência relativa em baixa frequência $P_{\text{low}}/P_{\text{total}}$ (`10`, cancela $c^2$), razão alta/baixa frequência $P_{\text{high}}/P_{\text{low}}$ (`11`, cancela $c^2$), desvio-padrão do log-espectrograma STFT (`14`, $\text{std}(\ln|Z|^2 + 2\ln c) = \text{std}(\ln|Z|^2)$) e frequência de pico na banda $1\text{–}200\text{ Hz}$ (`15`).
+3. **Tempo Adimensional (`SignalAIWrapper`, 7 features — índices `20..26`):** `Skewness` (`20`), `Kurtosis` (`21`), `Crest Factor` ($\text{Peak}/\text{RMS}$, `22`), `Shape Factor` ($\text{RMS}/\text{MeanAbs}$, `23`), `Impulse Factor` ($\text{Peak}/\text{MeanAbs}$, `24`), `Clearance Factor` ($\text{Peak}/\text{MeanSqrtAbs}^2$, `25`) e `Zero-Crossing Rate` (`26`, pois $\text{sign}(c x_t) = \text{sign}(x_t)$).
+4. **Frequência Normalizada (`SignalAIWrapper`, 14 features — índices `28..41`):** Centróide espectral, frequência RMS, espalhamento espectral, assimetria e curtose espectral, *spectral flatness* (média geométrica / média aritmética), *spectral rolloff 85%*, entropia espectral, frequência dominante, potências relativas nas bandas `B1..B4` e razão de energia harmônica (todas divididas pela energia espectral total, cancelando $c^2$).
+5. **Wavelet Packet Decomposition (`SignalAIWrapper`, 72 features — índices `42..113`):** As 64 energias relativas das sub-bandas de nível 6 (`42..105`, $E_{6,k} / \sum_j E_{6,j}$), entropia de Shannon WPD (`106`), razão macro-banda alta/baixa (`107`), curtose/assimetria dos coeficientes WPD (`108..112`) e razão máxima de sub-banda (`113`).
+6. **Empirical Mode Decomposition (`SignalAIWrapper`, 26 features — índices `115..140`):** Como a interpolação por splines cúbicas dos extremos locais no *sifting* da EMD é homogênea de grau 1 ($\text{IMF}_m(c x) = c \cdot \text{IMF}_m(x)$), todas as 26 features — energias relativas das 6 IMFs (`115..120`), correlação de Pearson $\text{corr}(\text{IMF}_m, x)$ (`121..126`), curtose (`127..132`), assimetria (`133..138`), entropia de energia EMD (`139`) e ZCR da IMF1 (`140`) — cancelam $c$ exatamente.
+
+> **Proteção de Ablação (`select_feature_subset_for_ablation`):** Mantemos as **141 features** como configuração principal (`mode="full_141"`). Quando `mode="invariant_126"` é selecionado, a função extrai os 126 índices invariantes e **bloqueia com `ValueError` qualquer tentativa de carregar um checkpoint TabNet de 141 entradas**.
+
+---
+
+## 5. Preparação e Validação Isolada do MFPT (Seção 7 e Entregável 7)
+
+Executada de forma isolada e transacional via [`prepare_isolated_mfpt_detrended_rms()`](file:///home/vfrocha/VibNet-1D/src/vibnet/evaluation/da_dg_tl_protocol.py):
+
+1. **Preservação Integral dos Originais:**
+   - Os 114 arquivos originais em `data/processed/MFPT` foram 100% preservados sem alteração e copiados para backup dedicado em `data/backups/remediation_mfpt_20261118_192304/processed_MFPT_original_114_backup/`.
+2. **Identificação e Decimação Anti-Aliasing dos 6 Arquivos de $270\text{ lbs}$ ($97.656\text{ Hz} \to 48.828\text{ Hz}$):**
+   - Gravações identificadas em `Load_270`:
+     - `Class_23` (`Normal`): `s00000`, `s00001`, `s00002` (cada uma tinha 12 janelas de $0{,}5\text{ s}$ = $585.936$ pontos a $97.656\text{ Hz}$);
+     - `Class_25` (`Outer`): `s00003`, `s00004`, `s00005` (cada uma tinha 12 janelas de $0{,}5\text{ s}$ = $585.936$ pontos a $97.656\text{ Hz}$).
+   - Cada gravação contínua de $585.936$ amostras foi decimada por fator 2 com filtro FIR polifásico anti-aliasing (`scipy.signal.resample_poly(sig, up=1, down=2)` $\to 292.968$ amostras a $48.828\text{ Hz}$), submetida a `detrend` linear e segmentada em **6 janelas exatas de $1{,}0\text{ s}$ (`48.828` amostras)** (`w00..w05`).
+3. **Resultado Efetivo e Validação (`scripts/validate_dataset_tl.py`):**
+   - **Total de gravações únicas:** `20` gravações (`6` decimadas de $97.656\text{ Hz}$ + `14` nativas a $48.828\text{ Hz}$).
+   - **Total de janelas de $1{,}0\text{ s}$ (`shape == (48828,)`):** **`78` janelas** (confirmando exatamente a expectativa física sem forçar contagens):
+     - `Class_23` (`Normal`): **18 janelas** (3 gravações $\times$ 6 janelas em `Load_270`);
+     - `Class_24` (`Inner`): **21 janelas** (7 gravações $\times$ 3 janelas em `Load_0..300`);
+     - `Class_25` (`Outer`): **39 janelas** (3 gravações $\times$ 6 janelas em `Load_270` + 7 gravações $\times$ 3 janelas em `Load_25..300`).
+   - **Normalização `detrended_rms/MFPT` e Manifesto:**
+     - $\text{RMS}_{\text{ref}}$ calculado sobre as 18 janelas `Class_23` de $1{,}0\text{ s}$: **`0.7675950299980164 g`** ($7{,}527536\text{ m/s}^2$).
+     - Média do RMS de `Class_23` após normalização: **`1.0000000000000002`** (`0` falhas matemáticas, `0` shape/dtype mismatches nos 10 datasets em `data/processed_tl/validation/dataset_validation.csv` e `reference_validation.csv`).
+
+---
+
+## 6. Manifestos Reproduzíveis das Partições DA e DG (Seção 8 e Entregável 9)
+
+Gerados e exportados para:
+- [`docs/experiment_planning/partition_manifests/da_dg_recording_partition_manifests.json`](file:///home/vfrocha/VibNet-1D/docs/experiment_planning/partition_manifests/da_dg_recording_partition_manifests.json)
+- [`docs/experiment_planning/partition_manifests/da_dg_recording_partition_manifests.csv`](file:///home/vfrocha/VibNet-1D/docs/experiment_planning/partition_manifests/da_dg_recording_partition_manifests.csv) (**6.489 registros de gravações** auditados nas seeds `42`, `123` e `2026`, com **zero sobreposição de gravações** entre partições).
+
+### Resumo das Partições por Dataset / Configuração (por Seed)
+
+| Protocolo | Dataset / Config | Classes Supervisionadas | Gravações Totais | Partição `train` / `adapt` (Gravações / Janelas) | Partição `val` / `test` (Gravações / Janelas) | Proporção Efetiva (`Gravações` / `Janelas`) |
+| :---: | :--- | :--- | ---: | :--- | :--- | :--- |
+| **DA** | **`CWRU_12k`** | `Normal, Ball, Inner, Outer` (4) | **232** | **`adapt`: 46 grav.** / **500 jan.**<br>*(`Normal`: **2 grav.** integrais [40–80 jan.], `Ball`: 15, `Inner`: 15, `Outer`: 14; `adapt_val = 0`)* | **`test`: 186 grav.** / **2.020 jan.**<br>*(`Normal`: **6 grav.**, `Ball`: 61, `Inner`: 61, `Outer`: 58)* | **19,83% grav.** / **19,84%–20,63% jan.** |
+| **DA** | **`CWRU_48k`** | `Ball, Inner, Outer` (3) | **70** | **`adapt`: 14 grav.** / **111–128 jan.**<br>*(`Ball`: 5, `Inner`: 4, `Outer`: 5; `adapt_val = 0`)* | **`test`: 56 grav.** / **474–491 jan.**<br>*(`Ball`: 19, `Inner`: 18, `Outer`: 19)* | **20,00% grav.** / **18,44%–21,26% jan.** |
+| **DA** | **`PU`** | `Normal, Outer, Inner & Outer` (3) | **1.627** | **`adapt`: 326 grav.** / **1.298 jan.**<br>*(`Normal`: 96, `Outer`: 192, `Inner & Outer`: 38; `adapt_val = 0`)* | **`test`: 1.301 grav.** / **5.178 jan.**<br>*(`Normal`: 384, `Outer`: 767, `Inner & Outer`: 150)* | **20,04% grav.** / **20,04% jan.** |
+| **DG** | **`S1` (`UORED`)** | `Normal, Ball` (2) | **28** | **`source_train`: 22 grav.** / **220 jan.**<br>*(`Normal`: 14, `Ball`: 8)* | **`source_val`: 6 grav.** / **60 jan.**<br>*(`Normal`: 4, `Ball`: 2)* | **78,57% train** / **21,43% val** |
+| **DG** | **`S2` (`HUST`)** | Todas as 5 classes (5) | **72** | **`source_train`: 58 grav.** / **562–568 jan.** | **`source_val`: 14 grav.** / **132–138 jan.** | **80,56% train** / **19,44% val** |
+| **DG** | **`S3` (`MFPT`)** | `Inner, Outer` (2) | **17** | **`source_train`: 14 grav.** / **48–51 jan.**<br>*(`Inner`: 6, `Outer`: 8)* | **`source_val`: 3 grav.** / **9–12 jan.**<br>*(`Inner`: 1, `Outer`: 2)* | **82,35% train** / **17,65% val** |
+| **DG** | **`S4` (`Combinado`)**| Todas as 5 classes (5) | **117** | **`source_train`: 94 grav.** / **830–839 jan.** | **`source_val`: 23 grav.** / **201–210 jan.** | **80,34% train** / **19,66% val** |
+
+---
+
+## 7. Baselines Clássicos RF e SVM (Seção 10 e Entregável 10)
+
+Implementados em [`train_eval_classical_da_dg_baseline()`](file:///home/vfrocha/VibNet-1D/src/vibnet/evaluation/da_dg_tl_protocol.py):
+1. **DG (`variant="Source-Only"`):**
+   - `RandomForest` e `SVM` treinados exclusivamente em `source_train`, com pesos de balanceamento hierárquico (`compute_hierarchical_source_balance`).
+   - `StandardScaler` ajustado exclusivamente em `X_source_train_raw` e aplicado sem reajuste aos destinos.
+   - O espaço de classes predito corresponde exatamente às classes presentes na configuração de origem (`S1`: 2 classes; `S2`: 5 classes; `S3`: 2 classes; `S4`: 5 classes), contabilizando classes desconhecidas do destino como erro.
+2. **DA `Target-Only 20%` (`variant="Target-Only 20%"`):**
+   - `RandomForest` e `SVM` treinados exclusivamente nos 20% rotulados da partição de adaptação do destino (`adapt`).
+   - `StandardScaler` ajustado exclusivamente nos 20% de adaptação do destino e aplicado aos 80% de teste.
+3. **DA `Source + Target 20%` (`variant="Source + Target 20%"`):**
+   - `RandomForest` e `SVM` treinados no conjunto combinado `source_train + target_adapt_20%`.
+   - `StandardScaler` ajustado exclusivamente na união de treinamento (`source_train + target_adapt_20%`).
+   - **Nota Metodológica Registrada (`joint_learning_note`):** `Source + Target 20%` constitui um baseline de **aprendizado conjunto (*pooled joint learning*)** no espaço de features, não sendo equivalente à transferência explícita de representação e expansão cirúrgica da cabeça linear sobre o encoder congelado do TabNet.
+4. **Padronização em `SVM` vs. `RandomForest`:**
+   - Para `SVM` (kernel RBF), o `StandardScaler` ajustado exclusivamente no treino é indispensável para evitar dominância de features de maior escala numérica nas distâncias euclidianas $\|x_i - x_j\|_2^2$.
+   - Para `RandomForest`, como árvores de decisão são invariantes a transformações lineares monotônicas por atributo, o `StandardScaler` ajustado exclusivamente no treino é mantido por **uniformidade estrita de pipeline**, sem alterar as partições de limiar das árvores.
+5. **Preservação do Protocolo TL dos Baselines Clássicos:**
+   - O módulo [`src/experiments/run_scratch_vs_tl_classical_baselines.py`](file:///home/vfrocha/VibNet-1D/src/experiments/run_scratch_vs_tl_classical_baselines.py) permanece intacto, reutilizando os 396 manifestos de fold LOCO com `StandardScaler` e tuning interno 3-fold CV restritos às $K-1$ condições de treino do destino.
