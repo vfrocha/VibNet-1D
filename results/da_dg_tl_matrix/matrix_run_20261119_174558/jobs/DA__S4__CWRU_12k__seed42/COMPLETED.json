@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETED",
+  "protocol": "DA",
+  "source_config": "S4",
+  "target": "CWRU_12k",
+  "seed": 42,
+  "elapsed_seconds": 151.321,
+  "tabnet_macro_f1": 0.46437549401975964,
+  "models_macro_f1": {
+    "TabNet_DA_ExpandedHead": 0.46437549401975964,
+    "RandomForest_DA_TargetOnly20": 0.677677615919944,
+    "RandomForest_DA_SourcePlusTarget20": 0.6140988928530369,
+    "SVM_DA_TargetOnly20": 0.5991629036509343,
+    "SVM_DA_SourcePlusTarget20": 0.5340914478855053
+  },
+  "timestamp_utc": "2026-11-19T17:54:07.926129+00:00"
+}

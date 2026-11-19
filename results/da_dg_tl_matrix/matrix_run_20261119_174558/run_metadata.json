@@ -1,0 +1,990 @@
+{
+  "schema_version": "1.0.0",
+  "timestamp_utc": "2026-11-19T17:45:58.574652+00:00",
+  "git_commit": "a3c74f36ac25782611b88c67137ec6d24321bc08",
+  "git_branch": "main",
+  "git_dirty": false,
+  "command_argv": [
+    "src/experiments/run_da_dg_tl_matrix.py",
+    "--protocols",
+    "DA",
+    "DG",
+    "TL",
+    "--dg-feature-modes",
+    "full_141",
+    "invariant_126",
+    "--source-configs",
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "--targets",
+    "CWRU_12k",
+    "--seeds",
+    "42"
+  ],
+  "command_str": "src/experiments/run_da_dg_tl_matrix.py --protocols DA DG TL --dg-feature-modes full_141 invariant_126 --source-configs S1 S2 S3 S4 --targets CWRU_12k --seeds 42",
+  "python_version": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "platform": "Linux-6.8.0-65-generic-x86_64-with-glibc2.35",
+  "seeds": [
+    42
+  ],
+  "dependency_versions": {
+    "numpy": "1.26.4",
+    "scipy": "1.15.3",
+    "pandas": "1.5.3",
+    "scikit-learn": "1.6.1",
+    "imbalanced-learn": "0.13.0",
+    "xgboost": "3.2.0",
+    "torch": "2.12.1",
+    "pytorch-tabnet": "4.1.0",
+    "PyWavelets": "1.8.0",
+    "EMD-signal": null,
+    "matplotlib": "3.10.3",
+    "seaborn": "0.13.2",
+    "PyYAML": "5.4.1"
+  },
+  "script_hashes_sha256": {
+    "src/experiments/run_da_dg_tl_matrix.py": "ea32e67950d68b31a504fb35e25ed2c8f301dabc9d4eb43d3556d7e1d98e3768",
+    "src/vibnet/evaluation/da_dg_tl_protocol.py": "ffc335d8015d5560c34b861c449f3ad8418b8b705cb7d8bc9fb88de0e08467b9",
+    "src/vibnet/evaluation/da_dg_tl_runner.py": "9f52c46cac525f1c861addf7d38d11b0aed5e94fd034ba435e7d201aa5e2e9ef",
+    "configs/da_dg_tl_matrix.yaml": "631ce7ace9656f08716abb3e55bf16864f9b2731dba811e7c91bcaab8c6ef29d"
+  },
+  "config": {
+    "experiment_id": "da_dg_tl_matrix",
+    "protocols": [
+      "DA",
+      "DG",
+      "TL"
+    ],
+    "dg_feature_modes": [
+      "full_141",
+      "invariant_126"
+    ],
+    "dg_source_normalization_mode": "per_source_rms",
+    "source_balancing_mode": "hierarchical_class_equalized",
+    "tl_target_loco_grouping": {
+      "CWRU_12k": "native_condition",
+      "CWRU_48k": "by_severity",
+      "PU": "native_condition",
+      "HUST_Gearbox": "by_speed",
+      "UOEMD": "native_condition"
+    },
+    "tl_loco_fold_audit": {
+      "CWRU_12k": {
+        "grouping_mode": "native_condition",
+        "n_folds": 4,
+        "fold_names": [
+          "Load_0HP",
+          "Load_1HP",
+          "Load_2HP",
+          "Load_3HP"
+        ],
+        "n_windows": 2520,
+        "n_recordings": 232,
+        "zero_condition_and_recording_leakage_verified": true
+      }
+    },
+    "source_configs": [
+      "S1",
+      "S2",
+      "S3",
+      "S4"
+    ],
+    "seeds": [
+      42
+    ],
+    "total_planned_runs": 16,
+    "source_variable_head_coverage": {
+      "S1": {
+        "source_config_id": "S1",
+        "sources": [
+          "UORED"
+        ],
+        "classes_by_source": {
+          "UORED": [
+            "Normal",
+            "Ball"
+          ]
+        },
+        "present_class_ids": [
+          0,
+          1
+        ],
+        "present_class_names": [
+          "Normal",
+          "Ball"
+        ],
+        "absent_class_ids": [
+          2,
+          3,
+          4
+        ],
+        "absent_class_names": [
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "full_5_class_coverage": false,
+        "head_output_dim": 2,
+        "head_index_to_class": {
+          "0": "Normal",
+          "1": "Ball"
+        },
+        "class_to_head_index": {
+          "Normal": 0,
+          "Ball": 1
+        }
+      },
+      "S2": {
+        "source_config_id": "S2",
+        "sources": [
+          "HUST"
+        ],
+        "classes_by_source": {
+          "HUST": [
+            "Normal",
+            "Ball",
+            "Inner",
+            "Outer",
+            "Inner & Outer"
+          ]
+        },
+        "present_class_ids": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "present_class_names": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "absent_class_ids": [],
+        "absent_class_names": [],
+        "full_5_class_coverage": true,
+        "head_output_dim": 5,
+        "head_index_to_class": {
+          "0": "Normal",
+          "1": "Ball",
+          "2": "Inner",
+          "3": "Outer",
+          "4": "Inner & Outer"
+        },
+        "class_to_head_index": {
+          "Normal": 0,
+          "Ball": 1,
+          "Inner": 2,
+          "Outer": 3,
+          "Inner & Outer": 4
+        }
+      },
+      "S3": {
+        "source_config_id": "S3",
+        "sources": [
+          "MFPT"
+        ],
+        "classes_by_source": {
+          "MFPT": [
+            "Inner",
+            "Outer"
+          ]
+        },
+        "present_class_ids": [
+          2,
+          3
+        ],
+        "present_class_names": [
+          "Inner",
+          "Outer"
+        ],
+        "absent_class_ids": [
+          0,
+          1,
+          4
+        ],
+        "absent_class_names": [
+          "Normal",
+          "Ball",
+          "Inner & Outer"
+        ],
+        "full_5_class_coverage": false,
+        "head_output_dim": 2,
+        "head_index_to_class": {
+          "0": "Inner",
+          "1": "Outer"
+        },
+        "class_to_head_index": {
+          "Inner": 0,
+          "Outer": 1
+        }
+      },
+      "S4": {
+        "source_config_id": "S4",
+        "sources": [
+          "UORED",
+          "HUST",
+          "MFPT"
+        ],
+        "classes_by_source": {
+          "UORED": [
+            "Normal",
+            "Ball"
+          ],
+          "HUST": [
+            "Normal",
+            "Ball",
+            "Inner",
+            "Outer",
+            "Inner & Outer"
+          ],
+          "MFPT": [
+            "Inner",
+            "Outer"
+          ]
+        },
+        "present_class_ids": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "present_class_names": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "absent_class_ids": [],
+        "absent_class_names": [],
+        "full_5_class_coverage": true,
+        "head_output_dim": 5,
+        "head_index_to_class": {
+          "0": "Normal",
+          "1": "Ball",
+          "2": "Inner",
+          "3": "Outer",
+          "4": "Inner & Outer"
+        },
+        "class_to_head_index": {
+          "Normal": 0,
+          "Ball": 1,
+          "Inner": 2,
+          "Outer": 3,
+          "Inner & Outer": 4
+        }
+      }
+    },
+    "dg_global_rms_ms2_by_config_audit_values": {
+      "S1": {
+        "active_sources": [
+          "UORED"
+        ],
+        "raw_rms_refs": {
+          "UORED": 5.85
+        },
+        "raw_units": {
+          "UORED": "m/s^2"
+        },
+        "converted_rms_refs_ms2": {
+          "UORED": 5.85
+        },
+        "conversion_constant_1g_ms2": 9.80665,
+        "rms_global_geometric_ms2": 5.85,
+        "scale_ratio_ms2_max_over_min": 1.0,
+        "formula": "RMS_global = exp(mean(log(RMS_ref_i_ms2)))"
+      },
+      "S2": {
+        "active_sources": [
+          "HUST"
+        ],
+        "raw_rms_refs": {
+          "HUST": 0.181
+        },
+        "raw_units": {
+          "HUST": "m/s^2"
+        },
+        "converted_rms_refs_ms2": {
+          "HUST": 0.181
+        },
+        "conversion_constant_1g_ms2": 9.80665,
+        "rms_global_geometric_ms2": 0.181,
+        "scale_ratio_ms2_max_over_min": 1.0,
+        "formula": "RMS_global = exp(mean(log(RMS_ref_i_ms2)))"
+      },
+      "S3": {
+        "active_sources": [
+          "MFPT"
+        ],
+        "raw_rms_refs": {
+          "MFPT": 0.874
+        },
+        "raw_units": {
+          "MFPT": "g"
+        },
+        "converted_rms_refs_ms2": {
+          "MFPT": 8.571012099999999
+        },
+        "conversion_constant_1g_ms2": 9.80665,
+        "rms_global_geometric_ms2": 8.571012099999997,
+        "scale_ratio_ms2_max_over_min": 1.0,
+        "formula": "RMS_global = exp(mean(log(RMS_ref_i_ms2)))"
+      },
+      "S4": {
+        "active_sources": [
+          "UORED",
+          "HUST",
+          "MFPT"
+        ],
+        "raw_rms_refs": {
+          "UORED": 5.85,
+          "HUST": 0.181,
+          "MFPT": 0.874
+        },
+        "raw_units": {
+          "UORED": "m/s^2",
+          "HUST": "m/s^2",
+          "MFPT": "g"
+        },
+        "converted_rms_refs_ms2": {
+          "UORED": 5.85,
+          "HUST": 0.181,
+          "MFPT": 8.571012099999999
+        },
+        "conversion_constant_1g_ms2": 9.80665,
+        "rms_global_geometric_ms2": 2.0858777413461014,
+        "scale_ratio_ms2_max_over_min": 47.35365801104972,
+        "formula": "RMS_global = exp(mean(log(RMS_ref_i_ms2)))"
+      }
+    },
+    "dg_global_rms_ms2_by_config_harmonized_ondisk": {
+      "S1": {
+        "active_sources": [
+          "UORED"
+        ],
+        "raw_rms_refs": {
+          "UORED": 5.850288142457682
+        },
+        "raw_units": {
+          "UORED": "m/s^2"
+        },
+        "converted_rms_refs_ms2": {
+          "UORED": 5.850288142457682
+        },
+        "conversion_constant_1g_ms2": 9.80665,
+        "rms_global_geometric_ms2": 5.850288142457682,
+        "scale_ratio_ms2_max_over_min": 1.0,
+        "formula": "RMS_global = exp(mean(log(RMS_ref_i_ms2)))"
+      },
+      "S2": {
+        "active_sources": [
+          "HUST"
+        ],
+        "raw_rms_refs": {
+          "HUST": 0.18114055825864453
+        },
+        "raw_units": {
+          "HUST": "m/s^2"
+        },
+        "converted_rms_refs_ms2": {
+          "HUST": 0.18114055825864453
+        },
+        "conversion_constant_1g_ms2": 9.80665,
+        "rms_global_geometric_ms2": 0.18114055825864453,
+        "scale_ratio_ms2_max_over_min": 1.0,
+        "formula": "RMS_global = exp(mean(log(RMS_ref_i_ms2)))"
+      },
+      "S3": {
+        "active_sources": [
+          "MFPT"
+        ],
+        "raw_rms_refs": {
+          "MFPT": 0.7675950299980164
+        },
+        "raw_units": {
+          "MFPT": "g"
+        },
+        "converted_rms_refs_ms2": {
+          "MFPT": 7.527535800930047
+        },
+        "conversion_constant_1g_ms2": 9.80665,
+        "rms_global_geometric_ms2": 7.527535800930048,
+        "scale_ratio_ms2_max_over_min": 1.0,
+        "formula": "RMS_global = exp(mean(log(RMS_ref_i_ms2)))"
+      },
+      "S4": {
+        "active_sources": [
+          "UORED",
+          "HUST",
+          "MFPT"
+        ],
+        "raw_rms_refs": {
+          "UORED": 5.850288142457682,
+          "HUST": 0.18114055825864453,
+          "MFPT": 0.7675950299980164
+        },
+        "raw_units": {
+          "UORED": "m/s^2",
+          "HUST": "m/s^2",
+          "MFPT": "g"
+        },
+        "converted_rms_refs_ms2": {
+          "UORED": 5.850288142457682,
+          "HUST": 0.18114055825864453,
+          "MFPT": 7.527535800930047
+        },
+        "conversion_constant_1g_ms2": 9.80665,
+        "rms_global_geometric_ms2": 1.998090996141409,
+        "scale_ratio_ms2_max_over_min": 41.556324399650634,
+        "formula": "RMS_global = exp(mean(log(RMS_ref_i_ms2)))"
+      }
+    },
+    "dg_source_rms_comparability_audit_values": {
+      "is_directly_comparable": false,
+      "units_compatible": false,
+      "scales_comparable": false,
+      "conversion_to_ms2_possible": true,
+      "scales_comparable_after_ms2_conversion": false,
+      "scale_ratio_max_over_min": 32.32044198895028,
+      "scale_ratio_ms2_max_over_min": 47.35365801104972,
+      "arithmetic_mean_rms_ref": 2.3016666666666663,
+      "geometric_mean_rms_ref": 0.9745002567172518,
+      "geometric_mean_rms_ref_ms2": 2.0858777413461014,
+      "arithmetic_mean_rms_ref_ms2": 4.867337366666667,
+      "source_rms_refs": {
+        "UORED": 5.85,
+        "HUST": 0.181,
+        "MFPT": 0.874
+      },
+      "source_rms_refs_ms2": {
+        "UORED": 5.85,
+        "HUST": 0.181,
+        "MFPT": 8.571012099999999
+      },
+      "per_config_geometric_mean_ms2": {
+        "S1": 5.85,
+        "S2": 0.181,
+        "S3": 8.571012099999997,
+        "S4": 2.0858777413461014
+      },
+      "source_units": {
+        "UORED": "m/s^2",
+        "HUST": "m/s^2",
+        "MFPT": "g"
+      },
+      "incomparability_reasons": [
+        "Heterogeneous raw physical units across sources: {'UORED': 'm/s^2', 'HUST': 'm/s^2', 'MFPT': 'g'}",
+        "Raw source healthy RMS_ref spans a 32.32x factor (min=0.181000, max=5.850000 > max_allowed_ratio=5.00x)",
+        "Even after converting 1 g = 9.80665 m/s^2, source healthy RMS_ref in m/s^2 spans a 47.35x factor ({'UORED': 5.85, 'HUST': 0.181, 'MFPT': 8.571})"
+      ]
+    },
+    "dg_source_rms_comparability_harmonized_ondisk": {
+      "is_directly_comparable": false,
+      "units_compatible": false,
+      "scales_comparable": false,
+      "conversion_to_ms2_possible": true,
+      "scales_comparable_after_ms2_conversion": false,
+      "scale_ratio_max_over_min": 32.29695325386075,
+      "scale_ratio_ms2_max_over_min": 41.556324399650634,
+      "arithmetic_mean_rms_ref": 2.2663412435714476,
+      "geometric_mean_rms_ref": 0.9334872078493268,
+      "geometric_mean_rms_ref_ms2": 1.998090996141409,
+      "arithmetic_mean_rms_ref_ms2": 4.519654833882124,
+      "source_rms_refs": {
+        "UORED": 5.850288142457682,
+        "HUST": 0.18114055825864453,
+        "MFPT": 0.7675950299980164
+      },
+      "source_rms_refs_ms2": {
+        "UORED": 5.850288142457682,
+        "HUST": 0.18114055825864453,
+        "MFPT": 7.527535800930047
+      },
+      "per_config_geometric_mean_ms2": {
+        "S1": 5.850288142457682,
+        "S2": 0.18114055825864453,
+        "S3": 7.527535800930048,
+        "S4": 1.998090996141409
+      },
+      "source_units": {
+        "UORED": "m/s^2",
+        "HUST": "m/s^2",
+        "MFPT": "g"
+      },
+      "incomparability_reasons": [
+        "Heterogeneous raw physical units across sources: {'UORED': 'm/s^2', 'HUST': 'm/s^2', 'MFPT': 'g'}",
+        "Raw source healthy RMS_ref spans a 32.30x factor (min=0.181141, max=5.850288 > max_allowed_ratio=5.00x)",
+        "Even after converting 1 g = 9.80665 m/s^2, source healthy RMS_ref in m/s^2 spans a 41.56x factor ({'UORED': 5.8503, 'HUST': 0.1811, 'MFPT': 7.5275})"
+      ]
+    },
+    "cwru_12k_48k_calibration_audit": {
+      "source_reference_dataset": "CWRU_12k",
+      "target_calibrated_dataset": "CWRU_48k",
+      "test_rig": "Case Western Reserve University (CWRU) 2 HP Reliance Electric motor test stand",
+      "accelerometer_position": "Drive End (DE) bearing housing (12 o'clock position)",
+      "bearing_model": "6205-2RS JEM SKF deep-groove ball bearing",
+      "physical_unit": "g (calibrated gravitational acceleration)",
+      "motor_loads_hp": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cwru_12k_sampling_rate_hz": 12000,
+      "cwru_48k_sampling_rate_hz": 48000,
+      "cwru_12k_normal_rms_by_load_g": {
+        "Load_0HP": 0.075655,
+        "Load_1HP": 0.066215,
+        "Load_2HP": 0.064112,
+        "Load_3HP": 0.069971,
+        "overall_mean_g": 0.068036
+      },
+      "cwru_12k_fault_rms_range_g": [
+        0.195,
+        0.271
+      ],
+      "cwru_48k_fault_rms_range_g": [
+        0.114,
+        0.746
+      ],
+      "is_physically_compatible": true,
+      "calibration_rule": "Use exclusively the 2 Normal recordings assigned to the 20% adaptation partition of CWRU_12k (for the active seed) to compute RMS_ref for CWRU_48k. Never use the 6 test recordings of CWRU_12k. Record operation as 'external_related_domain_adaptation_normal'."
+    },
+    "feature_scale_invariance_summary": {
+      "total_features": 141,
+      "scale_invariant_count": 126,
+      "scale_sensitive_count": 15,
+      "scale_sensitive_indices": [
+        0,
+        2,
+        3,
+        5,
+        6,
+        8,
+        9,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        27,
+        114
+      ]
+    },
+    "jobs_preview": [
+      {
+        "protocol": "DA",
+        "feature_mode": "full_141",
+        "feature_dimension": 141,
+        "source_config": "S1",
+        "sources": [
+          "UORED"
+        ],
+        "target": "CWRU_12k",
+        "target_physical_unit": "g",
+        "seed": 42,
+        "initial_source_head_classes": [
+          "Normal",
+          "Ball"
+        ],
+        "initial_source_head_dim": 2,
+        "evaluation_head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer"
+        ],
+        "evaluation_head_dim": 4,
+        "execution_status": "READY_INTERNAL_OR_RELATED_ADAPT_NORMAL_RMS",
+        "physical_unit_note": "DA uses target's own adaptation Normal RMS_ref (or CWRU_12k adaptation Normal for CWRU_48k); self-consistent within target domain."
+      },
+      {
+        "protocol": "DA",
+        "feature_mode": "full_141",
+        "feature_dimension": 141,
+        "source_config": "S2",
+        "sources": [
+          "HUST"
+        ],
+        "target": "CWRU_12k",
+        "target_physical_unit": "g",
+        "seed": 42,
+        "initial_source_head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "initial_source_head_dim": 5,
+        "evaluation_head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "evaluation_head_dim": 5,
+        "execution_status": "READY_INTERNAL_OR_RELATED_ADAPT_NORMAL_RMS",
+        "physical_unit_note": "DA uses target's own adaptation Normal RMS_ref (or CWRU_12k adaptation Normal for CWRU_48k); self-consistent within target domain."
+      },
+      {
+        "protocol": "DA",
+        "feature_mode": "full_141",
+        "feature_dimension": 141,
+        "source_config": "S3",
+        "sources": [
+          "MFPT"
+        ],
+        "target": "CWRU_12k",
+        "target_physical_unit": "g",
+        "seed": 42,
+        "initial_source_head_classes": [
+          "Inner",
+          "Outer"
+        ],
+        "initial_source_head_dim": 2,
+        "evaluation_head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer"
+        ],
+        "evaluation_head_dim": 4,
+        "execution_status": "READY_INTERNAL_OR_RELATED_ADAPT_NORMAL_RMS",
+        "physical_unit_note": "DA uses target's own adaptation Normal RMS_ref (or CWRU_12k adaptation Normal for CWRU_48k); self-consistent within target domain."
+      },
+      {
+        "protocol": "DA",
+        "feature_mode": "full_141",
+        "feature_dimension": 141,
+        "source_config": "S4",
+        "sources": [
+          "UORED",
+          "HUST",
+          "MFPT"
+        ],
+        "target": "CWRU_12k",
+        "target_physical_unit": "g",
+        "seed": 42,
+        "initial_source_head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "initial_source_head_dim": 5,
+        "evaluation_head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "evaluation_head_dim": 5,
+        "execution_status": "READY_INTERNAL_OR_RELATED_ADAPT_NORMAL_RMS",
+        "physical_unit_note": "DA uses target's own adaptation Normal RMS_ref (or CWRU_12k adaptation Normal for CWRU_48k); self-consistent within target domain."
+      },
+      {
+        "protocol": "DG",
+        "feature_mode": "full_141",
+        "feature_dimension": 141,
+        "source_config": "S1",
+        "sources": [
+          "UORED"
+        ],
+        "target": "CWRU_12k",
+        "target_physical_unit": "g",
+        "seed": 42,
+        "initial_source_head_classes": [
+          "Normal",
+          "Ball"
+        ],
+        "initial_source_head_dim": 2,
+        "evaluation_head_classes": [
+          "Normal",
+          "Ball"
+        ],
+        "evaluation_head_dim": 2,
+        "execution_status": "READY_PHYSICAL_UNIT_COMPATIBLE_MS2",
+        "physical_unit_note": "Sources normalized via 'per_source_rms'; target unit 'g' converted to m/s^2 and scaled by source RMS_global."
+      },
+      {
+        "protocol": "DG",
+        "feature_mode": "full_141",
+        "feature_dimension": 141,
+        "source_config": "S2",
+        "sources": [
+          "HUST"
+        ],
+        "target": "CWRU_12k",
+        "target_physical_unit": "g",
+        "seed": 42,
+        "initial_source_head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "initial_source_head_dim": 5,
+        "evaluation_head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "evaluation_head_dim": 5,
+        "execution_status": "READY_PHYSICAL_UNIT_COMPATIBLE_MS2",
+        "physical_unit_note": "Sources normalized via 'per_source_rms'; target unit 'g' converted to m/s^2 and scaled by source RMS_global."
+      },
+      {
+        "protocol": "DG",
+        "feature_mode": "full_141",
+        "feature_dimension": 141,
+        "source_config": "S3",
+        "sources": [
+          "MFPT"
+        ],
+        "target": "CWRU_12k",
+        "target_physical_unit": "g",
+        "seed": 42,
+        "initial_source_head_classes": [
+          "Inner",
+          "Outer"
+        ],
+        "initial_source_head_dim": 2,
+        "evaluation_head_classes": [
+          "Inner",
+          "Outer"
+        ],
+        "evaluation_head_dim": 2,
+        "execution_status": "READY_PHYSICAL_UNIT_COMPATIBLE_MS2",
+        "physical_unit_note": "Sources normalized via 'per_source_rms'; target unit 'g' converted to m/s^2 and scaled by source RMS_global."
+      },
+      {
+        "protocol": "DG",
+        "feature_mode": "full_141",
+        "feature_dimension": 141,
+        "source_config": "S4",
+        "sources": [
+          "UORED",
+          "HUST",
+          "MFPT"
+        ],
+        "target": "CWRU_12k",
+        "target_physical_unit": "g",
+        "seed": 42,
+        "initial_source_head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "initial_source_head_dim": 5,
+        "evaluation_head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "evaluation_head_dim": 5,
+        "execution_status": "READY_PHYSICAL_UNIT_COMPATIBLE_MS2",
+        "physical_unit_note": "Sources normalized via 'per_source_rms'; target unit 'g' converted to m/s^2 and scaled by source RMS_global."
+      },
+      {
+        "protocol": "DG",
+        "feature_mode": "invariant_126",
+        "feature_dimension": 126,
+        "source_config": "S1",
+        "sources": [
+          "UORED"
+        ],
+        "target": "CWRU_12k",
+        "target_physical_unit": "g",
+        "seed": 42,
+        "initial_source_head_classes": [
+          "Normal",
+          "Ball"
+        ],
+        "initial_source_head_dim": 2,
+        "evaluation_head_classes": [
+          "Normal",
+          "Ball"
+        ],
+        "evaluation_head_dim": 2,
+        "execution_status": "READY_SCALE_INVARIANT_126_DG",
+        "physical_unit_note": "Scale-invariant 126-feature DG ablation (dedicated 126-input TabNetPretrainer); unit 'g' unblocked without target stats."
+      },
+      {
+        "protocol": "DG",
+        "feature_mode": "invariant_126",
+        "feature_dimension": 126,
+        "source_config": "S2",
+        "sources": [
+          "HUST"
+        ],
+        "target": "CWRU_12k",
+        "target_physical_unit": "g",
+        "seed": 42,
+        "initial_source_head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "initial_source_head_dim": 5,
+        "evaluation_head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "evaluation_head_dim": 5,
+        "execution_status": "READY_SCALE_INVARIANT_126_DG",
+        "physical_unit_note": "Scale-invariant 126-feature DG ablation (dedicated 126-input TabNetPretrainer); unit 'g' unblocked without target stats."
+      },
+      {
+        "protocol": "DG",
+        "feature_mode": "invariant_126",
+        "feature_dimension": 126,
+        "source_config": "S3",
+        "sources": [
+          "MFPT"
+        ],
+        "target": "CWRU_12k",
+        "target_physical_unit": "g",
+        "seed": 42,
+        "initial_source_head_classes": [
+          "Inner",
+          "Outer"
+        ],
+        "initial_source_head_dim": 2,
+        "evaluation_head_classes": [
+          "Inner",
+          "Outer"
+        ],
+        "evaluation_head_dim": 2,
+        "execution_status": "READY_SCALE_INVARIANT_126_DG",
+        "physical_unit_note": "Scale-invariant 126-feature DG ablation (dedicated 126-input TabNetPretrainer); unit 'g' unblocked without target stats."
+      },
+      {
+        "protocol": "DG",
+        "feature_mode": "invariant_126",
+        "feature_dimension": 126,
+        "source_config": "S4",
+        "sources": [
+          "UORED",
+          "HUST",
+          "MFPT"
+        ],
+        "target": "CWRU_12k",
+        "target_physical_unit": "g",
+        "seed": 42,
+        "initial_source_head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "initial_source_head_dim": 5,
+        "evaluation_head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "evaluation_head_dim": 5,
+        "execution_status": "READY_SCALE_INVARIANT_126_DG",
+        "physical_unit_note": "Scale-invariant 126-feature DG ablation (dedicated 126-input TabNetPretrainer); unit 'g' unblocked without target stats."
+      },
+      {
+        "protocol": "TL",
+        "feature_mode": "full_141",
+        "feature_dimension": 141,
+        "source_config": "S1",
+        "sources": [
+          "UORED"
+        ],
+        "target": "CWRU_12k",
+        "target_physical_unit": "g",
+        "seed": 42,
+        "initial_source_head_classes": [
+          "Normal",
+          "Ball"
+        ],
+        "initial_source_head_dim": 2,
+        "evaluation_head_classes": "native_target_vocabulary",
+        "evaluation_head_dim": "native_target_num_classes",
+        "execution_status": "READY_TARGET_LOCO_TRAIN_NORMAL_RMS (native_condition)",
+        "physical_unit_note": "TL uses target LOCO (native_condition) training conditions Normal RMS_ref."
+      },
+      {
+        "protocol": "TL",
+        "feature_mode": "full_141",
+        "feature_dimension": 141,
+        "source_config": "S2",
+        "sources": [
+          "HUST"
+        ],
+        "target": "CWRU_12k",
+        "target_physical_unit": "g",
+        "seed": 42,
+        "initial_source_head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "initial_source_head_dim": 5,
+        "evaluation_head_classes": "native_target_vocabulary",
+        "evaluation_head_dim": "native_target_num_classes",
+        "execution_status": "READY_TARGET_LOCO_TRAIN_NORMAL_RMS (native_condition)",
+        "physical_unit_note": "TL uses target LOCO (native_condition) training conditions Normal RMS_ref."
+      },
+      {
+        "protocol": "TL",
+        "feature_mode": "full_141",
+        "feature_dimension": 141,
+        "source_config": "S3",
+        "sources": [
+          "MFPT"
+        ],
+        "target": "CWRU_12k",
+        "target_physical_unit": "g",
+        "seed": 42,
+        "initial_source_head_classes": [
+          "Inner",
+          "Outer"
+        ],
+        "initial_source_head_dim": 2,
+        "evaluation_head_classes": "native_target_vocabulary",
+        "evaluation_head_dim": "native_target_num_classes",
+        "execution_status": "READY_TARGET_LOCO_TRAIN_NORMAL_RMS (native_condition)",
+        "physical_unit_note": "TL uses target LOCO (native_condition) training conditions Normal RMS_ref."
+      }
+    ]
+  },
+  "fold_accounting": {
+    "expected_folds": 0,
+    "valid_folds": 0,
+    "failed_folds": 0,
+    "error_breakdown": {}
+  }
+}

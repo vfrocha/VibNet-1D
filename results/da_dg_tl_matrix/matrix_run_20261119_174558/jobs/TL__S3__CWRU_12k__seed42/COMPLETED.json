@@ -1,0 +1,18 @@
+{
+  "status": "COMPLETED",
+  "protocol": "TL",
+  "source_config": "S3",
+  "target": "CWRU_12k",
+  "loco_grouping_mode": "native_condition",
+  "seed": 42,
+  "n_loco_folds_executed": 4,
+  "elapsed_seconds": 169.97,
+  "models_macro_f1": {
+    "TabNet_TL_Scratch": 0.8462790100047577,
+    "TabNet_TL_FineTuning": 0.851544744292893,
+    "TabNet_TL_LinearProbing": 0.5419727990523923,
+    "RandomForest_TL_LOCO": 0.9096058185234255,
+    "SVM_TL_LOCO": 0.8951238892914768
+  },
+  "timestamp_utc": "2026-11-19T18:14:56.145716+00:00"
+}
