@@ -1,0 +1,38 @@
+[
+  {
+    "fold_index": 0,
+    "test_condition": "Load_0HP",
+    "n_train_conditions": 3,
+    "n_train_windows": 1920,
+    "n_test_windows": 600,
+    "rms_ref": 0.0667453532622136,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 1,
+    "test_condition": "Load_1HP",
+    "n_train_conditions": 3,
+    "n_train_windows": 1880,
+    "n_test_windows": 640,
+    "rms_ref": 0.06874756116250141,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 2,
+    "test_condition": "Load_2HP",
+    "n_train_conditions": 3,
+    "n_train_windows": 1880,
+    "n_test_windows": 640,
+    "rms_ref": 0.06958437064848438,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 3,
+    "test_condition": "Load_3HP",
+    "n_train_conditions": 3,
+    "n_train_windows": 1880,
+    "n_test_windows": 640,
+    "rms_ref": 0.06724286893865018,
+    "rms_mode": "target_loco_train_conditions_normal"
+  }
+]

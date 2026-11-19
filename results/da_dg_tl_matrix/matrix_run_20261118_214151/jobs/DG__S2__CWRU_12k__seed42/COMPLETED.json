@@ -1,0 +1,15 @@
+{
+  "status": "COMPLETED",
+  "protocol": "DG",
+  "source_config": "S2",
+  "target": "CWRU_12k",
+  "seed": 42,
+  "elapsed_seconds": 125.593,
+  "tabnet_macro_f1": 0.2472439250626549,
+  "models_macro_f1": {
+    "TabNet_DG": 0.2472439250626549,
+    "RandomForest_DG_SourceOnly": 0.35745102396617867,
+    "SVM_DG_SourceOnly": 0.12166346786403778
+  },
+  "timestamp_utc": "2026-11-18T21:45:24.825580+00:00"
+}
