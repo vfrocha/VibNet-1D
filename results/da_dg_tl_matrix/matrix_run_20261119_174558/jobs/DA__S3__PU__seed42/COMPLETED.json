@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETED",
+  "protocol": "DA",
+  "source_config": "S3",
+  "target": "PU",
+  "seed": 42,
+  "elapsed_seconds": 418.0,
+  "tabnet_macro_f1": 0.6004630627052664,
+  "models_macro_f1": {
+    "TabNet_DA_ExpandedHead": 0.6004630627052664,
+    "RandomForest_DA_TargetOnly20": 0.9969957231048113,
+    "RandomForest_DA_SourcePlusTarget20": 0.9956680943675842,
+    "SVM_DA_TargetOnly20": 0.991335768755443,
+    "SVM_DA_SourcePlusTarget20": 0.9888979164975277
+  },
+  "timestamp_utc": "2026-11-19T19:00:55.115565+00:00"
+}

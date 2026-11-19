@@ -1,0 +1,32 @@
+[
+  {
+    "fold_index": 0,
+    "loco_grouping_mode": "by_severity",
+    "test_condition": "Sev_0.007",
+    "n_train_conditions": 2,
+    "n_train_windows": 392,
+    "n_test_windows": 210,
+    "rms_ref": 0.06801648206292678,
+    "rms_mode": "external_cwru12k_normal_reference"
+  },
+  {
+    "fold_index": 1,
+    "loco_grouping_mode": "by_severity",
+    "test_condition": "Sev_0.014",
+    "n_train_conditions": 2,
+    "n_train_windows": 408,
+    "n_test_windows": 194,
+    "rms_ref": 0.06801648206292678,
+    "rms_mode": "external_cwru12k_normal_reference"
+  },
+  {
+    "fold_index": 2,
+    "loco_grouping_mode": "by_severity",
+    "test_condition": "Sev_0.021",
+    "n_train_conditions": 2,
+    "n_train_windows": 404,
+    "n_test_windows": 198,
+    "rms_ref": 0.06801648206292678,
+    "rms_mode": "external_cwru12k_normal_reference"
+  }
+]

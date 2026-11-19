@@ -1,0 +1,11 @@
+{
+  "status": "BLOCKED_INCOMPATIBLE_UNIT",
+  "protocol": "DG",
+  "feature_mode": "full_141",
+  "source_config": "S4",
+  "target": "PU",
+  "seed": 42,
+  "feature_dimension": 141,
+  "reason": "Target 'PU' has physical unit 'V' (Volts), which is incompatible with source RMS_global in m/s^2 without a verified sensor sensitivity calibration factor. Blocked under full_141; use invariant_126 scale-invariant ablation for DG on PU.",
+  "timestamp_utc": "2026-11-19T19:11:57.646293+00:00"
+}

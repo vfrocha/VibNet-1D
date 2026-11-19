@@ -1,0 +1,62 @@
+[
+  {
+    "fold_index": 0,
+    "loco_grouping_mode": "by_speed",
+    "test_condition": "20Hz",
+    "n_train_conditions": 5,
+    "n_train_windows": 750,
+    "n_test_windows": 150,
+    "rms_ref": 0.10282790494276632,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 1,
+    "loco_grouping_mode": "by_speed",
+    "test_condition": "25Hz",
+    "n_train_conditions": 5,
+    "n_train_windows": 750,
+    "n_test_windows": 150,
+    "rms_ref": 0.0960964724007446,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 2,
+    "loco_grouping_mode": "by_speed",
+    "test_condition": "30Hz",
+    "n_train_conditions": 5,
+    "n_train_windows": 750,
+    "n_test_windows": 150,
+    "rms_ref": 0.09296585298562304,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 3,
+    "loco_grouping_mode": "by_speed",
+    "test_condition": "35Hz",
+    "n_train_conditions": 5,
+    "n_train_windows": 750,
+    "n_test_windows": 150,
+    "rms_ref": 0.0903246681721316,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 4,
+    "loco_grouping_mode": "by_speed",
+    "test_condition": "40Hz",
+    "n_train_conditions": 5,
+    "n_train_windows": 750,
+    "n_test_windows": 150,
+    "rms_ref": 0.07874870918145185,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 5,
+    "loco_grouping_mode": "by_speed",
+    "test_condition": "VS_0_40_0",
+    "n_train_conditions": 5,
+    "n_train_windows": 750,
+    "n_test_windows": 150,
+    "rms_ref": 0.09513519135082475,
+    "rms_mode": "target_loco_train_conditions_normal"
+  }
+]

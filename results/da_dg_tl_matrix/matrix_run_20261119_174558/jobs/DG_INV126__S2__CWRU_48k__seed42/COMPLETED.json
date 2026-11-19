@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETED",
+  "protocol": "DG",
+  "feature_mode": "invariant_126",
+  "feature_dimension": 126,
+  "source_config": "S2",
+  "target": "CWRU_48k",
+  "seed": 42,
+  "elapsed_seconds": 40.857,
+  "tabnet_macro_f1": 0.011741441310604546,
+  "models_macro_f1": {
+    "TabNet_DG": 0.011741441310604546,
+    "RandomForest_DG_SourceOnly": 0.09275213675213677,
+    "SVM_DG_SourceOnly": 0.1624790619765494
+  },
+  "timestamp_utc": "2026-11-19T19:19:51.684351+00:00"
+}

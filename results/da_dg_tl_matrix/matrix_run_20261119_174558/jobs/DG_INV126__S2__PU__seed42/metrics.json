@@ -1,0 +1,650 @@
+{
+  "status": "COMPLETED",
+  "protocol": "DG",
+  "feature_mode": "invariant_126",
+  "source_config": "S2",
+  "sources": [
+    "HUST"
+  ],
+  "target": "PU",
+  "seed": 42,
+  "feature_dimension": 126,
+  "balance_mode": "hierarchical_class_equalized",
+  "elapsed_seconds": 397.808,
+  "shared_pretrainer_zip": "/home/vfrocha/VibNet-1D/results/da_dg_tl_matrix/matrix_run_20261119_174558/shared_pretrainers/SELF_RMS_TRAIN_invariant_126_S2_seed42/tabnet_pretrainer_S2_seed42.zip",
+  "dg_rms_normalization": {
+    "dg_source_normalization_mode": "per_source_rms",
+    "global_rms_ref_ms2": 0.18562001360435035,
+    "source_rms_refs_ms2": {
+      "HUST": 0.18562001360435032
+    },
+    "source_self_rms_native": {
+      "HUST": 0.18562001360435032
+    },
+    "target_unit": "V",
+    "same_global_rms_ref_applied_to_sources_and_target": false,
+    "target_statistics_used": false
+  },
+  "pretrain_audit": {
+    "source_config_id": "S2",
+    "active_sources": [
+      "HUST"
+    ],
+    "feature_mode": "invariant_126",
+    "input_dim": 126,
+    "n_pretrain_windows": 770,
+    "n_pretrain_recordings": 80,
+    "supervised_train_recording_count": 58,
+    "supervised_train_window_count": 569,
+    "additional_unsupervised_recording_count": 22,
+    "additional_unsupervised_window_count": 201,
+    "additional_unsupervised_classes_by_source": {
+      "HUST": [
+        "Class_44",
+        "Class_46"
+      ]
+    },
+    "additional_unsupervised_counts_by_class": {
+      "HUST::Class_44": {
+        "pretrain_train_recordings": 10,
+        "pretrain_train_windows": 100,
+        "excluded_val_recordings": 2,
+        "excluded_val_windows": 20
+      },
+      "HUST::Class_46": {
+        "pretrain_train_recordings": 12,
+        "pretrain_train_windows": 101,
+        "excluded_val_recordings": 3,
+        "excluded_val_windows": 30
+      }
+    },
+    "excluded_validation_recording_count": 19,
+    "labels_exposed_to_pretrainer": false,
+    "input_dim_verified": 126,
+    "batch_trim_metadata": {
+      "trimmed_single_remainder": false,
+      "original_len": 770,
+      "effective_len": 770,
+      "batch_size": 64
+    }
+  },
+  "source_val_metrics": {
+    "accuracy": 0.7175572519083969,
+    "balanced_accuracy": 0.6957575757575758,
+    "macro_f1": 0.67925969854213,
+    "macro_f1_including_phantom_classes": 0.67925969854213,
+    "roc_auc_ovr": 0.9315241524152416,
+    "roc_auc_valid": true,
+    "head_classes": [
+      "Normal",
+      "Ball",
+      "Inner",
+      "Outer",
+      "Inner & Outer"
+    ],
+    "target_present_classes": [
+      "Normal",
+      "Ball",
+      "Inner",
+      "Outer",
+      "Inner & Outer"
+    ],
+    "unknown_target_classes": [],
+    "unknown_target_sample_count": 0,
+    "predicted_classes": [
+      "Normal",
+      "Ball",
+      "Inner",
+      "Outer",
+      "Inner & Outer"
+    ],
+    "out_of_target_prediction_count": 0,
+    "out_of_target_prediction_rate": 0.0,
+    "per_target_class_recall": {
+      "Normal": 1.0,
+      "Ball": 0.5454545454545454,
+      "Inner": 0.4666666666666667,
+      "Outer": 1.0,
+      "Inner & Outer": 0.4666666666666667
+    },
+    "per_class_f1_all_5": {
+      "Normal": 1.0,
+      "Ball": 0.5,
+      "Inner": 0.49122807017543857,
+      "Outer": 0.8450704225352113,
+      "Inner & Outer": 0.56
+    },
+    "confusion_matrix_labels": [
+      "Normal",
+      "Ball",
+      "Inner",
+      "Outer",
+      "Inner & Outer"
+    ],
+    "confusion_matrix": [
+      [
+        30,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        3,
+        1,
+        1
+      ],
+      [
+        0,
+        7,
+        14,
+        4,
+        5
+      ],
+      [
+        0,
+        0,
+        0,
+        30,
+        0
+      ],
+      [
+        0,
+        0,
+        10,
+        6,
+        14
+      ]
+    ],
+    "confusion_matrix_5class_labels": [
+      "Normal",
+      "Ball",
+      "Inner",
+      "Outer",
+      "Inner & Outer"
+    ],
+    "confusion_matrix_5class": [
+      [
+        30,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        3,
+        1,
+        1
+      ],
+      [
+        0,
+        7,
+        14,
+        4,
+        5
+      ],
+      [
+        0,
+        0,
+        0,
+        30,
+        0
+      ],
+      [
+        0,
+        0,
+        10,
+        6,
+        14
+      ]
+    ],
+    "n_test_samples": 131
+  },
+  "models": {
+    "TabNet_DG": {
+      "metrics": {
+        "accuracy": 0.2726991970352069,
+        "balanced_accuracy": 0.2110950254951389,
+        "macro_f1": 0.19142433106422732,
+        "macro_f1_including_phantom_classes": 0.11485459863853639,
+        "roc_auc_ovr": 0.43323325253493633,
+        "roc_auc_valid": true,
+        "head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "target_present_classes": [
+          "Normal",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "unknown_target_classes": [],
+        "unknown_target_sample_count": 0,
+        "predicted_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer"
+        ],
+        "out_of_target_prediction_count": 102,
+        "out_of_target_prediction_rate": 0.015750463248919086,
+        "per_target_class_recall": {
+          "Normal": 0.3420229405630866,
+          "Outer": 0.2912621359223301,
+          "Inner & Outer": 0.0
+        },
+        "per_class_f1_all_5": {
+          "Normal": 0.24188790560471976,
+          "Ball": 0.0,
+          "Inner": 0.0,
+          "Outer": 0.33238508758796226,
+          "Inner & Outer": 0.0
+        },
+        "confusion_matrix_labels": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "confusion_matrix": [
+          [
+            656,
+            0,
+            0,
+            1262,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2602,
+            2,
+            97,
+            1110,
+            0
+          ],
+          [
+            248,
+            3,
+            0,
+            496,
+            0
+          ]
+        ],
+        "confusion_matrix_5class_labels": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "confusion_matrix_5class": [
+          [
+            656,
+            0,
+            0,
+            1262,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2602,
+            2,
+            97,
+            1110,
+            0
+          ],
+          [
+            248,
+            3,
+            0,
+            496,
+            0
+          ]
+        ],
+        "n_test_samples": 6476
+      },
+      "head_classes": [
+        "Normal",
+        "Ball",
+        "Inner",
+        "Outer",
+        "Inner & Outer"
+      ],
+      "head_output_dim": 5,
+      "selected_epoch": 40,
+      "encoder_param_max_abs_diff": 0.0,
+      "encoder_buffer_max_abs_diff": 0.0
+    },
+    "RandomForest_DG_SourceOnly": {
+      "metrics": {
+        "accuracy": 0.2987955528103768,
+        "balanced_accuracy": 0.32385685036099604,
+        "macro_f1": 0.17837876251191218,
+        "macro_f1_including_phantom_classes": 0.13378407188393412,
+        "roc_auc_ovr": 0.5307955231333542,
+        "roc_auc_valid": true,
+        "head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "target_present_classes": [
+          "Normal",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "unknown_target_classes": [],
+        "unknown_target_sample_count": 0,
+        "predicted_classes": [
+          "Normal",
+          "Inner",
+          "Outer"
+        ],
+        "out_of_target_prediction_count": 129,
+        "out_of_target_prediction_rate": 0.019919703520691785,
+        "per_target_class_recall": {
+          "Normal": 0.9337851929092805,
+          "Outer": 0.037785358173707685,
+          "Inner & Outer": 0.0
+        },
+        "per_class_f1_all_5": {
+          "Normal": 0.4706346078044935,
+          "Ball": 0.0,
+          "Inner": 0.0,
+          "Outer": 0.064501679731243,
+          "Inner & Outer": 0.0
+        },
+        "confusion_matrix_labels": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "confusion_matrix": [
+          [
+            1791,
+            0,
+            127,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            3665,
+            0,
+            2,
+            144,
+            0
+          ],
+          [
+            237,
+            0,
+            0,
+            510,
+            0
+          ]
+        ],
+        "confusion_matrix_5class_labels": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "confusion_matrix_5class": [
+          [
+            1791,
+            0,
+            127,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            3665,
+            0,
+            2,
+            144,
+            0
+          ],
+          [
+            237,
+            0,
+            0,
+            510,
+            0
+          ]
+        ],
+        "n_test_samples": 6476
+      },
+      "head_classes": [
+        "Normal",
+        "Ball",
+        "Inner",
+        "Outer",
+        "Inner & Outer"
+      ],
+      "hyperparameters": {
+        "n_estimators": 300,
+        "max_depth": null,
+        "min_samples_split": 2,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt",
+        "class_weight": null,
+        "random_state": 42
+      }
+    },
+    "SVM_DG_SourceOnly": {
+      "metrics": {
+        "accuracy": 0.28489808523780114,
+        "balanced_accuracy": 0.2782604222615561,
+        "macro_f1": 0.2097774245124976,
+        "macro_f1_including_phantom_classes": 0.12586645470749855,
+        "roc_auc_ovr": 0.5731946914786109,
+        "roc_auc_valid": true,
+        "head_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "target_present_classes": [
+          "Normal",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "unknown_target_classes": [],
+        "unknown_target_sample_count": 0,
+        "predicted_classes": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer"
+        ],
+        "out_of_target_prediction_count": 1151,
+        "out_of_target_prediction_rate": 0.17773316862260655,
+        "per_target_class_recall": {
+          "Normal": 0.7059436913451512,
+          "Outer": 0.12883757543951718,
+          "Inner & Outer": 0.0
+        },
+        "per_class_f1_all_5": {
+          "Normal": 0.40106635071090047,
+          "Ball": 0.0,
+          "Inner": 0.0,
+          "Outer": 0.22826592282659228,
+          "Inner & Outer": 0.0
+        },
+        "confusion_matrix_labels": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "confusion_matrix": [
+          [
+            1354,
+            0,
+            564,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2937,
+            1,
+            382,
+            491,
+            0
+          ],
+          [
+            543,
+            204,
+            0,
+            0,
+            0
+          ]
+        ],
+        "confusion_matrix_5class_labels": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "confusion_matrix_5class": [
+          [
+            1354,
+            0,
+            564,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2937,
+            1,
+            382,
+            491,
+            0
+          ],
+          [
+            543,
+            204,
+            0,
+            0,
+            0
+          ]
+        ],
+        "n_test_samples": 6476
+      },
+      "head_classes": [
+        "Normal",
+        "Ball",
+        "Inner",
+        "Outer",
+        "Inner & Outer"
+      ],
+      "hyperparameters": {
+        "kernel": "rbf",
+        "C": 10.0,
+        "gamma": "scale",
+        "probability": true,
+        "class_weight": null,
+        "random_state": 42
+      }
+    }
+  },
+  "timestamp_utc": "2026-11-19T19:26:29.496767+00:00"
+}

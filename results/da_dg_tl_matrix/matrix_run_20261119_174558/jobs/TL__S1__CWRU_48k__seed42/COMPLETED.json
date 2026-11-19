@@ -1,0 +1,18 @@
+{
+  "status": "COMPLETED",
+  "protocol": "TL",
+  "source_config": "S1",
+  "target": "CWRU_48k",
+  "loco_grouping_mode": "by_severity",
+  "seed": 42,
+  "n_loco_folds_executed": 3,
+  "elapsed_seconds": 194.367,
+  "models_macro_f1": {
+    "TabNet_TL_Scratch": 0.1074663025010592,
+    "TabNet_TL_FineTuning": 0.07568333734774658,
+    "TabNet_TL_LinearProbing": 0.26040000184369844,
+    "RandomForest_TL_LOCO": 0.14851811447725674,
+    "SVM_TL_LOCO": 0.07492549016303482
+  },
+  "timestamp_utc": "2026-11-19T19:52:21.531778+00:00"
+}

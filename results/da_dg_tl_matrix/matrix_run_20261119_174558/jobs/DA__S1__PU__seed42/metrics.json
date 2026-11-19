@@ -1,0 +1,832 @@
+{
+  "status": "COMPLETED",
+  "protocol": "DA",
+  "source_config": "S1",
+  "sources": [
+    "UORED"
+  ],
+  "target": "PU",
+  "seed": 42,
+  "feature_dimension": 141,
+  "elapsed_seconds": 500.583,
+  "shared_pretrainer_zip": "/home/vfrocha/VibNet-1D/results/da_dg_tl_matrix/matrix_run_20261119_174558/shared_pretrainers/SELF_RMS_TRAIN_S1_seed42/tabnet_pretrainer_S1_seed42.zip",
+  "da_rms_normalization": {
+    "rms_ref": 0.27947520545025234,
+    "calibration_mode": "internal_adaptation_normal",
+    "reference_domain": "PU",
+    "n_reference_windows": 384,
+    "reference_recording_keys": [
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00005",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00009",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00013",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00017",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00029",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00049",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00101",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00109",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00149",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00153",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00641",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00660",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00680",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00692",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00728",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00736",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00748",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00752",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00764",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s00798",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s01340",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s01344",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s01932",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s01948",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s01964",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s01984",
+      "PU::C1_1500rpm_0.7Nm_1000N::Class_Normal::s01992",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s00022",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s00074",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s00080",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s00098",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s00106",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s00150",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s00154",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s00639",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s00701",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s00719",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s00729",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s00753",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s00757",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s00761",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s00796",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s01333",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s01349",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s01925",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s01937",
+      "PU::C2_900rpm_0.7Nm_1000N::Class_Normal::s01949",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00003",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00015",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00023",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00051",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00055",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00075",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00078",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00095",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00099",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00107",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00111",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00127",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00155",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00694",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00754",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00758",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00774",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00790",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s00797",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s01326",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s01330",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s01342",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s01350",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s01357",
+      "PU::C3_1500rpm_0.1Nm_1000N::Class_Normal::s01954",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s00016",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s00020",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s00068",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s00084",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s00088",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s00096",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s00108",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s00112",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s00120",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s00132",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s00655",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s00711",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s00720",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s00723",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s00759",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s01335",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s01355",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s01927",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s01947",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s01963",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s01967",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s01983",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s01987",
+      "PU::C4_1500rpm_0.7Nm_400N::Class_Normal::s01991"
+    ],
+    "test_data_used_in_normalization": false
+  },
+  "target_da_split_summary": {
+    "split_signature": "b34be71b6132e4e6",
+    "recording_counts_by_class": {
+      "Inner & Outer": {
+        "total": 188,
+        "adapt": 38,
+        "adapt_train": 38,
+        "adapt_val": 0,
+        "adapt_total": 38,
+        "test": 150
+      },
+      "Normal": {
+        "total": 480,
+        "adapt": 96,
+        "adapt_train": 96,
+        "adapt_val": 0,
+        "adapt_total": 96,
+        "test": 384
+      },
+      "Outer": {
+        "total": 955,
+        "adapt": 191,
+        "adapt_train": 191,
+        "adapt_val": 0,
+        "adapt_total": 191,
+        "test": 764
+      }
+    },
+    "window_counts_by_class": {
+      "Inner & Outer": {
+        "total": 747,
+        "adapt": 151,
+        "adapt_train": 151,
+        "adapt_val": 0,
+        "adapt_total": 151,
+        "test": 596
+      },
+      "Normal": {
+        "total": 1918,
+        "adapt": 384,
+        "adapt_train": 384,
+        "adapt_val": 0,
+        "adapt_total": 384,
+        "test": 1534
+      },
+      "Outer": {
+        "total": 3811,
+        "adapt": 763,
+        "adapt_train": 763,
+        "adapt_val": 0,
+        "adapt_total": 763,
+        "test": 3048
+      }
+    }
+  },
+  "models": {
+    "TabNet_DA_ExpandedHead": {
+      "metrics": {
+        "accuracy": 0.6376979528775589,
+        "balanced_accuracy": 0.4951356500009964,
+        "macro_f1": 0.5153258006627804,
+        "macro_f1_including_phantom_classes": 0.5153258006627804,
+        "roc_auc_ovr": 0.713246140480568,
+        "roc_auc_valid": true,
+        "head_classes": [
+          "Normal",
+          "Ball",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "target_present_classes": [
+          "Normal",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "unknown_target_classes": [],
+        "unknown_target_sample_count": 0,
+        "predicted_classes": [
+          "Normal",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "out_of_target_prediction_count": 0,
+        "out_of_target_prediction_rate": 0.0,
+        "per_target_class_recall": {
+          "Normal": 0.2333767926988266,
+          "Outer": 0.8963254593175853,
+          "Inner & Outer": 0.35570469798657717
+        },
+        "per_class_f1_all_5": {
+          "Normal": 0.33694117647058824,
+          "Ball": 0.0,
+          "Inner": 0.0,
+          "Outer": 0.7471625871735266,
+          "Inner & Outer": 0.46187363834422657
+        },
+        "confusion_matrix_labels": [
+          "Normal",
+          "Ball",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "confusion_matrix": [
+          [
+            358,
+            0,
+            1150,
+            26
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            232,
+            0,
+            2732,
+            84
+          ],
+          [
+            1,
+            0,
+            383,
+            212
+          ]
+        ],
+        "confusion_matrix_5class_labels": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "confusion_matrix_5class": [
+          [
+            358,
+            0,
+            0,
+            1150,
+            26
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            232,
+            0,
+            0,
+            2732,
+            84
+          ],
+          [
+            1,
+            0,
+            0,
+            383,
+            212
+          ]
+        ],
+        "n_test_samples": 5178
+      },
+      "head_classes": [
+        "Normal",
+        "Ball",
+        "Outer",
+        "Inner & Outer"
+      ],
+      "head_output_dim": 4,
+      "transferred_from_source_classes": [
+        "Normal",
+        "Ball"
+      ],
+      "introduced_by_expansion_classes": [
+        "Outer",
+        "Inner & Outer"
+      ],
+      "learned_during_adaptation_classes": [
+        "Normal",
+        "Outer",
+        "Inner & Outer"
+      ],
+      "fixed_epochs_from_source": 10,
+      "encoder_param_max_abs_diff": 0.0,
+      "encoder_buffer_max_abs_diff": 0.0,
+      "head_param_max_abs_diff": 0.5438123941421509
+    },
+    "RandomForest_DA_TargetOnly20": {
+      "metrics": {
+        "accuracy": 0.9978756276554654,
+        "balanced_accuracy": 0.9956475658663472,
+        "macro_f1": 0.9969957231048113,
+        "macro_f1_including_phantom_classes": 0.9969957231048113,
+        "roc_auc_ovr": 0.99998926252124,
+        "roc_auc_valid": true,
+        "head_classes": [
+          "Normal",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "target_present_classes": [
+          "Normal",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "unknown_target_classes": [],
+        "unknown_target_sample_count": 0,
+        "predicted_classes": [
+          "Normal",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "out_of_target_prediction_count": 0,
+        "out_of_target_prediction_rate": 0.0,
+        "per_target_class_recall": {
+          "Normal": 1.0,
+          "Outer": 0.9986876640419947,
+          "Inner & Outer": 0.988255033557047
+        },
+        "per_class_f1_all_5": {
+          "Normal": 0.9986979166666666,
+          "Ball": 0.0,
+          "Inner": 0.0,
+          "Outer": 0.9981964256435482,
+          "Inner & Outer": 0.9940928270042194
+        },
+        "confusion_matrix_labels": [
+          "Normal",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "confusion_matrix": [
+          [
+            1534,
+            0,
+            0
+          ],
+          [
+            4,
+            3044,
+            0
+          ],
+          [
+            0,
+            7,
+            589
+          ]
+        ],
+        "confusion_matrix_5class_labels": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "confusion_matrix_5class": [
+          [
+            1534,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            3044,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            7,
+            589
+          ]
+        ],
+        "n_test_samples": 5178
+      },
+      "head_classes": [
+        "Normal",
+        "Outer",
+        "Inner & Outer"
+      ],
+      "hyperparameters": {
+        "n_estimators": 300,
+        "max_depth": null,
+        "min_samples_split": 2,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt",
+        "class_weight": "balanced",
+        "random_state": 42
+      }
+    },
+    "RandomForest_DA_SourcePlusTarget20": {
+      "metrics": {
+        "accuracy": 0.9969100038624952,
+        "balanced_accuracy": 0.9949928237195458,
+        "macro_f1": 0.9954985740335572,
+        "macro_f1_including_phantom_classes": 0.9954985740335572,
+        "roc_auc_ovr": 0.9999468178783534,
+        "roc_auc_valid": true,
+        "head_classes": [
+          "Normal",
+          "Ball",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "target_present_classes": [
+          "Normal",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "unknown_target_classes": [],
+        "unknown_target_sample_count": 0,
+        "predicted_classes": [
+          "Normal",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "out_of_target_prediction_count": 0,
+        "out_of_target_prediction_rate": 0.0,
+        "per_target_class_recall": {
+          "Normal": 0.999348109517601,
+          "Outer": 0.9973753280839895,
+          "Inner & Outer": 0.988255033557047
+        },
+        "per_class_f1_all_5": {
+          "Normal": 0.9983718658417453,
+          "Ball": 0.0,
+          "Inner": 0.0,
+          "Outer": 0.9973753280839895,
+          "Inner & Outer": 0.990748528174937
+        },
+        "confusion_matrix_labels": [
+          "Normal",
+          "Ball",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "confusion_matrix": [
+          [
+            1533,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            3040,
+            4
+          ],
+          [
+            0,
+            0,
+            7,
+            589
+          ]
+        ],
+        "confusion_matrix_5class_labels": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "confusion_matrix_5class": [
+          [
+            1533,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            3040,
+            4
+          ],
+          [
+            0,
+            0,
+            0,
+            7,
+            589
+          ]
+        ],
+        "n_test_samples": 5178
+      },
+      "head_classes": [
+        "Normal",
+        "Ball",
+        "Outer",
+        "Inner & Outer"
+      ],
+      "hyperparameters": {
+        "n_estimators": 300,
+        "max_depth": null,
+        "min_samples_split": 2,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt",
+        "class_weight": null,
+        "random_state": 42
+      },
+      "joint_learning_note": "Joint learning baseline combining source training data and 20% labeled target adaptation data; not equivalent to explicit TabNet head transfer/expansion."
+    },
+    "SVM_DA_TargetOnly20": {
+      "metrics": {
+        "accuracy": 0.9934337582078022,
+        "balanced_accuracy": 0.9892454280872286,
+        "macro_f1": 0.991335768755443,
+        "macro_f1_including_phantom_classes": 0.991335768755443,
+        "roc_auc_ovr": 0.9998855776998106,
+        "roc_auc_valid": true,
+        "head_classes": [
+          "Normal",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "target_present_classes": [
+          "Normal",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "unknown_target_classes": [],
+        "unknown_target_sample_count": 0,
+        "predicted_classes": [
+          "Normal",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "out_of_target_prediction_count": 0,
+        "out_of_target_prediction_rate": 0.0,
+        "per_target_class_recall": {
+          "Normal": 0.9928292046936115,
+          "Outer": 0.9967191601049868,
+          "Inner & Outer": 0.9781879194630873
+        },
+        "per_class_f1_all_5": {
+          "Normal": 0.9947746570868713,
+          "Ball": 0.0,
+          "Inner": 0.0,
+          "Outer": 0.9944353518821604,
+          "Inner & Outer": 0.9847972972972973
+        },
+        "confusion_matrix_labels": [
+          "Normal",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "confusion_matrix": [
+          [
+            1523,
+            11,
+            0
+          ],
+          [
+            5,
+            3038,
+            5
+          ],
+          [
+            0,
+            13,
+            583
+          ]
+        ],
+        "confusion_matrix_5class_labels": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "confusion_matrix_5class": [
+          [
+            1523,
+            0,
+            0,
+            11,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            5,
+            0,
+            0,
+            3038,
+            5
+          ],
+          [
+            0,
+            0,
+            0,
+            13,
+            583
+          ]
+        ],
+        "n_test_samples": 5178
+      },
+      "head_classes": [
+        "Normal",
+        "Outer",
+        "Inner & Outer"
+      ],
+      "hyperparameters": {
+        "kernel": "rbf",
+        "C": 10.0,
+        "gamma": "scale",
+        "probability": true,
+        "class_weight": "balanced",
+        "random_state": 42
+      }
+    },
+    "SVM_DA_SourcePlusTarget20": {
+      "metrics": {
+        "accuracy": 0.9862881421398223,
+        "balanced_accuracy": 0.9738794153152476,
+        "macro_f1": 0.9819260419454814,
+        "macro_f1_including_phantom_classes": 0.736444531459111,
+        "roc_auc_ovr": 0.99672853685468,
+        "roc_auc_valid": true,
+        "head_classes": [
+          "Normal",
+          "Ball",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "target_present_classes": [
+          "Normal",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "unknown_target_classes": [],
+        "unknown_target_sample_count": 0,
+        "predicted_classes": [
+          "Normal",
+          "Ball",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "out_of_target_prediction_count": 6,
+        "out_of_target_prediction_rate": 0.0011587485515643105,
+        "per_target_class_recall": {
+          "Normal": 0.9869621903520208,
+          "Outer": 0.9950787401574803,
+          "Inner & Outer": 0.9395973154362416
+        },
+        "per_class_f1_all_5": {
+          "Normal": 0.9905135754007197,
+          "Ball": 0.0,
+          "Inner": 0.0,
+          "Outer": 0.9889142484512553,
+          "Inner & Outer": 0.9663503019844694
+        },
+        "confusion_matrix_labels": [
+          "Normal",
+          "Ball",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "confusion_matrix": [
+          [
+            1514,
+            1,
+            19,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            9,
+            3,
+            3033,
+            3
+          ],
+          [
+            0,
+            2,
+            34,
+            560
+          ]
+        ],
+        "confusion_matrix_5class_labels": [
+          "Normal",
+          "Ball",
+          "Inner",
+          "Outer",
+          "Inner & Outer"
+        ],
+        "confusion_matrix_5class": [
+          [
+            1514,
+            1,
+            0,
+            19,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            9,
+            3,
+            0,
+            3033,
+            3
+          ],
+          [
+            0,
+            2,
+            0,
+            34,
+            560
+          ]
+        ],
+        "n_test_samples": 5178
+      },
+      "head_classes": [
+        "Normal",
+        "Ball",
+        "Outer",
+        "Inner & Outer"
+      ],
+      "hyperparameters": {
+        "kernel": "rbf",
+        "C": 10.0,
+        "gamma": "scale",
+        "probability": true,
+        "class_weight": null,
+        "random_state": 42
+      },
+      "joint_learning_note": "Joint learning baseline combining source training data and 20% labeled target adaptation data; not equivalent to explicit TabNet head transfer/expansion."
+    }
+  },
+  "timestamp_utc": "2026-11-19T18:44:39.528720+00:00"
+}

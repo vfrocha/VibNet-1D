@@ -1,0 +1,18 @@
+{
+  "status": "COMPLETED",
+  "protocol": "TL",
+  "source_config": "S4",
+  "target": "UOEMD",
+  "loco_grouping_mode": "native_condition",
+  "seed": 42,
+  "n_loco_folds_executed": 16,
+  "elapsed_seconds": 451.162,
+  "models_macro_f1": {
+    "TabNet_TL_Scratch": 0.6301439837928776,
+    "TabNet_TL_FineTuning": 0.6451379866897629,
+    "TabNet_TL_LinearProbing": 0.2515403459220459,
+    "RandomForest_TL_LOCO": 0.8605306200546349,
+    "SVM_TL_LOCO": 0.7606671879405109
+  },
+  "timestamp_utc": "2026-11-19T21:53:11.542516+00:00"
+}

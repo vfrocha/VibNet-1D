@@ -1,0 +1,162 @@
+[
+  {
+    "fold_index": 0,
+    "loco_grouping_mode": "native_condition",
+    "test_condition": "Load_Loaded_Speed_15Hz",
+    "n_train_conditions": 15,
+    "n_train_windows": 1200,
+    "n_test_windows": 80,
+    "rms_ref": 4.437634947577913,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 1,
+    "loco_grouping_mode": "native_condition",
+    "test_condition": "Load_Loaded_Speed_30Hz",
+    "n_train_conditions": 15,
+    "n_train_windows": 1200,
+    "n_test_windows": 80,
+    "rms_ref": 4.331414424068175,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 2,
+    "loco_grouping_mode": "native_condition",
+    "test_condition": "Load_Loaded_Speed_45Hz",
+    "n_train_conditions": 15,
+    "n_train_windows": 1200,
+    "n_test_windows": 80,
+    "rms_ref": 4.117434260575923,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 3,
+    "loco_grouping_mode": "native_condition",
+    "test_condition": "Load_Loaded_Speed_60Hz",
+    "n_train_conditions": 15,
+    "n_train_windows": 1200,
+    "n_test_windows": 80,
+    "rms_ref": 3.9689848796766714,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 4,
+    "loco_grouping_mode": "native_condition",
+    "test_condition": "Load_Loaded_Speed_Dec_45_to_15Hz",
+    "n_train_conditions": 15,
+    "n_train_windows": 1200,
+    "n_test_windows": 80,
+    "rms_ref": 4.269687345688679,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 5,
+    "loco_grouping_mode": "native_condition",
+    "test_condition": "Load_Loaded_Speed_Dec_60_to_30Hz",
+    "n_train_conditions": 15,
+    "n_train_windows": 1200,
+    "n_test_windows": 80,
+    "rms_ref": 4.098559085952323,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 6,
+    "loco_grouping_mode": "native_condition",
+    "test_condition": "Load_Loaded_Speed_Inc_15_to_45Hz",
+    "n_train_conditions": 15,
+    "n_train_windows": 1200,
+    "n_test_windows": 80,
+    "rms_ref": 4.258850613506916,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 7,
+    "loco_grouping_mode": "native_condition",
+    "test_condition": "Load_Loaded_Speed_Inc_30_to_60Hz",
+    "n_train_conditions": 15,
+    "n_train_windows": 1200,
+    "n_test_windows": 80,
+    "rms_ref": 4.109441819898949,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 8,
+    "loco_grouping_mode": "native_condition",
+    "test_condition": "Load_No_Load_Speed_15Hz",
+    "n_train_conditions": 15,
+    "n_train_windows": 1200,
+    "n_test_windows": 80,
+    "rms_ref": 4.438484879533163,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 9,
+    "loco_grouping_mode": "native_condition",
+    "test_condition": "Load_No_Load_Speed_30Hz",
+    "n_train_conditions": 15,
+    "n_train_windows": 1200,
+    "n_test_windows": 80,
+    "rms_ref": 4.3965197878206865,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 10,
+    "loco_grouping_mode": "native_condition",
+    "test_condition": "Load_No_Load_Speed_45Hz",
+    "n_train_conditions": 15,
+    "n_train_windows": 1200,
+    "n_test_windows": 80,
+    "rms_ref": 4.343178888316783,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 11,
+    "loco_grouping_mode": "native_condition",
+    "test_condition": "Load_No_Load_Speed_60Hz",
+    "n_train_conditions": 15,
+    "n_train_windows": 1200,
+    "n_test_windows": 80,
+    "rms_ref": 4.209249192240762,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 12,
+    "loco_grouping_mode": "native_condition",
+    "test_condition": "Load_No_Load_Speed_Dec_45_to_15Hz",
+    "n_train_conditions": 15,
+    "n_train_windows": 1200,
+    "n_test_windows": 80,
+    "rms_ref": 4.280088112733778,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 13,
+    "loco_grouping_mode": "native_condition",
+    "test_condition": "Load_No_Load_Speed_Dec_60_to_30Hz",
+    "n_train_conditions": 15,
+    "n_train_windows": 1200,
+    "n_test_windows": 80,
+    "rms_ref": 4.325308580992065,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 14,
+    "loco_grouping_mode": "native_condition",
+    "test_condition": "Load_No_Load_Speed_Inc_15_to_45Hz",
+    "n_train_conditions": 15,
+    "n_train_windows": 1200,
+    "n_test_windows": 80,
+    "rms_ref": 4.28345515370088,
+    "rms_mode": "target_loco_train_conditions_normal"
+  },
+  {
+    "fold_index": 15,
+    "loco_grouping_mode": "native_condition",
+    "test_condition": "Load_No_Load_Speed_Inc_30_to_60Hz",
+    "n_train_conditions": 15,
+    "n_train_windows": 1200,
+    "n_test_windows": 80,
+    "rms_ref": 4.292096354910837,
+    "rms_mode": "target_loco_train_conditions_normal"
+  }
+]

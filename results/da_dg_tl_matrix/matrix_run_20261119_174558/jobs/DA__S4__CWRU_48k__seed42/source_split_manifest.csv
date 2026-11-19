@@ -1,0 +1,157 @@
+dataset,recording_key,recording_prefix,raw_class,harmonized_class,condition,partition,seed,window_count
+HUST,HUST::Load_0W::Class_43::s00058,s00058,Class_43,Ball,Load_0W,source_train,42,10
+HUST,HUST::Load_0W::Class_43::s00080,s00080,Class_43,Ball,Load_0W,source_train,42,10
+HUST,HUST::Load_0W::Class_43::s00084,s00084,Class_43,Ball,Load_0W,source_train,42,6
+HUST,HUST::Load_200W::Class_43::s00017,s00017,Class_43,Ball,Load_200W,source_train,42,10
+HUST,HUST::Load_200W::Class_43::s00028,s00028,Class_43,Ball,Load_200W,source_train,42,7
+HUST,HUST::Load_200W::Class_43::s00031,s00031,Class_43,Ball,Load_200W,source_train,42,6
+HUST,HUST::Load_200W::Class_43::s00066,s00066,Class_43,Ball,Load_200W,source_train,42,10
+HUST,HUST::Load_400W::Class_43::s00001,s00001,Class_43,Ball,Load_400W,source_train,42,10
+HUST,HUST::Load_400W::Class_43::s00039,s00039,Class_43,Ball,Load_400W,source_train,42,7
+HUST,HUST::Load_400W::Class_43::s00069,s00069,Class_43,Ball,Load_400W,source_train,42,4
+HUST,HUST::Load_0W::Class_43::s00079,s00079,Class_43,Ball,Load_0W,source_val,42,10
+HUST,HUST::Load_400W::Class_43::s00002,s00002,Class_43,Ball,Load_400W,source_val,42,10
+HUST,HUST::Load_0W::Class_41::s00043,s00043,Class_41,Inner,Load_0W,source_train,42,10
+HUST,HUST::Load_0W::Class_41::s00062,s00062,Class_41,Inner,Load_0W,source_train,42,10
+HUST,HUST::Load_0W::Class_41::s00072,s00072,Class_41,Inner,Load_0W,source_train,42,10
+HUST,HUST::Load_200W::Class_41::s00007,s00007,Class_41,Inner,Load_200W,source_train,42,10
+HUST,HUST::Load_200W::Class_41::s00012,s00012,Class_41,Inner,Load_200W,source_train,42,10
+HUST,HUST::Load_200W::Class_41::s00029,s00029,Class_41,Inner,Load_200W,source_train,42,10
+HUST,HUST::Load_200W::Class_41::s00061,s00061,Class_41,Inner,Load_200W,source_train,42,10
+HUST,HUST::Load_200W::Class_41::s00075,s00075,Class_41,Inner,Load_200W,source_train,42,10
+HUST,HUST::Load_400W::Class_41::s00000,s00000,Class_41,Inner,Load_400W,source_train,42,10
+HUST,HUST::Load_400W::Class_41::s00003,s00003,Class_41,Inner,Load_400W,source_train,42,10
+HUST,HUST::Load_400W::Class_41::s00020,s00020,Class_41,Inner,Load_400W,source_train,42,10
+HUST,HUST::Load_400W::Class_41::s00033,s00033,Class_41,Inner,Load_400W,source_train,42,10
+HUST,HUST::Load_0W::Class_41::s00059,s00059,Class_41,Inner,Load_0W,source_val,42,10
+HUST,HUST::Load_0W::Class_41::s00095,s00095,Class_41,Inner,Load_0W,source_val,42,10
+HUST,HUST::Load_400W::Class_41::s00045,s00045,Class_41,Inner,Load_400W,source_val,42,10
+HUST,HUST::Load_0W::Class_45::s00014,s00014,Class_45,Inner & Outer,Load_0W,source_train,42,10
+HUST,HUST::Load_0W::Class_45::s00022,s00022,Class_45,Inner & Outer,Load_0W,source_train,42,10
+HUST,HUST::Load_0W::Class_45::s00047,s00047,Class_45,Inner & Outer,Load_0W,source_train,42,10
+HUST,HUST::Load_0W::Class_45::s00081,s00081,Class_45,Inner & Outer,Load_0W,source_train,42,10
+HUST,HUST::Load_200W::Class_45::s00024,s00024,Class_45,Inner & Outer,Load_200W,source_train,42,10
+HUST,HUST::Load_200W::Class_45::s00034,s00034,Class_45,Inner & Outer,Load_200W,source_train,42,10
+HUST,HUST::Load_200W::Class_45::s00055,s00055,Class_45,Inner & Outer,Load_200W,source_train,42,10
+HUST,HUST::Load_200W::Class_45::s00060,s00060,Class_45,Inner & Outer,Load_200W,source_train,42,10
+HUST,HUST::Load_400W::Class_45::s00035,s00035,Class_45,Inner & Outer,Load_400W,source_train,42,10
+HUST,HUST::Load_400W::Class_45::s00036,s00036,Class_45,Inner & Outer,Load_400W,source_train,42,10
+HUST,HUST::Load_400W::Class_45::s00040,s00040,Class_45,Inner & Outer,Load_400W,source_train,42,10
+HUST,HUST::Load_400W::Class_45::s00089,s00089,Class_45,Inner & Outer,Load_400W,source_train,42,10
+HUST,HUST::Load_0W::Class_45::s00086,s00086,Class_45,Inner & Outer,Load_0W,source_val,42,10
+HUST,HUST::Load_200W::Class_45::s00016,s00016,Class_45,Inner & Outer,Load_200W,source_val,42,10
+HUST,HUST::Load_400W::Class_45::s00048,s00048,Class_45,Inner & Outer,Load_400W,source_val,42,10
+HUST,HUST::Load_0W::Class_Normal::s00019,s00019,Class_Normal,Normal,Load_0W,source_train,42,10
+HUST,HUST::Load_0W::Class_Normal::s00053,s00053,Class_Normal,Normal,Load_0W,source_train,42,10
+HUST,HUST::Load_0W::Class_Normal::s00068,s00068,Class_Normal,Normal,Load_0W,source_train,42,10
+HUST,HUST::Load_200W::Class_Normal::s00006,s00006,Class_Normal,Normal,Load_200W,source_train,42,10
+HUST,HUST::Load_200W::Class_Normal::s00025,s00025,Class_Normal,Normal,Load_200W,source_train,42,10
+HUST,HUST::Load_200W::Class_Normal::s00049,s00049,Class_Normal,Normal,Load_200W,source_train,42,10
+HUST,HUST::Load_200W::Class_Normal::s00082,s00082,Class_Normal,Normal,Load_200W,source_train,42,10
+HUST,HUST::Load_400W::Class_Normal::s00054,s00054,Class_Normal,Normal,Load_400W,source_train,42,10
+HUST,HUST::Load_400W::Class_Normal::s00067,s00067,Class_Normal,Normal,Load_400W,source_train,42,10
+HUST,HUST::Load_400W::Class_Normal::s00076,s00076,Class_Normal,Normal,Load_400W,source_train,42,10
+HUST,HUST::Load_400W::Class_Normal::s00083,s00083,Class_Normal,Normal,Load_400W,source_train,42,10
+HUST,HUST::Load_400W::Class_Normal::s00087,s00087,Class_Normal,Normal,Load_400W,source_train,42,10
+HUST,HUST::Load_0W::Class_Normal::s00008,s00008,Class_Normal,Normal,Load_0W,source_val,42,10
+HUST,HUST::Load_0W::Class_Normal::s00071,s00071,Class_Normal,Normal,Load_0W,source_val,42,10
+HUST,HUST::Load_200W::Class_Normal::s00097,s00097,Class_Normal,Normal,Load_200W,source_val,42,10
+HUST,HUST::Load_0W::Class_42::s00009,s00009,Class_42,Outer,Load_0W,source_train,42,10
+HUST,HUST::Load_0W::Class_42::s00010,s00010,Class_42,Outer,Load_0W,source_train,42,10
+HUST,HUST::Load_0W::Class_42::s00052,s00052,Class_42,Outer,Load_0W,source_train,42,10
+HUST,HUST::Load_0W::Class_42::s00064,s00064,Class_42,Outer,Load_0W,source_train,42,10
+HUST,HUST::Load_200W::Class_42::s00030,s00030,Class_42,Outer,Load_200W,source_train,42,10
+HUST,HUST::Load_200W::Class_42::s00046,s00046,Class_42,Outer,Load_200W,source_train,42,10
+HUST,HUST::Load_200W::Class_42::s00056,s00056,Class_42,Outer,Load_200W,source_train,42,10
+HUST,HUST::Load_200W::Class_42::s00077,s00077,Class_42,Outer,Load_200W,source_train,42,10
+HUST,HUST::Load_200W::Class_42::s00088,s00088,Class_42,Outer,Load_200W,source_train,42,10
+HUST,HUST::Load_400W::Class_42::s00027,s00027,Class_42,Outer,Load_400W,source_train,42,10
+HUST,HUST::Load_400W::Class_42::s00042,s00042,Class_42,Outer,Load_400W,source_train,42,10
+HUST,HUST::Load_400W::Class_42::s00094,s00094,Class_42,Outer,Load_400W,source_train,42,10
+HUST,HUST::Load_0W::Class_42::s00011,s00011,Class_42,Outer,Load_0W,source_val,42,10
+HUST,HUST::Load_400W::Class_42::s00005,s00005,Class_42,Outer,Load_400W,source_val,42,10
+HUST,HUST::Load_400W::Class_42::s00032,s00032,Class_42,Outer,Load_400W,source_val,42,10
+MFPT,MFPT::Load_0::Class_24::s00013,s00013,Class_24,Inner,Load_0,source_train,42,3
+MFPT,MFPT::Load_100::Class_24::s00015,s00015,Class_24,Inner,Load_100,source_train,42,3
+MFPT,MFPT::Load_150::Class_24::s00016,s00016,Class_24,Inner,Load_150,source_train,42,3
+MFPT,MFPT::Load_200::Class_24::s00017,s00017,Class_24,Inner,Load_200,source_train,42,3
+MFPT,MFPT::Load_250::Class_24::s00018,s00018,Class_24,Inner,Load_250,source_train,42,3
+MFPT,MFPT::Load_50::Class_24::s00014,s00014,Class_24,Inner,Load_50,source_train,42,3
+MFPT,MFPT::Load_300::Class_24::s00019,s00019,Class_24,Inner,Load_300,source_val,42,3
+MFPT,MFPT::Load_100::Class_25::s00008,s00008,Class_25,Outer,Load_100,source_train,42,3
+MFPT,MFPT::Load_150::Class_25::s00009,s00009,Class_25,Outer,Load_150,source_train,42,3
+MFPT,MFPT::Load_200::Class_25::s00010,s00010,Class_25,Outer,Load_200,source_train,42,3
+MFPT,MFPT::Load_250::Class_25::s00011,s00011,Class_25,Outer,Load_250,source_train,42,3
+MFPT,MFPT::Load_270::Class_25::s00003,s00003,Class_25,Outer,Load_270,source_train,42,6
+MFPT,MFPT::Load_270::Class_25::s00004,s00004,Class_25,Outer,Load_270,source_train,42,6
+MFPT,MFPT::Load_270::Class_25::s00005,s00005,Class_25,Outer,Load_270,source_train,42,6
+MFPT,MFPT::Load_50::Class_25::s00007,s00007,Class_25,Outer,Load_50,source_train,42,3
+MFPT,MFPT::Load_25::Class_25::s00006,s00006,Class_25,Outer,Load_25,source_val,42,3
+MFPT,MFPT::Load_300::Class_25::s00012,s00012,Class_25,Outer,Load_300,source_val,42,3
+UORED,UORED::Bearing_11::Class_Ball::s00029,s00029,Class_Ball,Ball,Bearing_11,source_train,42,10
+UORED,UORED::Bearing_12::Class_Ball::s00032,s00032,Class_Ball,Ball,Bearing_12,source_train,42,10
+UORED,UORED::Bearing_12::Class_Ball::s00033,s00033,Class_Ball,Ball,Bearing_12,source_train,42,10
+UORED,UORED::Bearing_13::Class_Ball::s00030,s00030,Class_Ball,Ball,Bearing_13,source_train,42,10
+UORED,UORED::Bearing_14::Class_Ball::s00034,s00034,Class_Ball,Ball,Bearing_14,source_train,42,10
+UORED,UORED::Bearing_14::Class_Ball::s00035,s00035,Class_Ball,Ball,Bearing_14,source_train,42,10
+UORED,UORED::Bearing_15::Class_Ball::s00027,s00027,Class_Ball,Ball,Bearing_15,source_train,42,10
+UORED,UORED::Bearing_15::Class_Ball::s00031,s00031,Class_Ball,Ball,Bearing_15,source_train,42,10
+UORED,UORED::Bearing_11::Class_Ball::s00028,s00028,Class_Ball,Ball,Bearing_11,source_val,42,10
+UORED,UORED::Bearing_13::Class_Ball::s00036,s00036,Class_Ball,Ball,Bearing_13,source_val,42,10
+UORED,UORED::Bearing_11::Class_Normal::s00003,s00003,Class_Normal,Normal,Bearing_11,source_train,42,10
+UORED,UORED::Bearing_12::Class_Normal::s00010,s00010,Class_Normal,Normal,Bearing_12,source_train,42,10
+UORED,UORED::Bearing_13::Class_Normal::s00011,s00011,Class_Normal,Normal,Bearing_13,source_train,42,10
+UORED,UORED::Bearing_14::Class_Normal::s00009,s00009,Class_Normal,Normal,Bearing_14,source_train,42,10
+UORED,UORED::Bearing_15::Class_Normal::s00008,s00008,Class_Normal,Normal,Bearing_15,source_train,42,10
+UORED,UORED::Bearing_16::Class_Normal::s00002,s00002,Class_Normal,Normal,Bearing_16,source_train,42,10
+UORED,UORED::Bearing_17::Class_Normal::s00017,s00017,Class_Normal,Normal,Bearing_17,source_train,42,10
+UORED,UORED::Bearing_1::Class_Normal::s00004,s00004,Class_Normal,Normal,Bearing_1,source_train,42,10
+UORED,UORED::Bearing_20::Class_Normal::s00014,s00014,Class_Normal,Normal,Bearing_20,source_train,42,10
+UORED,UORED::Bearing_2::Class_Normal::s00000,s00000,Class_Normal,Normal,Bearing_2,source_train,42,10
+UORED,UORED::Bearing_3::Class_Normal::s00016,s00016,Class_Normal,Normal,Bearing_3,source_train,42,10
+UORED,UORED::Bearing_4::Class_Normal::s00015,s00015,Class_Normal,Normal,Bearing_4,source_train,42,10
+UORED,UORED::Bearing_6::Class_Normal::s00006,s00006,Class_Normal,Normal,Bearing_6,source_train,42,10
+UORED,UORED::Bearing_7::Class_Normal::s00013,s00013,Class_Normal,Normal,Bearing_7,source_train,42,10
+UORED,UORED::Bearing_18::Class_Normal::s00005,s00005,Class_Normal,Normal,Bearing_18,source_val,42,10
+UORED,UORED::Bearing_19::Class_Normal::s00012,s00012,Class_Normal,Normal,Bearing_19,source_val,42,10
+UORED,UORED::Bearing_8::Class_Normal::s00001,s00001,Class_Normal,Normal,Bearing_8,source_val,42,10
+UORED,UORED::Bearing_9::Class_Normal::s00007,s00007,Class_Normal,Normal,Bearing_9,source_val,42,10
+HUST,HUST::Load_0W::Class_44::s00018,s00018,Class_44,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_44,Load_0W,pretrain_only_train,42,10
+HUST,HUST::Load_0W::Class_44::s00038,s00038,Class_44,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_44,Load_0W,pretrain_only_train,42,10
+HUST,HUST::Load_0W::Class_44::s00070,s00070,Class_44,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_44,Load_0W,pretrain_only_train,42,10
+HUST,HUST::Load_200W::Class_44::s00004,s00004,Class_44,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_44,Load_200W,pretrain_only_train,42,10
+HUST,HUST::Load_200W::Class_44::s00013,s00013,Class_44,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_44,Load_200W,pretrain_only_train,42,10
+HUST,HUST::Load_200W::Class_44::s00065,s00065,Class_44,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_44,Load_200W,pretrain_only_train,42,10
+HUST,HUST::Load_200W::Class_44::s00078,s00078,Class_44,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_44,Load_200W,pretrain_only_train,42,10
+HUST,HUST::Load_400W::Class_44::s00021,s00021,Class_44,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_44,Load_400W,pretrain_only_train,42,10
+HUST,HUST::Load_400W::Class_44::s00037,s00037,Class_44,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_44,Load_400W,pretrain_only_train,42,10
+HUST,HUST::Load_400W::Class_44::s00073,s00073,Class_44,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_44,Load_400W,pretrain_only_train,42,10
+HUST,HUST::Load_0W::Class_44::s00093,s00093,Class_44,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_44,Load_0W,pretrain_only_val,42,10
+HUST,HUST::Load_400W::Class_44::s00085,s00085,Class_44,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_44,Load_400W,pretrain_only_val,42,10
+HUST,HUST::Load_0W::Class_46::s00050,s00050,Class_46,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_46,Load_0W,pretrain_only_train,42,10
+HUST,HUST::Load_0W::Class_46::s00074,s00074,Class_46,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_46,Load_0W,pretrain_only_train,42,10
+HUST,HUST::Load_0W::Class_46::s00092,s00092,Class_46,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_46,Load_0W,pretrain_only_train,42,9
+HUST,HUST::Load_0W::Class_46::s00098,s00098,Class_46,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_46,Load_0W,pretrain_only_train,42,10
+HUST,HUST::Load_200W::Class_46::s00015,s00015,Class_46,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_46,Load_200W,pretrain_only_train,42,10
+HUST,HUST::Load_200W::Class_46::s00057,s00057,Class_46,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_46,Load_200W,pretrain_only_train,42,2
+HUST,HUST::Load_200W::Class_46::s00063,s00063,Class_46,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_46,Load_200W,pretrain_only_train,42,10
+HUST,HUST::Load_200W::Class_46::s00096,s00096,Class_46,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_46,Load_200W,pretrain_only_train,42,10
+HUST,HUST::Load_400W::Class_46::s00026,s00026,Class_46,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_46,Load_400W,pretrain_only_train,42,10
+HUST,HUST::Load_400W::Class_46::s00041,s00041,Class_46,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_46,Load_400W,pretrain_only_train,42,10
+HUST,HUST::Load_400W::Class_46::s00044,s00044,Class_46,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_46,Load_400W,pretrain_only_train,42,10
+HUST,HUST::Load_400W::Class_46::s00051,s00051,Class_46,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_46,Load_400W,pretrain_only_train,42,5
+HUST,HUST::Load_0W::Class_46::s00091,s00091,Class_46,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_46,Load_0W,pretrain_only_val,42,10
+HUST,HUST::Load_200W::Class_46::s00090,s00090,Class_46,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_46,Load_200W,pretrain_only_val,42,10
+HUST,HUST::Load_400W::Class_46::s00023,s00023,Class_46,UNSUPERVISED_PRETRAIN_ONLY::HUST::Class_46,Load_400W,pretrain_only_val,42,5
+MFPT,MFPT::Load_270::Class_23::s00000,s00000,Class_23,UNSUPERVISED_PRETRAIN_ONLY::MFPT::Class_23,Load_270,pretrain_only_train,42,6
+MFPT,MFPT::Load_270::Class_23::s00001,s00001,Class_23,UNSUPERVISED_PRETRAIN_ONLY::MFPT::Class_23,Load_270,pretrain_only_train,42,6
+MFPT,MFPT::Load_270::Class_23::s00002,s00002,Class_23,UNSUPERVISED_PRETRAIN_ONLY::MFPT::Class_23,Load_270,pretrain_only_val,42,6
+UORED,UORED::Bearing_16::Class_Cage::s00025,s00025,Class_Cage,UNSUPERVISED_PRETRAIN_ONLY::UORED::Class_Cage,Bearing_16,pretrain_only_train,42,10
+UORED,UORED::Bearing_17::Class_Cage::s00020,s00020,Class_Cage,UNSUPERVISED_PRETRAIN_ONLY::UORED::Class_Cage,Bearing_17,pretrain_only_train,42,10
+UORED,UORED::Bearing_17::Class_Cage::s00022,s00022,Class_Cage,UNSUPERVISED_PRETRAIN_ONLY::UORED::Class_Cage,Bearing_17,pretrain_only_train,42,10
+UORED,UORED::Bearing_18::Class_Cage::s00023,s00023,Class_Cage,UNSUPERVISED_PRETRAIN_ONLY::UORED::Class_Cage,Bearing_18,pretrain_only_train,42,10
+UORED,UORED::Bearing_18::Class_Cage::s00026,s00026,Class_Cage,UNSUPERVISED_PRETRAIN_ONLY::UORED::Class_Cage,Bearing_18,pretrain_only_train,42,10
+UORED,UORED::Bearing_19::Class_Cage::s00018,s00018,Class_Cage,UNSUPERVISED_PRETRAIN_ONLY::UORED::Class_Cage,Bearing_19,pretrain_only_train,42,10
+UORED,UORED::Bearing_19::Class_Cage::s00021,s00021,Class_Cage,UNSUPERVISED_PRETRAIN_ONLY::UORED::Class_Cage,Bearing_19,pretrain_only_train,42,10
+UORED,UORED::Bearing_16::Class_Cage::s00024,s00024,Class_Cage,UNSUPERVISED_PRETRAIN_ONLY::UORED::Class_Cage,Bearing_16,pretrain_only_val,42,10
+UORED,UORED::Bearing_20::Class_Cage::s00019,s00019,Class_Cage,UNSUPERVISED_PRETRAIN_ONLY::UORED::Class_Cage,Bearing_20,pretrain_only_val,42,10

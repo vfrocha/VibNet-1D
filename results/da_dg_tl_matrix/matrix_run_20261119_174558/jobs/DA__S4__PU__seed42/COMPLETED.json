@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETED",
+  "protocol": "DA",
+  "source_config": "S4",
+  "target": "PU",
+  "seed": 42,
+  "elapsed_seconds": 416.885,
+  "tabnet_macro_f1": 0.49564667969006587,
+  "models_macro_f1": {
+    "TabNet_DA_ExpandedHead": 0.49564667969006587,
+    "RandomForest_DA_TargetOnly20": 0.9969957231048113,
+    "RandomForest_DA_SourcePlusTarget20": 0.9964948905855048,
+    "SVM_DA_TargetOnly20": 0.991335768755443,
+    "SVM_DA_SourcePlusTarget20": 0.9557376471064069
+  },
+  "timestamp_utc": "2026-11-19T19:09:56.065450+00:00"
+}

@@ -1,0 +1,328 @@
+{
+  "status": "COMPLETED",
+  "protocol": "TL",
+  "source_config": "S1",
+  "sources": [
+    "UORED"
+  ],
+  "target": "PU",
+  "target_native_classes": [
+    "Class_27",
+    "Class_29",
+    "Class_Normal"
+  ],
+  "loco_grouping_mode": "native_condition",
+  "seed": 42,
+  "feature_dimension": 141,
+  "n_loco_folds_executed": 4,
+  "n_loco_folds_total_available": 4,
+  "elapsed_seconds": 2238.921,
+  "shared_pretrainer_zip": "/home/vfrocha/VibNet-1D/results/da_dg_tl_matrix/matrix_run_20261119_174558/shared_pretrainers/SELF_RMS_TRAIN_S1_seed42/tabnet_pretrainer_S1_seed42.zip",
+  "models": {
+    "TabNet_TL_Scratch": {
+      "summary": {
+        "n_folds": 4,
+        "accuracy_mean": 0.857545625770439,
+        "accuracy_std": 0.20366666518489765,
+        "macro_f1_mean": 0.8218671402766932,
+        "macro_f1_std": 0.261046438974153,
+        "weighted_f1_mean": 0.8468542708858153,
+        "weighted_f1_std": 0.2227841312651825,
+        "precision_macro_mean": 0.825944326733953,
+        "precision_macro_std": 0.23952592042685414,
+        "recall_macro_mean": 0.8518576720607829,
+        "recall_macro_std": 0.228281498139887,
+        "roc_auc_ovr_mean": 0.9406889335926453,
+        "roc_auc_ovr_std": 0.09956214145314021,
+        "roc_auc_valid_folds": 4
+      },
+      "per_fold": [
+        {
+          "accuracy": 0.9815837937384899,
+          "macro_f1": 0.9712624632742419,
+          "weighted_f1": 0.982062402897799,
+          "precision_macro": 0.9564852668929342,
+          "recall_macro": 0.9891727812718378,
+          "roc_auc_ovr": 0.9998892253539354,
+          "roc_auc_valid": true,
+          "test_condition": "C1_1500rpm_0.7Nm_1000N"
+        },
+        {
+          "accuracy": 0.5062034739454094,
+          "macro_f1": 0.3704853161770009,
+          "weighted_f1": 0.46224600863297244,
+          "precision_macro": 0.4121534308603274,
+          "recall_macro": 0.45705433652959976,
+          "roc_auc_ovr": 0.7682786548199254,
+          "roc_auc_valid": true,
+          "test_condition": "C2_900rpm_0.7Nm_1000N"
+        },
+        {
+          "accuracy": 0.9962985811227637,
+          "macro_f1": 0.9942909311765257,
+          "weighted_f1": 0.9963142808459248,
+          "precision_macro": 0.9911442378219787,
+          "recall_macro": 0.9975511695906433,
+          "roc_auc_ovr": 0.9997688707611054,
+          "roc_auc_valid": true,
+          "test_condition": "C3_1500rpm_0.1Nm_1000N"
+        },
+        {
+          "accuracy": 0.9460966542750929,
+          "macro_f1": 0.9514298504790043,
+          "weighted_f1": 0.9467943911665649,
+          "precision_macro": 0.9439943713605716,
+          "recall_macro": 0.9636524008510507,
+          "roc_auc_ovr": 0.9948189834356146,
+          "roc_auc_valid": true,
+          "test_condition": "C4_1500rpm_0.7Nm_400N"
+        }
+      ]
+    },
+    "TabNet_TL_FineTuning": {
+      "summary": {
+        "n_folds": 4,
+        "accuracy_mean": 0.8681442776537831,
+        "accuracy_std": 0.16379945778396485,
+        "macro_f1_mean": 0.8232240848395891,
+        "macro_f1_std": 0.2246870692843436,
+        "weighted_f1_mean": 0.865050063485715,
+        "weighted_f1_std": 0.17020658527562965,
+        "precision_macro_mean": 0.8162749659283406,
+        "precision_macro_std": 0.21533604925283015,
+        "recall_macro_mean": 0.849704583141902,
+        "recall_macro_std": 0.2086575567184547,
+        "roc_auc_ovr_mean": 0.9510186122233484,
+        "roc_auc_ovr_std": 0.0826736667679254,
+        "roc_auc_valid_folds": 4
+      },
+      "per_fold": [
+        {
+          "accuracy": 0.9674647022713321,
+          "macro_f1": 0.9512344369487226,
+          "weighted_f1": 0.9688114890956249,
+          "precision_macro": 0.9295111830786359,
+          "recall_macro": 0.9814814814814815,
+          "roc_auc_ovr": 1.0,
+          "roc_auc_valid": true,
+          "test_condition": "C1_1500rpm_0.7Nm_1000N"
+        },
+        {
+          "accuracy": 0.586848635235732,
+          "macro_f1": 0.43562534089764765,
+          "weighted_f1": 0.5725551830332738,
+          "precision_macro": 0.44530802210147424,
+          "recall_macro": 0.4897448509292556,
+          "roc_auc_ovr": 0.8078409648089622,
+          "roc_auc_valid": true,
+          "test_condition": "C2_900rpm_0.7Nm_1000N"
+        },
+        {
+          "accuracy": 0.9888957433682912,
+          "macro_f1": 0.9815192743764172,
+          "weighted_f1": 0.9890080029544205,
+          "precision_macro": 0.9753643131858438,
+          "recall_macro": 0.9881069165059245,
+          "roc_auc_ovr": 0.9995758470591894,
+          "roc_auc_valid": true,
+          "test_condition": "C3_1500rpm_0.1Nm_1000N"
+        },
+        {
+          "accuracy": 0.929368029739777,
+          "macro_f1": 0.924517287135569,
+          "weighted_f1": 0.9298255788595409,
+          "precision_macro": 0.9149163453474082,
+          "recall_macro": 0.9394850836509466,
+          "roc_auc_ovr": 0.9966576370252419,
+          "roc_auc_valid": true,
+          "test_condition": "C4_1500rpm_0.7Nm_400N"
+        }
+      ]
+    },
+    "TabNet_TL_LinearProbing": {
+      "summary": {
+        "n_folds": 4,
+        "accuracy_mean": 0.5533090333583514,
+        "accuracy_std": 0.047856097712545995,
+        "macro_f1_mean": 0.5348179373543538,
+        "macro_f1_std": 0.02418994742200178,
+        "weighted_f1_mean": 0.5490329486709264,
+        "weighted_f1_std": 0.04357749981683166,
+        "precision_macro_mean": 0.5569589767984926,
+        "precision_macro_std": 0.039889229489751814,
+        "recall_macro_mean": 0.5878655305317041,
+        "recall_macro_std": 0.024873367419328746,
+        "roc_auc_ovr_mean": 0.7588185154136131,
+        "roc_auc_ovr_std": 0.027042511970149494,
+        "roc_auc_valid_folds": 4
+      },
+      "per_fold": [
+        {
+          "accuracy": 0.5003069367710252,
+          "macro_f1": 0.5061623786470519,
+          "weighted_f1": 0.5068701614814679,
+          "precision_macro": 0.501753618121177,
+          "recall_macro": 0.566255442670537,
+          "roc_auc_ovr": 0.7345051588470488,
+          "roc_auc_valid": true,
+          "encoder_max_abs_diff": 0.0,
+          "test_condition": "C1_1500rpm_0.7Nm_1000N"
+        },
+        {
+          "accuracy": 0.5210918114143921,
+          "macro_f1": 0.5156057717332834,
+          "weighted_f1": 0.5106432116691785,
+          "precision_macro": 0.5991073568718769,
+          "recall_macro": 0.5624962260869003,
+          "roc_auc_ovr": 0.803699920846717,
+          "roc_auc_valid": true,
+          "encoder_max_abs_diff": 0.0,
+          "test_condition": "C2_900rpm_0.7Nm_1000N"
+        },
+        {
+          "accuracy": 0.6249228871067243,
+          "macro_f1": 0.5572177923071403,
+          "weighted_f1": 0.6127630681647217,
+          "precision_macro": 0.5904619225594036,
+          "recall_macro": 0.6227703147484768,
+          "roc_auc_ovr": 0.7558893409567529,
+          "roc_auc_valid": true,
+          "encoder_max_abs_diff": 0.0,
+          "test_condition": "C3_1500rpm_0.1Nm_1000N"
+        },
+        {
+          "accuracy": 0.5669144981412639,
+          "macro_f1": 0.5602858067299397,
+          "weighted_f1": 0.5658553533683377,
+          "precision_macro": 0.5365130096415132,
+          "recall_macro": 0.5999401386209023,
+          "roc_auc_ovr": 0.7411796410039336,
+          "roc_auc_valid": true,
+          "encoder_max_abs_diff": 0.0,
+          "test_condition": "C4_1500rpm_0.7Nm_400N"
+        }
+      ]
+    },
+    "RandomForest_TL_LOCO": {
+      "summary": {
+        "n_folds": 4,
+        "accuracy_mean": 0.9158015443991219,
+        "accuracy_std": 0.13073043417750976,
+        "macro_f1_mean": 0.8596910253958854,
+        "macro_f1_std": 0.22263441784299193,
+        "weighted_f1_mean": 0.9052121413478049,
+        "weighted_f1_std": 0.14887614419628897,
+        "precision_macro_mean": 0.8584456272725246,
+        "precision_macro_std": 0.23301370417292108,
+        "recall_macro_mean": 0.8625164600976167,
+        "recall_macro_std": 0.2110813975691994,
+        "roc_auc_ovr_mean": 0.9633582696918097,
+        "roc_auc_ovr_std": 0.0618457782282015,
+        "roc_auc_valid_folds": 4
+      },
+      "per_fold": [
+        {
+          "test_condition": "C1_1500rpm_0.7Nm_1000N",
+          "accuracy": 0.9993861264579497,
+          "macro_f1": 0.9989726904646631,
+          "weighted_f1": 0.9993867505097938,
+          "precision_macro": 0.9982993197278912,
+          "recall_macro": 0.9996505939902166,
+          "roc_auc_ovr": 1.0,
+          "roc_auc_valid": true
+        },
+        {
+          "test_condition": "C2_900rpm_0.7Nm_1000N",
+          "accuracy": 0.6898263027295285,
+          "macro_f1": 0.4746484888524087,
+          "weighted_f1": 0.6477632012374608,
+          "precision_macro": 0.45500358641410926,
+          "recall_macro": 0.49808538002747144,
+          "roc_auc_ovr": 0.8562568504164698,
+          "roc_auc_valid": true
+        },
+        {
+          "test_condition": "C3_1500rpm_0.1Nm_1000N",
+          "accuracy": 0.9962985811227637,
+          "macro_f1": 0.9968542459979629,
+          "weighted_f1": 0.9962927673886254,
+          "precision_macro": 0.997907949790795,
+          "recall_macro": 0.9958333333333332,
+          "roc_auc_ovr": 1.0,
+          "roc_auc_valid": true
+        },
+        {
+          "test_condition": "C4_1500rpm_0.7Nm_400N",
+          "accuracy": 0.9776951672862454,
+          "macro_f1": 0.9682886762685068,
+          "weighted_f1": 0.9774058462553399,
+          "precision_macro": 0.9825716531573031,
+          "recall_macro": 0.9564965330394454,
+          "roc_auc_ovr": 0.997176228350769,
+          "roc_auc_valid": true
+        }
+      ]
+    },
+    "SVM_TL_LOCO": {
+      "summary": {
+        "n_folds": 4,
+        "accuracy_mean": 0.8626268890898496,
+        "accuracy_std": 0.20104407418237585,
+        "macro_f1_mean": 0.8178909813761748,
+        "macro_f1_std": 0.26284752700125724,
+        "weighted_f1_mean": 0.8525012301905615,
+        "weighted_f1_std": 0.2179796236160138,
+        "precision_macro_mean": 0.8221133652748578,
+        "precision_macro_std": 0.2670033714581214,
+        "recall_macro_mean": 0.834188402657227,
+        "recall_macro_std": 0.23119416196664766,
+        "roc_auc_ovr_mean": 0.9239596609621143,
+        "roc_auc_ovr_std": 0.12516459684084555,
+        "roc_auc_valid_folds": 4
+      },
+      "per_fold": [
+        {
+          "test_condition": "C1_1500rpm_0.7Nm_1000N",
+          "accuracy": 0.9993861264579497,
+          "macro_f1": 0.9989684904814294,
+          "weighted_f1": 0.9993854982014674,
+          "precision_macro": 0.999650959860384,
+          "recall_macro": 0.9982905982905983,
+          "roc_auc_ovr": 1.0,
+          "roc_auc_valid": true
+        },
+        {
+          "test_condition": "C2_900rpm_0.7Nm_1000N",
+          "accuracy": 0.5161290322580645,
+          "macro_f1": 0.365048941565969,
+          "weighted_f1": 0.47661701890833374,
+          "precision_macro": 0.360411828129759,
+          "recall_macro": 0.4388549443102449,
+          "roc_auc_ovr": 0.7073117385584403,
+          "roc_auc_valid": true
+        },
+        {
+          "test_condition": "C3_1500rpm_0.1Nm_1000N",
+          "accuracy": 0.9888957433682912,
+          "macro_f1": 0.9818119022316685,
+          "weighted_f1": 0.9890924869588249,
+          "precision_macro": 0.9712918660287082,
+          "recall_macro": 0.9936842105263158,
+          "roc_auc_ovr": 0.9997862923365591,
+          "roc_auc_valid": true
+        },
+        {
+          "test_condition": "C4_1500rpm_0.7Nm_400N",
+          "accuracy": 0.9460966542750929,
+          "macro_f1": 0.9257345912256324,
+          "weighted_f1": 0.9449099166936197,
+          "precision_macro": 0.9570988070805799,
+          "recall_macro": 0.9059238575017491,
+          "roc_auc_ovr": 0.9887406129534577,
+          "roc_auc_valid": true
+        }
+      ]
+    }
+  },
+  "timestamp_utc": "2026-11-19T20:29:40.457054+00:00"
+}

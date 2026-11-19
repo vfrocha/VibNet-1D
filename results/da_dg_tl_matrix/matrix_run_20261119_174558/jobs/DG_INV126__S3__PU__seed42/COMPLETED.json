@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETED",
+  "protocol": "DG",
+  "feature_mode": "invariant_126",
+  "feature_dimension": 126,
+  "source_config": "S3",
+  "target": "PU",
+  "seed": 42,
+  "elapsed_seconds": 404.277,
+  "tabnet_macro_f1": 0.17901764425369573,
+  "models_macro_f1": {
+    "TabNet_DG": 0.17901764425369573,
+    "RandomForest_DG_SourceOnly": 0.24700239808153476,
+    "SVM_DG_SourceOnly": 0.0
+  },
+  "timestamp_utc": "2026-11-19T19:33:45.788889+00:00"
+}

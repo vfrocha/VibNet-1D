@@ -1,0 +1,18 @@
+{
+  "status": "COMPLETED",
+  "protocol": "TL",
+  "source_config": "S2",
+  "target": "HUST_Gearbox",
+  "loco_grouping_mode": "by_speed",
+  "seed": 42,
+  "n_loco_folds_executed": 6,
+  "elapsed_seconds": 109.594,
+  "models_macro_f1": {
+    "TabNet_TL_Scratch": 0.774897552045053,
+    "TabNet_TL_FineTuning": 0.7878020255979855,
+    "TabNet_TL_LinearProbing": 0.7142055780268469,
+    "RandomForest_TL_LOCO": 0.7950923534666141,
+    "SVM_TL_LOCO": 0.8067885706730866
+  },
+  "timestamp_utc": "2026-11-19T21:09:37.471810+00:00"
+}
