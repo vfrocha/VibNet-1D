@@ -30,6 +30,7 @@ import json
 import os
 from pathlib import Path
 import random
+import re
 import time
 from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
@@ -64,11 +65,12 @@ from src.vibnet.evaluation.da_dg_tl_protocol import (
     parse_window_filename,
     predict_with_variable_class_head,
     prepare_self_supervised_pretraining_inputs,
+    select_feature_subset_for_ablation,
     train_eval_classical_da_dg_baseline,
     train_variable_class_head_with_frozen_tabnet_encoder,
 )
 from src.vibnet.evaluation.metrics import compute_fold_metrics
-from src.vibnet.evaluation.protocols import iter_loco_folds
+from src.vibnet.evaluation.protocols import LOCOFoldSplit, iter_loco_folds
 from src.vibnet.preprocessing.signal_norm import (
     EPSILON_RMS,
     compute_reference_rms,
@@ -207,6 +209,83 @@ def _is_normal_raw_class(dataset_name: str, raw_class: str) -> bool:
     return False
 
 
+def resolve_tl_condition_group(
+    dataset_name: str,
+    condition: str,
+    grouping_mode: str = "native_condition",
+) -> str:
+    """
+    Map a native operating condition directory name to its LOCO fold group label
+    according to `grouping_mode`:
+      - `"native_condition"`: returns `condition` unchanged.
+      - `CWRU_48k` + `"by_severity"`: maps `Load_*HP_Sev_0.007` -> `"Sev_0.007"` (3 folds).
+      - `HUST_Gearbox` + `"by_speed"`: maps `Cond_20_0..Cond_40_4` -> `"20Hz".."40Hz"`
+        and `Cond_L*_VS_0_40_0` -> `"VS_0_40_0"` (6 folds).
+      - `HUST_Gearbox` + `"by_load"`: maps `Cond_*_k` and `Cond_Lk_VS_0_40_0` -> `"Load_k"` (5 folds).
+    """
+    mode = str(grouping_mode or "native_condition").strip()
+    if mode == "native_condition":
+        return str(condition)
+
+    cond_str = str(condition).strip()
+    if dataset_name == "CWRU_48k" and mode == "by_severity":
+        m = re.search(r"(Sev_\d+\.\d+)", cond_str)
+        if not m:
+            raise ValueError(
+                f"Cannot extract severity group from CWRU_48k condition '{cond_str}'."
+            )
+        return m.group(1)
+
+    if dataset_name == "HUST_Gearbox" and mode in ("by_speed", "by_load"):
+        m_const = re.fullmatch(r"Cond_(20|25|30|35|40)_([0-4])", cond_str)
+        if m_const:
+            speed, load = m_const.groups()
+            return f"{speed}Hz" if mode == "by_speed" else f"Load_{load}"
+        m_var = re.fullmatch(r"Cond_L([0-4])_VS_0_40_0", cond_str)
+        if m_var:
+            load = m_var.group(1)
+            return "VS_0_40_0" if mode == "by_speed" else f"Load_{load}"
+        raise ValueError(
+            f"Unexpected HUST_Gearbox condition '{cond_str}' for grouping_mode='{mode}'."
+        )
+
+    raise ValueError(
+        f"Unsupported TL LOCO grouping_mode='{mode}' for dataset '{dataset_name}'."
+    )
+
+
+def build_tl_loco_folds(
+    records: Sequence[NativeTLRecord],
+    dataset_name: str,
+    grouping_mode: str = "native_condition",
+) -> List[LOCOFoldSplit]:
+    """
+    Build deterministic LOCO folds for TL using `grouping_mode` and explicitly assert
+    zero leakage of raw operating conditions and recording keys between train and test.
+    """
+    group_labels = [
+        resolve_tl_condition_group(dataset_name, r.condition, grouping_mode=grouping_mode)
+        for r in records
+    ]
+    folds = list(iter_loco_folds(group_labels))
+    for fold in folds:
+        tr_raw_conds = {records[i].condition for i in fold.train_indices}
+        te_raw_conds = {records[i].condition for i in fold.test_indices}
+        if tr_raw_conds & te_raw_conds:
+            raise ValueError(
+                f"Raw condition leakage in TL fold {fold.fold_index} ({fold.test_condition}): "
+                f"{sorted(tr_raw_conds & te_raw_conds)}"
+            )
+        tr_recs = {records[i].recording_key for i in fold.train_indices}
+        te_recs = {records[i].recording_key for i in fold.test_indices}
+        if tr_recs & te_recs:
+            raise ValueError(
+                f"Recording leakage in TL fold {fold.fold_index} ({fold.test_condition}): "
+                f"{sorted(tr_recs & te_recs)[:5]}"
+            )
+    return folds
+
+
 def _save_split_manifest_files(manifest: Any, out_dir: Path, prefix: str) -> None:
     atomic_write_json(out_dir / f"{prefix}.json", manifest.to_dict())
     csv_path = out_dir / f"{prefix}.csv"
@@ -279,8 +358,9 @@ class MatrixExecutionContext:
         self.hp = dict(config.get("models", {}).get("tabnet_hyperparameters", {}))
         self._raw_harmonized_cache: Dict[str, Tuple[List[WindowRecord], List[np.ndarray]]] = {}
         self._raw_native_tl_cache: Dict[str, Tuple[List[NativeTLRecord], List[np.ndarray]]] = {}
-        self._tl_fold_feature_cache: Dict[Tuple[str, int], Dict[str, Any]] = {}
-        self._source_bundle_cache: Dict[Tuple[str, str, int], Dict[str, Any]] = {}
+        self._tl_fold_feature_cache: Dict[Tuple[str, str, int], Dict[str, Any]] = {}
+        self._source_bundle_cache: Dict[Tuple[str, str, str, int], Dict[str, Any]] = {}
+        self._source_features_141_cache: Dict[Tuple[str, str, int], Dict[str, Any]] = {}
 
     def get_harmonized_dataset(self, dataset_name: str) -> Tuple[List[WindowRecord], List[np.ndarray]]:
         if dataset_name not in self._raw_harmonized_cache:
@@ -312,47 +392,68 @@ class MatrixExecutionContext:
         protocol: str,
         source_config_id: str,
         seed: int,
+        feature_mode: str = "full_141",
     ) -> Dict[str, Any]:
         """
-        Build (or return cached) leak-free source split, RMS normalizer, 141 features,
-        StandardScaler, pretrained TabNetPretrainer, and (for DG/DA) frozen-encoder
-        source head for `(protocol_family, source_config_id, seed)`.
-        - `DG` uses `DGRMSNormalizer` (unified geometric `RMS_global` in `m/s^2`).
-        - `DA` and `TL` share `SELF_RMS` source normalization (each source normalized
-          by its own training healthy `RMS_ref`, zero validation leakage).
+        Build (or return cached) leak-free source split, RMS normalizer, features
+        (`141` for `full_141` or `126` for `invariant_126`), StandardScaler, pretrained
+        TabNetPretrainer, and (for DG/DA) frozen-encoder source head.
+        - When `protocols.DG.dg_source_normalization_mode == "per_source_rms"` (default),
+          `DG` (`full_141`), `DA`, and `TL` all share the exact same `SELF_RMS_TRAIN`
+          source normalization (`RMS_normal = 1.0` per source) and pretrained encoder,
+          while `DG` computes `dg_norm` strictly from source training normals to
+          normalize the target domain (`zero_target_statistics_enforced=True`).
+        - When `feature_mode == "invariant_126"`, trains a dedicated 126-input
+          `TabNetPretrainer` and `StandardScaler` on the 126 scale-invariant features.
         """
-        norm_family = "DG_GLOBAL_MS2" if protocol == "DG" else "SELF_RMS_TRAIN"
-        cache_key = (norm_family, source_config_id, int(seed))
+        dg_source_norm_mode = str(
+            self.config.get("protocols", {})
+            .get("DG", {})
+            .get("dg_source_normalization_mode", "per_source_rms")
+        )
+        if protocol == "DG" and dg_source_norm_mode == "global_rms" and feature_mode == "full_141":
+            norm_family = "DG_GLOBAL_MS2"
+        else:
+            norm_family = "SELF_RMS_TRAIN"
+
+        cache_key = (norm_family, feature_mode, source_config_id, int(seed))
         if cache_key in self._source_bundle_cache:
             bundle = self._source_bundle_cache[cache_key]
             if protocol in ("DG", "DA") and "source_head_ckpt" not in bundle:
                 self._fit_source_head_into_bundle(bundle, source_config_id, int(seed))
             return bundle
 
-        active_sources = SOURCE_CONFIGS[source_config_id]
-        source_records: List[WindowRecord] = []
-        source_waveforms: List[np.ndarray] = []
-        for s_name in active_sources:
-            recs, waves = self.get_harmonized_dataset(s_name)
-            source_records.extend(recs)
-            source_waveforms.extend(waves)
+        feat_cache_key = (norm_family, source_config_id, int(seed))
+        if feat_cache_key in self._source_features_141_cache:
+            feat_pack = self._source_features_141_cache[feat_cache_key]
+            active_sources = feat_pack["active_sources"]
+            source_records = feat_pack["source_records"]
+            src_partitions = feat_pack["src_partitions"]
+            src_manifest = feat_pack["src_manifest"]
+            X_source_141 = feat_pack["X_source_141"]
+            dg_norm = feat_pack["dg_norm"]
+            source_self_rms = feat_pack["source_self_rms"]
+        else:
+            active_sources = SOURCE_CONFIGS[source_config_id]
+            source_records = []
+            source_waveforms: List[np.ndarray] = []
+            for s_name in active_sources:
+                recs, waves = self.get_harmonized_dataset(s_name)
+                source_records.extend(recs)
+                source_waveforms.extend(waves)
 
-        src_partitions, src_manifest = create_source_recording_split(
-            records=source_records,
-            seed=int(seed),
-            val_fraction=0.20,
-            source_config_id=source_config_id,
-            include_additional_unsupervised_for_pretraining=True,
-        )
-        pretrain_idxs = list(src_partitions["pretrain_train"])
-        sup_train_idxs = list(src_partitions["source_train"])
-        sup_val_idxs = list(src_partitions["source_val"])
+            src_partitions, src_manifest = create_source_recording_split(
+                records=source_records,
+                seed=int(seed),
+                val_fraction=0.20,
+                source_config_id=source_config_id,
+                include_additional_unsupervised_for_pretraining=True,
+            )
+            pretrain_idxs = list(src_partitions["pretrain_train"])
 
-        X_source_141 = np.zeros((len(source_records), 141), dtype=np.float32)
-        dg_norm = None
-        source_self_rms: Dict[str, float] = {}
-
-        if norm_family == "DG_GLOBAL_MS2":
+            # Always fit leak-free DGRMSNormalizer from source training normals so any
+            # DG job sharing SELF_RMS_TRAIN has the exact geometric RMS_global in m/s^2
+            # ready for target normalization without touching target statistics.
             source_normal_train_windows: Dict[str, List[np.ndarray]] = {s: [] for s in active_sources}
             for idx in pretrain_idxs:
                 rec = source_records[idx]
@@ -365,40 +466,63 @@ class MatrixExecutionContext:
                 aggregation_mode="geometric_mean_ms2",
                 apply_detrend=True,
             )
-            for s_name in active_sources:
-                ds_indices = [i for i, r in enumerate(source_records) if r.dataset == s_name]
-                ds_norm_waves = dg_norm.transform_source_windows(
-                    source_name=s_name,
-                    windows=[source_waveforms[i] for i in ds_indices],
-                    feature_mode="full_141",
+
+            X_source_141 = np.zeros((len(source_records), 141), dtype=np.float32)
+            source_self_rms: Dict[str, float] = {}
+
+            if norm_family == "DG_GLOBAL_MS2":
+                for s_name in active_sources:
+                    ds_indices = [i for i, r in enumerate(source_records) if r.dataset == s_name]
+                    ds_norm_waves = dg_norm.transform_source_windows(
+                        source_name=s_name,
+                        windows=[source_waveforms[i] for i in ds_indices],
+                        feature_mode="full_141",
+                        source_norm_mode="global_rms",
+                    )
+                    X_source_141[ds_indices] = _extract_141_features_checked(ds_norm_waves, s_name)
+            else:
+                norm_waves_all, source_self_rms = _normalize_source_self_rms(
+                    records=source_records,
+                    waveforms=source_waveforms,
+                    pretrain_train_indices=pretrain_idxs,
+                    active_sources=active_sources,
                 )
-                X_source_141[ds_indices] = _extract_141_features_checked(ds_norm_waves, s_name)
-        else:
-            norm_waves_all, source_self_rms = _normalize_source_self_rms(
-                records=source_records,
-                waveforms=source_waveforms,
-                pretrain_train_indices=pretrain_idxs,
-                active_sources=active_sources,
-            )
-            for s_name in active_sources:
-                ds_indices = [i for i, r in enumerate(source_records) if r.dataset == s_name]
-                X_source_141[ds_indices] = _extract_141_features_checked(
-                    [norm_waves_all[i] for i in ds_indices], s_name
-                )
+                for s_name in active_sources:
+                    ds_indices = [i for i, r in enumerate(source_records) if r.dataset == s_name]
+                    X_source_141[ds_indices] = _extract_141_features_checked(
+                        [norm_waves_all[i] for i in ds_indices], s_name
+                    )
+
+            self._source_features_141_cache[feat_cache_key] = {
+                "active_sources": active_sources,
+                "source_records": source_records,
+                "src_partitions": src_partitions,
+                "src_manifest": src_manifest,
+                "X_source_141": X_source_141,
+                "dg_norm": dg_norm,
+                "source_self_rms": source_self_rms,
+            }
+
+        pretrain_idxs = list(src_partitions["pretrain_train"])
+        sup_train_idxs = list(src_partitions["source_train"])
+        sup_val_idxs = list(src_partitions["source_val"])
+
+        X_source_selected = select_feature_subset_for_ablation(X_source_141, mode=feature_mode)
+        input_dim = int(X_source_selected.shape[1])
 
         scaler, _, X_sup_val_scaled, _ = fit_source_only_standard_scaler(
-            X_source_train=X_source_141[pretrain_idxs],
-            X_source_val=X_source_141[sup_val_idxs],
+            X_source_train=X_source_selected[pretrain_idxs],
+            X_source_val=X_source_selected[sup_val_idxs],
         )
         assert X_sup_val_scaled is not None
-        X_sup_train_scaled = scaler.transform(X_source_141[sup_train_idxs]).astype(np.float32)
+        X_sup_train_scaled = scaler.transform(X_source_selected[sup_train_idxs]).astype(np.float32)
 
         pretrain_inputs = prepare_self_supervised_pretraining_inputs(
             records=source_records,
             partitions=src_partitions,
             X_all_141=X_source_141,
             source_config_id=source_config_id,
-            feature_mode="full_141",
+            feature_mode=feature_mode,
             scaler=scaler,
         )
         pretrainer, pretrain_audit = fit_self_supervised_tabnet_pretrainer(
@@ -411,7 +535,12 @@ class MatrixExecutionContext:
         )
 
         # Save shared pretrainer checkpoint safely inside run_dir/shared_pretrainers/
-        shared_dir = self.run_dir / "shared_pretrainers" / f"{norm_family}_{source_config_id}_seed{seed}"
+        dir_tag = (
+            f"{norm_family}_{source_config_id}_seed{seed}"
+            if feature_mode == "full_141"
+            else f"{norm_family}_{feature_mode}_{source_config_id}_seed{seed}"
+        )
+        shared_dir = self.run_dir / "shared_pretrainers" / dir_tag
         shared_dir.mkdir(parents=True, exist_ok=True)
         pt_path = shared_dir / f"tabnet_pretrainer_{source_config_id}_seed{seed}"
         if not Path(str(pt_path) + ".zip").is_file():
@@ -426,6 +555,9 @@ class MatrixExecutionContext:
 
         bundle: Dict[str, Any] = {
             "norm_family": norm_family,
+            "dg_source_norm_mode": dg_source_norm_mode,
+            "feature_mode": feature_mode,
+            "input_dim": input_dim,
             "source_config_id": source_config_id,
             "active_sources": active_sources,
             "seed": int(seed),
@@ -435,6 +567,7 @@ class MatrixExecutionContext:
             "dg_norm": dg_norm,
             "source_self_rms": source_self_rms,
             "X_source_141": X_source_141,
+            "X_source_selected": X_source_selected,
             "scaler": scaler,
             "X_sup_train_scaled": X_sup_train_scaled,
             "X_sup_val_scaled": X_sup_val_scaled,
@@ -460,10 +593,15 @@ class MatrixExecutionContext:
         ds_sup_train = [source_records[i].dataset for i in sup_train_idxs]
         y_sup_val = [str(source_records[i].harmonized_class) for i in sup_val_idxs]
 
+        balance_mode = str(
+            self.config.get("source_balancing", {}).get(
+                "default_mode", "hierarchical_class_equalized"
+            )
+        )
         bal_res = compute_hierarchical_source_balance(
             datasets=ds_sup_train,
             class_ids=y_sup_train,
-            mode="hierarchical_weights",
+            mode=balance_mode,
             seed=int(seed),
             partition_name="source_train",
         )
@@ -492,6 +630,7 @@ class MatrixExecutionContext:
             head_class_names=head_ckpt.class_names,
             y_proba=val_probs,
         )
+        bundle["balance_mode"] = balance_mode
         bundle["y_sup_train"] = y_sup_train
         bundle["y_sup_val"] = y_sup_val
         bundle["bal_res"] = bal_res
@@ -504,13 +643,15 @@ class MatrixExecutionContext:
         fold_index: int,
         fold_train_indices: Sequence[int],
         fold_test_indices: Sequence[int],
+        grouping_mode: str = "native_condition",
     ) -> Dict[str, Any]:
         """
         Compute fold-local RMS_ref strictly from healthy windows in the LOCO training
         conditions (or CWRU_12k Class_0 for CWRU_48k), normalize train & test windows
-        with that exact RMS_ref + detrend, and extract 141 features (cached per target & fold).
+        with that exact RMS_ref + detrend, and extract 141 features (cached per target,
+        grouping_mode & fold).
         """
-        key = (target_dataset, int(fold_index))
+        key = (target_dataset, str(grouping_mode), int(fold_index))
         if key in self._tl_fold_feature_cache:
             return self._tl_fold_feature_cache[key]
 
@@ -573,44 +714,57 @@ def execute_dg_job(
     seed: int,
     job_dir: Path,
     include_classical: bool = True,
+    feature_mode: str = "full_141",
 ) -> Dict[str, Any]:
     t0 = time.time()
     job_dir.mkdir(parents=True, exist_ok=True)
     target_unit = DATASET_PHYSICAL_UNITS.get(target_dataset, "unknown")
+    feature_dim = 141 if feature_mode == "full_141" else 126
 
-    # Enforce physical unit block for PU under 141-feature DG
-    if target_unit.lower() in ("v", "volt", "volts", "voltage"):
+    # Enforce physical unit block for PU ONLY under 141-feature DG;
+    # under invariant_126 (scale-invariant ablation), PU (Volts) is unblocked.
+    if feature_mode == "full_141" and target_unit.lower() in ("v", "volt", "volts", "voltage"):
         blocked_payload = {
             "status": "BLOCKED_INCOMPATIBLE_UNIT",
             "protocol": "DG",
+            "feature_mode": feature_mode,
             "source_config": source_config_id,
             "target": target_dataset,
             "seed": int(seed),
-            "feature_dimension": 141,
+            "feature_dimension": feature_dim,
             "reason": (
                 f"Target '{target_dataset}' has physical unit '{target_unit}' (Volts), "
                 "which is incompatible with source RMS_global in m/s^2 without a verified "
-                "sensor sensitivity calibration factor. Blocked per methodological protocol."
+                "sensor sensitivity calibration factor. Blocked under full_141; use "
+                "invariant_126 scale-invariant ablation for DG on PU."
             ),
             "timestamp_utc": datetime.now(timezone.utc).isoformat(),
         }
         atomic_write_json(job_dir / "COMPLETED.json", blocked_payload)
         return blocked_payload
 
-    bundle = ctx.get_or_build_source_bundle("DG", source_config_id, int(seed))
+    bundle = ctx.get_or_build_source_bundle(
+        "DG", source_config_id, int(seed), feature_mode=feature_mode
+    )
     dg_norm = bundle["dg_norm"]
     head_ckpt = bundle["source_head_ckpt"]
     pretrainer = bundle["pretrainer"]
     scaler = bundle["scaler"]
+    dg_source_norm_mode = bundle["dg_source_norm_mode"]
 
     tgt_recs, tgt_waves = ctx.get_harmonized_dataset(target_dataset)
     tgt_norm_waves = dg_norm.transform_target_windows(
         windows=tgt_waves,
         target_dataset=target_dataset,
-        feature_mode="full_141",
+        feature_mode=feature_mode,
     )
     X_tgt_141 = _extract_141_features_checked(tgt_norm_waves, target_dataset)
-    X_tgt_scaled = scaler.transform(X_tgt_141).astype(np.float32)
+    X_tgt_selected = select_feature_subset_for_ablation(
+        X_tgt_141,
+        mode=feature_mode,
+        expected_checkpoint_input_dim=feature_dim,
+    )
+    X_tgt_scaled = scaler.transform(X_tgt_selected).astype(np.float32)
     y_tgt_true = [str(r.harmonized_class) for r in tgt_recs]
 
     # TabNet DG evaluation (frozen encoder, unexpanded source head)
@@ -640,7 +794,7 @@ def execute_dg_job(
     # Classical baselines (RF and SVM Source-Only)
     if include_classical:
         sup_tr_idxs = list(bundle["src_partitions"]["source_train"])
-        X_src_tr_raw = bundle["X_source_141"][sup_tr_idxs]
+        X_src_tr_raw = bundle["X_source_selected"][sup_tr_idxs]
         y_src_tr = bundle["y_sup_train"]
         w_src_tr = bundle["bal_res"].sample_weights
         for clf_name in ("RandomForest", "SVM"):
@@ -648,7 +802,7 @@ def execute_dg_job(
                 protocol="DG",
                 variant="Source-Only",
                 model_name=clf_name,
-                X_test_raw=X_tgt_141,
+                X_test_raw=X_tgt_selected,
                 y_test=y_tgt_true,
                 seed=int(seed),
                 X_source_train_raw=X_src_tr_raw,
@@ -670,30 +824,37 @@ def execute_dg_job(
             "class_names": head_ckpt.class_names,
             "head_state_dict": head_ckpt.head_state_dict,
             "source_config_id": source_config_id,
+            "feature_mode": feature_mode,
+            "feature_dimension": feature_dim,
             "selected_epoch": head_ckpt.selected_epoch,
             "encoder_param_max_abs_diff": head_ckpt.encoder_param_max_abs_diff,
             "encoder_buffer_max_abs_diff": head_ckpt.encoder_buffer_max_abs_diff,
         },
-        ckpt_dir / f"source_head_{source_config_id}_seed{seed}.pt",
+        ckpt_dir / f"source_head_{source_config_id}_{feature_mode}_seed{seed}.pt",
     )
     _save_split_manifest_files(bundle["src_manifest"], job_dir, "source_split_manifest")
 
     elapsed = round(time.time() - t0, 3)
+    same_global_applied = bool(dg_source_norm_mode == "global_rms" and feature_mode == "full_141")
     result_payload = {
         "status": "COMPLETED",
         "protocol": "DG",
+        "feature_mode": feature_mode,
         "source_config": source_config_id,
         "sources": list(SOURCE_CONFIGS[source_config_id]),
         "target": target_dataset,
         "seed": int(seed),
-        "feature_dimension": 141,
+        "feature_dimension": feature_dim,
+        "balance_mode": bundle.get("balance_mode", ""),
         "elapsed_seconds": elapsed,
         "shared_pretrainer_zip": bundle["shared_pretrainer_zip"],
         "dg_rms_normalization": {
+            "dg_source_normalization_mode": dg_source_norm_mode,
             "global_rms_ref_ms2": float(dg_norm.global_target_rms_ref),
             "source_rms_refs_ms2": dg_norm.source_rms_refs_ms2,
+            "source_self_rms_native": bundle.get("source_self_rms", {}),
             "target_unit": target_unit,
-            "same_global_rms_ref_applied_to_sources_and_target": True,
+            "same_global_rms_ref_applied_to_sources_and_target": same_global_applied,
             "target_statistics_used": False,
         },
         "pretrain_audit": bundle["pretrain_audit"],
@@ -707,6 +868,8 @@ def execute_dg_job(
         {
             "status": "COMPLETED",
             "protocol": "DG",
+            "feature_mode": feature_mode,
+            "feature_dimension": feature_dim,
             "source_config": source_config_id,
             "target": target_dataset,
             "seed": int(seed),
@@ -1159,9 +1322,14 @@ def execute_tl_job(
     cls_to_id = {c: idx for idx, c in enumerate(native_classes)}
     expected_ids = list(range(len(native_classes)))
     y_all = np.asarray([cls_to_id[r.raw_class] for r in tgt_recs], dtype=np.int64)
-    conditions = [r.condition for r in tgt_recs]
 
-    all_folds = list(iter_loco_folds(conditions))
+    grouping_mode = str(
+        ctx.config.get("protocols", {})
+        .get("TL", {})
+        .get("target_loco_grouping", {})
+        .get(target_dataset, "native_condition")
+    )
+    all_folds = build_tl_loco_folds(tgt_recs, target_dataset, grouping_mode=grouping_mode)
     selected_folds = all_folds[: int(max_loco_folds)] if max_loco_folds is not None else all_folds
 
     per_model_folds: Dict[str, List[Dict[str, Any]]] = {
@@ -1186,6 +1354,7 @@ def execute_tl_job(
             fold_index=fold.fold_index,
             fold_train_indices=tr_idx,
             fold_test_indices=te_idx,
+            grouping_mode=grouping_mode,
         )
         # Fit StandardScaler strictly on LOCO training conditions
         fold_scaler = StandardScaler()
@@ -1195,6 +1364,7 @@ def execute_tl_job(
         fold_audit_rows.append(
             {
                 "fold_index": fold.fold_index,
+                "loco_grouping_mode": grouping_mode,
                 "test_condition": fold.test_condition,
                 "n_train_conditions": len(fold.train_conditions),
                 "n_train_windows": len(tr_idx),
@@ -1286,6 +1456,7 @@ def execute_tl_job(
         "sources": list(SOURCE_CONFIGS[source_config_id]),
         "target": target_dataset,
         "target_native_classes": native_classes,
+        "loco_grouping_mode": grouping_mode,
         "seed": int(seed),
         "feature_dimension": 141,
         "n_loco_folds_executed": len(selected_folds),
@@ -1303,6 +1474,7 @@ def execute_tl_job(
             "protocol": "TL",
             "source_config": source_config_id,
             "target": target_dataset,
+            "loco_grouping_mode": grouping_mode,
             "seed": int(seed),
             "n_loco_folds_executed": len(selected_folds),
             "elapsed_seconds": elapsed,

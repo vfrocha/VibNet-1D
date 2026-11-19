@@ -3,6 +3,15 @@ anomaly_results_20260812_084311.csv,anomaly_root,.csv,fold_level,18629,250,6,ok,
 baseline/baseline_loco_results_20260829_084039.csv,baseline,.csv,fold_level,23765,310,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
 baseline_loco_results_20260928_142515.csv,baseline_root,.csv,fold_level,51153,250,8,ok,Dataset,Model,,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
 baseline_loco_results_20261003_052352.csv,baseline_root,.csv,fold_level,50951,250,8,ok,Dataset,Model,,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+baseline_loco_v2/run_20261104_160031/config.json,baseline_loco_v2,.json,artifact,3166,,,inventory_only,,,,,,,
+baseline_loco_v2/run_20261104_160031/dataset_audit.csv,baseline_loco_v2,.csv,dataset_audit,2752,5,10,ok,dataset,,,,,data_dir;feature_dim;conditions;classes,No recognized metric columns (dataset_audit); inventory only.
+baseline_loco_v2/run_20261104_160031/predictions.csv,baseline_loco_v2,.csv,fold_level,60325416,353340,13,ok,Dataset,Model,Seed,Test_Condition,,Fold;Sample_ID;y_true;y_true_label;y_pred;y_pred_label;y_prob_json,No recognized metric columns (fold_level); inventory only.
+baseline_loco_v2/run_20261104_160031/results.csv,baseline_loco_v2,.csv,fold_level,998620,1980,30,ok,Dataset,Model,Seed,Test_Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,Fold;Feature_Dimension;Test_Sample_Count;Test_Class_Count;Train_Sample_Count;Train_Class_Count;Runtime_Seconds;Train_Sample_Count_Before_Balance;Validation_Split_Mode;Selected_Epochs;Sample_Split_Signature,
+baseline_loco_v2/run_20261104_160031/run.log,baseline_loco_v2,.log,artifact,382393,,,inventory_only,,,,,,,
+baseline_loco_v2/run_20261104_160031/run_metadata.json,baseline_loco_v2,.json,artifact,5576,,,inventory_only,,,,,,,
+baseline_loco_v2/run_20261104_160031/summary.csv,baseline_loco_v2,.csv,summary,32954,150,18,ok,Dataset,Model,Seed,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,Failed_Folds;Valid_ROC_AUC_Folds;Runtime_Seconds_Total,
+baseline_loco_v2/run_20261104_160031/summary_across_seeds.csv,baseline_loco_v2,.csv,summary,11320,50,18,ok,Dataset,Model,,,accuracy_mean;balanced_accuracy_mean;macro_f1_mean;roc_auc_mean,Folds_Per_Seed;Total_Evaluations;Valid_Evaluations;Failed_Evaluations;Macro_F1_Std_Across_Seeds;Accuracy_Std_Across_Seeds;Balanced_Accuracy_Std_Across_Seeds;ROC_AUC_Std_Across_Seeds;Runtime_Seconds_Total,
+baseline_loco_v2/run_20261104_160031/summary_by_dataset_model.csv,baseline_loco_v2,.csv,summary,11338,50,18,ok,Dataset,Model,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,Failed_Folds;Valid_ROC_AUC_Folds;Runtime_Seconds_Total,
 cwru12k_severity_loco_results_20260921_091642.csv,cwru_severity_root,.csv,fold_level,1179,16,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
 cwru12k_severity_loco_results_20260921_102011.csv,cwru_severity_root,.csv,fold_level,1351,12,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
 cwru12k_severity_loco_results_20260922_151745.csv,cwru_severity_root,.csv,fold_level,925,12,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
@@ -11,6 +20,116 @@ cwru_unified_severity_loco_20260922_173221.csv,cwru_severity_root,.csv,fold_leve
 cwru_unified_severity_loco_20260929_103433.csv,cwru_severity_root,.csv,fold_level,1910,24,8,ok,Dataset,Model,,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
 cwru_unified_severity_loco_20260929_143834.csv,cwru_severity_root,.csv,fold_level,1517,12,8,ok,Dataset,Model,,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
 cwru_unified_severity_loco_20260929_144600.csv,cwru_severity_root,.csv,fold_level,3024,24,8,ok,Dataset,Model,,Test Condition,accuracy;balanced_accuracy;macro_f1;roc_auc,,
+da_dg_tl_matrix/matrix_run_20261118_212549/execution_plan.json,da_dg_tl_matrix,.json,artifact,9022,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_212549/jobs/DA__S3__CWRU_48k__seed42/COMPLETED.json,da_dg_tl_matrix,.json,artifact,533,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_212549/jobs/DA__S3__CWRU_48k__seed42/metrics.json,da_dg_tl_matrix,.json,artifact,15482,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_212549/jobs/DA__S3__CWRU_48k__seed42/source_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,1979,20,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_212549/jobs/DA__S3__CWRU_48k__seed42/source_split_manifest.json,da_dg_tl_matrix,.json,artifact,16220,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_212549/jobs/DA__S3__CWRU_48k__seed42/target_da_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,7567,70,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_212549/jobs/DA__S3__CWRU_48k__seed42/target_da_split_manifest.json,da_dg_tl_matrix,.json,artifact,73008,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_212549/jobs/DG__S3__CWRU_48k__seed42/COMPLETED.json,da_dg_tl_matrix,.json,artifact,397,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_212549/jobs/DG__S3__CWRU_48k__seed42/metrics.json,da_dg_tl_matrix,.json,artifact,10632,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_212549/jobs/DG__S3__CWRU_48k__seed42/source_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,1979,20,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_212549/jobs/DG__S3__CWRU_48k__seed42/source_split_manifest.json,da_dg_tl_matrix,.json,artifact,16220,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_212549/jobs/DG__S3__PU__seed42/COMPLETED.json,da_dg_tl_matrix,.json,artifact,410,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_212549/jobs/TL__S3__HUST_Gearbox__seed42/COMPLETED.json,da_dg_tl_matrix,.json,artifact,455,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_212549/jobs/TL__S3__HUST_Gearbox__seed42/loco_folds_manifest.json,da_dg_tl_matrix,.json,artifact,480,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_212549/jobs/TL__S3__HUST_Gearbox__seed42/metrics.json,da_dg_tl_matrix,.json,artifact,6947,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_212549/jobs/TL__S3__HUST_Gearbox__seed42/source_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,1979,20,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_212549/jobs/TL__S3__HUST_Gearbox__seed42/source_split_manifest.json,da_dg_tl_matrix,.json,artifact,16220,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_212549/matrix_summary.csv,da_dg_tl_matrix,.csv,summary,1967,14,10,ok,target,model,seed,,macro_f1,job_id;source_config;elapsed_seconds;timestamp_utc,
+da_dg_tl_matrix/matrix_run_20261118_212549/matrix_summary.json,da_dg_tl_matrix,.json,artifact,5121,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_212549/run_metadata.json,da_dg_tl_matrix,.json,artifact,9965,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/execution_plan.json,da_dg_tl_matrix,.json,artifact,28631,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S1__CWRU_12k__seed42/COMPLETED.json,da_dg_tl_matrix,.json,artifact,529,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S1__CWRU_12k__seed42/metrics.json,da_dg_tl_matrix,.json,artifact,17204,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S1__CWRU_12k__seed42/source_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,4239,37,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S1__CWRU_12k__seed42/source_split_manifest.json,da_dg_tl_matrix,.json,artifact,52268,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S1__CWRU_12k__seed42/target_da_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,20267,232,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S1__CWRU_12k__seed42/target_da_split_manifest.json,da_dg_tl_matrix,.json,artifact,237537,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S2__CWRU_12k__seed42/COMPLETED.json,da_dg_tl_matrix,.json,artifact,532,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S2__CWRU_12k__seed42/metrics.json,da_dg_tl_matrix,.json,artifact,17943,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S2__CWRU_12k__seed42/source_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,10366,99,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S2__CWRU_12k__seed42/source_split_manifest.json,da_dg_tl_matrix,.json,artifact,125767,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S2__CWRU_12k__seed42/target_da_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,20267,232,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S2__CWRU_12k__seed42/target_da_split_manifest.json,da_dg_tl_matrix,.json,artifact,237537,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S3__CWRU_12k__seed42/COMPLETED.json,da_dg_tl_matrix,.json,artifact,529,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S3__CWRU_12k__seed42/metrics.json,da_dg_tl_matrix,.json,artifact,17168,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S3__CWRU_12k__seed42/source_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,1979,20,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S3__CWRU_12k__seed42/source_split_manifest.json,da_dg_tl_matrix,.json,artifact,16220,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S3__CWRU_12k__seed42/target_da_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,20267,232,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S3__CWRU_12k__seed42/target_da_split_manifest.json,da_dg_tl_matrix,.json,artifact,237537,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S4__CWRU_12k__seed42/COMPLETED.json,da_dg_tl_matrix,.json,artifact,530,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S4__CWRU_12k__seed42/metrics.json,da_dg_tl_matrix,.json,artifact,17928,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S4__CWRU_12k__seed42/source_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,16374,156,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S4__CWRU_12k__seed42/source_split_manifest.json,da_dg_tl_matrix,.json,artifact,191052,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S4__CWRU_12k__seed42/target_da_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,20267,232,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S4__CWRU_12k__seed42/target_da_split_manifest.json,da_dg_tl_matrix,.json,artifact,237537,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S1__CWRU_12k__seed42/COMPLETED.json,da_dg_tl_matrix,.json,artifact,401,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S1__CWRU_12k__seed42/metrics.json,da_dg_tl_matrix,.json,artifact,11397,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S1__CWRU_12k__seed42/source_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,4239,37,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S1__CWRU_12k__seed42/source_split_manifest.json,da_dg_tl_matrix,.json,artifact,52268,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S2__CWRU_12k__seed42/COMPLETED.json,da_dg_tl_matrix,.json,artifact,401,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S2__CWRU_12k__seed42/metrics.json,da_dg_tl_matrix,.json,artifact,13468,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S2__CWRU_12k__seed42/source_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,10366,99,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S2__CWRU_12k__seed42/source_split_manifest.json,da_dg_tl_matrix,.json,artifact,125767,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S3__CWRU_12k__seed42/COMPLETED.json,da_dg_tl_matrix,.json,artifact,400,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S3__CWRU_12k__seed42/metrics.json,da_dg_tl_matrix,.json,artifact,11266,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S3__CWRU_12k__seed42/source_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,1979,20,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S3__CWRU_12k__seed42/source_split_manifest.json,da_dg_tl_matrix,.json,artifact,16220,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S4__CWRU_12k__seed42/COMPLETED.json,da_dg_tl_matrix,.json,artifact,399,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S4__CWRU_12k__seed42/metrics.json,da_dg_tl_matrix,.json,artifact,13875,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S4__CWRU_12k__seed42/source_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,16374,156,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S4__CWRU_12k__seed42/source_split_manifest.json,da_dg_tl_matrix,.json,artifact,191052,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S1__CWRU_12k__seed42/COMPLETED.json,da_dg_tl_matrix,.json,artifact,481,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S1__CWRU_12k__seed42/loco_folds_manifest.json,da_dg_tl_matrix,.json,artifact,957,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S1__CWRU_12k__seed42/metrics.json,da_dg_tl_matrix,.json,artifact,11430,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S1__CWRU_12k__seed42/source_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,4239,37,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S1__CWRU_12k__seed42/source_split_manifest.json,da_dg_tl_matrix,.json,artifact,52268,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S2__CWRU_12k__seed42/COMPLETED.json,da_dg_tl_matrix,.json,artifact,483,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S2__CWRU_12k__seed42/loco_folds_manifest.json,da_dg_tl_matrix,.json,artifact,957,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S2__CWRU_12k__seed42/metrics.json,da_dg_tl_matrix,.json,artifact,11399,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S2__CWRU_12k__seed42/source_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,10366,99,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S2__CWRU_12k__seed42/source_split_manifest.json,da_dg_tl_matrix,.json,artifact,125767,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S3__CWRU_12k__seed42/COMPLETED.json,da_dg_tl_matrix,.json,artifact,482,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S3__CWRU_12k__seed42/loco_folds_manifest.json,da_dg_tl_matrix,.json,artifact,957,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S3__CWRU_12k__seed42/metrics.json,da_dg_tl_matrix,.json,artifact,11384,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S3__CWRU_12k__seed42/source_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,1979,20,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S3__CWRU_12k__seed42/source_split_manifest.json,da_dg_tl_matrix,.json,artifact,16220,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S4__CWRU_12k__seed42/COMPLETED.json,da_dg_tl_matrix,.json,artifact,483,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S4__CWRU_12k__seed42/loco_folds_manifest.json,da_dg_tl_matrix,.json,artifact,957,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S4__CWRU_12k__seed42/metrics.json,da_dg_tl_matrix,.json,artifact,11454,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S4__CWRU_12k__seed42/source_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,16374,156,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S4__CWRU_12k__seed42/source_split_manifest.json,da_dg_tl_matrix,.json,artifact,191052,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/matrix_summary.csv,da_dg_tl_matrix,.csv,summary,7137,52,10,ok,target,model,seed,,macro_f1,job_id;source_config;elapsed_seconds;timestamp_utc,
+da_dg_tl_matrix/matrix_run_20261118_214151/matrix_summary.json,da_dg_tl_matrix,.json,artifact,18612,,,inventory_only,,,,,,,
+da_dg_tl_matrix/matrix_run_20261118_214151/run_metadata.json,da_dg_tl_matrix,.json,artifact,23830,,,inventory_only,,,,,,,
+da_dg_tl_matrix/pilot_dg_S4_to_CWRU_12k_seed42_20261118_211440/pilot_config.json,da_dg_tl_matrix,.json,artifact,1277,,,inventory_only,,,,,,,
+da_dg_tl_matrix/pilot_dg_S4_to_CWRU_12k_seed42_20261118_211440/pilot_results.json,da_dg_tl_matrix,.json,artifact,8500,,,inventory_only,,,,,,,
+da_dg_tl_matrix/pilot_dg_S4_to_CWRU_12k_seed42_20261118_211440/run_metadata.json,da_dg_tl_matrix,.json,artifact,2849,,,inventory_only,,,,,,,
+da_dg_tl_matrix/pilot_dg_S4_to_CWRU_12k_seed42_20261118_211440/source_split_manifest.csv,da_dg_tl_matrix,.csv,fold_level,16374,156,9,ok,dataset,,seed,condition,,recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count,No recognized metric columns (fold_level); inventory only.
+da_dg_tl_matrix/pilot_dg_S4_to_CWRU_12k_seed42_20261118_211440/source_split_manifest.json,da_dg_tl_matrix,.json,artifact,191052,,,inventory_only,,,,,,,
+da_dg_tl_matrix/pilot_dg_S4_to_CWRU_12k_seed42_20261118_211440/target_predictions.csv,da_dg_tl_matrix,.csv,fold_level,525673,2520,12,ok,,,,condition,,sample_id;recording_key;raw_class;true_class;pred_class;is_correct;prob_Normal;prob_Ball;prob_Inner;prob_Outer;prob_Inner_&_Outer,No recognized metric columns (fold_level); inventory only.
+experiment_planning/hust_gearbox/run_20261117_160538/run.log,experiment_planning,.log,artifact,215,,,inventory_only,,,,,,,
+experiment_planning/hust_gearbox/run_20261117_160609/run.log,experiment_planning,.log,artifact,215,,,inventory_only,,,,,,,
+experiment_planning/hust_gearbox/run_20261117_162017/run.log,experiment_planning,.log,artifact,215,,,inventory_only,,,,,,,
+experiment_planning/hust_gearbox/run_20261117_162054/run.log,experiment_planning,.log,artifact,215,,,inventory_only,,,,,,,
+experiment_planning/hust_gearbox/run_20261117_162129/run.log,experiment_planning,.log,artifact,215,,,inventory_only,,,,,,,
+experiment_planning/hust_gearbox/run_20261117_162556/config.json,experiment_planning,.json,artifact,1064,,,inventory_only,,,,,,,
+experiment_planning/hust_gearbox/run_20261117_162556/fold_manifest.csv,experiment_planning,.csv,fold_level,111493,1,16,ok,,,,fold,,held_out_conditions;train_recording_ids;test_recording_ids;train_source_recording_prefixes;test_source_recording_prefixes;train_sample_ids;test_sample_ids;train_condition_groups;test_condition_groups;train_n_windows;test_n_windows;train_class_support;test_class_support;recording_overlap,No recognized metric columns (fold_level); inventory only.
+experiment_planning/hust_gearbox/run_20261117_162556/report.md,experiment_planning,.md,artifact,946,,,inventory_only,,,,,,,
+experiment_planning/hust_gearbox/run_20261117_162556/results.csv,experiment_planning,.csv,fold_level,889,2,13,ok,,model,seed,fold,accuracy;balanced_accuracy;macro_f1,macro_roc_auc_ovr;test_class_support;train_class_support;model_config,
+experiment_planning/hust_gearbox/run_20261117_162556/run.log,experiment_planning,.log,artifact,498,,,inventory_only,,,,,,,
+experiment_planning/hust_gearbox/run_20261117_163340/config.json,experiment_planning,.json,artifact,1164,,,inventory_only,,,,,,,
+experiment_planning/hust_gearbox/run_20261117_163340/fold_manifest.csv,experiment_planning,.csv,fold_level,667521,6,16,ok,,,,fold,,held_out_conditions;train_recording_ids;test_recording_ids;train_source_recording_prefixes;test_source_recording_prefixes;train_sample_ids;test_sample_ids;train_condition_groups;test_condition_groups;train_n_windows;test_n_windows;train_class_support;test_class_support;recording_overlap,No recognized metric columns (fold_level); inventory only.
+experiment_planning/hust_gearbox/run_20261117_163340/report.md,experiment_planning,.md,artifact,1985,,,inventory_only,,,,,,,
+experiment_planning/hust_gearbox/run_20261117_163340/results.csv,experiment_planning,.csv,fold_level,21775,60,13,ok,,model,seed,fold,accuracy;balanced_accuracy;macro_f1,macro_roc_auc_ovr;test_class_support;train_class_support;model_config,
+experiment_planning/hust_gearbox/run_20261117_163340/run.log,experiment_planning,.log,artifact,4905,,,inventory_only,,,,,,,
+experiment_planning/hust_gearbox/run_20261117_163749/config.json,experiment_planning,.json,artifact,1156,,,inventory_only,,,,,,,
+experiment_planning/hust_gearbox/run_20261117_163749/fold_manifest.csv,experiment_planning,.csv,fold_level,556693,5,16,ok,,,,fold,,held_out_conditions;train_recording_ids;test_recording_ids;train_source_recording_prefixes;test_source_recording_prefixes;train_sample_ids;test_sample_ids;train_condition_groups;test_condition_groups;train_n_windows;test_n_windows;train_class_support;test_class_support;recording_overlap,No recognized metric columns (fold_level); inventory only.
+experiment_planning/hust_gearbox/run_20261117_163749/report.md,experiment_planning,.md,artifact,1798,,,inventory_only,,,,,,,
+experiment_planning/hust_gearbox/run_20261117_163749/results.csv,experiment_planning,.csv,fold_level,17117,50,13,ok,,model,seed,fold,accuracy;balanced_accuracy;macro_f1,macro_roc_auc_ovr;test_class_support;train_class_support;model_config,
+experiment_planning/hust_gearbox/run_20261117_163749/run.log,experiment_planning,.log,artifact,4204,,,inventory_only,,,,,,,
 figures/xai_HUST_20260604_065044.png,figures,.png,artifact,217511,,,inventory_only,,,,,,,
 figures/xai_PU_20260604_071602.png,figures,.png,artifact,216287,,,inventory_only,,,,,,,
 figures/xai_UORED_20260606_065956.png,figures,.png,artifact,220028,,,inventory_only,,,,,,,
@@ -19,6 +138,8 @@ log_baseline_scratch_20260916_113010.txt,logs_root,.txt,artifact,3900,,,inventor
 log_baseline_scratch_20260917_101613.txt,logs_root,.txt,artifact,3900,,,inventory_only,,,,,,,
 log_norm_tl_diagnosis_multitarget_20261001_160735.txt,logs_root,.txt,artifact,121799,,,inventory_only,,,,,,,
 log_norm_tl_dl_20260905_080429.txt,logs_root,.txt,artifact,176033,,,inventory_only,,,,,,,
+log_tabvibnet_linear_probing_20261104_082702.txt,logs_root,.txt,artifact,56046,,,inventory_only,,,,,,,
+log_time_scratch_ablation_20261114_095731.txt,logs_root,.txt,artifact,89547,,,inventory_only,,,,,,,
 log_tl_isolated_full_20260901_083517.txt,logs_root,.txt,artifact,55140,,,inventory_only,,,,,,,
 log_tl_subset_search_20260915_202128.txt,logs_root,.txt,artifact,995674,,,inventory_only,,,,,,,
 logs/baselines.log,logs,.log,artifact,608961,,,inventory_only,,,,,,,
@@ -139,6 +260,58 @@ old_results/resultados_uoemd_tabular_20260708_090602.csv,old_results,.csv,fold_l
 old_results/tl_loco_results_20260810_141107.csv,old_results,.csv,fold_level,14102,200,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
 old_results/tl_multihead_results_20260819_103518.csv,old_results,.csv,fold_level,21618,248,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
 old_results/tl_results_20260803_071723.csv,old_results,.csv,fold_level,1600,16,7,ok,Target Domain,Model,,,balanced_accuracy;macro_f1;roc_auc,,
+results_tabvibnet_linear_probing.csv,root,.csv,fold_level,36228,248,10,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,Encoder;Freeze_Backbone,
+scratch_vs_tl/audit/audit_report.md,scratch_vs_tl,.md,artifact,12363,,,inventory_only,,,,,,,
+scratch_vs_tl/audit/compatibility_audit.csv,scratch_vs_tl,.csv,metadata_or_other,29675,30,15,ok,target_dataset,architecture,,,,sampling_rate_hz;loco_folds;method;existing_artifact_reference;split_compatibility;preprocessing_compatibility;feature_compatibility;sample_and_class_matchable;predictions_available_and_complete;method_feasibility;reusable_status;methodological_impact;minimum_required_action,No recognized metric columns (metadata_or_other); inventory only.
+scratch_vs_tl/audit/experiment_inventory.csv,scratch_vs_tl,.csv,metadata_or_other,5685,11,18,ok,,,,,,experiment_family;run_id;artifact_path;script_path;present_on_disk;results_csv_rows;predictions_csv_present;predictions_csv_rows;feature_dim;targets_covered;sources_used;architectures;methods;balance_strategies;seeds;loco_leakage_free;reusable_for_scratch_vs_tl,No recognized metric columns (metadata_or_other); inventory only.
+scratch_vs_tl/classical_baselines/run_20261111_094327/comparison_config.json,scratch_vs_tl,.json,artifact,2393,,,inventory_only,,,,,,,
+scratch_vs_tl/classical_baselines/run_20261111_094327/environment.json,scratch_vs_tl,.json,artifact,561,,,inventory_only,,,,,,,
+scratch_vs_tl/classical_baselines/run_20261111_094327/fold_manifest.csv,scratch_vs_tl,.csv,fold_level,794219,4,16,ok,target_dataset,,seed,condition,,fold_id;train_sample_ids;test_sample_ids;source_sample_ids;split_signature;preprocessing_signature;n_train_before_balance;n_train_after_balance,No recognized metric columns (fold_level); inventory only.
+scratch_vs_tl/classical_baselines/run_20261111_094327/git_metadata.json,scratch_vs_tl,.json,artifact,2590,,,inventory_only,,,,,,,
+scratch_vs_tl/classical_baselines/run_20261111_094327/run.log,scratch_vs_tl,.log,artifact,445,,,inventory_only,,,,,,,
+scratch_vs_tl/classical_baselines/run_20261111_102548/comparison_config.json,scratch_vs_tl,.json,artifact,3520,,,inventory_only,,,,,,,
+scratch_vs_tl/classical_baselines/run_20261111_102548/environment.json,scratch_vs_tl,.json,artifact,561,,,inventory_only,,,,,,,
+scratch_vs_tl/classical_baselines/run_20261111_102548/fold_manifest.csv,scratch_vs_tl,.csv,fold_level,794219,4,16,ok,target_dataset,,seed,condition,,fold_id;train_sample_ids;test_sample_ids;source_sample_ids;split_signature;preprocessing_signature;n_train_before_balance;n_train_after_balance,No recognized metric columns (fold_level); inventory only.
+scratch_vs_tl/classical_baselines/run_20261111_102548/git_metadata.json,scratch_vs_tl,.json,artifact,2590,,,inventory_only,,,,,,,
+scratch_vs_tl/classical_baselines/run_20261111_102548/run.log,scratch_vs_tl,.log,artifact,496,,,inventory_only,,,,,,,
+scratch_vs_tl/classical_baselines/run_20261111_103350/comparison_config.json,scratch_vs_tl,.json,artifact,3520,,,inventory_only,,,,,,,
+scratch_vs_tl/classical_baselines/run_20261111_103350/environment.json,scratch_vs_tl,.json,artifact,561,,,inventory_only,,,,,,,
+scratch_vs_tl/classical_baselines/run_20261111_103350/fold_manifest.csv,scratch_vs_tl,.csv,fold_level,794219,4,16,ok,target_dataset,,seed,condition,,fold_id;train_sample_ids;test_sample_ids;source_sample_ids;split_signature;preprocessing_signature;n_train_before_balance;n_train_after_balance,No recognized metric columns (fold_level); inventory only.
+scratch_vs_tl/classical_baselines/run_20261111_103350/git_metadata.json,scratch_vs_tl,.json,artifact,2604,,,inventory_only,,,,,,,
+scratch_vs_tl/classical_baselines/run_20261111_103350/integrity_validation.json,scratch_vs_tl,.json,artifact,295,,,inventory_only,,,,,,,
+scratch_vs_tl/classical_baselines/run_20261111_103350/predictions.csv,scratch_vs_tl,.csv,fold_level,1426761,7440,12,ok,target_dataset,architecture,seed,condition,,fold_id;sample_id;y_true;y_pred;probabilities;class_order;method,No recognized metric columns (fold_level); inventory only.
+scratch_vs_tl/classical_baselines/run_20261111_103350/rankings.csv,scratch_vs_tl,.csv,metadata_or_other,1341,12,8,ok,target_dataset,architecture,,,,scope;method;metric;metric_value,No recognized metric columns (metadata_or_other); inventory only.
+scratch_vs_tl/classical_baselines/run_20261111_103350/report.md,scratch_vs_tl,.md,artifact,21927,,,inventory_only,,,,,,,
+scratch_vs_tl/classical_baselines/run_20261111_103350/results.csv,scratch_vs_tl,.csv,fold_level,8011,12,35,ok,target_dataset,architecture,seed,condition,accuracy;balanced_accuracy;macro_f1;roc_auc,fold_id;method;feature_dimension;test_sample_count;test_class_count;train_sample_count_before;train_sample_count_after;train_class_count;backbone_frozen;backbone_param_max_abs_diff;backbone_buffer_max_abs_diff;selected_epochs;selected_hyperparameters;inner_cv_macro_f1;split_signature;preprocessing_signature;runtime_seconds,
+scratch_vs_tl/classical_baselines/run_20261111_103350/run.log,scratch_vs_tl,.log,artifact,2752,,,inventory_only,,,,,,,
+scratch_vs_tl/classical_baselines/run_20261111_103350/statistical_tests.csv,scratch_vs_tl,.csv,metadata_or_other,8612,24,23,ok,target_dataset,,,,,comparison;model_a;model_b;metric;statistical_unit;n_paired_folds;model_a_mean;model_b_mean;mean_diff_a_minus_b;median_diff_a_minus_b;std_diff;ci95_low;ci95_high;n_folds_a_better;n_folds_b_better;n_folds_tied;wilcoxon_statistic;p_value_raw;p_value_holm;significant_alpha_0_05;methodological_note,No recognized metric columns (metadata_or_other); inventory only.
+scratch_vs_tl/classical_baselines/run_20261111_103350/summary_by_architecture.csv,scratch_vs_tl,.csv,summary,1911,6,19,ok,,architecture,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,method;n_datasets;total_evaluations;valid_evaluations;failed_evaluations;accuracy_median;balanced_accuracy_median;roc_auc_median,
+scratch_vs_tl/classical_baselines/run_20261111_103350/summary_by_dataset.csv,scratch_vs_tl,.csv,summary,1997,6,21,ok,target_dataset,architecture,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,method;total_evaluations;valid_evaluations;failed_evaluations;accuracy_median;balanced_accuracy_median;roc_auc_median,
+scratch_vs_tl/classical_baselines/run_20261111_103350/summary_by_method.csv,scratch_vs_tl,.csv,summary,822,2,19,ok,,,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,method;n_architectures;n_datasets;total_evaluations;valid_evaluations;failed_evaluations;accuracy_median;balanced_accuracy_median;roc_auc_median,
+scratch_vs_tl/classical_baselines/run_20261113_083953/comparison_config.json,scratch_vs_tl,.json,artifact,3676,,,inventory_only,,,,,,,
+scratch_vs_tl/classical_baselines/run_20261113_083953/environment.json,scratch_vs_tl,.json,artifact,561,,,inventory_only,,,,,,,
+scratch_vs_tl/classical_baselines/run_20261113_083953/fold_manifest.csv,scratch_vs_tl,.csv,,65012835,,,error,,,,,,,field larger than field limit (131072)
+scratch_vs_tl/classical_baselines/run_20261113_083953/git_metadata.json,scratch_vs_tl,.json,artifact,3478,,,inventory_only,,,,,,,
+scratch_vs_tl/classical_baselines/run_20261113_083953/predictions.csv,scratch_vs_tl,.csv,fold_level,10543932,54576,12,ok,target_dataset,architecture,seed,condition,,fold_id;sample_id;y_true;y_pred;probabilities;class_order;method,No recognized metric columns (fold_level); inventory only.
+scratch_vs_tl/classical_baselines/run_20261113_083953/results.csv,scratch_vs_tl,.csv,fold_level,154029,261,35,ok,target_dataset,architecture,seed,condition,accuracy;balanced_accuracy;macro_f1;roc_auc,fold_id;method;feature_dimension;test_sample_count;test_class_count;train_sample_count_before;train_sample_count_after;train_class_count;backbone_frozen;backbone_param_max_abs_diff;backbone_buffer_max_abs_diff;selected_epochs;selected_hyperparameters;inner_cv_macro_f1;split_signature;preprocessing_signature;runtime_seconds,
+scratch_vs_tl/classical_baselines/run_20261113_083953/run.log,scratch_vs_tl,.log,artifact,51643,,,inventory_only,,,,,,,
+scratch_vs_tl/run_20261105_141743/comparison_config.json,scratch_vs_tl,.json,artifact,2723,,,inventory_only,,,,,,,
+scratch_vs_tl/run_20261105_141743/compatibility_audit.csv,scratch_vs_tl,.csv,metadata_or_other,28875,30,15,ok,target_dataset,architecture,,,,sampling_rate_hz;loco_folds;method;existing_artifact_reference;split_compatibility;preprocessing_compatibility;feature_compatibility;sample_and_class_matchable;predictions_available_and_complete;method_feasibility;reusable_status;methodological_impact;minimum_required_action,No recognized metric columns (metadata_or_other); inventory only.
+scratch_vs_tl/run_20261105_141743/environment.json,scratch_vs_tl,.json,artifact,537,,,inventory_only,,,,,,,
+scratch_vs_tl/run_20261105_141743/fold_manifest.csv,scratch_vs_tl,.csv,,65012835,,,error,,,,,,,field larger than field limit (131072)
+scratch_vs_tl/run_20261105_141743/git_metadata.json,scratch_vs_tl,.json,artifact,2434,,,inventory_only,,,,,,,
+scratch_vs_tl/run_20261105_141743/predictions.csv,scratch_vs_tl,.csv,fold_level,90626275,424008,12,ok,target_dataset,architecture,seed,condition,,fold_id;sample_id;y_true;y_pred;probabilities;class_order;method,No recognized metric columns (fold_level); inventory only.
+scratch_vs_tl/run_20261105_141743/rankings.csv,scratch_vs_tl,.csv,metadata_or_other,6991,72,8,ok,target_dataset,architecture,,,,scope;method;metric;metric_value,No recognized metric columns (metadata_or_other); inventory only.
+scratch_vs_tl/run_20261105_141743/report.md,scratch_vs_tl,.md,artifact,62223,,,inventory_only,,,,,,,
+scratch_vs_tl/run_20261105_141743/results.csv,scratch_vs_tl,.csv,fold_level,1186051,2376,33,ok,target_dataset,architecture,seed,condition,accuracy;balanced_accuracy;macro_f1;roc_auc,fold_id;method;feature_dimension;test_sample_count;test_class_count;train_sample_count_before;train_sample_count_after;train_class_count;backbone_frozen;backbone_param_max_abs_diff;backbone_buffer_max_abs_diff;selected_epochs;split_signature;preprocessing_signature;runtime_seconds,
+scratch_vs_tl/run_20261105_141743/run.log,scratch_vs_tl,.log,artifact,531520,,,inventory_only,,,,,,,
+scratch_vs_tl/run_20261105_141743/statistical_tests.csv,scratch_vs_tl,.csv,metadata_or_other,53469,160,24,ok,target_dataset,architecture,,,,comparison;tl_method;baseline_method;metric;statistical_unit;n_paired_folds;scratch_mean;tl_mean;mean_diff_tl_minus_scratch;median_diff_tl_minus_scratch;std_diff;ci95_low;ci95_high;n_folds_tl_better;n_folds_scratch_better;n_folds_tied;wilcoxon_statistic;p_value_raw;p_value_holm;significant_alpha_0_05;methodological_note,No recognized metric columns (metadata_or_other); inventory only.
+scratch_vs_tl/run_20261105_141743/summary_by_architecture.csv,scratch_vs_tl,.csv,summary,3418,12,19,ok,,architecture,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,method;n_datasets;total_evaluations;valid_evaluations;failed_evaluations;accuracy_median;balanced_accuracy_median;roc_auc_median,
+scratch_vs_tl/run_20261105_141743/summary_by_dataset.csv,scratch_vs_tl,.csv,summary,15655,60,21,ok,target_dataset,architecture,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,method;total_evaluations;valid_evaluations;failed_evaluations;accuracy_median;balanced_accuracy_median;roc_auc_median,
+scratch_vs_tl/run_20261105_141743/summary_by_method.csv,scratch_vs_tl,.csv,summary,1833,6,19,ok,,,,,accuracy_mean;accuracy_std;balanced_accuracy_mean;balanced_accuracy_std;macro_f1_mean;macro_f1_std;roc_auc_mean;roc_auc_std,method;n_architectures;n_datasets;total_evaluations;valid_evaluations;failed_evaluations;accuracy_median;balanced_accuracy_median;roc_auc_median,
+setup/installation_report.json,setup,.json,artifact,60854,,,inventory_only,,,,,,,
+setup/installation_report.md,setup,.md,artifact,3930,,,inventory_only,,,,,,,
+time_scratch_ablation_20261114_095731.csv,root,.csv,fold_level,98090,992,11,ok,Dataset,,,Test_Condition,balanced_accuracy;macro_f1;roc_auc,K_Factor;Target_Len;Resample_Mode;Norm_Mode,
 tl/tl_completo_results_20260810_151031.csv,tl,.csv,fold_level,34394,448,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
 tl/tl_isolated_full_results_20260901_083517.csv,tl,.csv,fold_level,21531,248,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,
 tl/tl_multihead_results_20260824_073501.csv,tl,.csv,fold_level,23633,248,7,ok,Dataset,Model,,Test Condition,balanced_accuracy;macro_f1;roc_auc,,

@@ -1115,6 +1115,188 @@ class TestDADGTLProtocol(unittest.TestCase):
         self.assertFalse(audit_126["labels_exposed_to_pretrainer"])
         self.assertEqual(int(pt_126.network.input_dim), 126)
 
+    def test_21_dg_per_source_rms_alignment_and_invariant_126_pu_unblock(self) -> None:
+        """
+        Test 21:
+        - `source_norm_mode="per_source_rms"` normalizes every active source to
+          `RMS_normal == 1.0`, eliminating the 41.3x inter-source amplitude distortion
+          while keeping `target_statistics_used=False` (target scaled by `RMS_global_ms2`).
+        - Under `feature_mode="invariant_126"`, PU (Volts) is unblocked in DG without
+          using any target statistics.
+        """
+        rng = np.random.default_rng(42)
+        t = np.linspace(0.0, 1.0, 2048, endpoint=False)
+        base = np.sin(2.0 * np.pi * 25.0 * t)
+        base = base / np.sqrt(np.mean(base ** 2))
+
+        w_uored = base * 6.26
+        w_hust = base * 0.18
+        w_mfpt = base * 0.77  # in g (~7.55 m/s^2)
+        w_pu = (base + 0.05 * rng.standard_normal(2048)) * 0.28  # in Volts
+
+        dg_norm = fit_dg_rms_normalizer(
+            source_normal_windows={"UORED": [w_uored], "HUST": [w_hust], "MFPT": [w_mfpt]},
+            source_units={"UORED": "m/s^2", "HUST": "m/s^2", "MFPT": "g"},
+            aggregation_mode="geometric_mean_ms2",
+            apply_detrend=True,
+        )
+
+        # per_source_rms aligns all 3 sources to RMS == 1.0
+        for s_name, w_raw in (("UORED", w_uored), ("HUST", w_hust), ("MFPT", w_mfpt)):
+            norm_w = dg_norm.transform_source_windows(
+                s_name, [w_raw], feature_mode="full_141", source_norm_mode="per_source_rms"
+            )[0]
+            rms_out = float(np.sqrt(np.mean(norm_w.astype(np.float64) ** 2)))
+            self.assertAlmostEqual(rms_out, 1.0, places=3)
+
+        # PU blocked under full_141, unblocked under invariant_126
+        with self.assertRaises(IncomparableSourceRMSReferenceError):
+            dg_norm.transform_target_windows([w_pu], target_dataset="PU", feature_mode="full_141")
+
+        pu_inv126 = dg_norm.transform_target_windows(
+            [w_pu], target_dataset="PU", feature_mode="invariant_126"
+        )
+        self.assertEqual(len(pu_inv126), 1)
+        self.assertEqual(pu_inv126[0].shape, (2048,))
+
+    def test_22_hierarchical_class_equalized_s4_balances_inner_and_outer(self) -> None:
+        """
+        Test 22:
+        Verify that `mode="hierarchical_class_equalized"` assigns equal total effective
+        weight (`N_total / 5`) to all 5 canonical classes in S4 (including `Inner & Outer`,
+        which was previously 3.5x smaller under `hierarchical_weights`), and splits weight
+        equally among datasets within each canonical class.
+        """
+        datasets = (
+            ["HUST"] * 120 + ["HUST"] * 80 + ["HUST"] * 120 + ["HUST"] * 120 + ["HUST"] * 120
+            + ["MFPT"] * 18 + ["MFPT"] * 33
+            + ["UORED"] * 140 + ["UORED"] * 80
+        )
+        classes = (
+            ["Normal"] * 120 + ["Ball"] * 80 + ["Inner"] * 120 + ["Outer"] * 120 + ["Inner & Outer"] * 120
+            + ["Inner"] * 18 + ["Outer"] * 33
+            + ["Normal"] * 140 + ["Ball"] * 80
+        )
+        res = compute_hierarchical_source_balance(
+            datasets=datasets,
+            class_ids=classes,
+            mode="hierarchical_class_equalized",
+            seed=42,
+            partition_name="source_train",
+        )
+        self.assertAlmostEqual(float(np.sum(res.sample_weights)), float(len(datasets)), places=6)
+
+        # Aggregate effective weight per canonical class
+        eff_by_cls: Dict[str, float] = {}
+        for ds_map in res.effective_weight_by_dataset_class.values():
+            for c_name, w_val in ds_map.items():
+                eff_by_cls[c_name] = eff_by_cls.get(c_name, 0.0) + w_val
+
+        expected_per_cls = len(datasets) / 5.0
+        for c_name in HARMONIZED_CLASSES:
+            self.assertAlmostEqual(eff_by_cls[c_name], expected_per_cls, places=5)
+
+        # Within each 2-dataset class, both datasets contribute equally (expected_per_cls / 2)
+        self.assertAlmostEqual(
+            res.effective_weight_by_dataset_class["HUST"]["Normal"], expected_per_cls / 2.0, places=5
+        )
+        self.assertAlmostEqual(
+            res.effective_weight_by_dataset_class["UORED"]["Normal"], expected_per_cls / 2.0, places=5
+        )
+        self.assertAlmostEqual(
+            res.effective_weight_by_dataset_class["HUST"]["Inner & Outer"], expected_per_cls, places=5
+        )
+
+    def test_23_tl_grouped_loco_splits_cwru48k_severity_and_hust_gearbox_speed_load(self) -> None:
+        """
+        Test 23:
+        Verify leak-free grouped LOCO splits in `da_dg_tl_runner`:
+          - `CWRU_48k` `by_severity`: 3 folds (`Sev_0.007`, `Sev_0.014`, `Sev_0.021`).
+          - `HUST_Gearbox` `by_speed`: 6 folds (`20Hz..40Hz`, `VS_0_40_0`).
+          - `HUST_Gearbox` `by_load`: 5 folds (`Load_0..Load_4`).
+        """
+        from src.vibnet.evaluation.da_dg_tl_runner import (
+            NativeTLRecord,
+            build_tl_loco_folds,
+        )
+
+        # CWRU_48k: 12 Load x Severity conditions -> 3 severity folds
+        c48_recs = []
+        idx = 0
+        for load in ("0HP", "1HP", "2HP", "3HP"):
+            for sev in ("0.007", "0.014", "0.021"):
+                cond = f"Load_{load}_Sev_{sev}"
+                for cls in ("Class_1", "Class_2", "Class_3"):
+                    rec_p = f"s{idx:05d}"
+                    c48_recs.append(
+                        NativeTLRecord(
+                            sample_id=f"CWRU_48k/{cond}/{cls}/{rec_p}_w00.npy",
+                            dataset="CWRU_48k",
+                            condition=cond,
+                            raw_class=cls,
+                            recording_prefix=rec_p,
+                            recording_key=f"CWRU_48k::{cond}::{cls}::{rec_p}",
+                            window_index=0,
+                        )
+                    )
+                    idx += 1
+        c48_folds = build_tl_loco_folds(c48_recs, "CWRU_48k", grouping_mode="by_severity")
+        self.assertEqual(len(c48_folds), 3)
+        self.assertEqual([f.test_condition for f in c48_folds], ["Sev_0.007", "Sev_0.014", "Sev_0.021"])
+
+        # HUST_Gearbox: 30 Load x Speed conditions -> 6 speed folds and 5 load folds
+        hg_recs = []
+        idx = 0
+        hg_conds = [f"Cond_{sp}_{ld}" for sp in (20, 25, 30, 35, 40) for ld in range(5)] + [
+            f"Cond_L{ld}_VS_0_40_0" for ld in range(5)
+        ]
+        for cond in hg_conds:
+            for cls in ("Class_Normal", "Class_Broken", "Class_Missing"):
+                rec_p = f"s{idx:05d}"
+                hg_recs.append(
+                    NativeTLRecord(
+                        sample_id=f"HUST_Gearbox/{cond}/{cls}/{rec_p}_w00.npy",
+                        dataset="HUST_Gearbox",
+                        condition=cond,
+                        raw_class=cls,
+                        recording_prefix=rec_p,
+                        recording_key=f"HUST_Gearbox::{cond}::{cls}::{rec_p}",
+                        window_index=0,
+                    )
+                )
+                idx += 1
+
+        speed_folds = build_tl_loco_folds(hg_recs, "HUST_Gearbox", grouping_mode="by_speed")
+        self.assertEqual(len(speed_folds), 6)
+        self.assertEqual(
+            [f.test_condition for f in speed_folds],
+            ["20Hz", "25Hz", "30Hz", "35Hz", "40Hz", "VS_0_40_0"],
+        )
+
+        load_folds = build_tl_loco_folds(hg_recs, "HUST_Gearbox", grouping_mode="by_load")
+        self.assertEqual(len(load_folds), 5)
+        self.assertEqual(
+            [f.test_condition for f in load_folds],
+            ["Load_0", "Load_1", "Load_2", "Load_3", "Load_4"],
+        )
+
+    def test_24_pu_trim_single_remainder_sample_protection(self) -> None:
+        """
+        Test 24:
+        Confirm `trim_single_remainder_sample` drops exactly 1 sample when
+        `N % batch_size == 1` (e.g., PU folds with 129 or 641 windows at batch_size=64)
+        to prevent BatchNorm1d crashes on single-sample last batches.
+        """
+        from src.vibnet.evaluation.balancing import trim_single_remainder_sample
+
+        X_641 = [[float(i)] * 4 for i in range(641)]
+        y_641 = [i % 3 for i in range(641)]
+        X_t, y_t, trimmed = trim_single_remainder_sample(X_641, y_641, batch_size=64, seed=42)
+        self.assertEqual(len(X_t), 640)
+        self.assertEqual(len(y_t), 640)
+        self.assertTrue(trimmed)
+        self.assertEqual(len(X_t) % 64, 0)
+
 
 if __name__ == "__main__":
     unittest.main()

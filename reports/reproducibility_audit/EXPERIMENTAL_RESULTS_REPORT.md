@@ -2,16 +2,16 @@
 
 ## 1. Visão Geral do Inventário
 - **Diretório auditado**: `results/`
-- **Total de artefatos inventariados**: 220
-  - `.csv`: 108, `.json`: 15, `.log`: 43, `.png`: 4, `.txt`: 50
-- **Arquivos CSV analisados**: 108 (`dataset_audit`: 2, `fold_level`: 66, `summary`: 40)
-- **Linhas de métricas extraídas (`metrics_long.csv`)**: 89445
-- **Grupos descritivos gerados (`metrics_summary.csv`)**: 9984
-- **Anomalias / avaliações inválidas detectadas (`anomalies_and_warnings.csv`)**: 1025
-- **Erros de leitura de arquivo**: 0
+- **Total de artefatos inventariados**: 393
+  - `.csv`: 170, `.json`: 103, `.log`: 57, `.md`: 7, `.png`: 4, `.txt`: 52
+- **Arquivos CSV analisados**: 170 (``: 2, `dataset_audit`: 3, `fold_level`: 107, `metadata_or_other`: 7, `summary`: 51)
+- **Linhas de métricas extraídas (`metrics_long.csv`)**: 114618
+- **Grupos descritivos gerados (`metrics_summary.csv`)**: 11840
+- **Anomalias / avaliações inválidas detectadas (`anomalies_and_warnings.csv`)**: 1053
+- **Erros de leitura de arquivo**: 2
 
 ## 2. Arquivos Derivados Gerados
-- `results_inventory.csv`: inventário completo de todos os 220 artefatos com tipo, granularidade (`fold_level`, `summary`, `dataset_audit`), colunas de contexto (`dataset`, `model`, `seed`, `fold`), métricas reconhecidas e colunas não reconhecidas.
+- `results_inventory.csv`: inventário completo de todos os 393 artefatos com tipo, granularidade (`fold_level`, `summary`, `dataset_audit`), colunas de contexto (`dataset`, `model`, `seed`, `fold`), métricas reconhecidas e colunas não reconhecidas.
 - `metrics_long.csv`: métricas extraídas linha a linha mantendo referência exata ao arquivo de origem (`relative_path`), granularidade, `dataset`, `model`, `sources`, `strategy`, `seed`, `fold`, `status`, flag de validade (`is_valid`) e `anomaly_flag`.
 - `metrics_summary.csv`: estatísticas descritivas (`count`, `invalid_count`, `n_seeds`, `n_folds`, `mean`, `std`, `min`, `max`) calculadas **estritamente dentro de cada arquivo e protocolo**, filtrando avaliações corrompidas (`is_valid=False`).
 - `anomalies_and_warnings.csv`: registro auditável de linhas com falha de execução (`NON_OK_STATUS`), deslocamento de colunas (`SHIFTED_COLUMN_CORRUPTION`), falhas de ajuste (`ZERO_METRIC_FAILURE`) e fallbacks de classe ausente em ROC-AUC (`ROC_AUC_ZERO_FALLBACK`, `ROC_AUC_NAN_MISSING_CLASS`).
@@ -19,9 +19,9 @@
 ## 3. Resumo de Anomalias e Avaliações Inválidas Detectadas
 - **`NON_OK_STATUS`**: 60 ocorrências
 - **`ROC_AUC_NAN_MISSING_CLASS`**: 8 ocorrências
-- **`ROC_AUC_ZERO_FALLBACK`**: 700 ocorrências
+- **`ROC_AUC_ZERO_FALLBACK`**: 724 ocorrências
 - **`SHIFTED_COLUMN_CORRUPTION`**: 100 ocorrências
-- **`ZERO_METRIC_FAILURE`**: 157 ocorrências
+- **`ZERO_METRIC_FAILURE`**: 161 ocorrências
 
 ### Detalhamento das principais anomalias:
 1. **`SHIFTED_COLUMN_CORRUPTION` (100 linhas)**: Nos arquivos `baseline_loco_results_20260928_142515.csv` (50 linhas) e `baseline_loco_results_20261003_052352.csv` (50 linhas), o modelo `MLP (Scratch)` teve 4 valores desempacotados em 5 colunas (`run_baseline_experiments.py` L116 vs `build_pytorch_baselines.py` L90). Nesses registros, `Accuracy` contém `Bal Acc`, `Bal Acc` contém `Macro F1`, `Macro F1` contém `ROC-AUC` e `ROC-AUC` contém a string da arquitetura `PureMLPBaseline(...)`. Essas linhas foram marcadas com `is_valid=False` para não contaminar `metrics_summary.csv`.
@@ -30,6 +30,66 @@
 4. **`ROC_AUC_ZERO_FALLBACK` (700 linhas) e `ROC_AUC_NAN_MISSING_CLASS` (8 linhas)**: No dataset `CWRU_48k`, o fold `Load_0HP_Sev_0.021` possui apenas 2 das 3 classes de falha presentes no teste (`N_Test_Classes_Present = 2`). Scripts legados registravam `ROC-AUC = 0.0` ao capturar `ValueError` no cálculo multiclasse OvR; o runner `exp_tl_cross_dataset_mlp_tabnet.py` passa a registrar `NaN` com `ROC_AUC_Valid = False`.
 
 ## 4. Colunas Não Reconhecidas por Arquivo
+- `baseline_loco_v2/run_20261104_160031/dataset_audit.csv` (`dataset_audit`): `data_dir;feature_dim;conditions;classes`
+- `baseline_loco_v2/run_20261104_160031/predictions.csv` (`fold_level`): `Fold;Sample_ID;y_true;y_true_label;y_pred;y_pred_label;y_prob_json`
+- `baseline_loco_v2/run_20261104_160031/results.csv` (`fold_level`): `Fold;Feature_Dimension;Test_Sample_Count;Test_Class_Count;Train_Sample_Count;Train_Class_Count;Runtime_Seconds;Train_Sample_Count_Before_Balance;Validation_Split_Mode;Selected_Epochs;Sample_Split_Signature`
+- `baseline_loco_v2/run_20261104_160031/summary.csv` (`summary`): `Failed_Folds;Valid_ROC_AUC_Folds;Runtime_Seconds_Total`
+- `baseline_loco_v2/run_20261104_160031/summary_across_seeds.csv` (`summary`): `Folds_Per_Seed;Total_Evaluations;Valid_Evaluations;Failed_Evaluations;Macro_F1_Std_Across_Seeds;Accuracy_Std_Across_Seeds;Balanced_Accuracy_Std_Across_Seeds;ROC_AUC_Std_Across_Seeds;Runtime_Seconds_Total`
+- `baseline_loco_v2/run_20261104_160031/summary_by_dataset_model.csv` (`summary`): `Failed_Folds;Valid_ROC_AUC_Folds;Runtime_Seconds_Total`
+- `da_dg_tl_matrix/matrix_run_20261118_212549/jobs/DA__S3__CWRU_48k__seed42/source_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_212549/jobs/DA__S3__CWRU_48k__seed42/target_da_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_212549/jobs/DG__S3__CWRU_48k__seed42/source_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_212549/jobs/TL__S3__HUST_Gearbox__seed42/source_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_212549/matrix_summary.csv` (`summary`): `job_id;source_config;elapsed_seconds;timestamp_utc`
+- `da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S1__CWRU_12k__seed42/source_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S1__CWRU_12k__seed42/target_da_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S2__CWRU_12k__seed42/source_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S2__CWRU_12k__seed42/target_da_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S3__CWRU_12k__seed42/source_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S3__CWRU_12k__seed42/target_da_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S4__CWRU_12k__seed42/source_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DA__S4__CWRU_12k__seed42/target_da_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S1__CWRU_12k__seed42/source_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S2__CWRU_12k__seed42/source_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S3__CWRU_12k__seed42/source_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_214151/jobs/DG__S4__CWRU_12k__seed42/source_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S1__CWRU_12k__seed42/source_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S2__CWRU_12k__seed42/source_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S3__CWRU_12k__seed42/source_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_214151/jobs/TL__S4__CWRU_12k__seed42/source_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/matrix_run_20261118_214151/matrix_summary.csv` (`summary`): `job_id;source_config;elapsed_seconds;timestamp_utc`
+- `da_dg_tl_matrix/pilot_dg_S4_to_CWRU_12k_seed42_20261118_211440/source_split_manifest.csv` (`fold_level`): `recording_key;recording_prefix;raw_class;harmonized_class;partition;window_count`
+- `da_dg_tl_matrix/pilot_dg_S4_to_CWRU_12k_seed42_20261118_211440/target_predictions.csv` (`fold_level`): `sample_id;recording_key;raw_class;true_class;pred_class;is_correct;prob_Normal;prob_Ball;prob_Inner;prob_Outer;prob_Inner_&_Outer`
+- `experiment_planning/hust_gearbox/run_20261117_162556/fold_manifest.csv` (`fold_level`): `held_out_conditions;train_recording_ids;test_recording_ids;train_source_recording_prefixes;test_source_recording_prefixes;train_sample_ids;test_sample_ids;train_condition_groups;test_condition_groups;train_n_windows;test_n_windows;train_class_support;test_class_support;recording_overlap`
+- `experiment_planning/hust_gearbox/run_20261117_162556/results.csv` (`fold_level`): `macro_roc_auc_ovr;test_class_support;train_class_support;model_config`
+- `experiment_planning/hust_gearbox/run_20261117_163340/fold_manifest.csv` (`fold_level`): `held_out_conditions;train_recording_ids;test_recording_ids;train_source_recording_prefixes;test_source_recording_prefixes;train_sample_ids;test_sample_ids;train_condition_groups;test_condition_groups;train_n_windows;test_n_windows;train_class_support;test_class_support;recording_overlap`
+- `experiment_planning/hust_gearbox/run_20261117_163340/results.csv` (`fold_level`): `macro_roc_auc_ovr;test_class_support;train_class_support;model_config`
+- `experiment_planning/hust_gearbox/run_20261117_163749/fold_manifest.csv` (`fold_level`): `held_out_conditions;train_recording_ids;test_recording_ids;train_source_recording_prefixes;test_source_recording_prefixes;train_sample_ids;test_sample_ids;train_condition_groups;test_condition_groups;train_n_windows;test_n_windows;train_class_support;test_class_support;recording_overlap`
+- `experiment_planning/hust_gearbox/run_20261117_163749/results.csv` (`fold_level`): `macro_roc_auc_ovr;test_class_support;train_class_support;model_config`
+- `results_tabvibnet_linear_probing.csv` (`fold_level`): `Encoder;Freeze_Backbone`
+- `scratch_vs_tl/audit/compatibility_audit.csv` (`metadata_or_other`): `sampling_rate_hz;loco_folds;method;existing_artifact_reference;split_compatibility;preprocessing_compatibility;feature_compatibility;sample_and_class_matchable;predictions_available_and_complete;method_feasibility;reusable_status;methodological_impact;minimum_required_action`
+- `scratch_vs_tl/audit/experiment_inventory.csv` (`metadata_or_other`): `experiment_family;run_id;artifact_path;script_path;present_on_disk;results_csv_rows;predictions_csv_present;predictions_csv_rows;feature_dim;targets_covered;sources_used;architectures;methods;balance_strategies;seeds;loco_leakage_free;reusable_for_scratch_vs_tl`
+- `scratch_vs_tl/classical_baselines/run_20261111_094327/fold_manifest.csv` (`fold_level`): `fold_id;train_sample_ids;test_sample_ids;source_sample_ids;split_signature;preprocessing_signature;n_train_before_balance;n_train_after_balance`
+- `scratch_vs_tl/classical_baselines/run_20261111_102548/fold_manifest.csv` (`fold_level`): `fold_id;train_sample_ids;test_sample_ids;source_sample_ids;split_signature;preprocessing_signature;n_train_before_balance;n_train_after_balance`
+- `scratch_vs_tl/classical_baselines/run_20261111_103350/fold_manifest.csv` (`fold_level`): `fold_id;train_sample_ids;test_sample_ids;source_sample_ids;split_signature;preprocessing_signature;n_train_before_balance;n_train_after_balance`
+- `scratch_vs_tl/classical_baselines/run_20261111_103350/predictions.csv` (`fold_level`): `fold_id;sample_id;y_true;y_pred;probabilities;class_order;method`
+- `scratch_vs_tl/classical_baselines/run_20261111_103350/rankings.csv` (`metadata_or_other`): `scope;method;metric;metric_value`
+- `scratch_vs_tl/classical_baselines/run_20261111_103350/results.csv` (`fold_level`): `fold_id;method;feature_dimension;test_sample_count;test_class_count;train_sample_count_before;train_sample_count_after;train_class_count;backbone_frozen;backbone_param_max_abs_diff;backbone_buffer_max_abs_diff;selected_epochs;selected_hyperparameters;inner_cv_macro_f1;split_signature;preprocessing_signature;runtime_seconds`
+- `scratch_vs_tl/classical_baselines/run_20261111_103350/statistical_tests.csv` (`metadata_or_other`): `comparison;model_a;model_b;metric;statistical_unit;n_paired_folds;model_a_mean;model_b_mean;mean_diff_a_minus_b;median_diff_a_minus_b;std_diff;ci95_low;ci95_high;n_folds_a_better;n_folds_b_better;n_folds_tied;wilcoxon_statistic;p_value_raw;p_value_holm;significant_alpha_0_05;methodological_note`
+- `scratch_vs_tl/classical_baselines/run_20261111_103350/summary_by_architecture.csv` (`summary`): `method;n_datasets;total_evaluations;valid_evaluations;failed_evaluations;accuracy_median;balanced_accuracy_median;roc_auc_median`
+- `scratch_vs_tl/classical_baselines/run_20261111_103350/summary_by_dataset.csv` (`summary`): `method;total_evaluations;valid_evaluations;failed_evaluations;accuracy_median;balanced_accuracy_median;roc_auc_median`
+- `scratch_vs_tl/classical_baselines/run_20261111_103350/summary_by_method.csv` (`summary`): `method;n_architectures;n_datasets;total_evaluations;valid_evaluations;failed_evaluations;accuracy_median;balanced_accuracy_median;roc_auc_median`
+- `scratch_vs_tl/classical_baselines/run_20261113_083953/predictions.csv` (`fold_level`): `fold_id;sample_id;y_true;y_pred;probabilities;class_order;method`
+- `scratch_vs_tl/classical_baselines/run_20261113_083953/results.csv` (`fold_level`): `fold_id;method;feature_dimension;test_sample_count;test_class_count;train_sample_count_before;train_sample_count_after;train_class_count;backbone_frozen;backbone_param_max_abs_diff;backbone_buffer_max_abs_diff;selected_epochs;selected_hyperparameters;inner_cv_macro_f1;split_signature;preprocessing_signature;runtime_seconds`
+- `scratch_vs_tl/run_20261105_141743/compatibility_audit.csv` (`metadata_or_other`): `sampling_rate_hz;loco_folds;method;existing_artifact_reference;split_compatibility;preprocessing_compatibility;feature_compatibility;sample_and_class_matchable;predictions_available_and_complete;method_feasibility;reusable_status;methodological_impact;minimum_required_action`
+- `scratch_vs_tl/run_20261105_141743/predictions.csv` (`fold_level`): `fold_id;sample_id;y_true;y_pred;probabilities;class_order;method`
+- `scratch_vs_tl/run_20261105_141743/rankings.csv` (`metadata_or_other`): `scope;method;metric;metric_value`
+- `scratch_vs_tl/run_20261105_141743/results.csv` (`fold_level`): `fold_id;method;feature_dimension;test_sample_count;test_class_count;train_sample_count_before;train_sample_count_after;train_class_count;backbone_frozen;backbone_param_max_abs_diff;backbone_buffer_max_abs_diff;selected_epochs;split_signature;preprocessing_signature;runtime_seconds`
+- `scratch_vs_tl/run_20261105_141743/statistical_tests.csv` (`metadata_or_other`): `comparison;tl_method;baseline_method;metric;statistical_unit;n_paired_folds;scratch_mean;tl_mean;mean_diff_tl_minus_scratch;median_diff_tl_minus_scratch;std_diff;ci95_low;ci95_high;n_folds_tl_better;n_folds_scratch_better;n_folds_tied;wilcoxon_statistic;p_value_raw;p_value_holm;significant_alpha_0_05;methodological_note`
+- `scratch_vs_tl/run_20261105_141743/summary_by_architecture.csv` (`summary`): `method;n_datasets;total_evaluations;valid_evaluations;failed_evaluations;accuracy_median;balanced_accuracy_median;roc_auc_median`
+- `scratch_vs_tl/run_20261105_141743/summary_by_dataset.csv` (`summary`): `method;total_evaluations;valid_evaluations;failed_evaluations;accuracy_median;balanced_accuracy_median;roc_auc_median`
+- `scratch_vs_tl/run_20261105_141743/summary_by_method.csv` (`summary`): `method;n_architectures;n_datasets;total_evaluations;valid_evaluations;failed_evaluations;accuracy_median;balanced_accuracy_median;roc_auc_median`
+- `time_scratch_ablation_20261114_095731.csv` (`fold_level`): `K_Factor;Target_Len;Resample_Mode;Norm_Mode`
 - `tl_cross_dataset_mlp_tabnet/run_20261028_105603/summary_paired_mlp_vs_tabnet.csv` (`summary`): `Macro F1_MLP_mean;Macro F1_MLP_std;Macro F1_TabNet_mean;Macro F1_TabNet_std;Macro F1_Diff_MLP_minus_TabNet;ACC_MLP_mean;ACC_MLP_std;ACC_TabNet_mean;ACC_TabNet_std;ACC_Diff_MLP_minus_TabNet;Bal Acc_MLP_mean;Bal Acc_MLP_std;Bal Acc_TabNet_mean;Bal Acc_TabNet_std;Bal Acc_Diff_MLP_minus_TabNet;ROC-AUC_MLP_mean;ROC-AUC_MLP_std;ROC-AUC_TabNet_mean;ROC-AUC_TabNet_std;ROC-AUC_Diff_MLP_minus_TabNet`
 - `tl_cross_dataset_mlp_tabnet/run_20261028_173310/summary_paired_mlp_vs_tabnet.csv` (`summary`): `Macro F1_MLP_mean;Macro F1_MLP_std;Macro F1_TabNet_mean;Macro F1_TabNet_std;Macro F1_Diff_MLP_minus_TabNet;ACC_MLP_mean;ACC_MLP_std;ACC_TabNet_mean;ACC_TabNet_std;ACC_Diff_MLP_minus_TabNet;Bal Acc_MLP_mean;Bal Acc_MLP_std;Bal Acc_TabNet_mean;Bal Acc_TabNet_std;Bal Acc_Diff_MLP_minus_TabNet;ROC-AUC_MLP_mean;ROC-AUC_MLP_std;ROC-AUC_TabNet_mean;ROC-AUC_TabNet_std;ROC-AUC_Diff_MLP_minus_TabNet`
 
@@ -343,4 +403,5 @@
 - **Preservação dos dados brutos**: Nenhum arquivo em `results/` foi modificado, movido ou sobrescrito por esta auditoria.
 
 ## 7. Erros de Leitura
-- Nenhum erro de leitura nos 220 arquivos inventariados.
+- `scratch_vs_tl/classical_baselines/run_20261113_083953/fold_manifest.csv`: field larger than field limit (131072)
+- `scratch_vs_tl/run_20261105_141743/fold_manifest.csv`: field larger than field limit (131072)

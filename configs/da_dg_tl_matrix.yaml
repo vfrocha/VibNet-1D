@@ -35,6 +35,14 @@ source_configurations:
     head_output_dim: 5
     description: "UORED + HUST Bearing + MFPT combined (5-class head: all 5 harmonized classes)"
 
+# Optional future self-supervised pretraining pool (not active in S1..S4 matrix)
+optional_pretrain_only_configurations:
+  S5_All7:
+    enabled: false
+    unsupervised_only: true
+    sources: ["UORED", "HUST", "MFPT", "CWRU_12k", "CWRU_48k", "PU", "UOEMD"]
+    description: "Optional future unsupervised-only TabNetPretrainer across 7 domains (disabled for S1..S4 benchmark)"
+
 # 2. Target datasets by protocol
 targets:
   DA:
@@ -95,6 +103,8 @@ protocols:
     source_val_fraction: 0.20
     target_test_fraction: 1.00
     rms_reference_scope: "sources_only"
+    dg_source_normalization_mode: "per_source_rms"
+    same_global_rms_ref_applied_to_sources_and_target: false
     unit_conversion_before_aggregation: "1 g = 9.80665 m/s^2"
     dg_rms_aggregation_mode: "geometric_mean_ms2"
     dg_rms_formula: "RMS_global = exp(mean(log(RMS_ref_i_ms2)))"
@@ -103,9 +113,16 @@ protocols:
     head_initialization: "trained_on_sources_only_no_expansion"
     early_stopping_scope: "source_val_only"
     zero_target_statistics_enforced: true
+    feature_modes:
+      - "full_141"
+      - "invariant_126"
     compatible_targets_141_features:
       - "CWRU_12k"
       - "CWRU_48k"
+    compatible_targets_126_scale_invariant:
+      - "CWRU_12k"
+      - "CWRU_48k"
+      - "PU"
     blocked_targets_141_features_due_to_unit_mismatch:
       PU:
         physical_unit: "V"
@@ -134,12 +151,23 @@ protocols:
       - "Linear Probing"
     target_head_vocabulary: "native_target_classes"
     rms_reference_scope: "target_training_conditions_only"
+    cwru_48k_rms_reference_mode: "external_cwru12k_normal_reference"
+    target_loco_grouping:
+      CWRU_12k: "native_condition"
+      CWRU_48k: "by_severity"
+      PU: "native_condition"
+      HUST_Gearbox: "by_speed"
+      UOEMD: "native_condition"
+    hust_gearbox_supported_groupings:
+      - "by_speed"
+      - "by_load"
 
 # 5. Hierarchical source balancing
 source_balancing:
-  default_mode: "hierarchical_weights"
-  equalize_dataset_contribution: true
-  equalize_class_within_dataset: true
+  default_mode: "hierarchical_class_equalized"
+  equalize_canonical_classes_in_multi_source: true
+  equalize_dataset_contribution_within_class: true
+  legacy_mode_available: "hierarchical_weights"
   apply_to_validation_or_test: false
   forbid_cross_domain_smote: true
 

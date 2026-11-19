@@ -57,10 +57,13 @@ from src.vibnet.evaluation.da_dg_tl_protocol import (
 from src.vibnet.evaluation.da_dg_tl_runner import (
     MatrixExecutionContext,
     atomic_write_json,
+    build_tl_loco_folds,
     execute_da_job,
     execute_dg_job,
     execute_tl_job,
     is_job_completed,
+    load_native_tl_dataset_records,
+    resolve_unnormalized_dataset_root,
 )
 from src.vibnet.evaluation.provenance import collect_run_provenance, write_run_metadata
 
@@ -204,11 +207,23 @@ def build_execution_plan(
     source_configs: Sequence[str],
     targets: Optional[Sequence[str]],
     seeds: Sequence[int],
+    dg_feature_modes: Optional[Sequence[str]] = None,
 ) -> Dict[str, Any]:
     """Build a deterministic audit & execution plan for the requested matrix slice."""
     coverage_by_src = {
         sc: diagnose_source_config_class_coverage(sc) for sc in source_configs
     }
+    dg_cfg = config.get("protocols", {}).get("DG", {})
+    tl_cfg = config.get("protocols", {}).get("TL", {})
+    bal_cfg = config.get("source_balancing", {})
+    resolved_dg_modes = list(
+        dg_feature_modes
+        if dg_feature_modes
+        else dg_cfg.get("feature_modes", ["full_141", "invariant_126"])
+    )
+    dg_source_norm_mode = str(dg_cfg.get("dg_source_normalization_mode", "per_source_rms"))
+    tl_grouping_map: Dict[str, str] = dict(tl_cfg.get("target_loco_grouping", {}))
+    source_balancing_mode = str(bal_cfg.get("default_mode", "hierarchical_class_equalized"))
     # Audit both the pre-decimation MFPT reference reported in Section 5 (0.874 g)
     # and the harmonized 48.828 kHz on-disk MFPT reference (0.767595 g)
     audit_source_rms_reported = {
@@ -259,6 +274,7 @@ def build_execution_plan(
     }
 
     jobs: List[Dict[str, Any]] = []
+    tl_loco_audit: Dict[str, Any] = {}
     for proto in protocols:
         proto_targets = (
             list(targets)
@@ -269,62 +285,102 @@ def build_execution_plan(
                 )
             )
         )
-        for sc in source_configs:
-            src_classes = get_source_config_classes(sc)
+        if proto == "TL":
             for tgt in proto_targets:
-                if proto == "DG":
-                    head_classes: Any = list(src_classes)
-                    head_dim: Any = len(src_classes)
-                    tgt_unit = DATASET_PHYSICAL_UNITS.get(tgt, "unknown")
-                    if tgt_unit == "V":
-                        exec_status = "BLOCKED_141_DG_INCOMPATIBLE_UNIT_VOLTS_VS_MS2"
+                if tgt in tl_loco_audit:
+                    continue
+                g_mode = str(tl_grouping_map.get(tgt, "native_condition"))
+                try:
+                    t_root = resolve_unnormalized_dataset_root(tgt, PROJECT_ROOT)
+                    t_recs, _ = load_native_tl_dataset_records(tgt, t_root, load_waveforms=False)
+                    t_folds = build_tl_loco_folds(t_recs, tgt, grouping_mode=g_mode)
+                    tl_loco_audit[tgt] = {
+                        "grouping_mode": g_mode,
+                        "n_folds": len(t_folds),
+                        "fold_names": [f.test_condition for f in t_folds],
+                        "n_windows": len(t_recs),
+                        "n_recordings": len({r.recording_key for r in t_recs}),
+                        "zero_condition_and_recording_leakage_verified": True,
+                    }
+                except Exception as exc:
+                    tl_loco_audit[tgt] = {
+                        "grouping_mode": g_mode,
+                        "audit_error": str(exc),
+                    }
+
+        proto_feature_modes = resolved_dg_modes if proto == "DG" else ["full_141"]
+        for f_mode in proto_feature_modes:
+            f_dim = 141 if f_mode == "full_141" else 126
+            for sc in source_configs:
+                src_classes = get_source_config_classes(sc)
+                for tgt in proto_targets:
+                    if proto == "DG":
+                        head_classes: Any = list(src_classes)
+                        head_dim: Any = len(src_classes)
+                        tgt_unit = DATASET_PHYSICAL_UNITS.get(tgt, "unknown")
+                        if f_mode == "invariant_126":
+                            exec_status = "READY_SCALE_INVARIANT_126_DG"
+                            unit_note = (
+                                f"Scale-invariant 126-feature DG ablation (dedicated 126-input "
+                                f"TabNetPretrainer); unit '{tgt_unit}' unblocked without target stats."
+                            )
+                        elif tgt_unit == "V":
+                            exec_status = "BLOCKED_141_DG_INCOMPATIBLE_UNIT_VOLTS_VS_MS2"
+                            unit_note = (
+                                "PU signals are in Volts (V) without calibrated sensor sensitivity "
+                                "(V -> m/s^2); 141-feature DG is blocked (evaluated via invariant_126)."
+                            )
+                        else:
+                            exec_status = "READY_PHYSICAL_UNIT_COMPATIBLE_MS2"
+                            unit_note = (
+                                f"Sources normalized via '{dg_source_norm_mode}'; target unit "
+                                f"'{tgt_unit}' converted to m/s^2 and scaled by source RMS_global."
+                            )
+                    elif proto == "DA":
+                        tgt_classes = target_present_classes_map.get(tgt, HARMONIZED_CLASSES)
+                        expanded = canonicalize_class_sequence(list(src_classes) + list(tgt_classes))
+                        head_classes = list(expanded)
+                        head_dim = len(expanded)
+                        exec_status = "READY_INTERNAL_OR_RELATED_ADAPT_NORMAL_RMS"
                         unit_note = (
-                            "PU signals are in Volts (V) without calibrated sensor sensitivity "
-                            "(V -> m/s^2); 141-feature DG is blocked until unit conversion is "
-                            "resolved or evaluated under 126-feature scale-invariant ablation."
+                            "DA uses target's own adaptation Normal RMS_ref (or CWRU_12k adaptation "
+                            "Normal for CWRU_48k); self-consistent within target domain."
                         )
                     else:
-                        exec_status = "READY_PHYSICAL_UNIT_COMPATIBLE_MS2"
-                        unit_note = (
-                            f"Target unit '{tgt_unit}' convertible to m/s^2 (1 g = 9.80665 m/s^2)."
-                        )
-                elif proto == "DA":
-                    tgt_classes = target_present_classes_map.get(tgt, HARMONIZED_CLASSES)
-                    expanded = canonicalize_class_sequence(list(src_classes) + list(tgt_classes))
-                    head_classes = list(expanded)
-                    head_dim = len(expanded)
-                    exec_status = "READY_INTERNAL_OR_RELATED_ADAPT_NORMAL_RMS"
-                    unit_note = (
-                        "DA uses target's own adaptation Normal RMS_ref (or CWRU_12k adaptation "
-                        "Normal for CWRU_48k); self-consistent within target domain."
-                    )
-                else:
-                    head_classes = "native_target_vocabulary"
-                    head_dim = "native_target_num_classes"
-                    exec_status = "READY_TARGET_LOCO_TRAIN_NORMAL_RMS"
-                    unit_note = "TL uses target LOCO training conditions Normal RMS_ref."
+                        head_classes = "native_target_vocabulary"
+                        head_dim = "native_target_num_classes"
+                        g_mode = str(tl_grouping_map.get(tgt, "native_condition"))
+                        exec_status = f"READY_TARGET_LOCO_TRAIN_NORMAL_RMS ({g_mode})"
+                        unit_note = f"TL uses target LOCO ({g_mode}) training conditions Normal RMS_ref."
 
-                for seed in seeds:
-                    jobs.append(
-                        {
-                            "protocol": proto,
-                            "source_config": sc,
-                            "sources": list(SOURCE_CONFIGS[sc]),
-                            "target": tgt,
-                            "target_physical_unit": DATASET_PHYSICAL_UNITS.get(tgt, "unknown"),
-                            "seed": int(seed),
-                            "initial_source_head_classes": list(src_classes),
-                            "initial_source_head_dim": len(src_classes),
-                            "evaluation_head_classes": head_classes,
-                            "evaluation_head_dim": head_dim,
-                            "execution_status_141_features": exec_status,
-                            "physical_unit_note": unit_note,
-                        }
-                    )
+                    for seed in seeds:
+                        jobs.append(
+                            {
+                                "protocol": proto,
+                                "feature_mode": f_mode,
+                                "feature_dimension": f_dim,
+                                "source_config": sc,
+                                "sources": list(SOURCE_CONFIGS[sc]),
+                                "target": tgt,
+                                "target_physical_unit": DATASET_PHYSICAL_UNITS.get(tgt, "unknown"),
+                                "seed": int(seed),
+                                "initial_source_head_classes": list(src_classes),
+                                "initial_source_head_dim": len(src_classes),
+                                "evaluation_head_classes": head_classes,
+                                "evaluation_head_dim": head_dim,
+                                "execution_status": exec_status,
+                                "physical_unit_note": unit_note,
+                            }
+                        )
 
     return {
         "experiment_id": config.get("experiment_id", "da_dg_tl_matrix"),
         "protocols": list(protocols),
+        "dg_feature_modes": resolved_dg_modes,
+        "dg_source_normalization_mode": dg_source_norm_mode,
+        "source_balancing_mode": source_balancing_mode,
+        "tl_target_loco_grouping": tl_grouping_map,
+        "tl_loco_fold_audit": tl_loco_audit,
         "source_configs": list(source_configs),
         "seeds": [int(s) for s in seeds],
         "total_planned_runs": len(jobs),
@@ -345,7 +401,15 @@ def build_execution_plan(
     }
 
 
-def _make_job_id(protocol: str, source_config: str, target: str, seed: int) -> str:
+def _make_job_id(
+    protocol: str,
+    source_config: str,
+    target: str,
+    seed: int,
+    feature_mode: str = "full_141",
+) -> str:
+    if protocol == "DG" and feature_mode == "invariant_126":
+        return f"DG_INV126__{source_config}__{target}__seed{int(seed)}"
     return f"{protocol}__{source_config}__{target}__seed{int(seed)}"
 
 
@@ -378,6 +442,7 @@ def consolidate_matrix_summary(run_dir: Path) -> Dict[str, Any]:
                             "job_id": job_dir.name,
                             "status": status,
                             "protocol": data.get("protocol", ""),
+                            "feature_mode": data.get("feature_mode", "full_141"),
                             "source_config": data.get("source_config", ""),
                             "target": data.get("target", ""),
                             "seed": data.get("seed", ""),
@@ -394,6 +459,7 @@ def consolidate_matrix_summary(run_dir: Path) -> Dict[str, Any]:
                         "job_id": job_dir.name,
                         "status": status,
                         "protocol": data.get("protocol", ""),
+                        "feature_mode": data.get("feature_mode", "full_141"),
                         "source_config": data.get("source_config", ""),
                         "target": data.get("target", ""),
                         "seed": data.get("seed", ""),
@@ -419,6 +485,7 @@ def consolidate_matrix_summary(run_dir: Path) -> Dict[str, Any]:
         "job_id",
         "status",
         "protocol",
+        "feature_mode",
         "source_config",
         "target",
         "seed",
@@ -459,10 +526,11 @@ def execute_matrix_plan(
 
     for idx, job in enumerate(jobs, start=1):
         proto = str(job["protocol"])
+        f_mode = str(job.get("feature_mode", "full_141"))
         sc = str(job["source_config"])
         tgt = str(job["target"])
         seed = int(job["seed"])
-        job_id = _make_job_id(proto, sc, tgt, seed)
+        job_id = _make_job_id(proto, sc, tgt, seed, feature_mode=f_mode)
         job_dir = jobs_root / job_id
 
         if is_job_completed(job_dir):
@@ -471,7 +539,7 @@ def execute_matrix_plan(
             continue
 
         print("=" * 78)
-        print(f"[{idx}/{len(jobs)}] [RUN] {job_id}")
+        print(f"[{idx}/{len(jobs)}] [RUN] {job_id} (feature_mode={f_mode})")
         print("=" * 78)
         if proto == "DG":
             res = execute_dg_job(
@@ -481,6 +549,7 @@ def execute_matrix_plan(
                 seed=seed,
                 job_dir=job_dir,
                 include_classical=include_classical,
+                feature_mode=f_mode,
             )
         elif proto == "DA":
             res = execute_da_job(
@@ -540,6 +609,13 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         default=["DA", "DG", "TL"],
         choices=["DA", "DG", "TL"],
         help="Protocolos experimentais a planejar/executar.",
+    )
+    parser.add_argument(
+        "--dg-feature-modes",
+        nargs="+",
+        default=None,
+        choices=["full_141", "invariant_126"],
+        help="Modos de features para DG (default: lido do YAML, ex.: full_141 invariant_126).",
     )
     parser.add_argument(
         "--source-configs",
@@ -610,6 +686,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         source_configs=args.source_configs,
         targets=args.targets,
         seeds=args.seeds,
+        dg_feature_modes=args.dg_feature_modes,
     )
 
     if args.export_partition_manifests is not None:

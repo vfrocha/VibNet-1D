@@ -1502,20 +1502,25 @@ class DGRMSNormalizer:
         windows: Sequence[np.ndarray],
         source_unit: Optional[str] = None,
         feature_mode: str = "full_141",
+        source_norm_mode: str = "global_rms",
     ) -> List[np.ndarray]:
         """
-        Normalize source domain windows in DG using the EXACT same global geometric
-        RMS reference (`self.global_target_rms_ref`) used for the target domain:
-          - Preserves domain separation (`source_name` must belong to the active sources).
-          - When `aggregation_mode in ("geometric_mean_ms2", "strict_check_geometric_ms2")`,
-            converts source waveforms in `"g"` (e.g., `MFPT`) to `m/s^2` (`* 9.80665`)
-            before dividing by `self.global_target_rms_ref` (in `m/s^2`), ensuring
-            sources and target share an identical physical amplitude scale.
-          - Preserves linear `detrend` when `self.apply_detrend=True`.
-          - Never uses any target domain statistics.
+        Normalize source domain windows in DG:
+          - `source_norm_mode="per_source_rms"`: normalizes each source domain `i` by its
+            own healthy training `RMS_ref_i` (`self.source_rms_refs[source_name]`), aligning
+            all active sources to `RMS_normal == 1.0` while preserving linear `detrend` and
+            never touching any target domain statistics.
+          - `source_norm_mode="global_rms"` (legacy default for backward compatibility):
+            divides every source by the unified `self.global_target_rms_ref` in `m/s^2`
+            (converting `"g"` sources by `* 9.80665`).
         """
         if source_name not in self.source_rms_refs:
             raise KeyError(f"Unknown source dataset '{source_name}'.")
+        if source_norm_mode not in ("global_rms", "per_source_rms"):
+            raise ValueError(
+                f"Unsupported source_norm_mode '{source_norm_mode}'. "
+                "Expected 'per_source_rms' or 'global_rms'."
+            )
         resolved_unit = (
             str(source_unit).strip()
             if source_unit is not None
@@ -1537,12 +1542,19 @@ class DGRMSNormalizer:
                     f"(physical unit '{resolved_unit}' = Volts) under m/s^2 global reference."
                 )
 
-        unit_multiplier = (
-            STANDARD_GRAVITY_MS2
-            if (is_ms2_ref and u_low in ("g", "g-force", "g_force"))
-            else 1.0
-        )
-        denom = max(float(self.global_target_rms_ref), EPSILON_RMS)
+        if source_norm_mode == "per_source_rms":
+            # Dividing in native unit by source_rms_refs[source_name] is mathematically
+            # identical to converting both numerator and denominator to m/s^2.
+            unit_multiplier = 1.0
+            denom = max(float(self.source_rms_refs[source_name]), EPSILON_RMS)
+        else:
+            unit_multiplier = (
+                STANDARD_GRAVITY_MS2
+                if (is_ms2_ref and u_low in ("g", "g-force", "g_force"))
+                else 1.0
+            )
+            denom = max(float(self.global_target_rms_ref), EPSILON_RMS)
+
         out: List[np.ndarray] = []
         for w in windows:
             arr = np.asarray(w, dtype=np.float64).reshape(-1) * unit_multiplier
@@ -2243,10 +2255,16 @@ def compute_hierarchical_source_balance(
         )
     if len(datasets) != len(class_ids) or len(datasets) == 0:
         raise ValueError("datasets and class_ids must have the same non-zero length.")
-    if mode not in ("hierarchical_weights", "hierarchical_resample", "none"):
+    if mode not in (
+        "hierarchical_weights",
+        "hierarchical_class_equalized",
+        "hierarchical_resample",
+        "none",
+    ):
         raise ValueError(
             f"Unsupported hierarchical balance mode '{mode}'. "
-            "Expected 'hierarchical_weights', 'hierarchical_resample', or 'none'."
+            "Expected 'hierarchical_weights', 'hierarchical_class_equalized', "
+            "'hierarchical_resample', or 'none'."
         )
 
     def _resolve_cls_name(c_val: int | str) -> str:
@@ -2286,6 +2304,25 @@ def compute_hierarchical_source_balance(
             n_cls_in_ds = len(counts_by_ds_cls[ds_str])
             n_dc = counts_by_ds_cls[ds_str][c_name]
             weights[idx] = float(n_total) / float(n_datasets * n_cls_in_ds * n_dc)
+        resampled_idx = np.arange(n_total, dtype=np.int64)
+    elif mode == "hierarchical_class_equalized":
+        # Equalize total weight across every canonical class (`N_total / |C_global|`),
+        # and within each canonical class split weight equally across the datasets
+        # that contain that class (`1 / |D_c|`). Prevents classes present in only one
+        # dataset (e.g., `Inner & Outer` in S4) from being down-weighted by 3.5x.
+        datasets_by_class: Dict[str, set[str]] = defaultdict(set)
+        for ds_str, cls_counts in counts_by_ds_cls.items():
+            for c_name in cls_counts:
+                datasets_by_class[c_name].add(ds_str)
+        n_global_classes = len(datasets_by_class)
+        weights = np.zeros(n_total, dtype=np.float64)
+        for idx, (ds, c_name) in enumerate(zip(datasets, resolved_cls_names)):
+            ds_str = str(ds)
+            n_ds_for_cls = len(datasets_by_class[c_name])
+            n_dc = counts_by_ds_cls[ds_str][c_name]
+            weights[idx] = float(n_total) / float(
+                n_global_classes * n_ds_for_cls * n_dc
+            )
         resampled_idx = np.arange(n_total, dtype=np.int64)
     else:  # hierarchical_resample
         max_ds_count = max(
