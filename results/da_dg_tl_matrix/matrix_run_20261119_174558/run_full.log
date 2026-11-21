@@ -1,0 +1,30 @@
+[   INFO   ] MusicExtractorSVM: no classifier models were configured by default
+[RESUME] Retomando execução segura em: /home/vfrocha/VibNet-1D/results/da_dg_tl_matrix/matrix_run_20261119_174558
+[1/80] [SKIP-RESUME] DA__S1__CWRU_12k__seed42 already completed.
+[2/80] [SKIP-RESUME] DA__S1__CWRU_48k__seed42 already completed.
+[3/80] [SKIP-RESUME] DA__S1__PU__seed42 already completed.
+==============================================================================
+[4/80] [RUN] DA__S1__HUST_Gearbox__seed42 (feature_mode=full_141)
+==============================================================================
+      -> [Fusion] Iniciando extração DUPLA para 370 amostras...
+         [Debug] Shape VibNet: (370, 16)
+         [Debug] Shape SignAI: (370, 125)
+      -> [Fusion] Shape final combinado: (370, 141)
+/home/vfrocha/.local/lib/python3.10/site-packages/pytorch_tabnet/abstract_model.py:687: UserWarning: No early stopping will be performed, last training weights will be used.
+  warnings.warn(wrn_msg)
+Traceback (most recent call last):
+  File "/home/vfrocha/VibNet-1D/src/experiments/run_da_dg_tl_matrix.py", line 750, in <module>
+    raise SystemExit(main())
+  File "/home/vfrocha/VibNet-1D/src/experiments/run_da_dg_tl_matrix.py", line 731, in main
+    exec_report = execute_matrix_plan(
+  File "/home/vfrocha/VibNet-1D/src/experiments/run_da_dg_tl_matrix.py", line 555, in execute_matrix_plan
+    res = execute_da_job(
+  File "/home/vfrocha/VibNet-1D/src/vibnet/evaluation/da_dg_tl_runner.py", line 909, in execute_da_job
+    tgt_recs, tgt_waves = ctx.get_harmonized_dataset(target_dataset)
+  File "/home/vfrocha/VibNet-1D/src/vibnet/evaluation/da_dg_tl_runner.py", line 368, in get_harmonized_dataset
+    recs, waves = load_dataset_window_records(
+  File "/home/vfrocha/VibNet-1D/src/vibnet/evaluation/da_dg_tl_protocol.py", line 459, in load_dataset_window_records
+    harm_name, harm_id = map_to_harmonized_class(
+  File "/home/vfrocha/VibNet-1D/src/vibnet/evaluation/da_dg_tl_protocol.py", line 315, in map_to_harmonized_class
+    raise KeyError(
+KeyError: "Dataset 'HUST_Gearbox' has no mapping to the 5-class bearing ontology."
